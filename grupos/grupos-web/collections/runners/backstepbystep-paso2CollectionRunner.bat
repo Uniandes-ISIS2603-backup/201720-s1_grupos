@@ -1,0 +1,1 @@
+newman run C:\Users\Asistente\Documents\GitHub\back\backstepbystep\bodega-web\collections\backstepbystep-paso2.postman_collection.json --disable-unicode
