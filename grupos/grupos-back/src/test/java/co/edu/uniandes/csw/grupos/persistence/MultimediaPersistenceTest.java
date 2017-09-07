@@ -148,7 +148,7 @@ public class MultimediaPersistenceTest {
         persistence.updateEntity(updated);
         
         MultimediaEntity rta= em.find(MultimediaEntity.class, entity.getLink());
-        Assert.assertEquals(updated,rta);
+        Assert.assertEquals(updated.getLink(),rta.getLink());
     }
 
     /**
@@ -159,7 +159,7 @@ public class MultimediaPersistenceTest {
         MultimediaEntity entity=data.get(0);
         MultimediaEntity found=persistence.find(entity.getLink());
         Assert.assertNotNull(found);
-        Assert.assertEquals(entity,found);
+        Assert.assertEquals(entity.getLink(),found.getLink());
     }
 
     /**

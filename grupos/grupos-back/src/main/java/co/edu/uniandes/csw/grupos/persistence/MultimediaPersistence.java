@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.persistence;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -16,10 +17,10 @@ import javax.persistence.TypedQuery;
  *
  * @author s.guzmanm
  */
+@Stateless
 public class MultimediaPersistence {
-       private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
+       private static final Logger LOGGER = Logger.getLogger(MultimediaPersistence.class.getName());
    @PersistenceContext(unitName = "gruposPU")
-
     protected EntityManager em;
    
    public MultimediaEntity createEntity(MultimediaEntity e)
@@ -46,7 +47,7 @@ public class MultimediaPersistence {
    {
        MultimediaEntity e=em.find(MultimediaEntity.class, id);
        LOGGER.info("Borrando "+id+" con un objeto que existe");
-       em.remove(id);
+       em.remove(e);
        
    }
     

@@ -24,7 +24,7 @@ public class CalificacionEntity {
     private Long id;
     
     private Date fecha;
-    
+    /*
     private UsuarioEntity calificador;
     
     private BlogEntity blog;
@@ -43,7 +43,7 @@ public class CalificacionEntity {
 
     public void setBlog(BlogEntity blog) {
         this.blog = blog;
-    }
+    }*/
     
     
 

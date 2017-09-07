@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -16,25 +17,27 @@ import javax.persistence.OneToMany;
  *
  * @author s.guzmanm
  */
-@Entity @IdClass(NoticiaId.class)
+@Entity 
 public class NoticiaEntity implements Serializable {
-    @Id
-    private String titulo;
+    @EmbeddedId
+    private NoticiaId id;
     
     private String informacion;
-    
+    /*
     @OneToMany
     private List<MultimediaEntity> multimedia;
-
-    private UsuarioEntity autor;
+    @Id
+    private UsuarioEntity autor;*/
     
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+   public NoticiaId getId()
+   {
+       return id;
+   }
+   
+   public void setId(NoticiaId n)
+   {
+       id=n;
+   }
 
     public String getInformacion() {
         return informacion;
@@ -43,7 +46,7 @@ public class NoticiaEntity implements Serializable {
     public void setInformacion(String informacion) {
         this.informacion = informacion;
     }
-
+/*
     public List<MultimediaEntity> getMultimedia() {
         return multimedia;
     }
@@ -58,5 +61,5 @@ public class NoticiaEntity implements Serializable {
 
     public void setAutor(UsuarioEntity autor) {
         this.autor = autor;
-    }
+    }*/
 }

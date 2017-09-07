@@ -129,7 +129,7 @@ public class CalificacionPersistenceTest {
         Assert.assertNotNull(result);
         CalificacionEntity found=em.find(CalificacionEntity.class, newEntity.getId());
         Assert.assertNotNull(found);
-        Assert.assertEquals(newEntity,result);
+        Assert.assertEquals(newEntity.getId(),result.getId());
     }
 
     /**
@@ -144,7 +144,7 @@ public class CalificacionPersistenceTest {
         persistence.updateEntity(updated);
         
         CalificacionEntity rta= em.find(CalificacionEntity.class, entity.getId());
-        Assert.assertEquals(updated,rta);
+        Assert.assertEquals(updated.getId(),rta.getId());
         
     }
 
@@ -156,7 +156,7 @@ public class CalificacionPersistenceTest {
         CalificacionEntity entity=data.get(0);
         CalificacionEntity found=persistence.find(entity.getId());
         Assert.assertNotNull(found);
-        Assert.assertEquals(entity,found);
+        Assert.assertEquals(entity.getId(),found.getId());
     }
 
     /**
@@ -172,7 +172,7 @@ public class CalificacionPersistenceTest {
             found=false;
             for(CalificacionEntity e2: data)
             {
-                if(e2.equals(e))
+                if(e2.getId().equals(e.getId()))
                 {
                     found=true;
                     break;

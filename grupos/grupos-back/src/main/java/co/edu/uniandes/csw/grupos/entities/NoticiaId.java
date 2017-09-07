@@ -6,14 +6,33 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Embeddable;
 
 /**
  *
  * @author s.guzmanm
  */
+@Embeddable
 public class NoticiaId implements Serializable {
      String titulo;
-     UsuarioEntity autor;
+     //Long autor;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+/*
+    public Long getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Long autor) {
+        this.autor = autor;
+    }
+     */
      
      public boolean compareTo(Object o)
      {
@@ -21,8 +40,8 @@ public class NoticiaId implements Serializable {
          if(!(o instanceof NoticiaId)) return false;
          NoticiaId n2=(NoticiaId) o;
          if(!titulo.equals(n2.titulo)) return false;
-         if(autor==null || n2.autor==null) return false;
-         if(!autor.equals(n2.autor)) return false;
+         //if(autor==null || n2.autor==null) return false;
+         //if(!autor.equals(n2.autor)) return false;
         
          return true;
      }

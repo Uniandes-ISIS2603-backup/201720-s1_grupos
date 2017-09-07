@@ -58,7 +58,7 @@ public class CalificacionPersistence {
    {
        CalificacionEntity e=em.find(CalificacionEntity.class, id);
        LOGGER.info("Borrando "+id+" con un objeto que existe");
-       em.remove(id);
+       em.remove(e);
        
    }
     

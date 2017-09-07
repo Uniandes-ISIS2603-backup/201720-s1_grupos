@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.persistence;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -133,8 +134,9 @@ public class NoticiaPersistenceTest {
         NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
         NoticiaEntity result=persistence.createEntity(newEntity);
         Assert.assertNotNull(result);
-//        NoticiaEntity found=em.find(NoticiaEntity.class, newEntity.getId());
-       // Assert.assertNotNull(found);
+        NoticiaId id= newEntity.getId();
+        NoticiaEntity found=em.find(NoticiaEntity.class, newEntity.getId());
+        Assert.assertNotNull(found);
         Assert.assertEquals(newEntity,result);
     }
 
@@ -147,11 +149,15 @@ public class NoticiaPersistenceTest {
         NoticiaEntity entity=data.get(0);
         PodamFactory factory= new PodamFactoryImpl();
         NoticiaEntity updated=factory.manufacturePojo(NoticiaEntity.class);
-        //updated.setId(entity.getId());
+        NoticiaId id=entity.getId();
+       
+       updated.setId(id);
         persistence.updateEntity(updated);
         
-       // NoticiaEntity rta= em.find(NoticiaEntity.class, entity.getId());
-       // Assert.assertEquals(updated,rta);
+        NoticiaEntity rta= em.find(NoticiaEntity.class, id);
+        Assert.assertEquals(updated.getId().getTitulo(),rta.getId().getTitulo());
+        //        Assert.assertEquals(updated.getId().getAutor(),rta.getId().getAutor());
+
     }
 
     /**
@@ -160,9 +166,11 @@ public class NoticiaPersistenceTest {
     @Test
     public void testFind() {
          NoticiaEntity entity=data.get(0);
-       // NoticiaEntity found=persistence.find(entity.getId());
-       // Assert.assertNotNull(found);
-       // Assert.assertEquals(entity,found);
+         NoticiaId id=entity.getId();
+        NoticiaEntity found=persistence.find(id);
+        Assert.assertNotNull(found);
+        Assert.assertEquals(entity.getId().getTitulo(),found.getId().getTitulo());
+      //  Assert.assertEquals(entity.getAutor(),found.getAutor());
     }
 
     /**
@@ -179,7 +187,7 @@ public class NoticiaPersistenceTest {
             found=false;
             for(NoticiaEntity e2: data)
             {
-                if(e2.equals(e))
+                if(e2.getId().getTitulo().equals(e.getId().getTitulo()) /* && e2.getId().getAutor().equals(e.getId().getAutor())*/)
                 {
                     found=true;
                     break;
@@ -195,9 +203,11 @@ public class NoticiaPersistenceTest {
     @Test
     public void testDelete() {
         NoticiaEntity entity= data.get(0);
-       // persistence.delete(entity.getId());
-       // NoticiaEntity deleted= em.find(NoticiaEntity.class,entity.getId());
-      // Assert.assertNull(deleted);
+        NoticiaId id=entity.getId();
+       // id.setAutor(entity.getAutor());
+       persistence.delete(id);
+       NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
+       Assert.assertNull(deleted);
     }
     
 }

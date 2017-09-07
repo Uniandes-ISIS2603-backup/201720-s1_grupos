@@ -18,14 +18,14 @@ import javax.persistence.TypedQuery;
  * @author s.guzmanm
  */
 public class NoticiaPersistence {
-       private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
+       private static final Logger LOGGER = Logger.getLogger(NoticiaPersistence.class.getName());
    @PersistenceContext(unitName = "gruposPU")
 
     protected EntityManager em;
    
    public NoticiaEntity createEntity(NoticiaEntity e)
    {
-       LOGGER.info("Creando objeto "+e.getTitulo()+" "+e.getAutor());
+       LOGGER.info("Creando objeto "+e.getId().getTitulo()+" ");
        em.persist(e);
        LOGGER.info("Éxito en creación");
        return e;
@@ -33,7 +33,7 @@ public class NoticiaPersistence {
    
    public NoticiaEntity updateEntity(NoticiaEntity e)
    {
-       LOGGER.info("Actualizando entidad "+e.getTitulo()+" "+e.getAutor());
+       LOGGER.info("Actualizando entidad "+e.getId().getTitulo()+" ");
        return em.merge(e);
    }
    
@@ -50,11 +50,11 @@ public class NoticiaPersistence {
        return q.getResultList();
    }
    
-   public void delete(Long id)
+   public void delete(NoticiaId id)
    {
        NoticiaEntity    e=em.find(NoticiaEntity.class, id);
        LOGGER.info("Borrando "+id+" con un objeto que existe");
-       em.remove(id);
+       em.remove(e);
        
    }
     
