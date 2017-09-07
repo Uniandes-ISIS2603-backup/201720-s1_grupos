@@ -21,7 +21,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class CategoryPersistence {
     
- @PersistenceContext(unitName = "GruposPU")
+ @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
 
     /**
