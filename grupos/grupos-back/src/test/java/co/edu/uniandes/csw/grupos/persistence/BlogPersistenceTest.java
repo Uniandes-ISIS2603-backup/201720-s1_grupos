@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
@@ -40,7 +40,7 @@ public class BlogPersistenceTest {
     private EntityManager em;
     
     @Inject
-    UserTransaction utx;
+            UserTransaction utx;
     
     private List<BlogEntity> data = new ArrayList<>();
     
@@ -94,59 +94,89 @@ public class BlogPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             BlogEntity entity = factory.manufacturePojo(BlogEntity.class);
-
+            
             em.persist(entity);
             data.add(entity);
         }
     }
-
+    
     /**
      * Test of createBlog method, of class BlogPersistence.
      */
     @Test
     public void testCreateBlog() throws Exception {
-    PodamFactory factory = new PodamFactoryImpl();
-    BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
-    BlogEntity result = persistence.createBlog(newEntity);
-
-    Assert.assertNotNull(result);
-    BlogEntity entity = em.find(BlogEntity.class, result.getId());
-    Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getTitle(), entity.getTitle());
-    Assert.assertEquals(newEntity.getAuthor(), entity.getAuthor());
-    Assert.assertEquals(newEntity.getContent(), entity.getContent());
+        PodamFactory factory = new PodamFactoryImpl();
+        BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
+        BlogEntity result = persistence.createBlog(newEntity);
+        
+        Assert.assertNotNull(result);
+        BlogEntity entity = em.find(BlogEntity.class, result.getId());
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getTitle(), entity.getTitle());
+        Assert.assertEquals(newEntity.getAuthor(), entity.getAuthor());
+        Assert.assertEquals(newEntity.getContent(), entity.getContent());
     }
-
+    
     /**
      * Test of find method, of class BlogPersistence.
      */
     @Test
     public void testFind() throws Exception {
-        fail();
+        BlogEntity entity = data.get(0);
+        BlogEntity newEntity = persistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getTitle(), newEntity.getTitle());
+        Assert.assertEquals(entity.getAuthor(), newEntity.getAuthor());
+        Assert.assertEquals(entity.getContent(), newEntity.getContent());
     }
-
+    
     /**
      * Test of findAll method, of class BlogPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
-        fail();
+        List<BlogEntity> list = persistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (BlogEntity ent : list) {
+            boolean found = false;
+            for (BlogEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
     }
-
+    
     /**
      * Test of update method, of class BlogPersistence.
      */
     @Test
     public void testUpdate() throws Exception {
-        fail();
-    }
+        BlogEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
 
+        newEntity.setId(entity.getId());
+
+        persistence.update(newEntity);
+
+        BlogEntity resp = em.find(BlogEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getTitle(), resp.getTitle());
+        Assert.assertEquals(newEntity.getAuthor(), resp.getAuthor());
+        Assert.assertEquals(newEntity.getContent(), resp.getContent());
+    }
+    
     /**
      * Test of delete method, of class BlogPersistence.
      */
     @Test
     public void testDelete() throws Exception {
-        fail();
+        BlogEntity entity = data.get(0);
+        persistence.delete(entity.getId());
+        BlogEntity deleted = em.find(BlogEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
     
 }
