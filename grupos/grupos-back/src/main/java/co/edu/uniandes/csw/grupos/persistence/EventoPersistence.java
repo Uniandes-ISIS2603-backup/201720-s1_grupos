@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class EventoPersistence {
     private static final Logger LOGGER = Logger.getLogger(EventoPersistence.class.getName());
-    @PersistenceContext(unitName = "GrupoPU")
+    @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
         
     public EventoEntity find(Long id) {

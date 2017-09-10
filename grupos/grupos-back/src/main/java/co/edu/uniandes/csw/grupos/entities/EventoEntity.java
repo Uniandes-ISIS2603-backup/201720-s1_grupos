@@ -83,27 +83,4 @@ public class EventoEntity implements Serializable{
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (this.getId() != null && ((EventoEntity) obj).getId() != null) {
-            return this.getId().equals(((EventoEntity) obj).getId());
-        }
-        return super.equals(obj);
-    }
-
-    
-    /**
-     * 
-     * @return el hashcode del nombre que define la entidad
-     */
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
-
 }

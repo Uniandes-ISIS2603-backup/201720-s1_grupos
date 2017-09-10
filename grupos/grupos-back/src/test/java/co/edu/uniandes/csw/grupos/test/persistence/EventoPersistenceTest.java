@@ -14,14 +14,18 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import org.junit.Assert;
-import org.jboss.arquillian.container.test.api.Deployment;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import org.jboss.arquillian.junit.Arquillian;
+import org.junit.runner.RunWith;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -32,15 +36,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class EventoPersistenceTest {
     
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(EventoEntity.class.getPackage())
-                .addPackage(EventoPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
+        
     @Inject
     private EventoPersistence eventoPersistence;
     
@@ -49,7 +45,44 @@ public class EventoPersistenceTest {
     
     @Inject
     UserTransaction utx;
+    private List<EventoEntity> data = new ArrayList<EventoEntity>();
     
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(EventoEntity.class.getPackage())
+                .addPackage(EventoPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+    public EventoPersistenceTest()
+    {
+    }
+        
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+       
+    private void clearData() {
+        em.createQuery("delete from EventoEntity").executeUpdate();
+    }
+    
+        
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
+
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
+        
     @Before
     public void setUp() {
         try {
@@ -67,26 +100,13 @@ public class EventoPersistenceTest {
             }
         }
     }
-    
-    private void clearData() {
-        em.createQuery("delete from EventoEntity").executeUpdate();
+    @After
+    public void tearDown() {
     }
-    
-    private List<EventoEntity> data = new ArrayList<EventoEntity>();
-    
-       
-    private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
-            EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
 
-            em.persist(entity);
-            data.add(entity);
-        }
-    }
         
     @Test
-    public void createEventoTest() {
+    public void createEventoTest() throws Exception{
         PodamFactory factory = new PodamFactoryImpl();
         EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
         EventoEntity result = eventoPersistence.create(newEntity);
@@ -99,7 +119,7 @@ public class EventoPersistenceTest {
     }
     
     @Test
-    public void getEventosTest() {
+    public void getEventosTest() throws Exception{
         List<EventoEntity> list = eventoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (EventoEntity ent : list) {
@@ -115,7 +135,7 @@ public class EventoPersistenceTest {
 
 
     @Test
-    public void getEventoTest() {
+    public void getEventoTest() throws Exception{
         EventoEntity entity = data.get(0);
         EventoEntity newEntity = eventoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -124,7 +144,7 @@ public class EventoPersistenceTest {
 
 
     @Test
-    public void deleteEventoTest() {
+    public void deleteEventoTest() throws Exception{
         EventoEntity entity = data.get(0);
         eventoPersistence.delete(entity.getId());
         EventoEntity deleted = em.find(EventoEntity.class, entity.getId());
@@ -133,7 +153,7 @@ public class EventoPersistenceTest {
 
 
     @Test
-    public void updateEventoTest() {
+    public void updateEventoTest() throws Exception{
         EventoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);

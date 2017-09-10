@@ -20,7 +20,7 @@ import javax.persistence.Query;
 @Stateless
 public class LugarPersistence {
     private static final Logger LOGGER = Logger.getLogger(LugarPersistence.class.getName());
-    @PersistenceContext(unitName = "GrupoPU")
+    @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
     public LugarEntity find(String direccion)
     {
