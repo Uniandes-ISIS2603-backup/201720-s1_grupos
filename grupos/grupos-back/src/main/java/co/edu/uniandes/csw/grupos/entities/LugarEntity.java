@@ -20,6 +20,8 @@ public class LugarEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    
     private String direccion;
     
     private String nombre;
@@ -29,7 +31,9 @@ public class LugarEntity implements Serializable{
     /**
      * @return the direccion
      */
-    public String getDireccion() {
+    public String getDireccion()
+    {
+        
         return direccion;
     }
 
@@ -68,7 +72,7 @@ public class LugarEntity implements Serializable{
         this.capacidad = capacidad;
     }
     
-    @Override
+    /*@Override
     public boolean equals(Object obj) {
         if (this.getDireccion()!= null && ((LugarEntity) obj).getDireccion()!= null) {
             return this.getDireccion().equals(((LugarEntity) obj).getDireccion());
@@ -81,11 +85,25 @@ public class LugarEntity implements Serializable{
      * 
      * @return el hashcode del nombre que define la entidad
      */
-    @Override
+   /* @Override
     public int hashCode() {
         if (this.getDireccion() != null) {
             return this.getDireccion().hashCode();
         }
         return super.hashCode();
+    }*/
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 }

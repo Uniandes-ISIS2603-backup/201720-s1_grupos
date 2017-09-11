@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -22,10 +23,11 @@ public class LugarPersistence {
     private static final Logger LOGGER = Logger.getLogger(LugarPersistence.class.getName());
     @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
-    public LugarEntity find(String direccion)
+    
+    public LugarEntity find(Long id)
     {
-        LOGGER.log(Level.INFO, "Consultando lugar con direccion=", direccion);
-        return em.find(LugarEntity.class, direccion);
+        LOGGER.log(Level.INFO, "Consultando lugar con id=", id);
+        return em.find(LugarEntity.class, id);
     }
     
     public List<LugarEntity> findAll()
@@ -33,6 +35,13 @@ public class LugarPersistence {
         LOGGER.info("Consultando todos los lugares");
         Query q = em.createQuery("select u from LugarEntity u");
         return q.getResultList();
+    }
+        public LugarEntity findByName(String nombre) {
+        LOGGER.log(Level.INFO, "Consultando evento con nombre= ", nombre);
+        TypedQuery<LugarEntity> q
+                = em.createQuery("select u from LugarEntity u where u.nombre = :nombre", LugarEntity.class);
+        q = q.setParameter("nombre", nombre);
+        return q.getSingleResult();
     }
     
     public LugarEntity create(LugarEntity entity)
@@ -44,13 +53,13 @@ public class LugarPersistence {
     }
     
     public LugarEntity update(LugarEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando lugar con direccion=", entity.getDireccion());
+        LOGGER.log(Level.INFO, "Actualizando lugar con id=", entity.getId());
         return em.merge(entity);
     }
 
-    public void delete(String direccion) {
-        LOGGER.log(Level.INFO, "Borrando lugar con direccion=", direccion);
-        LugarEntity entity = em.find(LugarEntity.class, direccion);
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando lugar con id=", id);
+        LugarEntity entity = em.find(LugarEntity.class, id);
         em.remove(entity);
     }
 }

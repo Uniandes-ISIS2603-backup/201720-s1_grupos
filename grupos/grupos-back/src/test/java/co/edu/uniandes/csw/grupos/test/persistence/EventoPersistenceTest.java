@@ -159,6 +159,7 @@ public class EventoPersistenceTest {
         EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
 
         newEntity.setId(entity.getId());
+        newEntity.setNombre(entity.getNombre());
 
         eventoPersistence.update(newEntity);
 
