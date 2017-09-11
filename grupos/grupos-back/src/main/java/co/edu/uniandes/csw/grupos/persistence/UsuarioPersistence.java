@@ -48,7 +48,9 @@ public class UsuarioPersistence {
    public UsuarioEntity findByName(String nom)
    {
        LOGGER.info("Buscando "+nom);
-       return em.find(UsuarioEntity.class, nom);
+       TypedQuery q= em.createQuery("Select u from UsuarioEntity u where u.nombre =:nom", UsuarioEntity.class );
+       q.setParameter("nom", nom);
+       return (UsuarioEntity) q.getSingleResult(); 
    }
    
    public List<UsuarioEntity> findAll()

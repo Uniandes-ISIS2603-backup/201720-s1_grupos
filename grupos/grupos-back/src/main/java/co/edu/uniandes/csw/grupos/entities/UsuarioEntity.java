@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author tefa
  */
 @Entity
-public class UsuarioEntity {
+public class UsuarioEntity implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

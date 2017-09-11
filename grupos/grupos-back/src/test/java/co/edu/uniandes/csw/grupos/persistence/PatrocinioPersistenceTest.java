@@ -114,7 +114,7 @@ public class PatrocinioPersistenceTest {
     
     @After
     public void tearDown() {
-        fail("tearDown");
+        //fail("tearDown");
     }
     
     @Test

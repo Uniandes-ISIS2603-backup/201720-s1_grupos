@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author tefa
  */
 @Entity
-public class PatrocinioEntity {
+public class PatrocinioEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
