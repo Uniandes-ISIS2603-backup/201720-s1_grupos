@@ -5,10 +5,12 @@
  */
 package co.edu.uniandes.csw.grupos.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author wr.ravelo
  */
-public class GruposEntity {
+public class GruposEntity implements Serializable {
     
 }
