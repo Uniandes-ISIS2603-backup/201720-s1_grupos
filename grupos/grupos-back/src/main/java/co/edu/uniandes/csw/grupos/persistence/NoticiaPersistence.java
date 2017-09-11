@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaId;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -27,7 +26,7 @@ public class NoticiaPersistence {
    
    public NoticiaEntity createEntity(NoticiaEntity e)
    {
-       LOGGER.info("Creando objeto "+e.getId().getTitulo()+" ");
+       LOGGER.info("Creando objeto "+e.getTitulo()+" ");
        em.persist(e);
        LOGGER.info("Éxito en creación");
        return e;
@@ -35,11 +34,11 @@ public class NoticiaPersistence {
    
    public NoticiaEntity updateEntity(NoticiaEntity e)
    {
-       LOGGER.info("Actualizando entidad "+e.getId().getTitulo()+" ");
+       LOGGER.info("Actualizando entidad "+e.getTitulo()+" ");
        return em.merge(e);
    }
    
-   public NoticiaEntity find(NoticiaId id)
+   public NoticiaEntity find(Long id)
    {
        LOGGER.info("Buscando "+id);
        return em.find(NoticiaEntity.class, id);
@@ -52,7 +51,7 @@ public class NoticiaPersistence {
        return q.getResultList();
    }
    
-   public void delete(NoticiaId id)
+   public void delete(Long id)
    {
        NoticiaEntity    e=em.find(NoticiaEntity.class, id);
        LOGGER.info("Borrando "+id+" con un objeto que existe");

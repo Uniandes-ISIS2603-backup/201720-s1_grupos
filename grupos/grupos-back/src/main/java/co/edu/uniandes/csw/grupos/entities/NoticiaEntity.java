@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.OneToMany;
@@ -19,8 +21,11 @@ import javax.persistence.OneToMany;
  */
 @Entity 
 public class NoticiaEntity implements Serializable {
-    @EmbeddedId
-    private NoticiaId id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    
+    private String titulo;
     
     private String informacion;
     /*
@@ -28,13 +33,22 @@ public class NoticiaEntity implements Serializable {
     private List<MultimediaEntity> multimedia;
     @Id
     private UsuarioEntity autor;*/
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
     
-   public NoticiaId getId()
+    
+   public Long getId()
    {
        return id;
    }
    
-   public void setId(NoticiaId n)
+   public void setId(Long n)
    {
        id=n;
    }
