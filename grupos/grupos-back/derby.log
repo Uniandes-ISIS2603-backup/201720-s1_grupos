@@ -1,31 +1,11 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-Mon Sep 11 08:52:44 COT 2017:
- Iniciando instancia a816c00e-015e-7136-b3c2-00000ccfa968 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\s.guzmanm\AppData\Local\Temp\gfembed165067731065038345tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
-Cargado desde file:/C:/Users/s.guzmanm/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_144-b01
-user.dir=C:\Users\s.guzmanm\Documents\NetBeansProjects\s1_grupos\grupos\grupos-back
-=======
-Tue Sep 12 18:02:35 COT 2017:
- Iniciando instancia a816c00e-015e-7854-76dc-00000df7e5e0 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\js.ramos14\AppData\Local\Temp\gfembed4525606246295178836tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
+Tue Sep 12 18:34:38 COT 2017:
+ Iniciando instancia a816c00e-015e-7871-cfb4-00000df02e80 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos C:\Users\js.ramos14\AppData\Local\Temp\gfembed738544743626573987tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
 Cargado desde file:/C:/Users/js.ramos14/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_144-b01
 user.dir=C:\Users\js.ramos14\Documents\NetBeansProjects\s1_grupos\grupos\grupos-back
->>>>>>> origin/Completa
-=======
-Tue Sep 12 18:02:35 COT 2017:
- Iniciando instancia a816c00e-015e-7854-76dc-00000df7e5e0 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\js.ramos14\AppData\Local\Temp\gfembed4525606246295178836tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
-Cargado desde file:/C:/Users/js.ramos14/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_144-b01
-user.dir=C:\Users\js.ramos14\Documents\NetBeansProjects\s1_grupos\grupos\grupos-back
->>>>>>> origin/Completa
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1
