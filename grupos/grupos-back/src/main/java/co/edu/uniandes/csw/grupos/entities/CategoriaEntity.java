@@ -17,7 +17,7 @@ import javax.persistence.MappedSuperclass;
  * @author cm.sarmiento10
  */
 @Entity
-public class CategoryEntity {
+public class CategoriaEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,7 +76,7 @@ public class CategoryEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final CategoryEntity other = (CategoryEntity) obj;
+        final CategoriaEntity other = (CategoriaEntity) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
