@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
-import co.edu.uniandes.csw.grupos.entities.GroupEntity;
+import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,14 +32,14 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author cm.sarmiento10
  */
 @RunWith(Arquillian.class)
-public class GroupPersistenceTest {
+public class CategoriaPersistenceTest {
     
     /**
-     * Inyección de la dependencia a la clase GroupPersistence cuyos métodos
+     * Inyección de la dependencia a la clase CategoriaPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private GroupPersistence persistence;
+    private CategoriaPersistence persistence;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -58,19 +58,18 @@ public class GroupPersistenceTest {
      /**
      *
      */
-    private List<GroupEntity> data = new ArrayList<GroupEntity>();
+    private List<CategoriaEntity> data = new ArrayList<CategoriaEntity>();
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(GroupEntity.class.getPackage())
-                .addPackage(GroupPersistence.class.getPackage())
+                .addPackage(CategoriaEntity.class.getPackage())
+                .addPackage(CategoriaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    public GroupPersistenceTest()
-    {
+    public CategoriaPersistenceTest() {
     }
     
     @BeforeClass
@@ -82,20 +81,20 @@ public class GroupPersistenceTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from GroupEntity").executeUpdate();
+        em.createQuery("delete from CategoriaEntity").executeUpdate();
     }
 
 
  private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            GroupEntity entity = factory.manufacturePojo(GroupEntity.class);
+            CategoriaEntity entity = factory.manufacturePojo(CategoriaEntity.class);
 
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+ 
     @Before
     public void setUp() {
         try {
@@ -119,71 +118,71 @@ public class GroupPersistenceTest {
     }
 
     /**
-     * Test of create method, of class GroupPersistence.
+     * Test of create method, of class CategoriaPersistence.
      */
     @Test
     public void testCreate() throws Exception {
          PodamFactory factory = new PodamFactoryImpl();
-    GroupEntity newEntity = factory.manufacturePojo(GroupEntity.class);
-    GroupEntity result = persistence.create(newEntity);
+    CategoriaEntity newEntity = factory.manufacturePojo(CategoriaEntity.class);
+    CategoriaEntity result = persistence.create(newEntity);
 
     Assert.assertNotNull(result);
-    GroupEntity entity = em.find(GroupEntity.class, result.getId());
+    CategoriaEntity entity = em.find(CategoriaEntity.class, result.getId());
     Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getId(), entity.getId());
+    Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
     }
 
     /**
-     * Test of update method, of class GroupPersistence.
+     * Test of update method, of class CategoriaPersistence.
      */
     @Test
     public void testUpdate() throws Exception {
-     GroupEntity entity = data.get(0);
+     CategoriaEntity entity = data.get(0);
     PodamFactory factory = new PodamFactoryImpl();
-    GroupEntity newEntity = factory.manufacturePojo(GroupEntity.class);
+    CategoriaEntity newEntity = factory.manufacturePojo(CategoriaEntity.class);
 
     newEntity.setId(entity.getId());
 
     persistence.update(newEntity);
 
-    GroupEntity resp = em.find(GroupEntity.class, entity.getId());
+    CategoriaEntity resp = em.find(CategoriaEntity.class, entity.getId());
 
-    Assert.assertEquals(newEntity.getId(), resp.getId());
+    Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
 }
 
     /**
-     * Test of delete method, of class GroupPersistence.
+     * Test of delete method, of class CategoriaPersistence.
      */
     @Test
     public void testDelete() throws Exception {
-    GroupEntity entity = data.get(0);
+    CategoriaEntity entity = data.get(0);
     persistence.delete(entity.getId());
-    GroupEntity deleted = em.find(GroupEntity.class, entity.getId());
+    CategoriaEntity deleted = em.find(CategoriaEntity.class, entity.getId());
     Assert.assertNull(deleted);
 }
 
     /**
-     * Test of find method, of class GroupPersistence.
+     * Test of find method, of class CategoriaPersistence.
      */
     @Test
     public void testFind() throws Exception {
         
-     GroupEntity entity = data.get(0);
-    GroupEntity newEntity = persistence.find(entity.getId());
+     CategoriaEntity entity = data.get(0);
+    CategoriaEntity newEntity = persistence.find(entity.getId());
     Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getId(), newEntity.getId());
+    Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
 }
 
     /**
-     * Test of findAll method, of class GroupPersistence.
+     * Test of findAll method, of class CategoriaPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
-         List<GroupEntity> list = persistence.findAll();
+   List<CategoriaEntity> list = persistence.findAll();
     Assert.assertEquals(data.size(), list.size());
-    for (GroupEntity ent : list) {
+    for (CategoriaEntity ent : list) {
         boolean found = false;
-        for (GroupEntity entity : data) {
+        for (CategoriaEntity entity : data) {
             if (ent.getId().equals(entity.getId())) {
                 found = true;
             }
@@ -193,14 +192,14 @@ public class GroupPersistenceTest {
     }
 
     /**
-     * Test of findByAddress method, of class GroupPersistence.
+     * Test of findByAddress method, of class CategoriaPersistence.
      */
     @Test
-    public void testFindByNombre() throws Exception {
-    GroupEntity entity = data.get(0);
-    GroupEntity newEntity = persistence.findByNombre(entity.getNombre());
+    public void testFindByTipo() throws Exception {
+    CategoriaEntity entity = data.get(0);
+    CategoriaEntity newEntity = persistence.findByTipo(entity.getTipo());
     Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getId(), newEntity.getId());
+    Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
 }
     
 }

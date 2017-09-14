@@ -17,7 +17,7 @@ import javax.persistence.MappedSuperclass;
  * @author cm.sarmiento10
  */
 @Entity
-public class GroupEntity implements Serializable{
+public class GrupoEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -66,7 +66,7 @@ public class GroupEntity implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final GroupEntity other = (GroupEntity) obj;
+        final GrupoEntity other = (GrupoEntity) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
