@@ -5,10 +5,14 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
+import java.util.Set;
+import javax.ws.rs.core.Application;
+
 /**
  *
- * @author wr.ravelo
+ * @author jc161
  */
-public class GruposResource {
-    
+@javax.ws.rs.ApplicationPath("grupos")
+public class ApplicationConfig extends Application {
+
 }
