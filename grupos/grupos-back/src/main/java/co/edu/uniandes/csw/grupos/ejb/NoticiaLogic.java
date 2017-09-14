@@ -19,7 +19,7 @@ import javax.inject.Inject;
 @Stateless
 public class NoticiaLogic {
     @Inject 
-    private NoticiaPersistence persistence;
+    NoticiaPersistence persistence;
     
     public NoticiaEntity getEntity(Long id) throws BusinessException, NotFoundException
     {

@@ -23,7 +23,7 @@ import javax.inject.Inject;
 public class CalificacionLogic {
     
     @Inject
-    private CalificacionPersistence persistence;
+    CalificacionPersistence persistence;
     
     public CalificacionEntity getEntity(Long id) throws BusinessException, NotFoundException
     {
