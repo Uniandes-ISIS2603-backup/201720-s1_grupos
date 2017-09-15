@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author se.cardenas
  */
 @Entity
-public class CommentEntity implements Serializable{
+public class ComentarioEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
