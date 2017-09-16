@@ -33,11 +33,11 @@ public class CalificacionEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    @PodamExclude
     @OneToOne (cascade=CascadeType.PERSIST)
-    private UsuarioEntity calificador;
     @PodamExclude
+    private UsuarioEntity calificador;
     @ManyToOne (cascade=CascadeType.PERSIST)
+    @PodamExclude
     private BlogEntity blog;
 
     public UsuarioEntity getCalificador() {
