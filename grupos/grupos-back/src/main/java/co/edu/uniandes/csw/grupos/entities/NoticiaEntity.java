@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -28,11 +31,13 @@ public class NoticiaEntity implements Serializable {
     private String titulo;
     
     private String informacion;
-    /*
-    @OneToMany
+    
+    @OneToMany(cascade=CascadeType.PERSIST)
+    @PodamExclude
     private List<MultimediaEntity> multimedia;
-    @Id
-    private UsuarioEntity autor;*/
+    @OneToOne(cascade=CascadeType.PERSIST)
+    @PodamExclude
+    private UsuarioEntity autor;
 
     public String getTitulo() {
         return titulo;
@@ -60,7 +65,7 @@ public class NoticiaEntity implements Serializable {
     public void setInformacion(String informacion) {
         this.informacion = informacion;
     }
-/*
+
     public List<MultimediaEntity> getMultimedia() {
         return multimedia;
     }
@@ -75,5 +80,5 @@ public class NoticiaEntity implements Serializable {
 
     public void setAutor(UsuarioEntity autor) {
         this.autor = autor;
-    }*/
+    }
 }

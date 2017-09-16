@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
+import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -103,12 +105,15 @@ public class CalificacionPersistenceTest {
     private void clearData() {
         em.createQuery("delete from CalificacionEntity").executeUpdate();
     }
-
-
+    
          private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        BlogEntity blog= factory.manufacturePojo(BlogEntity.class);
         for (int i = 0; i < 3; i++) {
             CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
+            entity.setBlog(blog);
+            UsuarioEntity calificador=factory.manufacturePojo(UsuarioEntity.class);
+            entity.setCalificador(calificador);
             em.persist(entity);
             data.add(entity);
         }
@@ -124,12 +129,23 @@ public class CalificacionPersistenceTest {
     @Test
     public void testCreateEntity()  {
         PodamFactory factory= new PodamFactoryImpl();
+        
+        BlogEntity blog= factory.manufacturePojo(BlogEntity.class);
+        UsuarioEntity usuario=factory.manufacturePojo(UsuarioEntity.class);
+        
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        newEntity.setBlog(blog);
+        newEntity.setCalificador(usuario);
         CalificacionEntity result=persistence.createEntity(newEntity);
         Assert.assertNotNull(result);
         CalificacionEntity found=em.find(CalificacionEntity.class, newEntity.getId());
         Assert.assertNotNull(found);
         Assert.assertEquals(newEntity.getId(),result.getId());
+        
+        Assert.assertNotNull(result.getBlog());
+        Assert.assertEquals(newEntity.getBlog().getId(),result.getBlog().getId());
+        Assert.assertNotNull(result.getCalificador());
+        Assert.assertEquals(newEntity.getCalificador().getId(),result.getCalificador().getId());
     }
 
     /**
@@ -141,10 +157,16 @@ public class CalificacionPersistenceTest {
         PodamFactory factory= new PodamFactoryImpl();
         CalificacionEntity updated=factory.manufacturePojo(CalificacionEntity.class);
         updated.setId(entity.getId());
+        updated.setBlog(entity.getBlog());
+        updated.setCalificador(entity.getCalificador());
         persistence.updateEntity(updated);
         
         CalificacionEntity rta= em.find(CalificacionEntity.class, entity.getId());
         Assert.assertEquals(updated.getId(),rta.getId());
+        Assert.assertNotNull(rta.getBlog());
+        Assert.assertEquals(updated.getBlog().getId(),rta.getBlog().getId());
+        Assert.assertNotNull(rta.getCalificador());
+        Assert.assertEquals(updated.getCalificador().getId(),rta.getCalificador().getId());
         
     }
 
@@ -157,6 +179,10 @@ public class CalificacionPersistenceTest {
         CalificacionEntity found=persistence.find(entity.getId());
         Assert.assertNotNull(found);
         Assert.assertEquals(entity.getId(),found.getId());
+        Assert.assertNotNull(found.getBlog());
+        Assert.assertEquals(entity.getBlog().getId(),found.getBlog().getId());
+        Assert.assertNotNull(found.getCalificador());
+        Assert.assertEquals(entity.getCalificador().getId(),found.getCalificador().getId());
     }
 
     /**

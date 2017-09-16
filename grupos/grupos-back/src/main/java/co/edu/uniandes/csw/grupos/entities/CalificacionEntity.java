@@ -6,10 +6,16 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -23,10 +29,14 @@ public class CalificacionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Temporal(TemporalType.DATE)
     private Date fecha;
-    /*
-    private UsuarioEntity calificador;
     
+    @OneToOne (cascade=CascadeType.PERSIST)
+    @PodamExclude
+    private UsuarioEntity calificador;
+    @ManyToOne (cascade=CascadeType.PERSIST)
+    @PodamExclude
     private BlogEntity blog;
 
     public UsuarioEntity getCalificador() {
@@ -43,10 +53,8 @@ public class CalificacionEntity {
 
     public void setBlog(BlogEntity blog) {
         this.blog = blog;
-    }*/
+    }
     
-    
-
     public Double getCalificacion() {
         return calificacion;
     }
