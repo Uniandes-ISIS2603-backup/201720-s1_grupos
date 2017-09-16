@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
-import co.edu.uniandes.csw.grupos.entities.CommentEntity;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,31 +17,31 @@ import javax.persistence.TypedQuery;
  * @author se.cardenas
  */
 @Stateless
-public class CommentPersistence {
+public class ComentarioPersistence {
     
     @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
     
-    public CommentEntity createComment(CommentEntity entity) {
+    public ComentarioEntity createComentario(ComentarioEntity entity) {
         em.persist(entity);
         return entity;
     }
     
-    public CommentEntity find(Long id) {
-        return em.find(CommentEntity.class, id);
+    public ComentarioEntity find(Long id) {
+        return em.find(ComentarioEntity.class, id);
     }
     
-    public List<CommentEntity> findAll() {
-        TypedQuery query = em.createQuery("select u from CommentEntity u", CommentEntity.class);
+    public List<ComentarioEntity> findAll() {
+        TypedQuery query = em.createQuery("select u from ComentarioEntity u", ComentarioEntity.class);
         return query.getResultList();
     }
     
-    public CommentEntity update(CommentEntity entity) {
+    public ComentarioEntity update(ComentarioEntity entity) {
         return em.merge(entity);
     }
     
     public void delete(Long id) {
-        CommentEntity blog = em.find(CommentEntity.class, id);
+        ComentarioEntity blog = em.find(ComentarioEntity.class, id);
         em.remove(blog);
     }
 }

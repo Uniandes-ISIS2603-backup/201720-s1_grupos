@@ -112,9 +112,9 @@ public class BlogPersistenceTest {
         Assert.assertNotNull(result);
         BlogEntity entity = em.find(BlogEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getTitle(), entity.getTitle());
-        Assert.assertEquals(newEntity.getAuthor(), entity.getAuthor());
-        Assert.assertEquals(newEntity.getContent(), entity.getContent());
+        Assert.assertEquals(newEntity.getTitulo(), entity.getTitulo());
+        Assert.assertEquals(newEntity.getAutor(), entity.getAutor());
+        Assert.assertEquals(newEntity.getContenido(), entity.getContenido());
     }
     
     /**
@@ -125,9 +125,9 @@ public class BlogPersistenceTest {
         BlogEntity entity = data.get(0);
         BlogEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getTitle(), newEntity.getTitle());
-        Assert.assertEquals(entity.getAuthor(), newEntity.getAuthor());
-        Assert.assertEquals(entity.getContent(), newEntity.getContent());
+        Assert.assertEquals(entity.getTitulo(), newEntity.getTitulo());
+        Assert.assertEquals(entity.getAutor(), newEntity.getAutor());
+        Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
     }
     
     /**
@@ -163,9 +163,9 @@ public class BlogPersistenceTest {
 
         BlogEntity resp = em.find(BlogEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getTitle(), resp.getTitle());
-        Assert.assertEquals(newEntity.getAuthor(), resp.getAuthor());
-        Assert.assertEquals(newEntity.getContent(), resp.getContent());
+        Assert.assertEquals(newEntity.getTitulo(), resp.getTitulo());
+        Assert.assertEquals(newEntity.getAutor(), resp.getAutor());
+        Assert.assertEquals(newEntity.getContenido(), resp.getContenido());
     }
     
     /**

@@ -21,9 +21,9 @@ public class BlogEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String author;
-    private String content;
+    private String titulo;
+    private String autor;
+    private String contenido;
 
     public Long getId() {
         return id;
@@ -33,27 +33,27 @@ public class BlogEntity implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
-    public String getContent() {
-        return content;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 }

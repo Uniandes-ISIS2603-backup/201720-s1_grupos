@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
-import co.edu.uniandes.csw.grupos.entities.CommentEntity;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,10 +32,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author se.cardenas
  */
 @RunWith(Arquillian.class)
-public class CommentPersistenceTest {
+public class ComentarioPersistenceTest {
     
     @Inject
-    private CommentPersistence persistence;
+    private ComentarioPersistence persistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -43,18 +43,18 @@ public class CommentPersistenceTest {
     @Inject
             UserTransaction utx;
     
-    private List<CommentEntity> data = new ArrayList<>();
+    private List<ComentarioEntity> data = new ArrayList<>();
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CommentEntity.class.getPackage())
-                .addPackage(CommentPersistence.class.getPackage())
+                .addPackage(ComentarioEntity.class.getPackage())
+                .addPackage(ComentarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    public CommentPersistenceTest() {
+    public ComentarioPersistenceTest() {
     }
     
     @BeforeClass
@@ -88,13 +88,13 @@ public class CommentPersistenceTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from CommentEntity").executeUpdate();
+        em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
     
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            CommentEntity entity = factory.manufacturePojo(CommentEntity.class);
+            ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
             
             em.persist(entity);
             data.add(entity);
@@ -102,43 +102,43 @@ public class CommentPersistenceTest {
     }
 
     /**
-     * Test of createComment method, of class CommentPersistence.
+     * Test of createComentario method, of class ComentarioPersistence.
      */
     @Test
-    public void testCreateComment() throws Exception {
+    public void testCreateComentario() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
-        CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
-        CommentEntity result = persistence.createComment(newEntity);
+        ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
+        ComentarioEntity result = persistence.createComentario(newEntity);
         
         Assert.assertNotNull(result);
-        CommentEntity entity = em.find(CommentEntity.class, result.getId());
+        ComentarioEntity entity = em.find(ComentarioEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getAuthor(), entity.getAuthor());
-        Assert.assertEquals(newEntity.getComment(), entity.getComment());
+        Assert.assertEquals(newEntity.getAutor(), entity.getAutor());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
     }
 
     /**
-     * Test of find method, of class CommentPersistence.
+     * Test of find method, of class ComentarioPersistence.
      */
     @Test
     public void testFind() throws Exception {
-        CommentEntity entity = data.get(0);
-        CommentEntity newEntity = persistence.find(entity.getId());
+        ComentarioEntity entity = data.get(0);
+        ComentarioEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getAuthor(), entity.getAuthor());
-        Assert.assertEquals(newEntity.getComment(), entity.getComment());
+        Assert.assertEquals(newEntity.getAutor(), entity.getAutor());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
     }
 
     /**
-     * Test of findAll method, of class CommentPersistence.
+     * Test of findAll method, of class ComentarioPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
-        List<CommentEntity> list = persistence.findAll();
+        List<ComentarioEntity> list = persistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (CommentEntity ent : list) {
+        for (ComentarioEntity ent : list) {
             boolean found = false;
-            for (CommentEntity entity : data) {
+            for (ComentarioEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -148,32 +148,32 @@ public class CommentPersistenceTest {
     }
 
     /**
-     * Test of update method, of class CommentPersistence.
+     * Test of update method, of class ComentarioPersistence.
      */
     @Test
     public void testUpdate() throws Exception {
-        CommentEntity entity = data.get(0);
+        ComentarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
+        ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
 
         newEntity.setId(entity.getId());
 
         persistence.update(newEntity);
 
-        CommentEntity resp = em.find(CommentEntity.class, entity.getId());
+        ComentarioEntity resp = em.find(ComentarioEntity.class, entity.getId());
         Assert.assertNotNull(resp);
-        Assert.assertEquals(newEntity.getAuthor(), resp.getAuthor());
-        Assert.assertEquals(newEntity.getComment(), resp.getComment());
+        Assert.assertEquals(newEntity.getAutor(), resp.getAutor());
+        Assert.assertEquals(newEntity.getComentario(), resp.getComentario());
     }
 
     /**
-     * Test of delete method, of class CommentPersistence.
+     * Test of delete method, of class ComentarioPersistence.
      */
     @Test
     public void testDelete() throws Exception {
-        CommentEntity entity = data.get(0);
+        ComentarioEntity entity = data.get(0);
         persistence.delete(entity.getId());
-        CommentEntity deleted = em.find(CommentEntity.class, entity.getId());
+        ComentarioEntity deleted = em.find(ComentarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
     
