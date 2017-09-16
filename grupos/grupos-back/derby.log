@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sat Sep 16 17:04:07 COT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015e-8cb8-5f55-00000991f558 
-on database directory /private/var/folders/2n/_sqm8qj171l77j5cdpbn3fp00000gn/T/gfembed5198213727131042393tmp/lib/databases/embedded_default with class loader sun.misc.Launcher$AppClassLoader@6e0be858 
-Loaded from file:/Users/jc161/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
+Sat Sep 16 17:24:24 COT 2017:
+ Iniciando instancia a816c00e-015e-8cca-f36d-00000e3adbb0 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos C:\Users\s.guzmanm\AppData\Local\Temp\gfembed4255432296648848955tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
+Cargado desde file:/C:/Users/s.guzmanm/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_111-b14
-user.dir=/Users/jc161/Documents/GIT PROJECTS/gruposPU/grupos/grupos-back
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.12.5
+java.runtime.version=1.8.0_144-b01
+user.dir=C:\Users\s.guzmanm\Documents\NetBeansProjects\s1_grupos\grupos\grupos-back
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
 derby.system.home=null
-Database Class Loader started - derby.database.classpath=''
+Cargador de clases de base de datos iniciado - derby.database.classpath=''
