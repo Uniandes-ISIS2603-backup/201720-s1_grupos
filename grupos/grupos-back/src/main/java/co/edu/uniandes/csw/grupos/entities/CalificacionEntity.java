@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author s.guzmanm
  */
 @Entity
-public class CalificacionEntity {
+public class CalificacionEntity implements Serializable {
     private Double calificacion;
     
     @Id
@@ -32,10 +33,8 @@ public class CalificacionEntity {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    @OneToOne (cascade=CascadeType.PERSIST)
     @PodamExclude
     private UsuarioEntity calificador;
-    @ManyToOne (cascade=CascadeType.PERSIST)
     @PodamExclude
     private BlogEntity blog;
 
