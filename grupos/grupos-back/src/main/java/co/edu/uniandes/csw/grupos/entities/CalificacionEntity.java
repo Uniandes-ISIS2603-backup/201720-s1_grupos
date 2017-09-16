@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,8 +35,10 @@ public class CalificacionEntity implements Serializable {
     private Date fecha;
     
     @PodamExclude
+    @OneToOne (cascade=CascadeType.PERSIST)
     private UsuarioEntity calificador;
     @PodamExclude
+    @OneToMany (cascade=CascadeType.PERSIST)
     private BlogEntity blog;
 
     public UsuarioEntity getCalificador() {
