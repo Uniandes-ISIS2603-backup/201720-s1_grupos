@@ -44,6 +44,7 @@ public class BlogPersistenceTest {
     
     private List<BlogEntity> data = new ArrayList<>();
     
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
