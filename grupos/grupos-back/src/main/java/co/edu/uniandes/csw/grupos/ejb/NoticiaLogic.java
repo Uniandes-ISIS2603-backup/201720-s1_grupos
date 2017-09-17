@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.ejb;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.persistence.NoticiaPersistence;
 import co.edu.uniandes.csw.grupos.exceptions.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -25,13 +26,15 @@ public class NoticiaLogic {
     {
         if(id==null) throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
         NoticiaEntity entity= persistence.find(id);
-        if(entity==null) throw new NotFoundException("No se encuentra la calificación buscada.");
+        if(entity==null) throw new NotFoundException("No se encuentra la noticia buscada.");
         return entity;
     }
     
     public List<NoticiaEntity> getAll()
     {
-        return persistence.findAll();
+        List<NoticiaEntity> list=persistence.findAll();
+        if(list==null || list.isEmpty()) return new ArrayList<>();
+        return list;
     }
     
     public NoticiaEntity createEntity(NoticiaEntity entity) throws BusinessException, NotFoundException

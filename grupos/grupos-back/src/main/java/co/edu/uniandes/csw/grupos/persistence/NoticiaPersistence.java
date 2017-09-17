@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -46,9 +47,14 @@ public class NoticiaPersistence {
    
    public List<NoticiaEntity> findAll()
    {
-       LOGGER.info("Buscando a todos...");
+       try
+       {
+           LOGGER.info("Buscando a todos...");
        TypedQuery q =em.createQuery("Select x from NoticiaEntity x",NoticiaEntity.class);
        return q.getResultList();
+       }
+       catch (Exception e) {return new ArrayList<>();}
+       
    }
    
    public void delete(Long id)
