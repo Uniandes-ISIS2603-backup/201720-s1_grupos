@@ -20,7 +20,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class UsuarioPersistence {
     
-    private static final Logger LOGGER = Logger.getLogger(PatrocinioPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(UsuarioPersistence.class.getName());
    @PersistenceContext(unitName = "gruposPU")
 
     protected EntityManager em;

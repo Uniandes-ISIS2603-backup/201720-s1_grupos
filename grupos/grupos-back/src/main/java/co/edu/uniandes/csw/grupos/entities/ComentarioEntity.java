@@ -16,22 +16,13 @@ import javax.persistence.Id;
  * @author se.cardenas
  */
 @Entity
-public class BlogEntity implements Serializable {
+public class ComentarioEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titulo;
     private String autor;
-    private String contenido;
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
+    private String comentario;
 
     public Long getId() {
         return id;
@@ -41,20 +32,19 @@ public class BlogEntity implements Serializable {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getComentario() {
+        return comentario;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
-
 }
