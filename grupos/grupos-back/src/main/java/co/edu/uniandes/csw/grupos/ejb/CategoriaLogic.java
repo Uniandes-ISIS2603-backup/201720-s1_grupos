@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.Grupos.ejb;
+package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;

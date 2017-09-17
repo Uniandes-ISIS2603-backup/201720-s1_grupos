@@ -5,7 +5,8 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
-import co.edu.uniandes.csw.Grupos.ejb.CategoriaLogic;
+
+import co.edu.uniandes.csw.grupos.ejb.CategoriaLogic;
 import co.edu.uniandes.csw.grupos.dtos.CategoriaDetailDTO;
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
