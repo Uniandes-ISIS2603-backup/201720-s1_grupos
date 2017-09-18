@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author jc161
  */
-@javax.ws.rs.ApplicationPath("grupos")
+@javax.ws.rs.ApplicationPath("/grupos")
 public class ApplicationConfig extends Application {
 
 }

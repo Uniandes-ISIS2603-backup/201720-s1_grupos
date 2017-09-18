@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -33,7 +34,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("grupos")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@Stateless
 public class GrupoResource {
     
     @Inject
@@ -105,7 +106,7 @@ public class GrupoResource {
      * el mensaje.
      */
     @GET
-    @Path("{nombre: \\d+}")
+    @Path("{nombre: [A-Za-z]+}")
     public GrupoDetailDTO getGrupo(@QueryParam("nombre") String nombre) {
         GrupoEntity entity = grupoLogic.getGrupo(nombre);
        
