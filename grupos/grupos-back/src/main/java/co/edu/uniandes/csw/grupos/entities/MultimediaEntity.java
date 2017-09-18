@@ -12,47 +12,47 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Clase que modela la noticia del sistema.<br>
+ *Entidad de multimedia
  * @author s.guzmanm
  */
 @Entity
 public class MultimediaEntity implements Serializable {
     /**
-     * Nombre de la multimedia
+     * Nombre de la multimedia.
      */
     private String nombre;
     /**
-     * Descripción de la multimedia.
+     * Descripción de la multimedia
      */
     private String descripcion;
     /**
-     * Link dela multimedia.
+     * Link de la multimedia
      */
     @Id
     private String link;
     /**
-     * Obtiene el nombre de la multimedia.<br>
+     * Obtiene el nombre de la multimedia.
      * @return nombre
      */
     public String getNombre() {
         return nombre;
     }
     /**
-     * Modifica el valor del nombre al dado por parámetro.<br>
+     * Modifica el nombre por el valor dado por parámetro.<br>
      * @param nombre 
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
     /**
-     * Obtiene la descripción de la multimedia.
+     * Obtiene la descripción de la multimedia.<br>
      * @return descripcion
      */
     public String getDescripcion() {
         return descripcion;
     }
     /**
-     * Modifica la descripción al valor dado por parámetro.<br>
+     * Modifica la descripción de la multimedia por el valor dado por parámetro.<br>
      * @param descripcion 
      */
     public void setDescripcion(String descripcion) {
@@ -66,7 +66,7 @@ public class MultimediaEntity implements Serializable {
         return link;
     }
     /**
-     * Modifica el link al valor dado por parámetro.<br>
+     * Modifica el link por el valor dado por parámetro.<br>
      * @param link 
      */
     public void setLink(String link) {
