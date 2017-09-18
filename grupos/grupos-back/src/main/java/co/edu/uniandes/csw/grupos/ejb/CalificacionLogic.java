@@ -69,7 +69,6 @@ public class CalificacionLogic {
         if(entity.getCalificacion()==null) throw new BusinessException ("No se pueden agregar calificaciones sin un valor dado");
        if(entity.getFecha()==null) throw new BusinessException("No se pueden agregar calificaciones sin fecha");
        if(entity.getCalificacion()<0 || entity.getCalificacion()>5) throw new BusinessException ("La calificación está por fuera del rango dado");
-       //if(entity.getFecha().after(INICIAL)||entity.getFecha().before(FINAL)) throw new BusinessException ("La fecha no está entre los rangos del sistema.");
     }
     
    

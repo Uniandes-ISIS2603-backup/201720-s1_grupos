@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
+ * Prueba de la persistencia de la multimedia
  * @author s.guzmanm
  */
 @RunWith(Arquillian.class)
@@ -54,7 +54,9 @@ public class MultimediaPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    
+    /**
+     * Persistencia de la multimedia
+     */
     @Inject
     private MultimediaPersistence persistence;
 
@@ -73,18 +75,13 @@ public class MultimediaPersistenceTest {
     UserTransaction utx;
 
      /**
-     *
+     * Lista de los datos de la persistencia de la multimedia.
      */
     private List<MultimediaEntity> data = new ArrayList<MultimediaEntity>();
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+   /**
+     * Acción de preparar la prueba. Este procedimiento inclute iniciar la transacción, unir el manejador de persistencia,
+     * borrar la información presente, e insertar datos.
+     */ 
      @Before
     public void setUp() {
          try {
@@ -102,12 +99,16 @@ public class MultimediaPersistenceTest {
             }
         }
     }
-    
+    /**
+     * Borra toda la información presente en la base de datos.
+     */
     private void clearData() {
         em.createQuery("delete from MultimediaEntity").executeUpdate();
     }
 
-
+    /**
+     * Inserta los datos de prueba en la base de datos.
+     */
          private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -117,7 +118,9 @@ public class MultimediaPersistenceTest {
             data.add(entity);
         }
     }
-    
+    /**
+     * Qué hacer después de todas las pruebas
+     */
     @After
     public void tearDown() {
     }
