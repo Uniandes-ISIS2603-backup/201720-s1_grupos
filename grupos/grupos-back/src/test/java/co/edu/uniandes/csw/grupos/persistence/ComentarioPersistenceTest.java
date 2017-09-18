@@ -1,40 +1,41 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package co.edu.uniandes.csw.grupos.persistence;
 
-import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 /**
  *
  * @author se.cardenas
  */
 @RunWith(Arquillian.class)
-public class BlogPersistenceTest {
+public class ComentarioPersistenceTest {
     
     @Inject
-    private BlogPersistence persistence;
+    private ComentarioPersistence persistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -42,19 +43,18 @@ public class BlogPersistenceTest {
     @Inject
             UserTransaction utx;
     
-    private List<BlogEntity> data = new ArrayList<>();
-    
+    private List<ComentarioEntity> data = new ArrayList<>();
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(BlogEntity.class.getPackage())
-                .addPackage(BlogPersistence.class.getPackage())
+                .addPackage(ComentarioEntity.class.getPackage())
+                .addPackage(ComentarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    public BlogPersistenceTest() {
+    public ComentarioPersistenceTest() {
     }
     
     @BeforeClass
@@ -86,61 +86,59 @@ public class BlogPersistenceTest {
     @After
     public void tearDown() {
     }
-    
+
     private void clearData() {
-        em.createQuery("delete from BlogEntity").executeUpdate();
+        em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
     
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            BlogEntity entity = factory.manufacturePojo(BlogEntity.class);
+            ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
             
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     /**
-     * Test of createBlog method, of class BlogPersistence.
+     * Test of createComentario method, of class ComentarioPersistence.
      */
     @Test
-    public void testCreateBlog() throws Exception {
+    public void testCreateComentario() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
-        BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
-        BlogEntity result = persistence.createBlog(newEntity);
+        ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
+        ComentarioEntity result = persistence.createComentario(newEntity);
         
         Assert.assertNotNull(result);
-        BlogEntity entity = em.find(BlogEntity.class, result.getId());
+        ComentarioEntity entity = em.find(ComentarioEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getTitulo(), entity.getTitulo());
         Assert.assertEquals(newEntity.getAutor(), entity.getAutor());
-        Assert.assertEquals(newEntity.getContenido(), entity.getContenido());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
     }
-    
+
     /**
-     * Test of find method, of class BlogPersistence.
+     * Test of find method, of class ComentarioPersistence.
      */
     @Test
     public void testFind() throws Exception {
-        BlogEntity entity = data.get(0);
-        BlogEntity newEntity = persistence.find(entity.getId());
+        ComentarioEntity entity = data.get(0);
+        ComentarioEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getTitulo(), newEntity.getTitulo());
-        Assert.assertEquals(entity.getAutor(), newEntity.getAutor());
-        Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
+        Assert.assertEquals(newEntity.getAutor(), entity.getAutor());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
     }
-    
+
     /**
-     * Test of findAll method, of class BlogPersistence.
+     * Test of findAll method, of class ComentarioPersistence.
      */
     @Test
     public void testFindAll() throws Exception {
-        List<BlogEntity> list = persistence.findAll();
+        List<ComentarioEntity> list = persistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (BlogEntity ent : list) {
+        for (ComentarioEntity ent : list) {
             boolean found = false;
-            for (BlogEntity entity : data) {
+            for (ComentarioEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -148,35 +146,34 @@ public class BlogPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     /**
-     * Test of update method, of class BlogPersistence.
+     * Test of update method, of class ComentarioPersistence.
      */
     @Test
     public void testUpdate() throws Exception {
-        BlogEntity entity = data.get(0);
+        ComentarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
+        ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
 
         newEntity.setId(entity.getId());
 
         persistence.update(newEntity);
 
-        BlogEntity resp = em.find(BlogEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getTitulo(), resp.getTitulo());
+        ComentarioEntity resp = em.find(ComentarioEntity.class, entity.getId());
+        Assert.assertNotNull(resp);
         Assert.assertEquals(newEntity.getAutor(), resp.getAutor());
-        Assert.assertEquals(newEntity.getContenido(), resp.getContenido());
+        Assert.assertEquals(newEntity.getComentario(), resp.getComentario());
     }
-    
+
     /**
-     * Test of delete method, of class BlogPersistence.
+     * Test of delete method, of class ComentarioPersistence.
      */
     @Test
     public void testDelete() throws Exception {
-        BlogEntity entity = data.get(0);
+        ComentarioEntity entity = data.get(0);
         persistence.delete(entity.getId());
-        BlogEntity deleted = em.find(BlogEntity.class, entity.getId());
+        ComentarioEntity deleted = em.find(ComentarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
     
