@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.grupos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -59,7 +60,12 @@ public class UsuarioResource {
     @GET
     public List<UsuarioDetailDTO> allUsers() throws BusinessException
     {
-        List<UsuarioDetailDTO> ret = userLogic.allUsers();
+        List<UsuarioEntity> users = userLogic.allUsers();
+        List<UsuarioDetailDTO> ret = new ArrayList<UsuarioDetailDTO>();
+        for(UsuarioEntity e:users)
+        {
+            ret.add(new UsuarioDetailDTO(e));
+        }
         return ret;
     }
     
@@ -73,7 +79,8 @@ public class UsuarioResource {
     @Path("{id: \\d+}")
     public UsuarioDetailDTO findUserId(@PathParam("id") Long pid) throws BusinessException
     {
-        UsuarioDetailDTO ret = userLogic.findById(pid);
+        UsuarioEntity found = userLogic.findById(pid);
+        UsuarioDetailDTO ret = new UsuarioDetailDTO(found);
         return ret;
     }
     
@@ -85,10 +92,10 @@ public class UsuarioResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO updateUser(@PathParam("id") Long pid, UsuarioDetailDTO user, @HeaderParam("nickname") String nickname) throws BusinessException
+    public String updateUser(@PathParam("id") Long pid, UsuarioDetailDTO user) throws BusinessException
     {
-        UsuarioDetailDTO ret = userLogic.updateUser(pid,user.toEntity(),nickname);
-        return ret;
+        UsuarioEntity ret = userLogic.updateUser(pid,user.toEntity());
+        return "Se actualizó el usuario con id: " + pid;
     }
     
 }
