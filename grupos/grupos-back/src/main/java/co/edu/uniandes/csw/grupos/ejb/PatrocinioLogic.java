@@ -5,7 +5,12 @@
  */
 package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
+import co.edu.uniandes.csw.grupos.persistence.PatrocinioPersistence;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -13,5 +18,13 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class PatrocinioLogic {
+    
+    @Inject
+    PatrocinioPersistence per;
+    
+    public List<PatrocinioEntity> allPatrocinios() throws BusinessException
+    {
+        return per.findAll();
+    }
     
 }
