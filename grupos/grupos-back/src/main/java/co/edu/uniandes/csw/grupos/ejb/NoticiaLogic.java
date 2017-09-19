@@ -41,143 +41,13 @@ public class NoticiaLogic {
      * @param id
      * @return
      * @throws BusinessException
-     * @throws NotFoundException
      */
-    public NoticiaEntity getEntity(Long id) throws BusinessException, NotFoundException
+    public NoticiaEntity getEntity(Long id) throws BusinessException
     {
         if(id==null) throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
         NoticiaEntity entity= persistence.find(id);
-        Response r = new Response() {
-            @Override
-            public int getStatus() {
-                return 404;            }
-
-            @Override
-            public Response.StatusType getStatusInfo() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Object getEntity() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public <T> T readEntity(Class<T> entityType) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public <T> T readEntity(GenericType<T> entityType) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public <T> T readEntity(Class<T> entityType, Annotation[] annotations) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public <T> T readEntity(GenericType<T> entityType, Annotation[] annotations) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public boolean hasEntity() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public boolean bufferEntity() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void close() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public MediaType getMediaType() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Locale getLanguage() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public int getLength() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Set<String> getAllowedMethods() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Map<String, NewCookie> getCookies() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public EntityTag getEntityTag() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Date getDate() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Date getLastModified() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public URI getLocation() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Set<Link> getLinks() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public boolean hasLink(String relation) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Link getLink(String relation) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public Link.Builder getLinkBuilder(String relation) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public MultivaluedMap<String, Object> getMetadata() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public MultivaluedMap<String, String> getStringHeaders() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public String getHeaderString(String name) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        if(entity==null) throw new NotFoundException("No se encuentra la noticia buscada.",r);
+        
+        if(entity==null) throw new NotFoundException("No se encuentra la noticia buscada.");
         return entity;
     }
     
@@ -199,7 +69,7 @@ public class NoticiaLogic {
      * @throws BusinessException
      * @throws NotFoundException
      */
-    public NoticiaEntity createEntity(NoticiaEntity entity) throws BusinessException, NotFoundException
+    public NoticiaEntity createEntity(NoticiaEntity entity) throws BusinessException
     {
         if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
         if(entity.getId()==null) throw new BusinessException ("No se pueden agregar atributos nulos al sistema");
@@ -218,7 +88,7 @@ public class NoticiaLogic {
      * @throws BusinessException
      * @throws NotFoundException
      */
-    public NoticiaEntity updateEntity (Long id, NoticiaEntity entity) throws BusinessException, NotFoundException
+    public NoticiaEntity updateEntity (Long id, NoticiaEntity entity) throws BusinessException
     {
         if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
         validarNoticia(entity);
@@ -232,7 +102,7 @@ public class NoticiaLogic {
      * @throws NotFoundException
      * @throws BusinessException
      */
-    public void deleteEntity(Long id) throws NotFoundException, BusinessException
+    public void deleteEntity(Long id) throws  BusinessException
     {
         if(id==null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
         NoticiaEntity other=persistence.find(id);
@@ -246,7 +116,7 @@ public class NoticiaLogic {
      * @throws NotFoundException Si no se encuentra en el sistema.<br>
      * @throws BusinessException Si hay una excepción de regla de negocio.
      */
-    private void validarNoticia(NoticiaEntity entity) throws NotFoundException, BusinessException
+    private void validarNoticia(NoticiaEntity entity) throws  BusinessException
     {
         
         if(entity.getTitulo()==null || entity.getInformacion()==null) throw new BusinessException("La información de la noticia no puede estar vacía");

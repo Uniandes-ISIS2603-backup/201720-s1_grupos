@@ -21,7 +21,7 @@ public class MultimediaLogic {
     @Inject
     MultimediaPersistence persistence;
     
-    public MultimediaEntity getEntity (String link) throws NotFoundException
+    public MultimediaEntity getEntity (String link) 
     {
         if(link==null || link.equals(""))
         {
@@ -44,7 +44,7 @@ public class MultimediaLogic {
         return persistence.createEntity(entity);
     }
     
-    public MultimediaEntity updateEntity(String link, MultimediaEntity entity) throws NotFoundException, BusinessException
+    public MultimediaEntity updateEntity(String link, MultimediaEntity entity) throws  BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
         if(entity.getNombre()==null)
@@ -54,7 +54,7 @@ public class MultimediaLogic {
         return persistence.updateEntity(entity);
     }
     
-    public void deleteEntity(String link) throws NotFoundException
+    public void deleteEntity(String link) 
     {
         MultimediaEntity entity=persistence.find(link);
         if(entity == null) throw new NotFoundException("No existe una entidad a eliminar");
