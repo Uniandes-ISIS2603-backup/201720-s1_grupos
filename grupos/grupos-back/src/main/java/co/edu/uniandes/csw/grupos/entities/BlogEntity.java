@@ -22,16 +22,8 @@ public class BlogEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private String autor;
     private String contenido;
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
+    private Double promedio;
 
     public Long getId() {
         return id;
@@ -57,4 +49,12 @@ public class BlogEntity implements Serializable {
         this.contenido = contenido;
     }
 
+    public Double getPromedio() {
+        return promedio;
+    }
+
+    public void setPromedio(Double promedio) {
+        this.promedio = promedio;
+    }
+    
 }
