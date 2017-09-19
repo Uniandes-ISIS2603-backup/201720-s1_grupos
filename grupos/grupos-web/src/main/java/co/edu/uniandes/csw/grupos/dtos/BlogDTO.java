@@ -26,18 +26,18 @@ public class BlogDTO {
     }
     
     /**
-     * Construye un DTO a partir de un BlogEntity
-     * @param blog Entity
+     * Construye un BlogDTO a partir de un BlogEntity
+     * @param entity BlogEntity
      */
-    public BlogDTO(BlogEntity blog) {
-        this.id = blog.getId();
-        this.titulo = blog.getTitulo();
-        this.contenido = blog.getContenido();
-        this.promedio = blog.getPromedio();
+    public BlogDTO(BlogEntity entity) {
+        this.id = entity.getId();
+        this.titulo = entity.getTitulo();
+        this.contenido = entity.getContenido();
+        this.promedio = entity.getPromedio();
     }
     
     /**
-     * 
+     * retorna el id
      * @return id
      */
     public Long getId() {
@@ -45,7 +45,7 @@ public class BlogDTO {
     }
 
     /**
-     * 
+     * cambia el id
      * @param id nuevo valor de id
      */
     public void setId(Long id) {
@@ -53,7 +53,7 @@ public class BlogDTO {
     }
 
     /**
-     * 
+     * retorna el titulo
      * @return titulo
      */
     public String getTitulo() {
@@ -61,7 +61,7 @@ public class BlogDTO {
     }
 
     /**
-     * 
+     * cambia el titulo
      * @param titulo nuevo valor de titulo
      */
     public void setTitulo(String titulo) {
@@ -69,7 +69,7 @@ public class BlogDTO {
     }
 
     /**
-     * 
+     * retorna el contenido
      * @return contenido
      */
     public String getContenido() {
@@ -77,7 +77,7 @@ public class BlogDTO {
     }
 
     /**
-     * 
+     * cambia el contenido
      * @param contenido nuevo valor de contenido
      */
     public void setContenido(String contenido) {
@@ -85,7 +85,7 @@ public class BlogDTO {
     }
 
     /**
-     * 
+     * retorna el promedio
      * @return promedio
      */
     public Double getPromedio() {
@@ -93,8 +93,8 @@ public class BlogDTO {
     }
 
     /**
-     * 
-     * @param promedio nuevo valor para promedio
+     * cambia el promedio
+     * @param promedio nuevo valor de promedio
      */
     public void setPromedio(Double promedio) {
         this.promedio = promedio;
