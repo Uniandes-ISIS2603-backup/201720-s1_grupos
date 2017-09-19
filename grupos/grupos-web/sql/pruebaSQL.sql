@@ -1,11 +1,12 @@
 delete from GrupoEntity;
 delete from CategoriaEntity;
-delete from UsuarioEntity;
 delete from NoticiaEntity_MultimediaEntity;
 delete from NoticiaEntity;
 delete from MultimediaEntity;
-delete from BlogEntity;
 delete from CalificacionEntity; 
+delete from BlogEntity;
+delete from UsuarioEntity;
+
 
 insert into GrupoEntity (id, nombre, descripcion) values (10,'GrupoPrueba1', 'Este grupo es el numero uno');
 insert into GrupoEntity (id, nombre, descripcion) values (11,'GrupoPrueba2', 'Este grupo es el numero dos');
@@ -20,6 +21,9 @@ insert into UsuarioEntity(id, nombre, apellido, password,email) values (11,'DE',
 --INFORMACIÓN BLOG
 insert into BlogEntity (id,titulo,contenido) values (1,'Blog','Contenido');
 insert into BlogEntity (id,titulo,contenido) values (2,'B','Content');
+insert into BlogEntity(id,titulo,contenido) values (3,'¿Cómo hago el punto 10 de SQL?','No sé');
+insert into BlogEntity(id,titulo,contenido) values (4,'HOLA','Qué hace');
+
 
 
 --INFORMACIÓN MULTIMEDIA

@@ -7,9 +7,10 @@ package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.persistence.MultimediaPersistence;
-import co.edu.uniandes.csw.grupos.exceptions.*;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
  *
