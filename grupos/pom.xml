@@ -8,7 +8,6 @@
     <version>0.1.0</version>
     
     <modules>
-        <module>grupos-back</module>
         <module>grupos-web</module>
     </modules>
     
