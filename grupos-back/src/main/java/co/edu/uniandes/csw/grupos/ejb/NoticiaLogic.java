@@ -174,12 +174,15 @@ public class NoticiaLogic {
         return noticia.getMultimedia();
     }
     
-    public void deleteMultimedia (Long idNoticia,String link) throws BusinessException
+    public void deleteMultimedia (Long idNoticia,String link) throws BusinessException, NotFoundException
     {
         NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
+        int index=noticia.getMultimedia().indexOf(m);
         if(noticia.getMultimedia().indexOf(m)<0) throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
         noticia.getMultimedia().remove(m);
+        
+        
     }
 
 
