@@ -32,6 +32,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
+ *
  * Prueba de la persistencia de la multimedia
  * @author s.guzmanm
  */
@@ -75,6 +76,18 @@ public class MultimediaPersistenceTest {
     UserTransaction utx;
 
      /**
+     *
+     */
+    private List<MultimediaEntity> data = new ArrayList<MultimediaEntity>();
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
      * Lista de los datos de la persistencia de la multimedia.
      */
     private List<MultimediaEntity> data = new ArrayList<MultimediaEntity>();
@@ -99,6 +112,7 @@ public class MultimediaPersistenceTest {
             }
         }
     }
+
     /**
      * Borra toda la información presente en la base de datos.
      */
@@ -106,9 +120,11 @@ public class MultimediaPersistenceTest {
         em.createQuery("delete from MultimediaEntity").executeUpdate();
     }
 
+
     /**
      * Inserta los datos de prueba en la base de datos.
      */
+
          private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -118,6 +134,7 @@ public class MultimediaPersistenceTest {
             data.add(entity);
         }
     }
+
     /**
      * Qué hacer después de todas las pruebas
      */

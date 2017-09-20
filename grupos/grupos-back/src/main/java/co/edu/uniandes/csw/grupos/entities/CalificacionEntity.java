@@ -5,13 +5,6 @@
  */
 package co.edu.uniandes.csw.grupos.entities;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -84,10 +77,12 @@ public class CalificacionEntity implements Serializable {
      * Obtiene el valor de la calificación.<br>
      * @return calificacion
      */
+
     public Double getCalificacion() {
         return calificacion;
     }
     
+
     /**
      * Modifica el valor de la calificación al dado por parámetro.<br>
      * @param calificacion 

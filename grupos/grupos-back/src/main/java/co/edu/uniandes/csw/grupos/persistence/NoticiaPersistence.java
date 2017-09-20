@@ -15,11 +15,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
+ *
  * Persistencia de la noticia.<br>
  * @author s.guzmanm
  */
 @Stateless
 public class NoticiaPersistence {
+       private static final Logger LOGGER = Logger.getLogger(NoticiaPersistence.class.getName());
+   @PersistenceContext(unitName = "gruposPU")
+
+    protected EntityManager em;
+   
+
     /**
      * Logger de la persistencia.
      */
@@ -35,6 +42,7 @@ public class NoticiaPersistence {
     * @param e Noticia a crear.<br>
     * @return Noticia creada.
     */
+
    public NoticiaEntity createEntity(NoticiaEntity e)
    {
        LOGGER.info("Creando objeto "+e.getTitulo()+" ");
@@ -42,6 +50,7 @@ public class NoticiaPersistence {
        LOGGER.info("Éxito en creación");
        return e;
    }
+
    /**
     * Actualiza la noticia en la base de datos creada.<br>
     * @param e Noticia a actualizar.<br>
@@ -52,16 +61,28 @@ public class NoticiaPersistence {
        LOGGER.info("Actualizando entidad "+e.getTitulo()+" ");
        return em.merge(e);
    }
+
    /**
     * Encuentra la noticia con ese id.<br>
     * @param id Id de la noticia a encontrar.<br>
     * @return Noticia con el id dado.
     */
+
    public NoticiaEntity find(Long id)
    {
        LOGGER.info("Buscando "+id);
        return em.find(NoticiaEntity.class, id);
    }
+
+   
+   public List<NoticiaEntity> findAll()
+   {
+       LOGGER.info("Buscando a todos...");
+       TypedQuery q =em.createQuery("Select x from NoticiaEntity x",NoticiaEntity.class);
+       return q.getResultList();
+   }
+   
+
    /**
     * Encuentra todas las noticias del sistema.<br>
     * @return Todas las noticias de la base.
@@ -81,6 +102,7 @@ public class NoticiaPersistence {
     * Borra la noticia con el id dado.<br>
     * @param id Id de la noticia a borrar.
     */
+
    public void delete(Long id)
    {
        NoticiaEntity    e=em.find(NoticiaEntity.class, id);

@@ -24,6 +24,7 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     {
         
     }
+
     /**
      * Constructor de un DTO detallado que recibe una entidad como parámetro.<br>
      * @param e  Entidad de parámetro.
@@ -53,6 +54,7 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     public void setBlog(BlogDTO blog) {
         this.blog = blog;
     }*/
+    
     /**
      * Transforma el DTO detallado en una entidad.<br>
      * @return Enitdad formada.

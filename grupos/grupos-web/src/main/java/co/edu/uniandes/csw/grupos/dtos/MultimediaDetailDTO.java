@@ -27,6 +27,7 @@ public class MultimediaDetailDTO extends MultimediaDTO {
     {
         super(e);
     }
+
     /**
      * Retorna una entidad a partir del DTO detallado.<br>
      * @return entidad formada.

@@ -116,6 +116,7 @@ public class CategoriaResource implements Serializable {
     @Path("{nombre: [A-Za-z]+}")
     public CategoriaDetailDTO getCategoria(@QueryParam("tipo") String tipo) {
         CategoriaEntity entity = categoriaLogic.getCategoria(tipo);
+
        
         return new CategoriaDetailDTO(entity);
     }

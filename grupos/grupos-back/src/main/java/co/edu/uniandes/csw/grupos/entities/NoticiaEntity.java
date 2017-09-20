@@ -73,6 +73,7 @@ public class NoticiaEntity implements Serializable {
    {
        return id;
    }
+
    /**
     * Modifica el valor de la id al dado por parámetro.<br>
     * @param n Valor dado por parámetro.
@@ -81,6 +82,31 @@ public class NoticiaEntity implements Serializable {
    {
        id=n;
    }
+
+
+    public String getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
+    }
+/*
+    public List<MultimediaEntity> getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(List<MultimediaEntity> multimedia) {
+        this.multimedia = multimedia;
+    }
+
+    public UsuarioEntity getAutor() {
+        return autor;
+    }
+
+    public void setAutor(UsuarioEntity autor) {
+        this.autor = autor;
+    }*/
    /**
     * Obtiene la información de la noticia.<br>
     * @return informacion

@@ -32,6 +32,7 @@ public class CalificacionDTO {
     {
         
     }
+
     /**
      * Crea un DTO usando la entidad pasada por parámetro.<br>
      * @param e Entidad por parámetro.
@@ -42,14 +43,17 @@ public class CalificacionDTO {
         id=e.getId();
         fecha=e.getFecha();
     }
+
      /**
      * Obtiene el valor de la calificación.<br>
      * @return calificacion
      */
+
     public Double getCalificacion() {
         return calificacion;
     }
     
+
     /**
      * Modifica el valor de la calificación al dado por parámetro.<br>
      * @param calificacion 

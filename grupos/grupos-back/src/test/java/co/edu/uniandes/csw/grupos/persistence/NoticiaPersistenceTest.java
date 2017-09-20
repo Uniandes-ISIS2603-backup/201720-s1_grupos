@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
@@ -34,6 +37,7 @@ import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 /**
+ *
  * Prueba de la persistencia de noticia.
  * @author s.guzmanm
  */
@@ -57,6 +61,7 @@ public class NoticiaPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+
     /**
      * Persistencia de la noticia.
      */
@@ -78,6 +83,18 @@ public class NoticiaPersistenceTest {
     UserTransaction utx;
 
      /**
+     *
+     */
+    private List<NoticiaEntity> data = new ArrayList<NoticiaEntity>();
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
      * Lista de las entidades de noticia a persistir
      */
     private List<NoticiaEntity> data = new ArrayList<NoticiaEntity>();
@@ -110,6 +127,17 @@ public class NoticiaPersistenceTest {
             }
         }
     }
+    
+    private void clearData() {
+        em.createQuery("delete from NoticiaEntity").executeUpdate();
+    }
+
+
+         private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            NoticiaEntity entity = factory.manufacturePojo(NoticiaEntity.class);
+
     /**
      * Borra la información presente en la base de datos.
      */
@@ -129,6 +157,7 @@ public class NoticiaPersistenceTest {
             data.add(entity);
         }
     }
+
     /**
      * Qué se hace después en la base de datos.
      */
@@ -141,6 +170,9 @@ public class NoticiaPersistenceTest {
      */
     @Test
     public void testCreateEntity() {
+        
+        PodamFactory factory= new PodamFactoryImpl();
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
         PodamFactory factory = new PodamFactoryImpl();
         NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
         int indexAutor=(int)(Math.random()*2);
@@ -152,6 +184,7 @@ public class NoticiaPersistenceTest {
         Assert.assertNotNull(found);
         Assert.assertEquals(newEntity,result);
         verificarRelaciones(newEntity,found);
+
     }
 
     /**
@@ -159,6 +192,9 @@ public class NoticiaPersistenceTest {
      */
     @Test
     public void testUpdateEntity() {
+        
+        NoticiaEntity entity=data.get(0);
+        PodamFactory factory= new PodamFactoryImpl();
         PodamFactory factory = new PodamFactoryImpl();
         
         
@@ -225,7 +261,7 @@ public class NoticiaPersistenceTest {
        NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
        Assert.assertNull(deleted);
     }
-    
+
     private NoticiaEntity popularNoticia() {
         PodamFactory factory= new PodamFactoryImpl();
         NoticiaEntity e=factory.manufacturePojo(NoticiaEntity.class);
@@ -266,5 +302,4 @@ public class NoticiaPersistenceTest {
             if(!aceptado) Assert.fail("No existe la multimedia buscada");
         }
     }
-    
 }

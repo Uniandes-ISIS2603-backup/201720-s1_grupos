@@ -35,6 +35,7 @@ public class MultimediaDTO {
      * Construye un nuevo DTO apartir de una entidad
      * @param e 
      */
+
     public MultimediaDTO(MultimediaEntity e)
     {
         nombre=e.getNombre();

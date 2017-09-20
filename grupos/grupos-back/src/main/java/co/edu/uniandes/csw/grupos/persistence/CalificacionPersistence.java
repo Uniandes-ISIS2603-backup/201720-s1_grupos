@@ -16,11 +16,19 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
+ *
  * Persistencia de la calificacion
  * @author s.guzmanm
  */
 @Stateless
 public class CalificacionPersistence {
+
+    
+   private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
+   @PersistenceContext(unitName = "gruposPU")
+
+    protected EntityManager em;
+   
     /**
      * Logger de la persistencia
      */
@@ -52,30 +60,36 @@ public class CalificacionPersistence {
        LOGGER.info("Actualizando entidad "+e.getId());
        return em.merge(e);
    }
+
    /**
     * Encuentra la calificación con esa identificación.<br>
     * @param id Identifiación.<br>
     * @return Calificación encontrada.
     */
+
    public CalificacionEntity find(Long id)
    {
        LOGGER.info("Buscando "+id);
        return em.find(CalificacionEntity.class, id);
    }
+
    /**
     * Encuentra todas las calificaciones del sistema.<br>
     * @return Calificaciones encontradas.
     */
+
    public List<CalificacionEntity> findAll()
    {
        LOGGER.info("Buscando a todos...");
        TypedQuery q =em.createQuery("Select x from CalificacionEntity x",CalificacionEntity.class);
        return q.getResultList();
    }
+
    /**
     * Borra una calificación del sistema.<br>
     * @param id Calificación del sistema.
     */
+
    public void delete(Long id)
    {
        CalificacionEntity e=em.find(CalificacionEntity.class, id);

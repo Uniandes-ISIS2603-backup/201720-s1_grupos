@@ -19,6 +19,12 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class MultimediaPersistence {
+
+       private static final Logger LOGGER = Logger.getLogger(MultimediaPersistence.class.getName());
+   @PersistenceContext(unitName = "gruposPU")
+    protected EntityManager em;
+   
+
     /**
      * Logger de la persistencia.
      */
@@ -33,6 +39,7 @@ public class MultimediaPersistence {
     * @param e Nueva entidad.<br>
     * @return Entidad persistida.
     */
+
    public MultimediaEntity createEntity(MultimediaEntity e)
    {
        LOGGER.info("Creando objeto "+e.getLink());
@@ -40,26 +47,31 @@ public class MultimediaPersistence {
        LOGGER.info("Éxito en creación");
        return e;
    }
+
    /**
     * Actualiza la entidad con elv alor dado por parámetro.<br>
     * @param e Entidad a actualizar.<br>
     * @return Entidad actualizada.
     */
+
    public MultimediaEntity updateEntity(MultimediaEntity e)
    {
        LOGGER.info("Actualizando entidad "+e.getLink());
        return em.merge(e);
    }
+
    /**
     * Encuentra la multimedia con el id dado.<br>
     * @param id Id de la multimedia.<br>
     * @return Multimedia encontrada.
     */
+
    public MultimediaEntity find(String id)
    {
        LOGGER.info("Buscando "+id);
        return em.find(MultimediaEntity.class, id);
    }
+
    /**
     * Borra la multimedia con el id dado.<br>
     * @param id 

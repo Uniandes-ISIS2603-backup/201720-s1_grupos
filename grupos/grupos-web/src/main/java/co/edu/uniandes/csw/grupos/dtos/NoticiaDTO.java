@@ -31,17 +31,19 @@ public class NoticiaDTO {
     {
         
     }
+
     /**
      * Crea un nuevo DTO con la entidad pasada por parámetro.<br>
      * @param e Entidad a convertir
      */
+
     public NoticiaDTO(NoticiaEntity e)
     {
         titulo=e.getTitulo();
         informacion=e.getInformacion();
         id=e.getId();
     }
-/**
+    /**
      *  Obtiene el título de la noticia.<br>
      * @return titulo
      */
@@ -64,6 +66,7 @@ public class NoticiaDTO {
    {
        return id;
    }
+
    /**
     * Modifica el valor de la id al dado por parámetro.<br>
     * @param n Valor dado por parámetro.

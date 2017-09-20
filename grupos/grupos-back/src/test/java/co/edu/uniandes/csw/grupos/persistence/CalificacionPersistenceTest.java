@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
+import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
@@ -52,6 +54,10 @@ public class CalificacionPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
+    
+    @Inject
+    private CalificacionPersistence persistence;
+
     /**
      * Inyecta la persistencia de la calificación.
      */
@@ -72,6 +78,18 @@ public class CalificacionPersistenceTest {
     UserTransaction utx;
 
      /**
+     *
+     */
+    private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    /**
      * Lista de entiades de calificación a persistir.
      */
     private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
@@ -105,6 +123,21 @@ public class CalificacionPersistenceTest {
             }
         }
     }
+    
+    private void clearData() {
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
+    }
+
+
+         private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
+    
     /**
      * Borra toda la información del sistema.
      */
@@ -145,6 +178,9 @@ public class CalificacionPersistenceTest {
     @Test
     public void testCreateEntity()  {
         PodamFactory factory= new PodamFactoryImpl();
+
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+
         
         int index = (int)(Math.random()*2);
         
@@ -152,16 +188,19 @@ public class CalificacionPersistenceTest {
         newEntity.setBlog(dataB.get(0));
         newEntity.setCalificador(dataU.get(index));
         
+
         CalificacionEntity result=persistence.createEntity(newEntity);
         Assert.assertNotNull(result);
         CalificacionEntity found=em.find(CalificacionEntity.class, newEntity.getId());
         Assert.assertNotNull(found);
         Assert.assertEquals(newEntity.getId(),result.getId());
+
         
         Assert.assertNotNull(result.getBlog());
         Assert.assertEquals(newEntity.getBlog().getId(),result.getBlog().getId());
         Assert.assertNotNull(result.getCalificador());
         Assert.assertEquals(newEntity.getCalificador().getId(),result.getCalificador().getId());
+
     }
 
     /**
@@ -173,16 +212,20 @@ public class CalificacionPersistenceTest {
         PodamFactory factory= new PodamFactoryImpl();
         CalificacionEntity updated=factory.manufacturePojo(CalificacionEntity.class);
         updated.setId(entity.getId());
+
         updated.setBlog(entity.getBlog());
         updated.setCalificador(entity.getCalificador());
+
         persistence.updateEntity(updated);
         
         CalificacionEntity rta= em.find(CalificacionEntity.class, entity.getId());
         Assert.assertEquals(updated.getId(),rta.getId());
+
         Assert.assertNotNull(rta.getBlog());
         Assert.assertEquals(updated.getBlog().getId(),rta.getBlog().getId());
         Assert.assertNotNull(rta.getCalificador());
         Assert.assertEquals(updated.getCalificador().getId(),rta.getCalificador().getId());
+
         
     }
 
@@ -195,10 +238,12 @@ public class CalificacionPersistenceTest {
         CalificacionEntity found=persistence.find(entity.getId());
         Assert.assertNotNull(found);
         Assert.assertEquals(entity.getId(),found.getId());
+
         Assert.assertNotNull(found.getBlog());
         Assert.assertEquals(entity.getBlog().getId(),found.getBlog().getId());
         Assert.assertNotNull(found.getCalificador());
         Assert.assertEquals(entity.getCalificador().getId(),found.getCalificador().getId());
+
     }
 
     /**
