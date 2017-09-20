@@ -9,6 +9,7 @@
     
     <modules>
         <module>grupos-web</module>
+        <module>grupos-back</module>
     </modules>
     
     <properties>

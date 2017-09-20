@@ -20,11 +20,6 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class MultimediaPersistence {
 
-       private static final Logger LOGGER = Logger.getLogger(MultimediaPersistence.class.getName());
-   @PersistenceContext(unitName = "gruposPU")
-    protected EntityManager em;
-   
-
     /**
      * Logger de la persistencia.
      */

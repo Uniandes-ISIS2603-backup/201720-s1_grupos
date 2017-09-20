@@ -75,11 +75,6 @@ public class MultimediaPersistenceTest {
     @Inject
     UserTransaction utx;
 
-     /**
-     *
-     */
-    private List<MultimediaEntity> data = new ArrayList<MultimediaEntity>();
-    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -88,6 +83,7 @@ public class MultimediaPersistenceTest {
     public static void tearDownClass() {
     }
 
+    /*
      * Lista de los datos de la persistencia de la multimedia.
      */
     private List<MultimediaEntity> data = new ArrayList<MultimediaEntity>();

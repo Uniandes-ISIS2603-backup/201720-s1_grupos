@@ -21,12 +21,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class NoticiaPersistence {
-       private static final Logger LOGGER = Logger.getLogger(NoticiaPersistence.class.getName());
-   @PersistenceContext(unitName = "gruposPU")
-
-    protected EntityManager em;
-   
-
+    
     /**
      * Logger de la persistencia.
      */
@@ -72,16 +67,7 @@ public class NoticiaPersistence {
    {
        LOGGER.info("Buscando "+id);
        return em.find(NoticiaEntity.class, id);
-   }
-
-   
-   public List<NoticiaEntity> findAll()
-   {
-       LOGGER.info("Buscando a todos...");
-       TypedQuery q =em.createQuery("Select x from NoticiaEntity x",NoticiaEntity.class);
-       return q.getResultList();
-   }
-   
+   }   
 
    /**
     * Encuentra todas las noticias del sistema.<br>

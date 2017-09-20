@@ -55,9 +55,6 @@ public class CalificacionPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    @Inject
-    private CalificacionPersistence persistence;
-
     /**
      * Inyecta la persistencia de la calificación.
      */
@@ -77,11 +74,6 @@ public class CalificacionPersistenceTest {
     @Inject
     UserTransaction utx;
 
-     /**
-     *
-     */
-    private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
-    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -121,20 +113,6 @@ public class CalificacionPersistenceTest {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-        }
-    }
-    
-    private void clearData() {
-        em.createQuery("delete from CalificacionEntity").executeUpdate();
-    }
-
-
-         private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
-            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
-            em.persist(entity);
-            data.add(entity);
         }
     }
     
@@ -179,9 +157,6 @@ public class CalificacionPersistenceTest {
     public void testCreateEntity()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-
-        
         int index = (int)(Math.random()*2);
         
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);

@@ -21,23 +21,18 @@ import javax.persistence.TypedQuery;
  * @author s.guzmanm
  */
 @Stateless
-public class CalificacionPersistence {
-
-    
-   private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
-   @PersistenceContext(unitName = "gruposPU")
-
-    protected EntityManager em;
-   
+public class CalificacionPersistence {   
     /**
      * Logger de la persistencia
      */
    private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
+   
   /**
    * Manejador de entidades
    */ 
   @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
+  
    /**
     * Crea una nueva entidad dada por parámetro.<br>
     * @param e La nueva entidad.<br>

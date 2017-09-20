@@ -12,7 +12,7 @@ import co.edu.uniandes.csw.grupos.entities.BlogEntity;
  * @author se.cardenas
  */
 public class BlogDTO {
-    
+   
     private Long id;
     private String titulo;
     private String contenido;

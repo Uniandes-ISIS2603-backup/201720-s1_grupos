@@ -82,11 +82,6 @@ public class NoticiaPersistenceTest {
     @Inject
     UserTransaction utx;
 
-     /**
-     *
-     */
-    private List<NoticiaEntity> data = new ArrayList<NoticiaEntity>();
-    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -95,6 +90,7 @@ public class NoticiaPersistenceTest {
     public static void tearDownClass() {
     }
     
+    /*
      * Lista de las entidades de noticia a persistir
      */
     private List<NoticiaEntity> data = new ArrayList<NoticiaEntity>();
@@ -128,16 +124,6 @@ public class NoticiaPersistenceTest {
         }
     }
     
-    private void clearData() {
-        em.createQuery("delete from NoticiaEntity").executeUpdate();
-    }
-
-
-         private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
-            NoticiaEntity entity = factory.manufacturePojo(NoticiaEntity.class);
-
     /**
      * Borra la información presente en la base de datos.
      */
@@ -171,8 +157,6 @@ public class NoticiaPersistenceTest {
     @Test
     public void testCreateEntity() {
         
-        PodamFactory factory= new PodamFactoryImpl();
-        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
         PodamFactory factory = new PodamFactoryImpl();
         NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
         int indexAutor=(int)(Math.random()*2);
@@ -192,9 +176,6 @@ public class NoticiaPersistenceTest {
      */
     @Test
     public void testUpdateEntity() {
-        
-        NoticiaEntity entity=data.get(0);
-        PodamFactory factory= new PodamFactoryImpl();
         PodamFactory factory = new PodamFactoryImpl();
         
         

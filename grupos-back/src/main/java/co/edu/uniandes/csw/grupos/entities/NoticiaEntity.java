@@ -83,14 +83,6 @@ public class NoticiaEntity implements Serializable {
        id=n;
    }
 
-
-    public String getInformacion() {
-        return informacion;
-    }
-
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
-    }
 /*
     public List<MultimediaEntity> getMultimedia() {
         return multimedia;

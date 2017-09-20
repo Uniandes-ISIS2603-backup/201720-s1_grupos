@@ -19,11 +19,7 @@ public class NoticiaDetailDTO extends NoticiaDTO{
     @Id
     private UsuarioDTO autor;*/
 
-
-    
-    private List<MultimediaDTO> multimedia;
-    
-    private UsuarioDTO autor;*/
+    /*
     /**
      * Crea un DTO detallado de noticia vacío.
      */
