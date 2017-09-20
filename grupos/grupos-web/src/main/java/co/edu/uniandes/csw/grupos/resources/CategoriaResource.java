@@ -113,9 +113,10 @@ public class CategoriaResource implements Serializable {
      * el mensaje.
      */
     @GET
-    @Path("/tipo")
-    public CategoriaDetailDTO getCategoriaByTipo(@QueryParam("tipo") String tipo) {
-        CategoriaEntity entity = categoriaLogic.getCategoriaTipo(tipo);
+    @Path("{nombre: [A-Za-z]+}")
+    public CategoriaDetailDTO getCategoria(@QueryParam("tipo") String tipo) {
+        CategoriaEntity entity = categoriaLogic.getCategoria(tipo);
+
        
         return new CategoriaDetailDTO(entity);
     }

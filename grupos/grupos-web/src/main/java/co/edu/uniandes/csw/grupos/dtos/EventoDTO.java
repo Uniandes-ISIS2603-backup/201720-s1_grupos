@@ -3,33 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.grupos.entities;
+package co.edu.uniandes.csw.grupos.dtos;
 
-import java.io.Serializable;
+import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author js.ramos14
  */
-@Entity
-public class EventoEntity implements Serializable{
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+public class EventoDTO {
+        
     private Long id;
-    private String nombre;
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
-    @Temporal(TemporalType.DATE)
-    private Date fechaFin;
     
+    private String nombre;
+    
+    private Date fechaInicio;
+   
+    private Date fechaFin;
+    public EventoDTO()
+    {
+        
+    }
+    public EventoDTO(EventoEntity entity)
+    {
+        this.id = entity.getId();
+        this.nombre = entity.getNombre();
+        this.fechaInicio = entity.getFechaInicio();
+        this.fechaFin = entity.getFechaFin();
+    }
+
     /**
      * @return the id
      */
@@ -84,5 +87,15 @@ public class EventoEntity implements Serializable{
      */
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+    
+    public EventoEntity toEntity()
+    {
+        EventoEntity entity = new EventoEntity();
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        entity.setFechaInicio(this.fechaInicio);
+        entity.setFechaFin(this.fechaFin);
+        return entity;
     }
 }
