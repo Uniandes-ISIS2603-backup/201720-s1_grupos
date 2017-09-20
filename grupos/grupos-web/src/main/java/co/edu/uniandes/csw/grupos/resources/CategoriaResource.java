@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("categorias")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@Stateless
 public class CategoriaResource implements Serializable {
 
     @Inject
@@ -112,9 +113,9 @@ public class CategoriaResource implements Serializable {
      * el mensaje.
      */
     @GET
-    @Path("{nombre: \\d+}")
-    public CategoriaDetailDTO getCategoria(@QueryParam("tipo") String tipo) {
-        CategoriaEntity entity = categoriaLogic.getCategoria(tipo);
+    @Path("/tipo")
+    public CategoriaDetailDTO getCategoriaByTipo(@QueryParam("tipo") String tipo) {
+        CategoriaEntity entity = categoriaLogic.getCategoriaTipo(tipo);
        
         return new CategoriaDetailDTO(entity);
     }

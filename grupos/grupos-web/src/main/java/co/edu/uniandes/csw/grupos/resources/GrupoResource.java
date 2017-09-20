@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -33,7 +34,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("grupos")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@Stateless
 public class GrupoResource {
     
     @Inject
@@ -96,7 +97,7 @@ public class GrupoResource {
      * GET para una Grupo con nombre dado por parametro
      * http://localhost:8080/backstepbystep-web/api/Grupos/1
      *
-     * @param id corresponde al id de la Grupo buscada.
+     * @param nombre
      * @return La Grupo encontrada. Ejemplo: { "type": "GrupoDetailDTO",
      * "id": 1, "name": "Norma" }
      * @throws BusinessException
@@ -105,9 +106,9 @@ public class GrupoResource {
      * el mensaje.
      */
     @GET
-    @Path("{nombre: \\d+}")
-    public GrupoDetailDTO getGrupo(@QueryParam("nombre") String nombre) {
-        GrupoEntity entity = grupoLogic.getGrupo(nombre);
+    @Path("/nombre")
+    public GrupoDetailDTO getGrupoByNombre(@QueryParam("nombre") String nombre) {
+        GrupoEntity entity = grupoLogic.getGrupoNombre(nombre);
        
         return new GrupoDetailDTO(entity);
     }
