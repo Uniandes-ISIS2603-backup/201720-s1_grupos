@@ -39,7 +39,7 @@ public class BlogLogic {
         return persistence.findAll();
     }
     
-    public BlogEntity getBlog(Long id) throws NotFoundException{
+    public BlogEntity getBlog(Long id) throws NotFoundException {
         BlogEntity blog = persistence.find(id);
         if(blog == null) {
             throw new NotFoundException("No existe ningún blog con el id "+id);
@@ -47,7 +47,7 @@ public class BlogLogic {
         return blog;
     }
     
-    public BlogEntity updateBlog(BlogEntity blog) throws NotFoundException{
+    public BlogEntity updateBlog(BlogEntity blog) throws NotFoundException {
         BlogEntity blog2 = persistence.find(blog.getId());
         if(blog2 == null) {
             throw new NotFoundException("No existe ningún blog con el id "+blog.getId());
