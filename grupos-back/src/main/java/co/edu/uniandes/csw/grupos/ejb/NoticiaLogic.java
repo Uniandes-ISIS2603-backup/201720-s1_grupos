@@ -142,9 +142,9 @@ public class NoticiaLogic {
         return buscada;
     }
     
-    public List<MultimediaEntity> addMultimedia(Long idNoticia, List<MultimediaEntity> mult)
+    public List<MultimediaEntity> addMultimedia(Long idNoticia, List<MultimediaEntity> mult) throws BusinessException
     {
-        NoticiaEntity noticia = getNoticia(idNoticia);
+        NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity entity=null;
         for(MultimediaEntity m: mult)
         {
@@ -164,7 +164,7 @@ public class NoticiaLogic {
     
     public List<MultimediaEntity> updateMultimedia(Long idNoticia, MultimediaEntity mult, String link) throws BusinessException
     {
-        NoticiaEntity noticia = getNoticia(idNoticia);
+        NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
         int index = noticia.getMultimedia().indexOf(m);
         if((index<0)) throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia.");
@@ -174,16 +174,13 @@ public class NoticiaLogic {
         return noticia.getMultimedia();
     }
     
-    public void deleteMultimedia (Long idNoticia,String link)
+    public void deleteMultimedia (Long idNoticia,String link) throws BusinessException
     {
-        NoticiaEntity noticia = getNoticia(idNoticia);
+        NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
         if(noticia.getMultimedia().indexOf(m)<0) throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
         noticia.getMultimedia().remove(m);
     }
 
-    private NoticiaEntity getNoticia(Long idNoticia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

@@ -11,8 +11,10 @@ import co.edu.uniandes.csw.grupos.ejb.NoticiaLogic;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
+import co.edu.uniandes.csw.grupos.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -31,11 +33,13 @@ import javax.ws.rs.core.MediaType;
  */
 @Consumes (MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Stateless
 public class NoticiaMultimediaResource {
     
     @Inject
     private NoticiaLogic noticia;
+    
+       private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
+
     
     
     private List<MultimediaEntity> listarDTO(List<MultimediaDetailDTO> list)
@@ -59,7 +63,7 @@ public class NoticiaMultimediaResource {
     }
     
     @GET 
-    @Path("{link: [a-zA-Z]}")
+    @Path("{link: [a-zA-Z]+}")
     public MultimediaDetailDTO getMultimediaNoticia(@PathParam("noticiaid") Long id,@PathParam("link") String link) throws BusinessException
     {
         return new MultimediaDetailDTO(noticia.getMultimedia(id, link));
@@ -72,14 +76,16 @@ public class NoticiaMultimediaResource {
         return toDTO(noticia.addMultimedia(id, mult));
     }
     @PUT
-    public List<MultimediaDetailDTO> updateMultimedia (@PathParam("noticiaId") Long id, String link, MultimediaDetailDTO dto) throws BusinessException
+    @Path("{link: [a-zA-Z]+}")
+    public List<MultimediaDetailDTO> updateMultimedia (@PathParam("noticiaId") Long id, @PathParam("link")String link, MultimediaDetailDTO dto) throws BusinessException
     {
         MultimediaEntity mult = dto.toEntity();
        return toDTO(noticia.updateMultimedia(id, mult, link));
     }
     
     @DELETE
-    public void deleteMultimedia(@PathParam("noticiaid") Long id, String link)
+    @Path("{link: [a-zA-Z]+}")
+    public void deleteMultimedia(@PathParam("noticiaid") Long id, @PathParam("link")String link)
     {
         noticia.deleteMultimedia(id, link);
     }
