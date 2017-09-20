@@ -24,8 +24,6 @@ insert into BlogEntity (id,titulo,contenido) values (2,'B','Content');
 insert into BlogEntity(id,titulo,contenido) values (3,'¿Cómo hago el punto 10 de SQL?','No sé');
 insert into BlogEntity(id,titulo,contenido) values (4,'HOLA','Qué hace');
 
-
-
 --INFORMACIÓN MULTIMEDIA
 insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','www.google.com');
 insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','www.gta.com');
