@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 
 /**
- *
+ * Representación detallada del DTO
  * @author jc161
  */
 public class CalificacionDetailDTO extends CalificacionDTO {
@@ -17,12 +17,17 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     private UsuarioDTO calificador;
     
     private BlogDTO blog;*/
-    
+    /**
+     * COnstructor vacío.
+     */
     public CalificacionDetailDTO()
     {
         
     }
-    
+    /**
+     * Constructor de un DTO detallado que recibe una entidad como parámetro.<br>
+     * @param e  Entidad de parámetro.
+     */
     public CalificacionDetailDTO(CalificacionEntity e)
     {
         super(e);
@@ -48,13 +53,14 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     public void setBlog(BlogDTO blog) {
         this.blog = blog;
     }*/
-    
+    /**
+     * Transforma el DTO detallado en una entidad.<br>
+     * @return Enitdad formada.
+     */
+    @Override
     public CalificacionEntity toEntity()
     {
-        CalificacionEntity e= new CalificacionEntity();
-        e.setCalificacion(calificacion);
-        e.setFecha(fecha);
-        e.setId(id);
+        CalificacionEntity e= super.toEntity();
         /*
         e.setCalificador(calificador.toEntity());
         e.setBlog(blog.toEntity());

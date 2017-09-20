@@ -19,65 +19,107 @@ import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Clase que modela la noticia del sistema.
  * @author s.guzmanm
  */
 @Entity 
 public class NoticiaEntity implements Serializable {
+    /**
+     * Identificación de la noticia.
+     */
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    
+    /**
+     * Titulo de la noticia.
+     */
     private String titulo;
-    
+    /**
+     * Información de la noticia.
+     */
     private String informacion;
-    
-    @OneToMany(cascade=CascadeType.PERSIST)
+    /**
+     * Lista de multimedia.
+     */
+    @OneToMany
     @PodamExclude
     private List<MultimediaEntity> multimedia;
-    @OneToOne(cascade=CascadeType.PERSIST)
+    /**
+     * Autor de la noticia.
+     */
+    @OneToOne
     @PodamExclude
     private UsuarioEntity autor;
-
+    /**
+     *  Obtiene el título de la noticia.<br>
+     * @return titulo
+     */
     public String getTitulo() {
         return titulo;
     }
-
+    /**
+     * Modifica el título al valor dado por parámetro.<br>
+     * @param titulo 
+     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
     
-    
+    /**
+     * Obtiene la identificación de la noticia.<br>
+     * @return id
+     */
    public Long getId()
    {
        return id;
    }
-   
+   /**
+    * Modifica el valor de la id al dado por parámetro.<br>
+    * @param n Valor dado por parámetro.
+    */
    public void setId(Long n)
    {
        id=n;
    }
-
+   /**
+    * Obtiene la información de la noticia.<br>
+    * @return informacion
+    */
     public String getInformacion() {
         return informacion;
     }
-
+    /**
+     * Modifica la información al valor dado por parámetro.<br>
+     * @param informacion 
+     */
     public void setInformacion(String informacion) {
         this.informacion = informacion;
     }
-
+    /**
+     * Obtiene la lista de multimedia de la noticia.<br>
+     * @return multimedia
+     */
     public List<MultimediaEntity> getMultimedia() {
         return multimedia;
     }
-
+    /**
+     * Modifica la multimedia al valor dado por parámetro.<br>
+     * @param multimedia 
+     */
     public void setMultimedia(List<MultimediaEntity> multimedia) {
         this.multimedia = multimedia;
     }
-
+    /**
+     * Obtiene el autor de la noticia.<br>
+     * @return autor
+     */
     public UsuarioEntity getAutor() {
         return autor;
     }
-
+    /**
+     * Modifica el autor al valor dado por parámetro.<br>
+     * @param autor 
+     */
     public void setAutor(UsuarioEntity autor) {
         this.autor = autor;
     }
