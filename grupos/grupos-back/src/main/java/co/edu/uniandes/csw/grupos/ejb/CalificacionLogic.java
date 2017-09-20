@@ -7,13 +7,13 @@ package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import co.edu.uniandes.csw.grupos.persistence.CalificacionPersistence;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
  *
@@ -25,7 +25,7 @@ public class CalificacionLogic {
     @Inject
     CalificacionPersistence persistence;
     
-    public CalificacionEntity getEntity(Long id) throws BusinessException, NotFoundException
+    public CalificacionEntity getEntity(Long id) throws BusinessException
     {
         if(id==null) throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
         CalificacionEntity entity= persistence.find(id);
@@ -49,7 +49,7 @@ public class CalificacionLogic {
        
     }
     
-    public CalificacionEntity updateEntity (Long id, CalificacionEntity entity) throws BusinessException, NotFoundException
+    public CalificacionEntity updateEntity (Long id, CalificacionEntity entity) throws BusinessException
     {
         if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
         validarCalificacion(entity);
@@ -69,7 +69,6 @@ public class CalificacionLogic {
         if(entity.getCalificacion()==null) throw new BusinessException ("No se pueden agregar calificaciones sin un valor dado");
        if(entity.getFecha()==null) throw new BusinessException("No se pueden agregar calificaciones sin fecha");
        if(entity.getCalificacion()<0 || entity.getCalificacion()>5) throw new BusinessException ("La calificación está por fuera del rango dado");
-       //if(entity.getFecha().after(INICIAL)||entity.getFecha().before(FINAL)) throw new BusinessException ("La fecha no está entre los rangos del sistema.");
     }
     
    

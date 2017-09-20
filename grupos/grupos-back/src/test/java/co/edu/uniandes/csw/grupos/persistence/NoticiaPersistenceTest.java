@@ -34,7 +34,7 @@ import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 /**
- *
+ * Prueba de la persistencia de noticia.
  * @author s.guzmanm
  */
 @RunWith(Arquillian.class)
@@ -57,7 +57,9 @@ public class NoticiaPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    
+    /**
+     * Persistencia de la noticia.
+     */
     @Inject
     private NoticiaPersistence persistence;
 
@@ -76,18 +78,21 @@ public class NoticiaPersistenceTest {
     UserTransaction utx;
 
      /**
-     *
+     * Lista de las entidades de noticia a persistir
      */
     private List<NoticiaEntity> data = new ArrayList<NoticiaEntity>();
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+    /**
+     * Lista de las entiades de multimedia a persistir.
+     */
+    private List<MultimediaEntity> dataM= new ArrayList<>();
+    /**
+     * Lista de usuarios a persistir.
+     */
+    private List<UsuarioEntity> dataU = new ArrayList<>();
+    /**
+     * Acción de preparar la prueba. Este procedimiento inclute iniciar la transacción, unir el manejador de persistencia,
+     * borrar la información presente, e insertar datos.
+     */
     @Before
     public void setUp() {
          try {
@@ -105,12 +110,18 @@ public class NoticiaPersistenceTest {
             }
         }
     }
-    
+    /**
+     * Borra la información presente en la base de datos.
+     */
     private void clearData() {
         em.createQuery("delete from NoticiaEntity").executeUpdate();
+        em.createQuery("delete from MultimediaEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
-
+/**
+ * Inserta información en la base para realizar pruebas.
+ */
          private void insertData() {
         for (int i = 0; i < 3; i++) {
             NoticiaEntity entity = popularNoticia();
@@ -118,7 +129,9 @@ public class NoticiaPersistenceTest {
             data.add(entity);
         }
     }
-    
+    /**
+     * Qué se hace después en la base de datos.
+     */
     @After
     public void tearDown() {
     }
@@ -128,15 +141,16 @@ public class NoticiaPersistenceTest {
      */
     @Test
     public void testCreateEntity() {
-        
-        NoticiaEntity newEntity = popularNoticia();
-        
+        PodamFactory factory = new PodamFactoryImpl();
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
+        int indexAutor=(int)(Math.random()*2);
+        newEntity.setAutor(dataU.get(indexAutor));
+        newEntity.setMultimedia(dataM);
         NoticiaEntity result=persistence.createEntity(newEntity);
         Assert.assertNotNull(result);
         NoticiaEntity found=em.find(NoticiaEntity.class, newEntity.getId());
         Assert.assertNotNull(found);
         Assert.assertEquals(newEntity,result);
-        
         verificarRelaciones(newEntity,found);
     }
 
@@ -145,18 +159,19 @@ public class NoticiaPersistenceTest {
      */
     @Test
     public void testUpdateEntity() {
+        PodamFactory factory = new PodamFactoryImpl();
+        
         
         NoticiaEntity entity=data.get(0);
-        NoticiaEntity updated=popularNoticia();
+        NoticiaEntity updated=factory.manufacturePojo(NoticiaEntity.class);
         Long id=entity.getId();
        
        updated.setId(id);
        updated.setAutor(entity.getAutor());
-       System.out.println(updated.getAutor());
+       updated.setMultimedia(dataM);
         persistence.updateEntity(updated);
         
         NoticiaEntity rta= em.find(NoticiaEntity.class, id);
-        System.out.println(updated.getAutor());
         Assert.assertEquals(updated.getId(),rta.getId());
         verificarRelaciones(updated,rta);
 
@@ -206,40 +221,47 @@ public class NoticiaPersistenceTest {
     public void testDelete() {
         NoticiaEntity entity= data.get(0);
         Long id=entity.getId();
-       // id.setAutor(entity.getAutor());
        persistence.delete(id);
        NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
        Assert.assertNull(deleted);
     }
-
+    
     private NoticiaEntity popularNoticia() {
         PodamFactory factory= new PodamFactoryImpl();
         NoticiaEntity e=factory.manufacturePojo(NoticiaEntity.class);
         UsuarioEntity usuario=factory.manufacturePojo(UsuarioEntity.class);
         e.setAutor(usuario);
+        dataU.add(usuario);
+        em.persist(usuario);
         List<MultimediaEntity> list= new ArrayList<>();
         for(int i=0;i<3;i++)
         {
             MultimediaEntity multimedia=factory.manufacturePojo(MultimediaEntity.class);
             list.add(multimedia);
+            dataM.add(multimedia);
+            em.persist(multimedia);
         }
         e.setMultimedia(list);
         while(e.getAutor()==null)
             e.setAutor(factory.manufacturePojo(UsuarioEntity.class));
         return e;
     }
-
-    private void verificarRelaciones(NoticiaEntity newEntity, NoticiaEntity found) {
-        Assert.assertNotNull(found.getAutor());
-        Assert.assertEquals(newEntity.getAutor().getId(),found.getAutor().getId());
-        Assert.assertNotNull(found.getMultimedia());
+    /**
+     * Verifica las relaciones existentes entre las dos entidades. La entidad antigua, y la nueva.
+     * @param entidadAntigua Entidad antigua
+     * @param entidadNueva Entidad nueva 
+     */
+    private void verificarRelaciones(NoticiaEntity entidadAntigua, NoticiaEntity entidadNueva) {
+        Assert.assertNotNull(entidadNueva.getAutor());
+        Assert.assertEquals(entidadAntigua.getAutor().getId(),entidadNueva.getAutor().getId());
+        Assert.assertNotNull(entidadNueva.getMultimedia());
         boolean aceptado;
-        for(int i=0;i<newEntity.getMultimedia().size();i++)
+        for(int i=0;i<entidadAntigua.getMultimedia().size();i++)
         {
             aceptado=false;
-            for(MultimediaEntity m: found.getMultimedia())
+            for(MultimediaEntity m: entidadNueva.getMultimedia())
             {
-                if(newEntity.getMultimedia().get(i).getLink().equals(m.getLink())) aceptado=true;
+                if(entidadAntigua.getMultimedia().get(i).getLink().equals(m.getLink())) aceptado=true;
             }
             if(!aceptado) Assert.fail("No existe la multimedia buscada");
         }
