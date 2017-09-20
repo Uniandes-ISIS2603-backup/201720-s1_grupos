@@ -3,28 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.grupos.entities;
+package co.edu.uniandes.csw.grupos.dtos;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 
 /**
  *
  * @author af.lopezf
  */
-@Entity
-public class TarjetaEntity implements Serializable{
+public class TarjetaDTO {
     
-    
-    @Id
     private int numero;
-    
     private double dineroDisponible;
-    
     private String banco;
-    
     private double maxCupo;
+    
+    
+    /**
+     * Constructor por defecto
+     */
+    public TarjetaDTO(){  
+    }
+    
+    
+        /**
+     * Conviertir Entity a DTO
+     * (Crea un nuevo DTO con los valores que recibe en  la entidad que viene de argumento.
+     * @param tarjeta: Es la entidad que se va a convertir a DTO 
+     */
+    public TarjetaDTO(TarjetaEntity tarjeta) {
+        this.numero = tarjeta.getNumero();
+        this.dineroDisponible = tarjeta.getDineroDisponible();
+        this.banco = tarjeta.getBanco();
+        this.maxCupo = tarjeta.getMaxCupo();
+    }
 
     /**
      * @return the numero
@@ -82,10 +94,18 @@ public class TarjetaEntity implements Serializable{
         this.maxCupo = maxCupo;
     }
     
+        /**
+     * Convertir DTO a Entity
+     * @return Un Entity con los valores del DTO 
+     */
+    public TarjetaEntity toEntity() {
+        TarjetaEntity entity = new TarjetaEntity();
+        entity.setNumero(this.numero);
+        entity.setDineroDisponible(this.dineroDisponible);
+        entity.setBanco(this.banco);
+        entity.setMaxCupo(this.maxCupo);
+        return entity;
+    }
     
-    
-    
-    
-        
     
 }

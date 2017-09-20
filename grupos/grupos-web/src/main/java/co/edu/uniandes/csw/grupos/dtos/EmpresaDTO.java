@@ -3,25 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.grupos.entities;
+package co.edu.uniandes.csw.grupos.dtos;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
 
 /**
  *
  * @author af.lopezf
  */
-@Entity
-public class EmpresaEntity implements Serializable {
+public class EmpresaDTO {
     
-    @Id
     private int nit;
-    
     private String nombre;
-    
     private String logo;
+    
+     /**
+     * Constructor por defecto
+     */
+    public EmpresaDTO() {
+    }
+    
+     /**
+     * Conviertir Entity a DTO
+     * (Crea un nuevo DTO con los valores que recibe en  la entidad que viene de argumento.
+     * @param empresa: Es la entidad que se va a convertir a DTO 
+     */
+    public EmpresaDTO(EmpresaEntity empresa) {
+        this.nit = empresa.getNit();
+        this.nombre = empresa.getNombre();
+        this.logo = empresa.getLogo();
+    }
 
     /**
      * @return the nit
@@ -65,7 +76,17 @@ public class EmpresaEntity implements Serializable {
         this.logo = logo;
     }
     
-    
+    /**
+     * Convertir DTO a Entity
+     * @return Un Entity con los valores del DTO 
+     */
+    public EmpresaEntity toEntity() {
+        EmpresaEntity entity = new EmpresaEntity();
+        entity.setNit(this.nit);
+        entity.setNombre(this.nombre);
+        entity.setLogo(this.logo);
+        return entity;
+    }
     
     
 }
