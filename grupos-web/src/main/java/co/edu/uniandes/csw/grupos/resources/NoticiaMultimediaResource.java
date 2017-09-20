@@ -70,14 +70,14 @@ public class NoticiaMultimediaResource {
     }
     
     @POST
-    public List<MultimediaDetailDTO> postMultimedia (@PathParam("noticiaid")Long id, List<MultimediaDetailDTO> multimedia)
+    public List<MultimediaDetailDTO> postMultimedia (@PathParam("noticiaid")Long id, List<MultimediaDetailDTO> multimedia) throws BusinessException
     {
         List<MultimediaEntity> mult = listarDTO(multimedia);
         return toDTO(noticia.addMultimedia(id, mult));
     }
     @PUT
     @Path("{link: [a-zA-Z]+}")
-    public List<MultimediaDetailDTO> updateMultimedia (@PathParam("noticiaId") Long id, @PathParam("link")String link, MultimediaDetailDTO dto) throws BusinessException
+    public List<MultimediaDetailDTO> updateMultimedia (@PathParam("noticiaid") Long id, @PathParam("link")String link, MultimediaDetailDTO dto) throws BusinessException
     {
         MultimediaEntity mult = dto.toEntity();
        return toDTO(noticia.updateMultimedia(id, mult, link));
@@ -85,8 +85,8 @@ public class NoticiaMultimediaResource {
     
     @DELETE
     @Path("{link: [a-zA-Z]+}")
-    public void deleteMultimedia(@PathParam("noticiaid") Long id, @PathParam("link")String link)
+    public void deleteMultimedia(@PathParam("noticiaid") Long id, @PathParam("link")String link) throws BusinessException
     {
-        noticia.deleteMultimedia(id, link);
+        noticia.deleteMultimedia(id,link);
     }
 }
