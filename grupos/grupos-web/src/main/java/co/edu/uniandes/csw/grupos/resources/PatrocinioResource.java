@@ -34,6 +34,11 @@ public class PatrocinioResource {
     @Inject
     PatrocinioLogic patrocinioLogic;
     
+    /**
+     * Devuelve una lista con todos los patrocinios registrados en la aplicación
+     * @return lista de los patrocinios
+     * @throws BusinessException 
+     */
     @GET
     public List<PatrocinioDetailDTO> allPatrocinios() throws BusinessException
     {

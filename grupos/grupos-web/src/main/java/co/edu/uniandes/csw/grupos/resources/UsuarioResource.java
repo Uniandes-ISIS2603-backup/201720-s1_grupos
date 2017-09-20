@@ -5,9 +5,9 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
-import co.edu.uniandes.csw.grupos.dtos.UsuarioDetailDTO;
-import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
-import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.grupos.dtos.*;
+import co.edu.uniandes.csw.grupos.ejb.*;
+import co.edu.uniandes.csw.grupos.entities.*;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +35,8 @@ public class UsuarioResource {
     @Inject
     UsuarioLogic userLogic; //Se inyecta la logica del usuario
     
+    @Inject
+    PatrocinioLogic patrocinioLogic; //Se inyecta la logica del patrocinio
     /**
      * POST http://localhost:8080/api/usuarios
      * json: { "id": 100, "nombre":"Francisco", "apellido":"Vega", "nickname":"Pacho123", "Password":"123456","email":"pacho123@hotmail.com"}
@@ -96,6 +98,19 @@ public class UsuarioResource {
     {
         UsuarioEntity ret = userLogic.updateUser(pid,user.toEntity());
         return "Se actualizó el usuario con id: " + pid;
+    }
+    
+    @GET
+    @Path("{id: \\d+}/patrocinios")
+    public List<PatrocinioDetailDTO> findPatrocinios(@PathParam("id") Long pid) throws BusinessException
+    {
+        List<PatrocinioEntity> pat = patrocinioLogic.allPatrociniosUser(pid);
+        List<PatrocinioDetailDTO> ret = new ArrayList<PatrocinioDetailDTO>();
+        for(PatrocinioEntity p : pat)
+        {
+            ret.add(new PatrocinioDetailDTO(p));
+        }
+        return ret;
     }
     
 }
