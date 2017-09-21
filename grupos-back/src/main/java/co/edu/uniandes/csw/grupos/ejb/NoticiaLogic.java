@@ -174,8 +174,9 @@ public class NoticiaLogic {
         return noticia.getMultimedia();
     }
     
-    public void deleteMultimedia (Long idNoticia,String link) throws BusinessException, NotFoundException
+    public void deleteMultimedia (Long idNoticia,String link) throws BusinessException
     {
+        
         NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
         int index=noticia.getMultimedia().indexOf(m);
