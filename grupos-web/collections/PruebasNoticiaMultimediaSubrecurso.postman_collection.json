@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/2/multimedia",
+				"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia",
 				"method": "GET",
 				"header": [
 					{
@@ -52,7 +52,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/2/multimedia/abc",
+				"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/abc",
 				"method": "GET",
 				"header": [
 					{
@@ -114,7 +114,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/1/multimedia/dfdf",
+				"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/dfdf",
 				"method": "GET",
 				"header": [
 					{
@@ -145,7 +145,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/1/multimedia",
+				"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia",
 				"method": "POST",
 				"header": [
 					{
@@ -176,7 +176,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/1/multimedia/aaa",
+				"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/aaa",
 				"method": "PUT",
 				"header": [
 					{
@@ -196,7 +196,7 @@
 		{
 			"name": "Borrado de un archivo multimedia",
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/1/multimedia/aaa",
+				"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/df",
 				"method": "DELETE",
 				"header": [
 					{
@@ -227,7 +227,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/1/multimedia/aaa",
+				"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/df",
 				"method": "GET",
 				"header": [
 					{
