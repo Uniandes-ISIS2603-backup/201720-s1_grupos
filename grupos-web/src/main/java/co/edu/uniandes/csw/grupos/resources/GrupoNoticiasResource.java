@@ -123,4 +123,11 @@ public class GrupoNoticiasResource {
         NoticiaEntity newEntity = dto.toEntity();
         grupoLogic.updateNoticia(grupoId,NoticiaId, newEntity);
     }
+    
+    @Path("{noticiaid:\\d+}/multimedia")
+    public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("grupoId") Long grupoId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
+    {
+        grupoLogic.getNoticia( grupoId, idNoticia);
+        return NoticiaMultimediaResource.class;
+    }
 }
