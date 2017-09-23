@@ -39,9 +39,7 @@ public class NoticiaMultimediaResource {
     private NoticiaLogic noticia;
     
        private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
-
-    
-    
+        
     private List<MultimediaEntity> listarDTO(List<MultimediaDetailDTO> list)
     {
         ArrayList<MultimediaEntity> m = new ArrayList<>();
@@ -57,7 +55,7 @@ public class NoticiaMultimediaResource {
     }
     
     @GET
-    public List<MultimediaDetailDTO> getNoticias(@PathParam("noticiaid")Long id) throws BusinessException
+    public List<MultimediaDetailDTO> getMultimedia(@PathParam("noticiaid")Long id) throws BusinessException
     {
         return toDTO(noticia.getMultimedia(id));
     }

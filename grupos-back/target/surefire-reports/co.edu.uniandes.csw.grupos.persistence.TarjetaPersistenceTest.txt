@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: co.edu.uniandes.csw.grupos.persistence.TarjetaPersistenceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.096 sec
