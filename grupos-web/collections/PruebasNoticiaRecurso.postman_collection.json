@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias",
+				"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/aaa",
 				"method": "GET",
 				"header": [
 					{
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"Se\",\n\t\"descripcion\":\"HOLA\"\n}"
+					"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
 				},
 				"description": ""
 			},
@@ -52,7 +52,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/noticias/2",
+				"url": "localhost:8080/grupos-web/Stark/noticias/2",
 				"method": "GET",
 				"header": [
 					{
@@ -83,7 +83,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/grupos/102",
+				"url": "localhost:8080/grupos-web/grupos/Stark/102",
 				"method": "GET",
 				"header": [
 					{
