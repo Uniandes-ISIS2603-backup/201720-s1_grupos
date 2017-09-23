@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -71,7 +72,7 @@ public class GrupoNoticiasResource {
      *
      */
     @GET
-    public List<NoticiaDTO> listNoticias(@PathParam("id") Long id) {
+    public List<NoticiaDTO> listNoticias(@PathParam("grupoId") Long id) {
         return NoticiasListEntity2DTO(grupoLogic.listNoticias(id));
     }
     
@@ -85,7 +86,7 @@ public class GrupoNoticiasResource {
      */
     @GET
     @Path("{NoticiaId: \\d+}")
-    public NoticiaDetailDTO getNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) {
+    public NoticiaDetailDTO getNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
         return new NoticiaDetailDTO(grupoLogic.getNoticia(grupoId, NoticiaId));
     }
     
@@ -114,5 +115,12 @@ public class GrupoNoticiasResource {
     @Path("{NoticiaId: \\d+}")
     public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) {
         grupoLogic.removeNoticia(grupoId, NoticiaId);
+    }
+    @PUT
+    @Path("{NoticiaId: \\d+}")
+    public void updateNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId, NoticiaDetailDTO dto) throws BusinessException
+    {
+        NoticiaEntity newEntity = dto.toEntity();
+        grupoLogic.updateNoticia(grupoId,NoticiaId, newEntity);
     }
 }

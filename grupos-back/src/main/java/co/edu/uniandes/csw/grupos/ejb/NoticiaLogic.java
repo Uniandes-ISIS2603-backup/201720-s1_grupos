@@ -96,7 +96,9 @@ public class NoticiaLogic {
     {
         if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
         validarNoticia(entity);
-        if(persistence.find(id)==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
+        NoticiaEntity ent= persistence.find(id);
+        if(ent==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
+        entity.setAutor(ent.getAutor());
         return persistence.updateEntity(entity);
     }
     

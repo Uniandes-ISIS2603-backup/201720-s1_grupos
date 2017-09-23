@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.GrupoPersistence;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
@@ -375,15 +376,25 @@ public class GrupoLogic {
      * @param noticiaId, id de la noticia a buscar
      * @return la noticia con id dado asociada al blog con id dado
      */
-    public NoticiaEntity getNoticia(Long grupoId, Long noticiaId) {
+    public NoticiaEntity getNoticia(Long grupoId, Long noticiaId) throws BusinessException
+    {
+        if(getGrupo(grupoId).getNoticiasGrupo()==null) getGrupo(grupoId).setNoticiasGrupo(new ArrayList<>());
+        
         List<NoticiaEntity> list = getGrupo(grupoId).getNoticiasGrupo();
-        NoticiaEntity noticiaEntity = new NoticiaEntity();
-        noticiaEntity.setId(noticiaId);
-        int index = list.indexOf(noticiaEntity);
-        if (index >= 0) {
-            return list.get(index);
-        }
+        /*
+        NoticiaEntity entity= new NoticiaEntity();
+        entity.setId(noticiaId);
+        int index=list.getIndexOf(entity);
+        if(index>=0) return list.get(index);
         return null;
+        */
+        for(NoticiaEntity n:list)
+        {
+            if(n.getId().equals(noticiaId)) 
+                return n;
+        }
+        //return null;
+        throw new NotFoundException("La noticia buscada no existe");
     }
     
     /**
@@ -408,9 +419,38 @@ public class GrupoLogic {
      */
     public void removeNoticia(Long grupoId, Long noticiaId) {
         GrupoEntity entity = getGrupo(grupoId);
-        NoticiaEntity noticiaEntity = new NoticiaEntity();
+        /*NoticiaEntity noticiaEntity = new NoticiaEntity();
         noticiaEntity.setId(noticiaId);
-        entity.getNoticiasGrupo().remove(noticiaEntity);
+        entity.getNoticiasGrupo().remove(noticiaEntity);*/
+        boolean existe=false;
+        for(NoticiaEntity n: entity.getNoticiasGrupo())
+        {
+            if(n.getId().equals(noticiaId))
+            {
+                entity.getNoticiasGrupo().remove(n);
+                existe=true;
+                break;
+            }
+        }
+        if(!existe) throw new NotFoundException("La noticia no existe en el grupo");
+        updateGrupo(entity);
+    }
+    
+    public void updateNoticia(Long grupoId, Long NoticiaId, NoticiaEntity newEntity) throws BusinessException {
+        GrupoEntity entity = getGrupo(grupoId);
+        boolean existe=false;
+        int i=0;
+        for(NoticiaEntity n: entity.getNoticiasGrupo())
+        {
+            if(n.getId().equals(NoticiaId))
+            {
+                entity.getNoticiasGrupo().set(i, noticiaLogic.updateEntity(NoticiaId, newEntity));
+                existe=true;
+                break;
+            }
+            i++;
+        }
+        if(!existe) throw new NotFoundException("La noticia no existe en el grupo");
         updateGrupo(entity);
     }
     
@@ -468,4 +508,7 @@ public class GrupoLogic {
         entity.getEventosGrupo().remove(eventoEntity);
         updateGrupo(entity);
     }
+
+    
+
 }

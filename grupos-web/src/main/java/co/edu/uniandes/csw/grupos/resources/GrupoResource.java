@@ -214,7 +214,6 @@ public class GrupoResource {
      @Path("{grupoId: \\d+}/noticias")
     public Class<GrupoNoticiasResource> getGrupoNoticiasResource(@PathParam("grupoId") Long id) {
         GrupoEntity entity = grupoLogic.getGrupo(id);
-        
         return GrupoNoticiasResource.class;
     }
     

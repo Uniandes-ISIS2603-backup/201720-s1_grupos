@@ -1,3 +1,4 @@
+delete from GrupoEntity_NoticiaEntity;
 delete from GrupoEntity;
 delete from CategoriaEntity;
 delete from NoticiaEntity_MultimediaEntity;
