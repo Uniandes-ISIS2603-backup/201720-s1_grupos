@@ -13,40 +13,82 @@ import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
  */
 public class GrupoDTO {
     
+    /**
+     * id del grupo
+     */
     private Long id;
+    
+    /**
+     * nombre del grupo
+     */
     private String nombre;
+    
+    /**
+     * descripcion del grupo
+     */
     private String descripcion;
 
+    /**
+     * Constructor vacío
+     */
     public GrupoDTO()
     {
-        
     }
     
+    /**
+     * 
+     * @param grupo, entidad a ser convertida en DTO
+     */
     public GrupoDTO(GrupoEntity grupo) {
         this.id = grupo.getId();
         this.nombre = grupo.getNombre();
         this.descripcion = grupo.getDescripcion();
     }
+    
+    /**
+     * 
+     * @return id del DTO
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id, id a ser puesta en el DTO 
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * 
+     * @return nombre del DTO
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * 
+     * @param nombre nombre a ser puesto en el DTO
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * 
+     * @return descripción del DTO
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * 
+     * @param descripcion, descripción a ser puesta en el DTO
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
