@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" time="4.423" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" time="3.391" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib"/>
@@ -60,9 +60,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testFindAll" time="0.263"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testFind" time="0.19"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testCreateComentario" time="0.321"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testDelete" time="0.272"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testUpdate" time="0.323"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testFindAll" time="0.192"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testFind" time="0.131"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testCreateComentario" time="0.216"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testDelete" time="0.137"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.ComentarioPersistenceTest" name="testUpdate" time="0.291"/>
 </testsuite>

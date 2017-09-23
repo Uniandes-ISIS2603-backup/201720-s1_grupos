@@ -116,13 +116,6 @@ public class GrupoNoticiasResource {
     public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) {
         grupoLogic.removeNoticia(grupoId, NoticiaId);
     }
-    @PUT
-    @Path("{NoticiaId: \\d+}")
-    public void updateNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId, NoticiaDetailDTO dto) throws BusinessException
-    {
-        NoticiaEntity newEntity = dto.toEntity();
-        grupoLogic.updateNoticia(grupoId,NoticiaId, newEntity);
-    }
     
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("grupoId") Long grupoId, @PathParam("noticiaid")Long idNoticia) throws BusinessException

@@ -141,4 +141,18 @@ public class NoticiaEntity implements Serializable {
     public void setAutor(UsuarioEntity autor) {
         this.autor = autor;
     }
+    /**
+     * Equals de la clase.<br>
+     * @param o Noticia para igualar.
+     */
+    @Override
+    public boolean equals(Object o)
+    {
+        if(!(o instanceof NoticiaEntity)) return false;
+        NoticiaEntity e = (NoticiaEntity)o;
+        if(id.equals(e.getId())) return true;
+        return false;
+    }
 }
+
+

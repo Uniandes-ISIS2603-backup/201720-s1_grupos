@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" time="5.16" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" time="4.872" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib"/>
@@ -60,9 +60,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testCreateEntity" time="0.56"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testFindAll" time="0.216"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testFind" time="0.26"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testUpdateEntity" time="0.447"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testDelete" time="0.204"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testCreateEntity" time="0.46"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testFindAll" time="0.199"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testFind" time="0.321"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testUpdateEntity" time="0.371"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CalificacionPersistenceTest" name="testDelete" time="0.263"/>
 </testsuite>

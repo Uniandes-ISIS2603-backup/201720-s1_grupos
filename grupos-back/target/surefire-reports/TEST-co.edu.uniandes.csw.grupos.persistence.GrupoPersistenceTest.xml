@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" time="3.891" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" time="3.265" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib"/>
@@ -60,10 +60,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testFindByNombre" time="0.218"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testFindAll" time="0.151"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testFind" time="0.161"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testCreate" time="0.243"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testDelete" time="0.171"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testUpdate" time="0.333"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testFindByNombre" time="0.2"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testFindAll" time="0.113"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testFind" time="0.132"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testCreate" time="0.211"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testDelete" time="0.143"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.GrupoPersistenceTest" name="testUpdate" time="0.301"/>
 </testsuite>

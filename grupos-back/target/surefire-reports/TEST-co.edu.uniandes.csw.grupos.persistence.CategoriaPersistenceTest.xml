@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" time="4.672" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" time="3.627" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib"/>
@@ -60,10 +60,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testFindAll" time="0.27"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testFind" time="0.218"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testFindByTipo" time="0.204"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testCreate" time="0.374"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testDelete" time="0.24"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testUpdate" time="0.336"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testFindAll" time="0.203"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testFind" time="0.154"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testFindByTipo" time="0.186"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testCreate" time="0.242"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testDelete" time="0.168"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.CategoriaPersistenceTest" name="testUpdate" time="0.283"/>
 </testsuite>

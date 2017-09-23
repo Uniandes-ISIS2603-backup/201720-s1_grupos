@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" time="4.518" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" time="2.881" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib"/>
@@ -60,9 +60,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="createLugarTest" time="0.303"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="getLugarTest" time="0.134"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="deleteLugarTest" time="0.167"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="updateLugarTest" time="0.229"/>
-  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="getLugarsTest" time="0.129"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="createLugarTest" time="0.246"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="getLugarTest" time="0.109"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="deleteLugarTest" time="0.118"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="updateLugarTest" time="0.221"/>
+  <testcase classname="co.edu.uniandes.csw.grupos.persistence.LugarPersistenceTest" name="getLugarsTest" time="0.116"/>
 </testsuite>

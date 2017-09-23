@@ -74,4 +74,12 @@ public class MultimediaEntity implements Serializable {
         this.link = link;
     }
     
+    @Override
+    public boolean equals(Object o)
+    {
+        if(!(o instanceof MultimediaEntity)) return false;
+        MultimediaEntity m = (MultimediaEntity)o;
+        return link.equals(m.getLink());
+    }
+    
 }
