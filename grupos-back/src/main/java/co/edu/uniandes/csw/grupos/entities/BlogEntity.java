@@ -29,7 +29,6 @@ public class BlogEntity implements Serializable {
     private Long id;
     private String titulo;
     private String contenido;
-    private String nombreAutor;
     private Double promedio;
     
     @OneToMany
@@ -86,14 +85,6 @@ public class BlogEntity implements Serializable {
 
     public void setComentarios(List<ComentarioEntity> comentarios) {
         this.comentarios = comentarios;
-    }
-
-    public String getNombreAutor() {
-        return nombreAutor;
-    }
-
-    public void setNombreAutor(String nombreAutor) {
-        this.nombreAutor = nombreAutor;
     }
 
     public GrupoEntity getGrupo() {

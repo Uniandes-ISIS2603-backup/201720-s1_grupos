@@ -40,20 +40,24 @@ public class BlogDetailDTO extends BlogDTO{
     public BlogDetailDTO(BlogEntity entity) {
         super(entity);
         if(entity != null) {
+            if(entity.getGrupo()!=null)
             grupo = new GrupoDTO(entity.getGrupo());
-            
+            else grupo=new GrupoDetailDTO();
             comentarios = new ArrayList<>();
             calificaciones = new ArrayList<>();
             multimedia = new ArrayList<>();
-            for(ComentarioEntity com : entity.getComentarios()) {
-                comentarios.add(new ComentarioDTO(com));
-            }
-            for(CalificacionEntity com : entity.getCalificaciones()) {
-                calificaciones.add(new CalificacionDTO(com));
-            }
-            for(MultimediaEntity mul : entity.getMultimedia()) {
-                multimedia.add(new MultimediaDTO(mul));
-            }
+            if(entity.getComentarios()!=null)
+                for(ComentarioEntity com : entity.getComentarios()) {
+                    comentarios.add(new ComentarioDTO(com));
+                }
+            if(entity.getCalificaciones()!=null)
+                for(CalificacionEntity com : entity.getCalificaciones()) {
+                    calificaciones.add(new CalificacionDTO(com));
+                }
+            if(entity.getMultimedia()!=null)
+                for(MultimediaEntity mul : entity.getMultimedia()) {
+                    multimedia.add(new MultimediaDTO(mul));
+                }
         }
     }
 

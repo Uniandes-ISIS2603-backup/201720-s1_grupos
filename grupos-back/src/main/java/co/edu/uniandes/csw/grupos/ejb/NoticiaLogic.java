@@ -76,9 +76,7 @@ public class NoticiaLogic {
     public NoticiaEntity createEntity(NoticiaEntity entity) throws BusinessException
     {
         if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
-        if(entity.getId()==null) throw new BusinessException ("No se pueden agregar atributos nulos al sistema");
        validarNoticia(entity);
-       if(persistence.find(entity.getId())!=null) throw new BusinessException("Ya hay un objeto creado con ese id");
        return persistence.createEntity(entity);
        
        
@@ -139,6 +137,7 @@ public class NoticiaLogic {
     {
         List<MultimediaEntity> list = getMultimedia(idNoticia);
         MultimediaEntity buscada = multimedia.getEntity(link);
+        if(buscada==null) throw new NotFoundException("No se encuentra la multimedia en el sistema.");
         int index = list.indexOf(buscada);
         if (index<0) throw new NotFoundException("No se encuentra el elemento multimedia de la noticia");
         return buscada;
@@ -150,15 +149,12 @@ public class NoticiaLogic {
         MultimediaEntity entity=null;
         for(MultimediaEntity m: mult)
         {
-            try
-            {
-                entity=multimedia.createEntity(m);
-                noticia.getMultimedia().add(m);
-            }
-            catch (BusinessException e)
-            {
-                //
-            }
+           
+            entity=multimedia.getEntity(m.getLink());
+            if(entity==null)
+            entity=multimedia.createEntity(m);
+            if(noticia.getMultimedia().indexOf(entity)<0)
+               noticia.getMultimedia().add(m);
         }
         persistence.updateEntity(noticia);
         return noticia.getMultimedia();
@@ -168,6 +164,7 @@ public class NoticiaLogic {
     {
         NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
+        if(m==null) throw new NotFoundException("La multimedia no existe");
         int index = noticia.getMultimedia().indexOf(m);
         if((index<0)) throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia.");
         MultimediaEntity updated = multimedia.updateEntity(link, mult);
@@ -181,6 +178,7 @@ public class NoticiaLogic {
         
         NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
+        if(m==null) throw new NotFoundException("No existe la multimedia a borrar");
         int index=noticia.getMultimedia().indexOf(m);
         if(noticia.getMultimedia().indexOf(m)<0) throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
         noticia.getMultimedia().remove(m);

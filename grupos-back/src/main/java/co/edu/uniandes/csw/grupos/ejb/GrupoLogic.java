@@ -384,6 +384,26 @@ public class GrupoLogic {
         return getNoticia(grupoId, noticiaId);
     }
     
+    public NoticiaEntity createNoticia(Long grupoId, NoticiaEntity entity) throws BusinessException {
+        GrupoEntity grupoEntity = getGrupo(grupoId);
+        NoticiaEntity noticiaEntity = noticiaLogic.createEntity(entity);
+        grupoEntity.getNoticiasGrupo().add(noticiaEntity);
+        updateGrupo(grupoEntity);
+        return getNoticia(grupoId, noticiaEntity.getId());
+    }
+    
+    public NoticiaEntity updateNoticia(Long grupoId, Long id, NoticiaEntity entity) throws BusinessException
+    {
+        NoticiaEntity noticia=noticiaLogic.getEntity(id);
+        GrupoEntity grupoEntity = getGrupo(grupoId);
+        int index=grupoEntity.getNoticiasGrupo().indexOf(noticia);
+        if(index<0) throw new NotFoundException("No existe la noticia en el grupo");
+        entity.setId(id);
+        NoticiaEntity noticiaEntity = noticiaLogic.updateEntity(id,entity);
+        grupoEntity.getNoticiasGrupo().set(index, noticiaEntity);
+        updateGrupo(grupoEntity);
+        return getNoticia(grupoId,noticiaEntity.getId());
+    }
     /**
      *
      * @param grupoId, id del grupo al que se le desvinculará la noticia

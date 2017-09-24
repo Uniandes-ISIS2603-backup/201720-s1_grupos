@@ -44,6 +44,13 @@ public class CalificacionLogic {
         if(entity.getId()==null) throw new BusinessException ("No se pueden agregar atributos nulos al sistema");
        validarCalificacion(entity);
        if(persistence.find(entity.getId())!=null) throw new BusinessException("Ya hay un objeto creado con ese id");
+       for(CalificacionEntity c: getAll())
+       {
+           if(c.getCalificador().getId().equals(entity.getCalificador().getId()))
+           {
+               throw new BusinessException("Ya ese usuario calfició con el id dado.");
+           }
+       }
        return persistence.createEntity(entity);
        
        

@@ -28,7 +28,6 @@ public class MultimediaLogic {
             throw new NotFoundException("No existe un objeto con esa especificación.");
         }
         MultimediaEntity entity= persistence.find(link);
-        if (entity == null) throw new NotFoundException("No existe un objeto con esa especificación.");
         return entity;
 
     }

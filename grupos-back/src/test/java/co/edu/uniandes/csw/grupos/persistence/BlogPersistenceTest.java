@@ -121,7 +121,6 @@ public class BlogPersistenceTest {
         BlogEntity entity = em.find(BlogEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getTitulo(), entity.getTitulo());
-        Assert.assertEquals(newEntity.getNombreAutor(), entity.getNombreAutor());
         Assert.assertEquals(newEntity.getPromedio(), entity.getPromedio());
         Assert.assertEquals(newEntity.getContenido(), entity.getContenido());
         Assert.assertEquals(newEntity.getGrupo(), entity.getGrupo());
@@ -136,7 +135,6 @@ public class BlogPersistenceTest {
         BlogEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getTitulo(), newEntity.getTitulo());
-        Assert.assertEquals(entity.getNombreAutor(), newEntity.getNombreAutor());
         Assert.assertEquals(entity.getPromedio(), newEntity.getPromedio());
         Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
         Assert.assertEquals(entity.getGrupo(), newEntity.getGrupo());
@@ -177,7 +175,6 @@ public class BlogPersistenceTest {
         BlogEntity resp = em.find(BlogEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getTitulo(), resp.getTitulo());
-        Assert.assertEquals(newEntity.getNombreAutor(), resp.getNombreAutor());
         Assert.assertEquals(newEntity.getPromedio(), resp.getPromedio());
         Assert.assertEquals(newEntity.getContenido(), resp.getContenido());
         Assert.assertEquals(newEntity.getGrupo(), resp.getGrupo());
@@ -201,7 +198,6 @@ public class BlogPersistenceTest {
         BlogEntity newEntity = persistence.findBlogGrupo(entity.getGrupo().getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getTitulo(), newEntity.getTitulo());
-        Assert.assertEquals(entity.getNombreAutor(), newEntity.getNombreAutor());
         Assert.assertEquals(entity.getPromedio(), newEntity.getPromedio());
         Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
         Assert.assertEquals(entity.getGrupo(), newEntity.getGrupo());

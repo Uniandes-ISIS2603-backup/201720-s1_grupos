@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -47,7 +48,7 @@ public class NoticiaEntity implements Serializable {
     /**
      * Autor de la noticia.
      */
-    @OneToOne
+    @ManyToOne
     @PodamExclude
     private UsuarioEntity autor;
     /**
