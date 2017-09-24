@@ -101,6 +101,15 @@ public class UsuarioLogic {
     }
     
     /**
+     * Metodo que retorna las tarjetas de un usuario
+     * @param id identificador del usuario que posee las tarjetas
+     * @return lista de tarjetas del usuario
+     */
+    public List<TarjetaEntity> listTarjetas(Long id) throws BusinessException{
+        return findById(id).getTarjetas();
+    }
+    
+    /**
      * Método que retorna una tarjeta específica de un usuario
      * @param id Identificador del usuario
      * @param pNumTarjeta Numero que identifica la tarjeta que se desea buscar.
