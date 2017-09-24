@@ -37,6 +37,10 @@ public class BlogEntity implements Serializable {
     
     @ManyToOne
     private GrupoEntity grupo;
+    
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PodamExclude
+    private List<CalificacionEntity> calificaciones;
 
     public Long getId() {
         return id;
@@ -92,6 +96,14 @@ public class BlogEntity implements Serializable {
 
     public void setGrupo(GrupoEntity grupo) {
         this.grupo = grupo;
+    }
+
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
     }
     
 }

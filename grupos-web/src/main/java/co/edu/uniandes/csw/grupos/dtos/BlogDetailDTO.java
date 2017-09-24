@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ public class BlogDetailDTO extends BlogDTO{
     private GrupoDTO grupo;
     
     private List<ComentarioDTO> comentarios;
+    
+    private List<CalificacionDTO> calificaciones;
     
     /**
      * Construye un BlogDetailDTO vacío
@@ -36,11 +39,14 @@ public class BlogDetailDTO extends BlogDTO{
         if(entity != null) {
             grupo = new GrupoDTO(entity.getGrupo());
             
-            List<ComentarioDTO> coments = new ArrayList<>();
+            comentarios = new ArrayList<>();
+            calificaciones = new ArrayList<>();
             for(ComentarioEntity com : entity.getComentarios()) {
                 comentarios.add(new ComentarioDTO(com));
             }
-            this.comentarios = coments;
+            for(CalificacionEntity com : entity.getCalificaciones()) {
+                calificaciones.add(new CalificacionDTO(com));
+            }
         }
         //Aquí va el manejo de relaciones
     }
@@ -60,6 +66,14 @@ public class BlogDetailDTO extends BlogDTO{
     public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
     }
+
+    public List<CalificacionDTO> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<CalificacionDTO> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
     
     /**
      * Construye un BlogEntity a partir de un BlogDetailDTO
@@ -69,11 +83,16 @@ public class BlogDetailDTO extends BlogDTO{
     public BlogEntity toEntity() {
         BlogEntity entity = super.toEntity();
         List<ComentarioEntity> coments = new ArrayList<>();
+        List<CalificacionEntity> califs = new ArrayList<>();
         for(ComentarioDTO com : comentarios) {
             coments.add(com.toEntity());
         }
-        entity.setComentarios(coments);
+        for(CalificacionDTO cal : calificaciones) {
+            califs.add(cal.toEntity());
+        }
         entity.setGrupo(grupo.toEntity());
+        entity.setComentarios(coments);
+        entity.setCalificaciones(califs);
         return entity;
     }
     

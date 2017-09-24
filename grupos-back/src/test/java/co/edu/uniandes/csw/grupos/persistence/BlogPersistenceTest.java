@@ -191,7 +191,7 @@ public class BlogPersistenceTest {
     @Test
     public void testFindBlogGrupo() throws Exception {
         BlogEntity entity = data.get(0);
-        BlogEntity newEntity = persistence.findBlogGrupo(entity.getId(), entity.getGrupo().getId());
+        BlogEntity newEntity = persistence.findBlogGrupo(entity.getGrupo().getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getTitulo(), newEntity.getTitulo());
         Assert.assertEquals(entity.getNombreAutor(), newEntity.getNombreAutor());
