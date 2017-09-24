@@ -327,6 +327,6 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         }
         
         return ue;
-
     }
+    
 }
