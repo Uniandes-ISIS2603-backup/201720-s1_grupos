@@ -95,7 +95,7 @@ public class BlogPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             BlogEntity entity = factory.manufacturePojo(BlogEntity.class);
-            
+            em.persist(entity.getGrupo());
             em.persist(entity);
             data.add(entity);
         }
@@ -108,12 +108,14 @@ public class BlogPersistenceTest {
     public void testCreateBlog() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
         BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
+        newEntity.setGrupo(null);
         BlogEntity result = persistence.createBlog(newEntity);
         
         Assert.assertNotNull(result);
         BlogEntity entity = em.find(BlogEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getTitulo(), entity.getTitulo());
+        Assert.assertEquals(newEntity.getNombreAutor(), entity.getNombreAutor());
         Assert.assertEquals(newEntity.getPromedio(), entity.getPromedio());
         Assert.assertEquals(newEntity.getContenido(), entity.getContenido());
     }
@@ -127,8 +129,10 @@ public class BlogPersistenceTest {
         BlogEntity newEntity = persistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getTitulo(), newEntity.getTitulo());
+        Assert.assertEquals(entity.getNombreAutor(), newEntity.getNombreAutor());
         Assert.assertEquals(entity.getPromedio(), newEntity.getPromedio());
         Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
+        Assert.assertEquals(entity.getGrupo(), newEntity.getGrupo());
     }
     
     /**
@@ -159,14 +163,17 @@ public class BlogPersistenceTest {
         BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
 
         newEntity.setId(entity.getId());
+        newEntity.setGrupo(entity.getGrupo());
 
         persistence.update(newEntity);
 
         BlogEntity resp = em.find(BlogEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getTitulo(), resp.getTitulo());
+        Assert.assertEquals(newEntity.getNombreAutor(), resp.getNombreAutor());
         Assert.assertEquals(newEntity.getPromedio(), resp.getPromedio());
         Assert.assertEquals(newEntity.getContenido(), resp.getContenido());
+        Assert.assertEquals(entity.getGrupo(), resp.getGrupo());
     }
     
     /**
@@ -180,4 +187,16 @@ public class BlogPersistenceTest {
         Assert.assertNull(deleted);
     }
     
+    
+    @Test
+    public void testFindBlogGrupo() throws Exception {
+        BlogEntity entity = data.get(0);
+        BlogEntity newEntity = persistence.findBlogGrupo(entity.getId(), entity.getGrupo().getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getTitulo(), newEntity.getTitulo());
+        Assert.assertEquals(entity.getNombreAutor(), newEntity.getNombreAutor());
+        Assert.assertEquals(entity.getPromedio(), newEntity.getPromedio());
+        Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
+        Assert.assertEquals(entity.getGrupo(), newEntity.getGrupo());
+    }
 }

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.BlogDTO;
 import co.edu.uniandes.csw.grupos.dtos.BlogDetailDTO;
+import co.edu.uniandes.csw.grupos.ejb.BlogLogic;
 import co.edu.uniandes.csw.grupos.ejb.GrupoLogic;
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
@@ -30,6 +31,9 @@ public class GrupoBlogsResource {
      */
     @Inject
     private GrupoLogic grupoLogic;
+    
+    @Inject
+    private BlogLogic blogLogic;
     
     /**
      * Convierte una lista de BlogEntity a una lista de BlogDetailDTO.
@@ -71,8 +75,8 @@ public class GrupoBlogsResource {
      *
      */
     @GET
-    public List<BlogDTO> listBlogs(@PathParam("id") Long id) {
-        return BlogsListEntity2DTO(grupoLogic.listBlogs(id));
+    public List<BlogDTO> listBlogs(@PathParam("grupoId") Long grupoId) {
+        return BlogsListEntity2DTO(blogLogic.getBlogs(grupoId));
     }
     
     /**
@@ -85,8 +89,8 @@ public class GrupoBlogsResource {
      */
     @GET
     @Path("{BlogId: \\d+}")
-    public BlogDetailDTO getBlogs(@PathParam("grupoId") Long grupoId, @PathParam("BlogId") Long BlogId) {
-        return new BlogDetailDTO(grupoLogic.getBlog(grupoId, BlogId));
+    public BlogDetailDTO getBlogs(@PathParam("grupoId") Long grupoId, @PathParam("BlogId") Long BlogId) throws NotFoundException{
+        return new BlogDetailDTO(blogLogic.getBlog(grupoId, BlogId));
     }
     
     /**
@@ -98,9 +102,8 @@ public class GrupoBlogsResource {
      *
      */
     @POST
-    @Path("{BlogId: \\d+}")
-    public BlogDetailDTO addBlogs(@PathParam("grupoId") Long grupoId, @PathParam("BlogId") Long BlogId) throws BusinessException, NotFoundException {
-        return new BlogDetailDTO(grupoLogic.addBlog(grupoId, BlogId));
+    public BlogDetailDTO addBlogs(@PathParam("grupoId") Long grupoId, BlogEntity entity) throws BusinessException, NotFoundException {
+        return new BlogDetailDTO(blogLogic.createBlog(entity, grupoId));
     }
     
     /**
@@ -111,8 +114,8 @@ public class GrupoBlogsResource {
      *
      */
     @DELETE
-    @Path("{BlogId: \\d+}")
-    public void removeBlogs(@PathParam("grupoId") Long grupoId, @PathParam("BlogId") Long BlogId) {
-        grupoLogic.removeBlog(grupoId, BlogId);
+    @Path("{blogId: \\d+}")
+    public void removeBlogs(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) throws NotFoundException{
+        blogLogic.deleteBlog(grupoId, blogId);
     }
 }

@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +16,9 @@ import co.edu.uniandes.csw.grupos.entities.BlogEntity;
  */
 public class BlogDetailDTO extends BlogDTO{
     
-    //Aquí van las relaciones
+    private GrupoDTO grupo;
+    
+    private List<ComentarioDTO> comentarios;
     
     /**
      * Construye un BlogDetailDTO vacío
@@ -28,7 +33,32 @@ public class BlogDetailDTO extends BlogDTO{
      */
     public BlogDetailDTO(BlogEntity entity) {
         super(entity);
+        if(entity != null) {
+            grupo = new GrupoDTO(entity.getGrupo());
+            
+            List<ComentarioDTO> coments = new ArrayList<>();
+            for(ComentarioEntity com : entity.getComentarios()) {
+                comentarios.add(new ComentarioDTO(com));
+            }
+            this.comentarios = coments;
+        }
         //Aquí va el manejo de relaciones
+    }
+
+    public GrupoDTO getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoDTO grupo) {
+        this.grupo = grupo;
+    }
+
+    public List<ComentarioDTO> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
     }
     
     /**
@@ -38,7 +68,13 @@ public class BlogDetailDTO extends BlogDTO{
     @Override
     public BlogEntity toEntity() {
         BlogEntity entity = super.toEntity();
-        //Aquí va el manejo de relaciones
+        List<ComentarioEntity> coments = new ArrayList<>();
+        for(ComentarioDTO com : comentarios) {
+            coments.add(com.toEntity());
+        }
+        entity.setComentarios(coments);
+        entity.setGrupo(grupo.toEntity());
         return entity;
     }
+    
 }

@@ -201,7 +201,7 @@ public class GrupoResource {
      */
      @Path("{grupoId: \\d+}/blogs")
     public Class<GrupoBlogsResource> getGrupoBlogsResource(@PathParam("grupoId") Long id) {
-        GrupoEntity entity = grupoLogic.getGrupo(id);
+        grupoLogic.getGrupo(id);
         
         return GrupoBlogsResource.class;
     }

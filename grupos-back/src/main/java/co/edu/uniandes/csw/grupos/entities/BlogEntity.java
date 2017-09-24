@@ -6,10 +6,15 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -23,7 +28,15 @@ public class BlogEntity implements Serializable {
     private Long id;
     private String titulo;
     private String contenido;
+    private String nombreAutor;
     private Double promedio;
+    
+    @OneToMany
+    @PodamExclude
+    private List<ComentarioEntity> comentarios;
+    
+    @ManyToOne
+    private GrupoEntity grupo;
 
     public Long getId() {
         return id;
@@ -55,6 +68,30 @@ public class BlogEntity implements Serializable {
 
     public void setPromedio(Double promedio) {
         this.promedio = promedio;
+    }
+
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public String getNombreAutor() {
+        return nombreAutor;
+    }
+
+    public void setNombreAutor(String nombreAutor) {
+        this.nombreAutor = nombreAutor;
+    }
+
+    public GrupoEntity getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoEntity grupo) {
+        this.grupo = grupo;
     }
     
 }

@@ -42,12 +42,7 @@ public class GrupoLogic {
     @Inject
     private UsuarioLogic usuarioLogic;
     
-    /**
-     * Lógica de libros
-     */
-    @Inject
-    private BlogLogic blogLogic;
-    
+  
     /**
      * Lógica de noticias
      */
@@ -332,20 +327,7 @@ public class GrupoLogic {
         return null;
     }
     
-    /**
-     *
-     * @param grupoId, id del grupo al que se le adicionará un blog
-     * @param blogId, id del blog a adicionar
-     * @return el blog recién adicionado
-     * @throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException
-     */
-    public BlogEntity addBlog(Long grupoId, Long blogId) throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException {
-        GrupoEntity grupoEntity = getGrupo(grupoId);
-        BlogEntity blogEntity = blogLogic.getBlog(blogId);
-        grupoEntity.getBlogsGrupo().add(blogEntity);
-        updateGrupo(grupoEntity);
-        return getBlog(grupoId, blogId);
-    }
+ 
     
     /**
      *
