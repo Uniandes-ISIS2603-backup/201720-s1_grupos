@@ -1,3 +1,4 @@
+
 /*
 * To change this license header, choose License Headers in Project Properties.
 * To change this template file, choose Tools | Templates
@@ -13,7 +14,6 @@ import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.GrupoPersistence;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
@@ -43,12 +43,7 @@ public class GrupoLogic {
     @Inject
     private UsuarioLogic usuarioLogic;
     
-    /**
-     * Lógica de libros
-     */
-    @Inject
-    private BlogLogic blogLogic;
-    
+  
     /**
      * Lógica de noticias
      */
@@ -333,20 +328,7 @@ public class GrupoLogic {
         return null;
     }
     
-    /**
-     *
-     * @param grupoId, id del grupo al que se le adicionará un blog
-     * @param blogId, id del blog a adicionar
-     * @return el blog recién adicionado
-     * @throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException
-     */
-    public BlogEntity addBlog(Long grupoId, Long blogId) throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException {
-        GrupoEntity grupoEntity = getGrupo(grupoId);
-        BlogEntity blogEntity = blogLogic.getBlog(blogId);
-        grupoEntity.getBlogsGrupo().add(blogEntity);
-        updateGrupo(grupoEntity);
-        return getBlog(grupoId, blogId);
-    }
+ 
     
     /**
      *
@@ -376,13 +358,12 @@ public class GrupoLogic {
      * @param noticiaId, id de la noticia a buscar
      * @return la noticia con id dado asociada al blog con id dado
      */
-    public NoticiaEntity getNoticia(Long grupoId, Long noticiaId)
-    {
+    public NoticiaEntity getNoticia(Long grupoId, Long noticiaId) {
         List<NoticiaEntity> list = getGrupo(grupoId).getNoticiasGrupo();
-        NoticiaEntity noticiaEntity= new NoticiaEntity();
+        NoticiaEntity noticiaEntity = new NoticiaEntity();
         noticiaEntity.setId(noticiaId);
-        int index=list.indexOf(noticiaEntity);
-        if(index>=0) {
+        int index = list.indexOf(noticiaEntity);
+        if (index >= 0) {
             return list.get(index);
         }
         return null;
@@ -415,6 +396,7 @@ public class GrupoLogic {
         entity.getNoticiasGrupo().remove(noticiaEntity);
         updateGrupo(entity);
     }
+    
     /**
      *
      * @param id, id del grupo al que se le buscarán los eventos
@@ -469,7 +451,4 @@ public class GrupoLogic {
         entity.getEventosGrupo().remove(eventoEntity);
         updateGrupo(entity);
     }
-
-    
-
 }

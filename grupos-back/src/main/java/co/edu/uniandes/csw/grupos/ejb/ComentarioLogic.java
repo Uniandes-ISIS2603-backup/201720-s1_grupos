@@ -23,6 +23,12 @@ public class ComentarioLogic {
     @Inject
     private ComentarioPersistence persistence;
     
+    @Inject
+    private BlogLogic blogLogic;
+    
+    @Inject
+    private NoticiaLogic noticiaLogic;
+    
     public ComentarioEntity createComentario(ComentarioEntity entity) throws BusinessException {
         if(entity == null) {
             throw new BusinessException("El comentario no puede ser nulo");
@@ -36,6 +42,14 @@ public class ComentarioLogic {
     public List<ComentarioEntity> getComentarios() {
         
         return persistence.findAll();
+    }
+    
+    public List<ComentarioEntity> getComentariosBlog(Long grupoId, Long blogId) throws NotFoundException {
+        return blogLogic.getBlog(grupoId, blogId).getComentarios();
+    }
+    
+    public List<ComentarioEntity> getComentariosNoticia(Long noticiaId) {
+        return null;
     }
     
     public ComentarioEntity updateComentario(ComentarioEntity comentario) throws NotFoundException {

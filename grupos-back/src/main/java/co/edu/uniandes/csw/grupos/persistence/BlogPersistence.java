@@ -44,4 +44,11 @@ public class BlogPersistence {
         BlogEntity blog = em.find(BlogEntity.class, id);
         em.remove(blog);
     }
+    
+    public BlogEntity findBlogGrupo(Long grupoId, Long blogId) {
+        TypedQuery<BlogEntity> q = em.createQuery("select p from BlogEntity p where (p.grupo.id = :grupoid) and (p.id = :blogid)", BlogEntity.class);
+        q.setParameter("grupoid", grupoId);
+        q.setParameter("blogid", blogId);
+        return q.getSingleResult();
+    }
 }

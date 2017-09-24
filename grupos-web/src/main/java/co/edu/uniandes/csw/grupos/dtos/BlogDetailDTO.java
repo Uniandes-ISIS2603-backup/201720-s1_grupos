@@ -6,6 +6,11 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +18,13 @@ import co.edu.uniandes.csw.grupos.entities.BlogEntity;
  */
 public class BlogDetailDTO extends BlogDTO{
     
-    //Aquí van las relaciones
+    private GrupoDTO grupo;
+    
+    private List<ComentarioDTO> comentarios;
+    
+    private List<CalificacionDTO> calificaciones;
+    
+    private List<MultimediaDTO> multimedia;
     
     /**
      * Construye un BlogDetailDTO vacío
@@ -28,7 +39,54 @@ public class BlogDetailDTO extends BlogDTO{
      */
     public BlogDetailDTO(BlogEntity entity) {
         super(entity);
-        //Aquí va el manejo de relaciones
+        if(entity != null) {
+            grupo = new GrupoDTO(entity.getGrupo());
+            
+            comentarios = new ArrayList<>();
+            calificaciones = new ArrayList<>();
+            multimedia = new ArrayList<>();
+            for(ComentarioEntity com : entity.getComentarios()) {
+                comentarios.add(new ComentarioDTO(com));
+            }
+            for(CalificacionEntity com : entity.getCalificaciones()) {
+                calificaciones.add(new CalificacionDTO(com));
+            }
+            for(MultimediaEntity mul : entity.getMultimedia()) {
+                multimedia.add(new MultimediaDTO(mul));
+            }
+        }
+    }
+
+    public GrupoDTO getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoDTO grupo) {
+        this.grupo = grupo;
+    }
+
+    public List<ComentarioDTO> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<CalificacionDTO> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<CalificacionDTO> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    public List<MultimediaDTO> getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(List<MultimediaDTO> multimedia) {
+        this.multimedia = multimedia;
     }
     
     /**
@@ -38,7 +96,23 @@ public class BlogDetailDTO extends BlogDTO{
     @Override
     public BlogEntity toEntity() {
         BlogEntity entity = super.toEntity();
-        //Aquí va el manejo de relaciones
+        List<ComentarioEntity> coments = new ArrayList<>();
+        List<CalificacionEntity> califs = new ArrayList<>();
+        List<MultimediaEntity> multi = new ArrayList<>();
+        for(ComentarioDTO com : comentarios) {
+            coments.add(com.toEntity());
+        }
+        for(CalificacionDTO cal : calificaciones) {
+            califs.add(cal.toEntity());
+        }
+        for(MultimediaDTO mul : multimedia) {
+            multi.add(mul.toEntity());
+        }
+        entity.setGrupo(grupo.toEntity());
+        entity.setComentarios(coments);
+        entity.setCalificaciones(califs);
+        entity.setMultimedia(multi);
         return entity;
     }
+    
 }
