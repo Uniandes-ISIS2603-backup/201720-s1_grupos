@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -36,11 +37,16 @@ public class BlogEntity implements Serializable {
     private List<ComentarioEntity> comentarios;
     
     @ManyToOne
+    @PodamExclude
     private GrupoEntity grupo;
     
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
     @PodamExclude
     private List<CalificacionEntity> calificaciones;
+    
+    @ManyToMany
+    @PodamExclude
+    private List<MultimediaEntity> multimedia;
 
     public Long getId() {
         return id;
@@ -104,6 +110,14 @@ public class BlogEntity implements Serializable {
 
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
+    }
+
+    public List<MultimediaEntity> getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(List<MultimediaEntity> multimedia) {
+        this.multimedia = multimedia;
     }
     
 }

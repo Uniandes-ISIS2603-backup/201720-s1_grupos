@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class BlogDetailDTO extends BlogDTO{
     private List<ComentarioDTO> comentarios;
     
     private List<CalificacionDTO> calificaciones;
+    
+    private List<MultimediaDTO> multimedia;
     
     /**
      * Construye un BlogDetailDTO vacío
@@ -41,14 +44,17 @@ public class BlogDetailDTO extends BlogDTO{
             
             comentarios = new ArrayList<>();
             calificaciones = new ArrayList<>();
+            multimedia = new ArrayList<>();
             for(ComentarioEntity com : entity.getComentarios()) {
                 comentarios.add(new ComentarioDTO(com));
             }
             for(CalificacionEntity com : entity.getCalificaciones()) {
                 calificaciones.add(new CalificacionDTO(com));
             }
+            for(MultimediaEntity mul : entity.getMultimedia()) {
+                multimedia.add(new MultimediaDTO(mul));
+            }
         }
-        //Aquí va el manejo de relaciones
     }
 
     public GrupoDTO getGrupo() {
@@ -74,6 +80,14 @@ public class BlogDetailDTO extends BlogDTO{
     public void setCalificaciones(List<CalificacionDTO> calificaciones) {
         this.calificaciones = calificaciones;
     }
+
+    public List<MultimediaDTO> getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(List<MultimediaDTO> multimedia) {
+        this.multimedia = multimedia;
+    }
     
     /**
      * Construye un BlogEntity a partir de un BlogDetailDTO
@@ -84,15 +98,20 @@ public class BlogDetailDTO extends BlogDTO{
         BlogEntity entity = super.toEntity();
         List<ComentarioEntity> coments = new ArrayList<>();
         List<CalificacionEntity> califs = new ArrayList<>();
+        List<MultimediaEntity> multi = new ArrayList<>();
         for(ComentarioDTO com : comentarios) {
             coments.add(com.toEntity());
         }
         for(CalificacionDTO cal : calificaciones) {
             califs.add(cal.toEntity());
         }
+        for(MultimediaDTO mul : multimedia) {
+            multi.add(mul.toEntity());
+        }
         entity.setGrupo(grupo.toEntity());
         entity.setComentarios(coments);
         entity.setCalificaciones(califs);
+        entity.setMultimedia(multi);
         return entity;
     }
     
