@@ -47,6 +47,11 @@ public class NoticiaResource {
         return new NoticiaDetailDTO(entity);
     }
     
+    @Path("{noticiaid: \\d+}/multimedia")
+    public Class<NoticiaMultimediaResource> getNoticiaMultimediaResource(@PathParam("noticiaid") Long id)
+    {
+        return NoticiaMultimediaResource.class;
+    }
     
     private List<NoticiaDetailDTO> listEntity2DetailDTO(List<NoticiaEntity> entityList) {
         List<NoticiaDetailDTO> list = new ArrayList<>();

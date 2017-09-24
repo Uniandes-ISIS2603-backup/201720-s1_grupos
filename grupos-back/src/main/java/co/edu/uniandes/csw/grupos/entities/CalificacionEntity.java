@@ -125,5 +125,11 @@ public class CalificacionEntity implements Serializable {
         this.fecha = fecha;
     }
     
+    @Override
+    public boolean equals(Object o)
+    {
+        if(!(o instanceof CalificacionEntity)) return false;
+        return id.equals(((CalificacionEntity)o).id);
+    }
     
 }

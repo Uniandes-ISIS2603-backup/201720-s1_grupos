@@ -1,3 +1,4 @@
+delete from GrupoEntity_NoticiaEntity;
 delete from GrupoEntity;
 delete from CategoriaEntity;
 delete from NoticiaEntity_MultimediaEntity;
@@ -24,11 +25,9 @@ insert into BlogEntity (id,titulo,contenido) values (2,'B','Content');
 insert into BlogEntity(id,titulo,contenido) values (3,'¿Cómo hago el punto 10 de SQL?','No sé');
 insert into BlogEntity(id,titulo,contenido) values (4,'HOLA','Qué hace');
 
-
-
 --INFORMACIÓN MULTIMEDIA
-insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','www.google.com');
-insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','www.gta.com');
+insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','abc');
+insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','dfdf');
 
 
 --INFORMACIÓN NOTICIA
@@ -36,8 +35,8 @@ insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1,'Titulo','I
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (2,'Tit3lo','Irfo',11);
 
 --INFORMACION NOTICIAENTITY_MULTIMEDIAENTITY
-insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (2,'www.google.com');
-insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (2,'www.gta.com');
-insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (1,'www.google.com');
+insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (2,'abc');
+insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (2,'dfdf');
+insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (1,'abc');
 
 
