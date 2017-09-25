@@ -132,4 +132,13 @@ public class UsuarioResource {
         return UsuarioEmpresaResource.class;
     }
     
+    @Path("{usuarioId: \\d+}/noticias")
+    public Class<UsuarioNoticiaResource> getUsuarioNoticiaResource(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
+        UsuarioEntity entity = userLogic.findById(usuarioId);
+        if (entity == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        return UsuarioNoticiaResource.class;
+    }
+    
 }

@@ -247,6 +247,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             }
             
             //Guarda la empresa del usuario
+            if(ue.getEmpresa()!=null)
             empresa= new EmpresaDTO(ue.getEmpresa());
         }
     }
