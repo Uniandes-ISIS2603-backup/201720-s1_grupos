@@ -46,6 +46,7 @@ public class BlogLogic {
             throw new BusinessException("El título y el contenido deben ser no nulos");
         }
         entity.setGrupo(grupoLogic.getGrupo(grupoId));
+        entity.setPromedio(0.0);
         return persistence.createBlog(entity);
     }
     

@@ -69,7 +69,6 @@ public class GrupoDetailDTO extends GrupoDTO{
         if (entity != null) {
             //Crea la lista de categorias y le adiciona las que tiene el entity
             categorias = new ArrayList<>();
-            System.out.println("dentrico " + entity.getCategorias().size());
             for (CategoriaEntity entityCategoria : entity.getCategorias()) {
                 categorias.add(new CategoriaDTO(entityCategoria));
             }

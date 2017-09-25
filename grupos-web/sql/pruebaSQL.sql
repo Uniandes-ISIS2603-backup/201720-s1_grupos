@@ -1,5 +1,4 @@
 delete from GrupoEntity_NoticiaEntity;
-delete from GrupoEntity_BlogEntity;
 delete from GrupoEntity_CategoriaEntity;
 delete from GrupoEntity_EventoEntity;
 delete from Usuario_Grupo;
@@ -7,7 +6,6 @@ delete from Usuario_Admin;
 
 delete from UsuarioEntity_BlogEntity;
 delete from UsuarioEntity_EventoEntity;
-delete from UsuarioEntity_PatrocinioEntity;
 delete from UsuarioEntity_TarjetaEntity;
 
 delete from BlogEntity_MultimediaEntity;
@@ -74,10 +72,10 @@ insert into GrupoEntity (id, nombre, descripcion) values (10,'GrupoPrueba1', 'Es
 insert into GrupoEntity (id, nombre, descripcion) values (11,'GrupoPrueba2', 'Este grupo es el numero dos');
 
 
-insert into BlogEntity (id,titulo,contenido,grupo_id) values (1,'Blog','Contenido',10);
-insert into BlogEntity (id,titulo,contenido,grupo_id) values (2,'B','Content',10);
-insert into BlogEntity(id,titulo,contenido,grupo_id) values (3,'¿Cómo hago el punto 10 de SQL?','No sé',11);
-insert into BlogEntity(id,titulo,contenido,grupo_id) values (4,'HOLA','Qué hace',11);
+insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1,'Blog','Contenido',0,10);
+insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (2,'B','Content',0,10);
+insert into BlogEntity(id,titulo,contenido,promedio,grupo_id) values (3,'¿Cómo hago el punto 10 de SQL?','No sé',0,11);
+insert into BlogEntity(id,titulo,contenido,promedio,grupo_id) values (4,'HOLA','Qué hace',0,11);
 
 insert into CalificacionEntity(id,calificacion,fecha,blog_id,calificador_id) values (1,2.0,'2017-09-20',1,11);
 
@@ -120,11 +118,11 @@ insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
 
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (11,2);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (1,1);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,3);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,1);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,2);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (11,2);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (1,1);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,3);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,1);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,2);
 
 
 insert into Usuario_Admin(grupo_id,usuario_id) values (10,1);

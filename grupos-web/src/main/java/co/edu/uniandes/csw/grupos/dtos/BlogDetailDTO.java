@@ -31,9 +31,7 @@ public class BlogDetailDTO extends BlogDTO{
      * Construye un BlogDetailDTO vacío
      */
     public BlogDetailDTO() {
-        comentarios = new ArrayList<>();
-        calificaciones = new ArrayList<>();
-        multimedia = new ArrayList();
+      super();
     }
     
     /**

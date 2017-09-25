@@ -71,8 +71,8 @@ public class GrupoEventosResource {
      *
      */
     @GET
-    public List<EventoDTO> listEventos(@PathParam("id") Long id) {
-        return EventosListEntity2DTO(grupoLogic.listEventos(id));
+    public List<EventoDTO> listEventos(@PathParam("grupoId") Long grupoId) {
+        return EventosListEntity2DTO(grupoLogic.listEventos(grupoId));
     }
     
     /**
