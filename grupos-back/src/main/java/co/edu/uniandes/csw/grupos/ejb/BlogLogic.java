@@ -9,11 +9,11 @@ import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import co.edu.uniandes.csw.grupos.persistence.BlogPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
  *

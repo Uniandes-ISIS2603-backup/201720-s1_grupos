@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,9 @@ public class BlogDetailDTO extends BlogDTO{
      * Construye un BlogDetailDTO vacío
      */
     public BlogDetailDTO() {
-        
+        comentarios = new ArrayList<>();
+        calificaciones = new ArrayList<>();
+        multimedia = new ArrayList();
     }
     
     /**
@@ -108,7 +111,8 @@ public class BlogDetailDTO extends BlogDTO{
         for(MultimediaDTO mul : multimedia) {
             multi.add(mul.toEntity());
         }
-        entity.setGrupo(grupo.toEntity());
+        GrupoEntity grupoEntity = grupo==null?null:grupo.toEntity();
+        entity.setGrupo(grupoEntity);
         entity.setComentarios(coments);
         entity.setCalificaciones(califs);
         entity.setMultimedia(multi);

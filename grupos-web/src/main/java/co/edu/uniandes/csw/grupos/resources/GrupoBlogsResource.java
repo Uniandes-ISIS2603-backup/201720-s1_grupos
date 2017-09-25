@@ -15,16 +15,21 @@ import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 /**
  * URI: grupos/{gruposId: \\d+}/blogs
  * @author cm.sarmiento10
  */
+@Produces("application/json")
+@Consumes("application/json")
 public class GrupoBlogsResource {
     /**
      * Lógica del grupo
@@ -69,7 +74,7 @@ public class GrupoBlogsResource {
      * Obtiene una colección de instancias de BlogDetailDTO asociadas a una
      * instancia de Grupo
      *
-     * @param GruposId Identificador de la instancia de Grupo
+     * @param grupoId Identificador de la instancia de Grupo
      * @return Colección de instancias de BlogDetailDTO asociadas a la
      * instancia de Grupo
      *
@@ -82,40 +87,53 @@ public class GrupoBlogsResource {
     /**
      * Obtiene una instancia de Blog asociada a una instancia de Grupo
      *
-     * @param GruposId Identificador de la instancia de Grupo
-     * @param BlogsId Identificador de la instancia de Blog
+     * @param grupoId Identificador de la instancia de Grupo
+     * @param blogId Identificador de la instancia de Blog
      * @return
      *
      */
     @GET
-    @Path("{BlogId: \\d+}")
-    public BlogDetailDTO getBlogs(@PathParam("grupoId") Long grupoId, @PathParam("BlogId") Long BlogId) throws NotFoundException{
-        return new BlogDetailDTO(blogLogic.getBlog(grupoId, BlogId));
+    @Path("{blogId: \\d+}")
+    public BlogDetailDTO getBlogs(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) throws NotFoundException{
+        return new BlogDetailDTO(blogLogic.getBlog(grupoId, blogId));
     }
     
     /**
      * Asocia un Blog existente a un Grupo
      *
-     * @param GruposId Identificador de la instancia de Grupo
-     * @param BlogsId Identificador de la instancia de Blog
+     * @param grupoId Identificador de la instancia de Grupo
+     * @param dto Blog a añadir
      * @return Instancia de BlogDetailDTO que fue asociada a Grupo
-     *
+     *@throws BusinessException si no se cumple alguna regla de negocio
      */
     @POST
-    public BlogDetailDTO addBlogs(@PathParam("grupoId") Long grupoId, BlogEntity entity) throws BusinessException, NotFoundException {
-        return new BlogDetailDTO(blogLogic.createBlog(entity, grupoId));
+    public BlogDetailDTO addBlogs(@PathParam("grupoId") Long grupoId, BlogDetailDTO dto) throws BusinessException, NotFoundException {
+        return new BlogDetailDTO(blogLogic.createBlog(dto.toEntity(), grupoId));
     }
     
     /**
      * Desasocia un Blog existente de un Grupo existente
      *
-     * @param GruposId Identificador de la instancia de Grupo
-     * @param BlogsId Identificador de la instancia de Blog
+     * @param grupoId Identificador de la instancia de Grupo
+     * @param blogId Identificador de la instancia de Blog
      *
      */
     @DELETE
     @Path("{blogId: \\d+}")
-    public void removeBlogs(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) throws NotFoundException{
+    public void removeBlogs(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) {
         blogLogic.deleteBlog(grupoId, blogId);
+    }
+    
+    @PUT
+    @Path("{blogId: \\d+}")
+    public BlogDTO updateBlog(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId, BlogDetailDTO dto) {
+        BlogEntity entity = dto.toEntity();
+        entity.setId(blogId);
+        return new BlogDetailDTO(blogLogic.updateBlog(entity, grupoId));
+    }
+    
+    @Path("{blogId: \\d+}/comentarios")
+    public Class<BlogComentarioResource> coso() {
+        return BlogComentarioResource.class;
     }
 }
