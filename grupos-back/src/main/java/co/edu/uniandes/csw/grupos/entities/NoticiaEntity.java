@@ -48,20 +48,13 @@ public class NoticiaEntity implements Serializable {
     /**
      * Autor de la noticia.
      */
+    @ManyToOne
     @PodamExclude
     private UsuarioEntity autor;
     
+    @OneToMany
     @PodamExclude
     private List<ComentarioEntity> comentarios;
-
-    public List<ComentarioEntity> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(List<ComentarioEntity> comentarios) {
-        this.comentarios = comentarios;
-    }
-    
     
     /**
      *  Obtiene el título de la noticia.<br>
@@ -154,6 +147,15 @@ public class NoticiaEntity implements Serializable {
     public void setAutor(UsuarioEntity autor) {
         this.autor = autor;
     }
+
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
     /**
      * Equals de la clase.<br>
      * @param o Noticia para igualar.
@@ -167,5 +169,4 @@ public class NoticiaEntity implements Serializable {
         return false;
     }
 }
-
 
