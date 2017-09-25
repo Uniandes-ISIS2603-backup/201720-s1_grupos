@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
@@ -46,6 +47,12 @@ public class UsuarioLogic {
      */
     @Inject
     NoticiaLogic noticiaLogic;
+    
+    /**
+     * Se inyecta la logica de patrocinio
+     */
+    @Inject
+    PatrocinioLogic patrocinioLogic;
     
     /**
      * Metodo que crea un nuevo usuario
@@ -338,4 +345,54 @@ public class UsuarioLogic {
         return u.getNoticias();
     }
 
+    /**
+     * Da todos los patrocinios de un usuario con el id dado por parámetro
+     * @param id identificador del usuario
+     * @return lista de patrocinios
+     * @throws BusinessException 
+     */
+    public List<PatrocinioEntity> getPatrocinios(Long id) throws BusinessException{
+        UsuarioEntity u = findById(id);
+        if(u==null){
+            throw new NotFoundException("El usuario no existe");
+        }
+        return u.getPatrocinios();
+    }
+    
+    /**
+     * Genera un nuevo patrocinio de un usuario con el id dado por parametro
+     * @param id identificador del usuario
+     * @param pe patrocinio que se quiere crear
+     * @return patrocinio creado
+     * @throws BusinessException 
+     */
+    public PatrocinioEntity addPatrocinio(Long id, PatrocinioEntity pe) throws BusinessException{
+        UsuarioEntity u = findById(id);
+        if(u==null){
+            throw new NotFoundException("El usuario no existe");
+        }
+        PatrocinioEntity nuevo = patrocinioLogic.createPatrocinio(pe);
+        List<PatrocinioEntity> pat= u.getPatrocinios();
+        pat.add(nuevo);
+        return nuevo;
+    }
+
+    /**
+     * Actualiza el patrocinio dados un id del usuario, el id del patrocinio, y el nuevo patrocinio
+     * @param id identificador del usuario
+     * @param patrocinioId identificador del patrocinio
+     * @param np nuevo patrocinio
+     * @return
+     * @throws BusinessException 
+     */
+    public PatrocinioEntity updatePatrocinio(Long id, Long patrocinioId, PatrocinioEntity np) throws BusinessException{
+        UsuarioEntity u = findById(id);
+        if(u==null){
+            throw new NotFoundException("El usuario no existe");
+        }
+        PatrocinioEntity cambio = patrocinioLogic.updatePatrocinio(patrocinioId, np);
+        int pos = u.getPatrocinios().indexOf(np);
+        u.getPatrocinios().set(pos, cambio);
+        return cambio;
+    }
 }
