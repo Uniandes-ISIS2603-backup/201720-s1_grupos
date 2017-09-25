@@ -6,7 +6,6 @@ delete from Usuario_Admin;
 
 delete from UsuarioEntity_BlogEntity;
 delete from UsuarioEntity_EventoEntity;
-delete from UsuarioEntity_PatrocinioEntity;
 delete from UsuarioEntity_TarjetaEntity;
 
 delete from BlogEntity_MultimediaEntity;
@@ -119,11 +118,11 @@ insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
 
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (11,2);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (1,1);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,3);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,1);
-insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,2);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (11,2);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (1,1);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,3);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,1);
+insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,2);
 
 
 insert into Usuario_Admin(grupo_id,usuario_id) values (10,1);
