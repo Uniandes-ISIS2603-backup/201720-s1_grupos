@@ -245,9 +245,12 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             for(TarjetaEntity t: ue.getTarjetas()){
                 tarjetas.add(new TarjetaDTO(t));
             }
-            
-            //Guarda la empresa del usuario
-            empresa= new EmpresaDTO(ue.getEmpresa());
+                
+            if(empresa!= null)
+            {
+                //Guarda la empresa del usuario
+                empresa= new EmpresaDTO(ue.getEmpresa());
+            }
         }
     }
     
