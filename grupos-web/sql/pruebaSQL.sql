@@ -4,6 +4,7 @@ delete from GrupoEntity_BlogEntity;
 delete from BlogEntity_MultimediaEntity;
 delete from BlogEntity_ComentarioEntity;
 
+delete from NoticiaEntity_ComentarioEntity;
 delete from CalificacionEntity; 
 delete from BlogEntity;
 
@@ -14,6 +15,7 @@ delete from NoticiaEntity_MultimediaEntity;
 delete from ComentarioEntity;
 delete from CalificacionEntity;
 delete from NoticiaEntity;
+delete from ComentarioEntity;
 delete from MultimediaEntity;
 delete from UsuarioEntity;
 

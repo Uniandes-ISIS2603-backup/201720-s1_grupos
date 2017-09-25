@@ -50,6 +50,19 @@ public class NoticiaEntity implements Serializable {
      */
     @PodamExclude
     private UsuarioEntity autor;
+    
+    @PodamExclude
+    private List<ComentarioEntity> comentarios;
+
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
+    
     /**
      *  Obtiene el título de la noticia.<br>
      * @return titulo

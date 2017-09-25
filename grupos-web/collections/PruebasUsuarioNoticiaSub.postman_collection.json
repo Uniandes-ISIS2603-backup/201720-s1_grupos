@@ -136,7 +136,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": []\n}"
+					"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n\t\n}"
 				},
 				"description": ""
 			},
@@ -167,7 +167,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": []\n}"
+					"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
 				},
 				"description": ""
 			},
