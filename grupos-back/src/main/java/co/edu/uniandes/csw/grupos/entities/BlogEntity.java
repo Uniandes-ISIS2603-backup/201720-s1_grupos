@@ -6,10 +6,17 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -24,6 +31,22 @@ public class BlogEntity implements Serializable {
     private String titulo;
     private String contenido;
     private Double promedio;
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @PodamExclude
+    private List<ComentarioEntity> comentarios;
+    
+    @ManyToOne
+    @PodamExclude
+    private GrupoEntity grupo;
+    
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PodamExclude
+    private List<CalificacionEntity> calificaciones;
+    
+    @ManyToMany
+    @PodamExclude
+    private List<MultimediaEntity> multimedia;
 
     public Long getId() {
         return id;
@@ -55,6 +78,63 @@ public class BlogEntity implements Serializable {
 
     public void setPromedio(Double promedio) {
         this.promedio = promedio;
+    }
+
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public GrupoEntity getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(GrupoEntity grupo) {
+        this.grupo = grupo;
+    }
+
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    public List<MultimediaEntity> getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(List<MultimediaEntity> multimedia) {
+        this.multimedia = multimedia;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final BlogEntity other = (BlogEntity) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
     }
     
 }

@@ -13,10 +13,10 @@ import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
  */
 public class CalificacionDetailDTO extends CalificacionDTO {
     
-    /*
+    
     private UsuarioDTO calificador;
     
-    private BlogDTO blog;*/
+    private BlogDTO blog;
     /**
      * COnstructor vacío.
      */
@@ -32,12 +32,11 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     public CalificacionDetailDTO(CalificacionEntity e)
     {
         super(e);
-        /*
         calificador=new UsuarioDTO(e.getCalificador());
         blog=new BlogDTO(e.getBlog());
-        */
+        
     }
-    /*
+    
 
     public UsuarioDTO getCalificador() {
         return calificador;
@@ -53,7 +52,7 @@ public class CalificacionDetailDTO extends CalificacionDTO {
 
     public void setBlog(BlogDTO blog) {
         this.blog = blog;
-    }*/
+    }
     
     /**
      * Transforma el DTO detallado en una entidad.<br>
@@ -63,10 +62,9 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     public CalificacionEntity toEntity()
     {
         CalificacionEntity e= super.toEntity();
-        /*
         e.setCalificador(calificador.toEntity());
+        if(blog!=null)
         e.setBlog(blog.toEntity());
-        */
         return e;
     }
 }

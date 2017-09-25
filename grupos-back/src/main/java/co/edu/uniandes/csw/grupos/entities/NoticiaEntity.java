@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -47,9 +48,14 @@ public class NoticiaEntity implements Serializable {
     /**
      * Autor de la noticia.
      */
-    @OneToOne
+    @ManyToOne
     @PodamExclude
     private UsuarioEntity autor;
+    
+    @OneToMany
+    @PodamExclude
+    private List<ComentarioEntity> comentarios;
+    
     /**
      *  Obtiene el título de la noticia.<br>
      * @return titulo
@@ -141,4 +147,26 @@ public class NoticiaEntity implements Serializable {
     public void setAutor(UsuarioEntity autor) {
         this.autor = autor;
     }
+
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
+    /**
+     * Equals de la clase.<br>
+     * @param o Noticia para igualar.
+     */
+    @Override
+    public boolean equals(Object o)
+    {
+        if(!(o instanceof NoticiaEntity)) return false;
+        NoticiaEntity e = (NoticiaEntity)o;
+        if(id.equals(e.getId())) return true;
+        return false;
+    }
 }
+

@@ -19,12 +19,22 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class UsuarioPersistence {
-    
+    /**
+     * Logger
+     */
     private static final Logger LOGGER = Logger.getLogger(UsuarioPersistence.class.getName());
    @PersistenceContext(unitName = "gruposPU")
 
+   /**
+    * Entity Manager
+    */
     protected EntityManager em;
    
+   /**
+    * Crea una entidad de tipo usuario
+    * @param e entidad tipo usuario
+    * @return el usuario creado
+    */
    public UsuarioEntity createEntity(UsuarioEntity e)
    {
        LOGGER.info("Creando objeto "+e.getId());
@@ -33,18 +43,33 @@ public class UsuarioPersistence {
        return e;
    }
    
+   /**
+    * Actualiza a un usuario
+    * @param e entidad tipo usuario que se quiere actualizar
+    * @return entidad actualizada
+    */
    public UsuarioEntity updateEntity(UsuarioEntity e)
    {
        LOGGER.info("Actualizando entidad "+e.getId());
        return em.merge(e);
    }
    
+   /**
+    * Busca un usuario con el id dado por parámetro
+    * @param id del usuario a buscar
+    * @return el usuario buscado, en caso de no existir null
+    */
    public UsuarioEntity find(Long id)
    {
        LOGGER.info("Buscando "+id);
        return em.find(UsuarioEntity.class, id);
    }
    
+   /**
+    * Busca un usuario por nombre
+    * @param nom nombre del usuario que se quiere buscar
+    * @return el usuario con nombre especificado
+    */
    public UsuarioEntity findByName(String nom)
    {
        LOGGER.info("Buscando "+nom);
@@ -53,6 +78,10 @@ public class UsuarioPersistence {
        return (UsuarioEntity) q.getSingleResult(); 
    }
    
+   /**
+    * Busca todos los usuarios que estan registrados
+    * @return Una lista con todos los usuarios
+    */
    public List<UsuarioEntity> findAll()
    {
        LOGGER.info("Buscando a todos...");
@@ -60,6 +89,10 @@ public class UsuarioPersistence {
        return q.getResultList();
    }
    
+   /**
+    * Elimina un usuario dado un id por parametro
+    * @param id del usuario a eliminar.
+    */
    public void delete(Long id)
    {
        UsuarioEntity e=em.find(UsuarioEntity.class, id);

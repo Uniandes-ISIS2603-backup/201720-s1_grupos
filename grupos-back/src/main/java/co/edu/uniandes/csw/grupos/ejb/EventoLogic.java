@@ -6,10 +6,12 @@
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import co.edu.uniandes.csw.grupos.persistence.EventoPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -63,4 +65,18 @@ public class EventoLogic {
        persistence.delete(entity.getId());
     }
     
+    /**
+     * Da todos los patrocinios de un evento con el id dado por parámetro
+     * @param id identificador del evento
+     * @return lista de patrocinios
+     * @throws BusinessException 
+     */
+    public List<PatrocinioEntity> getPatrocinios(Long id) throws BusinessException, NotFoundException{
+        EventoEntity u = getEntity(id);
+        if(u==null){
+            throw new NotFoundException("El evento no existe");
+        }
+        //FALTA ARREGLAR EVENTO ENTITY
+        return new ArrayList<>();
+    }
 }

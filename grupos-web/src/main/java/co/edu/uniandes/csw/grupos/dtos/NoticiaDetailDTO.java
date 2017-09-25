@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DTO detallado de Noticia
@@ -13,11 +17,11 @@ import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
  */
 public class NoticiaDetailDTO extends NoticiaDTO{
     
-    /*
-    @OneToMany
+    
     private List<MultimediaDTO> multimedia;
-    @Id
-    private UsuarioDTO autor;*/
+    private UsuarioDTO autor;
+    private List<ComentarioDTO> comentarios;
+    
 
     /*
     /**
@@ -37,17 +41,24 @@ public class NoticiaDetailDTO extends NoticiaDTO{
     public NoticiaDetailDTO(NoticiaEntity e)
     {
         super(e);
-        /*
-        multimedia=new List<MultimediaDTO>();
-        for(MultimediaEntity m: e.getMultimedia())
-        {
-            multimedia.add(new MultimediaDTO(m));
-        }
-        autor=new UsuarioDTO(e.getAutor());
-        */
+        comentarios= new ArrayList<>();
+        multimedia=new ArrayList<MultimediaDTO>();
+        if(e.getMultimedia()!=null)
+            for(MultimediaEntity m: e.getMultimedia())
+            {
+                multimedia.add(new MultimediaDTO(m));
+            }
+        if(e.getAutor()!=null)
+            autor=new UsuarioDTO(e.getAutor());
+        if(e.getComentarios()!=null)
+            for(ComentarioEntity c:e.getComentarios())
+            {
+                comentarios.add(new ComentarioDTO(c));
+            }
+        
     }
     
-    /*
+    
     public List<MultimediaDTO> getMultimedia() {
         return multimedia;
     }
@@ -62,8 +73,17 @@ public class NoticiaDetailDTO extends NoticiaDTO{
 
     public void setAutor(UsuarioDTO autor) {
         this.autor = autor;
-    }*/
+    }
 
+    public List<ComentarioDTO> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    
     /**
      * Transforma el DTO detallado en una nueva entidad.<br>
      * @return Nueva entidad formada.
@@ -75,15 +95,18 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         entity.setId(id);
         entity.setInformacion(informacion);
         entity.setTitulo(titulo);
-        /*
         entity.setAutor(autor.toEntity());
-        List<MultimediaEntity> list= new List<MultimediaEntity>();
+        List<MultimediaEntity> list= new ArrayList<>();
         for(MultimediaDTO m: multimedia)
         {
             list.add(m.toEntity());
         }
         entity.setMultimedia(list);
-        */
+        List<ComentarioEntity> com= new ArrayList<>();
+        for(ComentarioDTO c:comentarios)
+        {
+            com.add(c.toEntity());
+        }
         return entity;
     }
 }

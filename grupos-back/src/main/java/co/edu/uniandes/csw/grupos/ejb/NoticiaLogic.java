@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.persistence.NoticiaPersistence;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
@@ -35,6 +36,9 @@ import javax.ws.rs.core.Response;
 public class NoticiaLogic {
     @Inject 
     NoticiaPersistence persistence;
+    
+    @Inject
+    MultimediaLogic multimedia;
     
     /**
      * 
@@ -72,9 +76,8 @@ public class NoticiaLogic {
     public NoticiaEntity createEntity(NoticiaEntity entity) throws BusinessException
     {
         if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
-        if(entity.getId()==null) throw new BusinessException ("No se pueden agregar atributos nulos al sistema");
        validarNoticia(entity);
-       if(persistence.find(entity.getId())!=null) throw new BusinessException("Ya hay un objeto creado con ese id");
+       entity.setComentarios(new ArrayList<>());
        return persistence.createEntity(entity);
        
        
@@ -92,7 +95,10 @@ public class NoticiaLogic {
     {
         if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
         validarNoticia(entity);
-        if(persistence.find(id)==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
+        NoticiaEntity ent= persistence.find(id);
+        if(ent==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
+        entity.setAutor(ent.getAutor());
+        entity.setComentarios(ent.getComentarios());
         return persistence.updateEntity(entity);
     }
     
@@ -123,5 +129,64 @@ public class NoticiaLogic {
         //Es improbable pero necesito hacer un caso en el que se le dé un usuario vacío a persistir, o alguno que no existe en el sistema.
         
     }
+    
+    public List<MultimediaEntity> getMultimedia(Long id) throws BusinessException
+    {
+        return getEntity(id).getMultimedia();
+    }
+    
+    public MultimediaEntity getMultimedia(Long idNoticia, String link) throws BusinessException 
+    {
+        List<MultimediaEntity> list = getMultimedia(idNoticia);
+        MultimediaEntity buscada = multimedia.getEntity(link);
+        if(buscada==null) throw new NotFoundException("No se encuentra la multimedia en el sistema.");
+        int index = list.indexOf(buscada);
+        if (index<0) throw new NotFoundException("No se encuentra el elemento multimedia de la noticia");
+        return buscada;
+    }
+    
+    public List<MultimediaEntity> addMultimedia(Long idNoticia, List<MultimediaEntity> mult) throws BusinessException
+    {
+        NoticiaEntity noticia = getEntity(idNoticia);
+        MultimediaEntity entity=null;
+        for(MultimediaEntity m: mult)
+        {
+           
+            entity=multimedia.getEntity(m.getLink());
+            if(entity==null)
+            entity=multimedia.createEntity(m);
+            if(noticia.getMultimedia().indexOf(entity)<0)
+               noticia.getMultimedia().add(m);
+        }
+        persistence.updateEntity(noticia);
+        return noticia.getMultimedia();
+    }
+    
+    public List<MultimediaEntity> updateMultimedia(Long idNoticia, MultimediaEntity mult, String link) throws BusinessException
+    {
+        NoticiaEntity noticia = getEntity(idNoticia);
+        MultimediaEntity m = multimedia.getEntity(link);
+        if(m==null) throw new NotFoundException("La multimedia no existe");
+        int index = noticia.getMultimedia().indexOf(m);
+        if((index<0)) throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia.");
+        MultimediaEntity updated = multimedia.updateEntity(link, mult);
+        noticia.getMultimedia().set(index, updated);
+        persistence.updateEntity(noticia);
+        return noticia.getMultimedia();
+    }
+    
+    public void deleteMultimedia (Long idNoticia,String link) throws BusinessException
+    {
+        
+        NoticiaEntity noticia = getEntity(idNoticia);
+        MultimediaEntity m = multimedia.getEntity(link);
+        if(m==null) throw new NotFoundException("No existe la multimedia a borrar");
+        int index=noticia.getMultimedia().indexOf(m);
+        if(noticia.getMultimedia().indexOf(m)<0) throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
+        noticia.getMultimedia().remove(m);
+        
+        
+    }
+
 
 }

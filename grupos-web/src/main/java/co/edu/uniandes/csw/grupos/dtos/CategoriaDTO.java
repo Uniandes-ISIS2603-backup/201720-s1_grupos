@@ -18,17 +18,37 @@ import javax.persistence.Id;
  */
 public class CategoriaDTO {
 
-   
+   /**
+    * Id de la categoria
+    */
     private Long id;
+    
+    /**
+     * Tipo/nombre de la categoría
+     */
     private String tipo;
+    
+    /**
+     * Descripción del grupo
+     */
     private String descripcion;
+    
+    /**
+     * ruta de la imagen de la categoría
+     */
     private String rutaIcono;
 
+    /**
+     * Constructor vacío del DTO
+     */
     public CategoriaDTO()
     {
-        
     }
     
+    /**
+     * 
+     * @param categoria, categoría a ser convertir a DTO
+     */
     public CategoriaDTO(CategoriaEntity categoria)
     {
         this.id = categoria.getId();
@@ -37,34 +57,66 @@ public class CategoriaDTO {
         this.rutaIcono= categoria.getRutaIcono();
     }
 
+    /**
+     * 
+     * @return id del DTO
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id, id a ser puesto en el DTO
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * 
+     * @return, tipo del DTO
+     */
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     * 
+     * @param tipo, tipo a ser puesto en el DTO
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     * 
+     * @return descripción del DTO
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * 
+     * @param descripcion, descripcion a ser puesta en el DTO
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * 
+     * @return ruta de la imagen de la categoría del DTO
+     */
     public String getRutaIcono() {
         return rutaIcono;
     }
 
+    /**
+     * 
+     * @param rutaIcono, ruta de la imagen de la categoría a ser puesta en el DTO
+     */
     public void setRutaIcono(String rutaIcono) {
         this.rutaIcono = rutaIcono;
     }

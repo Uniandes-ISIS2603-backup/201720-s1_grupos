@@ -19,22 +19,60 @@ import javax.inject.Inject;
 @Stateless
 public class PatrocinioLogic {
     
+    /**
+     * Inyecta la persistencia de patrocinio
+     */
     @Inject
     PatrocinioPersistence per;
     
-    @Inject
-    UsuarioPersistence userPer;
-    
+    /**
+     * Devuelve todos los patrocinios registrados en la aplicación.
+     * @return lista con todos los patrocinios
+     * @throws BusinessException 
+     */
     public List<PatrocinioEntity> allPatrocinios() throws BusinessException
     {
         return per.findAll();
     }
     
-    public List<PatrocinioEntity> allPatrociniosUser(Long pId) throws BusinessException
+    /**
+     * Crea un patrocinio
+     * @param ppat nuevo patrocinio
+     * @return patrocinio agregado
+     * @throws BusinessException si ya existe el patrocinio
+     */
+    public PatrocinioEntity createPatrocinio(PatrocinioEntity ppat) throws BusinessException
     {
-        //TODO: verificar que el usuario exista
-        UsuarioEntity user = userPer.find(pId);
-        List<PatrocinioEntity> lista = allPatrocinios();
-        return per.findAll();
+        //Verifica si ya existe un usuario
+        PatrocinioEntity found = per.find(ppat.getId()); 
+        if(found != null && found == ppat)
+        {
+            throw new BusinessException("Ya existe un usuario con las especificaciones dadas.");
+        }
+        else 
+        {
+            PatrocinioEntity add = per.createEntity(ppat);
+            return add;
+        }
+    }
+    
+    /**
+     * Actualiza el patrocinio con id ingresado por parametro
+     * @param idPat identificador del patrocinio
+     * @param pPat patrocinio que se quiere actualizar
+     * @return patrocinio actualizado
+     * @throws BusinessException 
+     */
+    public PatrocinioEntity updatePatrocinio(Long idPat, PatrocinioEntity pPat) throws BusinessException
+    {
+        PatrocinioEntity found = per.find(idPat);
+        if(found == null)
+        {
+            throw new BusinessException("No existe el usuario que se quiere actualizar");
+        }
+        else
+        {
+            return per.updateEntity(pPat);
+        }
     }
 }
