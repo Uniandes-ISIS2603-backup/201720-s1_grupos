@@ -21,6 +21,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -111,6 +112,24 @@ public class UsuarioResource {
             ret.add(new PatrocinioDetailDTO(p));
         }
         return ret;
+    }
+    
+    @Path("{usuarioId: \\d+}/tarjetas")
+    public Class<UsuarioTarjetasResource> getUsuarioTarjetasResource(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
+        UsuarioEntity entity = userLogic.findById(usuarioId);
+        if (entity == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        return UsuarioTarjetasResource.class;
+    }
+    
+    @Path("{usuarioId: \\d+}/empresa")
+    public Class<UsuarioEmpresaResource> getUsuarioEmpresaResource(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
+        UsuarioEntity entity = userLogic.findById(usuarioId);
+        if (entity == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        return UsuarioEmpresaResource.class;
     }
     
 }

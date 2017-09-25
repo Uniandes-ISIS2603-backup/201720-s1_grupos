@@ -141,6 +141,7 @@ public class CalificacionPersistenceTest {
             em.persist(entity);
             data.add(entity);
             dataU.add(calificador);
+            
         }
     }
     /**

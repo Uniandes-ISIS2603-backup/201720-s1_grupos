@@ -10,12 +10,12 @@ import co.edu.uniandes.csw.grupos.dtos.NoticiaDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.GrupoLogic;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -87,7 +87,14 @@ public class GrupoNoticiasResource {
     @GET
     @Path("{NoticiaId: \\d+}")
     public NoticiaDetailDTO getNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
-        return new NoticiaDetailDTO(grupoLogic.getNoticia(grupoId, NoticiaId));
+        NoticiaEntity e =grupoLogic.getNoticia(grupoId, NoticiaId);
+        if(e==null) throw new NotFoundException("No existe lo buscado");
+        return new NoticiaDetailDTO(e);
+    }
+    
+    @POST
+    public NoticiaDetailDTO addNoticia(@PathParam("grupoId") Long grupoId, NoticiaDetailDTO noticia) throws BusinessException {
+        return new NoticiaDetailDTO(grupoLogic.createNoticia(grupoId, noticia.toEntity()));
     }
     
     /**
@@ -100,9 +107,10 @@ public class GrupoNoticiasResource {
      */
     @POST
     @Path("{NoticiaId: \\d+}")
-    public NoticiaDetailDTO addNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException, NotFoundException {
+    public NoticiaDetailDTO addNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
         return new NoticiaDetailDTO(grupoLogic.addNoticia(grupoId, NoticiaId));
     }
+   
     
     /**
      * Desasocia un Noticia existente de un Grupo existente
@@ -117,10 +125,17 @@ public class GrupoNoticiasResource {
         grupoLogic.removeNoticia(grupoId, NoticiaId);
     }
     
+    @PUT
+    @Path("{NoticiaId: \\d+}")
+    public NoticiaDetailDTO updateNoticia(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId, NoticiaDetailDTO newNoticia) throws BusinessException {
+        NoticiaEntity e = newNoticia.toEntity();
+        return new NoticiaDetailDTO(grupoLogic.updateNoticia(grupoId, NoticiaId,e));
+    }
+    
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("grupoId") Long grupoId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
     {
-        grupoLogic.getNoticia( grupoId, idNoticia);
+        if(grupoLogic.getNoticia( grupoId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
         return NoticiaMultimediaResource.class;
     }
 }

@@ -40,11 +40,13 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         super(e);
         
         multimedia=new ArrayList<MultimediaDTO>();
-        for(MultimediaEntity m: e.getMultimedia())
-        {
-            multimedia.add(new MultimediaDTO(m));
-        }
-        autor=new UsuarioDTO(e.getAutor());
+        if(e.getMultimedia()!=null)
+            for(MultimediaEntity m: e.getMultimedia())
+            {
+                multimedia.add(new MultimediaDTO(m));
+            }
+        if(e.getAutor()!=null)
+            autor=new UsuarioDTO(e.getAutor());
         
     }
     
@@ -76,7 +78,6 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         entity.setId(id);
         entity.setInformacion(informacion);
         entity.setTitulo(titulo);
-        
         entity.setAutor(autor.toEntity());
         List<MultimediaEntity> list= new ArrayList<>();
         for(MultimediaDTO m: multimedia)
