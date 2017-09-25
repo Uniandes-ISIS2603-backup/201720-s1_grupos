@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.BlogPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -189,6 +190,14 @@ public class BlogLogic {
             calificacionLogic.deleteEntity(c.getId());
             throw new BusinessException("Ya existe la calificación dada.");
         }
+        if(blog.getCalificaciones()==null) blog.setCalificaciones(new ArrayList<>());
+        for(CalificacionEntity cal: blog.getCalificaciones())
+       {
+           if(c.getCalificador().getId().equals(cal.getCalificador().getId()))
+           {
+               throw new BusinessException("Ya ese usuario calificó con el id dado.");
+           }
+       }
         int numero=blog.getCalificaciones().size();
         blog.setPromedio(((blog.getPromedio()*numero)+c.getCalificacion())/(numero+1));
         blog.getCalificaciones().add(c);
@@ -199,6 +208,7 @@ public class BlogLogic {
     public CalificacionEntity updateCalificacion(Long grupoId, Long blogId, Long calificacionId,CalificacionEntity nueva) throws BusinessException, NotFoundException
     {
         BlogEntity blog = getBlog(blogId);
+        nueva.setId(calificacionId);
         int index=blog.getCalificaciones().indexOf(nueva);
         if(index<0) throw new NotFoundException("La calificación buscada no existe");
         CalificacionEntity updated=calificacionLogic.updateEntity(calificacionId, nueva);
@@ -214,7 +224,8 @@ public class BlogLogic {
       int index=blog.getCalificaciones().indexOf(calificacion);
       if(index<0) throw new BusinessException("La calificación a eliminar no existe");
       int tam=blog.getCalificaciones().size();
-      if(tam==0) blog.setPromedio(0.0);
+      if(blog.getPromedio()==null) blog.setPromedio(0.0);
+      if(tam==1) blog.setPromedio(0.0);
       else
       {
           blog.setPromedio(((blog.getPromedio()*tam)-calificacion.getCalificacion())/(tam-1));

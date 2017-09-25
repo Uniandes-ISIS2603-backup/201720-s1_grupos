@@ -4,12 +4,12 @@ delete from GrupoEntity_BlogEntity;
 delete from BlogEntity_MultimediaEntity;
 delete from BlogEntity_ComentarioEntity;
 
+delete from CalificacionEntity; 
 delete from BlogEntity;
 
 delete from GrupoEntity;
 delete from CategoriaEntity;
 delete from NoticiaEntity_MultimediaEntity;
-delete from CalificacionEntity; 
 
 delete from ComentarioEntity;
 delete from CalificacionEntity;
@@ -34,6 +34,7 @@ insert into BlogEntity (id,titulo,contenido,grupo_id) values (2,'B','Content',10
 insert into BlogEntity(id,titulo,contenido,grupo_id) values (3,'¿Cómo hago el punto 10 de SQL?','No sé',11);
 insert into BlogEntity(id,titulo,contenido,grupo_id) values (4,'HOLA','Qué hace',11);
 
+insert into CalificacionEntity(id,calificacion,fecha,blog_id,calificador_id) values (1,2.0,'2017-09-20',1,11);
 
 --INFORMACIÓN MULTIMEDIA
 insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','abc');
@@ -60,3 +61,4 @@ insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) val
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'abc');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
+

@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.CalificacionPersistence;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -69,6 +70,7 @@ public class BlogCalificacionResource {
     public CalificacionDetailDTO postCalificacion (@PathParam("grupoId") Long grupoId,@PathParam("blogId")Long id, CalificacionDetailDTO calificacion) throws BusinessException
     {
         calificacion.setBlog(new BlogDetailDTO(blog.getBlog(id)));
+        calificacion.setFecha(new Date(System.currentTimeMillis()));
         if(calificacion.getCalificador()==null) throw new BusinessException("Su calificación debe tener a un usuario asociado");
         CalificacionEntity c=blog.addCalificacion(grupoId, id, calificacion.toEntity());
         return new CalificacionDetailDTO(c);
@@ -78,7 +80,7 @@ public class BlogCalificacionResource {
     public CalificacionDetailDTO updateCalificacion (@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long id, @PathParam("id")Long cId, CalificacionDetailDTO dto) throws BusinessException
     {
         dto.setBlog(new BlogDetailDTO(blog.getBlog(id)));
-        if(dto.getCalificador()==null) throw new BusinessException("Su calificación debe tener a un usuario asociado");
+        dto.setFecha(new Date(System.currentTimeMillis()));
        CalificacionEntity c=blog.updateCalificacion(grupoId, id, cId, dto.toEntity());
         return new CalificacionDetailDTO(c);
     }

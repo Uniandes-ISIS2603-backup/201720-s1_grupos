@@ -41,16 +41,7 @@ public class CalificacionLogic {
     public CalificacionEntity createEntity(CalificacionEntity entity) throws BusinessException
     {
         if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
-        if(entity.getId()==null) throw new BusinessException ("No se pueden agregar atributos nulos al sistema");
        validarCalificacion(entity);
-       if(persistence.find(entity.getId())!=null) throw new BusinessException("Ya hay un objeto creado con ese id");
-       for(CalificacionEntity c: getAll())
-       {
-           if(c.getCalificador().getId().equals(entity.getCalificador().getId()))
-           {
-               throw new BusinessException("Ya ese usuario calfició con el id dado.");
-           }
-       }
        return persistence.createEntity(entity);
        
        
@@ -58,13 +49,14 @@ public class CalificacionLogic {
     
     public CalificacionEntity updateEntity (Long id, CalificacionEntity entity) throws BusinessException
     {
+        entity.setId(id);
         if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
         validarCalificacion(entity);
         if(persistence.find(id)==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
         return persistence.updateEntity(entity);
     }
     
-    public void deleteEntity(Long id) throws NotFoundException, BusinessException
+    public void deleteEntity(Long id) throws BusinessException
     {
         if(id==null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
         CalificacionEntity other=persistence.find(id);
