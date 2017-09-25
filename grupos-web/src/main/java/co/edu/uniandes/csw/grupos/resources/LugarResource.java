@@ -62,7 +62,7 @@ public class LugarResource {
     public LugarDetailDTO createLugar(LugarDetailDTO lugar) throws BusinessException
     {
         LugarEntity entity = lugar.toEntity();
-        return new LugarDetailDTO(logic.createEntity(entity,null));
+        return new LugarDetailDTO(logic.createEntity(entity));
     }
     
     @DELETE
@@ -70,7 +70,7 @@ public class LugarResource {
     public void deleteLugar(@PathParam("id")Long id) throws BusinessException, NotFoundException
     {
         LugarEntity entity = logic.getEntity(id);
-        logic.deleteEntity(entity, null);
+        logic.deleteEntity(entity);
     }
     
     private List<LugarDetailDTO> listEntityToDetailDTO(List<LugarEntity> entityList) {

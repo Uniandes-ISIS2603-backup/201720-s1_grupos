@@ -99,4 +99,15 @@ public class EventoResource {
         }
         return EventoPatrocinioResource.class;
     }
+    
+    @Path("{id: \\d+}/usuarios")
+    public Class<EventoUsuariosResource> getEventoUsuarioResource(@PathParam("id") Long id) throws BusinessException, NotFoundException {
+        EventoEntity entity = logic.getEntity(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /eventos/" + id + "/patrocinios no existe.", 404);
+        }
+        return EventoUsuariosResource.class;
+    }
+
 }

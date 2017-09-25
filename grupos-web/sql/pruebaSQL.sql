@@ -63,4 +63,3 @@ insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) val
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'abc');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
-
