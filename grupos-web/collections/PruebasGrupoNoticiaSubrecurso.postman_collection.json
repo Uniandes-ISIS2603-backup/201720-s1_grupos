@@ -1,0 +1,177 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasGrupoNoticiaSubrecurso",
+		"_postman_id": "1c8bc42f-270c-8f40-2162-be5f96b987d1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"\n}\n\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una noticia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borra una noticia conocida",
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busca noticia borrada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza una noticia conocida.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/3",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": []\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agrega una nueva noticia.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": []\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

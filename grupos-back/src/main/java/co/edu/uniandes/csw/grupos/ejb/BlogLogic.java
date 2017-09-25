@@ -180,17 +180,15 @@ public class BlogLogic {
         return entity.getCalificaciones();
     }
     
-    public CalificacionEntity addCalificacion(Long grupoId, Long blogId, CalificacionEntity calificacion) throws BusinessException, NotFoundException
+    public CalificacionEntity addCalificacion(Long grupoId, Long blogId, CalificacionEntity c) throws BusinessException, NotFoundException
     {
-        CalificacionEntity c=calificacionLogic.createEntity(calificacion);
         BlogEntity blog = getBlog(blogId);
+        if(blog.getCalificaciones()==null) blog.setCalificaciones(new ArrayList<>());
         int index=blog.getCalificaciones().indexOf(c);
         if(index>=0) 
         {
-            calificacionLogic.deleteEntity(c.getId());
             throw new BusinessException("Ya existe la calificación dada.");
         }
-        if(blog.getCalificaciones()==null) blog.setCalificaciones(new ArrayList<>());
         for(CalificacionEntity cal: blog.getCalificaciones())
        {
            if(c.getCalificador().getId().equals(cal.getCalificador().getId()))
@@ -199,7 +197,10 @@ public class BlogLogic {
            }
        }
         int numero=blog.getCalificaciones().size();
+        if(blog.getPromedio()==null) blog.setPromedio(0.0);
         blog.setPromedio(((blog.getPromedio()*numero)+c.getCalificacion())/(numero+1));
+        c.setBlog(blog);
+        calificacionLogic.updateEntity(c.getId(), c);
         blog.getCalificaciones().add(c);
         updateBlog(blog,grupoId);
         return blog.getCalificaciones().get(blog.getCalificaciones().size()-1);

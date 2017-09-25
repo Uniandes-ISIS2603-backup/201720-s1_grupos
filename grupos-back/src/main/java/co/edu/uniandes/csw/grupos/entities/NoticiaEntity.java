@@ -48,7 +48,6 @@ public class NoticiaEntity implements Serializable {
     /**
      * Autor de la noticia.
      */
-    @ManyToOne
     @PodamExclude
     private UsuarioEntity autor;
     /**

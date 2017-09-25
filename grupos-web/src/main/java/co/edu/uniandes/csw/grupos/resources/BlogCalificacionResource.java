@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.grupos.dtos.BlogDetailDTO;
 import co.edu.uniandes.csw.grupos.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.grupos.dtos.MultimediaDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.BlogLogic;
+import co.edu.uniandes.csw.grupos.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
@@ -36,6 +37,9 @@ public class BlogCalificacionResource {
     
     @Inject
     private BlogLogic blog;
+    
+    @Inject
+    private CalificacionLogic logic;
     
        private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
         
@@ -69,12 +73,11 @@ public class BlogCalificacionResource {
     @POST
     public CalificacionDetailDTO postCalificacion (@PathParam("grupoId") Long grupoId,@PathParam("blogId")Long id, CalificacionDetailDTO calificacion) throws BusinessException
     {
-        
-        calificacion.setBlog(new BlogDetailDTO(blog.getBlog(id)));
         calificacion.setFecha(new Date(System.currentTimeMillis()));
         if(calificacion.getCalificador()==null) throw new BusinessException("Su calificación debe tener a un usuario asociado");
-        CalificacionEntity c=blog.addCalificacion(grupoId, id, calificacion.toEntity());
-        return new CalificacionDetailDTO(c);
+        CalificacionEntity c =logic.createEntity(calificacion.toEntity()); 
+        CalificacionEntity cal=blog.addCalificacion(grupoId, id, c);
+        return new CalificacionDetailDTO(cal);
     }
     @PUT
     @Path("{id: \\d+}")
