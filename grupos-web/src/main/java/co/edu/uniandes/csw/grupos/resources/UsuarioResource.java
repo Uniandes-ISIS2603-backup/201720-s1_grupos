@@ -101,17 +101,20 @@ public class UsuarioResource {
         return "Se actualizó el usuario con id: " + pid;
     }
     
-    @GET
+    /**
+     * Inicializa la clase para conectar usuarios y patrocinio
+     * @param pid id del usuario
+     * @return
+     * @throws BusinessException 
+     */
     @Path("{id: \\d+}/patrocinios")
-    public List<PatrocinioDetailDTO> findPatrocinios(@PathParam("id") Long pid) throws BusinessException
+    public Class<UsuarioPatrocinioResource> findPatrocinios(@PathParam("id") Long pid) throws BusinessException
     {
-        List<PatrocinioEntity> pat = patrocinioLogic.allPatrociniosUser(pid);
-        List<PatrocinioDetailDTO> ret = new ArrayList<PatrocinioDetailDTO>();
-        for(PatrocinioEntity p : pat)
-        {
-            ret.add(new PatrocinioDetailDTO(p));
+        UsuarioEntity entity = userLogic.findById(pid);
+        if (entity == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
         }
-        return ret;
+        return UsuarioPatrocinioResource.class;
     }
     
     @Path("{usuarioId: \\d+}/tarjetas")

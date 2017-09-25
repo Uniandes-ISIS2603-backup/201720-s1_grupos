@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -79,5 +80,23 @@ public class EventoResource {
             list.add(new EventoDetailDTO(entity));
         }
         return list;
+    }
+    
+    /**
+     * Inicializa el subrecurso de patrocinios
+     * @param pid identificador del evento
+     * @return clase
+     * @throws WebApplicationException
+     * @throws BusinessException
+     * @throws NotFoundException 
+     */
+    @Path("{id: \\d+}/patrocinios")
+    public Class<EventoPatrocinioResource> findPatrocinios(@PathParam("id") Long pid) throws WebApplicationException, BusinessException, NotFoundException
+    {
+        EventoEntity entity = logic.getEntity(pid);
+        if (entity == null) {
+            throw new WebApplicationException("El evento no existe", 404);
+        }
+        return EventoPatrocinioResource.class;
     }
 }
