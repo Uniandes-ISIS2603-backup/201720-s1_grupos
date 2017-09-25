@@ -111,7 +111,7 @@ public class UsuarioEntity implements Serializable {
      * Lista de blogs
      */
     @PodamExclude
-    @ManyToMany
+    @OneToMany
     private List<BlogEntity> blogs;
     
     /**
