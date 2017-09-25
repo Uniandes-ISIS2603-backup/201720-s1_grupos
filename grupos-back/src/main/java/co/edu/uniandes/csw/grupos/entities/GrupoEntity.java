@@ -49,7 +49,7 @@ public class GrupoEntity implements Serializable{
      */
     @PodamExclude
     @ManyToMany
-    @JoinTable(name = "Usuario_G",
+    @JoinTable(name = "Usuario_Grupo",
         joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
         inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")}) 
     private List<UsuarioEntity> miembros= new ArrayList<UsuarioEntity>();
@@ -59,7 +59,7 @@ public class GrupoEntity implements Serializable{
      */
     @PodamExclude
     @ManyToMany
-    @JoinTable(name = "Usuario_A",
+    @JoinTable(name = "Usuario_Admin",
         joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
         inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")})  
     private List<UsuarioEntity> administradores= new ArrayList<UsuarioEntity>();
