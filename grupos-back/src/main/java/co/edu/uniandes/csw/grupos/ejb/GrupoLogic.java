@@ -89,6 +89,7 @@ public class GrupoLogic {
      * @return grupo con el id dado por parámetro
      */
     public GrupoEntity getGrupo(Long id) {
+        System.out.println("la ID " + id);
         GrupoEntity grupo = persistence.find(id);
         if(grupo==null)
         {

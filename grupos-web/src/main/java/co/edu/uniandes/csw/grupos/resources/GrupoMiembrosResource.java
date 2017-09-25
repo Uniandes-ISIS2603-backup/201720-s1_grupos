@@ -70,8 +70,8 @@ public class GrupoMiembrosResource {
      *
      */
     @GET
-    public List<UsuarioDTO> listMiembros(@PathParam("id") Long id) {
-        return MiembrosListEntity2DTO(grupoLogic.listMiembros(id));
+    public List<UsuarioDTO> listMiembros(@PathParam("grupoId") Long grupoId) {
+        return MiembrosListEntity2DTO(grupoLogic.listMiembros(grupoId));
     }
     
     /**

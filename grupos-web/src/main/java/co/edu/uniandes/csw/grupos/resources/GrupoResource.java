@@ -188,8 +188,8 @@ public class GrupoResource {
      * @return el recurso para manejar la asociación grupos-administradores
      */
      @Path("{grupoId: \\d+}/administradores")
-    public Class<GrupoAdministradoresResource> getGrupoAdministradoresResource(@PathParam("grupoId") Long id) {
-        GrupoEntity entity = grupoLogic.getGrupo(id);
+    public Class<GrupoAdministradoresResource> getGrupoAdministradoresResource(@PathParam("grupoId") Long grupoId) {
+        GrupoEntity entity = grupoLogic.getGrupo(grupoId);
         
         return GrupoAdministradoresResource.class;
     }
