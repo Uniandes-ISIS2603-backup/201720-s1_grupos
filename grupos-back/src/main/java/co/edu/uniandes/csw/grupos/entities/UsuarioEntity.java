@@ -104,7 +104,7 @@ public class UsuarioEntity implements Serializable {
      * Lista de patrocinios que ha realizado el usuario
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(mappedBy="usuario",cascade = CascadeType.ALL, orphanRemoval=true)
     private List<PatrocinioEntity> patrocinios= new ArrayList<PatrocinioEntity>();
     
     /**

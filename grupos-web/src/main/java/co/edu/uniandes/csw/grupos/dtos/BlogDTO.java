@@ -16,7 +16,6 @@ public class BlogDTO {
     private Long id;
     private String titulo;
     private String contenido;
-    private String nombreAutor;
     private Double promedio;
     
     /**
@@ -85,13 +84,6 @@ public class BlogDTO {
         this.contenido = contenido;
     }
 
-    public String getNombreAutor() {
-        return nombreAutor;
-    }
-
-    public void setNombreAutor(String nombreAutor) {
-        this.nombreAutor = nombreAutor;
-    }
     
     /**
      * retorna el promedio
