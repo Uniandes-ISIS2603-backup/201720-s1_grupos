@@ -41,7 +41,7 @@ public class NoticiaResource {
     
     @GET
     @Path("{id: \\d+}")
-    public NoticiaDetailDTO getNoticia(@PathParam("id") Long id) throws BusinessException, NotFoundException
+    public NoticiaDetailDTO getNoticia(@PathParam("id") Long id) throws BusinessException
     {
         NoticiaEntity entity=logic.getEntity(id);
         return new NoticiaDetailDTO(entity);

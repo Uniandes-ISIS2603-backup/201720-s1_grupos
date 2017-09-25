@@ -50,7 +50,6 @@ public class NoticiaLogic {
     {
         if(id==null) throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
         NoticiaEntity entity= persistence.find(id);
-        
         if(entity==null) throw new NotFoundException("No se encuentra la noticia buscada.");
         return entity;
     }
