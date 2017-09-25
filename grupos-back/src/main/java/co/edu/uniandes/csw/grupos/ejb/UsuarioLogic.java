@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
@@ -37,6 +38,12 @@ public class UsuarioLogic {
      */
     @Inject
     EmpresaLogic empresaLogic;
+    
+    /**
+     * Se inyecta la logica de noticia
+     */
+    @Inject
+    NoticiaLogic noticiaLogic;
     
     /**
      * Metodo que crea un nuevo usuario
@@ -195,8 +202,6 @@ public class UsuarioLogic {
         return empresa;
     }
     
-    
-    
      /**
      * Método que relaciona una nueva empresa a un usuario
      * @param id Identificador del usuario
@@ -207,6 +212,9 @@ public class UsuarioLogic {
     public EmpresaEntity addEmpresa(Long id, EmpresaEntity entity) throws BusinessException{
         EmpresaEntity empresaNueva = empresaLogic.createEmpresa(entity);
         UsuarioEntity usuario = findById(id);
+        if(usuario ==null){
+            throw new BusinessException("No hay un usuario con el id especificado");
+        }
         usuario.setEmpresa(empresaNueva);
         return empresaLogic.getEmpresaByNit(empresaNueva.getNit());
         
@@ -241,5 +249,71 @@ public class UsuarioLogic {
         usuario.setEmpresa(null);
         empresaLogic.deleteEmpresa(empresa.getNit());
          
+    }
+    
+    /**
+     * Retorna la noticia buscada por el id dado por parametro
+     * @param id identificador unico de la noticia
+     * @return devuelve la noticia con el id dado, null en caso de no encontrar nada
+     * @throws BusinessException 
+     */
+    public NoticiaEntity getNoticia(Long idUsuario, Long idNoticia) throws BusinessException{
+        UsuarioEntity usuario = findById(idUsuario);
+        if(usuario == null){
+            throw new BusinessException("No existe el usuario con id especificado");
+        }
+        NoticiaEntity res = noticiaLogic.getEntity(idNoticia);
+        return res;
+    }
+    
+    /**
+     * Agrega una noticia a la lista de noticias del usuario
+     * @param id identificador unico del usuario que se le quiere agregar una noticia
+     * @param nn nueva noticia que se quiere agregar
+     * @return noticiaEntity agregada
+     * @throws BusinessException si el usuario no existe.
+     */
+    public NoticiaEntity addNoticia(Long id, NoticiaEntity nn) throws BusinessException{
+        UsuarioEntity usuario = findById(id);
+        if(usuario == null){
+            throw new BusinessException("No existe el usuario con id especificado");
+        }
+        NoticiaEntity newn = noticiaLogic.createEntity(nn);
+        List<NoticiaEntity> news= usuario.getNoticias();
+        news.add(newn);
+        usuario.setNoticias(news);
+        return newn;
+    }
+    
+    /**
+     * Actualiza una noticia al usuario con id dado por parámetro
+     * @param id identificador unico del usuario
+     * @param nn nueva noticia que se quiere actualizar
+     * @return noticia actualizada
+     * @throws BusinessException si el usuario no existe
+     */
+    public NoticiaEntity updateNoticia(Long id, NoticiaEntity nn) throws BusinessException{
+        UsuarioEntity usuario = findById(id);
+        if(usuario == null){
+            throw new BusinessException("No existe el usuario con id especificado");
+        }
+        NoticiaEntity change = noticiaLogic.updateEntity(nn.getId(), nn);
+        usuario.cambiarNoticia(nn.getId(), change);
+        return change;
+    }
+    
+    /**
+     * Elimina una noticia con identificador dado por parametro del usuario especificado
+     * @param idUsuario identificador unico del usuario
+     * @param idNoticia identificador unico de la noticia
+     * @throws BusinessException si el usuario no existe.
+     */
+    public void removeNoticia(Long idUsuario, Long idNoticia) throws BusinessException{
+        UsuarioEntity usuario = findById(idUsuario);
+        if(usuario == null){
+            throw new BusinessException("No existe el usuario con id especificado");
+        }
+        noticiaLogic.deleteEntity(idNoticia);
+        usuario.deleteNoticia(idNoticia);
     }
 }

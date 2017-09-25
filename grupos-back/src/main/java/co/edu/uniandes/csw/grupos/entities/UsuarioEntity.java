@@ -337,4 +337,28 @@ public class UsuarioEntity implements Serializable {
     public void setEmpresa(EmpresaEntity nemp){
         empresa= nemp;
     }
+    
+    /**
+     * Cambia la noticia para actualizarla, dada por parámetro
+     * @param idNoticia identificador de noticia
+     * @param news noticiaEntity nueva
+     */
+    public void cambiarNoticia(Long idNoticia, NoticiaEntity news){
+        for(NoticiaEntity n: noticias){
+            if(n.getId() == idNoticia){
+                n= news;
+            }
+        }
+    }
+    
+    public void deleteNoticia(Long idNoticia){
+        int i=0;
+        for(NoticiaEntity n: noticias){
+            if(n.getId() == idNoticia){
+                break;
+            }
+            i++;
+        }
+        noticias.remove(i);
+    }
 }
