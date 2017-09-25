@@ -13,12 +13,36 @@ import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
  */
 public class UsuarioDTO {
     
+    /**
+     * Id del usuario
+     */
     private Long id;
+    
+    /**
+     * Nombre del usuario
+     */
     private String nombre;
+    
+    /**
+     * Apellido del usuario
+     */
     private String apellido;
+
+    /**
+     * Apodo del usuario
+     */
     private String nickname;
+    
+    /**
+     * Contraseña del usuario
+     */
     private String password;
+    
+    /**
+     * Email del usuario
+     */
     private String email;
+    
     
     /**
      * Constructor vacio
@@ -39,53 +63,98 @@ public class UsuarioDTO {
         this.email = ue.getEmail();
     }
     
-    //Getters
+    /**
+     * Dar id
+     * @return id 
+     */
     public Long getId(){
         return id;
     }
     
+    /**
+     * Dar nombre
+     * @return nombre
+     */
     public String getNombre(){
         return nombre;
     }
     
+    /**
+     * Da el apellido
+     * @return apellido
+     */
     public String getApellido(){
         return apellido;
     }
     
+    /**
+     * Da el apodo del usuario
+     * @return nickname
+     */
     public String getNickname(){
         return nickname;
     }
     
+    /**
+     * Da la contraseña del usuario
+     * @return password
+     */
     public String getPassword(){
         return password;
     }
     
+    /**
+     * Da el email del usuario
+     * @return email
+     */
     public String getEmail(){
         return email;
     }
     
-    //Setters
-    
+    /**
+     * Cambia el nombre de un usuario
+     * @param n nombre 
+     */
     public void setNombre(String n){
         nombre= n;
     }
     
+    /**
+     * Cambia el apellido de un usuario 
+     * @param n apellido
+     */
     public void setApellido(String n){
         apellido= n;
     }
     
+    /**
+     * Cambia el apodo de un usuario
+     * @param n nickname
+     */
     public void setNickname(String n){
         nickname= n;
     }
     
+    /**
+     * Cambia la contraseña de un usuario
+     * @param n password
+     */
     public void setPassword(String n){
         password= n;
     }
     
+    /**
+     * Cambia el email de un usuario
+     * @param n email
+     */
     public void setEmail(String n){
         email= n;
     }
     
+    /**
+     * Cambia el Id de un usuario
+     * @param n id
+     */
     public void setId(Long n){
         id= n;
     }

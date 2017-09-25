@@ -12,8 +12,14 @@ import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
  * @author tefa
  */
 public class PatrocinioDTO {
-    
+    /**
+     * Identidicador del patrocinio
+     */
     private Long id;
+    
+    /**
+     * Pago del patrocinio
+     */
     private double pago;
     
     /**
@@ -31,18 +37,34 @@ public class PatrocinioDTO {
         this.pago = pe.getPago();
     }
     
+    /**
+     * Da el id del patrocinio
+     * @return id
+     */
     public Long getId(){
         return id;
     }
     
+    /**
+     * Da el pago del patrocinio
+     * @return pago
+     */
     public double getPago(){
         return pago;
     }
     
+    /**
+     * Cambia el id del patrocinio por el ingresado por parametro
+     * @param pId 
+     */
     public void setId(Long pId){
         id= pId;
     }
     
+    /**
+     * Cambia el pago del patrocinio por el ingresado por parametro
+     * @param nPago 
+     */
     public void setPago(double nPago){
         pago= nPago;
     }
