@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/aaa",
+				"url": "localhost:8080/grupos-web/Stark/noticias",
 				"method": "GET",
 				"header": [
 					{
@@ -83,7 +83,7 @@
 				}
 			],
 			"request": {
-				"url": "localhost:8080/grupos-web/grupos/Stark/102",
+				"url": "localhost:8080/grupos-web/Stark/noticias/10",
 				"method": "GET",
 				"header": [
 					{

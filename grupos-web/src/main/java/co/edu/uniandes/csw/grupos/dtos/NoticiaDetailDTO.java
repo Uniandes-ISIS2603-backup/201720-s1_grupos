@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ public class NoticiaDetailDTO extends NoticiaDTO{
     
     private List<MultimediaDTO> multimedia;
     private UsuarioDTO autor;
+    private List<ComentarioDTO> comentarios;
+    
 
     /*
     /**
@@ -38,7 +41,7 @@ public class NoticiaDetailDTO extends NoticiaDTO{
     public NoticiaDetailDTO(NoticiaEntity e)
     {
         super(e);
-        
+        comentarios= new ArrayList<>();
         multimedia=new ArrayList<MultimediaDTO>();
         if(e.getMultimedia()!=null)
             for(MultimediaEntity m: e.getMultimedia())
@@ -47,6 +50,11 @@ public class NoticiaDetailDTO extends NoticiaDTO{
             }
         if(e.getAutor()!=null)
             autor=new UsuarioDTO(e.getAutor());
+        if(e.getComentarios()!=null)
+            for(ComentarioEntity c:e.getComentarios())
+            {
+                comentarios.add(new ComentarioDTO(c));
+            }
         
     }
     
@@ -67,6 +75,15 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         this.autor = autor;
     }
 
+    public List<ComentarioDTO> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    
     /**
      * Transforma el DTO detallado en una nueva entidad.<br>
      * @return Nueva entidad formada.
@@ -85,6 +102,11 @@ public class NoticiaDetailDTO extends NoticiaDTO{
             list.add(m.toEntity());
         }
         entity.setMultimedia(list);
+        List<ComentarioEntity> com= new ArrayList<>();
+        for(ComentarioDTO c:comentarios)
+        {
+            com.add(c.toEntity());
+        }
         return entity;
     }
 }

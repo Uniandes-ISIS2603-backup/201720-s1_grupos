@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
@@ -102,6 +103,8 @@ public class NoticiaPersistenceTest {
      * Lista de usuarios a persistir.
      */
     private List<UsuarioEntity> dataU = new ArrayList<>();
+    
+    private List<ComentarioEntity> dataC= new ArrayList<>();
     /**
      * Acción de preparar la prueba. Este procedimiento inclute iniciar la transacción, unir el manejador de persistencia,
      * borrar la información presente, e insertar datos.
@@ -129,6 +132,7 @@ public class NoticiaPersistenceTest {
      */
     private void clearData() {
         em.createQuery("delete from NoticiaEntity").executeUpdate();
+        em.createQuery("delete from ComentarioEntity").executeUpdate();
         em.createQuery("delete from MultimediaEntity").executeUpdate();
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
@@ -162,6 +166,7 @@ public class NoticiaPersistenceTest {
         int indexAutor=(int)(Math.random()*2);
         newEntity.setAutor(dataU.get(indexAutor));
         newEntity.setMultimedia(dataM);
+        newEntity.setComentarios(dataC);
         NoticiaEntity result=persistence.createEntity(newEntity);
         Assert.assertNotNull(result);
         NoticiaEntity found=em.find(NoticiaEntity.class, newEntity.getId());
@@ -186,6 +191,7 @@ public class NoticiaPersistenceTest {
        updated.setId(id);
        updated.setAutor(entity.getAutor());
        updated.setMultimedia(dataM);
+       updated.setComentarios(dataC);
         persistence.updateEntity(updated);
         
         NoticiaEntity rta= em.find(NoticiaEntity.class, id);
@@ -251,12 +257,18 @@ public class NoticiaPersistenceTest {
         dataU.add(usuario);
         em.persist(usuario);
         List<MultimediaEntity> list= new ArrayList<>();
+        List<ComentarioEntity> com= new ArrayList<>();
         for(int i=0;i<3;i++)
         {
             MultimediaEntity multimedia=factory.manufacturePojo(MultimediaEntity.class);
             list.add(multimedia);
             dataM.add(multimedia);
             em.persist(multimedia);
+            
+            ComentarioEntity c= factory.manufacturePojo(ComentarioEntity.class);
+            com.add(c);
+            dataC.add(c);
+            em.persist(c);
         }
         e.setMultimedia(list);
         while(e.getAutor()==null)
@@ -279,6 +291,15 @@ public class NoticiaPersistenceTest {
             for(MultimediaEntity m: entidadNueva.getMultimedia())
             {
                 if(entidadAntigua.getMultimedia().get(i).getLink().equals(m.getLink())) aceptado=true;
+            }
+            if(!aceptado) Assert.fail("No existe la multimedia buscada");
+        }
+        for(int i=0;i<entidadAntigua.getComentarios().size();i++)
+        {
+            aceptado=false;
+            for(ComentarioEntity m: entidadNueva.getComentarios())
+            {
+                if(entidadAntigua.getComentarios().get(i).getId().equals(m.getId())) aceptado=true;
             }
             if(!aceptado) Assert.fail("No existe la multimedia buscada");
         }

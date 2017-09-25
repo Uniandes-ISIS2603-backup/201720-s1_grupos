@@ -63,6 +63,7 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     {
         CalificacionEntity e= super.toEntity();
         e.setCalificador(calificador.toEntity());
+        if(blog!=null)
         e.setBlog(blog.toEntity());
         return e;
     }

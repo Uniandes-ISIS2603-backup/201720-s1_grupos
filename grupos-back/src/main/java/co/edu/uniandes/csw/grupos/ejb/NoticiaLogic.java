@@ -77,6 +77,7 @@ public class NoticiaLogic {
     {
         if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
        validarNoticia(entity);
+       entity.setComentarios(new ArrayList<>());
        return persistence.createEntity(entity);
        
        
@@ -97,6 +98,7 @@ public class NoticiaLogic {
         NoticiaEntity ent= persistence.find(id);
         if(ent==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
         entity.setAutor(ent.getAutor());
+        entity.setComentarios(ent.getComentarios());
         return persistence.updateEntity(entity);
     }
     

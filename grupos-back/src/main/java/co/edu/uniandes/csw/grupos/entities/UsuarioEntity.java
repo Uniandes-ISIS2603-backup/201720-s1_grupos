@@ -90,7 +90,7 @@ public class UsuarioEntity implements Serializable {
      * Lista de noticias
      */
     @PodamExclude
-    @ManyToMany
+    @OneToMany(mappedBy = "autor")
     private List<NoticiaEntity> noticias= new ArrayList<NoticiaEntity>();
     
     /**
