@@ -9,6 +9,17 @@
 	"item": [
 		{
 			"name": "Obtener calificaciones de un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones",
 				"method": "GET",
@@ -20,6 +31,17 @@
 		},
 		{
 			"name": "Obtener calificacion dada de un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1",
 				"method": "GET",
@@ -31,6 +53,17 @@
 		},
 		{
 			"name": "Actualizar calificación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1",
 				"method": "PUT",
@@ -51,6 +84,17 @@
 		},
 		{
 			"name": "Agregar calificación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/2/calificaciones",
 				"method": "POST",
@@ -90,7 +134,18 @@
 			"response": []
 		},
 		{
-			"name": "Obtener calificación borrada",
+			"name": "Obtener calificación borrada/ no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1",
 				"method": "GET",

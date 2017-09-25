@@ -136,6 +136,7 @@ public class GrupoBlogsResource {
     {
         blogLogic.getBlog(grupoId, blogId);
         return BlogCalificacionResource.class;
+    }
     
     @PUT
     @Path("{blogId: \\d+}")
@@ -146,7 +147,7 @@ public class GrupoBlogsResource {
     }
     
     @Path("{blogId: \\d+}/comentarios")
-    public Class<BlogComentarioResource> getComentarios() {
+    public Class<BlogComentarioResource> getComentarios(@PathParam("grupoId") Long grupoId,@PathParam("blogId") Long blogId) {
         blogLogic.getBlog(grupoId, blogId);
         return BlogComentarioResource.class;
     }
