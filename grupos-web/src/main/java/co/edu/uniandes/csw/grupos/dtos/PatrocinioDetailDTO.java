@@ -14,6 +14,11 @@ import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 public class PatrocinioDetailDTO extends PatrocinioDTO{
     
     /**
+     * Usuario que realizo el patrocinio
+     */
+    private UsuarioDTO usuario;
+    
+    /**
      * Constructor vacio
      */
     public PatrocinioDetailDTO(){
@@ -24,10 +29,37 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
      */
     public PatrocinioDetailDTO(PatrocinioEntity pe){
         super(pe);
+        if(pe!=null){
+            //genera el usuario
+            usuario = new UsuarioDTO(pe.getUsuario());
+        }
     }
     
+    /**
+     * Da el usuario que realizo el patrocinio
+     * @return usuario
+     */
+    public UsuarioDTO darUsuario(){
+        return usuario;
+    }
+    
+    /**
+     * Cambia el usuario que realiza el patrocinio
+     * @param nuser 
+     */
+    public void setUsuario(UsuarioDTO nuser){
+        usuario= nuser;
+    }
+    
+    /**
+     * Convierte un patrocinioDetailDTO a patrocinioEntity
+     * @return 
+     */
     public PatrocinioEntity toEntity(){
         PatrocinioEntity pe = super.toEntity();
+        if(usuario!=null){
+            pe.setUsuario(usuario.toEntity());
+        }
         return pe;
     }
 }
