@@ -17,7 +17,7 @@ public class BlogDTO {
     private String titulo;
     private String contenido;
     private String nombreAutor;
-    private  Double promedio;
+    private Double promedio;
     
     /**
      * Construye un BlogDTO vacío

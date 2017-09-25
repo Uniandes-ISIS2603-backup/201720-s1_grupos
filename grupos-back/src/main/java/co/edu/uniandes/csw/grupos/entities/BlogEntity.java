@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class BlogEntity implements Serializable {
     private String contenido;
     private Double promedio;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @PodamExclude
     private List<ComentarioEntity> comentarios;
     
@@ -109,6 +110,31 @@ public class BlogEntity implements Serializable {
 
     public void setMultimedia(List<MultimediaEntity> multimedia) {
         this.multimedia = multimedia;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final BlogEntity other = (BlogEntity) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
     }
     
 }
