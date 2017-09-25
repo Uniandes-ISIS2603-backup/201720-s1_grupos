@@ -90,8 +90,10 @@ insert into EventoEntity(2,'2017-08-08','2017-08-09','Evento');
 insert into EventoEntity(3,'2017-08-09','2017-08-10','Evento');
 
 insert into LugarEntity(1,20,'Dirección','Lugar');
-insert into LugarEntity(2,20,'Dirección1','Lugar');
-insert into LugarEntity(3,20,'Dirección2','Lugar');
+insert into LugarEntity(2,30,'Dirección1','Lugar');
+insert into LugarEntity(3,40,'Dirección2','Lugar');
+
+
 
 --INFORMACIÓN NOTICIA
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1,'Titulo','Info',1);
@@ -114,3 +116,8 @@ insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
 
+insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (11,2);
+insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (1,1);
+insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,3);
+insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,1);
+insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,2);
