@@ -107,9 +107,6 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @ManyToMany
-    @JoinTable(name = "UsuarioEntity_EventoEntity",
-        joinColumns = {@JoinColumn(name = "Usuarios_ID", referencedColumnName = "id")}, 
-        inverseJoinColumns = {@JoinColumn(name = "Eventos_ID", referencedColumnName = "id")})
     private List<EventoEntity> eventos= new ArrayList<EventoEntity>();
     
     /**
