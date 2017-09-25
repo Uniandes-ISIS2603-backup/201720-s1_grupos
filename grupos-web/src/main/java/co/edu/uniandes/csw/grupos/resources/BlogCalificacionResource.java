@@ -30,46 +30,75 @@ import javax.ws.rs.WebApplicationException;
 
 
 /**
- *
+ * Rwcurso de blog calificación.<br>
  * @author jc161
  */
 public class BlogCalificacionResource {
-    
+    /**
+     * Lógica del blog.
+     */
     @Inject
     private BlogLogic blog;
-    
+    /**
+     * Lógica de calificación
+     */
     @Inject
     private CalificacionLogic logic;
     
-       private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
-        
+    /**
+     * Listar un dto en entidad.<br>
+     * @param list Lista del dto.<br>
+     * @return Lista de entidades.
+     */
     private List<CalificacionEntity> listarDTO(List<CalificacionDetailDTO> list)
     {
         ArrayList<CalificacionEntity> m = new ArrayList<>();
         for(CalificacionDetailDTO d:list) m.add(d.toEntity());
         return m;
     }
-    
+    /**
+     * Pasa una lista de entidades a dtos.<br>
+     * @param list Lista de entidades.<br>
+     * @return Lista de dtos
+     */
     private List<CalificacionDetailDTO> toDTO(List<CalificacionEntity> list)
     {
         ArrayList<CalificacionDetailDTO> m = new ArrayList<>();
         for(CalificacionEntity d:list) m.add(new CalificacionDetailDTO(d));
         return m;
     }
-    
+    /**
+     * Obtiene calificaciones con id.<br>
+     * @param id Id del blog.<br>
+     * @return Calificaciones<br>
+     * @throws BusinessException Excepciónd e negocio.
+     */
     @GET
     public List<CalificacionDetailDTO> getCalificaciones(@PathParam("blogId")Long id) throws BusinessException
     {
         return toDTO(blog.getCalificaciones(id));
     }
-    
+    /**
+     * Obtiene una calificación.<br>
+     * @param id Id del blog.<br>
+     * @param calificacionId Id de la calificación.<br>
+     * @return Calificación del blog.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @GET 
     @Path("{id: \\d+}")
     public CalificacionDetailDTO getCalificacion(@PathParam("blogId") Long id,@PathParam("id") Long calificacionId) throws BusinessException
     {
         return new CalificacionDetailDTO(blog.getCalificacion(id, calificacionId));
     }
-    
+    /**
+     * Agrega una calificación al blog.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param id Id del blog.<br>
+     * @param calificacion Id de la calificación.<br>
+     * @return Calificación creada.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @POST
     public CalificacionDetailDTO postCalificacion (@PathParam("grupoId") Long grupoId,@PathParam("blogId")Long id, CalificacionDetailDTO calificacion) throws BusinessException
     {
@@ -79,6 +108,15 @@ public class BlogCalificacionResource {
         CalificacionEntity cal=blog.addCalificacion(grupoId, id, c);
         return new CalificacionDetailDTO(cal);
     }
+    /**
+     * Actualiza una calificación.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param id Id del blog.<br>
+     * @param cId Id del comentario.<br>
+     * @param dto DTo a actualizar.<br>
+     * @return Calificación actualizada.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @PUT
     @Path("{id: \\d+}")
     public CalificacionDetailDTO updateCalificacion (@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long id, @PathParam("id")Long cId, CalificacionDetailDTO dto) throws BusinessException
@@ -88,7 +126,13 @@ public class BlogCalificacionResource {
        CalificacionEntity c=blog.updateCalificacion(grupoId, id, cId, dto.toEntity());
         return new CalificacionDetailDTO(c);
     }
-    
+    /**
+     * Borra una calificación.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param blogId Id del blog.<br>
+     * @param id Id de la calificación.<br>
+     * @throws BusinessException  Excepción de negocio.
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteCalificacion(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId, @PathParam("id")Long id) throws BusinessException

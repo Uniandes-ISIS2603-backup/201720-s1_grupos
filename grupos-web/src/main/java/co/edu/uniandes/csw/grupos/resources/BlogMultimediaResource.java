@@ -27,45 +27,81 @@ import javax.ws.rs.PathParam;
  * @author jc161
  */
 public class BlogMultimediaResource {
-    
+    /**
+     * Lógica el padre.
+     */
     @Inject
     private BlogLogic blog;
     
-       private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
-        
+    /**
+     * Lista dtos en entidades.<br>
+     * @param list Lista de dtos.<br>
+     * @return Lista de entidades.
+     */    
     private List<MultimediaEntity> listarDTO(List<MultimediaDetailDTO> list)
     {
         ArrayList<MultimediaEntity> m = new ArrayList<>();
         for(MultimediaDetailDTO d:list) m.add(d.toEntity());
         return m;
     }
-    
+    /**
+     * Lista entidades en dtos.<br>
+     * @param list Lista de entidades.<br>
+     * @return Listya de dtos.
+     */
     private List<MultimediaDetailDTO> toDTO(List<MultimediaEntity> list)
     {
         ArrayList<MultimediaDetailDTO> m = new ArrayList<>();
         for(MultimediaEntity d:list) m.add(new MultimediaDetailDTO(d));
         return m;
     }
-    
+    /**
+     * Retorna lista de dtos.<br>
+     * @param id Id del blog.<br>
+     * @return Lista de dtos.<br>
+     * @throws BusinessException  Excepción de negocio
+     */
     @GET
     public List<MultimediaDetailDTO> getMultimedia(@PathParam("blogId")Long id) throws BusinessException
     {
         return toDTO(blog.getMultimedia(id));
     }
-    
+    /**
+     * Obtiene multimedia con un link.<br>
+     * @param id Id del blog.<br>
+     * @param link Link de la multimedia.<br>
+     * @return Multimedia.<br>
+     * @throws BusinessException Errores de negocio 
+     */
     @GET 
     @Path("{link: [a-zA-Z]+}")
     public MultimediaDetailDTO getMultimediaNoticia(@PathParam("blogId") Long id,@PathParam("link") String link) throws BusinessException
     {
         return new MultimediaDetailDTO(blog.getMultimedia(id,link));
     }
-    
+    /**
+     * Agrega una multiemdia de grupo.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param id Id del blog.<br>
+     * @param multimedia Lista de multimedia.<br>
+     * @return Lista de dtos.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @POST
     public List<MultimediaDetailDTO> postMultimedia (@PathParam("grupoId") Long grupoId,@PathParam("blogId")Long id, List<MultimediaDetailDTO> multimedia) throws BusinessException
     {
         List<MultimediaEntity> mult = listarDTO(multimedia);
         return toDTO(blog.addMultipleMultimedia(grupoId, id, mult));
     }
+    /**
+     * Actualiza la multimedia con el dto dado.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param id Id del blog.<br>
+     * @param link Link de la multimedia.<br>
+     * @param dto Dto de multimedia.<br>
+     * @return Lista actualizada.<br>
+     * @throws BusinessException  Excepción de negocio.
+     */
     @PUT
     @Path("{link: [a-zA-Z]+}")
     public List<MultimediaDetailDTO> updateMultimedia (@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long id, @PathParam("link")String link, MultimediaDetailDTO dto) throws BusinessException
@@ -73,7 +109,12 @@ public class BlogMultimediaResource {
         MultimediaEntity mult = dto.toEntity();
        return toDTO(blog.updateMultimedia(grupoId,id, mult, link));
     }
-    
+    /**
+     * +Borra una multimedia.<br>
+     * @param id Id del blog.<br>
+     * @param link Link de multimedia.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     */
     @DELETE
     @Path("{link: [a-zA-Z]+}")
     public void deleteMultimedia(@PathParam("blogId") Long id, @PathParam("link")String link) throws BusinessException

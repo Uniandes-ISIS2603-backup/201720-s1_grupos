@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -124,12 +125,26 @@ public class CalificacionEntity implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+    /**
+     * Override del equals.<br>
+     * @param o Objeto a evaluar.<br>
+     * @return Comparación con el otro objeto.
+     */
     @Override
     public boolean equals(Object o)
     {
         if(!(o instanceof CalificacionEntity)) return false;
         return id.equals(((CalificacionEntity)o).id);
+    }
+    /**
+     * Override del hashcode.<br>
+     * @return Hash del id.
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        return hash;
     }
     
 }

@@ -58,27 +58,45 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         
     }
     
-    
+    /**
+     * Obtiene la multimedia.<br>
+     * @return multimedia
+     */
     public List<MultimediaDTO> getMultimedia() {
         return multimedia;
     }
-
+    /**
+     * Le da el valor de multimedia a lo que le pasan por parámetro.<br>
+     * @param multimedia 
+     */
     public void setMultimedia(List<MultimediaDTO> multimedia) {
         this.multimedia = multimedia;
     }
-
+    /**
+     * Obtiene el autor del sistema.<br>
+     * @return Autor
+     */
     public UsuarioDTO getAutor() {
         return autor;
     }
-
+    /**
+     * Modifica el autor al valor dado por parámetro.<br>
+     * @param autor 
+     */
     public void setAutor(UsuarioDTO autor) {
         this.autor = autor;
     }
-
+    /**
+     * Obtiene los comentarios.<br>
+     * @return comentarios
+     */
     public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
-
+    /**
+     * Modifica los comentarios al valor dado por parámetro.<br>
+     * @param comentarios 
+     */
     public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
     }

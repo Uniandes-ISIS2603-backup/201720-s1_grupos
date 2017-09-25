@@ -129,12 +129,23 @@ public class NoticiaLogic {
         //Es improbable pero necesito hacer un caso en el que se le dé un usuario vacío a persistir, o alguno que no existe en el sistema.
         
     }
-    
+    /**
+     * Obtiene la multimedia de una noticia.<br>
+     * @param id Id de la noticia.<br>
+     * @return Listado de entidades.<br>
+     * @throws BusinessException Excepción de negcio.
+     */
     public List<MultimediaEntity> getMultimedia(Long id) throws BusinessException
     {
         return getEntity(id).getMultimedia();
     }
-    
+    /**
+     * Obtiene una multimedia dada.<br>
+     * @param idNoticia Noticia id.<br>
+     * @param link Link de multimedia.<br>
+     * @return MultimediaEntity.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     public MultimediaEntity getMultimedia(Long idNoticia, String link) throws BusinessException 
     {
         List<MultimediaEntity> list = getMultimedia(idNoticia);
@@ -144,7 +155,13 @@ public class NoticiaLogic {
         if (index<0) throw new NotFoundException("No se encuentra el elemento multimedia de la noticia");
         return buscada;
     }
-    
+    /**
+     * Agreega multimedia.<br>
+     * @param idNoticia Id de la noticia.<br>
+     * @param mult Lista de entidades.<br>
+     * @return Lista de entidades.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     public List<MultimediaEntity> addMultimedia(Long idNoticia, List<MultimediaEntity> mult) throws BusinessException
     {
         NoticiaEntity noticia = getEntity(idNoticia);
@@ -156,12 +173,21 @@ public class NoticiaLogic {
             if(entity==null)
             entity=multimedia.createEntity(m);
             if(noticia.getMultimedia().indexOf(entity)<0)
-               noticia.getMultimedia().add(m);
+            {
+                               noticia.getMultimedia().add(m);
+            }
         }
         persistence.updateEntity(noticia);
         return noticia.getMultimedia();
     }
-    
+    /**
+     * Actualiza la entidad de multimedia.<br>
+     * @param idNoticia Id de noticia.<br>
+     * @param mult Multimedia.<br>
+     * @param link Link de multimedia.<br>
+     * @return Lista de entidades.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     public List<MultimediaEntity> updateMultimedia(Long idNoticia, MultimediaEntity mult, String link) throws BusinessException
     {
         NoticiaEntity noticia = getEntity(idNoticia);
@@ -174,7 +200,12 @@ public class NoticiaLogic {
         persistence.updateEntity(noticia);
         return noticia.getMultimedia();
     }
-    
+    /**
+     * Borra una multimedia.<br>
+     * @param idNoticia Id de noticia.<br>
+     * @param link Link de la noticia.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     public void deleteMultimedia (Long idNoticia,String link) throws BusinessException
     {
         

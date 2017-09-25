@@ -37,19 +37,31 @@ public class CalificacionDetailDTO extends CalificacionDTO {
         
     }
     
-
+    /**
+     * Obtiene el calificador.<br>
+     * @return Calificador
+     */
     public UsuarioDTO getCalificador() {
         return calificador;
     }
-
+    /**
+     * Modifica el calificador al valor dado.<br>
+     * @param calificador 
+     */
     public void setCalificador(UsuarioDTO calificador) {
         this.calificador = calificador;
     }
-
+    /**
+     * Obtiene el blog.<br>
+     * @return blog
+     */
     public BlogDTO getBlog() {
         return blog;
     }
-
+    /**
+     * Cambia el blog por el valor dado por parámetro.<br>
+     * @param blog 
+     */
     public void setBlog(BlogDTO blog) {
         this.blog = blog;
     }
@@ -64,7 +76,9 @@ public class CalificacionDetailDTO extends CalificacionDTO {
         CalificacionEntity e= super.toEntity();
         e.setCalificador(calificador.toEntity());
         if(blog!=null)
-        e.setBlog(blog.toEntity());
+        {
+             e.setBlog(blog.toEntity());
+        }
         return e;
     }
 }

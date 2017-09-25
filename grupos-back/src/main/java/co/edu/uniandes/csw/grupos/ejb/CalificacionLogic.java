@@ -49,8 +49,8 @@ public class CalificacionLogic {
     
     public CalificacionEntity updateEntity (Long id, CalificacionEntity entity) throws BusinessException
     {
-        entity.setId(id);
         if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
+        entity.setId(id);
         validarCalificacion(entity);
         if(persistence.find(id)==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
         return persistence.updateEntity(entity);

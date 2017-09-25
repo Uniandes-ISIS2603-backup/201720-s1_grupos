@@ -91,7 +91,13 @@ public class UsuarioNoticiaResource {
         if(e==null) throw new NotFoundException("No existe lo buscado");
         return new NoticiaDetailDTO(e);
     }
-    
+    /**
+     * Agrega una noticia.<br>
+     * @param usuarioId Id del usuario.<br>
+     * @param noticia
+     * @return
+     * @throws BusinessException 
+     */
     @POST
     public NoticiaDetailDTO addNoticia(@PathParam("usuarioId") Long usuarioId, NoticiaDetailDTO noticia) throws BusinessException {
         return new NoticiaDetailDTO(usuarioLogic.addNoticia(usuarioId, noticia.toEntity()));
@@ -110,14 +116,27 @@ public class UsuarioNoticiaResource {
     public void removeNoticias(@PathParam("usuarioId") Long usuarioId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
         usuarioLogic.removeNoticia(usuarioId, NoticiaId);
     }
-    
+    /**
+     * Actualizar una noticia.<br>
+     * @param usuarioId Id del usuario.<br>
+     * @param NoticiaId Id de la noticia.<br>
+     * @param newNoticia dto.<br>
+     * @return Dto actualizado.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @PUT
     @Path("{NoticiaId: \\d+}")
     public NoticiaDetailDTO updateNoticia(@PathParam("usuarioId") Long usuarioId, @PathParam("NoticiaId") Long NoticiaId, NoticiaDetailDTO newNoticia) throws BusinessException {
         NoticiaEntity e = newNoticia.toEntity();
         return new NoticiaDetailDTO(usuarioLogic.updateNoticia(usuarioId, NoticiaId,e));
     }
-    
+    /**
+     * Obtiene multimedia de una noticia.<br>
+     * @param usuarioId Id del usuario.<br>
+     * @param idNoticia Id de la noticia.<br>
+     * @return Clase de noticia multimedia como subrecurso.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("usuarioId") Long usuarioId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
     {

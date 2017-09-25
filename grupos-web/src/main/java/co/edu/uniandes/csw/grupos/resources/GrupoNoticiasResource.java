@@ -91,7 +91,13 @@ public class GrupoNoticiasResource {
         if(e==null) throw new NotFoundException("No existe lo buscado");
         return new NoticiaDetailDTO(e);
     }
-    
+    /**
+     * Agrega una noticia nueva al sistema.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param noticia Noticia a gregar.<br>
+     * @return Noticia agregada.<br>
+     * @throws BusinessException Excepción de negocio
+     */
     @POST
     public NoticiaDetailDTO addNoticia(@PathParam("grupoId") Long grupoId, NoticiaDetailDTO noticia) throws BusinessException {
         return new NoticiaDetailDTO(grupoLogic.createNoticia(grupoId, noticia.toEntity()));
@@ -124,14 +130,27 @@ public class GrupoNoticiasResource {
     public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) {
         grupoLogic.removeNoticia(grupoId, NoticiaId);
     }
-    
+    /**
+     * Actualiza la noticia del grupo.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param NoticiaId Id de la noticia.<br>
+     * @param newNoticia Nueva noticia.<br>
+     * @return Noticia actualizada.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @PUT
     @Path("{NoticiaId: \\d+}")
     public NoticiaDetailDTO updateNoticia(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId, NoticiaDetailDTO newNoticia) throws BusinessException {
         NoticiaEntity e = newNoticia.toEntity();
         return new NoticiaDetailDTO(grupoLogic.updateNoticia(grupoId, NoticiaId,e));
     }
-    
+    /**
+     * Una calse de multimedia con noticia.<br>
+     * @param grupoId Id del grupo.<br>
+     * @param idNoticia Id de la noticia.<br>
+     * @return Clase de multimedia.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("grupoId") Long grupoId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
     {

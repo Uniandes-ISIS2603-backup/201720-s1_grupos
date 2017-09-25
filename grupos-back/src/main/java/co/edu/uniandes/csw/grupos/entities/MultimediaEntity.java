@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -73,13 +74,27 @@ public class MultimediaEntity implements Serializable {
     public void setLink(String link) {
         this.link = link;
     }
-    
+    /**
+     * Override del equals <br>
+     * @param o Objeto a comparar.<br>
+     * @return Mira si hay dos multiemdias iguales.
+     */
     @Override
     public boolean equals(Object o)
     {
         if(!(o instanceof MultimediaEntity)) return false;
         MultimediaEntity m = (MultimediaEntity)o;
         return link.equals(m.getLink());
+    }
+    /**
+     * Override del hashcode.<br>
+     * @return Hash code del link.
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.link);
+        return hash;
     }
     
 }

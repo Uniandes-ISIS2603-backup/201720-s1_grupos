@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -51,7 +52,9 @@ public class NoticiaEntity implements Serializable {
     @ManyToOne
     @PodamExclude
     private UsuarioEntity autor;
-    
+    /**
+     * Lista de comentarios.
+     */
     @OneToMany
     @PodamExclude
     private List<ComentarioEntity> comentarios;
@@ -88,23 +91,6 @@ public class NoticiaEntity implements Serializable {
    {
        id=n;
    }
-
-/*
-    public List<MultimediaEntity> getMultimedia() {
-        return multimedia;
-    }
-
-    public void setMultimedia(List<MultimediaEntity> multimedia) {
-        this.multimedia = multimedia;
-    }
-
-    public UsuarioEntity getAutor() {
-        return autor;
-    }
-
-    public void setAutor(UsuarioEntity autor) {
-        this.autor = autor;
-    }*/
    /**
     * Obtiene la información de la noticia.<br>
     * @return informacion
@@ -147,11 +133,17 @@ public class NoticiaEntity implements Serializable {
     public void setAutor(UsuarioEntity autor) {
         this.autor = autor;
     }
-
+    /**
+     * Retorna la lista de comentarios.<br>
+     * @return  comentarios
+     */
     public List<ComentarioEntity> getComentarios() {
         return comentarios;
     }
-
+    /**
+     * Modifica la lista al valor dado por parámetro.<br>
+     * @param comentarios 
+     */
     public void setComentarios(List<ComentarioEntity> comentarios) {
         this.comentarios = comentarios;
     }
@@ -167,6 +159,16 @@ public class NoticiaEntity implements Serializable {
         NoticiaEntity e = (NoticiaEntity)o;
         if(id.equals(e.getId())) return true;
         return false;
+    }
+    /**
+     * Override de hashcode.<br>
+     * @return  hash del id.
+     */
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 }
 
