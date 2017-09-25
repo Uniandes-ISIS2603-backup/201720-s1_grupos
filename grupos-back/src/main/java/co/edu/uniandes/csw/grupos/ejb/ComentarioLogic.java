@@ -6,12 +6,13 @@
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import co.edu.uniandes.csw.grupos.persistence.ComentarioPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
  *
@@ -39,20 +40,38 @@ public class ComentarioLogic {
         return persistence.createComentario(entity);
     }
     
+    public ComentarioEntity createComentarioBlog(Long grupoId, Long blogId, ComentarioEntity entity) throws BusinessException{
+        List<ComentarioEntity> comentarios = blogLogic.getBlog(grupoId, blogId).getComentarios();
+        entity = createComentario(entity);
+        comentarios.add(entity);
+        return entity;
+    }
+    
     public List<ComentarioEntity> getComentarios() {
         
         return persistence.findAll();
     }
     
-    public List<ComentarioEntity> getComentariosBlog(Long grupoId, Long blogId) throws NotFoundException {
+    public List<ComentarioEntity> getComentariosBlog(Long grupoId, Long blogId) {
         return blogLogic.getBlog(grupoId, blogId).getComentarios();
     }
     
-    public List<ComentarioEntity> getComentariosNoticia(Long noticiaId) {
+    public ComentarioEntity getComentarioBlog(Long grupoId, Long blogId, Long comentarioId) {
+        List<ComentarioEntity> comentarios = blogLogic.getBlog(grupoId, blogId).getComentarios();
+        ComentarioEntity comentario = new ComentarioEntity();
+        comentario.setId(comentarioId);
+        int index = comentarios.indexOf(comentario);
+        if(index<0) {
+            throw new NotFoundException("No existe ningún comentario con el id "+comentarioId+" en el blog con id "+blogId);
+        }
+        return comentarios.get(index);
+    }
+    
+    public List<ComentarioEntity> getComentariosNoticia(Long noticiaId) throws BusinessException {
         return null;
     }
     
-    public ComentarioEntity updateComentario(ComentarioEntity comentario) throws NotFoundException {
+    public ComentarioEntity updateComentario(ComentarioEntity comentario) {
         ComentarioEntity comentario2 = persistence.find(comentario.getId());
         if(comentario2 == null) {
             throw new NotFoundException("No existe ningún comentario con el id "+comentario.getId());
@@ -60,11 +79,28 @@ public class ComentarioLogic {
         return persistence.update(comentario);
     }
     
-    public void deleteComentario(Long id) throws NotFoundException {
+    public ComentarioEntity updateComentarioBlog(Long grupoId, Long blogId, ComentarioEntity comentario) {
+        getComentarioBlog(grupoId, blogId, comentario.getId());
+        return updateComentario(comentario);
+    }
+    
+    public void deleteComentario(Long id) {
         ComentarioEntity comentario = persistence.find(id);
         if(comentario == null) {
             throw new NotFoundException("No existe ningún comentario con el id "+id);
         }
         persistence.delete(id);
+    }
+    
+    public void deleteComentarioBlog(Long grupoId, Long blogId, Long comentarioId) {
+        List<ComentarioEntity> comentarios = blogLogic.getBlog(grupoId, blogId).getComentarios();
+        ComentarioEntity comentario = new ComentarioEntity();
+        comentario.setId(comentarioId);
+        int index = comentarios.indexOf(comentario);
+        if(index<0) {
+            throw new NotFoundException("No existe ningún comentario con el id "+comentarioId+" en el blog con id "+blogId);
+        }
+        comentarios.remove(index);
+        deleteComentario(comentarioId);
     }
 }
