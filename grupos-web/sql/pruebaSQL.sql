@@ -115,9 +115,12 @@ insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) val
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'abc');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
+<<<<<<< HEAD
 
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (11,2);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (1,1);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,3);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,1);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,2);
+=======
+>>>>>>> 4a6d427e8893b91cb8ab60dedb1c09219a3e98f9

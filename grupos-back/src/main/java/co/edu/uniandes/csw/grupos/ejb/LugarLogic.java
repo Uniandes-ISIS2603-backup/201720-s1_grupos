@@ -37,7 +37,7 @@ public class LugarLogic {
         return persistence.findAll();
     }
 
-    public LugarEntity createEntity(LugarEntity entity,UsuarioEntity admin) throws BusinessException
+    public LugarEntity createEntity(LugarEntity entity) throws BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
         if(persistence.find(entity.getId()) != null) throw new BusinessException("Ya existe un lugar con ese id");
@@ -53,7 +53,7 @@ public class LugarLogic {
         return newEntity;
     }
     
-    public void deleteEntity(LugarEntity entity, UsuarioEntity admin) throws BusinessException, NotFoundException
+    public void deleteEntity(LugarEntity entity) throws BusinessException, NotFoundException
     {
         LugarEntity lugar = persistence.find(entity.getId());
        if(lugar==null)
