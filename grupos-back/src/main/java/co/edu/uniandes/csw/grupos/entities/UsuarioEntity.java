@@ -79,20 +79,14 @@ public class UsuarioEntity implements Serializable {
      * Lista de grupos a los que pertenece
      */
     @PodamExclude
-    @ManyToMany
-    @JoinTable(name = "Usuario_Grupo",
-        joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
-        inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")})  
+    @ManyToMany(mappedBy="miembros") 
     private List<GrupoEntity> grupos= new ArrayList<GrupoEntity>();
     
     /**
      * Lista de grupos que administra
      */
     @PodamExclude
-    @ManyToMany
-    @JoinTable(name = "Usuario_Admin",
-        joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
-        inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")})  
+    @ManyToMany(mappedBy="administradores")
     private List<GrupoEntity> gruposAdmin= new ArrayList<GrupoEntity>();
     
     /**
@@ -107,9 +101,6 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @ManyToMany
-    @JoinTable(name = "UsuarioEntity_EventoEntity",
-        joinColumns = {@JoinColumn(name = "Usuarios_ID", referencedColumnName = "id")}, 
-        inverseJoinColumns = {@JoinColumn(name = "Eventos_ID", referencedColumnName = "id")})
     private List<EventoEntity> eventos= new ArrayList<EventoEntity>();
     
     /**

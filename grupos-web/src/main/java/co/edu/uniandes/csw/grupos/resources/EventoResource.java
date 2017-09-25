@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author js.ramos14
  */
-@Path("Eventoes")
+@Path("eventos")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless

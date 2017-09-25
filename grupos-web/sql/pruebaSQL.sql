@@ -1,9 +1,8 @@
 delete from GrupoEntity_NoticiaEntity;
 delete from GrupoEntity_CategoriaEntity;
 delete from GrupoEntity_EventoEntity;
-delete from Usuario_Grupo;
-delete from Usuario_Admin;
-
+delete from Usuario_A;
+delete from Usuario_G;
 delete from UsuarioEntity_BlogEntity;
 delete from UsuarioEntity_EventoEntity;
 delete from UsuarioEntity_TarjetaEntity;
@@ -123,14 +122,3 @@ insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (1,1);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,3);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,1);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,2);
-
-
-insert into Usuario_Admin(grupo_id,usuario_id) values (10,1);
-insert into Usuario_Admin(grupo_id,usuario_id) values (11,2);
-insert into Usuario_Admin(grupo_id,usuario_id) values (11,1);
-
-insert into Usuario_Grupo(grupo_id,usuario_id) values (10,1);
-insert into Usuario_Grupo(grupo_id,usuario_id) values (11,2);
-insert into Usuario_Grupo(grupo_id,usuario_id) values (10,3);
-insert into Usuario_Grupo(grupo_id,usuario_id) values (11,11);
-insert into Usuario_Grupo(grupo_id,usuario_id) values (11,1);

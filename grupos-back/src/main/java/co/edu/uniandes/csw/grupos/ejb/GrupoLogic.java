@@ -286,7 +286,7 @@ public class GrupoLogic {
         GrupoEntity grupoEntity = getGrupo(grupoId);
         UsuarioEntity usuarioEntity = usuarioLogic.findById(adminId);
         grupoEntity.getAdministradores().add(usuarioEntity);
-        updateGrupo(grupoEntity);
+        GrupoEntity g= updateGrupo(grupoEntity);
         return getAdmin(grupoId, adminId);
     }
     

@@ -15,6 +15,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -85,7 +86,9 @@ public class GrupoMiembrosResource {
     @GET
     @Path("{miembroId: \\d+}")
     public UsuarioDetailDTO getMiembros(@PathParam("grupoId") Long grupoId, @PathParam("miembroId") Long MiembroId) {
-        return new UsuarioDetailDTO(grupoLogic.getMiembro(grupoId, MiembroId));
+        UsuarioEntity u =grupoLogic.getMiembro(grupoId, MiembroId);
+        if(u==null) throw new NotFoundException("No existe el administrar buscado");
+        return new UsuarioDetailDTO(u);
     }
     
     /**

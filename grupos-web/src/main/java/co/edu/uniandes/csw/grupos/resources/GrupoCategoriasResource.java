@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -91,7 +92,9 @@ public class GrupoCategoriasResource {
     @GET
     @Path("{categoriaId: \\d+}")
     public CategoriaDetailDTO getCategorias(@PathParam("grupoId") Long grupoId, @PathParam("categoriaId") Long categoriaId) {
-        return new CategoriaDetailDTO(grupoLogic.getCategoria(grupoId, categoriaId));
+         CategoriaEntity u =grupoLogic.getCategoria(grupoId, categoriaId);
+        if(u==null) throw new NotFoundException("No existe el administrar buscado");
+        return new CategoriaDetailDTO(u);
     }
     
     /**
