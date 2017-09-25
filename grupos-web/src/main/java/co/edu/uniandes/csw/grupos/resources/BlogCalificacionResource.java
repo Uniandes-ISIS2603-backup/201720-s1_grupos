@@ -69,6 +69,7 @@ public class BlogCalificacionResource {
     @POST
     public CalificacionDetailDTO postCalificacion (@PathParam("grupoId") Long grupoId,@PathParam("blogId")Long id, CalificacionDetailDTO calificacion) throws BusinessException
     {
+        
         calificacion.setBlog(new BlogDetailDTO(blog.getBlog(id)));
         calificacion.setFecha(new Date(System.currentTimeMillis()));
         if(calificacion.getCalificador()==null) throw new BusinessException("Su calificación debe tener a un usuario asociado");
