@@ -1,12 +1,12 @@
 delete from GrupoEntity_NoticiaEntity;
 delete from GrupoEntity_BlogEntity;
 delete from GrupoEntity_CategoriaEntity;
-delete from GrupoEntity_UsuarioEntity;
 delete from GrupoEntity_EventoEntity;
+delete from Usuario_Grupo;
+delete from Usuario_Admin;
 
 delete from UsuarioEntity_BlogEntity;
 delete from UsuarioEntity_EventoEntity;
-delete from UsuarioEntity_GrupoEntity;
 delete from UsuarioEntity_PatrocinioEntity;
 delete from UsuarioEntity_TarjetaEntity;
 
@@ -16,22 +16,22 @@ delete from BlogEntity_ComentarioEntity;
 delete from NoticiaEntity_ComentarioEntity;
 delete from CalificacionEntity; 
 delete from BlogEntity;
+delete from EventoEntity;
 
 delete from GrupoEntity;
 delete from CategoriaEntity;
 delete from NoticiaEntity_MultimediaEntity;
 
-delete from PatrocinioEntity;
 delete from ComentarioEntity;
 delete from CalificacionEntity;
 delete from NoticiaEntity;
 delete from ComentarioEntity;
 delete from MultimediaEntity;
-delete from UsuarioEntity;
 delete from TarjetaEntity;
-delete from EventoEntity;
-
-
+delete from PatrocinioEntity;
+delete from UsuarioEntity;
+delete from EmpresaEntity;
+delete from LugarEntity;
 
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (10,'Videojuegos', 'La mejor categoria', 'videojuegos.png');
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (11,'Ciencia', 'La segunda mejor categoria', 'ciencia.png');
@@ -63,7 +63,8 @@ insert into UsuarioEntity_TarjetaEntity(UsuarioEntity_Id, Tarjetas_numero) value
 
 --INFORMACIÓN PATROCINIO
 insert into PatrocinioEntity(Id, Pago, usuario_Id) values (1,800.0,3);
-insert into PatrocinioEntity(Id, Pago, usuario_Id) values (1,800.0,2);
+insert into PatrocinioEntity(Id, Pago, usuario_Id) values (2,800.0,2);
+insert into PatrocinioEntity(Id, Pago, usuario_Id) values (3,800.0,2);
 
 --INFORMACIÓN BLOG
 
@@ -84,14 +85,17 @@ insert into CalificacionEntity(id,calificacion,fecha,blog_id,calificador_id) val
 insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','abc');
 insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','dfdf');
 
---INFORMACiÓN EVENTO
-insert into EventoEntity(1,'2017-08-07','2017-08-08','Evento');
-insert into EventoEntity(2,'2017-08-08','2017-08-09','Evento');
-insert into EventoEntity(3,'2017-08-09','2017-08-10','Evento');
 
-insert into LugarEntity(1,20,'Dirección','Lugar');
-insert into LugarEntity(2,30,'Dirección1','Lugar');
-insert into LugarEntity(3,40,'Dirección2','Lugar');
+--INFORMACIÓN LUGAR
+insert into LugarEntity(id,capacidad,direccion,nombre) values(1,20,'Dirección','Lugar');
+insert into LugarEntity (id,capacidad,direccion,nombre) values (2,30,'Dirección1','Lugar');
+insert into LugarEntity (id,capacidad,direccion,nombre) values (3,40,'Dirección2','Lugar');
+--INFORMACiÓN EVENTO
+insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(1,'2017-08-07','2017-08-08','Evento',10,1);
+insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(2,'2017-08-08','2017-08-09','Evento',10,2);
+insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(3,'2017-08-09','2017-08-10','Evento',11,3);
+
+
 
 
 
@@ -115,12 +119,20 @@ insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) val
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'abc');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
-<<<<<<< HEAD
 
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (11,2);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (1,1);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,3);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,1);
 insert into UsuarioEntity_Eventoentity(usuarioEntity_id,eventos_id) values (2,2);
-=======
->>>>>>> 4a6d427e8893b91cb8ab60dedb1c09219a3e98f9
+
+
+insert into Usuario_Admin(grupo_id,usuario_id) values (10,1);
+insert into Usuario_Admin(grupo_id,usuario_id) values (11,2);
+insert into Usuario_Admin(grupo_id,usuario_id) values (11,1);
+
+insert into Usuario_Grupo(grupo_id,usuario_id) values (10,1);
+insert into Usuario_Grupo(grupo_id,usuario_id) values (11,2);
+insert into Usuario_Grupo(grupo_id,usuario_id) values (10,3);
+insert into Usuario_Grupo(grupo_id,usuario_id) values (11,11);
+insert into Usuario_Grupo(grupo_id,usuario_id) values (11,1);

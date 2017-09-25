@@ -47,14 +47,14 @@ public class GrupoEntity implements Serializable{
      * Lista de miembros
      */
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(mappedBy="grupos")
     private List<UsuarioEntity> miembros= new ArrayList<UsuarioEntity>();
     
     /**
      * Lista de administradores
      */
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(mappedBy="gruposAdmin")
     private List<UsuarioEntity> administradores= new ArrayList<UsuarioEntity>();
     
     /**

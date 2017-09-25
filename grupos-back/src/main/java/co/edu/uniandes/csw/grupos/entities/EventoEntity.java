@@ -43,7 +43,7 @@ public class EventoEntity implements Serializable{
     @OneToOne
     private LugarEntity lugar;
     @PodamExclude
-    @ManyToMany(mappedBy = "evento")
+    @ManyToMany(mappedBy = "eventos")
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
     @PodamExclude
     @OneToMany

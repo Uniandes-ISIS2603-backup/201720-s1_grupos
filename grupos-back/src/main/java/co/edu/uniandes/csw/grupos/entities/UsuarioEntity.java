@@ -15,6 +15,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -77,6 +79,9 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @ManyToMany
+    @JoinTable(name = "Usuario_Grupo",
+        joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
+        inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")})  
     private List<GrupoEntity> grupos= new ArrayList<GrupoEntity>();
     
     /**
@@ -84,6 +89,9 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @ManyToMany
+    @JoinTable(name = "Usuario_Admin",
+        joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
+        inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")})  
     private List<GrupoEntity> gruposAdmin= new ArrayList<GrupoEntity>();
     
     /**
