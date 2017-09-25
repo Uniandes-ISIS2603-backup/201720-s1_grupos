@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -159,5 +160,21 @@ public class EventoEntity implements Serializable{
      */
     public void setPatrocinios(List<PatrocinioEntity> patrocinios) {
         this.patrocinios = patrocinios;
+    }
+    
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof EventoEntity))
+            return false;
+        EventoEntity u=(EventoEntity) o;
+        return id.equals(u.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 }

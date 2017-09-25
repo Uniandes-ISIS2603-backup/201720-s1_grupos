@@ -65,6 +65,22 @@ public class EmpresaEntity implements Serializable {
         this.logo = logo;
     }
     
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof EmpresaEntity))
+            return false;
+        EmpresaEntity u=(EmpresaEntity) o;
+        return nit==(u.getNit());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.nit;
+        return hash;
+    }
+    
     
     
     

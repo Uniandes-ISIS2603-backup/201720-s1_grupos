@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
-import co.edu.uniandes.csw.grupos.dtos.BlogDTO;
+import co.edu.uniandes.csw.grupos.dtos.BlogDetailDTO;
 import co.edu.uniandes.csw.grupos.dtos.BlogDetailDTO;
 import co.edu.uniandes.csw.grupos.dtos.GrupoDTO;
 import co.edu.uniandes.csw.grupos.ejb.BlogLogic;
@@ -48,10 +48,10 @@ public class GrupoBlogsResource {
      * @return Lista de BlogDetailDTO convertida.
      *
      */
-    private List<BlogDTO> BlogsListEntity2DTO(List<BlogEntity> entityList) {
-        List<BlogDTO> list = new ArrayList<>();
+    private List<BlogDetailDTO> BlogsListEntity2DTO(List<BlogEntity> entityList) {
+        List<BlogDetailDTO> list = new ArrayList<>();
         for (BlogEntity entity : entityList) {
-            list.add(new BlogDTO(entity));
+            list.add(new BlogDetailDTO(entity));
         }
         return list;
     }
@@ -81,7 +81,7 @@ public class GrupoBlogsResource {
      *
      */
     @GET
-    public List<BlogDTO> listBlogs(@PathParam("grupoId") Long grupoId) {
+    public List<BlogDetailDTO> listBlogs(@PathParam("grupoId") Long grupoId) {
         return BlogsListEntity2DTO(blogLogic.getBlogs(grupoId));
     }
     
@@ -140,7 +140,7 @@ public class GrupoBlogsResource {
     
     @PUT
     @Path("{blogId: \\d+}")
-    public BlogDTO updateBlog(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId, BlogDetailDTO dto) {
+    public BlogDetailDTO updateBlog(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId, BlogDetailDTO dto) {
         BlogEntity entity = dto.toEntity();
         entity.setId(blogId);
         return new BlogDetailDTO(blogLogic.updateBlog(entity, grupoId));

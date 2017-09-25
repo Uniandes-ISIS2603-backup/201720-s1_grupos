@@ -82,7 +82,21 @@ public class TarjetaEntity implements Serializable{
         this.maxCupo = maxCupo;
     }
     
-    
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof TarjetaEntity))
+            return false;
+        TarjetaEntity u=(TarjetaEntity) o;
+        return numero==(u.getNumero());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.numero;
+        return hash;
+    }
     
     
     

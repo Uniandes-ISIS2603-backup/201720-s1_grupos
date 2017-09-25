@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -371,5 +372,20 @@ public class UsuarioEntity implements Serializable {
             i++;
         }
         noticias.remove(i);
+    }
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof UsuarioEntity))
+            return false;
+        UsuarioEntity u=(UsuarioEntity) o;
+        return id.equals(u.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 }

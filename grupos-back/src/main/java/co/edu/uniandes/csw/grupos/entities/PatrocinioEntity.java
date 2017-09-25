@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -87,4 +88,19 @@ public class PatrocinioEntity implements Serializable{
         usuario= nuser;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof PatrocinioEntity))
+            return false;
+        PatrocinioEntity u=(PatrocinioEntity) o;
+        return id.equals(u.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
 }

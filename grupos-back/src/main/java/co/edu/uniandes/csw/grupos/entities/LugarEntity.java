@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -105,5 +106,21 @@ public class LugarEntity implements Serializable{
      */
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof LugarEntity))
+            return false;
+        LugarEntity u=(LugarEntity) o;
+        return id.equals(u.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 }
