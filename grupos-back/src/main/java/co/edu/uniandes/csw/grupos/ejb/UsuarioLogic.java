@@ -11,9 +11,11 @@ import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.UsuarioPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
  *
@@ -263,7 +265,10 @@ public class UsuarioLogic {
             throw new BusinessException("No existe el usuario con id especificado");
         }
         NoticiaEntity res = noticiaLogic.getEntity(idNoticia);
-        return res;
+        if(usuario.getNoticias()==null) usuario.setNoticias(new ArrayList<>());
+        int index=usuario.getNoticias().indexOf(res);
+        if(index<0) throw new NotFoundException("No existe la noticia del usuario dado");
+        return usuario.getNoticias().get(index);
     }
     
     /**
@@ -280,6 +285,11 @@ public class UsuarioLogic {
         }
         NoticiaEntity newn = noticiaLogic.createEntity(nn);
         List<NoticiaEntity> news= usuario.getNoticias();
+        if(news==null)
+        {
+            usuario.setNoticias(new ArrayList<>());
+            news=usuario.getNoticias();
+        }
         news.add(newn);
         usuario.setNoticias(news);
         return newn;
@@ -289,17 +299,22 @@ public class UsuarioLogic {
      * Actualiza una noticia al usuario con id dado por parámetro
      * @param id identificador unico del usuario
      * @param nn nueva noticia que se quiere actualizar
+     * @param noticiaId Id de la noticia
      * @return noticia actualizada
      * @throws BusinessException si el usuario no existe
      */
-    public NoticiaEntity updateNoticia(Long id, NoticiaEntity nn) throws BusinessException{
+    public NoticiaEntity updateNoticia(Long id, Long noticiaId, NoticiaEntity nn) throws BusinessException{
         UsuarioEntity usuario = findById(id);
+        nn.setId(noticiaId);
         if(usuario == null){
             throw new BusinessException("No existe el usuario con id especificado");
         }
+        if(usuario.getNoticias()==null) throw new BusinessException("No hay noticias a actualizar");
+        int index= usuario.getNoticias().indexOf(nn);
+        if(index<0) throw new NotFoundException("La noticia no existe para la ista del usuario");
         NoticiaEntity change = noticiaLogic.updateEntity(nn.getId(), nn);
-        usuario.cambiarNoticia(nn.getId(), change);
-        return change;
+        usuario.getNoticias().set(index, change);
+        return usuario.getNoticias().get(index);
     }
     
     /**
@@ -316,4 +331,11 @@ public class UsuarioLogic {
         noticiaLogic.deleteEntity(idNoticia);
         usuario.deleteNoticia(idNoticia);
     }
+
+    public List<NoticiaEntity> getNoticias(Long id) throws BusinessException {
+        UsuarioEntity u = findById(id);
+        if(u==null) throw new NotFoundException("El usuario no existe");
+        return u.getNoticias();
+    }
+
 }
