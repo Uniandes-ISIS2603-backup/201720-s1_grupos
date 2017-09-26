@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Subrecurso usuario tarjeta.<br>
  * @author af.lopezf
  */
 @Consumes(MediaType.APPLICATION_JSON)

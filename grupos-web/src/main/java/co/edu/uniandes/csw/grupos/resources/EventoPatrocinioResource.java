@@ -20,7 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
- *
+ * Lógica de evento.<br>
  * @author tefa
  */
 public class EventoPatrocinioResource {
@@ -46,7 +46,14 @@ public class EventoPatrocinioResource {
         }
         return ret;
     }
-     
+    /**
+     * Obtiene un patrocinio específico.<br>
+     * @param id Id del evento.<br>
+     * @param patId Id del patrocinio.<br>
+     * @return DTO del patrocinio.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException SI no se encuentra.
+     */
     @GET
     @Path("{patId:\\d+}")
     public PatrocinioDetailDTO getPatrocinio(@PathParam("id") Long id, @PathParam("patId") Long patId) throws BusinessException, NotFoundException {
@@ -54,13 +61,26 @@ public class EventoPatrocinioResource {
         if(e==null) throw new NotFoundException("No se encuentra el patrocinio buscado");
         return new PatrocinioDetailDTO(e);
     }
-    
+    /**
+     * Agrega un nuevo patrocinio.<br>
+     * @param id Id del evento.<br>
+     * @param patId Patrocinio creado.<br>
+     * @return DTO del patrocinio.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException Si no se encuentra algo.
+     */
     @POST
     @Path("{patId: \\d+}")
     public PatrocinioDetailDTO addPatrocinios(@PathParam("id") Long id, @PathParam("patId") Long patId) throws BusinessException, NotFoundException {
         return new PatrocinioDetailDTO(eventoLogic.addPatrocinio(id, patId));
     }
-    
+    /**
+     * Remueve el patrocinio del evento.<br>
+     * @param id Id del evento.<br>
+     * @param patId Id del patrocinio.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException Si no se encuentra.
+     */
      @DELETE
     @Path("{patId: \\d+}")
     public void removePatrocinio(@PathParam("id") Long id, @PathParam("patId") Long patId) throws BusinessException, NotFoundException {

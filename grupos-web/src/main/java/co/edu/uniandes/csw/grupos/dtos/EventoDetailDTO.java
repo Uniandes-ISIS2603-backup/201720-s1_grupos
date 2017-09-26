@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Representación detallado de evento.<br>
  * @author js.ramos14
  */
 public class EventoDetailDTO extends EventoDTO {
@@ -34,11 +34,17 @@ public class EventoDetailDTO extends EventoDTO {
      * Relacion cero o muchos usuarios
      */
     private List<UsuarioDTO> usuarios;
+    /**
+     * Constructor vacío.
+     */
     public EventoDetailDTO()
     {
         super();
     }
-    
+    /**
+     * Construye el dto a partir de la entidad.<br>
+     * @param entity  Entidad a construir.
+     */
     public EventoDetailDTO(EventoEntity entity)
     {
         super(entity);
@@ -74,7 +80,10 @@ public class EventoDetailDTO extends EventoDTO {
         }
         
     }
-    
+    /**
+     * Pasar el dto a una entidad.<br>
+     * @return Entidad respectiva
+     */
     @Override
     public EventoEntity toEntity()
     {

@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 
 /**
- *
+ * Representación minimum de usuario.<br>
  * @author tefa
  */
 public class UsuarioDTO {

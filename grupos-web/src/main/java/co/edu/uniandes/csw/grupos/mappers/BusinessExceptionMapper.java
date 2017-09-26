@@ -51,7 +51,11 @@ public class BusinessExceptionMapper implements ExceptionMapper<BusinessExceptio
                 .type(MediaType.TEXT_PLAIN_TYPE)
                 .build(); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Saca la causa inicial de la excepción.<br>
+     * @param e Excepción o throwable.<br>
+     * @return Throwable
+     */
     private Throwable getInitCause(Throwable e) {
         if (e.getCause() != null) {
             return getInitCause(e.getCause());

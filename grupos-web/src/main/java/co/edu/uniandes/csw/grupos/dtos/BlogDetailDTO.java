@@ -14,17 +14,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Representación detail de dto.<br>
  * @author se.cardenas
  */
 public class BlogDetailDTO extends BlogDTO{
-    
+    /**
+     * Grupo
+     */
     private GrupoDTO grupo;
-    
+    /**
+     * Comentarios
+     */
     private List<ComentarioDTO> comentarios;
-    
+    /**
+     * Calificaciones
+     */
     private List<CalificacionDTO> calificaciones;
-    
+    /**
+     * Multimedia
+     */
     private List<MultimediaDTO> multimedia;
     
     /**
@@ -61,35 +69,59 @@ public class BlogDetailDTO extends BlogDTO{
                 }
         }
     }
-
+    /**
+     * Obtiene el grupo.<br>
+     * @return grupo
+     */
     public GrupoDTO getGrupo() {
         return grupo;
     }
-
+    /**
+     * Modifica el grupo al valor dado por parámetro.<br>
+     * @param grupo 
+     */
     public void setGrupo(GrupoDTO grupo) {
         this.grupo = grupo;
     }
-
+    /**
+     * Obtiene los comentarios dados.<br>
+     * @return comentarios
+     */
     public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
-
+    /**
+     * Modifica los comentrios al valor dado por parámetro.<br>
+     * @param comentarios 
+     */
     public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
     }
-
+    /**
+     * Obtiene las calificaciones.<br>
+     * @return calificaciones.
+     */
     public List<CalificacionDTO> getCalificaciones() {
         return calificaciones;
     }
-
+    /**
+     * Modifica las calificaciones al valor dado por parámetro.<br>
+     * @param calificaciones 
+     */
     public void setCalificaciones(List<CalificacionDTO> calificaciones) {
         this.calificaciones = calificaciones;
     }
-
+    /**
+     * Obtiene la multimedia.<br>
+     * @return 
+     */
     public List<MultimediaDTO> getMultimedia() {
         return multimedia;
     }
-
+    /**
+     * Modifica la multimedia al valor dado por parámetro.<br>
+     * @param multimedia 
+     */
     public void setMultimedia(List<MultimediaDTO> multimedia) {
         this.multimedia = multimedia;
     }

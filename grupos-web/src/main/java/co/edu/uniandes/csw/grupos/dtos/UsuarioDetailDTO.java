@@ -16,8 +16,8 @@ import com.gs.collections.impl.list.fixed.ArrayAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
+/** 
+ * Representación detail de usuario.<br>
  * @author tefa
  */
 public class UsuarioDetailDTO extends UsuarioDTO {

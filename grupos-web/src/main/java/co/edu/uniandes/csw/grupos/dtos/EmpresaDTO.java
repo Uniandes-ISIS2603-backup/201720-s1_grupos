@@ -8,13 +8,21 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
 
 /**
- *
+ * Representación minimum de empresa.<br>
  * @author af.lopezf
  */
 public class EmpresaDTO {
-    
+    /**
+     * Nit
+     */
     private int nit;
+    /**
+     * Nombre de la empresa
+     */
     private String nombre;
+    /**
+     * Logo de la empresa
+     */
     private String logo;
     
      /**

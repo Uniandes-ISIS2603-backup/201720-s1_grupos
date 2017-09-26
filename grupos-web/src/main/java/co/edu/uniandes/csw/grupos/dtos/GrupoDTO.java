@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 
 /**
- *
+ * Representación minimum de grupo.<br>
  * @author cm.sarmiento10
  */
 public class GrupoDTO {

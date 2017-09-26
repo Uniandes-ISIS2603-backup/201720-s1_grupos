@@ -9,22 +9,37 @@ import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import java.util.Date;
 
 /**
- *
+ * Representación minimum de evento.<br>
  * @author js.ramos14
  */
 public class EventoDTO {
-        
+    /**
+     * Id
+     */
     private Long id;
-    
+    /**
+     * Nombre
+     */
     private String nombre;
-    
+    /**
+     * Fecha de inicio
+     */
     private Date fechaInicio;
-   
+   /**
+    * Fecha de fin
+    */
     private Date fechaFin;
+    /**
+     * Constructor vacío.<br>
+     */
     public EventoDTO()
     {
         
     }
+    /**
+     * Construye un dto a partir de la entidad dada.<br>
+     * @param entity Entidad dada.
+     */
     public EventoDTO(EventoEntity entity)
     {
         this.id = entity.getId();
@@ -88,7 +103,10 @@ public class EventoDTO {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
+    /**
+     * Transfiere el dto a una nueva entidad dada.<br>
+     * @return  Entidad de evento.
+     */
     public EventoEntity toEntity()
     {
         EventoEntity entity = new EventoEntity();

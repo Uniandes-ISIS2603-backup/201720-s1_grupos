@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
+ * UsuarioPatrcinio.<br>
  * @author tefa
  */
 @Path("/usuarios/{usuarioId: \\d+}/patrocinios")

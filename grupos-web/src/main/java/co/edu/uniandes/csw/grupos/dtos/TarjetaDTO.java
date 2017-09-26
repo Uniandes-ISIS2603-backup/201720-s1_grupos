@@ -8,14 +8,25 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 
 /**
- *
+ * Representación minimum de la tarjeta.<br>
  * @author af.lopezf
  */
 public class TarjetaDTO {
-    
+    /**
+     * Número de la tarjeta
+     */
     private int numero;
+    /**
+     * Dinero disponible
+     */
     private double dineroDisponible;
+    /**
+     * Banco
+     */
     private String banco;
+    /**
+     * Cupo máximo
+     */
     private double maxCupo;
     
     

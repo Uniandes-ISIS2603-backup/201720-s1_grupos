@@ -8,8 +8,8 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 
 /**
- *
- * @author tefa
+ * Representación minimum del patrocinio.<br>
+ * @author tefa 
  */
 public class PatrocinioDTO {
     /**

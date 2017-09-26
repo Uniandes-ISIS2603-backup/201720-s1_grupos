@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
+ * Recurso evento usuario.<br>
  * @author js.ramos14
  */
 @Consumes(MediaType.APPLICATION_JSON)

@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 
 /**
- *
+ * Representación detallada del patrocinio.<br>
  * @author tefa
  */
 public class PatrocinioDetailDTO extends PatrocinioDTO{

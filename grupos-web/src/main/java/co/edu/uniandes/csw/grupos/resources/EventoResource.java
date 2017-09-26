@@ -25,7 +25,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Recurso de evento.<br>
  * @author js.ramos14
  */
 @Path("eventos")
@@ -33,17 +33,28 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @Stateless
 public class EventoResource {
-    
+    /**
+     * Lógica
+     */
     @Inject
     EventoLogic logic;
-    
+    /**
+     * Obtiene todos los eventos.<br>
+     * @return  Listado de dtos.
+     */
     @GET
     public List<EventoDetailDTO> getEventos()
     {
         List<EventoDetailDTO> list = listEntityToDetailDTO(logic.getAll());
         return list;
     }
-    
+    /**
+     * Obtiene el dto de evento.<br>
+     * @param id Id del evento.<br>
+     * @return DTO del evento.<br>
+     * @throws BusinessException Excepción de negocio.<br> 
+     * @throws NotFoundException Si no se encuentra.
+     */
     @GET
     @Path("{id: \\d+}")
     public EventoDetailDTO getEvento(@PathParam("id") Long id) throws BusinessException, NotFoundException
@@ -51,7 +62,14 @@ public class EventoResource {
         EventoEntity entity=logic.getEntity(id);
         return new EventoDetailDTO(entity);
     }
-    
+    /**
+     * Actualiza el evento.<br>
+     * @param id Id del evento.<r>
+     * @param dto DTO a actualizar.<br>
+     * @return Evento actualizado.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException  No se encuentra.
+     */
     @PUT
     @Path("{id: \\d+}")
     public EventoDetailDTO updateEvento(@PathParam("id") Long id, EventoDetailDTO dto) throws BusinessException, NotFoundException
@@ -64,7 +82,12 @@ public class EventoResource {
        newEntity.setUsuarios(entity.getUsuarios());
        return new EventoDetailDTO(logic.updateEntity(newEntity));
     }
-    
+    /**
+     * Crea un nuevo evento.<br>
+     * @param Evento Evento a crear.<br>
+     * @return Evento creado.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @POST
     public EventoDetailDTO createEvento(EventoDetailDTO Evento) throws BusinessException
     {
@@ -72,7 +95,12 @@ public class EventoResource {
         EventoEntity e=logic.createEntity(entity);
         return new EventoDetailDTO(e);
     }
-    
+    /**
+     * Borra un evento con el id dado.<br>
+     * @param id Id del evento.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException Si no se encuentra algo.<br>
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteEvento(@PathParam("id")Long id) throws BusinessException, NotFoundException
@@ -99,7 +127,13 @@ public class EventoResource {
         }
         return EventoPatrocinioResource.class;
     }
-    
+    /**
+     * Subrecurso EventoUsuario.<br>
+     * @param id Id del evento .<br>
+     * @return Calse de evento usuario.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException Excepción de no encontrado.
+     */
     @Path("{id: \\d+}/usuarios")
     public Class<EventoUsuariosResource> getEventoUsuarioResource(@PathParam("id") Long id) throws BusinessException, NotFoundException {
         EventoEntity entity = logic.getEntity(id);
@@ -109,7 +143,11 @@ public class EventoResource {
         }
         return EventoUsuariosResource.class;
     }
-
+    /**
+     * Convierte las entidades en dtos.<br>
+     * @param entityList Lista de entidades.<br>
+     * @return  Lista en forma de dtos.
+     */
     private List<EventoDetailDTO> listEntityToDetailDTO(List<EventoEntity> entityList) {
         List<EventoDetailDTO> list = new ArrayList<>();
         for (EventoEntity entity : entityList) {

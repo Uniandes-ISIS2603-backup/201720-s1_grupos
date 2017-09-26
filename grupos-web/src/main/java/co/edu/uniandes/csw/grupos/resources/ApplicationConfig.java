@@ -9,7 +9,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
- *
+ * Extensión principal de la aplicación.<br>
  * @author jc161
  */
 @javax.ws.rs.ApplicationPath("/Stark")

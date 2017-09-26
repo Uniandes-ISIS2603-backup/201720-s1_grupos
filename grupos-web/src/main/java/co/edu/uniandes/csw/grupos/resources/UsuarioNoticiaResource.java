@@ -22,7 +22,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
- *
+ * Recurso usuarioNoticia
  * @author jc161
  */
 public class UsuarioNoticiaResource {
@@ -143,7 +143,13 @@ public class UsuarioNoticiaResource {
         if(usuarioLogic.getNoticia( usuarioId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
         return NoticiaMultimediaResource.class;
     }
-    
+    /**
+     * Retorna los comentarios de una noticia.<br>
+     * @param usuarioId Id de usuario.<br>
+     * @param id Id de la noticia.<br>
+     * @return Comentarios de una noticia.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @Path("{noticiaId: \\d+}/comentarios")
     public Class<NoticiaComentarioResource> getComentarios(@PathParam("usuarioId") Long usuarioId,@PathParam("noticiaId") Long id) throws BusinessException {
         if(usuarioLogic.getNoticia( usuarioId, id)==null) throw new NotFoundException("No existe el grupo con este id");
