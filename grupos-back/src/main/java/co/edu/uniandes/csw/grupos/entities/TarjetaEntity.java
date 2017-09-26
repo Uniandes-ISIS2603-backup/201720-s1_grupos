@@ -10,20 +10,28 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- *
+ * Entidad de tarjeta
  * @author af.lopezf
  */
 @Entity
 public class TarjetaEntity implements Serializable{
     
-    
+    /**
+     * Número de tarjeta
+     */
     @Id
     private int numero;
-    
+    /**
+     * Dinero disponible de la tarjeta.<br>
+     */
     private double dineroDisponible;
-    
+    /**
+     * Banco.<br>
+     */
     private String banco;
-    
+    /**
+     * Cupo máximo de la tarjeta.
+     */
     private double maxCupo;
 
     /**
@@ -81,7 +89,11 @@ public class TarjetaEntity implements Serializable{
     public void setMaxCupo(double maxCupo) {
         this.maxCupo = maxCupo;
     }
-    
+    /**
+     * Override del equals.<br>
+     * @param o Objeto a igualar.<br>
+     * @return Si son iguales o no.
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -90,7 +102,10 @@ public class TarjetaEntity implements Serializable{
         TarjetaEntity u=(TarjetaEntity) o;
         return numero==(u.getNumero());
     }
-
+    /**
+     * Override del hashcode.<br>
+     * @return hashcode
+     */
     @Override
     public int hashCode() {
         int hash = 7;

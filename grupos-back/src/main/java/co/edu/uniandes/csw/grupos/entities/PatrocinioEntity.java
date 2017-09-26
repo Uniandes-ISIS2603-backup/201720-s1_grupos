@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ *Entidad de patrocinio
  * @author tefa
  */
 @Entity
@@ -87,7 +87,11 @@ public class PatrocinioEntity implements Serializable{
     public void setUsuario(UsuarioEntity nuser){
         usuario= nuser;
     }
-
+    /**
+     * Override del equals.<br>
+     * @param o Objeto a igualar.<br>
+     * @return Si son iguales o no.
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -96,7 +100,10 @@ public class PatrocinioEntity implements Serializable{
         PatrocinioEntity u=(PatrocinioEntity) o;
         return id.equals(u.getId());
     }
-
+    /**
+     * Override del hashcode.<br>
+     * @return hashcode.
+     */
     @Override
     public int hashCode() {
         int hash = 7;

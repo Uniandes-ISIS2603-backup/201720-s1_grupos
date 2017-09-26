@@ -23,29 +23,52 @@ import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Entidad de evento.<br>
  * @author js.ramos14
  */
 @Entity
 public class EventoEntity implements Serializable{
-    
+    /**
+     * Id del usuario.
+     */
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    /**
+     * Nombre del usuario
+     */
     private String nombre;
+    /**
+     * Fecha dada.
+     */
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
+    /**
+     * Fecha de fin del evento
+     */
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
+    /**
+     * Relación con grupo.
+     */
     @PodamExclude
     @ManyToOne
     private GrupoEntity grupo;
+    /*
+    Relación con lugar
+    */
     @PodamExclude
     @OneToOne
     private LugarEntity lugar;
+    /**
+     * Relación con usuarios
+     */
     @PodamExclude
     @ManyToMany(mappedBy = "eventos")
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
+    /**
+     * Relación con patrocinios
+     */
     @PodamExclude
     @OneToMany
     private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
@@ -161,7 +184,11 @@ public class EventoEntity implements Serializable{
     public void setPatrocinios(List<PatrocinioEntity> patrocinios) {
         this.patrocinios = patrocinios;
     }
-    
+    /**
+     * Override del equals.<br>
+     * @param o Objeto a comparar.<br>
+     * @return Si son iguales
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -170,7 +197,10 @@ public class EventoEntity implements Serializable{
         EventoEntity u=(EventoEntity) o;
         return id.equals(u.getId());
     }
-
+/**
+ * Override del hash.<br>
+ * @return hashcode
+ */
     @Override
     public int hashCode() {
         int hash = 3;

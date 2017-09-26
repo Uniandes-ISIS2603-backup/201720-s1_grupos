@@ -20,7 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
- *
+ * Entidad de grupo.
  * @author cm.sarmiento10
  */
 @Entity

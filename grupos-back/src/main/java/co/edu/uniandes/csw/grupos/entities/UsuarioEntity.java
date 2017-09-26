@@ -24,7 +24,7 @@ import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Entidad de usuario.
  * @author tefa
  */
 @Entity
@@ -364,6 +364,11 @@ public class UsuarioEntity implements Serializable {
         }
         noticias.remove(i);
     }
+    /**
+     * Override del equals.<br>
+     * @param o Objeto a comparar.<br>
+     * @return COmparación hecha.
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -372,7 +377,10 @@ public class UsuarioEntity implements Serializable {
         UsuarioEntity u=(UsuarioEntity) o;
         return id.equals(u.getId());
     }
-
+    /**
+     * Override del hashcode.<br>
+     * @return hashcode
+     */
     @Override
     public int hashCode() {
         int hash = 7;
