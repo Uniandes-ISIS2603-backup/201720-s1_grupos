@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 /**
- *
+ *Lógica de grupo
  * @author cm.sarmiento10
  */
 public class GrupoLogic {
@@ -384,7 +384,13 @@ public class GrupoLogic {
         updateGrupo(grupoEntity);
         return getNoticia(grupoId, noticiaId);
     }
-    
+    /**
+     * Crea una nueva entidad de noticia para persistir.<br>
+     * @param grupoId Id de grupo.<br>
+     * @param entity Entidad de noticia a persistir.<br>
+     * @return Entidad de noticia.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     public NoticiaEntity createNoticia(Long grupoId, NoticiaEntity entity) throws BusinessException {
         GrupoEntity grupoEntity = getGrupo(grupoId);
         NoticiaEntity noticiaEntity = noticiaLogic.createEntity(entity);
@@ -392,7 +398,14 @@ public class GrupoLogic {
         updateGrupo(grupoEntity);
         return getNoticia(grupoId, noticiaEntity.getId());
     }
-    
+    /**
+     * Actualiza una noticia de grupo.<br>
+     * @param grupoId Id de grupo.<br>
+     * @param id Id de noticia.<br>
+     * @param entity Entidad de noticia.<br>
+     * @return Entidad de noticia.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     public NoticiaEntity updateNoticia(Long grupoId, Long id, NoticiaEntity entity) throws BusinessException
     {
         NoticiaEntity noticia=noticiaLogic.getEntity(id);

@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Lógica de patrocinio
  * @author tefa
  */
 @Stateless

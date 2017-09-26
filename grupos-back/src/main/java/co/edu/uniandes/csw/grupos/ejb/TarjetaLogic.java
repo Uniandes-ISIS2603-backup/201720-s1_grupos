@@ -13,16 +13,23 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Lógica de tarjeta.<br>
  * @author af.lopezf
  */
 @Stateless
 public class TarjetaLogic {
-    
+    /**
+     * Persistencia de tarjeta.
+     */
     @Inject
     private TarjetaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
-    
+    /**
+     * Crea una entidad para persistir.<br>
+     * @param entity Entidad a crear.<br>
+     * @return Entidad de tarjeta persistida.<br>
+     * @throws BusinessException  Excepción de negocio.
+     */
     public TarjetaEntity createTarjeta(TarjetaEntity entity) throws BusinessException{
         
         if (persistence.findByNumero(entity.getNumero())!= null)
@@ -33,7 +40,10 @@ public class TarjetaLogic {
         return entity;
     }
     
-    
+    /**
+     * Obtiene todas las tarjetas del sistema.<br>
+     * @return Listado de entidades de tarjeta.
+     */
     public List<TarjetaEntity> getTarjetas(){
         
         List<TarjetaEntity> tarjetas = persistence.findAll();
@@ -42,7 +52,11 @@ public class TarjetaLogic {
         
     }
     
-    
+    /**
+     * Obtiene tarjeta por número.<br>
+     * @param numero Número de la tarjeta.<br>
+     * @return Número de la tarjeta.
+     */
     public TarjetaEntity getTarjetaByNumero(int numero){
         
         TarjetaEntity tarjeta = persistence.findByNumero(numero);
@@ -50,7 +64,11 @@ public class TarjetaLogic {
         return tarjeta;
     }
     
-    
+    /**
+     * Actualiza la entidad de tarjeta.<br>
+     * @param entity Entidad a actualizar.<br>
+     * @return Entidad actualizada
+     */
     public TarjetaEntity update(TarjetaEntity entity){
         
         TarjetaEntity tarjeta = persistence.update(entity);
@@ -58,7 +76,10 @@ public class TarjetaLogic {
         return tarjeta;
     }
     
-    
+    /**
+     * Borra la tarjeta con número dado.<br>
+     * @param numero Número de la tarjeta.<br>
+     */
     public void deleteTarjeta(int numero){
         
         persistence.delete(numero);

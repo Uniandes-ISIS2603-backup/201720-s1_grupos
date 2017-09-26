@@ -29,7 +29,7 @@ import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
 /**
- *
+ * Lógica de noticia
  * @author s.guzmanm
  */
 @Stateless

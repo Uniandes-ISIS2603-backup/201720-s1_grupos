@@ -19,7 +19,7 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 /**
- *
+ * Lógica de 
  * @author tefa
  */
 @Stateless

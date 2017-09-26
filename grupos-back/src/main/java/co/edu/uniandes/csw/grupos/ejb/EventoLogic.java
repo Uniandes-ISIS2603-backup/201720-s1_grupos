@@ -17,21 +17,33 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Lógica de un evento.<br>
  * @author js.ramos14
  */
 @Stateless
 public class EventoLogic {
-    
+    /**
+     * Persistencia de un evento.<br>
+     */
     @Inject
     EventoPersistence persistence;
-    
+    /**
+     * Lógica de usuario.
+     */
     @Inject
     UsuarioLogic usuario;
-    
+    /**
+     * Lógica de patrocinio.
+     */
     @Inject
     PatrocinioLogic patrocinio;
-    
+    /**
+     * Obtiene una entidad con el id dado.<br>
+     * @param id Id de entidad.<br>
+     * @return Entidad dada.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException Excepción de no encontrada.
+     */
     public EventoEntity getEntity(Long id) throws BusinessException, NotFoundException
     {
         if(id == null) throw new BusinessException("La id solicitada no puede estar vacia o nula");
@@ -39,19 +51,33 @@ public class EventoLogic {
         if(entity== null) throw new NotFoundException("No existe un evento con la id " + id +" solicitada");
         return entity;
     }
-    
+    /**
+     * Obtiene todas las entidades.<br>
+     * @return Lista de eventos.
+     */
     public List<EventoEntity> getAll()
     {
         return persistence.findAll();
     }
-
+    /**
+     * Crea un nuevo evento.<br>
+     * @param entity Entidad a persistir.<br>
+     * @return Entidad persistida.<br>
+     * @throws BusinessException Excepción de negocio
+     */
     public EventoEntity createEntity(EventoEntity entity) throws BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
         if(persistence.find(entity.getId()) != null) throw new BusinessException("Ya existe un Evento con ese id");
         return persistence.create(entity);        
     }
-    
+    /**
+     * Actualiza el evento al valor dado.<br>
+     * @param entity Entidad a actualizar.<br>
+     * @return Entidad actualizada.<br>
+     * @throws NotFoundException Si no se encuentra.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     public EventoEntity updateEntity(EventoEntity entity) throws NotFoundException, BusinessException
     {
         EventoEntity Evento= persistence.find(entity.getId());
@@ -62,7 +88,12 @@ public class EventoLogic {
         EventoEntity newEntity = persistence.update(entity);
         return newEntity;
     }
-    
+    /**
+     * Borra la entidad de evento.<br>
+     * @param entity Entidad dada.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException  Si no se encuentra.
+     */
     public void deleteEntity(EventoEntity entity) throws BusinessException, NotFoundException
     {
         EventoEntity Evento = persistence.find(entity.getId());
@@ -202,7 +233,12 @@ public class EventoLogic {
         entity.getPatrocinios().remove(index);
         updateEntity(entity);
     }
-    
+    /**
+     * Obtiene un patrocinio específico de la lógica de patrocinio.<br>
+     * @param patrocinioId Id de patrocinio.<br>
+     * @return Entidad de patrocinio.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     private PatrocinioEntity getSpecificPatrocinio(Long patrocinioId) throws BusinessException {
         List<PatrocinioEntity> pat=patrocinio.allPatrocinios();
         for(PatrocinioEntity p: pat)

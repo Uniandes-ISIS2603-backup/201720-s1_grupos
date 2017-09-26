@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 /**
- *
+ *Lógica de categoría
  * @author cm.sarmiento10
  */
 public class CategoriaLogic {
