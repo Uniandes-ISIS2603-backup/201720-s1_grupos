@@ -143,4 +143,10 @@ public class UsuarioNoticiaResource {
         if(usuarioLogic.getNoticia( usuarioId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
         return NoticiaMultimediaResource.class;
     }
+    
+    @Path("{noticiaId: \\d+}/comentarios")
+    public Class<NoticiaComentarioResource> getComentarios(@PathParam("usuarioId") Long usuarioId,@PathParam("noticiaId") Long id) throws BusinessException {
+        if(usuarioLogic.getNoticia( usuarioId, id)==null) throw new NotFoundException("No existe el grupo con este id");
+        return NoticiaComentarioResource.class;
+    }
 }

@@ -17,6 +17,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -25,6 +26,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author tefa
  */
+@Path("/usuarios/{usuarioId: \\d+}/patrocinios")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioPatrocinioResource {
@@ -62,6 +64,7 @@ public class UsuarioPatrocinioResource {
     @POST
     public PatrocinioDetailDTO addPatrocinio(@PathParam("usuarioId") Long usuarioId, PatrocinioDetailDTO newp) throws BusinessException{
         PatrocinioEntity change = newp.toEntity();
+        //PatrocinioEntity nuevecito = PatrocinioLogic.addUsuario(usuarioId, change);
         PatrocinioEntity nuevo = usuarioLogic.addPatrocinio(usuarioId, change);
         return new PatrocinioDetailDTO(nuevo);
     }
@@ -74,9 +77,10 @@ public class UsuarioPatrocinioResource {
      * @throws BusinessException 
      */
     @PUT
-    public PatrocinioDetailDTO updatePatrocinio(@PathParam("usuarioId") Long usuarioId, PatrocinioDetailDTO newp) throws BusinessException{
+    @Path("{patrocinioId: \\d+}")
+    public PatrocinioDetailDTO updatePatrocinio(@PathParam("usuarioId") Long usuarioId, PatrocinioDetailDTO newp, @PathParam("patrocinioId") Long patrocinioId) throws BusinessException{
         PatrocinioEntity pe = newp.toEntity();
-        PatrocinioEntity cambio = usuarioLogic.updatePatrocinio(usuarioId, pe.getId(), pe);
+        PatrocinioEntity cambio = usuarioLogic.updatePatrocinio(usuarioId, patrocinioId, pe);
         return new PatrocinioDetailDTO(cambio);
     }
     

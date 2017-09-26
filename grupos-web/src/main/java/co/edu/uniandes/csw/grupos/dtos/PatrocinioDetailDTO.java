@@ -31,7 +31,10 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
         super(pe);
         if(pe!=null){
             //genera el usuario
-            usuario = new UsuarioDTO(pe.getUsuario());
+            if(pe.getUsuario() != null)
+            {
+                usuario = new UsuarioDTO(pe.getUsuario());
+            }
         }
     }
     

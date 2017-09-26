@@ -73,7 +73,7 @@ public class UsuarioEntity implements Serializable {
      * Empresa asociada al usuario
      */
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private EmpresaEntity empresa;
+    private EmpresaEntity empresa = null;
     
     /**
      * Lista de grupos a los que pertenece

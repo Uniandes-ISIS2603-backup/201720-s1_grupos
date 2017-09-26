@@ -26,6 +26,12 @@ public class EventoLogic {
     @Inject
     EventoPersistence persistence;
     
+    @Inject
+    UsuarioLogic usuario;
+    
+    @Inject
+    PatrocinioLogic patrocinio;
+    
     public EventoEntity getEntity(Long id) throws BusinessException, NotFoundException
     {
         if(id == null) throw new BusinessException("La id solicitada no puede estar vacia o nula");
@@ -39,13 +45,15 @@ public class EventoLogic {
         return persistence.findAll();
     }
 
-    public EventoEntity createEntity(EventoEntity entity,UsuarioEntity admin) throws BusinessException
+    public EventoEntity createEntity(EventoEntity entity) throws BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
         if(persistence.find(entity.getId()) != null) throw new BusinessException("Ya existe un Evento con ese id");
         return persistence.create(entity);        
     }
-    public EventoEntity updateEntity(EventoEntity entity, UsuarioEntity admin) throws NotFoundException, BusinessException{
+    
+    public EventoEntity updateEntity(EventoEntity entity) throws NotFoundException, BusinessException
+    {
         EventoEntity Evento= persistence.find(entity.getId());
         if(Evento==null)
        {
@@ -55,7 +63,7 @@ public class EventoLogic {
         return newEntity;
     }
     
-    public void deleteEntity(EventoEntity entity, UsuarioEntity admin) throws BusinessException, NotFoundException
+    public void deleteEntity(EventoEntity entity) throws BusinessException, NotFoundException
     {
         EventoEntity Evento = persistence.find(entity.getId());
        if(Evento==null)
@@ -105,9 +113,11 @@ public class EventoLogic {
      */
     public UsuarioEntity addUsuario(Long entityId, Long usuarioId) throws BusinessException, NotFoundException {
         EventoEntity entity = getEntity(entityId);
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setId(usuarioId);
+        UsuarioEntity usuarioEntity = usuario.findById(usuarioId);
+        int index=entity.getUsuarios().indexOf(usuarioEntity);
+        if(index>=0) throw new BusinessException("Ya existe el usuario");
         entity.getUsuarios().add(usuarioEntity);
+        updateEntity(entity);
         return getUsuario(entityId, usuarioId);
     }
 
@@ -120,10 +130,13 @@ public class EventoLogic {
      */
     public void removeUsuario(Long entityId, Long usuarioId) throws BusinessException, NotFoundException {
         EventoEntity entity = getEntity(entityId);
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setId(usuarioId);
-        entity.getUsuarios().remove(usuarioEntity);
-    }   
+        UsuarioEntity usuarioEntity = usuario.findById(usuarioId);
+        int index=usuarioEntity.getEventos().indexOf(entity);
+        if(index<0) throw new BusinessException("No existe el usuario");
+        usuarioEntity.getEventos().remove(index);
+        usuario.updateUser(usuarioEntity.getId(), usuarioEntity);
+    }    
+    
     /**
      * Obtiene una colección de instancias de PatrocinioEntity asociadas a una
      * instancia de Evento
@@ -165,8 +178,10 @@ public class EventoLogic {
      */
     public PatrocinioEntity addPatrocinio(Long entityId, Long patrocinioId) throws BusinessException, NotFoundException {
         EventoEntity entity = getEntity(entityId);
-        PatrocinioEntity patrocinioEntity = new PatrocinioEntity();
-        patrocinioEntity.setId(patrocinioId);
+        PatrocinioEntity patrocinioEntity = getSpecificPatrocinio(patrocinioId);
+        if(patrocinioEntity == null) throw new NotFoundException("No existe la entidad buscada");
+        int index=entity.getPatrocinios().indexOf(patrocinioEntity);
+        if(index>=0) throw new BusinessException("Ya existe el patrocinio");
         entity.getPatrocinios().add(patrocinioEntity);
         return getPatrocinio(entityId, patrocinioId);
     }
@@ -182,21 +197,21 @@ public class EventoLogic {
         EventoEntity entity = getEntity(entityId);
         PatrocinioEntity patrocinioEntity = new PatrocinioEntity();
         patrocinioEntity.setId(patrocinioId);
-        entity.getPatrocinios().remove(patrocinioEntity);
+        int index=entity.getPatrocinios().indexOf(patrocinioEntity);
+        if(index<0) throw new BusinessException("No existe el patrocinio");
+        entity.getPatrocinios().remove(index);
+        updateEntity(entity);
     }
     
-    /**
-     * Da todos los patrocinios de un evento con el id dado por parámetro
-     * @param id identificador del evento
-     * @return lista de patrocinios
-     * @throws BusinessException 
-     */
-    public List<PatrocinioEntity> getPatrocinios(Long id) throws BusinessException, NotFoundException{
-        EventoEntity u = getEntity(id);
-        if(u==null){
-            throw new NotFoundException("El evento no existe");
+    private PatrocinioEntity getSpecificPatrocinio(Long patrocinioId) throws BusinessException {
+        List<PatrocinioEntity> pat=patrocinio.allPatrocinios();
+        for(PatrocinioEntity p: pat)
+        {
+            if(p.getId().equals(patrocinioId))
+            {
+                return p;
+            }
         }
-        //FALTA ARREGLAR EVENTO ENTITY
-        return new ArrayList<>();
+        return null;
     }
 }

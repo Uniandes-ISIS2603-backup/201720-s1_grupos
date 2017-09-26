@@ -89,6 +89,8 @@ public class EventoUsuariosResource {
     @GET
     @Path("{usuariosId: \\d+}")
     public UsuarioDetailDTO getUsuarios(@PathParam("id") Long id, @PathParam("usuariosId") Long usuariosId) throws BusinessException, NotFoundException {
+        UsuarioEntity e= logic.getUsuario(id, usuariosId);
+        if(e==null) throw new NotFoundException("No se encuentra el usuario buscado");
         return new UsuarioDetailDTO(logic.getUsuario(id, usuariosId));
     }
 

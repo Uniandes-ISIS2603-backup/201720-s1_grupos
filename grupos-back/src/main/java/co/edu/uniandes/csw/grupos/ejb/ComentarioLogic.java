@@ -47,14 +47,14 @@ public class ComentarioLogic {
         List<ComentarioEntity> comentarios = getComentariosBlog(grupoId, blogId);
         ComentarioEntity newEntity = createComentario(entity);
         comentarios.add(newEntity);
-        return entity;
+        return newEntity;
     }
     
-    public ComentarioEntity createComentarioNoticia(Long grupoId, Long noticiaId, ComentarioEntity entity)throws BusinessException {
-        List<ComentarioEntity> comentarios = getComentariosNoticia(grupoId, noticiaId);
+    public ComentarioEntity createComentarioNoticia(Long noticiaId, ComentarioEntity entity)throws BusinessException {
+        List<ComentarioEntity> comentarios = getComentariosNoticia( noticiaId);
         ComentarioEntity newEntity = createComentario(entity);
         comentarios.add(newEntity);
-        return entity;
+        return newEntity;
     }
     
     public List<ComentarioEntity> getComentarios() {
@@ -66,10 +66,10 @@ public class ComentarioLogic {
         return blogLogic.getBlog(grupoId, blogId).getComentarios();
     }
     
-    public List<ComentarioEntity> getComentariosNoticia(Long grupoId, Long noticiaId) {
-        NoticiaEntity noticia = grupoLogic.getNoticia(grupoId, noticiaId);
+    public List<ComentarioEntity> getComentariosNoticia(Long noticiaId) throws BusinessException {
+        NoticiaEntity noticia = noticiaLogic.getEntity(noticiaId);
         if(noticia == null) {
-            throw new NotFoundException("No existe una noticia con el id "+noticiaId+"en el grupo con id "+grupoId);
+            throw new NotFoundException("No existe una noticia con el id "+noticiaId);
         }
         return noticia.getComentarios();
     }
@@ -85,8 +85,8 @@ public class ComentarioLogic {
         return comentarios.get(index);
     }
     
-    public ComentarioEntity getComentarioNoticia(Long grupoId, Long noticiaId, Long comentarioId) throws BusinessException {
-        List<ComentarioEntity> comentarios = getComentariosNoticia(grupoId, noticiaId);
+    public ComentarioEntity getComentarioNoticia(Long noticiaId, Long comentarioId) throws BusinessException {
+        List<ComentarioEntity> comentarios = getComentariosNoticia(noticiaId);
         ComentarioEntity comentario = new ComentarioEntity();
         comentario.setId(comentarioId);
         int index = comentarios.indexOf(comentario);
@@ -109,8 +109,8 @@ public class ComentarioLogic {
         return updateComentario(comentario);
     }
     
-    public ComentarioEntity updateComentarioNoticia(Long grupoId, Long noticiaId, ComentarioEntity comentario) throws BusinessException{
-        getComentarioNoticia(grupoId, noticiaId, comentario.getId());
+    public ComentarioEntity updateComentarioNoticia(Long noticiaId, ComentarioEntity comentario) throws BusinessException{
+        getComentarioNoticia(noticiaId, comentario.getId());
         return updateComentario(comentario);
     }
     
@@ -134,8 +134,8 @@ public class ComentarioLogic {
         deleteComentario(comentarioId);
     }
     
-    public void deleteComentarioNoticia(Long grupoId, Long noticiaId, Long comentarioId) {
-        List<ComentarioEntity> comentarios = getComentariosNoticia(grupoId, noticiaId);
+    public void deleteComentarioNoticia(Long noticiaId, Long comentarioId) throws BusinessException {
+        List<ComentarioEntity> comentarios = getComentariosNoticia(noticiaId);
         ComentarioEntity comentario = new ComentarioEntity();
         comentario.setId(comentarioId);
         int index = comentarios.indexOf(comentario);

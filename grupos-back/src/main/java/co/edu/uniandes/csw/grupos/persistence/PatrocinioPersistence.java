@@ -25,7 +25,7 @@ public class PatrocinioPersistence {
    
    public PatrocinioEntity createEntity(PatrocinioEntity e)
    {
-       LOGGER.info("Creando objeto "+e.getId());
+       LOGGER.info("Creando objeto "+e);
        em.persist(e);
        LOGGER.info("Éxito en creación");
        return e;

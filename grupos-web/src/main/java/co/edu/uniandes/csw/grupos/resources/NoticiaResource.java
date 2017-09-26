@@ -60,4 +60,10 @@ public class NoticiaResource {
         }
         return list;
     }
+    
+    @Path("{noticiaId: \\d+}/comentarios")
+    public Class<NoticiaComentarioResource> getComentarios(@PathParam("noticiaId") Long id) throws BusinessException {
+        logic.getEntity( id);
+        return NoticiaComentarioResource.class;
+    }
 }

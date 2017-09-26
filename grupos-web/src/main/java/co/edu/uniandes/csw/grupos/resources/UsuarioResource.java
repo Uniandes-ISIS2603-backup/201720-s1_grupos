@@ -94,8 +94,8 @@ public class UsuarioResource {
      * @throws BusinessException
      */
     @PUT
-    @Path("{id: \\d+}")
-    public String updateUser(@PathParam("id") Long pid, UsuarioDetailDTO user) throws BusinessException
+    @Path("{usuarioId: \\d+}")
+    public String updateUser(@PathParam("usuarioId") Long pid, UsuarioDetailDTO user) throws BusinessException
     {
         UsuarioEntity ret = userLogic.updateUser(pid,user.toEntity());
         return "Se actualizó el usuario con id: " + pid;
@@ -126,7 +126,7 @@ public class UsuarioResource {
         return UsuarioTarjetasResource.class;
     }
     
-    @Path("{usuarioId: \\d+}/empresa")
+    @Path("{usuarioId: \\d+}/empresas")
     public Class<UsuarioEmpresaResource> getUsuarioEmpresaResource(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
         UsuarioEntity entity = userLogic.findById(usuarioId);
         if (entity == null) {

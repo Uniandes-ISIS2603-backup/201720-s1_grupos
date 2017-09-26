@@ -30,6 +30,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author af.lopezf
  */
+@Path("/usuarios/{usuarioId: \\d+}/empresa")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioEmpresaResource {
@@ -79,14 +80,16 @@ public class UsuarioEmpresaResource {
      */
     @GET
     public EmpresaDetailDTO getEmpresa(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
-        UsuarioEntity user= usuarioLogic.findById(usuarioId);
-        EmpresaEntity empresa= user.getEmpresa();
+        UsuarioEntity usuario = usuarioLogic.findById(usuarioId);
+        if (usuario == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        EmpresaEntity empresa = usuario.getEmpresa();
         if(empresa == null){
             throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene empresa asociada", 404);
         }
         return new EmpresaDetailDTO(empresa);
-    }
-    
+    }    
     
      /**
      * Asocia una Empresa existente a un Usuario
@@ -98,13 +101,16 @@ public class UsuarioEmpresaResource {
      */
     @POST
     public EmpresaDetailDTO addEmpresa(@PathParam("usuarioId") Long usuarioId, EmpresaDetailDTO pEmpresa ) throws BusinessException {
+        UsuarioEntity usuario = usuarioLogic.findById(usuarioId);
+        if (usuario == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        } 
         EmpresaEntity empresa = usuarioLogic.getEmpresa(usuarioId);
         if(empresa != null){
             throw new BusinessException("El usuario con id " + usuarioId + " ya tiene una empresa asociada, solo se puede tener una empresa.");
         }
         return new EmpresaDetailDTO(usuarioLogic.addEmpresa(usuarioId, pEmpresa.toEntity()));
-    }
-    
+    }    
     
      /**
      * Actualiza una instancia Empresa asociad a una instancia de Usuario
@@ -116,6 +122,10 @@ public class UsuarioEmpresaResource {
      */
     @PUT
     public EmpresaDetailDTO updateEmpresa(@PathParam("usuarioId") Long usuarioId, EmpresaDetailDTO pEmpresa) throws BusinessException {
+        UsuarioEntity usuario = usuarioLogic.findById(usuarioId);
+        if (usuario == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
         EmpresaEntity empresa = usuarioLogic.getEmpresa(usuarioId);
         if(empresa == null){
             throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene empresa asociada", 404);
@@ -132,6 +142,10 @@ public class UsuarioEmpresaResource {
      */
     @DELETE
     public void removeEmpresa(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
+        UsuarioEntity usuario = usuarioLogic.findById(usuarioId);
+        if (usuario == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
         EmpresaEntity empresa = usuarioLogic.getEmpresa(usuarioId);
         if(empresa == null){
             throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene empresa asociada", 404);

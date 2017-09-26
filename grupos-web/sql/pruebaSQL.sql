@@ -9,6 +9,8 @@ delete from UsuarioEntity_TarjetaEntity;
 
 delete from BlogEntity_MultimediaEntity;
 delete from BlogEntity_ComentarioEntity;
+delete from EventoEntity_PatrocinioEntity;
+delete from PatrocinioEntity;
 
 delete from NoticiaEntity_ComentarioEntity;
 delete from CalificacionEntity; 

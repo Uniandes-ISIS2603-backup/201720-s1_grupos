@@ -34,15 +34,16 @@ import javax.ws.rs.WebApplicationException;
 @Stateless
 public class EventoResource {
     
-        @Inject
+    @Inject
     EventoLogic logic;
     
     @GET
-    public List<EventoDetailDTO> getEventoes()
+    public List<EventoDetailDTO> getEventos()
     {
         List<EventoDetailDTO> list = listEntityToDetailDTO(logic.getAll());
         return list;
     }
+    
     @GET
     @Path("{id: \\d+}")
     public EventoDetailDTO getEvento(@PathParam("id") Long id) throws BusinessException, NotFoundException
@@ -53,17 +54,23 @@ public class EventoResource {
     
     @PUT
     @Path("{id: \\d+}")
-    public EventoDetailDTO updateEvento(@PathParam("id") Long id) throws BusinessException, NotFoundException
+    public EventoDetailDTO updateEvento(@PathParam("id") Long id, EventoDetailDTO dto) throws BusinessException, NotFoundException
     {
        EventoEntity entity =logic.getEntity(id);
-       return new EventoDetailDTO(logic.updateEntity(entity, null));
-       
+       if(entity==null || dto==null) throw new NotFoundException("No existe el vento a actualizar.");
+       EventoEntity newEntity=dto.toEntity();
+       newEntity.setId(id);
+       newEntity.setGrupo(entity.getGrupo());
+       newEntity.setUsuarios(entity.getUsuarios());
+       return new EventoDetailDTO(logic.updateEntity(newEntity));
     }
+    
     @POST
     public EventoDetailDTO createEvento(EventoDetailDTO Evento) throws BusinessException
     {
         EventoEntity entity = Evento.toEntity();
-        return new EventoDetailDTO(logic.createEntity(entity,null));
+        EventoEntity e=logic.createEntity(entity);
+        return new EventoDetailDTO(e);
     }
     
     @DELETE
@@ -71,15 +78,7 @@ public class EventoResource {
     public void deleteEvento(@PathParam("id")Long id) throws BusinessException, NotFoundException
     {
         EventoEntity entity = logic.getEntity(id);
-        logic.deleteEntity(entity, null);
-    }
-    
-    private List<EventoDetailDTO> listEntityToDetailDTO(List<EventoEntity> entityList) {
-        List<EventoDetailDTO> list = new ArrayList<>();
-        for (EventoEntity entity : entityList) {
-            list.add(new EventoDetailDTO(entity));
-        }
-        return list;
+        logic.deleteEntity(entity);
     }
     
     /**
@@ -91,11 +90,12 @@ public class EventoResource {
      * @throws NotFoundException 
      */
     @Path("{id: \\d+}/patrocinios")
-    public Class<EventoPatrocinioResource> findPatrocinios(@PathParam("id") Long pid) throws WebApplicationException, BusinessException, NotFoundException
+    public Class<EventoPatrocinioResource> getPatrocinioResource(@PathParam("id") Long id) throws BusinessException, NotFoundException
     {
-        EventoEntity entity = logic.getEntity(pid);
-        if (entity == null) {
-            throw new WebApplicationException("El evento no existe", 404);
+        EventoEntity entity = logic.getEntity(id);
+        if(entity == null)
+        {
+            throw new WebApplicationException("El recurso /eventos/" + id + "/patrocinios no existe.", 404);
         }
         return EventoPatrocinioResource.class;
     }
@@ -110,4 +110,11 @@ public class EventoResource {
         return EventoUsuariosResource.class;
     }
 
+    private List<EventoDetailDTO> listEntityToDetailDTO(List<EventoEntity> entityList) {
+        List<EventoDetailDTO> list = new ArrayList<>();
+        for (EventoEntity entity : entityList) {
+            list.add(new EventoDetailDTO(entity));
+        }
+        return list;
+    }
 }

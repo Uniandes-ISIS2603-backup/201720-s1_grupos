@@ -128,7 +128,7 @@ public class UsuarioTarjetasResource {
     public TarjetaDetailDTO updateTarjeta(@PathParam("usuarioId") Long usuarioId, @PathParam("numTarjeta") int numTarjeta, TarjetaDetailDTO pTarjeta) throws BusinessException {
         TarjetaEntity tarjeta = usuarioLogic.getTarjeta(usuarioId, numTarjeta);
         if(tarjeta == null){
-            throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene ninguna tarjeta con el número " + numTarjeta);
+            throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene ninguna tarjeta con el número " + numTarjeta, 404);
         }
         
         if(pTarjeta.getBanco() != null)
@@ -159,7 +159,7 @@ public class UsuarioTarjetasResource {
     public void removeTarjeta(@PathParam("usuarioId") Long usuarioId, @PathParam("numTarjeta") int numTarjeta) throws BusinessException {
         TarjetaEntity tarjeta = usuarioLogic.getTarjeta(usuarioId, numTarjeta);
         if(tarjeta == null){
-            throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene ninguna tarjeta con el número " + numTarjeta);
+            throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene ninguna tarjeta con el número " + numTarjeta,404);
         }
         usuarioLogic.removeTarjeta(usuarioId, numTarjeta);
     }

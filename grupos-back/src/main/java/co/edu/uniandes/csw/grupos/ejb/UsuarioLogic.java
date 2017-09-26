@@ -371,9 +371,8 @@ public class UsuarioLogic {
         if(u==null){
             throw new NotFoundException("El usuario no existe");
         }
+        pe.setUsuario(u);
         PatrocinioEntity nuevo = patrocinioLogic.createPatrocinio(pe);
-        List<PatrocinioEntity> pat= u.getPatrocinios();
-        pat.add(nuevo);
         return nuevo;
     }
 
@@ -387,12 +386,19 @@ public class UsuarioLogic {
      */
     public PatrocinioEntity updatePatrocinio(Long id, Long patrocinioId, PatrocinioEntity np) throws BusinessException{
         UsuarioEntity u = findById(id);
+        np.setId(patrocinioId);
         if(u==null){
             throw new NotFoundException("El usuario no existe");
         }
-        PatrocinioEntity cambio = patrocinioLogic.updatePatrocinio(patrocinioId, np);
+        if(u.getPatrocinios()==null){
+            throw new BusinessException("No hay patrocinios para actualizar");
+        }
         int pos = u.getPatrocinios().indexOf(np);
-        u.getPatrocinios().set(pos, cambio);
+        if(pos<0) throw new NotFoundException("El patrocinio no existe en la lista del usuario");
+        
+        np.setUsuario(u);
+        PatrocinioEntity cambio = patrocinioLogic.updatePatrocinio(np.getId(), np);
+        //u.getPatrocinios().set(pos, cambio);
         return cambio;
     }
 }

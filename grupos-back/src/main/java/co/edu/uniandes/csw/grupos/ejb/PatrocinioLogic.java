@@ -43,17 +43,8 @@ public class PatrocinioLogic {
      */
     public PatrocinioEntity createPatrocinio(PatrocinioEntity ppat) throws BusinessException
     {
-        //Verifica si ya existe un usuario
-        PatrocinioEntity found = per.find(ppat.getId()); 
-        if(found != null && found == ppat)
-        {
-            throw new BusinessException("Ya existe un usuario con las especificaciones dadas.");
-        }
-        else 
-        {
-            PatrocinioEntity add = per.createEntity(ppat);
-            return add;
-        }
+        PatrocinioEntity add = per.createEntity(ppat);
+        return add;
     }
     
     /**
