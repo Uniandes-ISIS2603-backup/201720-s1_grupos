@@ -16,14 +16,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Persistencia de tarjeta
  * @author af.lopezf
  */
 @Stateless
 public class TarjetaPersistence {
-    
+    /**
+     * Logger
+     */
     private static final Logger LOGGER = Logger.getLogger(TarjetaPersistence.class.getName());
-
+    /**
+     * Entity manager
+     */
     @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
     
@@ -39,13 +43,20 @@ public class TarjetaPersistence {
     }
 
 
-
+    /**
+     * Encuentra todas las entidades.<br>
+     * @return Lista de entidades de tarjeta.
+     */
     public List<TarjetaEntity> findAll() {
      
         TypedQuery query = em.createQuery("select u from TarjetaEntity u", TarjetaEntity.class);
         return query.getResultList();
     }
-    
+    /**
+     * Encuentra la entidad de tarjeta por número.<br>
+     * @param numero Número de tarjeta.<br>
+     * @return Entidad encontrada.
+     */
     public TarjetaEntity findByNumero(int numero){
         
         TypedQuery query = em.createQuery("Select e From TarjetaEntity e where e.numero = :numero", TarjetaEntity.class);
@@ -61,12 +72,19 @@ public class TarjetaPersistence {
         
     }
     
-    
+    /**
+     * Actualiza la entidad con el parámetro dado.<br>
+     * @param entity Entidad a actualizar.<br>
+     * @return Entidad actualizada.
+     */
     public TarjetaEntity update(TarjetaEntity entity){
         return em.merge(entity);
     }
     
-    
+    /**
+     * Borrar una entidad con el número dado.<br>
+     * @param numero Número dado
+     */
     public void delete(int numero){
         TarjetaEntity entity = em.find(TarjetaEntity.class, numero);
         em.remove(entity);
