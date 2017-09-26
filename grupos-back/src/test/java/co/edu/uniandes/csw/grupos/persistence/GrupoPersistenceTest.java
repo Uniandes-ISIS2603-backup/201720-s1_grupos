@@ -210,8 +210,11 @@ public class GrupoPersistenceTest {
         Assert.assertEquals(entity.getId(), newEntity.getId());
     }
     
+    /**
+     * Prueba las relaciones de grupos a otras entidades
+     */
     @Test
-    public void testAsociaciones() throws Exception
+    public void testAsociaciones()
     {
         PodamFactory factory = new PodamFactoryImpl();
         CategoriaEntity categoria = factory.manufacturePojo(CategoriaEntity.class);

@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
@@ -45,25 +45,25 @@ public class TarjetaPersistenceTest {
     }
     
     
-
+    
     @Inject
     private TarjetaPersistence persistence;
-
+    
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
      * datos por fuera de los métodos que se están probando.
      */
     @PersistenceContext
     private EntityManager em;
-
+    
     /**
      * Variable para martcar las transacciones del em anterior cuando se
      * crean/borran datos para las pruebas.
      */
     @Inject
-    UserTransaction utx;
-
-     /**
+            UserTransaction utx;
+    
+    /**
      *
      */
     private List<TarjetaEntity> data = new ArrayList<TarjetaEntity>();
@@ -101,13 +101,13 @@ public class TarjetaPersistenceTest {
     private void clearData() {
         em.createQuery("delete from TarjetaEntity").executeUpdate();
     }
-
-
+    
+    
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             TarjetaEntity entity = factory.manufacturePojo(TarjetaEntity.class);
-
+            
             em.persist(entity);
             data.add(entity);
         }
@@ -116,7 +116,7 @@ public class TarjetaPersistenceTest {
     @After
     public void tearDown() {
     }
-
+    
     /**
      * Test of create method, of class TarjetaPersistence.
      */
@@ -125,15 +125,15 @@ public class TarjetaPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
         TarjetaEntity result = persistence.create(newEntity);
-
+        
         Assert.assertNotNull(result);
         TarjetaEntity entity = em.find(TarjetaEntity.class, result.getNumero());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
-
+        
         //fail("testCreate");
     }
-
+    
     /**
      * Test of findAll method, of class TarjetaPersistence.
      */
@@ -150,10 +150,10 @@ public class TarjetaPersistenceTest {
             }
             Assert.assertTrue(found);
         }
-
+        
         //fail("testFindAll");
     }
-
+    
     /**
      * Test of findByNumero method, of class TarjetaPersistence.
      */
@@ -163,10 +163,10 @@ public class TarjetaPersistenceTest {
         TarjetaEntity newEntity = persistence.findByNumero(entity.getNumero());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
-
+        
         //fail("testFindByNumero");
     }
-
+    
     /**
      * Test of update method, of class TarjetaPersistence.
      */
@@ -176,18 +176,23 @@ public class TarjetaPersistenceTest {
         TarjetaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
-
+        
         newEntity.setNumero(entity.getNumero());
-
+        newEntity.setBanco(entity.getBanco());
+        newEntity.setDineroDisponible(entity.getDineroDisponible());
+        newEntity.setMaxCupo(entity.getMaxCupo());
+        
         persistence.update(newEntity);
-
+        
         TarjetaEntity resp = em.find(TarjetaEntity.class, entity.getNumero());
-
+        
         Assert.assertEquals(newEntity.getNumero(), resp.getNumero());
-
+        Assert.assertEquals(newEntity.getBanco(), resp.getBanco());
+        Assert.assertEquals(newEntity.getDineroDisponible(), resp.getDineroDisponible(), 0.00001);
+        Assert.assertEquals(newEntity.getMaxCupo(), resp.getMaxCupo(), 0.00001);
         //fail("testUpdate");
     }
-
+    
     /**
      * Test of delete method, of class TarjetaPersistence.
      */
@@ -197,7 +202,7 @@ public class TarjetaPersistenceTest {
         persistence.delete(entity.getNumero());
         TarjetaEntity deleted = em.find(TarjetaEntity.class, entity.getNumero());
         Assert.assertNull(deleted);
-
+        
         //fail("testDelete");
     }
     
