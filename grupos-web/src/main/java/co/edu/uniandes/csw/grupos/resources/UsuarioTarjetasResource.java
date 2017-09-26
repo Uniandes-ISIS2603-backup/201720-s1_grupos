@@ -133,10 +133,14 @@ public class UsuarioTarjetasResource {
         
         if(pTarjeta.getBanco() != null)
             tarjeta.setBanco(pTarjeta.getBanco());
-        if(pTarjeta.getDineroDisponible() != tarjeta.getDineroDisponible())
+        if(Math.abs(pTarjeta.getDineroDisponible()- tarjeta.getDineroDisponible())<0.00001)
+        {
             tarjeta.setDineroDisponible(pTarjeta.getDineroDisponible());
-        if(pTarjeta.getMaxCupo() != tarjeta.getMaxCupo())
+        }
+        if(Math.abs(pTarjeta.getMaxCupo()- tarjeta.getMaxCupo())<0.00001)
+        {
             tarjeta.setMaxCupo(pTarjeta.getMaxCupo());
+        }
         
         
         return new TarjetaDetailDTO(usuarioLogic.updateTarjeta(usuarioId, tarjeta));

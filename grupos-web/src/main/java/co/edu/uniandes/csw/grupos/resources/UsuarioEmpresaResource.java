@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.grupos.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
+import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,8 @@ public class UsuarioEmpresaResource {
      */
     @GET
     public EmpresaDetailDTO getEmpresa(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
-        EmpresaEntity empresa = usuarioLogic.getEmpresa(usuarioId);
+        UsuarioEntity user= usuarioLogic.findById(usuarioId);
+        EmpresaEntity empresa= user.getEmpresa();
         if(empresa == null){
             throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene empresa asociada", 404);
         }

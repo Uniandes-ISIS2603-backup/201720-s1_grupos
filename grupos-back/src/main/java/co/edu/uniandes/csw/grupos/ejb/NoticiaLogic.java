@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
@@ -34,14 +34,14 @@ import javax.ws.rs.core.Response;
  */
 @Stateless
 public class NoticiaLogic {
-    @Inject 
-    NoticiaPersistence persistence;
+    @Inject
+            NoticiaPersistence persistence;
     
     @Inject
-    MultimediaLogic multimedia;
+            MultimediaLogic multimedia;
     
     /**
-     * 
+     *
      * @param id
      * @return
      * @throws BusinessException
@@ -75,11 +75,11 @@ public class NoticiaLogic {
     public NoticiaEntity createEntity(NoticiaEntity entity) throws BusinessException
     {
         if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
-       validarNoticia(entity);
-       entity.setComentarios(new ArrayList<>());
-       return persistence.createEntity(entity);
-       
-       
+        validarNoticia(entity);
+        entity.setComentarios(new ArrayList<>());
+        return persistence.createEntity(entity);
+        
+        
     }
     
     /**
@@ -145,7 +145,7 @@ public class NoticiaLogic {
      * @return MultimediaEntity.<br>
      * @throws BusinessException Excepción de negocio.
      */
-    public MultimediaEntity getMultimedia(Long idNoticia, String link) throws BusinessException 
+    public MultimediaEntity getMultimedia(Long idNoticia, String link) throws BusinessException
     {
         List<MultimediaEntity> list = getMultimedia(idNoticia);
         MultimediaEntity buscada = multimedia.getEntity(link);
@@ -167,13 +167,15 @@ public class NoticiaLogic {
         MultimediaEntity entity=null;
         for(MultimediaEntity m: mult)
         {
-           
+            
             entity=multimedia.getEntity(m.getLink());
             if(entity==null)
-            entity=multimedia.createEntity(m);
+            {
+                entity=multimedia.createEntity(m);
+            }
             if(noticia.getMultimedia().indexOf(entity)<0)
             {
-                               noticia.getMultimedia().add(m);
+                noticia.getMultimedia().add(m);
             }
         }
         persistence.updateEntity(noticia);
@@ -217,6 +219,6 @@ public class NoticiaLogic {
         
         
     }
-
-
+    
+    
 }
