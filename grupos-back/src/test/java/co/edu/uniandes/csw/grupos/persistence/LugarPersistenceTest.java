@@ -158,12 +158,16 @@ public class LugarPersistenceTest {
 
         newEntity.setId(entity.getId());
         newEntity.setNombre(entity.getNombre());
+        newEntity.setDireccion(entity.getDireccion());
+        newEntity.setCapacidad(entity.getCapacidad());
 
         lugarPersistence.update(newEntity);
 
         LugarEntity resp = em.find(LugarEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getCapacidad(), entity.getCapacidad());
 
     }
 }

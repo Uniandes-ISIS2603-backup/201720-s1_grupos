@@ -1,11 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.persistence;
 
+import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
+import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
+import co.edu.uniandes.csw.grupos.entities.EventoEntity;
+import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -23,6 +30,7 @@ import org.junit.runner.RunWith;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 /**
@@ -47,22 +55,31 @@ public class UsuarioPersistenceTest {
      */
     @Inject
     private UsuarioPersistence persistence;
-
+    
+    @Inject
+    private GrupoPersistence persistenceGrupo;
+    
+    @Inject
+    private PatrocinioPersistence persistencePatrocinio;
+    
+    @Inject
+    private NoticiaPersistence persistenceNoticia;
+    
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
      * datos por fuera de los métodos que se están probando.
      */
     @PersistenceContext
     private EntityManager em;
-
+    
     /**
      * Variable para martcar las transacciones del em anterior cuando se
      * crean/borran datos para las pruebas.
      */
     @Inject
-    UserTransaction utx;
-
-     /**
+            UserTransaction utx;
+    
+    /**
      *
      */
     private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
@@ -97,15 +114,17 @@ public class UsuarioPersistenceTest {
     }
     
     private void clearData() {
+        em.createQuery("delete from PatrocinioEntity").executeUpdate();
+        em.createQuery("delete from NoticiaEntity").executeUpdate();
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
-
-
+    
+    
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
-
+            
             em.persist(entity);
             data.add(entity);
         }
@@ -120,7 +139,7 @@ public class UsuarioPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
         UsuarioEntity result = persistence.createEntity(newEntity);
-
+        
         assertNotNull(result);
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
         assertNotNull(entity);
@@ -163,13 +182,13 @@ public class UsuarioPersistenceTest {
         UsuarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-
+        
         newEntity.setId(entity.getId());
-
+        
         persistence.updateEntity(newEntity);
-
+        
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
-
+        
         assertEquals(newEntity.getId(), resp.getId());
     }
     
@@ -179,5 +198,110 @@ public class UsuarioPersistenceTest {
         persistence.delete(entity.getId());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         assertNull(deleted);
+    }
+    
+    /**
+     * Prueba las relaciones de usuarios a otras entidades
+     */
+    @Test
+    public void testAsociaciones()
+    {
+        
+        PodamFactory factory = new PodamFactoryImpl();
+        EmpresaEntity empresa = factory.manufacturePojo(EmpresaEntity.class);
+        GrupoEntity miembro = factory.manufacturePojo(GrupoEntity.class);
+        GrupoEntity admin = factory.manufacturePojo(GrupoEntity.class);
+        EventoEntity evento = factory.manufacturePojo(EventoEntity.class);
+        NoticiaEntity noticia = factory.manufacturePojo(NoticiaEntity.class);
+        TarjetaEntity tarjeta= factory.manufacturePojo(TarjetaEntity.class);
+        BlogEntity blog = factory.manufacturePojo(BlogEntity.class);
+        PatrocinioEntity patrocinio = factory.manufacturePojo(PatrocinioEntity.class);
+        
+        UsuarioEntity entity = data.get(0);
+        
+        entity.setEmpresa(null);
+        entity.setBlogs(new ArrayList<>());
+        entity.setEmpresa(empresa);
+        entity.setEventos(new ArrayList<>());
+        entity.setGrupos(new ArrayList<>());
+        entity.setGruposAdmin(new ArrayList<>());
+        entity.setNoticias(new ArrayList<>());
+        entity.setTarjetas(new ArrayList<>());
+        entity.setPatrocinios(new ArrayList<>());
+        
+        entity.getBlogs().add(blog);
+        entity.getTarjetas().add(tarjeta);
+        entity.getEventos().add(evento);
+        admin.getAdministradores().add(entity);
+        miembro.getMiembros().add(entity);
+        noticia.setAutor(entity);
+        patrocinio.setUsuario(entity);
+        entity.getPatrocinios().add(patrocinio);
+        miembro=persistenceGrupo.update(miembro);
+        admin=persistenceGrupo.update(admin);
+        patrocinio= persistencePatrocinio.updateEntity(patrocinio);
+        noticia= persistenceNoticia.updateEntity(noticia);
+        entity= persistence.updateEntity(entity);
+        entity= persistence.find(entity.getId());
+        Assert.assertEquals(1, entity.getGruposAdmin().size());
+        Assert.assertEquals(admin.getNombre(),entity.getGruposAdmin().get(0).getNombre());
+        
+        Assert.assertEquals(1, entity.getGrupos().size());
+        Assert.assertEquals(miembro.getNombre(),entity.getGrupos().get(0).getNombre());
+        
+        Assert.assertEquals(1, entity.getNoticias().size());
+        Assert.assertEquals(noticia.getTitulo(),entity.getNoticias().get(0).getTitulo());
+        
+        Assert.assertEquals(1, entity.getBlogs().size());
+        Assert.assertEquals(blog.getTitulo(),entity.getBlogs().get(0).getTitulo());
+        
+        Assert.assertEquals(1, entity.getPatrocinios().size());
+        Assert.assertEquals(patrocinio.getPago(),entity.getPatrocinios().get(0).getPago(), 0.00001);
+        
+        Assert.assertEquals(1, entity.getEventos().size());
+        Assert.assertEquals(evento.getNombre(),entity.getEventos().get(0).getNombre());
+        
+        Assert.assertEquals(empresa.getNombre(),entity.getEmpresa().getNombre());
+        
+        Assert.assertEquals(1, entity.getTarjetas().size());
+        Assert.assertEquals(tarjeta.getBanco(),entity.getTarjetas().get(0).getBanco());
+        
+        
+        miembro.getMiembros().remove(entity);
+        admin.getAdministradores().remove(entity);
+        entity.getBlogs().remove(entity.getBlogs().get(0));
+        
+        entity.getPatrocinios().remove(entity.getPatrocinios().get(0));
+        entity.getEventos().remove(entity.getEventos().get(0));
+        entity.getTarjetas().remove(entity.getTarjetas().get(0));
+        noticia.setAutor(null);
+        patrocinio.setUsuario(null);
+        entity.setEmpresa(null);
+        
+        miembro = persistenceGrupo.update(miembro);
+        admin = persistenceGrupo.update(admin);
+        noticia= persistenceNoticia.updateEntity(noticia);
+        patrocinio= persistencePatrocinio.updateEntity(patrocinio);
+        entity= persistence.updateEntity(entity);
+        entity= persistence.find(entity.getId());
+
+        
+        Assert.assertEquals(0, entity.getBlogs().size());
+        
+        Assert.assertEquals(0, entity.getGrupos().size());
+        
+        Assert.assertEquals(0, entity.getGruposAdmin().size());
+        
+        Assert.assertEquals(0, entity.getEventos().size());
+        
+        Assert.assertEquals(0, entity.getNoticias().size());
+        
+        Assert.assertEquals(0, entity.getTarjetas().size());
+        
+        Assert.assertEquals(0, entity.getPatrocinios().size());
+        
+        Assert.assertNull(entity.getEmpresa());
+        
+        
     }
 }

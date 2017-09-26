@@ -6,10 +6,7 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
-import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
-import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
-import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -49,12 +46,6 @@ public class BlogPersistenceTest {
     private List<BlogEntity> data = new ArrayList<>();
     
     private List<GrupoEntity> dataG = new ArrayList<>();
-    
-    private List<ComentarioEntity> dataCo = new ArrayList<>();
-    
-    private List<MultimediaEntity> dataM = new ArrayList<>();
-    
-    private List<CalificacionEntity> dataCa = new ArrayList<>();
     
     @Deployment
     public static JavaArchive createDeployment() {
@@ -99,11 +90,7 @@ public class BlogPersistenceTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from CalificacionEntity").executeUpdate();
         em.createQuery("delete from BlogEntity").executeUpdate();
-        em.createQuery("delete from GrupoEntity").executeUpdate();
-        em.createQuery("delete from MultimediaEntity").executeUpdate();
-        em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
     
     private void insertData() {
@@ -114,25 +101,7 @@ public class BlogPersistenceTest {
         for (int i = 0; i < 3; i++) {
             BlogEntity entity = factory.manufacturePojo(BlogEntity.class);
             entity.setGrupo(grupo);
-            entity.setComentarios(new ArrayList<>());
-            entity.setCalificaciones(new ArrayList<>());
-            entity.setMultimedia(new ArrayList<>());
             em.persist(entity);
-            for (int j = 0; j<2; j++) {
-                ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
-                CalificacionEntity calificacion = factory.manufacturePojo(CalificacionEntity.class);
-                MultimediaEntity multimedia = factory.manufacturePojo(MultimediaEntity.class);
-                em.persist(multimedia);
-                em.persist(comentario);
-                calificacion.setBlog(entity);
-                em.persist(calificacion);
-                entity.getComentarios().add(comentario);
-                entity.getCalificaciones().add(calificacion);
-                entity.getMultimedia().add(multimedia);
-                dataCo.add(comentario);
-                dataCa.add(calificacion);
-                dataM.add(multimedia);
-            }
             data.add(entity);
         }
     }
@@ -169,9 +138,6 @@ public class BlogPersistenceTest {
         Assert.assertEquals(entity.getPromedio(), newEntity.getPromedio());
         Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
         Assert.assertEquals(entity.getGrupo(), newEntity.getGrupo());
-        Assert.assertEquals(entity.getComentarios().size(), newEntity.getComentarios().size());
-        Assert.assertEquals(entity.getCalificaciones().size(), newEntity.getCalificaciones().size());
-        Assert.assertEquals(entity.getMultimedia().size(), newEntity.getMultimedia().size());
     }
     
     /**
@@ -203,9 +169,6 @@ public class BlogPersistenceTest {
 
         newEntity.setId(entity.getId());
         newEntity.setGrupo(entity.getGrupo());
-        newEntity.setComentarios(entity.getComentarios());
-        newEntity.setCalificaciones(entity.getCalificaciones());
-        newEntity.setMultimedia(entity.getMultimedia());
 
         persistence.update(newEntity);
 
@@ -215,9 +178,6 @@ public class BlogPersistenceTest {
         Assert.assertEquals(newEntity.getPromedio(), resp.getPromedio());
         Assert.assertEquals(newEntity.getContenido(), resp.getContenido());
         Assert.assertEquals(newEntity.getGrupo(), resp.getGrupo());
-        Assert.assertEquals(newEntity.getComentarios().size(), resp.getComentarios().size());
-        Assert.assertEquals(newEntity.getCalificaciones().size(), resp.getCalificaciones().size());
-        Assert.assertEquals(newEntity.getMultimedia().size(), resp.getMultimedia().size());
     }
     
     /**
@@ -229,18 +189,6 @@ public class BlogPersistenceTest {
         persistence.delete(entity.getId());
         BlogEntity deleted = em.find(BlogEntity.class, entity.getId());
         Assert.assertNull(deleted);
-        for (ComentarioEntity comentario : entity.getComentarios()) {
-            ComentarioEntity comDeleted = em.find(ComentarioEntity.class, comentario.getId());
-            Assert.assertNull(comDeleted);
-        }
-        for (CalificacionEntity calificacion : entity.getCalificaciones()) {
-            CalificacionEntity calDeleted = em.find(CalificacionEntity.class, calificacion.getId());
-            Assert.assertNull(calDeleted);
-        }
-        for (MultimediaEntity multimedia : entity.getMultimedia()) {
-            MultimediaEntity mul = em.find(MultimediaEntity.class, multimedia.getLink());
-            Assert.assertNotNull(mul);
-        }
     }
     
     
@@ -253,8 +201,5 @@ public class BlogPersistenceTest {
         Assert.assertEquals(entity.getPromedio(), newEntity.getPromedio());
         Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
         Assert.assertEquals(entity.getGrupo(), newEntity.getGrupo());
-        Assert.assertEquals(entity.getComentarios().size(), newEntity.getComentarios().size());
-        Assert.assertEquals(entity.getCalificaciones().size(), newEntity.getCalificaciones().size());
-        Assert.assertEquals(entity.getMultimedia().size(), newEntity.getMultimedia().size());
     }
 }
