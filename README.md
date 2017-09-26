@@ -1352,7 +1352,110 @@ Código|Descripción|Cuerpo
 204|Objeto eliminado|N/A
 500|Error interno|Mensaje de error
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
-500|No se pudo actualizar el objeto Lugar|Mensaje de error
+
+#### GET/eventos/{id}/usuarios
+Retorna un coleccion de objetos Usuario de un evento en representacion Minimun
+#### Parametros
+Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--
+id|id del objeto Evento a consultar|Sí|String
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de representaciones Minimun
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+404|not found, no existe un evento con ese id|Mensaje de error
+500|Error interno|Mensaje de error}
+
+#### GET/eventos/{id}/patrocinios
+Retorna un coleccion de objetos Patrocinio de un evento en representacion Minimun
+#### Parametros
+Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--
+id|id del objeto Evento a consultar|Sí|String
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de representaciones Minimun
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+404|not found, no existe un evento con ese id|Mensaje de error
+500|Error interno|Mensaje de error}
+
+#### POST/eventos/{id}/usuarios
+Añade un usuario al evento 
+#### Parametros
+Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--
+id|id del objeto Evento a consultar|Sí|String
+body|body|Objeto Usuario que será asociado|Sí|Representacion Detail
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de representaciones Minimun
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+404|not found, no existe un evento con ese id|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### POST/eventos/{id}/patrocinios
+Añade un patrocinio al evento 
+#### Parametros
+Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--
+id|id del objeto Evento a consultar|Sí|String
+body|body|Objeto Patrocinio que será asociado|Sí|Representacion Detail
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de representaciones Minimun
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+404|not found, no existe un evento con ese id|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### DELETE /eventos/{eventoid}/usuarios/{usuarioid}
+
+Elimina un Usuario de un Evento.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+eventoid|Path|id del objeto Evento|Sí|String
+usuarioid|Path|id del objeto Usuario a eliminar|Sí|String
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Relacion eliminada|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+
+#### DELETE /eventos/{eventoid}/usuarios/{patrocinioid}
+
+Elimina un Patrocinio de un Evento.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+eventoid|Path|id del objeto Evento|Sí|String
+patrocinioid|Path|id del objeto Patrocinio a eliminar|Sí|String
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Relacion eliminada|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
 
 ### Recurso Tarjeta
 El objeto Tarjeta tiene 2 representaciones JSON:	
