@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
+import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -23,6 +24,7 @@ import org.junit.runner.RunWith;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -33,6 +35,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class PatrocinioPersistenceTest {
     
+    /**
+     * Deployment
+     * @return Un JavaArchive
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -43,7 +49,7 @@ public class PatrocinioPersistenceTest {
     }
     
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * Inyección de la dependencia a la clase PatrocinioPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
@@ -57,28 +63,42 @@ public class PatrocinioPersistenceTest {
     private EntityManager em;
 
     /**
-     * Variable para martcar las transacciones del em anterior cuando se
+     * Variable para marcar las transacciones del em anterior cuando se
      * crean/borran datos para las pruebas.
      */
     @Inject
     UserTransaction utx;
 
-     /**
-     *
+    /**
+     * Lista que guarda las entidades Patrocinio fuera de la base de datos
      */
-    private List<PatrocinioEntity> data = new ArrayList<PatrocinioEntity>();
+    private List<PatrocinioEntity> data = new ArrayList<>();
+    
+    /**
+     * Lista que guarda las entidades de Usuario fuera de la base de datos
+     */
+    private List<UsuarioEntity> dataU = new ArrayList<>();
     
     public PatrocinioPersistenceTest() {
     }
     
+    /**
+     * Se ejecuta antes de todo.
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     * Se ejecuta después de todo.
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     * setUp ejecutado antes de cada prueba.
+     */
     @Before
     public void setUp() {
         try {
@@ -97,38 +117,60 @@ public class PatrocinioPersistenceTest {
         }
     }
     
+    /**
+     * Limpia la base de datos.
+     */
     private void clearData() {
         em.createQuery("delete from PatrocinioEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
-
+    /**
+     * Inserta los datos en estructuras (listas) y en la base de datos.
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
+        em.persist(usuario);
+        dataU.add(usuario);
         for (int i = 0; i < 3; i++) {
             PatrocinioEntity entity = factory.manufacturePojo(PatrocinioEntity.class);
-
+            entity.setUsuario(usuario);
             em.persist(entity);
             data.add(entity);
         }
     }
     
+    /**
+     * tearDown ejecutado después de cada prueba.
+     */
     @After
     public void tearDown() {
-        //fail("tearDown");
+        
     }
     
+    /**
+     * Test que prueba la creación de las entidades.
+     */
     @Test
-    public void createXYZEntityTest() {
+    public void createEntityTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
+        newEntity.setUsuario(dataU.get(0));
+        
         PatrocinioEntity result = persistence.createEntity(newEntity);
 
-        assertNotNull(result);
+        Assert.assertNotNull(result);
         PatrocinioEntity entity = em.find(PatrocinioEntity.class, result.getId());
-        assertNotNull(entity);
-        assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(entity.getId(), result.getId());
+        Assert.assertEquals(entity.getPago(), result.getPago(), 0.0001);
+        Assert.assertEquals(entity.getUsuario(), result.getUsuario());
     }
     
+    /**
+     * Test del método findAll en la persistencia.
+     */
     @Test
     public void getPatrociniosTest() {
         List<PatrocinioEntity> list = persistence.findAll();
@@ -140,26 +182,26 @@ public class PatrocinioPersistenceTest {
                     found = true;
                 }
             }
-            assertTrue(found);
+            Assert.assertTrue(found);
         }
     }
     
+    /**
+     * Test del método find de la persistencia.
+     */
     @Test
     public void getPatrocinioTest() {
         PatrocinioEntity entity = data.get(0);
         PatrocinioEntity newEntity = persistence.find(entity.getId());
-        assertNotNull(newEntity);
-        assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getPago(), entity.getPago(), 0.0001);
+        Assert.assertEquals(newEntity.getUsuario(), dataU.get(0));
     }
     
-    @Test
-    public void getPatrocinioPorIdTest() {
-        PatrocinioEntity entity = data.get(0);
-        PatrocinioEntity newEntity = persistence.find(entity.getId());
-        assertNotNull(newEntity);
-        assertEquals(entity.getId(), newEntity.getId());
-    }
-    
+    /**
+     * Test del método updateEntity de la persistencia.
+     */
     @Test
     public void updatePatrocinioTest() {
         PatrocinioEntity entity = data.get(0);
@@ -167,14 +209,20 @@ public class PatrocinioPersistenceTest {
         PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
 
         newEntity.setId(entity.getId());
+        newEntity.setUsuario(dataU.get(0));
 
         persistence.updateEntity(newEntity);
 
         PatrocinioEntity resp = em.find(PatrocinioEntity.class, entity.getId());
 
-        assertEquals(newEntity.getId(), resp.getId());
+        assertEquals(resp.getId(), newEntity.getId());
+        Assert.assertEquals(resp.getPago(), newEntity.getPago(), 0.0001);
+        Assert.assertEquals(resp.getUsuario(), dataU.get(0));
     }
     
+    /**
+     * Test del método delete de la persistencia.
+     */
     @Test
     public void deletePatrocinioTest() {
         PatrocinioEntity entity = data.get(0);
