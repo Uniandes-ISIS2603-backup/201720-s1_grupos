@@ -1,0 +1,117 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasEvento",
+		"_postman_id": "0579af37-b55d-c844-1094-a3b5fee74758",
+		"description": "Pruevas servicios Rest EventoResource",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtiene todos los eventos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtiene el evento con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modifica el evento con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"eventoDetailDTO\",\n    \"fechaFin\": \"2017-08-07T00:00:00-05:00\",\n    \"fechaInicio\": \"2017-08-08T00:00:00-05:00\",\n    \"id\": 1,\n    \"nombre\": \"EventoModificado\",\n    \"grupo\": {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"id\": 10,\n        \"nombre\": \"GrupoPrueba1\"\n    },\n    \"lugar\": {\n        \"direccion\": \"Dirección\",\n        \"id\": 1,\n        \"nombre\": \"Lugar\"\n    },\n    \"patrocinios\": [],\n    \"usuarios\": [\n        {\n            \"apellido\": \"Guzmán\",\n            \"email\": \"hola@uniandes.edu.co\",\n            \"id\": 1,\n            \"nombre\": \"Sergio\",\n            \"password\": \"hola\"\n        },\n        {\n            \"apellido\": \"Rd\",\n            \"email\": \"d@uniandes.edu.co\",\n            \"id\": 2,\n            \"nombre\": \"DE\",\n            \"password\": \"Hola\"\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borra el evento con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"]=responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

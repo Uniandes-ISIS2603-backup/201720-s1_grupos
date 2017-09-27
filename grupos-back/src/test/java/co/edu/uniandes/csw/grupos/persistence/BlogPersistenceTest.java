@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import java.util.ArrayList;
 import java.util.List;

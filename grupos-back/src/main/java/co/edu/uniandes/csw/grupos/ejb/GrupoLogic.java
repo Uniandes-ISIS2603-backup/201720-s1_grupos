@@ -454,7 +454,7 @@ public class GrupoLogic {
         if (index >= 0) {
             return list.get(index);
         }
-        return null;
+        throw new NotFoundException("No se encuentra el elemento buscado");
     }
     
     /**

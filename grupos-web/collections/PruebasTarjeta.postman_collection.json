@@ -1,0 +1,247 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasTarjeta",
+		"_postman_id": "6eef1a7f-b3cd-ac9c-6fde-414d953c64f8",
+		"description": "Pruebas a los servicios REST de Tarjeta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Buscar todas las tarjetas del usuario con id 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/3/tarjetas",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una nueva tarjeta para el usuario con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/tarjetas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"type\": \"tarjetaDetailDTO\",\n        \"banco\": \"Banco de las pruebas\",\n        \"dineroDisponible\": 120,\n        \"maxCupo\": 1300,\n        \"numero\": 777\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear nuevamente una tarjeta igual para el usuario  con id 1, se espera error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/tarjetas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"type\": \"tarjetaDetailDTO\",\n        \"banco\": \"Banco de las pruebas\",\n        \"dineroDisponible\": 120,\n        \"maxCupo\": 1300,\n        \"numero\": 777\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar la tarjeta número 777 del usuario con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/tarjetas/777",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"type\": \"tarjetaDetailDTO\",\n        \"banco\": \"Banco de las pruebas Modificacion\",\n        \"dineroDisponible\": 120,\n        \"maxCupo\": 999999,\n        \"numero\": 777\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar la tarjeta número 777 del usuario con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"]=responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/tarjetas/777",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar las tarjetas del usuario 1 para revisar si se borró la tarjeta número 777",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/tarjetas",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar la tarjeta número 777 que fue borrada, se espera error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]=responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/tarjetas/777",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"type\": \"tarjetaDetailDTO\",\n        \"banco\": \"Banco de las pruebas Modificacion No se Puede\",\n        \"dineroDisponible\": 120,\n        \"maxCupo\": 999999,\n        \"numero\": 777\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar la tarjeta número 777 que ya fue borrada, se espera error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]=responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/tarjetas/777",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

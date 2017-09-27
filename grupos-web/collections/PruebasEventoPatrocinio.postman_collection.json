@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasEventoPatrocinio",
+		"_postman_id": "457dbc78-988d-daec-003d-af5367183541",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dar todos los patrocinios de un evento",
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agrega un nuevo patrocinio al evento",
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Dar todos los patrocinios de un evento usando id",
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un patrocinio dado",
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios/2",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtiene el patrocinio borrado",
+			"request": {
+				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios/2",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
