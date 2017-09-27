@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -83,6 +84,10 @@ public class UsuarioResource {
     public UsuarioDetailDTO findUserId(@PathParam("id") Long pid) throws BusinessException
     {
         UsuarioEntity found = userLogic.findById(pid);
+        if(found==null)
+        {
+            throw new NotFoundException("No existe el usuario buscado");
+        }
         UsuarioDetailDTO ret = new UsuarioDetailDTO(found);
         return ret;
     }
