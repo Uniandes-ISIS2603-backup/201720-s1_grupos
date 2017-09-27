@@ -1,0 +1,91 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasNoticiaComentario",
+		"_postman_id": "1d31f8ec-e441-5ce8-8ad2-91696f1cfae9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Buscar comentarios de una noticia",
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"autor\": \"Sebastian\",\n        \"comentario\" : \"funciona postman\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agrega un comentario a la noticia",
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"autor\": \"Sebastian\",\n        \"comentario\" : \"funciona postman\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busca una comentario que no existe",
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busca un comentario que existe",
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
