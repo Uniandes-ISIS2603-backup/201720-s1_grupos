@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.EventoDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.EventoLogic;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -17,6 +16,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -37,7 +37,7 @@ public class EventoResource {
      * Lógica
      */
     @Inject
-    EventoLogic logic;
+            EventoLogic logic;
     /**
      * Obtiene todos los eventos.<br>
      * @return  Listado de dtos.
@@ -52,15 +52,22 @@ public class EventoResource {
      * Obtiene el dto de evento.<br>
      * @param id Id del evento.<br>
      * @return DTO del evento.<br>
-     * @throws BusinessException Excepción de negocio.<br> 
+     * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException Si no se encuentra.
      */
     @GET
     @Path("{id: \\d+}")
-    public EventoDetailDTO getEvento(@PathParam("id") Long id) throws BusinessException, NotFoundException
+    public EventoDetailDTO getEvento(@PathParam("id") Long id) throws BusinessException
     {
-        EventoEntity entity=logic.getEntity(id);
-        return new EventoDetailDTO(entity);
+        try
+        {
+            EventoEntity entity=logic.getEntity(id);
+            return new EventoDetailDTO(entity);
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
     }
     /**
      * Actualiza el evento.<br>
@@ -74,13 +81,22 @@ public class EventoResource {
     @Path("{id: \\d+}")
     public EventoDetailDTO updateEvento(@PathParam("id") Long id, EventoDetailDTO dto) throws BusinessException, NotFoundException
     {
-       EventoEntity entity =logic.getEntity(id);
-       if(entity==null || dto==null) throw new NotFoundException("No existe el vento a actualizar.");
-       EventoEntity newEntity=dto.toEntity();
-       newEntity.setId(id);
-       newEntity.setGrupo(entity.getGrupo());
-       newEntity.setUsuarios(entity.getUsuarios());
-       return new EventoDetailDTO(logic.updateEntity(newEntity));
+        EventoEntity entity =null;
+        try
+        {
+            entity=logic.getEntity(id);
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
+        
+        if(entity==null || dto==null) throw new NotFoundException("No existe el vento a actualizar.");
+        EventoEntity newEntity=dto.toEntity();
+        newEntity.setId(id);
+        newEntity.setGrupo(entity.getGrupo());
+        newEntity.setUsuarios(entity.getUsuarios());
+        return new EventoDetailDTO(logic.updateEntity(newEntity));
     }
     /**
      * Crea un nuevo evento.<br>
@@ -103,9 +119,17 @@ public class EventoResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteEvento(@PathParam("id")Long id) throws BusinessException, NotFoundException
+    public void deleteEvento(@PathParam("id")Long id) throws BusinessException
     {
-        EventoEntity entity = logic.getEntity(id);
+        EventoEntity entity = null;
+         try
+        {
+            entity=logic.getEntity(id);
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
         logic.deleteEntity(entity);
     }
     
@@ -115,12 +139,20 @@ public class EventoResource {
      * @return clase
      * @throws WebApplicationException
      * @throws BusinessException
-     * @throws NotFoundException 
+     * @throws NotFoundException
      */
     @Path("{id: \\d+}/patrocinios")
-    public Class<EventoPatrocinioResource> getPatrocinioResource(@PathParam("id") Long id) throws BusinessException, NotFoundException
+    public Class<EventoPatrocinioResource> getPatrocinioResource(@PathParam("id") Long id) throws BusinessException
     {
-        EventoEntity entity = logic.getEntity(id);
+        EventoEntity entity =null;
+         try
+        {
+            entity=logic.getEntity(id);
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
         if(entity == null)
         {
             throw new WebApplicationException("El recurso /eventos/" + id + "/patrocinios no existe.", 404);
@@ -136,8 +168,16 @@ public class EventoResource {
      */
     @Path("{id: \\d+}/usuarios")
     public Class<EventoUsuariosResource> getEventoUsuarioResource(@PathParam("id") Long id) throws BusinessException, NotFoundException {
-        EventoEntity entity = logic.getEntity(id);
-        if (entity == null) 
+        EventoEntity entity =null;
+         try
+        {
+            entity=logic.getEntity(id);
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
+        if (entity == null)
         {
             throw new WebApplicationException("El recurso /eventos/" + id + "/patrocinios no existe.", 404);
         }

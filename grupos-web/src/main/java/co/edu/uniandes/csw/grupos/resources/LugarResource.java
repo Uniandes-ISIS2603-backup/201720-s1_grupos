@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.grupos.dtos.LugarDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.LugarLogic;
 import co.edu.uniandes.csw.grupos.entities.LugarEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -56,7 +55,7 @@ public class LugarResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public LugarDetailDTO getLugar(@PathParam("id") Long id) throws BusinessException, NotFoundException
+    public LugarDetailDTO getLugar(@PathParam("id") Long id) throws BusinessException
     {
         LugarEntity entity=logic.getEntity(id);
         return new LugarDetailDTO(entity);
@@ -70,7 +69,7 @@ public class LugarResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public LugarDetailDTO updateLugar(@PathParam("id") Long id) throws BusinessException, NotFoundException
+    public LugarDetailDTO updateLugar(@PathParam("id") Long id) throws BusinessException
     {
        LugarEntity entity =logic.getEntity(id);
        return new LugarDetailDTO(logic.updateEntity(entity, null));
@@ -96,7 +95,7 @@ public class LugarResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteLugar(@PathParam("id")Long id) throws BusinessException, NotFoundException
+    public void deleteLugar(@PathParam("id")Long id) throws BusinessException
     {
         LugarEntity entity = logic.getEntity(id);
         logic.deleteEntity(entity);

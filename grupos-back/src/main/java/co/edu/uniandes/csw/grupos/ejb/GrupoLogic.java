@@ -465,7 +465,7 @@ public class GrupoLogic {
      * @throws BusinessException, excepcion si no encuentra el evento
      * @throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException, excepción si no encuentra el evento
      */
-    public EventoEntity addEvento(Long grupoId, Long eventoId) throws BusinessException, co.edu.uniandes.csw.grupos.exceptions.NotFoundException {
+    public EventoEntity addEvento(Long grupoId, Long eventoId) throws BusinessException {
         GrupoEntity grupoEntity = getGrupo(grupoId);
         EventoEntity eventoEntity = eventoLogic.getEntity(eventoId);
         grupoEntity.getEventosGrupo().add(eventoEntity);

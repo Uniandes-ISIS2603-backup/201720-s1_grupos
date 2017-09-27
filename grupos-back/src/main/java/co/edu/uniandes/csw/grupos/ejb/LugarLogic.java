@@ -8,11 +8,11 @@ package co.edu.uniandes.csw.grupos.ejb;
 import co.edu.uniandes.csw.grupos.entities.LugarEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import co.edu.uniandes.csw.grupos.persistence.LugarPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
  *Lógica de lugar
@@ -32,7 +32,7 @@ public class LugarLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException Si no se encuentra.
      */
-    public LugarEntity getEntity(Long id) throws BusinessException, NotFoundException
+    public LugarEntity getEntity(Long id) throws BusinessException
     {
         if(id == null) throw new BusinessException("La id solicitada no puede estar vacia o nula");
         LugarEntity entity = persistence.find(id);
@@ -56,7 +56,6 @@ public class LugarLogic {
     public LugarEntity createEntity(LugarEntity entity) throws BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
-        if(persistence.find(entity.getId()) != null) throw new BusinessException("Ya existe un lugar con ese id");
         return persistence.create(entity);        
     }
     /**
@@ -67,7 +66,7 @@ public class LugarLogic {
      * @throws NotFoundException Si no se encuentra nada.<br>
      * @throws BusinessException  Excepción de negocio.
      */
-    public LugarEntity updateEntity(LugarEntity entity, UsuarioEntity admin) throws NotFoundException, BusinessException{
+    public LugarEntity updateEntity(LugarEntity entity, UsuarioEntity admin) throws BusinessException{
         LugarEntity lugar= persistence.find(entity.getId());
         if(lugar==null)
        {
@@ -82,7 +81,7 @@ public class LugarLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException  Si no se encuentra algo.
      */
-    public void deleteEntity(LugarEntity entity) throws BusinessException, NotFoundException
+    public void deleteEntity(LugarEntity entity) throws NotFoundException
     {
         LugarEntity lugar = persistence.find(entity.getId());
        if(lugar==null)
