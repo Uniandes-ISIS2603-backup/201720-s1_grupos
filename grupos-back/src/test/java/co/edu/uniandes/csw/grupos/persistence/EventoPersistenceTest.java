@@ -6,6 +6,10 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
+import co.edu.uniandes.csw.grupos.entities.LugarEntity;
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
+import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.persistence.EventoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +40,53 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class EventoPersistenceTest {
     
-        
+    /**
+     * Persistencia de evento
+     */
     @Inject
     private EventoPersistence eventoPersistence;
     
+    /**
+     * EntityManager
+     */
     @PersistenceContext
     private EntityManager em;
     
+    /**
+     * Maneja las transacciones
+     */
     @Inject
     UserTransaction utx;
-    private List<EventoEntity> data = new ArrayList<EventoEntity>();
     
+    /**
+     * Lista que guarda las entidades de Evento fuera de la base de datos
+     */
+    private List<EventoEntity> data = new ArrayList<>();
+    
+    /**
+     * Lista que guarda las entidades de Grupo fuera de la base de datos
+     */
+    private List<GrupoEntity> dataG = new ArrayList<>();
+    
+    /**
+     * Lista que guarda las entidades de Lugar fuera de la base de datos
+     */
+    private List<LugarEntity> dataL = new ArrayList<>();
+    
+    /**
+     * Lista que guarda las entidades de Usuario fuera de la base de datos
+     */
+    private List<UsuarioEntity> dataU = new ArrayList<>();
+    
+    /**
+     * Lista que guarda las entidades de Patrocinio fuera de la base de datos
+     */
+    private List<PatrocinioEntity> dataP = new ArrayList<>();
+    
+    /**
+     * Deployment.
+     * @return un JavaArchive
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -55,34 +95,76 @@ public class EventoPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
+    
+    /**
+     * Construye un test vacío.
+     */
     public EventoPersistenceTest()
     {
     }
-        
+    
+    /**
+     * ejecutado antes de todo.
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     * ejecutado después de todo.
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
-       
+    /**
+     * Limpia la base de datos.
+     */
     private void clearData() {
         em.createQuery("delete from EventoEntity").executeUpdate();
+        em.createQuery("delete from PatrocinioEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
+        em.createQuery("delete from GrupoEntity").executeUpdate();
+        em.createQuery("delete from LugarEntity").executeUpdate();
     }
     
-        
+    /**
+     * inserta los datos en las estructuras (listas) y en la base de datos.
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        GrupoEntity grupo = factory.manufacturePojo(GrupoEntity.class);
+        em.persist(grupo);
+        dataG.add(grupo);
+        LugarEntity lugar = factory.manufacturePojo(LugarEntity.class);
+        em.persist(lugar);
+        dataL.add(lugar);
+        UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
+        usuario.setEventos(new ArrayList<>());
+        em.persist(usuario);
+        dataU.add(usuario);
+        PatrocinioEntity patrocinio = factory.manufacturePojo(PatrocinioEntity.class);
+        patrocinio.setUsuario(usuario);
+        em.persist(patrocinio);
+        dataP.add(patrocinio);
         for (int i = 0; i < 3; i++) {
             EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
-
+            entity.setUsuarios(new ArrayList<>());
+            entity.setPatrocinios(new ArrayList<>());
             em.persist(entity);
             data.add(entity);
         }
+        EventoEntity evento = data.get(0);
+        usuario.getEventos().add(evento);
+        evento.setGrupo(grupo);
+        evento.setLugar(lugar);
+        evento.setUsuarios(dataU);
+        evento.getPatrocinios().add(patrocinio);
     }
-        
+    
+    /**
+     * setUp ejecutado antes de cada prueba.
+     */
     @Before
     public void setUp() {
         try {
@@ -100,11 +182,18 @@ public class EventoPersistenceTest {
             }
         }
     }
+    
+    /**
+     * tearDown ejecutado después de cada prueba.
+     */
     @After
     public void tearDown() {
     }
 
-        
+    /**
+     * Test de la creación de las entidades.
+     * @throws Exception 
+     */
     @Test
     public void createEventoTest() throws Exception{
         PodamFactory factory = new PodamFactoryImpl();
@@ -116,8 +205,19 @@ public class EventoPersistenceTest {
         EventoEntity entity = em.find(EventoEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertNull(newEntity.getGrupo());
+        
+        entity.setGrupo(dataG.get(0));
+        entity = em.find(EventoEntity.class, result.getId());
+        
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getGrupo(), entity.getGrupo());
     }
     
+    /**
+     * Test del método findAll de la persistencia.
+     * @throws Exception 
+     */
     @Test
     public void getEventosTest() throws Exception{
         List<EventoEntity> list = eventoPersistence.findAll();
@@ -133,16 +233,26 @@ public class EventoPersistenceTest {
         }
     }
 
-
+    /**
+     * test del método find de la persistencia.
+     * @throws Exception 
+     */
     @Test
     public void getEventoTest() throws Exception{
         EventoEntity entity = data.get(0);
         EventoEntity newEntity = eventoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getPatrocinios().get(0), dataP.get(0));
+        Assert.assertEquals(newEntity.getGrupo(), dataG.get(0));
+        Assert.assertEquals(newEntity.getLugar(), dataL.get(0));
+        Assert.assertEquals(newEntity.getUsuarios().get(0), dataU.get(0));
     }
 
-
+    /**
+     * test del método delete de la persistencia.
+     * @throws Exception 
+     */
     @Test
     public void deleteEventoTest() throws Exception{
         EventoEntity entity = data.get(0);
@@ -151,7 +261,10 @@ public class EventoPersistenceTest {
         Assert.assertNull(deleted);
     }
 
-
+    /**
+     * test del método update de la persistencia.
+     * @throws Exception 
+     */
     @Test
     public void updateEventoTest() throws Exception{
         EventoEntity entity = data.get(0);
@@ -159,13 +272,19 @@ public class EventoPersistenceTest {
         EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
 
         newEntity.setId(entity.getId());
-        newEntity.setNombre(entity.getNombre());
+        newEntity.setGrupo(entity.getGrupo());
+        newEntity.setLugar(entity.getLugar());
+        newEntity.setPatrocinios(entity.getPatrocinios());
+        newEntity.setUsuarios(entity.getUsuarios());
 
         eventoPersistence.update(newEntity);
 
         EventoEntity resp = em.find(EventoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-
+        Assert.assertEquals(resp.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(resp.getGrupo(), newEntity.getGrupo());
+        Assert.assertEquals(resp.getPatrocinios().get(0), dataP.get(0));
+        Assert.assertEquals(resp.getLugar(), dataL.get(0));
+        Assert.assertEquals(resp.getUsuarios().get(0), dataU.get(0));
     }
 }
