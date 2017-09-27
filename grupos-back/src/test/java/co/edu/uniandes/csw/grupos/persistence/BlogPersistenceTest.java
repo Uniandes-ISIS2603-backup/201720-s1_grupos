@@ -37,25 +37,48 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class BlogPersistenceTest {
     
+    /**
+     * Persistencia de blog
+     */
     @Inject
     private BlogPersistence persistence;
     
+    /**
+     * EntityManager
+     */
     @PersistenceContext
     private EntityManager em;
     
+    /**
+     * UserTransaction
+     */
     @Inject
-            UserTransaction utx;
+    UserTransaction utx;
     
+    /**
+     * Lista que guarda las entidades de Blog fuera de la base de datos
+     */
     private List<BlogEntity> data = new ArrayList<>();
     
+    /**
+     * Lista que guarda las entidades de Grupo fuera de la base de datos
+     */
     private List<GrupoEntity> dataG = new ArrayList<>();
     
+    /**
+     * Lista que guarda las entidades de Comentario fuera de la base de datos
+     */
     private List<ComentarioEntity> dataCo = new ArrayList<>();
     
-    private List<MultimediaEntity> dataM = new ArrayList<>();
-    
+    /**
+     * Lista que guarda las entidades de Calificacion fuera de la base de datos
+     */
     private List<CalificacionEntity> dataCa = new ArrayList<>();
     
+    /**
+     * Deployment.
+     * @return Un JavaArchive
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -65,17 +88,29 @@ public class BlogPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     * Construye el test vacío.
+     */
     public BlogPersistenceTest() {
     }
     
+    /**
+     * Se ejecuta antes de todo.
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     * Se ejecuta después de todo.
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     * SetUp ejecutado antes de cada prueba.
+     */
     @Before
     public void setUp() {
         try {
@@ -94,10 +129,16 @@ public class BlogPersistenceTest {
         }
     }
     
+    /**
+     * TearDown ejecutado después de cada prueba.
+     */
     @After
     public void tearDown() {
     }
     
+    /**
+     * Limpia la base de datos.
+     */
     private void clearData() {
         em.createQuery("delete from CalificacionEntity").executeUpdate();
         em.createQuery("delete from BlogEntity").executeUpdate();
@@ -106,6 +147,9 @@ public class BlogPersistenceTest {
         em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
     
+    /**
+     * Inserta los elementos en la base de datos y en estructuras de datos (listas).
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         GrupoEntity grupo = factory.manufacturePojo(GrupoEntity.class);
@@ -121,17 +165,13 @@ public class BlogPersistenceTest {
             for (int j = 0; j<2; j++) {
                 ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
                 CalificacionEntity calificacion = factory.manufacturePojo(CalificacionEntity.class);
-                MultimediaEntity multimedia = factory.manufacturePojo(MultimediaEntity.class);
-                em.persist(multimedia);
                 em.persist(comentario);
                 calificacion.setBlog(entity);
                 em.persist(calificacion);
                 entity.getComentarios().add(comentario);
                 entity.getCalificaciones().add(calificacion);
-                entity.getMultimedia().add(multimedia);
                 dataCo.add(comentario);
                 dataCa.add(calificacion);
-                dataM.add(multimedia);
             }
             data.add(entity);
         }
@@ -243,7 +283,10 @@ public class BlogPersistenceTest {
         }
     }
     
-    
+    /**
+     * Test de encontrar un blog dado su id dentro de un grupo dado su id.
+     * @throws Exception 
+     */
     @Test
     public void testFindBlogGrupo() throws Exception {
         BlogEntity entity = data.get(0);
