@@ -64,22 +64,24 @@ public class TarjetaPersistenceTest {
             UserTransaction utx;
     
     /**
-     *
+     * Datos
      */
     private List<TarjetaEntity> data = new ArrayList<TarjetaEntity>();
     
-    
+    /**
+     * Constructor vacío
+     */
     public TarjetaPersistenceTest() {
     }
-    
+    //BeforeClass
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    //AfterClass
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    //setup
     @Before
     public void setUp() {
         try {
@@ -97,12 +99,16 @@ public class TarjetaPersistenceTest {
             }
         }
     }
-    
+    /**
+     * Borra los datos
+     */
     private void clearData() {
         em.createQuery("delete from TarjetaEntity").executeUpdate();
     }
     
-    
+    /**
+     * Inserta datos
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -112,7 +118,7 @@ public class TarjetaPersistenceTest {
             data.add(entity);
         }
     }
-    
+    //Tear down
     @After
     public void tearDown() {
     }

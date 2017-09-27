@@ -82,11 +82,11 @@ public class NoticiaPersistenceTest {
      */
     @Inject
     UserTransaction utx;
-
+    //BeforeClass
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    //AfterClass
     @AfterClass
     public static void tearDownClass() {
     }
@@ -103,7 +103,9 @@ public class NoticiaPersistenceTest {
      * Lista de usuarios a persistir.
      */
     private List<UsuarioEntity> dataU = new ArrayList<>();
-    
+    /**
+     * Lista de comentarios a persistir.
+     */
     private List<ComentarioEntity> dataC= new ArrayList<>();
     /**
      * Acción de preparar la prueba. Este procedimiento inclute iniciar la transacción, unir el manejador de persistencia,
@@ -248,7 +250,10 @@ public class NoticiaPersistenceTest {
        NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
        Assert.assertNull(deleted);
     }
-
+    /**
+     * Popula una noticia con datos aleatorios del podam factory.
+     * @return 
+     */
     private NoticiaEntity popularNoticia() {
         PodamFactory factory= new PodamFactoryImpl();
         NoticiaEntity e=factory.manufacturePojo(NoticiaEntity.class);

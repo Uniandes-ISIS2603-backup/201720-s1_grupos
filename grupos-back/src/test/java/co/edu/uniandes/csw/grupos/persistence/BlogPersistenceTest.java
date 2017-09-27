@@ -33,20 +33,33 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class BlogPersistenceTest {
-    
+    /**
+     * Persistencia de blog
+     */
     @Inject
     private BlogPersistence persistence;
-    
+    /**
+     * Manejador de entidades
+     */
     @PersistenceContext
     private EntityManager em;
-    
+    /**
+     * User transaction
+     */
     @Inject
             UserTransaction utx;
-    
+    /**
+     * Datos de blog
+     */
     private List<BlogEntity> data = new ArrayList<>();
-    
+    /**
+     * Datos de grupo
+     */
     private List<GrupoEntity> dataG = new ArrayList<>();
-    
+    /**
+     * Deployment.<br>
+     * @return Deploy del archivo
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -55,18 +68,24 @@ public class BlogPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+    //constructor vacío
     public BlogPersistenceTest() {
     }
-    
+    /**
+     * Antes de
+     */
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    /**
+     * Después de
+     */
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    /**
+     * Setip
+     */
     @Before
     public void setUp() {
         try {
@@ -84,15 +103,21 @@ public class BlogPersistenceTest {
             }
         }
     }
-    
+    /**
+     * Después de
+     */
     @After
     public void tearDown() {
     }
-    
+    /**
+     * Borra datos
+     */
     private void clearData() {
         em.createQuery("delete from BlogEntity").executeUpdate();
     }
-    
+    /**
+     * inserta datos
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         GrupoEntity grupo = factory.manufacturePojo(GrupoEntity.class);
@@ -191,7 +216,10 @@ public class BlogPersistenceTest {
         Assert.assertNull(deleted);
     }
     
-    
+    /**
+     * Encuentra grupos de un blog.<br>
+     * @throws Exception Si hay problema alguno.
+     */
     @Test
     public void testFindBlogGrupo() throws Exception {
         BlogEntity entity = data.get(0);

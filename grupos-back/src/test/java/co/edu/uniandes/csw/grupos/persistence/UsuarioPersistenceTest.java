@@ -34,12 +34,12 @@ import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 /**
- *
+ * Pruebas de usuario
  * @author tefa
  */
 @RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
-    
+    //Deployment
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -50,7 +50,7 @@ public class UsuarioPersistenceTest {
     }
     
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * Inyeccines de la dependencia a la clase UsuarioPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
@@ -80,21 +80,23 @@ public class UsuarioPersistenceTest {
             UserTransaction utx;
     
     /**
-     *
+     * Datos
      */
     private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
-    
+    /**
+     * Constructor vacío
+     */
     public UsuarioPersistenceTest() {
     }
-    
+    //BeforeClass
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    //AfterClass
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    //Setup
     @Before
     public void setUp() {
         try {
@@ -112,14 +114,18 @@ public class UsuarioPersistenceTest {
             }
         }
     }
-    
+    /**
+     * Borra los datos del sistema
+     */
     private void clearData() {
         em.createQuery("delete from PatrocinioEntity").executeUpdate();
         em.createQuery("delete from NoticiaEntity").executeUpdate();
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
     
-    
+    /**
+     * Inserta datos
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -129,11 +135,13 @@ public class UsuarioPersistenceTest {
             data.add(entity);
         }
     }
-    
+    //tearDown
     @After
     public void tearDown() {
     }
-    
+    /**
+     * Test para crear un usuario
+     */
     @Test
     public void createUsuarioEntityTest() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -145,7 +153,9 @@ public class UsuarioPersistenceTest {
         assertNotNull(entity);
         assertEquals(newEntity.getId(), entity.getId());
     }
-    
+    /**
+     * Test para obtener usuarios
+     */
     @Test
     public void getUsuariosTest() {
         List<UsuarioEntity> list = persistence.findAll();
@@ -160,7 +170,9 @@ public class UsuarioPersistenceTest {
             assertTrue(found);
         }
     }
-    
+    /**
+     * Test para obtener un usuario
+     */
     @Test
     public void getUsuarioTest() {
         UsuarioEntity entity = data.get(0);
@@ -168,7 +180,9 @@ public class UsuarioPersistenceTest {
         assertNotNull(newEntity);
         assertEquals(entity.getId(), newEntity.getId());
     }
-    
+    /**
+     * Test para obtener por nombre
+     */
     @Test
     public void getUsuarioPorNombreTest() {
         UsuarioEntity entity = data.get(0);
@@ -176,7 +190,9 @@ public class UsuarioPersistenceTest {
         assertNotNull(newEntity);
         assertEquals(entity.getNombre(), newEntity.getNombre());
     }
-    
+    /**
+     * Test para actualizar un usuario
+     */
     @Test
     public void updateUsuarioTest() {
         UsuarioEntity entity = data.get(0);
@@ -191,7 +207,9 @@ public class UsuarioPersistenceTest {
         
         assertEquals(newEntity.getId(), resp.getId());
     }
-    
+    /**
+     * Test para borrar un usuario
+     */
     @Test
     public void deleteUsuarioTest() {
         UsuarioEntity entity = data.get(0);
@@ -206,7 +224,7 @@ public class UsuarioPersistenceTest {
     @Test
     public void testAsociaciones()
     {
-        
+        //Crea entidades con podam
         PodamFactory factory = new PodamFactoryImpl();
         EmpresaEntity empresa = factory.manufacturePojo(EmpresaEntity.class);
         GrupoEntity miembro = factory.manufacturePojo(GrupoEntity.class);
@@ -218,7 +236,7 @@ public class UsuarioPersistenceTest {
         PatrocinioEntity patrocinio = factory.manufacturePojo(PatrocinioEntity.class);
         
         UsuarioEntity entity = data.get(0);
-        
+        //Inicialización de datos
         entity.setEmpresa(null);
         entity.setBlogs(new ArrayList<>());
         entity.setEmpresa(empresa);
@@ -237,6 +255,8 @@ public class UsuarioPersistenceTest {
         noticia.setAutor(entity);
         patrocinio.setUsuario(entity);
         entity.getPatrocinios().add(patrocinio);
+        
+        //Persistir los datos
         miembro=persistenceGrupo.update(miembro);
         admin=persistenceGrupo.update(admin);
         patrocinio= persistencePatrocinio.updateEntity(patrocinio);
@@ -244,6 +264,7 @@ public class UsuarioPersistenceTest {
         entity= persistence.updateEntity(entity);
         entity= persistence.find(entity.getId());
         Assert.assertEquals(1, entity.getGruposAdmin().size());
+        //Aserciones
         Assert.assertEquals(admin.getNombre(),entity.getGruposAdmin().get(0).getNombre());
         
         Assert.assertEquals(1, entity.getGrupos().size());
@@ -270,7 +291,7 @@ public class UsuarioPersistenceTest {
         miembro.getMiembros().remove(entity);
         admin.getAdministradores().remove(entity);
         entity.getBlogs().remove(entity.getBlogs().get(0));
-        
+        //Remueve entidades
         entity.getPatrocinios().remove(entity.getPatrocinios().get(0));
         entity.getEventos().remove(entity.getEventos().get(0));
         entity.getTarjetas().remove(entity.getTarjetas().get(0));
@@ -285,6 +306,7 @@ public class UsuarioPersistenceTest {
         entity= persistence.updateEntity(entity);
         entity= persistence.find(entity.getId());
 
+        //Aserciones
         
         Assert.assertEquals(0, entity.getBlogs().size());
         

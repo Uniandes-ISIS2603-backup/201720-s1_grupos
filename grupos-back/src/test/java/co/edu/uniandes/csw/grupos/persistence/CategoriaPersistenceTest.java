@@ -56,10 +56,10 @@ public class CategoriaPersistenceTest {
     UserTransaction utx;
 
      /**
-     *
+     * Datos de categoría
      */
     private List<CategoriaEntity> data = new ArrayList<CategoriaEntity>();
-    
+    //Deployment
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -68,23 +68,27 @@ public class CategoriaPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+    /**
+     * Constructor vacío
+     */
     public CategoriaPersistenceTest() {
     }
-    
+    //Setup
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    //Teardown
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    //ClearData
     private void clearData() {
         em.createQuery("delete from CategoriaEntity").executeUpdate();
     }
 
-
+/**
+ * Inserta datos
+ */
  private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -94,7 +98,7 @@ public class CategoriaPersistenceTest {
             data.add(entity);
         }
     }
- 
+    //Setup
     @Before
     public void setUp() {
         try {
@@ -112,7 +116,7 @@ public class CategoriaPersistenceTest {
             }
         }
     }
-    
+    //TearDown
     @After
     public void tearDown() {
     }
