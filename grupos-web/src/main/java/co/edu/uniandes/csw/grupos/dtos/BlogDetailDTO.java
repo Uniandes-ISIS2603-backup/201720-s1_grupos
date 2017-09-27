@@ -136,14 +136,22 @@ public class BlogDetailDTO extends BlogDTO{
         List<ComentarioEntity> coments = new ArrayList<>();
         List<CalificacionEntity> califs = new ArrayList<>();
         List<MultimediaEntity> multi = new ArrayList<>();
-        for(ComentarioDTO com : comentarios) {
-            coments.add(com.toEntity());
+        if (comentarios != null) {
+            for(ComentarioDTO com : comentarios) {
+                coments.add(com.toEntity());
+            }
         }
-        for(CalificacionDTO cal : calificaciones) {
-            califs.add(cal.toEntity());
+        
+        if(calificaciones != null) {
+            for(CalificacionDTO cal : calificaciones) {
+                califs.add(cal.toEntity());
+            }
         }
-        for(MultimediaDTO mul : multimedia) {
-            multi.add(mul.toEntity());
+        
+        if(multimedia != null) {
+            for(MultimediaDTO mul : multimedia) {
+                multi.add(mul.toEntity());
+            }
         }
         GrupoEntity grupoEntity = grupo==null?null:grupo.toEntity();
         entity.setGrupo(grupoEntity);

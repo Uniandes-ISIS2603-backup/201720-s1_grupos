@@ -206,44 +206,58 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         if(ue!=null){
             //Guarda los grupos a los que pertence el usuario
             grupos = new ArrayList<GrupoDTO>();
+            if(ue.getGrupos() != null) {
             for(GrupoEntity g: ue.getGrupos()){
                 grupos.add(new GrupoDTO(g));
+            }
             }
             
             //Guarda los grupos que administra el usuario
             gruposAdmin = new ArrayList<GrupoDTO>();
+            if(ue.getGruposAdmin() != null) {
             for(GrupoEntity g: ue.getGruposAdmin()){
                 gruposAdmin.add(new GrupoDTO(g));
+            }
             }
             
             //Guarda las noticias del usuario
             noticias= new ArrayList<NoticiaDTO>();
+            if(ue.getNoticias()!= null) {
             for(NoticiaEntity n: ue.getNoticias()){
                 noticias.add(new NoticiaDTO(n));
+            }
             }
             
             //Guarda los eventos del usuario
             eventos = new ArrayList<EventoDTO>();
-            for(EventoEntity e: ue.getEventos()){
-                eventos.add(new EventoDTO(e));
+            if(ue.getEventos() != null) {
+                for(EventoEntity e: ue.getEventos()){
+                    eventos.add(new EventoDTO(e));
+                }
             }
             
             //Guarda los patrocinios del usuario
             patrocinios = new ArrayList<PatrocinioDTO>();
-            for(PatrocinioEntity p: ue.getPatrocinios()){
-                patrocinios.add(new PatrocinioDTO(p));
+            if(ue.getPatrocinios() != null) {
+                for(PatrocinioEntity p: ue.getPatrocinios()){
+                    patrocinios.add(new PatrocinioDTO(p));
+                }
             }
             
             //Guarda los blog del usuario
             blogs= new ArrayList<BlogDTO>();
-            for(BlogEntity b: ue.getBlogs()){
-                blogs.add(new BlogDTO(b));
+            if(ue.getBlogs() != null) {
+                for(BlogEntity b: ue.getBlogs()){
+                    blogs.add(new BlogDTO(b));
+                }
             }
             
             //Guarda las tarjetas del usuario
             tarjetas = new ArrayList<TarjetaDTO>();
+            if(ue.getTarjetas()!=null) {
             for(TarjetaEntity t: ue.getTarjetas()){
                 tarjetas.add(new TarjetaDTO(t));
+            }
             }
             
             //Guarda la empresa del usuario

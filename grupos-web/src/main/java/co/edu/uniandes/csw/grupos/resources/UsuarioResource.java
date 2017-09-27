@@ -100,10 +100,14 @@ public class UsuarioResource {
      */
     @PUT
     @Path("{usuarioId: \\d+}")
-    public String updateUser(@PathParam("usuarioId") Long pid, UsuarioDetailDTO user) throws BusinessException
+    public UsuarioDetailDTO updateUser(@PathParam("usuarioId") Long pid, UsuarioDetailDTO user) 
     {
-        UsuarioEntity ret = userLogic.updateUser(pid,user.toEntity());
-        return "Se actualizó el usuario con id: " + pid;
+        UsuarioEntity found = userLogic.findById(pid);
+        if(found==null)
+        {
+            throw new NotFoundException("No existe el usuario buscado");
+        }
+        return new UsuarioDetailDTO(userLogic.updateUser(pid,user.toEntity()));
     }
     
     /**

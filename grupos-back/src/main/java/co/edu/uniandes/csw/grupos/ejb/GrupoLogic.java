@@ -482,6 +482,10 @@ public class GrupoLogic {
         GrupoEntity entity = getGrupo(grupoId);
         EventoEntity eventoEntity = new EventoEntity();
         eventoEntity.setId(eventoId);
+        int index = entity.getEventosGrupo().indexOf(eventoEntity);
+        if(index < 0) {
+            throw new NotFoundException("No existe el evento con el id dado en el grupo con id dado");
+        }
         entity.getEventosGrupo().remove(eventoEntity);
         updateGrupo(entity);
     }

@@ -61,6 +61,7 @@ public class BlogLogic {
         }
         entity.setGrupo(grupoLogic.getGrupo(grupoId));
         entity.setPromedio(0.0);
+        entity.setId(new Long(1));
         return persistence.createBlog(entity);
     }
     /**

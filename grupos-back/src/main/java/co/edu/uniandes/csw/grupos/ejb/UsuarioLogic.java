@@ -62,17 +62,9 @@ public class UsuarioLogic {
      */
     public UsuarioEntity createUser(UsuarioEntity puser) throws BusinessException
     {
-        //Verifica si ya existe un usuario
-        UsuarioEntity found = per.find(puser.getId()); 
-        if(found != null && found == puser)
-        {
-            throw new BusinessException("Ya existe un usuario con las especificaciones dadas.");
-        }
-        else 
-        {
-            UsuarioEntity add = per.createEntity(puser);
-            return add;
-        }
+        puser.setId(new Long(1));
+        UsuarioEntity add = per.createEntity(puser);
+        return add;
     }
     
     /**
@@ -91,7 +83,7 @@ public class UsuarioLogic {
      * @return Entidad que tiene el id especificado por parametro
      * @throws BusinessException 
      */
-    public UsuarioEntity findById(Long pid) throws BusinessException
+    public UsuarioEntity findById(Long pid)
     {
         return per.find(pid);
     }
@@ -103,15 +95,16 @@ public class UsuarioLogic {
      * @return usuario actualizado
      * @throws BusinessException si no existe un usuario con el id especificado.
      */
-    public UsuarioEntity updateUser(Long id, UsuarioEntity puser) throws BusinessException
+    public UsuarioEntity updateUser(Long id, UsuarioEntity puser) 
     {
         UsuarioEntity found = per.find(id);
         if(found == null)
         {
-            throw new BusinessException("No existe el usuario que se quiere actualizar");
+            throw new NotFoundException("No existe el usuario que se quiere actualizar");
         }
         else
         {
+            puser.setId(id);
             return per.updateEntity(puser);
         }
     }
