@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
 
 /**
- *
+ * Representación detail de empresa.<br>
  * @author af.lopezf
  */
 public class EmpresaDetailDTO extends EmpresaDTO {

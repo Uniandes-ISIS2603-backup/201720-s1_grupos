@@ -20,7 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- *
+ * Recurso de la noticia.<br>
  * @author jc161
  */
 @Path("noticias")

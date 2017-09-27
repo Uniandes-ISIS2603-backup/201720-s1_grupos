@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 
 /**
- *
+ * Representación minimum de comentario.<br>
  * @author se.cardenas
  */
 public class ComentarioDTO {

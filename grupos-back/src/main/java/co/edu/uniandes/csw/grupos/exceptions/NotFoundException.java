@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.grupos.exceptions;
 
 /**
- *
+ * Excepción no encontrada.
  * @author jc161
  */
 public class NotFoundException extends Exception {
