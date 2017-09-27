@@ -1,0 +1,25 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Patrocinio",
+		"_postman_id": "bc82a2bc-fcb4-e82a-0a7f-c27ed34d0138",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/grupos-web/Stark/patrocinios",
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/patrocinios",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
