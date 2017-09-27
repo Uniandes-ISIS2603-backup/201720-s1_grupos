@@ -126,11 +126,13 @@ public class BlogLogic {
      * @param blogId Id del blog.
      */
     public void deleteBlog(Long grupoId, Long blogId) {
-        grupoLogic.getGrupo(grupoId);
-        BlogEntity blog = persistence.findBlogGrupo(blogId, grupoId);
+        GrupoEntity g=grupoLogic.getGrupo(grupoId);
+        BlogEntity blog = persistence.find(blogId);
         if(blog == null) {
-            throw new NotFoundException("No existe ningún blog con el id "+blogId+"en el grupo con id"+grupoId);
+            throw new NotFoundException("No existe ningún blog con el id "+blogId);
         }
+        int index=g.getBlogsGrupo().indexOf(blog);
+        if(index<0) throw new NotFoundException("No existe ningún blog con el id "+blogId+"en el grupo con id"+grupoId);
         persistence.delete(blogId);
     }
     /**

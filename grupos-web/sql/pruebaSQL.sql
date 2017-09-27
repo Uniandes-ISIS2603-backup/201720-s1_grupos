@@ -2,7 +2,7 @@ delete from GrupoEntity_NoticiaEntity;
 delete from GrupoEntity_CategoriaEntity;
 delete from GrupoEntity_EventoEntity;
 delete from Usuario_Admin;
-delete from Usuario_Ggrupo;
+delete from Usuario_Grupo;
 delete from UsuarioEntity_BlogEntity;
 delete from UsuarioEntity_EventoEntity;
 delete from UsuarioEntity_TarjetaEntity;

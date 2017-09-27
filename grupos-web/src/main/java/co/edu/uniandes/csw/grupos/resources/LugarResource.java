@@ -69,9 +69,10 @@ public class LugarResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public LugarDetailDTO updateLugar(@PathParam("id") Long id) throws BusinessException
+    public LugarDetailDTO updateLugar(@PathParam("id") Long id, LugarDetailDTO dto) throws BusinessException
     {
-       LugarEntity entity =logic.getEntity(id);
+       LugarEntity entity =dto.toEntity();
+       entity.setId(id);
        return new LugarDetailDTO(logic.updateEntity(entity, null));
        
     }
