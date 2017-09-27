@@ -36,7 +36,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Recurso de categoria.<br>
  * @author cm.sarmiento10
  */
 @Path("categorias")

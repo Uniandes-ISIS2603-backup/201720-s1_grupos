@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 
 /**
- *
+ * Representación detallada de tarjeta.<br>
  * @author af.lopezf
  */
 public class TarjetaDetailDTO extends TarjetaDTO {

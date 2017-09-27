@@ -8,42 +8,65 @@ package co.edu.uniandes.csw.grupos.ejb;
 import co.edu.uniandes.csw.grupos.entities.LugarEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import co.edu.uniandes.csw.grupos.persistence.LugarPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
- *
+ *Lógica de lugar
  * @author js.ramos14
  */
 @Stateless
 public class LugarLogic {
-    
+    /**
+     * Persistencia de lugar.<br>
+     */
     @Inject
     LugarPersistence persistence;
-    
-    public LugarEntity getEntity(Long id) throws BusinessException, NotFoundException
+    /**
+     * Obtiene la entidad con id dado.<br>
+     * @param id Id de lugar.<br>
+     * @return Entidad.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException Si no se encuentra.
+     */
+    public LugarEntity getEntity(Long id) throws BusinessException
     {
         if(id == null) throw new BusinessException("La id solicitada no puede estar vacia o nula");
         LugarEntity entity = persistence.find(id);
         if(entity== null) throw new NotFoundException("No existe un evento con la id " + id +" solicitada");
         return entity;
     }
-    
+    /**
+     * Obtiene todas las entidades.<br>
+     * @return Todos los lugares en lista
+     */
     public List<LugarEntity> getAll()
     {
         return persistence.findAll();
     }
-
+    /**
+     * Crea una nueva entidad de lugar.<br>
+     * @param entity Entidad de lugar.<br>
+     * @return Entidad creada.<br>
+     * @throws BusinessException  Excepción de negocio.
+     */
     public LugarEntity createEntity(LugarEntity entity) throws BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
-        if(persistence.find(entity.getId()) != null) throw new BusinessException("Ya existe un lugar con ese id");
         return persistence.create(entity);        
     }
-    public LugarEntity updateEntity(LugarEntity entity, UsuarioEntity admin) throws NotFoundException, BusinessException{
+    /**
+     * Actualiza la entidad al valor dado de un usuario.<br>
+     * @param entity Entidad a actualizar.<br>
+     * @param admin Administrador.<br>
+     * @return Entidad actualizada.<br>
+     * @throws NotFoundException Si no se encuentra nada.<br>
+     * @throws BusinessException  Excepción de negocio.
+     */
+    public LugarEntity updateEntity(LugarEntity entity, UsuarioEntity admin) throws BusinessException{
         LugarEntity lugar= persistence.find(entity.getId());
         if(lugar==null)
        {
@@ -52,8 +75,13 @@ public class LugarLogic {
         LugarEntity newEntity = persistence.update(entity);
         return newEntity;
     }
-    
-    public void deleteEntity(LugarEntity entity) throws BusinessException, NotFoundException
+    /**
+     * Borra un lugar con el objeto dado.<br>
+     * @param entity Entidad dada.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException  Si no se encuentra algo.
+     */
+    public void deleteEntity(LugarEntity entity) throws NotFoundException
     {
         LugarEntity lugar = persistence.find(entity.getId());
        if(lugar==null)

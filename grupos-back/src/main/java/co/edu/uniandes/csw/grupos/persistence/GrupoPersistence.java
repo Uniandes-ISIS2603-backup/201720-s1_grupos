@@ -14,7 +14,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 /**
- *
+ * Persistencia de grupo
+ * 
  * @author cm.sarmiento10
  */
 @Stateless

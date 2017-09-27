@@ -44,11 +44,21 @@ public class DateAdapter extends XmlAdapter<String, Date> {
             return new SimpleDateFormat("yyyy-MM-dd");
         }
     };
-
+    /**
+     * Overide de unmarshal
+     * @param v String
+     * @return Formato de string en fecha.
+     * @throws Exception Excepción en caso de error en la conversión.
+     */
     @Override
     public Date unmarshal(String v) throws Exception {
         return DATE_FORMAT_TL.get().parse(v);
-    }
+    }/**
+     * Override del marshal.<br>
+     * @param v Fecha.<br>
+     * @return Fecha convertida en string.<br>
+     * @throws Exception En caso de error de formato de conversión.
+     */
 
     @Override
     public String marshal(Date v) throws Exception {

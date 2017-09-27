@@ -37,7 +37,9 @@ public class GrupoBlogsResource {
      */
     @Inject
     private GrupoLogic grupoLogic;
-    
+    /*
+    Lógica del blog.
+    */
     @Inject
     private BlogLogic blogLogic;
     
@@ -124,20 +126,37 @@ public class GrupoBlogsResource {
     public void removeBlogs(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) {
         blogLogic.deleteBlog(grupoId, blogId);
     }
-
+    /**
+     * Retorna la multimedia de un blod dado de grupo.<br>
+     * @param grupoId Id de grupo.<br>
+     * @param blogId Id de blog.<br>
+     * @return BlogMultimediaResource
+     */
     @Path("{blogId: \\d+}/multimedia")
     public Class<BlogMultimediaResource> getMultimedia(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) 
     {
         blogLogic.getBlog(grupoId, blogId);
         return BlogMultimediaResource.class;
     }
+    /**
+     * Retorna las calificaciones de un blog.<br>
+     * @param grupoId Id de grupo.<br>
+     * @param blogId Id de blog.<br>
+     * @return  Recurso dado.
+     */
     @Path("{blogId: \\d+}/calificaciones")
     public Class<BlogCalificacionResource> getCalificaciones(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) 
     {
         blogLogic.getBlog(grupoId, blogId);
         return BlogCalificacionResource.class;
     }
-    
+    /**
+     * Actualiza un blog con id dado.<br>
+     * @param grupoId Id de grupo.<br>
+     * @param blogId Id de blog.<br>
+     * @param dto Dto a actualizar.<br>
+     * @return  Blog actualizado.
+     */
     @PUT
     @Path("{blogId: \\d+}")
     public BlogDetailDTO updateBlog(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId, BlogDetailDTO dto) {
@@ -145,7 +164,12 @@ public class GrupoBlogsResource {
         entity.setId(blogId);
         return new BlogDetailDTO(blogLogic.updateBlog(entity, grupoId));
     }
-    
+    /**
+     * Obtiene los comentarios de un blog.<br>
+     * @param grupoId Id de grupo.<br>
+     * @param blogId Id de blog.<br>
+     * @return BlogComentarioResource
+     */
     @Path("{blogId: \\d+}/comentarios")
     public Class<BlogComentarioResource> getComentarios(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId) {
         blogLogic.getBlog(grupoId, blogId);

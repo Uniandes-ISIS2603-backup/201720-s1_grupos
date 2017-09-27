@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.grupos.exceptions;
 
 /**
- *
+ * Excepción de negocios.<br>
  * @author jc161
  */
 public class BusinessException extends Exception{

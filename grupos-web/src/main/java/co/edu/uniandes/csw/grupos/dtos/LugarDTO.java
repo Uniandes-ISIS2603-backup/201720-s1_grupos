@@ -8,22 +8,34 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.LugarEntity;
 
 /**
- *
+ * Representación minimum de lugar.<br>
  * @author js.ramos14
  */
 public class LugarDTO {
-    
+    /**
+     * Id
+     */
     private Long id;
-    
+    /**
+     * Dirección
+     */
     private String direccion;
-    
+    /**
+     * Nombre
+     */
     private String nombre;
     
-    
+    /**
+     * Constructor vacío.
+     */
     public LugarDTO()
     {
         
     }
+    /**
+     * Entidad de lugar para construir el dto.<br>
+     * @param entity Entidad de lugar.
+     */
     public LugarDTO(LugarEntity entity)
     {
         this.id = entity.getId();
@@ -74,7 +86,10 @@ public class LugarDTO {
     }
 
 
-    
+    /**
+     * Pasa el dto a una nueva entidad.<br>
+     * @return Entidad de lugar.
+     */
     public LugarEntity toEntity()
     {
         LugarEntity entity = new LugarEntity();

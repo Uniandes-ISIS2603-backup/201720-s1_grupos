@@ -16,7 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
- *
+ * Entidad de categoria.<br>
  * @author cm.sarmiento10
  */
 @Entity

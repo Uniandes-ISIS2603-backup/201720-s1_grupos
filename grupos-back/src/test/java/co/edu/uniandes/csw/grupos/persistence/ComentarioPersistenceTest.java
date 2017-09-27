@@ -28,23 +28,31 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
+ * Prueba comentario
  * @author se.cardenas
  */
 @RunWith(Arquillian.class)
 public class ComentarioPersistenceTest {
-    
+    /**
+     * Persitencia
+     */
     @Inject
     private ComentarioPersistence persistence;
-    
+    /**
+     * Entity manager
+     */
     @PersistenceContext
     private EntityManager em;
-    
+    /**
+     * UserTransaction
+     */
     @Inject
             UserTransaction utx;
-    
+    /*
+    Datos
+    */
     private List<ComentarioEntity> data = new ArrayList<>();
-    
+    //Deployment
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -53,18 +61,20 @@ public class ComentarioPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+    /**
+     * Constructor vacío
+     */
     public ComentarioPersistenceTest() {
     }
-    
+    //Setup
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    //Teardown
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    //Setup
     @Before
     public void setUp() {
         try {
@@ -82,15 +92,19 @@ public class ComentarioPersistenceTest {
             }
         }
     }
-    
+    //Teardown
     @After
     public void tearDown() {
     }
-
+    /**
+     * Borra los datos
+     */
     private void clearData() {
         em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
-    
+    /**
+     * Inserta datos
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {

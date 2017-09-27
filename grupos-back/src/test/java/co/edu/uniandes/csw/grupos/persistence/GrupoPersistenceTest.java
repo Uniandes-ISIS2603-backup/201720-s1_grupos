@@ -61,10 +61,10 @@ public class GrupoPersistenceTest {
             UserTransaction utx;
     
     /**
-     *
+     * Datos
      */
     private List<GrupoEntity> data = new ArrayList<GrupoEntity>();
-    
+    //Deployment
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -73,24 +73,30 @@ public class GrupoPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+    /**
+     * Constructor vacío
+     */
     public GrupoPersistenceTest()
     {
     }
-    
+    //Setup
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    //AfterClass
     @AfterClass
     public static void tearDownClass() {
     }
-    
+    /**
+     * Borra los datos
+     */
     private void clearData() {
         em.createQuery("delete from GrupoEntity").executeUpdate();
     }
     
-    
+    /**
+     * Insert data
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -100,7 +106,7 @@ public class GrupoPersistenceTest {
             data.add(entity);
         }
     }
-    
+    //Setup
     @Before
     public void setUp() {
         try {
@@ -118,7 +124,7 @@ public class GrupoPersistenceTest {
             }
         }
     }
-    
+    //After
     @After
     public void tearDown() {
     }
@@ -210,9 +216,13 @@ public class GrupoPersistenceTest {
         Assert.assertEquals(entity.getId(), newEntity.getId());
     }
     
+    /**
+     * Prueba las relaciones de grupos a otras entidades
+     */
     @Test
-    public void testAsociaciones() throws Exception
+    public void testAsociaciones()
     {
+        //Crea entidades
         PodamFactory factory = new PodamFactoryImpl();
         CategoriaEntity categoria = factory.manufacturePojo(CategoriaEntity.class);
         UsuarioEntity miembro = factory.manufacturePojo(UsuarioEntity.class);
@@ -220,7 +230,7 @@ public class GrupoPersistenceTest {
         EventoEntity evento = factory.manufacturePojo(EventoEntity.class);
         BlogEntity blog = factory.manufacturePojo(BlogEntity.class);
         NoticiaEntity noticia= factory.manufacturePojo(NoticiaEntity.class);
-        
+        //Administra entidades
         GrupoEntity entity = data.get(0);
         entity.setAdministradores(new ArrayList<>());
         entity.setMiembros(new ArrayList<>());
@@ -235,10 +245,10 @@ public class GrupoPersistenceTest {
         entity.getMiembros().add(miembro);
         entity.getEventosGrupo().add(evento);
         entity.getNoticiasGrupo().add(noticia);
-        
+        //Actualiza
         GrupoEntity grupo= persistence.update(entity);
         
-        
+        //Aserciones
         Assert.assertEquals(1, grupo.getAdministradores().size());        
         Assert.assertEquals(admin.getNickname(),grupo.getAdministradores().get(0).getNickname());
         
@@ -257,6 +267,7 @@ public class GrupoPersistenceTest {
         Assert.assertEquals(1, grupo.getEventosGrupo().size());
         Assert.assertEquals(evento.getNombre(),grupo.getEventosGrupo().get(0).getNombre());
         
+        //Remueve elementos
         entity.getCategorias().remove(categoria);
         entity.getAdministradores().remove(admin);
         entity.getBlogsGrupo().remove(blog);
@@ -264,6 +275,7 @@ public class GrupoPersistenceTest {
         entity.getEventosGrupo().remove(evento);
         entity.getNoticiasGrupo().remove(noticia);
         
+        //Elimina
         grupo= persistence.update(entity);
         
         Assert.assertEquals(0, grupo.getAdministradores().size());

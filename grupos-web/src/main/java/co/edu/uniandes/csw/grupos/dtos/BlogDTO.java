@@ -8,14 +8,25 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 
 /**
- *
+ * Representación minimum de blog.<br>
  * @author se.cardenas
  */
 public class BlogDTO {
-   
+   /**
+    * Id del dto
+    */
     private Long id;
+    /**
+     * Titulo
+     */
     private String titulo;
+    /**
+     * Contenido
+     */
     private String contenido;
+    /**
+     * Promedio
+     */
     private Double promedio;
     
     /**

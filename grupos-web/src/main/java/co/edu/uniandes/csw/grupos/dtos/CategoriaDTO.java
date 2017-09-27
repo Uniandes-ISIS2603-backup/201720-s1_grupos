@@ -13,7 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- *
+ * Representación minimum de categoría.<br>
  * @author cm.sarmiento10
  */
 public class CategoriaDTO {

@@ -24,7 +24,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Recurso de usuario.<br>
  * @author tefa
  */
 @Path("usuarios")
@@ -116,7 +116,12 @@ public class UsuarioResource {
         }
         return UsuarioPatrocinioResource.class;
     }
-    
+    /**
+     * Retorna las tarjetas de un usuario dado.<br>
+     * @param usuarioId Id de usuario.<br>
+     * @return UsuarioTarjetasResource.<br>
+     * @throws BusinessException Excepción de negocio.
+     */
     @Path("{usuarioId: \\d+}/tarjetas")
     public Class<UsuarioTarjetasResource> getUsuarioTarjetasResource(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
         UsuarioEntity entity = userLogic.findById(usuarioId);
@@ -134,7 +139,12 @@ public class UsuarioResource {
         }
         return UsuarioEmpresaResource.class;
     }
-    
+    /**
+     * Obtiene las noticias de un usuario.<br>
+     * @param usuarioId Id de usuario.<br>
+     * @return UsuarioNoticiaResource.<br>
+     * @throws BusinessException  Excepción de negocio.
+     */
     @Path("{usuarioId: \\d+}/noticias")
     public Class<UsuarioNoticiaResource> getUsuarioNoticiaResource(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
         UsuarioEntity entity = userLogic.findById(usuarioId);

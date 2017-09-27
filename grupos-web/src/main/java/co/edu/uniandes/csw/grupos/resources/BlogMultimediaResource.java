@@ -23,7 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 /**
- *
+ * Recurso BlogMultimedia
  * @author jc161
  */
 public class BlogMultimediaResource {

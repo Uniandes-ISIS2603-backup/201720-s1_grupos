@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Representación detail de categoría.<br>
  * @author cm.sarmiento10
  */
 public class CategoriaDetailDTO extends CategoriaDTO{

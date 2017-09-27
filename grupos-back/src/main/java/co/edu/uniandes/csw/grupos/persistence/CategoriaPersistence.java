@@ -15,12 +15,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 /**
- *
+ * Persistencia de categoría
  * @author cm.sarmiento10
  */
 @Stateless
 public class CategoriaPersistence {
-    
+    /**
+     * Entity manager
+     */
  @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
 

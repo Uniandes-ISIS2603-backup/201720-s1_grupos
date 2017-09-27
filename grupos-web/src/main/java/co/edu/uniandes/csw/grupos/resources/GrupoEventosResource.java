@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.grupos.dtos.EventoDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.GrupoLogic;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -99,7 +98,7 @@ public class GrupoEventosResource {
      */
     @POST
     @Path("{EventoId: \\d+}")
-    public EventoDetailDTO addEventos(@PathParam("grupoId") Long grupoId, @PathParam("EventoId") Long EventoId) throws BusinessException, NotFoundException {
+    public EventoDetailDTO addEventos(@PathParam("grupoId") Long grupoId, @PathParam("EventoId") Long EventoId) throws BusinessException {
         return new EventoDetailDTO(grupoLogic.addEvento(grupoId, EventoId));
     }
     

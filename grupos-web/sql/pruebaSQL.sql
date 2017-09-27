@@ -1,8 +1,8 @@
 delete from GrupoEntity_NoticiaEntity;
 delete from GrupoEntity_CategoriaEntity;
 delete from GrupoEntity_EventoEntity;
-delete from Usuario_A;
-delete from Usuario_G;
+delete from Usuario_Admin;
+delete from Usuario_Ggrupo;
 delete from UsuarioEntity_BlogEntity;
 delete from UsuarioEntity_EventoEntity;
 delete from UsuarioEntity_TarjetaEntity;
@@ -34,6 +34,8 @@ delete from LugarEntity;
 
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (10,'Videojuegos', 'La mejor categoria', 'videojuegos.png');
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (11,'Ciencia', 'La segunda mejor categoria', 'ciencia.png');
+insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (12,'CategoriaVacia', 'Esta categoria está vacía', 'vacia.png');
+
 
 insert into TarjetaEntity(numero, banco, dinerodisponible, maxcupo) values (1,'Caja social',100,1000);
 insert into TarjetaEntity(numero, banco, dinerodisponible, maxcupo) values (2,'Caja social',102,1200);
@@ -71,6 +73,7 @@ insert into PatrocinioEntity(Id, Pago, usuario_Id) values (3,800.0,2);
 
 insert into GrupoEntity (id, nombre, descripcion) values (10,'GrupoPrueba1', 'Este grupo es el numero uno');
 insert into GrupoEntity (id, nombre, descripcion) values (11,'GrupoPrueba2', 'Este grupo es el numero dos');
+insert into GrupoEntity (id, nombre, descripcion) values (12,'GrupoVacio', 'Este grupo está vacío');
 
 
 insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1,'Blog','Contenido',0,10);

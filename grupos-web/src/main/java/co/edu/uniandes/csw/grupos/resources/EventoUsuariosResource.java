@@ -9,13 +9,13 @@ import co.edu.uniandes.csw.grupos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.EventoLogic;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
+ * Recurso evento usuario.<br>
  * @author js.ramos14
  */
 @Consumes(MediaType.APPLICATION_JSON)
@@ -74,7 +74,7 @@ public class EventoUsuariosResource {
      * 
      */
     @GET
-    public List<UsuarioDetailDTO> listUsuarios(@PathParam("id") Long id) throws BusinessException, NotFoundException {
+    public List<UsuarioDetailDTO> listUsuarios(@PathParam("id") Long id) throws BusinessException {
         return usuariosListEntity2DTO(logic.listUsuarios(id));
     }
 
@@ -88,7 +88,7 @@ public class EventoUsuariosResource {
      */
     @GET
     @Path("{usuariosId: \\d+}")
-    public UsuarioDetailDTO getUsuarios(@PathParam("id") Long id, @PathParam("usuariosId") Long usuariosId) throws BusinessException, NotFoundException {
+    public UsuarioDetailDTO getUsuarios(@PathParam("id") Long id, @PathParam("usuariosId") Long usuariosId) throws BusinessException{
         UsuarioEntity e= logic.getUsuario(id, usuariosId);
         if(e==null) throw new NotFoundException("No se encuentra el usuario buscado");
         return new UsuarioDetailDTO(logic.getUsuario(id, usuariosId));
@@ -104,7 +104,7 @@ public class EventoUsuariosResource {
      */
     @POST
     @Path("{usuariosId: \\d+}")
-    public UsuarioDetailDTO addUsuarios(@PathParam("id") Long id, @PathParam("usuariosId") Long usuariosId) throws BusinessException, NotFoundException {
+    public UsuarioDetailDTO addUsuarios(@PathParam("id") Long id, @PathParam("usuariosId") Long usuariosId) throws BusinessException {
         return new UsuarioDetailDTO(logic.addUsuario(id, usuariosId));
     }
 

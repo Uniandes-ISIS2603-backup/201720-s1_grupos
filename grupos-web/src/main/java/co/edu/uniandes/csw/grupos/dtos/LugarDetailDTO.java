@@ -8,24 +8,35 @@ package co.edu.uniandes.csw.grupos.dtos;
 import co.edu.uniandes.csw.grupos.entities.LugarEntity;
 
 /**
- *
+ *Dto detallado de lugar.<br>
  * @author js.ramos14
  */
 public class LugarDetailDTO extends LugarDTO {
 
-    
+    /**
+     * Capacidad
+     */
     private Integer capacidad;
-    
+    /**
+     * Constructor vacío.
+     */
     public LugarDetailDTO()
     {
         
     }
+    /**
+     * Construye un nuevo ligar a partir de la entidad dada.<br>
+     * @param entity Entidad.
+     */
     public LugarDetailDTO(LugarEntity entity)
     {
         super(entity);
         this.capacidad = entity.getCapacidad();
     }
-    
+    /**
+     * Saca la entidad dada.<br>
+     * @return Entidad del dto.
+     */
     @Override
     public LugarEntity toEntity()
     {

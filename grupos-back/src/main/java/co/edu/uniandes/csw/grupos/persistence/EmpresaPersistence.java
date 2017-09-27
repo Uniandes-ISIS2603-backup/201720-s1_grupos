@@ -13,13 +13,15 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Persistencia de la empresa
  * @author af.lopezf
  */
 @Stateless
 public class EmpresaPersistence {
     
-    
+    /**
+     * Entity manager
+     */
     @PersistenceContext(unitName = "gruposPU")
     protected EntityManager em;
     
@@ -35,13 +37,20 @@ public class EmpresaPersistence {
     }
 
 
-
+    /**
+     * Encuentra todas las empresas.<br>
+     * @return Todas las empresas 
+     */
     public List<EmpresaEntity> findAll() {
      
         TypedQuery query = em.createQuery("select u from EmpresaEntity u", EmpresaEntity.class);
         return query.getResultList();
     }
-    
+    /**
+     * Encuentra por nit.<br>
+     * @param nit Nit
+     * @return Entidad de empresa.
+     */
     public EmpresaEntity findByNit(int nit){
         
         TypedQuery query = em.createQuery("Select e From EmpresaEntity e where e.nit = :nit", EmpresaEntity.class);

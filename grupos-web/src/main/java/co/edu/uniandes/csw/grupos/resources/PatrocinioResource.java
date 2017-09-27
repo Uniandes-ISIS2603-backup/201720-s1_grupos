@@ -19,7 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- *
+ * Recurso del patrocinio.<br>
  * @author tefa
  */
 @Path("patrocinios")

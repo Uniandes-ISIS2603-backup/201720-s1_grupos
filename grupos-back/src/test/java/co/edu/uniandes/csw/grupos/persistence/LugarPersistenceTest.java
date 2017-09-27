@@ -36,17 +36,26 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class LugarPersistenceTest {
     
-        
+    /**
+     * Persistencia de lugar
+     */
     @Inject
     private LugarPersistence lugarPersistence;
-    
+    /**
+     * Entity manager
+     */
     @PersistenceContext
     private EntityManager em;
-    
+    /**
+     * User transaction
+     */
     @Inject
     UserTransaction utx;
+    /**
+     * Datos
+     */
     private List<LugarEntity> data = new ArrayList<LugarEntity>();
-    
+    //Deployment
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -55,15 +64,15 @@ public class LugarPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-        
+    //BeforeClass
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    //AfterClass
     @AfterClass
     public static void tearDownClass() {
     }
-
+    //Setup
     @Before
     public void setUp() {
         try {
@@ -81,16 +90,21 @@ public class LugarPersistenceTest {
             }
         }
     }
+    //TearDown
     @After
     public void tearDown() {
     }
 
-       
+    /**
+     *Borra los datos
+     */
     private void clearData() {
         em.createQuery("delete from LugarEntity").executeUpdate();
     }
     
-        
+    /**
+     * Inserta datos
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -102,7 +116,10 @@ public class LugarPersistenceTest {
     }
         
     
-        
+    /**
+     * Test de crear lugar.<br>
+     * @throws Exception Lanza excepción si hay algún error
+     */
     @Test
     public void createLugarTest() throws Exception{
         PodamFactory factory = new PodamFactoryImpl();
@@ -115,7 +132,10 @@ public class LugarPersistenceTest {
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
-    
+    /**
+     * Prueba de obtener lugares.<br>
+     * @throws Exception 
+     */
     @Test
     public void getLugarsTest() throws Exception{
         List<LugarEntity> list = lugarPersistence.findAll();
@@ -131,7 +151,10 @@ public class LugarPersistenceTest {
         }
     }
 
-
+    /**
+     * Prueba de obtener un lugar.<br>
+     * @throws Exception 
+     */
     @Test
     public void getLugarTest() throws Exception{
         LugarEntity entity = data.get(0);
@@ -140,7 +163,10 @@ public class LugarPersistenceTest {
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 
-
+    /**
+     * Prueba de borrar un lugar.<br>
+     * @throws Exception 
+     */
     @Test
     public void deleteLugarTest() throws Exception{
         LugarEntity entity = data.get(0);
@@ -149,7 +175,10 @@ public class LugarPersistenceTest {
         Assert.assertNull(deleted);
     }
 
-
+    /**
+     * Prueba de actualizar un lugar
+     * @throws Exception 
+     */
     @Test
     public void updateLugarTest() throws Exception{
         LugarEntity entity = data.get(0);
@@ -158,12 +187,16 @@ public class LugarPersistenceTest {
 
         newEntity.setId(entity.getId());
         newEntity.setNombre(entity.getNombre());
+        newEntity.setDireccion(entity.getDireccion());
+        newEntity.setCapacidad(entity.getCapacidad());
 
         lugarPersistence.update(newEntity);
 
         LugarEntity resp = em.find(LugarEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+        Assert.assertEquals(newEntity.getCapacidad(), entity.getCapacidad());
 
     }
 }

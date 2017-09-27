@@ -17,9 +17,17 @@ import java.util.List;
  */
 public class NoticiaDetailDTO extends NoticiaDTO{
     
-    
+    /**
+     * Listado de multimedia.
+     */
     private List<MultimediaDTO> multimedia;
+    /**
+     * Autor
+     */
     private UsuarioDTO autor;
+    /**
+     * Listado de comentarios
+     */
     private List<ComentarioDTO> comentarios;
     
 

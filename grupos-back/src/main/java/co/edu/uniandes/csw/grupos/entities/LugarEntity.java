@@ -18,15 +18,23 @@ import javax.persistence.Id;
  */
 @Entity
 public class LugarEntity implements Serializable{
-    
+    /**
+     * Id del lugar.
+     */
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    
+    /**
+     * Dirección del lugar.
+     */
     private String direccion;
-    
+    /**
+     * Nombre del lugar.
+     */
     private String nombre;
-    
+    /**
+     * Capacidad
+     */
     private Integer capacidad;
 
     /**
@@ -107,7 +115,11 @@ public class LugarEntity implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    
+    /**
+     * Override del equals.
+     * @param o Objeto a igualar.
+     * @return Si son iguales o no.
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -116,7 +128,10 @@ public class LugarEntity implements Serializable{
         LugarEntity u=(LugarEntity) o;
         return id.equals(u.getId());
     }
-
+    /**
+     * Override del hashcode.<br>
+     * @return hashcode
+     */
     @Override
     public int hashCode() {
         int hash = 5;

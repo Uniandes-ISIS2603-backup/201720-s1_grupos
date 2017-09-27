@@ -15,12 +15,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- *
+ * Recurso de la noticia.<br>
  * @author jc161
  */
 @Path("noticias")
@@ -43,7 +44,15 @@ public class NoticiaResource {
     @Path("{id: \\d+}")
     public NoticiaDetailDTO getNoticia(@PathParam("id") Long id) throws BusinessException
     {
-        NoticiaEntity entity=logic.getEntity(id);
+        NoticiaEntity entity=null;
+          try
+        {
+            entity=logic.getEntity(id);
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException("No se encontró la noticia con id: "+ id);
+        }
         return new NoticiaDetailDTO(entity);
     }
     

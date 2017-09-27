@@ -10,17 +10,23 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- *
+ * Entidad de empresa.<br>
  * @author af.lopezf
  */
 @Entity
 public class EmpresaEntity implements Serializable {
-    
+    /**
+     * Nit
+     */
     @Id
     private int nit;
-    
+    /**
+     * Nombre de la empresa
+     */
     private String nombre;
-    
+    /**
+     * Logo de la empresa.
+     */
     private String logo;
 
     /**
@@ -64,7 +70,11 @@ public class EmpresaEntity implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-    
+    /**
+     * Override del equals.<br>
+     * @param o Objeto a comparar.<br>
+     * @return si son iguales.
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -73,7 +83,10 @@ public class EmpresaEntity implements Serializable {
         EmpresaEntity u=(EmpresaEntity) o;
         return nit==(u.getNit());
     }
-
+    /**
+     * Override del hashcode.<br>
+     * @return hashcode.
+     */
     @Override
     public int hashCode() {
         int hash = 3;

@@ -21,7 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- *
+ *Recurso de empresa.<br>
  * @author af.lopezf
  */
 @Path("empresas")
@@ -29,7 +29,9 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @Stateless
 public class EmpresaResource {
-    
+    /*
+    Lógica de empresa.<br>
+    */
     @Inject
     EmpresaLogic empresaLogic; //Se inyecta la logica del usuario
     

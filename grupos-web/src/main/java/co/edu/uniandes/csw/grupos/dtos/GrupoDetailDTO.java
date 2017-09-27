@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Representación detail de grupo.<br>
  * @author cm.sarmiento10
  */
 public class GrupoDetailDTO extends GrupoDTO{
