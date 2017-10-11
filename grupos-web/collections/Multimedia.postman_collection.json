@@ -1,0 +1,454 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Multimedia",
+		"_postman_id": "c633b4a4-bc1c-db3a-6ada-4c3750bf8cf5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NoticiaMultimedia",
+			"description": "",
+			"item": [
+				{
+					"name": "Obtener toda la multimedia de una noticia",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"HOLA\",\n\t\"descripcion\":\"HHHH\",\n\t\"multimedia\":[]\n}"
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/multimedia"
+					},
+					"response": []
+				},
+				{
+					"name": "Multimedia existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/abc"
+					},
+					"response": []
+				},
+				{
+					"name": "MULTIMEDIA INEXISTENTE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/abcd"
+					},
+					"response": []
+				},
+				{
+					"name": "Multimedia que no pertenece a la noticia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/dfdf"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar una lista de multimedia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar una multimedia de la noticia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Borrado de un archivo multimedia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/dfdf"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener recurso borrado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/dfdf"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BlogMultimedia",
+			"description": "",
+			"item": [
+				{
+					"name": "Obtener toda la multimedia de un blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"HOLA\",\n\t\"descripcion\":\"HHHH\",\n\t\"multimedia\":[]\n}"
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia"
+					},
+					"response": []
+				},
+				{
+					"name": "Multimedia existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/abc"
+					},
+					"response": []
+				},
+				{
+					"name": "MULTIMEDIA INEXISTENTE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/ggrgrgr"
+					},
+					"response": []
+				},
+				{
+					"name": "Multimedia que no pertenece al blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/dfdf"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar una lista de multimedia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar una multimedia de la noticia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo recurso blog\",\"descripcion\":\"ds\"}\n"
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Borrado de un archivo multimedia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener recurso borrado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/aaa"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,170 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Calificacion",
+		"_postman_id": "798af9ae-d021-6914-7905-aba2301d61b6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BlogCalificacion",
+			"description": "",
+			"item": [
+				{
+					"name": "Obtener calificaciones de un blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener calificacion dada de un blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar calificación",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar calificación",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/2/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar calificación conocida",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener calificación borrada/ no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
