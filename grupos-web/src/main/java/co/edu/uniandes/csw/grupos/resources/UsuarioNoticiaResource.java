@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.TransactionRolledbackLocalException;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -73,7 +74,17 @@ public class UsuarioNoticiaResource {
      */
     @GET
     public List<NoticiaDTO> listNoticias(@PathParam("usuarioId") Long id) throws BusinessException {
-        return NoticiasListEntity2DTO(usuarioLogic.getNoticias(id));
+        try
+        {
+            return NoticiasListEntity2DTO(usuarioLogic.getNoticias(id));
+
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException("La noticia que busca no existe en el sistema.");
+        }
+        
+       
     }
     
     /**
@@ -87,9 +98,17 @@ public class UsuarioNoticiaResource {
     @GET
     @Path("{NoticiaId: \\d+}")
     public NoticiaDetailDTO getNoticias(@PathParam("usuarioId") Long usuarioId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
-        NoticiaEntity e =usuarioLogic.getNoticia(usuarioId, NoticiaId);
-        if(e==null) throw new NotFoundException("No existe lo buscado");
-        return new NoticiaDetailDTO(e);
+        try
+        {
+            NoticiaEntity e =usuarioLogic.getNoticia(usuarioId, NoticiaId);
+             if(e==null) throw new NotFoundException("No existe lo buscado");
+             return new NoticiaDetailDTO(e);
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException("La noticia que busca no existe en el sistema.");
+        }
+       
     }
     /**
      * Agrega una noticia.<br>
