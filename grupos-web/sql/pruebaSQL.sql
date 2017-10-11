@@ -32,6 +32,17 @@ delete from UsuarioEntity;
 delete from EmpresaEntity;
 delete from LugarEntity;
 
+ALTER TABLE NoticiaEntity ALTER COLUMN id RESTART WITH 5;
+ALTER TABLE CategoriaEntity ALTER COLUMN id RESTART WITH 13;
+ALTER TABLE UsuarioEntity ALTER COLUMN id RESTART WITH 12;
+ALTER TABLE PatrocinioEntity ALTER COLUMN id RESTART WITH 4;
+ALTER TABLE GrupoEntity ALTER COLUMN id RESTART WITH 13;
+ALTER TABLE BlogEntity ALTER COLUMN id RESTART WITH 5;
+ALTER TABLE CalificacionEntity ALTER COLUMN id RESTART WITH 2;
+ALTER TABLE LugarEntity ALTER COLUMN id RESTART WITH 4;
+ALTER TABLE EventoEntity ALTER COLUMN id RESTART WITH 4;
+
+
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (10,'Videojuegos', 'La mejor categoria', 'videojuegos.png');
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (11,'Ciencia', 'La segunda mejor categoria', 'ciencia.png');
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (12,'CategoriaVacia', 'Esta categoria está vacía', 'vacia.png');
