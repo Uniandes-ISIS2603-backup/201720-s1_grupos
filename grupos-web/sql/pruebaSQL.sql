@@ -51,7 +51,7 @@ insert into UsuarioEntity(id, nombre, apellido, password,email) values (1,'Sergi
 insert into UsuarioEntity(id, nombre, apellido, password,email) values (11,'DE','Rd','Hola','xd@uniandes.edu.co');
 insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit) values (3,'DE','Rd','Hola','x@uniandes.edu.co',1);
 insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit) values (2,'DE','Rd','Hola','d@uniandes.edu.co',2);
-
+insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit) values (4,'UsuarioParaGrupo','Rd','Hola','xp@uniandes.edu.co',null);
 
 --INFORMACIÓN USUARIO TARJETA
 
