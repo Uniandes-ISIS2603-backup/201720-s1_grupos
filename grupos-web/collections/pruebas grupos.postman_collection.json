@@ -2,13 +2,13 @@
 	"variables": [],
 	"info": {
 		"name": "pruebas grupos",
-		"_postman_id": "7a60ddf3-a232-f384-c1ec-c412efdfd0ed",
+		"_postman_id": "c891c233-6b6f-0044-a027-590a8b850084",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/grupos",
+			"name": "buscar todos",
 			"event": [
 				{
 					"listen": "test",
@@ -39,7 +39,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/grupos/nombre?nombre=GrupoPruebaPrueba copy",
+			"name": "buscar uno por nombre",
 			"event": [
 				{
 					"listen": "test",
@@ -92,7 +92,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/grupos",
+			"name": "crear un grupo",
 			"event": [
 				{
 					"listen": "test",
@@ -123,38 +123,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/grupos/11",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code===200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/grupos",
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": " {\n        \"type\": \"grupoDetailDTO\",\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"id\": 10,\n        \"nombre\": \"GrupoPrueba1\"\n    }"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/grupos-web/Stark/grupos",
+			"name": "intentar crear uno ya existente",
 			"event": [
 				{
 					"listen": "test",
@@ -185,7 +154,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/grupos/nombre?nombre=GrupoPruebaPrueba",
+			"name": "buscar el recientemente creado",
 			"event": [
 				{
 					"listen": "test",
@@ -238,7 +207,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/categorias/3",
+			"name": "modificar uno",
 			"event": [
 				{
 					"listen": "test",
@@ -269,54 +238,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/categorias/tipo?tipo=CategoriaModificada copy",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code===200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/nombre?nombre=GrupoCambiado",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"nombre"
-					],
-					"query": [
-						{
-							"key": "nombre",
-							"value": "GrupoCambiado",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/grupos-web/Stark/categorias/3 copy",
+			"name": "borrar uno",
 			"event": [
 				{
 					"listen": "test",
@@ -347,7 +269,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/grupos-web/Stark/categorias/tipo?tipo=CategoriaModificada copy",
+			"name": "buscar el ya borrado",
 			"event": [
 				{
 					"listen": "test",
@@ -385,6 +307,378 @@
 				},
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar miembros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/miembros",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar miembro no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/miembros/5",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crear miembro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/miembros/4",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar miembro creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/miembros/4",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"descripcion\": \"Este debería fallar\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar miembro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/miembros/4",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar miembro eliminado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/miembros/4",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar administradores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/administradores",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar administrador no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/administradores/5",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crear administrador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/administradores/4",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar administrador creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/administradores/4",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"descripcion\": \"Este debería fallar\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar administrador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/administradores/4",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "buscar admin eliminado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/administradores/4",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
