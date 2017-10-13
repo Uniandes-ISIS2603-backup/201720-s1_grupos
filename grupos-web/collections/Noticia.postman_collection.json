@@ -65,7 +65,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"Se\",\n\t\"descripcion\":\"HOLA\"\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/2"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000000"
 					},
 					"response": []
 				},
@@ -94,7 +94,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"Se\",\n\t\"descripcion\":\"HOLA\"\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/10"
+						"url": "localhost:8080/grupos-web/Stark/noticias/10000001"
 					},
 					"response": []
 				}
@@ -129,7 +129,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"\n}\n\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias"
 					},
 					"response": []
 				},
@@ -158,7 +158,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/3"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000000"
 					},
 					"response": []
 				},
@@ -176,7 +176,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/1"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000000"
 					},
 					"response": []
 				},
@@ -196,11 +196,8 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/1"
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000000"
 					},
 					"response": []
 				},
@@ -227,9 +224,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias/3"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000001"
 					},
 					"response": []
 				},
@@ -258,7 +255,7 @@
 							"mode": "raw",
 							"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/noticias"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias"
 					},
 					"response": []
 				}
@@ -293,7 +290,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"\n}\n\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1/noticias"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias"
 					},
 					"response": []
 				},
@@ -322,7 +319,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1/noticias/1"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000000"
 					},
 					"response": []
 				},
@@ -340,7 +337,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/11/noticias/4"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000000"
 					},
 					"response": []
 				},
@@ -360,11 +357,8 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/11/noticias/4"
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000000"
 					},
 					"response": []
 				},
@@ -391,9 +385,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n\t\n}"
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n\t\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/11/noticias/3"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001"
 					},
 					"response": []
 				},
@@ -422,7 +416,7 @@
 							"mode": "raw",
 							"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/11/noticias"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias"
 					},
 					"response": []
 				}

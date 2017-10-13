@@ -27,11 +27,8 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones"
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
 					},
 					"response": []
 				},
@@ -51,11 +48,8 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
 					},
 					"response": []
 				},
@@ -82,38 +76,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 1000000,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
-					},
-					"response": []
-				},
-				{
-					"name": "Agregar calificación",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"tests[\"Status code is 200\"]= responseCode.code===200"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
-						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/2/calificaciones"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
 					},
 					"response": []
 				},
@@ -131,7 +96,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
 					},
 					"response": []
 				},
@@ -160,7 +125,36 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/calificaciones/1"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar calificación",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
 					},
 					"response": []
 				}

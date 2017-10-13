@@ -25,7 +25,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"HOLA\",\n\t\"descripcion\":\"HHHH\",\n\t\"multimedia\":[]\n}"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/multimedia"
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1000001/multimedia"
 					},
 					"response": []
 				},
@@ -54,7 +54,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/abc"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/abc"
 					},
 					"response": []
 				},
@@ -83,7 +83,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/abcd"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/abcd"
 					},
 					"response": []
 				},
@@ -112,7 +112,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/dfdf"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/EEE"
 					},
 					"response": []
 				},
@@ -141,7 +141,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia"
 					},
 					"response": []
 				},
@@ -170,7 +170,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1/multimedia/aaa"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/aaa"
 					},
 					"response": []
 				},
@@ -188,7 +188,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/dfdf"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/dfdf"
 					},
 					"response": []
 				},
@@ -217,7 +217,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/2/multimedia/dfdf"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/dfdf"
 					},
 					"response": []
 				}
@@ -252,7 +252,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"HOLA\",\n\t\"descripcion\":\"HHHH\",\n\t\"multimedia\":[]\n}"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia"
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia"
 					},
 					"response": []
 				},
@@ -281,7 +281,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/abc"
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/abc"
 					},
 					"response": []
 				},
@@ -310,7 +310,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/ggrgrgr"
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/ggrgrgr"
 					},
 					"response": []
 				},
@@ -339,7 +339,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/dfdf"
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/EEE"
 					},
 					"response": []
 				},
@@ -368,7 +368,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia"
 					},
 					"response": []
 				},
@@ -397,7 +397,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo recurso blog\",\"descripcion\":\"ds\"}\n"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/aaa"
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
 					},
 					"response": []
 				},
@@ -415,7 +415,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/aaa"
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
 					},
 					"response": []
 				},
@@ -444,7 +444,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/multimedia/aaa"
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
 					},
 					"response": []
 				}

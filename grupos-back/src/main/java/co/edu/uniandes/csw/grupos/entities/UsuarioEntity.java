@@ -348,20 +348,24 @@ public class UsuarioEntity implements Serializable {
      */
     public void cambiarNoticia(Long idNoticia, NoticiaEntity news){
         for(NoticiaEntity n: noticias){
-            if(n.getId() == idNoticia){
+            if(n.getId().equals(idNoticia)){
                 n= news;
             }
         }
     }
-    
+    /**
+     * Borra la noticia con el id dado.<br>
+     * @param idNoticia Id de noticia.
+     */
     public void deleteNoticia(Long idNoticia){
         int i=0;
         for(NoticiaEntity n: noticias){
-            if(n.getId() == idNoticia){
+            if(n.getId().equals(idNoticia)){
                 break;
             }
             i++;
         }
+        if(i<noticias.size())
         noticias.remove(i);
     }
     /**

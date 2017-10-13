@@ -92,11 +92,7 @@ insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (2,'B','Co
 insert into BlogEntity(id,titulo,contenido,promedio,grupo_id) values (3,'¿Cómo hago el punto 10 de SQL?','No sé',0,11);
 insert into BlogEntity(id,titulo,contenido,promedio,grupo_id) values (4,'HOLA','Qué hace',0,11);
 
-insert into CalificacionEntity(id,calificacion,fecha,blog_id,calificador_id) values (1,2.0,'2017-09-20',1,11);
 
---INFORMACIÓN MULTIMEDIA
-insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','abc');
-insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','dfdf');
 
 
 --INFORMACIÓN LUGAR
@@ -112,29 +108,56 @@ insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values
 
 
 
+---INSERCIÓN SEGURA DE USUARIO, GRUPO Y BLOG FICTICIOS QUE NO SE VAN A BORRAR EN LAS PRUEBAS DE SERGIO GUZMÁN M.
+
+insert into UsuarioEntity(id, nombre, apellido, password,email) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co');
+insert into GrupoEntity (id, nombre, descripcion) values (1000000,'GrupoPrueba', 'Este grupo es el numero millón');
+insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000000,'Blog','Contenido',0,1000000);
+
+--INFORMACIÓN CALIFICACIÓN
+insert into CalificacionEntity(id,calificacion,fecha,blog_id,calificador_id) values (1,2.0,'2017-09-20',1000000,1000000);
+
+--INFORMACIÓN MULTIMEDIA
+insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','abc');
+insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','dfdf');
+insert into MultimediaEntity (nombre,descripcion,link) values ('HOLA','G','EEE');
+
 --INFORMACIÓN NOTICIA
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1,'Titulo','Info',1);
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (2,'Tit3lo','Irfo',11);
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (3,'Nueva','Irfo',11);
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (4,'New','Irfo',11);
+insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000000,'Otra','Irfo',1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000001,'Otra','Irfo',1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000002,'Otra','Irfo',1000000);
 
-
+--GRUPOENTITY_NOTICIAENTITY
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (10,1);
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (11,2);
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (10,3);
+insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000000);
+insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000001);
 
 
 --INFORMACION NOTICIAENTITY_MULTIMEDIAENTITY
 insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (2,'abc');
 insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (2,'dfdf');
 insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (1,'abc');
+insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (1000001,'abc');
+insert into NoticiaEntity_MultimediaEntity(noticiaentity_id,multimedia_link) values (1000001,'dfdf');
 
+--INFORMACIÓN BLOGENTITY_MULTIMEDIAENTITY
+insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1000000,'abc');
+insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1000000,'dfdf');
+insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'abc');
 insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (2,'dfdf');
-insert into BlogEntity_MultimediaEntity(blogentity_id,multimedia_link) values (1,'abc');
+
 
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (11,2);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (1,1);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,3);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,1);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,2);
+
+
