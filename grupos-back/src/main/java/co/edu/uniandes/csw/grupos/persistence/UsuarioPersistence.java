@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -76,6 +77,24 @@ public class UsuarioPersistence {
        TypedQuery q= em.createQuery("Select u from UsuarioEntity u where u.nombre =:nom", UsuarioEntity.class );
        q.setParameter("nom", nom);
        return (UsuarioEntity) q.getSingleResult(); 
+   }
+   
+   /**
+    * Busca un usuario por su email
+    * @param email email del usuario que se quiere buscar
+    * @return el usuario con email especificado
+    */
+   public UsuarioEntity findByEmail(String ema){
+       LOGGER.info("Buscando "+ema);
+       try
+       {
+           TypedQuery q= em.createQuery("Select u from UsuarioEntity u where u.email =:ema", UsuarioEntity.class );
+           q.setParameter("ema", ema);
+           return (UsuarioEntity) q.getSingleResult();
+       }
+       catch(NoResultException e){
+           return null;
+       }
    }
    
    /**

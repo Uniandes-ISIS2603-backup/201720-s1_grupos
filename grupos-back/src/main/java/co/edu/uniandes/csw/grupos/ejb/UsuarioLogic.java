@@ -62,7 +62,11 @@ public class UsuarioLogic {
      */
     public UsuarioEntity createUser(UsuarioEntity puser) throws BusinessException
     {
-        puser.setId(new Long(1));
+        //puser.setId(new Long(1));
+        UsuarioEntity check= per.findByEmail(puser.getEmail());
+        if(check != null){
+            throw new BusinessException("Ya existe un usuario con ese email");
+        }
         UsuarioEntity add = per.createEntity(puser);
         return add;
     }
@@ -75,6 +79,15 @@ public class UsuarioLogic {
     public List<UsuarioEntity> allUsers() throws BusinessException
     {
         return per.findAll();
+    }
+    
+    /**
+     * Busca un usuario por su email
+     * @param pEmail email del usuario a buscar
+     * @return entidad que tiene el email especificado por parametro
+     */
+    public UsuarioEntity findByEmail(String pEmail){
+        return per.findByEmail(pEmail);
     }
     
     /**
