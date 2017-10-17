@@ -1,10 +1,9 @@
 {
-	"variables": [],
 	"info": {
 		"name": "PruebasUsuarios",
-		"_postman_id": "2fcf3953-dae8-d935-61c8-2be08f22c488",
+		"_postman_id": "b0d6f106-6944-559a-9cac-e0c808d702e9",
 		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -21,20 +20,30 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:8080/grupos-web/Stark/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"grupos-web",
+						"Stark",
+						"usuarios"
+					]
+				}
 			},
 			"response": []
 		},
@@ -52,20 +61,31 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:8080/grupos-web/Stark/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"grupos-web",
+						"Stark",
+						"usuarios",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
@@ -83,20 +103,31 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/100",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:8080/grupos-web/Stark/usuarios/100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"grupos-web",
+						"Stark",
+						"usuarios",
+						"100"
+					]
+				}
 			},
 			"response": []
 		},
@@ -114,20 +145,31 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\"apellido\": \"Guzmáns\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\"\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:8080/grupos-web/Stark/usuarios/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"grupos-web",
+						"Stark",
+						"usuarios",
+						"1000"
+					]
+				}
 			},
 			"response": []
 		},
@@ -145,20 +187,30 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\"\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:8080/grupos-web/Stark/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"grupos-web",
+						"Stark",
+						"usuarios"
+					]
+				}
 			},
 			"response": []
 		},
@@ -176,18 +228,71 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/grupos-web/Stark/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"grupos-web",
+						"Stark",
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta añadir un usuario que ya existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holi@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"sghe\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/grupos-web/Stark/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"grupos-web",
+						"Stark",
+						"usuarios"
+					]
 				},
 				"description": ""
 			},
