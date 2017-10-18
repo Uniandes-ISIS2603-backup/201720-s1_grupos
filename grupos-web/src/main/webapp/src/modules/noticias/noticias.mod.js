@@ -1,6 +1,6 @@
 (function (ng) {
 var mod = ng.module("noticiasModule", []);
-    mod.constant("noticiasContext", "Stark/usuarios/{usuarioId: int}/noticias");
+    mod.constant("noticiasContext", "Stark/usuarios/1/noticias");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");

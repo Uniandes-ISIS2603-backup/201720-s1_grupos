@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-nombre">{{record.nombre}}</td>
+                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
+                 <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaEdit({link: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.id)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+               
+            </tr>
+        </tbody>
+    </table>
+</div>

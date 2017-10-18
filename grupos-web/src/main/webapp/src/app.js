@@ -5,7 +5,8 @@
        
         // Internal modules dependencies       
         'noticiasModule',
-        'calificacionsModule'
+        'calificacionsModule',
+        'multimediaModule'
         
 
     ]);

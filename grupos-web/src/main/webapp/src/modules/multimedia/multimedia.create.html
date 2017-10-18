@@ -1,6 +1,6 @@
 <div class="col-md-6 well">
 
-    <form novalidate name="form" id="calificacion-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+    <form novalidate name="form" id="noticia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
 
         <div ng-messages="form.$error">
             <div ng-message="required">Fill the required fields!</div>
@@ -11,10 +11,11 @@
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
                 <label for="name" class="col-md-2 control-label">Name</label>
                 <div class="col-md-10">
-                    <input id="calificacion" name="calificacion" class="form-control" type="range" min="1" max="5" ng-model="currentRecord.calificacion" ng-init="currentRecord.calificacion" required />
+                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
+                    <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentRecord.descripcion" ng-init="currentRecord.descripcion" required />
                 </div>
             </div>
-            <button type="button" ui-sref='calificacionsList'>Cancel</button>
+            <button type="button" ui-sref='multimediaList'>Cancel</button>
             <button type="submit">Save</button>
         </fieldset>
     </form>

@@ -1,8 +1,8 @@
 (function (ng) {
 
-    var mod = ng.module("calificacionsModule");
+    var mod = ng.module("multimediaModula");
 
-    mod.controller("calificacionsCtrl", ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("multimediaCtrl", ['$scope', '$state', '$stateParams', '$http', 'multimediaContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de ciudades está vacio
             $scope.records = {};
@@ -13,12 +13,12 @@
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
-            if ($stateParams.calificacionId !== null && $stateParams.calificacionId !== undefined) {
+            if ($stateParams.link !== null && $stateParams.link !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.calificacionId;
+                link = $stateParams.link;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
+                $http.get(context + "/" + link)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
@@ -35,39 +35,38 @@
 
                 $scope.alerts = [];
             }
-            function saveRecord(id) {
+            this.saveRecord = function (link) {
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
-                    currentRecord.calificador=1;
-                    currentRecord.blog=1000000;
+                if (link == null) {
+                    link="abcabc";
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('calificacionsList');
+                                $state.go('multimediaList');
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(context + "/" + currentRecord.link, currentRecord)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('calificacionsList');
+                                $state.go('multimediaList');
                             });
                 }
                 ;
             }
-            function deleteRecord (id)
+            this.deleteRecord= function(link)
             {
-                if(id!=null)
+                if(link!=null)
                 {
-                    return $http.delete(context+"/"+id).then (function()
+                    return $http.delete(context+"/"+link).then (function()
                     {
                         $state.reload();
                     })

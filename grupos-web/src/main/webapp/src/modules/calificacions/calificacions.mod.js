@@ -27,7 +27,7 @@ var mod = ng.module("calificacionsModule", []);
             }).state('calificacionEdit', {
                 url: '/calificacions/:calificacionId',
                 param: {
-                    cityId: null
+                    calificacionId: null
                 },
                 views: {
                     'mainView': {
@@ -36,6 +36,18 @@ var mod = ng.module("calificacionsModule", []);
                         templateUrl: basePath + 'calificacions.create.html'
                     }
                 }
+            }).state('calificacionDetail',{
+                url:'/calificacions/:calificacionId',
+                param:{
+                    calificacionId:null
+                },
+                views:{
+                        'mainView': {
+                        controller: 'calificacionsCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'calificacions.detail.html'
+                            }
+                        }
             });
         }]);
 
