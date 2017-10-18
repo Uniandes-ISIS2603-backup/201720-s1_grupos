@@ -1,0 +1,581 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasComentario",
+		"_postman_id": "cbe53ffc-0ab5-d4c3-d092-5c88bb0e38ac",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BlogComentario",
+			"description": "",
+			"item": [
+				{
+					"name": "GET de todos los comentarios de un blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET de un comentario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET de un comentario inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET de un comentario existente que no pertenece al blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT de un comentario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"autor\": \"nuevo autor\",\n        \"comentario\": \"nuevo comentario\"\n\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT de un comentario inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"autor\": \"nuevo autor\",\n        \"comentario\": \"nuevo comentario\"\n\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE de un comentario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE de un comentario inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST de un comentario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"autor\": \"yo\",\n    \"comentario\": \"interesante blog\"\n\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NoticiaComentario",
+			"description": "",
+			"item": [
+				{
+					"name": "Buscar comentarios de una noticia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"autor\": \"Sebastian\",\n        \"comentario\" : \"funciona postman\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Busca una comentario que no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Busca un comentario que existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET de un comentario que existe pero no es de la noticia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT de comentario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"Nuevo contenido\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT de comentario inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"Nuevo contenido\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE de comentario existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/4",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE de comentario inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Agrega un comentario a la noticia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"autor\": \"Sebastian\",\n        \"comentario\" : \"funciona postman\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

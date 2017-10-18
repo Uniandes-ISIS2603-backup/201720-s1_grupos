@@ -131,6 +131,12 @@ insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000000,'Otra
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000001,'Otra','Irfo',1000000);
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000002,'Otra','Irfo',1000000);
 
+--INFORMACIÓN COMENTARIO
+insert into ComentarioEntity (id, autor, comentario) values (1, 'yo', 'hola');
+insert into ComentarioEntity (id, autor, comentario) values (2, 'Sergio', 'solo milloz loks');
+insert into ComentarioEntity (id, autor, comentario) values (3, 'yo', 'hola k ase');
+insert into ComentarioEntity (id, autor, comentario) values (4, 'abc', 'qwerty');
+
 --GRUPOENTITY_NOTICIAENTITY
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (10,1);
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (11,2);
@@ -161,3 +167,10 @@ insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,1);
 insert into UsuarioEntity_Eventoentity(usuarios_id,eventos_id) values (2,2);
 
 
+--INFORMACIÓN BLOGENTITY_COMENTARIOENTITY
+insert into BlogEntity_ComentarioEntity (blogentity_id, comentarios_id) values (1, 1);
+insert into BlogEntity_ComentarioEntity (blogentity_id, comentarios_id) values (1, 2);
+
+--INFORMACIÓN NOTICIAENTITY_COMENTARIOENTITY
+insert into NoticiaEntity_ComentarioEntity (noticiaentity_id, comentarios_id) values (1, 3);
+insert into NoticiaEntity_ComentarioEntity (noticiaentity_id, comentarios_id) values (1, 4);

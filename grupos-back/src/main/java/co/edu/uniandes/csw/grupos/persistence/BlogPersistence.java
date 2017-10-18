@@ -74,6 +74,9 @@ public class BlogPersistence {
         TypedQuery<BlogEntity> q = em.createQuery("select p from BlogEntity p where (p.grupo.id = :grupoid) and (p.id = :blogid)", BlogEntity.class);
         q.setParameter("grupoid", grupoId);
         q.setParameter("blogid", blogId);
+        if (q.getResultList().size()==0) {
+            return null;
+        }
         return q.getSingleResult();
     }
 }

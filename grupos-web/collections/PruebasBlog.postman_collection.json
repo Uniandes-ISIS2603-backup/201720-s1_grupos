@@ -1,0 +1,248 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasBlog",
+		"_postman_id": "abe266fd-4714-a037-55f0-5538efe691f2",
+		"description": "Pruebas servicios REST GruposBlogsResource",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GruposBlogs",
+			"description": "",
+			"item": [
+				{
+					"name": "Obtener el blog 1 del grupo 10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener los blogs del grupo 10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET de un blog que no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/5",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "GET de un blog que no existe"
+					},
+					"response": []
+				},
+				{
+					"name": "Get de un blog existente que no está en el grupo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT de un blog existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contenido\":\"nuevo contenido\",\n\t\"titulo\":\"nuevo titulo\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT de un blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contenido\":\"nuevo contenido\",\n\t\"titulo\":\"nuevo titulo\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar blog del sistema",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"]=responseCode.code===204;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE de un blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"]=responseCode.code===404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/5",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Crear nuevo blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]=responseCode.code===200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
