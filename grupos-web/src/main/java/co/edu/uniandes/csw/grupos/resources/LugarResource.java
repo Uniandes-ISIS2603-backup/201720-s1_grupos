@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -57,8 +58,15 @@ public class LugarResource {
     @Path("{id: \\d+}")
     public LugarDetailDTO getLugar(@PathParam("id") Long id) throws BusinessException
     {
+        try
+        {
         LugarEntity entity=logic.getEntity(id);
         return new LugarDetailDTO(entity);
+        }
+                catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
     }
     /**
      * Actualiza un lufar con el id dado.<br>
