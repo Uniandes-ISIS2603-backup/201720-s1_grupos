@@ -1,0 +1,22 @@
+diff a/grupos-back/derby.log b/grupos-back/derby.log	(rejected hunks)
+@@ -1,13 +1,13 @@
+ ----------------------------------------------------------------
+-Tue Oct 17 09:44:49 COT 2017:
+- Iniciando instancia a816c00e-015f-2acb-5404-000008344e48 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+-en el directorio de base de datos /tmp/gfembed6413758498023578420tmp/lib/databases/embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
+-Cargado desde file:/home/tefa/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
++Tue Oct 17 23:36:18 COT 2017:
++ Iniciando instancia a816c00e-015f-2dc4-93f8-00000d602668 de Derby, versi�n The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
++en el directorio de base de datos C:\Users\se.cardenas\AppData\Local\Temp\gfembed7019236925207132854tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
++Cargado desde file:/C:/Users/se.cardenas/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
+ java.vendor=Oracle Corporation
+ java.runtime.version=1.8.0_144-b01
+-user.dir=/media/tefa/02F9C4CC01945B6E/Desarrollo/Proyecto/Rep/s1_grupos/grupos-back
+-os.name=Linux
++user.dir=C:\Users\se.cardenas\Documents\NetBeansProjects\grupos de inter�s\grupos-back
++os.name=Windows 7
+ os.arch=amd64
+-os.version=4.4.0-97-generic
++os.version=6.1
+ derby.system.home=null
+ Cargador de clases de base de datos iniciado - derby.database.classpath=''
