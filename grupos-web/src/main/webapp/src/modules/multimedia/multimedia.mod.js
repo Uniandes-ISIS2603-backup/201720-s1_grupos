@@ -14,7 +14,7 @@ var mod = ng.module("multimediaModule", []);
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
-            }).state('noticiaCreate', {
+            }).state('multimediaCreate', {
                 url: '/multimedia/create',
                 views: {
                     'mainView': {
@@ -24,7 +24,7 @@ var mod = ng.module("multimediaModule", []);
                     }
                 }
 
-            }).state('noticiaEdit', {
+            }).state('multimediaEdit', {
                 url: '/multimedia/:noticiaId',
                 param: {
                     cityId: null

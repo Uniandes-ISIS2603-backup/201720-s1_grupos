@@ -1,6 +1,6 @@
 (function (ng) {
 
-    var mod = ng.module("multimediaModula");
+    var mod = ng.module("multimediaModule");
 
     mod.controller("multimediaCtrl", ['$scope', '$state', '$stateParams', '$http', 'multimediaContext', function ($scope, $state, $stateParams, $http, context) {
 
