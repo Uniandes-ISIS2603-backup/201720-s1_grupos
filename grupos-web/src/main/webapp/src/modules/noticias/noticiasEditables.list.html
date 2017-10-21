@@ -14,6 +14,7 @@
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaEdit({noticiaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.id)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+                    <a ui-sref="noticiaDetail({noticiaId:record.id})"> PUSH ME!</a>
 
                 </td>
             </tr>

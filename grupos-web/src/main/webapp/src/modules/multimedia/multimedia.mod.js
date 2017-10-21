@@ -1,36 +1,40 @@
 (function (ng) {
-var mod = ng.module("multimediaModule", []);
-    mod.constant("multimediaContext", "Stark/usuarios/1/noticias/1/multimedia");
+var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
+    mod.constant("multimediaContext", "multimedia/");
+    mod.constant("noticiaContext","Stark/usuarios/1/noticias");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/multimedia/';
             $urlRouterProvider.otherwise("/multimediaList");
-
-            $stateProvider.state('multimediaList', {
+            
+            $stateProvider.state('noticiaMultimediaList', {
                 url: '/multimedia',
+                parent: 'noticiaDetail',
                 views: {
-                    'mainView': {
+                    'noticiaMultimediaView': {
                         controller: 'multimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
-            }).state('multimediaCreate', {
+            }).state('noticiaMultimediaCreate', {
                 url: '/multimedia/create',
+                parent:'noticiaDetail',
                 views: {
-                    'mainView': {
+                    'noticiaMultimediaView': {
                         controller: 'multimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.create.html'
                     }
                 }
 
-            }).state('multimediaEdit', {
-                url: '/multimedia/:noticiaId',
+            }).state('noticiaMultimediaEdit', {
+                url: '/multimedia/:multimediaLink',
+                parent:'noticiaDetail',
                 param: {
                     cityId: null
                 },
                 views: {
-                    'mainView': {
+                    'noticiaMultimediaView': {
                         controller: 'multimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.create.html'

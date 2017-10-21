@@ -10,7 +10,6 @@
             $http.get(context).then(function (response) {
                 $scope.records = response.data;
             });
-
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
             if ($stateParams.noticiaId !== null && $stateParams.noticiaId !== undefined) {
@@ -35,6 +34,8 @@
 
                 $scope.alerts = [];
             }
+            console.log($scope.currentRecord);
+
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
 

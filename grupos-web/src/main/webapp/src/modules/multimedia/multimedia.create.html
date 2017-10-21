@@ -1,21 +1,21 @@
 <div class="col-md-6 well">
 
-    <form novalidate name="form" id="multimedia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.link)">
+    <form novalidate name="form" id="multimedia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentMultimedia.link)">
 
         <div ng-messages="form.$error">
             <div ng-message="required">Fill the required fields!</div>
         </div>
 
         <fieldset>
-                        <input id="link" class="form-control" type="hidden" ng-model="currentRecord.link" ng-init="currentRecord.link='aaa'"/>
+                        <input id="link" class="form-control" type="hidden" ng-model="currentMultimedia.link" ng-init="currentMultimedia.link='aaa'"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
                 <label for="name" class="col-md-2 control-label">Name</label>
                 <div class="col-md-10">
-                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
-                    <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentRecord.descripcion" ng-init="currentRecord.descripcion" required />
+                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre" required />
+                    <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion" required />
                 </div>
             </div>
-            <button type="button" ui-sref='multimediaList'>Cancel</button>
+            <button type="button" ui-sref='noticiaMultimediaList'>Cancel</button>
             <button type="submit">Save</button>
         </fieldset>
     </form>

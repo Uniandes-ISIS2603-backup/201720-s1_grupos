@@ -1,5 +1,5 @@
 (function (ng) {
-var mod = ng.module("noticiasModule", []);
+var mod = ng.module("noticiasModule", ['ui.router']);
     mod.constant("noticiasContext", "Stark/usuarios/1/noticias");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
@@ -11,7 +11,7 @@ var mod = ng.module("noticiasModule", []);
                     'mainView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.list.html'
+                        templateUrl: basePath + 'noticiasEditables.list.html'
                     }
                 }
             }).state('noticiaCreate', {
@@ -27,13 +27,25 @@ var mod = ng.module("noticiasModule", []);
             }).state('noticiaEdit', {
                 url: '/noticias/:noticiaId',
                 param: {
-                    cityId: null
+                    noticiaId: null
                 },
                 views: {
                     'mainView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.create.html'
+                    }
+                }
+            }).state('noticiaDetail',{
+                url:'/noticias/:noticiaId/detail',
+                param: {
+                    noticiaId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'noticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticias.detail.html'
                     }
                 }
             });

@@ -2,27 +2,28 @@
 
     var mod = ng.module("multimediaModule");
 
-    mod.controller("multimediaCtrl", ['$scope', '$state', '$stateParams', '$http', 'multimediaContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext', function ($scope, $state, $http, context,noticiaContext) {
 
+            
             // inicialmente el listado de multimdia está vacio
-            $scope.records = {};
+            $scope.multimediaRecords = {};
             // carga la multimedia
-            $http.get(context).then(function (response) {
-                $scope.records = response.data;
+            $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context).then(function (response) {
+                $scope.multimediaRecords = response.data;
             });
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
-            if ($stateParams.link !== null && $stateParams.link !== undefined) {
+            if ($state.params.link !== null && $state.params.link !== undefined) {
 
                 // toma el id del parámetro
-                link = $stateParams.link;
+                link = $state.params.link;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + link)
+                $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context+ link)
                         .then(function (response) {
                             // $http.get es una promesa
-                            // cuando llegue el dato, actualice currentRecord
-                            $scope.currentRecord = response.data;
+                            // cuando llegue el dato, actualice currentMultimedia
+                            $scope.currentMultimedia = response.data;
                         });
 
                 // el controlador no recibió un cityId
@@ -32,27 +33,27 @@
                 $scope.alerts = [];
             }
             this.saveRecord = function (link) {
-                currentRecord = $scope.currentRecord;
+                currentMultimedia = $scope.currentMultimedia;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (link == null || link==undefined) {
                     // ejecuta POST en el recurso REST
-                    return $http.post(context, currentRecord)
+                    return $http.post(noticiaContext+"/"+$state.params.noticiaId+"/"+context, currentMultimedia)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('multimediaList');
+                                $state.go('noticiaMultimediaList');
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.link, currentRecord)
+                    return $http.put(noticiaContext+"/"+$state.params.noticiaId+"/"+context + currentMultimedia.link, currentMultimedia)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('multimediaList');
+                                $state.go('noticiaMultimediaList');
                             });
                 }
                 ;
@@ -61,7 +62,7 @@
             {
                 if(link!=null)
                 {
-                    return $http.delete(context+"/"+link).then (function()
+                    return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+link).then (function()
                     {
                         $state.reload();
                     })
@@ -72,5 +73,5 @@
 
 
         }]);
-})(window.angular);
+})(angular);
 

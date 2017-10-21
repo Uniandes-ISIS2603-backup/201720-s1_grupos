@@ -1,0 +1,40 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+    <div class="row">
+        <h1> SOY EL DETAIL!</h1>
+        <div class="col-md-3">
+            <dl>     
+                <dd>{{currentRecord.titulo}}</dd>
+                
+                <hr>
+                <dt>Birth</dt>
+                <dd>{{currentRecord.informacion}}</dd>
+          
+                <hr>
+                <dt>Bio</dt>
+                <dd>{{currentRecord.autor}}</dd>
+                
+                <hr>
+                <dt>Bio</dt>
+                <dd>{{currentRecord.comentarios}}</dd>
+                
+                <hr>
+                <dt>Bio</dt>
+                 <ul class="nav nav-tabs">
+                    <li > <a ui-sref="noticiaMultimediaList">Multimedia</a></li>
+                </ul>
+                <div ui-view="noticiaMultimediaView">
+                    
+                </div>
+                
+                </div>
+        <hr><hr>
+                </div>
+
+            </dl>
+        </div>
+    </div>
+        {{currentRecord.multimedia}}
+       
+</div>
+

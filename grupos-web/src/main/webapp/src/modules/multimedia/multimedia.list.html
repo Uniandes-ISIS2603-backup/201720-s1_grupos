@@ -9,12 +9,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="record in records">
+            <tr ng-repeat="record in multimediaRecords">
                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
                 <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
                 <td id="{{$index}}-link">{{record.link}}</td>
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="multimediaEdit({link: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.link)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
                 </td>
             </tr>
