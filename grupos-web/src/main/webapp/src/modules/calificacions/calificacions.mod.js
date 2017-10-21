@@ -37,7 +37,7 @@ var mod = ng.module("calificacionsModule", []);
                     }
                 }
             }).state('calificacionDetail',{
-                url:'/calificacions/:calificacionId',
+                url:'/calificacions/:calificacionId/detail',
                 param:{
                     calificacionId:null
                 },

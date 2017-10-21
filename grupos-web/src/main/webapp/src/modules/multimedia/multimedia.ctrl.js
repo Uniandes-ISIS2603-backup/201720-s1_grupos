@@ -4,9 +4,9 @@
 
     mod.controller("multimediaCtrl", ['$scope', '$state', '$stateParams', '$http', 'multimediaContext', function ($scope, $state, $stateParams, $http, context) {
 
-            // inicialmente el listado de ciudades está vacio
+            // inicialmente el listado de multimdia está vacio
             $scope.records = {};
-            // carga las ciudades
+            // carga la multimedia
             $http.get(context).then(function (response) {
                 $scope.records = response.data;
             });
@@ -27,20 +27,15 @@
 
                 // el controlador no recibió un cityId
             } else {
-                // el registro actual debe estar vacio
-                $scope.currentRecord = {
-                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
-                };
-
+               
+               
                 $scope.alerts = [];
             }
             this.saveRecord = function (link) {
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (link == null) {
-                    link="abcabc";
+                if (link == null || link==undefined) {
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
                             .then(function () {

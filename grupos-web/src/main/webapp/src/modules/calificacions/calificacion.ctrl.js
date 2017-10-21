@@ -2,7 +2,7 @@
 
     var mod = ng.module("calificacionsModule");
 
-    mod.controller("calificacionsCtrl", ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller('calificacionsCtrl', ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de ciudades está vacio
             $scope.records = {};
@@ -35,13 +35,20 @@
 
                 $scope.alerts = [];
             }
-            function saveRecord(id) {
+            this.saveRecord=function(id) {
                 currentRecord = $scope.currentRecord;
-
+                currentRecord.calificador={apellido: "Rd",
+        email: "xd@uniandes.edu.co",
+        id: 11,
+        nombre: "DE",
+        password: "Hola"}
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id == null) {
-                    currentRecord.calificador=1;
-                    currentRecord.blog=1000000;
+                    currentRecord.calificador={apellido: "Rd",
+                    email: "xd@uniandes.edu.co",
+                    id: 11,
+                    nombre: "DE",
+                    password: "Hola"}
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
                             .then(function () {
@@ -63,7 +70,7 @@
                 }
                 ;
             }
-            function deleteRecord (id)
+            this.deleteRecord=function (id)
             {
                 if(id!=null)
                 {
