@@ -44,11 +44,6 @@
         password: "Hola"}
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id == null) {
-                    currentRecord.calificador={apellido: "Rd",
-                    email: "xd@uniandes.edu.co",
-                    id: 11,
-                    nombre: "DE",
-                    password: "Hola"}
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
                             .then(function () {
@@ -76,9 +71,13 @@
                 {
                     return $http.delete(context+"/"+id).then (function()
                     {
-                        $state.reload();
+                        $state.go('calificacionsList');
                     })
                 }
+            }
+            this.getRangeValue=function()
+            {
+                return document.getElementById("calificacion").value;
             };
 
 // Código continua con las funciones de despliegue de errores

@@ -1,23 +1,26 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
     <div class="row">
-        <h1> SOY EL DETAIL!</h1>
         <div class="col-md-3">
             <dl>     
                 <dt>{{currentRecord.calificacion}}</dt>
                 
                 <hr>
-                <dt>Birth</dt>
+                <dt>Fecha</dt>
                 <dd>{{currentRecord.fecha| date:'yyyy-MM-dd'}}</dd>
           
                 <hr>
-                <dt>Bio</dt>
+                <dt>Calificador</dt>
                 <dd>{{currentRecord.calificador}}</dd>
                 
                 <hr>
-                <dt>Bio</dt>
+                <dt>Blog</dt>
                 <dd>{{currentRecord.blog}}</dd>
-
+                <hr>
+                <dd>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Actualizar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord.id)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+                </dd>
             </dl>
         </div>
     </div>

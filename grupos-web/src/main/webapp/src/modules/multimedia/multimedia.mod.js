@@ -1,6 +1,6 @@
 (function (ng) {
 var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
-    mod.constant("multimediaContext", "multimedia/");
+    mod.constant("multimediaContext", "multimedia");
     mod.constant("noticiaContext","Stark/usuarios/1/noticias");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/multimedia/';
@@ -31,7 +31,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                 url: '/multimedia/:multimediaLink',
                 parent:'noticiaDetail',
                 param: {
-                    link: null
+                    multimediaLink:null
                 },
                 views: {
                     'multimediaCreate': {

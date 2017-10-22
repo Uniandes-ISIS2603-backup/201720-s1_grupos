@@ -19,7 +19,7 @@
                 // toma el id del parámetro
                 link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
-                $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context+ link)
+                $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+ link)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentMultimedia
@@ -33,24 +33,25 @@
                 $scope.alerts = [];
             }
             this.saveRecord = function (link) {
-                                prueba();
                 currentMultimedia = $scope.currentMultimedia;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (link == null || link==undefined) {
+                if (link == null) {
+                    currentMultimedia.link="aaabbb";
                     // ejecuta POST en el recurso REST
+                    console.log(noticiaContext+"/"+$state.params.noticiaId+"/"+context+";;;"+currentMultimedia);
                     return $http.post(noticiaContext+"/"+$state.params.noticiaId+"/"+context, currentMultimedia)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('noticiaMultimediaList');
                             });
-
+                    currentMultimedia.link=null;
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(noticiaContext+"/"+$state.params.noticiaId+"/"+context + currentMultimedia.link, currentMultimedia)
+                    return $http.put(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/" + currentMultimedia.link, currentMultimedia)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -63,9 +64,9 @@
             {
                 if(link!=null)
                 {
-                    return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+link).then (function()
+                    return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+link).then (function()
                     {
-                        $state.reload();
+                        $state.go('noticiaMultimediaList');
                     })
                 }
             }

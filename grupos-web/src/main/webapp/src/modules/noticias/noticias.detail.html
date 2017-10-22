@@ -13,14 +13,16 @@
                 <dd>{{currentRecord.autor}}</dd>
                 
                 
-                
+               <!-- Pestaña para ver multimedia-->
                 <hr>
                 <dt class="nav nav-tabs"> <a ui-sref="noticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                 <div ui-view="noticiaMultimediaView">
-                    
+     
                 </div>
+                <!-- Pestaña para crear multimedia-->
+                <div ui-view="multimediaCreate"> </div>
                 
-                
+                 <!-- Pestaña para ver comentarios-->
                 <dt>Comentarios</dt>
                 <dd>{{currentRecord.comentarios}}</dd>
                 
