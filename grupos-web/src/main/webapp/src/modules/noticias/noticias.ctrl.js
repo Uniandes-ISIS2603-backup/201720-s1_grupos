@@ -15,6 +15,7 @@
                 header="Noticias de grupo";
                 fullContext=grupoContext+"/"+$state.params.idGrupo+"/"+context;
             }
+            
             // inicialmente el listado de noticias está vacio
             $scope.records = {};
             // carga las noticias

@@ -26,6 +26,16 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
+            }).state('noticiaNoEditableMultimediaList', {
+                url: '/multimedia',
+                parent: 'noticiaDetail',
+                views: {
+                    'noticiaMultimediaView': {
+                        controller: 'multimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimediaNoEditable.list.html'
+                    }
+                }
             }).state('noticiaMultimediaCreate', {
                 url: '/multimedia/create',
                 parent:'noticiaDetail',
