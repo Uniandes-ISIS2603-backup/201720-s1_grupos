@@ -27,7 +27,7 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                 }
 
             }).state('noticiaEdit', {
-                url: '/noticias/:noticiaId',
+                url: '/noticias/update/:noticiaId',
                 param: {
                     noticiaId: null
                 },
@@ -48,6 +48,27 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.detail.html'
+                    }
+                }
+            }).state('noticiaNoEditableDetail',{
+                url:'/noticias/:noticiaId/exhibicion',
+                param: {
+                    noticiaId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'noticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticias.noEditables.detail.html'
+                    }
+                }
+            }).state('noticiasExhibicion',{
+                url:'/noticias/exhibicion',
+                views: {
+                    'mainView': {
+                        controller: 'noticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticias.list.html'
                     }
                 }
             });

@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in multimediaRecords">
+                <td id="{{$index}}-nombre">{{record.nombre}}</td>
+                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
+                <td id="{{$index}}-link">{{record.link}}</td>
+            </tr>
+        </tbody>
+    </table>
+      </div>
+</div>

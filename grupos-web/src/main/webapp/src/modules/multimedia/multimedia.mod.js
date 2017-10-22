@@ -6,7 +6,17 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
             var basePath = 'src/modules/multimedia/';
             $urlRouterProvider.otherwise("/multimediaList");
             
-            $stateProvider.state('noticiaMultimediaList', {
+            $stateProvider.state('noticiaMultimediaNoEditableList', {
+                url: '/multimedia',
+                parent: 'noticiaDetail',
+                views: {
+                    'noticiaMultimediaView': {
+                        controller: 'multimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimediaNoEditable.list.html'
+                    }
+                }
+            }).state('noticiaMultimediaList', {
                 url: '/multimedia',
                 parent: 'noticiaDetail',
                 views: {
