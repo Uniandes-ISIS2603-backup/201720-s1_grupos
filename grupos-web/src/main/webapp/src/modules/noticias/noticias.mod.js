@@ -1,6 +1,8 @@
 (function (ng) {
 var mod = ng.module("noticiasModule", ['ui.router']);
     mod.constant("noticiasContext", "Stark/usuarios/1/noticias");
+    mod.constant("usuarioContext","Stark/usuarios");
+    mod.constant("grupoContext","Stark/grupos")
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");
@@ -33,7 +35,7 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                     'mainView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.create.html'
+                        templateUrl: basePath + 'noticias.update.html'
                     }
                 }
             }).state('noticiaDetail',{

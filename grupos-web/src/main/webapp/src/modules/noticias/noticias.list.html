@@ -1,17 +1,16 @@
 <div class="container-fluid">
-    <table class="table table-striped" class="col-md-4">
-        <thead>
-            <tr>
-                <th>Título</th>
-                <th>Contenido</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="record in records">
-                <td id="{{$index}}-titulo">{{record.titulo}}</td>
-                <td id="{{$index}}-informacion">{{record.informacion}}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h1>{{ctrl.getHeader()}}</h1>
+        <div ng-repeat="record in records" >
+            <div id="{{$index}}-titulo">
+            <h2> {{record.titulo}}</h2>
+            </div>
+            <div id="{{$index}}-titulo">
+            <h2> {{record.informacion}}</h2>
+            </div>
+            <div>
+                <a ui-sref="noticiaDetail({noticiaId:record.id})">Ver</a>
+            </div>
+            <hr>
+            
+        </div>
 </div>

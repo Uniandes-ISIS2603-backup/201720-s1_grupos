@@ -195,7 +195,7 @@ public class NoticiaLogic {
         MultimediaEntity m = multimedia.getEntity(link);
         if(m==null) throw new NotFoundException("La multimedia no existe");
         int index = noticia.getMultimedia().indexOf(m);
-        if((index<0)) throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia.");
+        if((index<0)) throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia. "+m.getLink()+"-"+link);
         MultimediaEntity updated = multimedia.updateEntity(link, mult);
         noticia.getMultimedia().set(index, updated);
         persistence.updateEntity(noticia);

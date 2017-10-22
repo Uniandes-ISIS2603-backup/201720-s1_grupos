@@ -14,10 +14,14 @@
                 <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
                 <td id="{{$index}}-link">{{record.link}}</td>
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaEdit({noticiaId: currentRecord.id, multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.link)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
                 </td>
             </tr>
         </tbody>
     </table>
+      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaCreate({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+      <div ui-view="multimediaCreate">
+  
+      </div>
 </div>

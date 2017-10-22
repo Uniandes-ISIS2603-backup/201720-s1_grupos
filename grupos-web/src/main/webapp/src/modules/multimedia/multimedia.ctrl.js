@@ -14,10 +14,10 @@
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
-            if ($state.params.link !== null && $state.params.link !== undefined) {
+            if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el id del parámetro
-                link = $state.params.link;
+                link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
                 $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context+ link)
                         .then(function (response) {
@@ -33,6 +33,7 @@
                 $scope.alerts = [];
             }
             this.saveRecord = function (link) {
+                                prueba();
                 currentMultimedia = $scope.currentMultimedia;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
@@ -62,12 +63,15 @@
             {
                 if(link!=null)
                 {
-                    return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+link).then (function()
+                    return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+link).then (function()
                     {
                         $state.reload();
                     })
                 }
-            };
+            }
+            this.prueba = function(){
+                console.log("HOLA Q HACE");
+            }
 
 // Código continua con las funciones de despliegue de errores
 

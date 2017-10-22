@@ -20,7 +20,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                 url: '/multimedia/create',
                 parent:'noticiaDetail',
                 views: {
-                    'noticiaMultimediaView': {
+                    'multimediaCreate': {
                         controller: 'multimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.create.html'
@@ -31,10 +31,10 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                 url: '/multimedia/:multimediaLink',
                 parent:'noticiaDetail',
                 param: {
-                    cityId: null
+                    link: null
                 },
                 views: {
-                    'noticiaMultimediaView': {
+                    'multimediaCreate': {
                         controller: 'multimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.create.html'

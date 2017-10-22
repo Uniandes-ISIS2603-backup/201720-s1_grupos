@@ -7,12 +7,11 @@
         </div>
 
         <fieldset>
-                        <input id="link" class="form-control" type="hidden" ng-model="currentMultimedia.link" ng-init="currentMultimedia.link='aaa'"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-                <label for="name" class="col-md-2 control-label">Name</label>
                 <div class="col-md-10">
-                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre" required />
-                    <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion" required />
+                    <input id="link"  type="hidden" ng-model="currentMultimedia.link" />
+                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"  />
+                    <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"  />
                 </div>
             </div>
             <button type="button" ui-sref='noticiaMultimediaList'>Cancel</button>

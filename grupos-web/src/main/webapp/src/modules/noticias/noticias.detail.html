@@ -1,31 +1,28 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
     <div class="row">
-        <h1> SOY EL DETAIL!</h1>
+        <h1> {{currentRecord.titulo}}</h1>
         <div class="col-md-3">
             <dl>     
-                <dd>{{currentRecord.titulo}}</dd>
                 
-                <hr>
-                <dt>Birth</dt>
+                <dt>Informacion</dt>
                 <dd>{{currentRecord.informacion}}</dd>
           
                 <hr>
-                <dt>Bio</dt>
+                <dt>Autor</dt>
                 <dd>{{currentRecord.autor}}</dd>
                 
-                <hr>
-                <dt>Bio</dt>
-                <dd>{{currentRecord.comentarios}}</dd>
+                
                 
                 <hr>
-                <dt>Bio</dt>
-                 <ul class="nav nav-tabs">
-                    <li > <a ui-sref="noticiaMultimediaList">Multimedia</a></li>
-                </ul>
+                <dt class="nav nav-tabs"> <a ui-sref="noticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                 <div ui-view="noticiaMultimediaView">
                     
                 </div>
+                
+                
+                <dt>Comentarios</dt>
+                <dd>{{currentRecord.comentarios}}</dd>
                 
                 </div>
         <hr><hr>
@@ -34,7 +31,10 @@
             </dl>
         </div>
     </div>
-        {{currentRecord.multimedia}}
-       
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" >
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord.id)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Actualizar</button>
+
+    </div>  
 </div>
 

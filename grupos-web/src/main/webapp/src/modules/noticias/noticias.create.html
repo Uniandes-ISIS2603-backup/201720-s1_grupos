@@ -9,10 +9,18 @@
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-                <label for="name" class="col-md-2 control-label">Name</label>
+                <label for="titulo" class="col-md-2 control-label">Título</label>
+                <label for="informacion" class="col-md-2 control-label">Información</label>
+                <label for="multimedia" class="col-md-2 control-label">Multimedia</label>
+                <label for="comentarios" class="col-md-2 control-label">Comentarios</label>
                 <div class="col-md-10">
                     <input id="titulo" name="titulo" class="form-control" type="text" ng-model="currentRecord.titulo" ng-init="currentRecord.titulo" required />
                     <input id="informacion" name="informacion" class="form-control" type="textArea" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion" required />
+                    <ul class="nav nav-tabs">
+                    <li > <a ui-sref="noticiaMultimediaList">Multimedia</a></li>
+                    </ul>
+                    <div ui-view="noticiaMultimediaView">
+                </div>
                 </div>
             </div>
             <button type="button" ui-sref='noticiasList'>Cancel</button>

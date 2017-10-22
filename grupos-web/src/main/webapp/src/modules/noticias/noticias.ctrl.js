@@ -2,22 +2,33 @@
 
     var mod = ng.module("noticiasModule");
 
-    mod.controller("noticiasCtrl", ['$scope', '$state', '$stateParams', '$http', 'noticiasContext', function ($scope, $state, $stateParams, $http, context) {
-
-            // inicialmente el listado de ciudades está vacio
+    mod.controller("noticiasCtrl", ['$scope', '$state', '$http', 'noticiasContext','usuarioContext','grupoContext', function ($scope, $state, $http, context, usuarioContext, grupoContext) {
+            fullContext=context;
+            header="¿Qué pasa con tus intereses hoy?";
+            if($state.params.idUsuario!==null && $state.params.idUsuario!==undefined)
+            {
+                header="Tus noticias";
+                fullContext=usuarioContext+"/"+$state.params.idUsuario+"/"+context;
+            }
+            else if($state.params.idGrupo!==null && $state.params.idGrupo!==undefined)
+            {
+                header="Noticias de grupo";
+                fullContext=grupoContext+"/"+$state.params.idGrupo+"/"+context;
+            }
+            // inicialmente el listado de noticias está vacio
             $scope.records = {};
-            // carga las ciudades
-            $http.get(context).then(function (response) {
+            // carga las noticias
+            $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             });
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
-            if ($stateParams.noticiaId !== null && $stateParams.noticiaId !== undefined) {
+            if ($state.params.noticiaId !== null && $state.params.noticiaId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.noticiaId;
+                id = $state.params.noticiaId;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
+                $http.get(fullContext + "/" + id)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
@@ -43,7 +54,7 @@
                 if (id == null) {
 
                     // ejecuta POST en el recurso REST
-                    return $http.post(context, currentRecord)
+                    return $http.post(fullContext, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
@@ -54,7 +65,7 @@
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -67,12 +78,17 @@
             {
                 if(id!=null)
                 {
-                    return $http.delete(context+"/"+id).then (function()
+                    return $http.delete(fullContext+"/"+id).then (function()
                     {
                         $state.reload();
                     })
                 }
+            }
+            this.getHeader= function()
+            {
+                return header;
             };
+            
 
 // Código continua con las funciones de despliegue de errores
 
