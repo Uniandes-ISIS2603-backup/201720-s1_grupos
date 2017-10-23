@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="tarjetasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar Tarjeta</a>
+                    </div>
+                </div>
+    <div class="col-md-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Número</th>    
+                    <th>Banco</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tarjeta in tarjetasRecords">
+                    <td id="{{$index}}-numero">   <a ui-sref="tarjetaDetail({numTarjeta: tarjeta.numero})">{{tarjeta.numero}}</a></td>
+                    <td id="{{$index}}-banco">{{tarjeta.banco}}</td>
+                </tr>                
+            </tbody>
+        </table>
+    </div>
+</div>
