@@ -28,11 +28,9 @@
         <div class="container-fluid col-md-12">
             <h3>Ejemplo Noticias, Multimedia, Calificaciones</h3>
                     <ul>
-                        <li><a ui-sref="noticiaCreate">Create</a></li>
-                        <li><a ui-sref="noticiasList">List</a></li>
-                        <li><a ui-sref="calificacionCreate">Create c</a></li>
-                        <li><a ui-sref="calificacionsList">List c</a></li>
-                        <li><a ui-sref="noticiasExhibicion"> List not</a></li>
+                        <li><a ui-sref="noticiasList">Noticias editables</a></li>
+                        <li><a ui-sref="calificacionsList">Calificaciones c</a></li>
+                        <li><a ui-sref="noticiasExhibicion"> Noticias</a></li>
 
                     </ul>
             <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>

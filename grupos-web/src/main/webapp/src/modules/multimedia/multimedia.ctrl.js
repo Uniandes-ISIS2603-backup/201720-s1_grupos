@@ -66,7 +66,7 @@
                 {
                     return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+link).then (function()
                     {
-                        $state.go('noticiaMultimediaList');
+                        $state.reload();
                     })
                 }
             }

@@ -17,23 +17,13 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                     }
                 }
             }).state('noticiaMultimediaList', {
-                url: '/multimedia',
+                url: '/multimedia/editable',
                 parent: 'noticiaDetail',
                 views: {
                     'noticiaMultimediaView': {
                         controller: 'multimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.list.html'
-                    }
-                }
-            }).state('noticiaNoEditableMultimediaList', {
-                url: '/multimedia',
-                parent: 'noticiaDetail',
-                views: {
-                    'noticiaMultimediaView': {
-                        controller: 'multimediaCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'multimediaNoEditable.list.html'
                     }
                 }
             }).state('noticiaMultimediaCreate', {
