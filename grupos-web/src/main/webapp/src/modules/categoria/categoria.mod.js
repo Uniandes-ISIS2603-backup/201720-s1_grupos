@@ -78,6 +78,7 @@
                     categoriaId: null
                 },
                 views: {
+                    //Comentario para el push al master
                     'detailView': {
                         templateUrl: basePath + '/delete/categoria.delete.html',
                         controller: 'categoriaDeleteCtrl'
