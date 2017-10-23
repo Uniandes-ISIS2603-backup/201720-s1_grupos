@@ -1,0 +1,21 @@
+<div class="col-md-6 well">
+
+    <form novalidate name="form" id="multimedia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentMultimedia.link)">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Fill the required fields!</div>
+        </div>
+
+        <fieldset>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
+                <div class="col-md-10">
+                    <input id="link"  type="hidden" ng-model="currentMultimedia.link" ng-init="currentMultimedia.link"/>
+                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"  />
+                    <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"  />
+                </div>
+            </div>
+            <button type="button" ui-sref='noticiaMultimediaList'>Cancel</button>
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</div>

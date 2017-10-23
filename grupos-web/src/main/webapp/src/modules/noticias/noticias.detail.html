@@ -1,0 +1,42 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+    <div class="row">
+        <h1> {{currentRecord.titulo}}</h1>
+        <div class="col-md-3">
+            <dl>     
+                
+                <dt>Informacion</dt>
+                <dd>{{currentRecord.informacion}}</dd>
+          
+                <hr>
+                <dt>Autor</dt>
+                <dd>{{currentRecord.autor}}</dd>
+                
+                
+               <!-- Pestaña para ver multimedia-->
+                <hr>
+                <dt class="nav nav-tabs"> <a ui-sref="noticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
+                <div ui-view="noticiaMultimediaView">
+     
+                </div>
+                <!-- Pestaña para crear multimedia-->
+                <div ui-view="multimediaCreate"> </div>
+                
+                 <!-- Pestaña para ver comentarios-->
+                <dt>Comentarios</dt>
+                <dd>{{currentRecord.comentarios}}</dd>
+                
+                </div>
+        <hr><hr>
+                </div>
+
+            </dl>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" >
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord.id)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Actualizar</button>
+
+    </div>  
+</div>
+
