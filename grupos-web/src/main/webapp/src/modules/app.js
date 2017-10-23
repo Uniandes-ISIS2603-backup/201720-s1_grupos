@@ -6,12 +6,12 @@
         // Internal modules dependencies       
         'grupoModule',
         'blogModule',
-        'calificacionModule',
+        'calificacionsModule',
         'categoriaModule',
         'comentarioModule',
         'empresaModule',
         'multimediaModule',
-        'noticiaModule',
+        'noticiasModule',
         'patrocinioModule',
         'tarjetaModule',
         'usuarioModule'
