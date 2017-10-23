@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>{{grupoActual.nombre}}</h2>
+        </div>
+        <div class="col-md-4">
+            <div class=" col-md-12">
+                <button type="button" class="btn btn-success" ui-sref="inscripcionGrupo()">Inscribirse</button>
+                <button type="button" class="btn btn-danger" ui-sref="dejarGrupo()">Salir del grupo</button>
+            </div>
+            <div class=" col-md-12">
+                <button type="button" class="btn btn-primary" ui-sref="listaAdmins">Administradores</button>
+            </div>
+            <div class=" col-md-12">
+                <button type="button" class="btn btn-primary" ui-sref="listaUsuarios">Usuarios</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <div class="btn-group col-md-12">
+            <button type="button" class="btn btn-primary" ui-sref="listaNoticias">Noticias</button>
+            <button type="button" class="btn btn-primary" ui-sref="listaEventos">Eventos</button>
+            <button type="button" class="btn btn-primary" ui-sref="listaBlogs">Blogs</button>
+            <button type="button" class="btn btn-primary" ui-sref="listaCategorias">Categorias</button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <a class="btn btn-default btn-sm col-md-6" ui-sref="grupoUpdate({grupoId: grupo.id})"><span class="glyphicon glyphicon-edit"></span></a>
+    <a class="btn btn-danger btn-sm col-md-6" ui-sref="grupoDelete({grupoId: grupo.id})"><span class="glyphicon glyphicon-trash"></span></a>
+</div>
+<br>
+<br>
+

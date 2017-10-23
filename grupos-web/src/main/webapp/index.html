@@ -43,10 +43,11 @@
         <div class="container-fluid col-md-12">
             <h3>Ejemplo Noticias, Multimedia, Calificaciones</h3>
                     <ul>
-                        <li><a ui-sref="noticiasList">Noticias editables</a></li>
-                        <li><a ui-sref="calificacionsList">Calificaciones c</a></li>
-                        <li><a ui-sref="noticiasExhibicion"> Noticias</a></li>
-
+                        <li role="navigation"><a ui-sref="listaGrupos">Grupos</a></li>
+                        <li role="navigation"><a ui-sref="carruselCategorias">Categorias</a></li>
+                        <li  role="navigation"><a ui-sref="noticiasList">Noticias editables</a></li>
+                        <li  role="navigation"><a ui-sref="calificacionsList">Calificaciones c</a></li>
+                        <li  role="navigation"><a ui-sref="noticiasExhibicion"> Noticias</a></li>
                     </ul>
             <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
             <div ui-view="mainView">
