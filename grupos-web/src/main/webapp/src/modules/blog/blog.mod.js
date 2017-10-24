@@ -55,7 +55,7 @@
                 url:'/update',
                 parent:'blogDetail',
                 views: {
-                   'detailView': {
+                   'childrenView': {
                         templateUrl: basePath + 'new/blog.create.html',
                         controller: 'blogUpdateCtrl',
                         controllerAs: 'ctrl'

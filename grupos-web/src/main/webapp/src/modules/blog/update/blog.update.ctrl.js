@@ -3,12 +3,15 @@
    
     mod.controller('blogUpdateCtrl', ['$scope', '$http', 'blogContext', '$state', 'grupoContext', '$rootScope',
         function ($scope, $http, blogContext, $state, grupoContext) {
+            $scope.crearBlog=false;
+            $scope.actualizarBlog=true;
+            
             $scope.createBlog = function() {
-                $http.post(grupoContext+'/'+$state.params.grupoId+'/'+blogContext, {
+                $http.put(grupoContext+'/'+$state.params.grupoId+'/'+blogContext + '/' + $state.params.blogId, {
                     titulo: $scope.tituloBlog,
                     contenido: $scope.contenidoBlog
                 }).then(function (response) {
-                    $state.go('blogList', {blogId:response.data.id}, {reload:true});
+                    $state.go('blogDetail', {blogId:response.data.id}, {reload:true});
                 });
 
             };

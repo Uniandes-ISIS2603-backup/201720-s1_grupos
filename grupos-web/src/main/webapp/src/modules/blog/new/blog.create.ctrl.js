@@ -3,6 +3,9 @@
    
     mod.controller('blogCreateCtrl', ['$scope', '$http', 'blogContext', '$state', 'grupoContext', '$rootScope',
         function ($scope, $http, blogContext, $state, grupoContext) {
+            $scope.crearBlog=true;
+            $scope.actualizarBlog=false;
+            
             $scope.createBlog = function() {
                 $http.post(grupoContext+'/'+$state.params.grupoId+'/'+blogContext, {
                     titulo: $scope.tituloBlog,
