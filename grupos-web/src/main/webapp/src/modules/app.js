@@ -14,7 +14,9 @@
         'noticiasModule',
         'patrocinioModule',
         'tarjetaModule',
-        'usuarioModule'
+        'usuarioModule',
+        'eventoModule',
+        'lugarModule'
 
     ]);
     // Resuelve problemas de las promesas

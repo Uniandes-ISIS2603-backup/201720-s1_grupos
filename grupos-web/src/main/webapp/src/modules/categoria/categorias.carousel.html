@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <carousel interval="carruselCategorias">
+      <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
+          <a ui-sref="categoriaDetail({categoriaId: categoria.id})">
+        <img src="data/{{categoria.rutaIcono}}" style="margin:auto" alt="{{categoria.rutaIcono}}"  role="button">    
+        <div class="carousel-caption" >
+          <h4>{{categoria.tipo}}</h4>
+          <p>{{categoria.descripcion}}</p>
+        </div>
+         </a>
+      </slide>
+    </carousel>
+    
+    
+</div>

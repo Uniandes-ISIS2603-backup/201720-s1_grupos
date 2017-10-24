@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Lista de categorias</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="categoriaCreate"><span class="glyphicon glyphicon-plus-sign"></span> Adicionar categoría a este grupo :D</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="container">                             
+                            
+                        <div class="panel panel-default" ng-repeat="categoria in categoriaRecords">
+                            <div class="panel-body">                   
+                                <h3 id="{{$index}}-name">{{categoria.tipo}}</h3>
+                                <img class=" img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" alt="{{categoria.rutaIcono}}" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
+                                <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
+                                    <a class="btn btn-danger btn-sm" ui-sref="desasociarCategoria({categoriaId: categoria.id})">Desasociar categoría</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>

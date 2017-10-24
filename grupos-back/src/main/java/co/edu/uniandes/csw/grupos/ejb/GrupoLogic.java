@@ -104,6 +104,7 @@ public class GrupoLogic {
      * @return el grupo recién modificado
      */
     public GrupoEntity updateGrupo(GrupoEntity entity) {
+         
         GrupoEntity grupo= persistence.find(entity.getId());
         if(grupo==null)
         {
