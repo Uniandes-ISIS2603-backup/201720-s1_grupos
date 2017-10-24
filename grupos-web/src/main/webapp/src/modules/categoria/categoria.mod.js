@@ -1,6 +1,6 @@
 (function (ng) {
     var mod = ng.module("categoriaModule", ['ui.router']);
-    mod.constant("categoriasContext", "api/categorias");
+    mod.constant("categoriasContext", "Stark/categorias");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/categoria/';
             var basePathGrupos = 'src/modules/grupo/';
@@ -50,12 +50,12 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('categoriasCreate', {
+            }).state('categoriaCreate', {
                 url: '/create',
                 parent: 'categorias',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/categorias.new.html',
+                        templateUrl: basePath + 'new/categorias.new.html',
                         controller: 'categoriaNewCtrl'
                     }
                 }
@@ -67,7 +67,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/categorias.new.html',
+                        templateUrl: basePath + 'new/categorias.new.html',
                         controller: 'categoriaUpdateCtrl'
                     }
                 }
@@ -80,7 +80,7 @@
                 views: {
                     //Comentario para el push al master
                     'detailView': {
-                        templateUrl: basePath + '/delete/categoria.delete.html',
+                        templateUrl: basePath + 'delete/categorias.delete.html',
                         controller: 'categoriaDeleteCtrl'
                     }
                 }

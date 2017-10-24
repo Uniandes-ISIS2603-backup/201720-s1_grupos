@@ -5,7 +5,7 @@
     mod.controller('grupoDeleteCtrl', ['$scope', '$http', 'gruposContext', '$state',
         function ($scope, $http, gruposContext, $state) {
             var idgrupo = $state.params.grupoId;
-            
+            $scope.idGrupo=idgrupo;
             $scope.crearGrupo=true;
             $scope.actualizarGrupo=false;
             $scope.deleteGrupo = function () {

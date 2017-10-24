@@ -1,15 +1,20 @@
 <div class="container-fluid">
+    <div class="btn-group mr-2" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
+        <a class="btn btn-info" ui-sref="categoriaCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear categoria :O</a>
+    </div>
     <carousel interval="carruselCategorias">
-      <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
-          <a ui-sref="categoriaDetail({categoriaId: categoria.id})">
-        <img src="data/{{categoria.rutaIcono}}" style="margin:auto" alt="{{categoria.rutaIcono}}"  role="button">    
-        <div class="carousel-caption" >
-          <h4>{{categoria.tipo}}</h4>
-          <p>{{categoria.descripcion}}</p>
-        </div>
-         </a>
-      </slide>
+        <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
+            <a ui-sref="categoriaDetail({categoriaId: categoria.id})">
+                <div  style="position:relative; right:-20">
+                <img src="data/{{categoria.rutaIcono}}" style="margin:auto" onerror="this.src='data/default.png'"  role="button">
+                <div class="carousel-caption" >
+                    <h4>{{categoria.tipo}}</h4>
+                    <p>{{categoria.descripcion}}</p>
+                </div>                
+            </a>
+            
+        </slide>
     </carousel>
-    
-    
+        
+        
 </div>

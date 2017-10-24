@@ -14,7 +14,7 @@
                 }).then(function (response) {
                     //categoria created successfully
                     console.log("la data:" + response.data.id);
-                    $state.go('listaCategorias',{}, {reload: true});
+                    $state.go('carruselCategorias',{}, {reload: true});
                 }, function (error) {
                     console.log("llega Status: "+ error.status);
                     console.log(error.data)
