@@ -1,21 +1,21 @@
 (function (ng) {
-    var mod = ng.module("grupoModule");
-    mod.constant("gruposContext", "Stark/grupos");
+    var mod = ng.module("categoriaModule");
+    mod.constant("categoriasContext", "Stark/categorias");
     
-    mod.controller('grupoDeleteCtrl', ['$scope', '$http', 'gruposContext', '$state',
-        function ($scope, $http, gruposContext, $state) {
-            var idgrupo = $state.params.grupoId;
+    mod.controller('categoriaDeleteCtrl', ['$scope', '$http', 'categoriasContext', '$state',
+        function ($scope, $http, categoriasContext, $state) {
+            var idcategoria = $state.params.categoriaId;
             
-            $scope.crearGrupo=true;
-            $scope.actualizarGrupo=false;
-            $scope.deleteGrupo = function () {
+            $scope.crearcategoria=true;
+            $scope.actualizarcategoria=false;
+            $scope.deleteCategoria = function () {
                 console.log("voy a borrar");
-                $http.delete(gruposContext + '/' + idgrupo, {}).then(function (response) {
-                    $state.go('listaGrupos',{}, {reload: true});
+                $http.delete(categoriasContext + '/' + idcategoria, {}).then(function (response) {
+                    $state.go('listaCategorias',{}, {reload: true});
                 }, function (error) {
-                    $scope.errorGrupos=error.status;
-                    console.log(errorGrupos);
-                    $("#modalErrorGrupos").modal();
+                    $scope.errorcategorias=error.status;
+                    console.log(errorcategorias);
+                    $("#modalErrorcategorias").modal();
                 });
             };
         }

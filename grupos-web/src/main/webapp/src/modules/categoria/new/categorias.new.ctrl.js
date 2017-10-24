@@ -1,24 +1,25 @@
 (function (ng) {
-    var mod = ng.module("grupoModule");
-    mod.constant("gruposContext", "Stark/grupos");
-    mod.controller('grupoNewCtrl', ['$scope', '$http', 'gruposContext', '$state', '$rootScope',
-        function ($scope, $http, gruposContext, $state, $rootScope) {
+    var mod = ng.module("categoriaModule");
+    mod.constant("categoriasContext", "Stark/categorias");
+    mod.controller('categoriaNewCtrl', ['$scope', '$http', 'categoriasContext', '$state', '$rootScope',
+        function ($scope, $http, categoriasContext, $state, $rootScope) {
             $rootScope.edit = false;
-            $scope.crearGrupo=true;
-            $scope.actualizarGrupo=false;
-            $scope.creategrupo = function () {
-                $http.post(gruposContext, {
-                    nombre: $scope.grupoName,
-                    descripcion: $scope.grupoDescription
+            $scope.crearcategoria=true;
+            $scope.actualizarcategoria=false;
+            $scope.createCategoria = function () {
+                $http.post(categoriasContext, {
+                    tipo: $scope.categoriaName,
+                    descripcion: $scope.categoriaDescription,
+                    rutaIcono: $scope.categoriaRuta
                 }).then(function (response) {
-                    //grupo created successfully
+                    //categoria created successfully
                     console.log("la data:" + response.data.id);
-                    $state.go('listaGrupos',{}, {reload: true});
+                    $state.go('listaCategorias',{}, {reload: true});
                 }, function (error) {
                     console.log("llega Status: "+ error.status);
                     console.log(error.data)
-                    $scope.errorGrupos=error.data;
-                    $("#modalErrorGrupos").modal('show');
+                    $scope.errorcategorias=error.data;
+                    $("#modalErrorcategorias").modal('show');
                 });
             };
             

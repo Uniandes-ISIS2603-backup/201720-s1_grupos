@@ -1,35 +1,35 @@
 (function (ng) {
-    var mod = ng.module("grupoModule");
-    mod.constant("gruposContext", "Stark/grupos");
+    var mod = ng.module("categoriaModule");
+    mod.constant("categoriasContext", "Stark/categorias");
     
-    mod.controller('grupoUpdateCtrl', ['$scope', '$http', 'gruposContext', '$state', '$rootScope', '$filter',
-        function ($scope, $http, gruposContext, $state, $rootScope, $filter) {
+    mod.controller('categoriaUpdateCtrl', ['$scope', '$http', 'categoriasContext', '$state', '$rootScope', '$filter',
+        function ($scope, $http, categoriasContext, $state, $rootScope, $filter) {
             $rootScope.edit = true;
             
-            var idgrupo = $state.params.grupoId;
-            $scope.crearGrupo=false;
-            $scope.actualizarGrupo=true;
+            var idcategoria = $state.params.categoriaId;
+            $scope.crearcategoria=false;
+            $scope.actualizarcategoria=true;
             //Consulto el autor a editar.
-            $http.get(gruposContext + '/' + idgrupo).then(function (response) {
-                var grupoActual = response.data;
-                $scope.grupoName = grupoActual.nombre;
-                $scope.grupoDescription = grupoActual.descripcion;
+            $http.get(categoriasContext + '/' + idcategoria).then(function (response) {
+                var categoriaActual = response.data;
+                $scope.categoriaName = categoriaActual.nombre;
+                $scope.categoriaDescription = categoriaActual.descripcion;
             });
             
-            $scope.creategrupo = function () {
+            $scope.createCategoria = function () {
                 /*Se llama a la función newBooks() para buscar cada uno de los ids de los books
                          en el array que tiene todos los books y así saber como queda la lista final de los books asociados al autor.
                  */
-                $http.put(gruposContext + "/" + idgrupo, {
-                    nombre: $scope.grupoName,
-                    descripcion: $scope.grupoDescription
+                $http.put(categoriasContext + "/" + idcategoria, {
+                    nombre: $scope.categoriaName,
+                    descripcion: $scope.categoriaDescription
                 }).then(function (response) {
                     
-                    //grupo created successfully
-                    $state.go('grupoDetail', {grupoId: response.data.id}, {reload: true});
+                    //categoria created successfully
+                    $state.go('categoriaDetail', {categoriaId: response.data.id}, {reload: true});
                 }, function (error,status) {
-                    $scope.errorGrupos=status;
-                    $("#modalErrorGrupos").modal();
+                    $scope.errorcategorias=status;
+                    $("#modalErrorcategorias").modal();
                 });
             };
             
