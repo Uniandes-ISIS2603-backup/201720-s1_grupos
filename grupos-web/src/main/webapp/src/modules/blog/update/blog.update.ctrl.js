@@ -7,6 +7,11 @@
             $scope.crearBlog=false;
             $scope.actualizarBlog=true;
             
+            $http.get(grupoContext+'/'+$state.params.grupoId+'/'+blogContext + '/' + $state.params.blogId).then(function (response) {
+                $scope.tituloBlog = response.data.titulo;
+                $scope.contenidoBlog = response.data.contenido;
+            });
+            
             $scope.createBlog = function() {
                 $http.put(grupoContext+'/'+$state.params.grupoId+'/'+blogContext + '/' + $state.params.blogId, {
                     titulo: $scope.tituloBlog,
