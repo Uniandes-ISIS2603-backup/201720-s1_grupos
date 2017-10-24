@@ -1,0 +1,16 @@
+<div class="container-fluid">
+        <h1>{{ctrl.getHeader()}}</h1>
+        <div ng-repeat="record in records" >
+            <div id="{{$index}}-titulo">
+            <h2> {{record.titulo}}</h2>
+            </div>
+            <div id="{{$index}}-titulo">
+            <h2> {{record.informacion}}</h2>
+            </div>
+            <div>
+                <a ui-sref="noticiaNoEditableDetail({noticiaId:record.id})">Ver noticia</a>
+            </div>
+            <hr>
+            
+        </div>
+</div>

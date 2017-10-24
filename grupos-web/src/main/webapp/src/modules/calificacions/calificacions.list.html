@@ -1,0 +1,23 @@
+<div class="container-fluid">
+   <button ui-sref="calificacionCreate">Agregar</button></li>
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Calificación</th>
+                <th></th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-calificador">{{record.calificador.nombre}}</td>
+                <td id="{{$index}}-calificacion">{{record.calificacion}}</td>
+                <td><button id="{{$index}}-detail-btn" class="btn btn-default btn-sm" ui-sref="calificacionDetail({calificacionId:record.id})"> Ver</button></td>
+                <td id="{{$index}}-fecha">{{record.fecha}}</td>
+            </tr>
+            <hr>
+
+        </tbody>
+    </table>
+</div>

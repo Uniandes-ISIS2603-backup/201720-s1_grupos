@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in multimediaRecords">
+                <td id="{{$index}}-nombre">{{record.nombre}}</td>
+                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
+                <td id="{{$index}}-link">{{record.link}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.link)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+      <div ui-view="multimediaCreate">
+  
+      </div>
+</div>

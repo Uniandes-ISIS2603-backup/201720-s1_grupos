@@ -1,0 +1,17 @@
+<div class="container-fluid">
+        <h1>{{ctrl.getHeader()}}</h1>
+        <button class="btn btn-default btn-sm" ui-sref="noticiaCreate">Agregar</button>
+        <div ng-repeat="record in records" >
+            <div id="{{$index}}-titulo">
+            <h2> {{record.titulo}}</h2>
+            </div>
+            <div id="{{$index}}-titulo">
+            <h2> {{record.informacion}}</h2>
+            </div>
+            <div>
+                <a ui-sref="noticiaDetail({noticiaId:record.id})">Ver</a>
+            </div>
+            <hr>
+            
+        </div>
+</div>
