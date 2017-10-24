@@ -51,6 +51,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('blogUpdate', {
+                url:'/update',
+                parent:'blogDetail',
+                views: {
+                   'detailView': {
+                        templateUrl: basePath + 'new/blog.create.html',
+                        controller: 'blogUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             
         }]);
