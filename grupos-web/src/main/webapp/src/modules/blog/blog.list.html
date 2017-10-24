@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Lista de blogs</label></div>
+            <div class="panel-body">
+                <div class="col-md-8">
+                    <div class="container">
+                        <div><h2>Blogs del grupo</h2></div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear blog :v</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="panel panel-default" ng-repeat="blog in listBlog">
+                            <div class="panel-body clickable" ui-sref="blogDetail({blogId: blog.id})" role="button">                   
+                                <h3 id="{{$index}}-title">{{blog.titulo}}</h3>
+                               <p id="{{$index}}-content">{{blog.contenido}}</p>
+                                   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

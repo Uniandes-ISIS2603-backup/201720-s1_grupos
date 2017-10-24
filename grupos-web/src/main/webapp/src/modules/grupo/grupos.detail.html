@@ -24,7 +24,7 @@
         <div class="btn-group col-md-12">
             <button type="button" class="btn btn-primary" ui-sref="listaNoticias">Noticias</button>
             <button type="button" class="btn btn-primary" ui-sref="listaEventos">Eventos</button>
-            <button type="button" class="btn btn-primary" ui-sref="listaBlogs">Blogs</button>
+            <button type="button" class="btn btn-primary" ui-sref="blogList">Blogs</button>
             <button type="button" class="btn btn-primary" ui-sref="listaCategorias">Categorias</button>
         </div>
     </div>
@@ -33,6 +33,9 @@
     <a class="btn btn-default btn-sm col-md-6" ui-sref="grupoUpdate({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
     <a class="btn btn-danger btn-sm col-md-6" ui-sref="grupoDelete({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
 </div>
+<br>
+<br>
+<div ui-view="childrenView"></div>
 <br>
 <br>
 
