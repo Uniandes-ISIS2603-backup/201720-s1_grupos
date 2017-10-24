@@ -1,0 +1,24 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <dl>     
+                    <dt>{{currentEvento.nombre}}</dt>
+                    <hr>
+                    <dt>Fecha Inicio</dt>
+                    <dd>{{currentEvento.fechaInicio| date:'yyyy-MM-dd'}}</dd>
+                    <hr>
+                    <dt>Fecha Fin</dt>
+                    <dd>{{currentEvento.fechaFin| date:'yyyy-MM-dd'}}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

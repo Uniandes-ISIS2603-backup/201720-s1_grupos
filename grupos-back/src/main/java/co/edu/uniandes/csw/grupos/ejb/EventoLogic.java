@@ -68,6 +68,7 @@ public class EventoLogic {
     public EventoEntity createEntity(EventoEntity entity) throws BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
+        if(entity.getFechaInicio().after(entity.getFechaFin())) throw new BusinessException("Las fechas no coinciden");
         return persistence.create(entity);        
     }
     /**
