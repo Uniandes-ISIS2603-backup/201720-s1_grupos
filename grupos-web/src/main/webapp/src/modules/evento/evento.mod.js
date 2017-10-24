@@ -31,12 +31,21 @@
                 },
                 views: {
                         'listView': {
-                        templateUrl: basePath + 'evento.list.html'
+                        templateUrl: basePath + 'eventos.list.html'
                     },
                     'detailView': {
                         templateUrl: basePath + 'evento.detail.html',
                         controller: 'eventoCtrl',
                         controllerAs: 'ctrl'
+                    }
+                }
+            }).state('eventosCreate',{
+                url: '/create',
+                parent: 'eventos',
+                views: {
+                    'detailView':{
+                        templateUrl: basePath + '/create/evento.create.html',
+                        controller: 'eventoCreateCtrl'
                     }
                 }
             });

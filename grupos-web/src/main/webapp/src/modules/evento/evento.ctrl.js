@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("eventoModule");
     mod.constant("eventosContext", "Stark/eventos");
-    mod.controller('eventoCtrl', ['$scope', '$http', 'eventoContext','$state',
+    mod.controller('eventoCtrl', ['$scope', '$http', 'eventosContext','$state',
         function ($scope, $http, eventoContext,$state) {
             $http.get(eventoContext).then(function (response) {
                 $scope.eventosRecords = response.data;

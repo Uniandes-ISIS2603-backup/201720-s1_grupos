@@ -1,23 +1,26 @@
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div id="alertPanel" style="text-align: center"></div>
 <div class="container-fluid">
-    <div class="col-md-4">
-        <table class="table table-striped">
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="eventosCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir evento</a>
+                    </div>
+                </div>
+    <div class="row">
+            <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>    
-                    <th>Fecha Inicio</th> 
+                    <th>Fecha Inicio</th>  
                     <th>Fecha Fin</th>
-
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="evento in eventosRecords">
-                    <td id="{{$index}}-nombre">{{evento.nombre}}<a ui-sref="eventoDetail"></a></td>
-                    <td id="{{$index}}-fechaInicio">{{author.fechaInicio| date:'yyyy-MM-dd'}}</td>         
-                    <td id="{{$index}}-fechaFin">{{author.fechaFin| date:'yyyy-MM-dd'}}</td>  
+                    <td id="{{$index}}-nombre"><a ui-sref="eventoDetail({eventoId: evento.id})">{{evento.nombre}}</a></td>
+                    <td id="{{$index}}-fechaInicio">{{evento.fechaInicio| date:'yyyy-MM-dd'}}</td>
+                    <td id="{{$index}}-fechaFin">{{evento.fechaFin| date:'yyyy-MM-dd'}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
