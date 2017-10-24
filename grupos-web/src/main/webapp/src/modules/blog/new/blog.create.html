@@ -2,8 +2,9 @@
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <label id="createblog" ng-show="{{crearBlog}}">Crear un blog</label></div>
-                <label id="createblog" ng-show="{{actualizarBlog}}">Actualizar blog</label></div>
+                <label id="createblog" ng-show="{{crearBlog}}">Crear un blog</label>
+                <label id="createblog" ng-show="{{actualizarBlog}}">Actualizar blog</label>
+            </div>
             <div class="panel-body">
                 <form ng-submit="createBlog()" name="blogCrear">
                     <div class="form-group row">
@@ -31,12 +32,12 @@
                             <input type="submit" value="Crear" ng-show="{{crearBlog}}" ng-disabled="!blogCrear.$valid" class="btn btn-success"/>
                             <input type="submit" value="Actualizar" ng-show="{{actualizarBlog}}" ng-disabled="!blogCrear.$valid" class="btn btn-success"/>
                             <br>
-                            <a class="btn btn-info" ui-sref="blogList">Cancelar</a>
+                            <a class="btn btn-info" ng-show="{{crearBlog}}" ui-sref="blogList">Cancelar</a>
+                            <a class="btn btn-info" ng-show="{{actualizarBlog}}" ui-sref="blogDetail">Cancelar</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
 </div>

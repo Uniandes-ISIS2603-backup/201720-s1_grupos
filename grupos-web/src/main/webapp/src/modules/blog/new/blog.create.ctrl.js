@@ -2,7 +2,8 @@
     var mod = ng.module("blogModule");
    
     mod.controller('blogCreateCtrl', ['$scope', '$http', 'blogContext', '$state', 'grupoContext', '$rootScope',
-        function ($scope, $http, blogContext, $state, grupoContext) {
+        function ($scope, $http, blogContext, $state, grupoContext, $rootScope) {
+            $rootScope.edit=false;
             $scope.crearBlog=true;
             $scope.actualizarBlog=false;
             
