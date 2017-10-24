@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html ng-app="mainApp">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title> Grupos de interés</title>
+        
+        
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        
+        <script src="src/modules/app.js" type="text/javascript"></script>
+        <script src="src/modules/http-interceptor.factory.js" type="text/javascript"></script>
+
+        <script src="src/modules/blog/blog.mod.js" type="text/javascript"></script>
+<<<<<<< HEAD
+        <script src="src/modules/blog/blog.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/calificacion/calificacion.mod.js" type="text/javascript"></script>
+=======
+        <script src="src/modules/calificacions/calificacions.mod.js" type="text/javascript"></script>
+>>>>>>> origin/masterDanada
+        <script src="src/modules/categoria/categoria.mod.js" type="text/javascript"></script>
+        <script src="src/modules/comentario/comentario.mod.js" type="text/javascript"></script>
+        <script src="src/modules/empresa/empresa.mod.js" type="text/javascript"></script>
+        <script src="src/modules/grupo/grupo.mod.js" type="text/javascript"></script>
+        <script src="src/modules/multimedia/multimedia.mod.js" type="text/javascript"></script>
+        <script src="src/modules/noticias/noticias.mod.js" type="text/javascript"></script>
+        <script src="src/modules/patrocinio/patrocinio.mod.js" type="text/javascript"></script>
+        <script src="src/modules/tarjeta/tarjeta.mod.js" type="text/javascript"></script>
+        <script src="src/modules/usuario/usuario.mod.js" type="text/javascript"></script>
+        
+         <script src="src/modules/calificacions/calificacion.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/categoria/categorias.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/comentario/comentario.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/empresa/empresas.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/multimedia/multimedia.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/noticias/noticias.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/patrocinio/patrocinio.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/tarjeta/tarjetas.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/usuario/usuarios.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/grupo/grupos.ctrl.js" type="text/javascript"></script>
+         
+    </head>
+<<<<<<< HEAD
+    <body class="span4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li><a ui-sref="blogList">Blogs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span4" ui-view="mainView"></div> 
+=======
+
+    <body style="padding-top: 20px;">
+        <div class="container-fluid col-md-12">
+            <h3>Ejemplo Noticias, Multimedia, Calificaciones</h3>
+                    <ul>
+                        <li role="navigation"><a ui-sref="listaGrupos">Grupos</a></li>
+                        <li role="navigation"><a ui-sref="carruselCategorias">Categorias</a></li>
+                        <li  role="navigation"><a ui-sref="noticiasList">Noticias editables</a></li>
+                        <li  role="navigation"><a ui-sref="calificacionsList">Calificaciones c</a></li>
+                        <li  role="navigation"><a ui-sref="noticiasExhibicion"> Noticias</a></li>
+                    </ul>
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+            <div ui-view="mainView">
+            </div>
+>>>>>>> origin/masterDanada
+        </div>
+    </body>
+</html>

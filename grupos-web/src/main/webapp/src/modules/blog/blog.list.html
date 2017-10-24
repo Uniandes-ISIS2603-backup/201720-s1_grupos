@@ -1,8 +1,22 @@
 <div class="container-fluid">
-    <div class="col-lg-6 col-md-9">
-        <div ng-repeat="blog in listBlog">
-            <h3>{{blog.titulo}}</h3>
-            <p>{{blog.contenido}}</p>
+    
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Lista de blogs</label></div>
+            <div class="panel-body">
+                <div class="col-md-8">
+                    <div class="container">
+                        <div><h2>Blogs del grupo</h2></div>
+                        <div class="panel panel-default" ng-repeat="blog in listBlog">
+                            <div class="panel-body clickable" ui-sref="blogDetail({blogId: blog.id})" role="button">                   
+                                <h3 id="{{$index}}-title">{{blog.titulo}}</h3>
+                               <p id="{{$index}}-content">{{blog.contenido}}</p>
+                                   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
