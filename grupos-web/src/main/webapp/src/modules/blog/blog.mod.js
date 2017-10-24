@@ -61,6 +61,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('blogDelete', {
+                url:'/delete',
+                parent:'blogDetail',
+                views: {
+                   'childrenView': {
+                        templateUrl: basePath + 'delete/blog.delete.html',
+                        controller: 'blogDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             
         }]);
