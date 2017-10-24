@@ -16,7 +16,7 @@
                                 <h3 id="{{$index}}-name">{{categoria.tipo}}</h3>
                                 <img class=" img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" alt="{{categoria.rutaIcono}}" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
                                 <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
-                                    <a class="btn btn-danger btn-sm" ui-sref="desasociarCategoria({categoriaId: categoria.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="desasociarCategoria({categoriaId: categoria.id})">Desasociar categoría</a>
                             </div>
                         </div>
                     </div>

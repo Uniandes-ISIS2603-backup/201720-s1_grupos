@@ -44,22 +44,22 @@
                 }
             }).state('grupoCreate', {
                 url: '/create',
-                parent: 'authors',
+                parent: 'grupos',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/grupos.new.html',
+                        templateUrl: basePath + 'new/grupos.new.html',
                         controller: 'grupoNewCtrl'
                     }
                 }
             }).state('grupoUpdate', {
                 url: '/update/{grupoId:int}',
-                parent: 'authors',
+                parent: 'grupos',
                 param: {
-                    authorId: null
+                    grupoId: null
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/grupos.new.html',
+                        templateUrl: basePath + 'new/grupos.new.html',
                         controller: 'grupoUpdateCtrl'
                     }
                 }
@@ -67,11 +67,11 @@
                 url: '/delete/{grupoId:int}',
                 parent: 'grupos',
                 param: {
-                    authorId: null
+                    grupoId: null
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/delete/grupos.delete.html',
+                        templateUrl: basePath + 'delete/grupos.delete.html',
                         controller: 'grupoDeleteCtrl'
                     }
                 }

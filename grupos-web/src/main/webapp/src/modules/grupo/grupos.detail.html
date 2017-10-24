@@ -16,6 +16,9 @@
             </div>
         </div>
     </div>
+    <div class="panel panel-default col-md-4" >
+        <p>{{grupoActual.descripcion}}</p>
+    </div>
     <br>
     <div class="col-md-12">
         <div class="btn-group col-md-12">
@@ -27,8 +30,8 @@
     </div>
     <br>
     <br>
-    <a class="btn btn-default btn-sm col-md-6" ui-sref="grupoUpdate({grupoId: grupo.id})"><span class="glyphicon glyphicon-edit"></span></a>
-    <a class="btn btn-danger btn-sm col-md-6" ui-sref="grupoDelete({grupoId: grupo.id})"><span class="glyphicon glyphicon-trash"></span></a>
+    <a class="btn btn-default btn-sm col-md-6" ui-sref="grupoUpdate({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
+    <a class="btn btn-danger btn-sm col-md-6" ui-sref="grupoDelete({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
 </div>
 <br>
 <br>

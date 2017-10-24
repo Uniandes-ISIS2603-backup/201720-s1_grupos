@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="creategrupo">Crear nuevo grupo</label>
+                <label ng-if="edit" id="editgrupo">Edit grupo</label></div>
+            <div class="panel-body">
+                <form ng-submit="creategrupo()" name="grupoCrear">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="grupoName" class="col-sm-3">Nombre:</label>
+                            <input id="grupoName" required ng-model="grupoName" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="grupoDescription" class="col-sm-3">Descripcion:</label>
+                            <textarea id="grupoDescription" required ng-model="grupoDescription" class="col-sm-6"></textarea>
+                        </div>
+                    </div>                 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!grupoCrear.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Cuidado!</strong><p>Debe llenar todos los campos*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <div ng-show="grupoCrear.$valid" >
+                            <input ng-show="{{crearGrupo}}" type="submit" value="Crear" class="btn btn-success"/>                    
+                            <input ng-show="{{actualizarGrupo}}" type="submit" value="Actualizar" class="btn btn-success"/>
+                            </div>
+                            <a class="btn btn-info" ui-sref="listaGrupos">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+  
+
+
+
