@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.GrupoDetailDTO;
@@ -41,7 +41,7 @@ public class GrupoResource {
      * Lógica del grupo
      */
     @Inject
-    GrupoLogic grupoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+            GrupoLogic grupoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
     /**
      * POST http://localhost:8080/backstepbystep-web/api/Grupos Ejemplo
@@ -63,7 +63,7 @@ public class GrupoResource {
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new GrupoDetailDTO(nuevoGrupo);
     }
-
+    
     /**
      * GET para todas las Grupoes.
      * http://localhost:8080/backstepbystep-web/api/Grupos
@@ -76,7 +76,7 @@ public class GrupoResource {
         System.out.println("llega");
         return listEntity2DetailDTO(grupoLogic.getGrupos());
     }
-
+    
     /**
      * GET para una Grupo
      * http://localhost:8080/backstepbystep-web/api/Grupos/1
@@ -99,7 +99,7 @@ public class GrupoResource {
         
     }
     
-     /**
+    /**
      * GET para una Grupo con nombre dado por parametro
      * http://localhost:8080/backstepbystep-web/api/Grupos/1
      *
@@ -115,10 +115,10 @@ public class GrupoResource {
     @Path("{nombre: [A-Za-z]+}")
     public GrupoDetailDTO getGrupo(@QueryParam("nombre") String nombre) {
         GrupoEntity entity = grupoLogic.getGrupo(nombre);
-       
+        
         return new GrupoDetailDTO(entity);
     }
-
+    
     /**
      * PUT http://localhost:8080/backstepbystep-web/api/Grupos/1 Ejemplo
      * json { "id": 1, "name": "cambio de nombre" }
@@ -134,13 +134,17 @@ public class GrupoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public GrupoDetailDTO updateGrupo(@PathParam("id") Long id, GrupoDetailDTO grupo) {
+    public GrupoDetailDTO updateGrupo(@PathParam("id") Long id, GrupoDetailDTO grupo) throws BusinessException {
         grupo.setId(id);
+        GrupoEntity grupoBuscado=grupoLogic.getGrupo(grupo.getNombre());
+        if (grupoBuscado != null && grupoBuscado.getId()!=id) {
+            throw new BusinessException("Ya existe un grupo con el nombre \"" + grupo.getNombre() + "\"");
+        }
         GrupoEntity entity = grupoLogic.updateGrupo(grupo.toEntity());
         
         return new GrupoDetailDTO(entity);
     }
-
+    
     /**
      * DELETE http://localhost:8080/backstepbystep-web/api/Grupos/1
      *
@@ -158,24 +162,24 @@ public class GrupoResource {
     }
     
     /**
-     * 
+     *
      * @param id, id del grupo asociado con las categorías
      * @return el recurso para manejar la asociación grupos-categorias
      */
     @Path("{grupoId: \\d+}/categorias")
     public Class<GrupoCategoriasResource> getGrupoCategoriasResource(@PathParam("grupoId") Long id) {
-         System.out.println("llega2");
+        System.out.println("llega2");
         GrupoEntity entity = grupoLogic.getGrupo(id);
         
         return GrupoCategoriasResource.class;
     }
     
     /**
-     * 
+     *
      * @param id, id del grupo asociado con los miembros
      * @return el recurso para manejar la asociación grupos-miembros
      */
-     @Path("{grupoId: \\d+}/miembros")
+    @Path("{grupoId: \\d+}/miembros")
     public Class<GrupoMiembrosResource> getGrupoMiembrosResource(@PathParam("grupoId") Long id) {
         GrupoEntity entity = grupoLogic.getGrupo(id);
         
@@ -183,11 +187,11 @@ public class GrupoResource {
     }
     
     /**
-     * 
+     *
      * @param id, id del grupo asociado con los administradores
      * @return el recurso para manejar la asociación grupos-administradores
      */
-     @Path("{grupoId: \\d+}/administradores")
+    @Path("{grupoId: \\d+}/administradores")
     public Class<GrupoAdministradoresResource> getGrupoAdministradoresResource(@PathParam("grupoId") Long grupoId) {
         GrupoEntity entity = grupoLogic.getGrupo(grupoId);
         
@@ -195,11 +199,11 @@ public class GrupoResource {
     }
     
     /**
-     * 
+     *
      * @param id, id del grupo asociado con los blogs
      * @return el recurso para manejar la asociación grupos-blogs
      */
-     @Path("{grupoId: \\d+}/blogs")
+    @Path("{grupoId: \\d+}/blogs")
     public Class<GrupoBlogsResource> getGrupoBlogsResource(@PathParam("grupoId") Long id) {
         GrupoEntity entity = grupoLogic.getGrupo(id);
         
@@ -207,28 +211,28 @@ public class GrupoResource {
     }
     
     /**
-     * 
+     *
      * @param id, id del grupo asociado con las noticias
      * @return el recurso para manejar la asociación grupos-noticias
      */
-     @Path("{grupoId: \\d+}/noticias")
+    @Path("{grupoId: \\d+}/noticias")
     public Class<GrupoNoticiasResource> getGrupoNoticiasResource(@PathParam("grupoId") Long id) {
         GrupoEntity entity = grupoLogic.getGrupo(id);
         return GrupoNoticiasResource.class;
     }
     
     /**
-     * 
+     *
      * @param id, id del grupo asociado con los eventos
      * @return el recurso para manejar la asociación grupos-eventos
      */
-     @Path("{grupoId: \\d+}/eventos")
+    @Path("{grupoId: \\d+}/eventos")
     public Class<GrupoEventosResource> getGrupoEventosResource(@PathParam("grupoId") Long id) {
         GrupoEntity entity = grupoLogic.getGrupo(id);
         
         return GrupoEventosResource.class;
     }
-
+    
     /**
      *
      * lista de entidades a DTO.

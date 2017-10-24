@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.resources;
 
 
@@ -44,12 +44,12 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @Stateless
 public class CategoriaResource{
-
+    
     /**
      * Lógica de la categoría
      */
     @Inject
-    CategoriaLogic categoriaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+            CategoriaLogic categoriaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
     /**
      * POST http://localhost:8080/grupos-web/stark/categorias Ejemplo
@@ -70,7 +70,7 @@ public class CategoriaResource{
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new CategoriaDetailDTO(nuevoCategoria);
     }
-
+    
     /**
      * GET para todas las Categoriaes.
      * http://localhost:8080/grupos-web/stark/categorias
@@ -82,7 +82,7 @@ public class CategoriaResource{
     public List<CategoriaDetailDTO> getCategorias() {
         return listEntity2DetailDTO(categoriaLogic.getCategorias());
     }
-
+    
     /**
      * GET para una Categoria
      * http://localhost:8080/grupos-web/stark/categorias/1
@@ -98,11 +98,11 @@ public class CategoriaResource{
     @Path("{id: \\d+}")
     public CategoriaDetailDTO getCategoria(@PathParam("id") Long id) {
         CategoriaEntity entity = categoriaLogic.getCategoria(id);
-       
+        
         return new CategoriaDetailDTO(entity);
     }
     
-     /**
+    /**
      * GET para una Categoria con nombre dado por parametro
      * http://localhost:8080/grupos-web/stark/categorias/nombre?nombre=ZoloGruposLok
      *
@@ -118,11 +118,11 @@ public class CategoriaResource{
     @Path("{tipo: [A-Za-z]+}")
     public CategoriaDetailDTO getCategoria(@QueryParam("tipo") String tipo) {
         CategoriaEntity entity = categoriaLogic.getCategoria(tipo);
-
-       
+        
+        
         return new CategoriaDetailDTO(entity);
     }
-
+    
     
     /**
      * GET para una Categoria con nombre dado por parametro
@@ -155,13 +155,17 @@ public class CategoriaResource{
      */
     @PUT
     @Path("{id: \\d+}")
-    public CategoriaDetailDTO updateCategoria(@PathParam("id") Long id, CategoriaDetailDTO grupo) {
-        grupo.setId(id);
-        CategoriaEntity entity = categoriaLogic.updateCategoria(grupo.toEntity());
+    public CategoriaDetailDTO updateCategoria(@PathParam("id") Long id, CategoriaDetailDTO categoria) throws BusinessException {
+        categoria.setId(id);
+        CategoriaEntity categoriaBuscada=categoriaLogic.getCategoria(categoria.getTipo());
+        if (categoriaBuscada != null && categoriaBuscada.getId()!=id) {
+            throw new BusinessException("Ya existe un grupo con el nombre \"" + categoria.getTipo() + "\"");
+        }
+        CategoriaEntity entity = categoriaLogic.updateCategoria(categoria.toEntity());
         
         return new CategoriaDetailDTO(entity);
     }
-
+    
     /**
      * DELETE http://localhost:8080/backstepbystep-web/api/Categorias/1
      *
@@ -175,7 +179,7 @@ public class CategoriaResource{
     public void deleteCategoria(@PathParam("id") Long id) {
         categoriaLogic.deleteCategoria(id);
     }
-
+    
     /**
      *
      * lista de entidades a DTO.
