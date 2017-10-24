@@ -41,6 +41,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('blogCreate', {
+                url:'/create',
+                parent:'blog',
+                views: {
+                   'detailView': {
+                        templateUrl: basePath + 'new/blog.create.html',
+                        controller: 'blogCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             
         }]);
