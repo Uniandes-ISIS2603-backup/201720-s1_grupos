@@ -1,0 +1,23 @@
+<div class="container-fluid">
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="patrociniosCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir patrocinio</a>
+                    </div>
+                </div>
+    <div class="row">
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Usuario</th>    
+                    <th>Pago</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="patrocinio in patrociniosRecords">
+                    <td id="{{$index}}-nombre"><a ui-sref="patrocinioDetail({patrocinioId: patrocinio.id})">{{patrocinio.usuario}}</a></td>
+                    <td id="{{$index}}-direccion">{{patrocinio.pago}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

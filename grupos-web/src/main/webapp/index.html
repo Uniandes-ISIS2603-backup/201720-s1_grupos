@@ -61,10 +61,6 @@
          <script src="src/modules/tarjeta/tarjetas.new.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/tarjeta/tarjetas.delete.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/tarjeta/tarjetas.update.ctrl.js" type="text/javascript"></script>
-
-         
-         
-         <script src="src/modules/usuario/usuarios.ctrl.js" type="text/javascript"></script>
          
          <!-- Grupos-->
          <script src="src/modules/grupo/grupos.ctrl.js" type="text/javascript"></script>
@@ -77,6 +73,16 @@
          <script src="src/modules/categoria/update/categorias.update.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/categoria/delete/categorias.delete.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/categoria/new/categorias.new.ctrl.js" type="text/javascript"></script>
+
+         <!--Usuarios-->
+        <script src="src/modules/usuario/usuario.mod.js" type="text/javascript"></script>
+        <script src="src/modules/usuario/usuario.ctrl.js" type="text/javascript"></script>
+
+
+         <!--Patrocinios-->
+        <script src="src/modules/usuario/patrocinio.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/usuario/patrocinio.mod.js" type="text/javascript"></script>
+
     </head>
     <body style="padding-top: 20px;">
         <div class="container-fluid col-md-12">
@@ -92,7 +98,8 @@
                         <li  role="navigation"><a ui-sref="tarjetasList">Tarjetas</a></li>
                         <li  role="navigation"><a ui-sref="empresasList">Todas las Empresas</a></li>
                         <li  role="navigation"><a ui-sref="empresaDetail">Mi empresa</a></li>
-
+                        <li role="navigation"><a ui-sref="usuariosList">Usuarios</a></li>
+                        <li role="navigation"><a ui-sref="patrociniosList">Patrocinios</a></li>
                     </ul>
             <div ui-view="mainView">
             </div>
