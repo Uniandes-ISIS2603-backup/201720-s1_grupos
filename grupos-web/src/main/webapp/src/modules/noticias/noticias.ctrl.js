@@ -87,7 +87,7 @@
                 {
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
-                        $state.reload();
+                          $state.go('noticiasList');
                     })
                 }
             }
