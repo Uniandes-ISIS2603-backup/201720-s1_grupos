@@ -22,7 +22,7 @@
                 }
             }).state('tarjetasList', {
                 // Url que aparecerá en el browser
-                url: '/tarjetas',
+                url: '/list',
                 parent: 'tarjetas',
                 views: {
                     'listView': {
@@ -47,6 +47,39 @@
 
                 }
 
+            }).state('tarjetasCreate', {
+                url: '/create',
+                parent: 'tarjetas',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'tarjetas.new.html',
+                        controller: 'tarjetaNewCtrl'
+                    }
+                }
+            }).state('tarjetaUpdate', {
+                url: '/update/{numTarjeta:int}',
+                parent: 'tarjetas',
+                param: {
+                    numTarjeta: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'tarjetas.update.html',
+                        controller: 'tarjetaUpdateCtrl'
+                    }
+                }
+            }).state('tarjetaDelete', {
+                url: '/delete/{numTarjeta:int}',
+                parent: 'tarjetas',
+                param: {
+                    numTarjeta: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'tarjetas.delete.html',
+                        controller: 'tarjetaDeleteCtrl'
+                    }
+                }
             });
         }
     ]);
