@@ -9,7 +9,7 @@
                 url: '/usuarios',
                 abstract: true,
                 views: {
-                    'mainview': {
+                    'mainView': {
                         controller: 'usuarioCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'usuario.html'

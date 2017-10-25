@@ -9,7 +9,7 @@
                 url: '/patrocinios',
                 abstract: true,
                 views: {
-                    'mainview': {
+                    'mainView': {
                         controller: 'patrocinioCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'patrocinio.html'
