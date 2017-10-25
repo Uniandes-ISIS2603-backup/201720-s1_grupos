@@ -123,16 +123,19 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         entity.setTitulo(titulo);
         entity.setAutor(autor.toEntity());
         List<MultimediaEntity> list= new ArrayList<>();
+        if(multimedia!=null)
         for(MultimediaDTO m: multimedia)
         {
             list.add(m.toEntity());
         }
         entity.setMultimedia(list);
         List<ComentarioEntity> com= new ArrayList<>();
+        if(comentarios!=null)
         for(ComentarioDTO c:comentarios)
         {
             com.add(c.toEntity());
         }
+        entity.setComentarios(com);
         return entity;
     }
 }

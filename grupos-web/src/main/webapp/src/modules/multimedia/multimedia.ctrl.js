@@ -39,8 +39,9 @@
                 if (link == null) {
                     currentMultimedia.link="aaabbb";
                     // ejecuta POST en el recurso REST
-                    console.log(noticiaContext+"/"+$state.params.noticiaId+"/"+context+";;;"+currentMultimedia);
-                    return $http.post(noticiaContext+"/"+$state.params.noticiaId+"/"+context, currentMultimedia)
+                    multimediaList=[currentMultimedia];
+                    console.log(noticiaContext+"/"+$state.params.noticiaId+"/"+context+";;;"+multimediaList);
+                    return $http.post(noticiaContext+"/"+$state.params.noticiaId+"/"+context, multimediaList)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado

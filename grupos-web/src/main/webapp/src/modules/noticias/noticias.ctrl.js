@@ -54,6 +54,12 @@
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id == null) {
 
+                    currentRecord.autor={
+    apellido: "Guzmán",
+    email: "hola@uniandes.edu.co",
+    id: 1,
+    nombre: "Sergio",
+    password: "hola"};
                     // ejecuta POST en el recurso REST
                     return $http.post(fullContext, currentRecord)
                             .then(function () {
