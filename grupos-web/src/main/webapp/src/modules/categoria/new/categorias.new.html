@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createcategoria">Crear nuevo categoria</label>
+            <div class="panel-heading"><label ng-if="!edit" id="createcategoria">Crear nueva categoria</label>
                 <label ng-if="edit" id="editcategoria">Edit categoria</label></div>
             <div class="panel-body">
                 <form ng-submit="createCategoria()" name="categoriaCrear">
@@ -16,7 +16,13 @@
                             <label for="categoriaDescription" class="col-sm-3">Descripcion:</label>
                             <textarea id="categoriaDescription" required ng-model="categoriaDescription" class="col-sm-6"></textarea>
                         </div>
-                    </div>                 
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="categoriaRuta" class="col-sm-2">Ruta de la imagen:</label>
+                            <input id="categoriaRuta" required ng-model="categoriaRuta" class="col-sm-6"/>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!categoriaCrear.$valid">
 
@@ -31,7 +37,7 @@
                             <input ng-show="{{crearcategoria}}" type="submit" value="Crear" class="btn btn-success"/>                    
                             <input ng-show="{{actualizarcategoria}}" type="submit" value="Actualizar" class="btn btn-success"/>
                             </div>
-                            <a class="btn btn-info" ui-sref="listaCategorias">Cancelar</a>
+                            <a class="btn btn-info" ui-sref="carruselCategorias">Cancelar</a>
                         </div>
                     </div>
                 </form>
