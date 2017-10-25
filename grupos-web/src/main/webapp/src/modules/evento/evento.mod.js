@@ -48,6 +48,30 @@
                         controller: 'eventoCreateCtrl'
                     }
                 }
+            }).state('eventoUpdate', {
+                url: '/update/{eventoId:int}',
+                parent: 'eventos',
+                param: {
+                    authorId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/create/evento.create.html',
+                        controller: 'eventoUpdateCtrl'
+                    }
+                }
+            }).state('eventoDelete', {
+                url: '/delete/{eventoId:int}',
+                parent: 'eventos',
+                param: {
+                    authorId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/evento.delete.html',
+                        controller: 'eventoDeleteCtrl'
+                    }
+                }
             });
         }]);
     })(window.angular);

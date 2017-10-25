@@ -1,0 +1,24 @@
+<div class="container-fluid">
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="lugaresCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir lugar</a>
+                    </div>
+                </div>
+    <div class="row">
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>    
+                    <th>Direccion</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="lugar in lugaresRecords">
+                    <td id="{{$index}}-nombre"><a ui-sref="lugarDetail({lugarId: lugar.id})">{{lugar.nombre}}</a></td>
+                    <td id="{{$index}}-direccion">{{lugar.direccion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
