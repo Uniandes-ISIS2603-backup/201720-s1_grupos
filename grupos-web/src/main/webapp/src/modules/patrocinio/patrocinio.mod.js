@@ -2,7 +2,7 @@
     var mod = ng.module("patrocinioModule", []);
     mod.constant("patrocinioContext","Stark/patrocinios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/patrocinio';
+            var basePath = 'src/modules/patrocinio/';
             $urlRouterProvider.otherwise("patrociniosList");
 
             $stateProvider.state('patrocinios', {
@@ -28,7 +28,7 @@
                         templateUrl: basePath + 'patrocinio.detail.html'
                     }
                 }
-            }).state('usuriosList',{
+            }).state('patrociniosList',{
                 url: '/list',
                 parent: 'patrocinios',
                 views: {

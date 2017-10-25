@@ -2,7 +2,7 @@
     var mod = ng.module("usuarioModule", []);
     mod.constant("usuarioContext","Stark/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/usuario';
+            var basePath = 'src/modules/usuario/';
             $urlRouterProvider.otherwise("usuariosList");
 
             $stateProvider.state('usuarios', {
@@ -28,7 +28,7 @@
                         templateUrl: basePath + 'usuario.detail.html'
                     }
                 }
-            }).state('usuriosList',{
+            }).state('usuariosList',{
                 url: '/list',
                 parent: 'usuarios',
                 views: {
