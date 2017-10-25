@@ -3,6 +3,7 @@
     mod.constant("categoriaContext", "Stark/categorias");
     mod.controller('categoriaCtrl', ['$scope', '$http', 'categoriaContext', '$state',
         function ($scope, $http, categoriaContext, $state) {
+            $scope.opcionesCategoria=false;
             $http.get(categoriaContext).then(function (response) {
                 $scope.categoriaRecords = response.data;
             });

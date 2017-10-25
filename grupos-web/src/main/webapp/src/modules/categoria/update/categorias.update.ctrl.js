@@ -12,8 +12,9 @@
             //Consulto el autor a editar.
             $http.get(categoriasContext + '/' + idcategoria).then(function (response) {
                 var categoriaActual = response.data;
-                $scope.categoriaName = categoriaActual.nombre;
+                $scope.categoriaName = categoriaActual.tipo;
                 $scope.categoriaDescription = categoriaActual.descripcion;
+                $scope.categoriaRuta = categoriaActual.rutaIcono;
             });
             
             $scope.createCategoria = function () {
@@ -22,7 +23,8 @@
                  */
                 $http.put(categoriasContext + "/" + idcategoria, {
                     nombre: $scope.categoriaName,
-                    descripcion: $scope.categoriaDescription
+                    descripcion: $scope.categoriaDescription,
+                    rutaIcono: $scope.categoriaRuta
                 }).then(function (response) {
                     
                     //categoria created successfully

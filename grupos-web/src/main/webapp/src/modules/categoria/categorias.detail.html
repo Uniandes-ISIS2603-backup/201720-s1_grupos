@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <h3 id="{{$index}}-name">{{categoriaActual.tipo}}</h3>
-    <img class=" img-responsive clickable" src="data/{{categoriaActual.rutaIcono}}" id="{{$index}}-icono" alt="{{categoriaActual.rutaIcono}}" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
+    <img class=" img-responsive clickable" src="data/{{categoriaActual.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
     <p id="{{$index}}-descripcion">{{categoriaActual.descripcion}}</p>
-    <a class="btn btn-default btn-sm col-md-6" ui-sref="categoriaUpdate({categoriaId: categoria.id})"><span class="glyphicon glyphicon-edit"></span></a>
-    <a class="btn btn-danger btn-sm col-md-6" ui-sref="categoriaDelete({categoriaId: categoria.id})"><span class="glyphicon glyphicon-trash"></span></a>
+    <a class="btn btn-default btn-sm col-md-6" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
+    <a class="btn btn-danger btn-sm col-md-6" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
 </div>

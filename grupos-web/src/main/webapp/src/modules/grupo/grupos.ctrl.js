@@ -5,7 +5,6 @@
     mod.controller('grupoCtrl', ['$scope', '$http', 'grupoContext', '$state',
         function ($scope, $http, grupoContext, $state) {
              $scope.opcionesGrupo=false;
-             console.log($scope.opcionesGrupo);
             $http.get(grupoContext).then(function (response) {
                 $scope.grupoRecords = response.data;
             });
