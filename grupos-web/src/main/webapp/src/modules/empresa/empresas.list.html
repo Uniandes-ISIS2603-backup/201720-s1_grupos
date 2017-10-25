@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <h1>Empresas Asociadas</h1>
+    <div class="row">
+        <div class="col-md-2" ng-repeat="empresa in empresasRecords">
+            <div class="thumbnail">     
+                 <img class="img-responsive" ng-src='{{empresa.logo}}' alt="{{empresa.logo}}" />                  
+                <div class="caption text-center">
+                    <p>{{empresa.nombre}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
