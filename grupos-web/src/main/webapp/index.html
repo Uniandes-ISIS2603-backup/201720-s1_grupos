@@ -1,9 +1,9 @@
 <!DOCTYPE html>
+
 <html ng-app="mainApp">
     <head>
-        <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <title> Grupos de interés</title>
         
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <script src="bower_components/angular/angular.js"></script>
@@ -12,41 +12,81 @@
         
         <script src="src/modules/app.js" type="text/javascript"></script>
         <script src="src/modules/http-interceptor.factory.js" type="text/javascript"></script>
-
+        
+        <!-- Eventos -->
+        <script src="src/modules/evento/evento.mod.js" type="text/javascript"></script>
+        <script src="src/modules/evento/evento.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/evento/create/evento.create.ctrl.js" type="text/javascript"></script>
+        
+        <script src="src/modules/lugar/lugar.mod.js" type="text/javascript"></script>
         <script src="src/modules/blog/blog.mod.js" type="text/javascript"></script>
-        <script src="src/modules/calificacion/calificacion.mod.js" type="text/javascript"></script>
+        <script src="src/modules/calificacions/calificacions.mod.js" type="text/javascript"></script>
         <script src="src/modules/categoria/categoria.mod.js" type="text/javascript"></script>
         <script src="src/modules/comentario/comentario.mod.js" type="text/javascript"></script>
-        
         <script src="src/modules/empresa/empresa.mod.js" type="text/javascript"></script>
-        <script src="src/modules/empresa/empresas.ctrl.js" type="text/javascript"></script>
-        
         <script src="src/modules/grupo/grupo.mod.js" type="text/javascript"></script>
         <script src="src/modules/multimedia/multimedia.mod.js" type="text/javascript"></script>
-        <script src="src/modules/noticia/noticia.mod.js" type="text/javascript"></script>
+        <script src="src/modules/noticias/noticias.mod.js" type="text/javascript"></script>
         <script src="src/modules/patrocinio/patrocinio.mod.js" type="text/javascript"></script>
-        
         <script src="src/modules/tarjeta/tarjeta.mod.js" type="text/javascript"></script>
-        <script src="src/modules/tarjeta/tarjetas.ctrl.js" type="text/javascript"></script>
-        <script src="src/modules/tarjeta/tarjetas.new.ctrl.js" type="text/javascript"></script>
-        <script src="src/modules/tarjeta/tarjetas.delete.ctrl.js" type="text/javascript"></script>
-        <script src="src/modules/tarjeta/tarjetas.update.ctrl.js" type="text/javascript"></script>
-        
         <script src="src/modules/usuario/usuario.mod.js" type="text/javascript"></script>
+        
+        <!--Blog-->
+        <script src="src/modules/blog/blog.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/blog/new/blog.create.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/blog/update/blog.update.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/blog/delete/blog.delete.ctrl.js" type="text/javascript"></script>
+        
+        
+         <script src="src/modules/calificacions/calificacion.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/comentario/comentario.ctrl.js" type="text/javascript"></script>
+         
+         <!--Empresa-->
+         <script src="src/modules/empresa/empresas.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/empresa/empresas.ctrl.js" type="text/javascript"></script>
+         
+         <script src="src/modules/multimedia/multimedia.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/noticias/noticias.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/patrocinio/patrocinio.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/usuario/usuarios.ctrl.js" type="text/javascript"></script>
+         
+         <!-- Tarjetas-->
+         <script src="src/modules/tarjeta/tarjetas.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/tarjeta/tarjetas.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/tarjeta/tarjetas.new.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/tarjeta/tarjetas.delete.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/tarjeta/tarjetas.update.ctrl.js" type="text/javascript"></script>
+
+         
+         <!-- Grupos-->
+         <script src="src/modules/grupo/grupos.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/grupo/update/grupos.update.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/grupo/delete/grupos.delete.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/grupo/new/grupos.new.ctrl.js" type="text/javascript"></script>
+         
+         <!-- Categorias-->
+         <script src="src/modules/categoria/categorias.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/categoria/update/categorias.update.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/categoria/delete/categorias.delete.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/categoria/new/categorias.new.ctrl.js" type="text/javascript"></script>
     </head>
-    <body>
-        <div class="container-fluid"> 
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="nav nav-tabs">
-                        <li><a ui-sref="tarjetasList">Tarjetas</a></li>
-                        <li><a ui-sref="empresasList">Todas las Empresas</a></li>
-                        <li><a ui-sref="empresaDetail">Mi empresa</a></li>
-                    </ul>                   
-                </div>
-            </div>               
+    <body style="padding-top: 20px;">
+        <div class="container-fluid col-md-12">
+            <h3>Ejemplo Noticias, Multimedia, Calificaciones</h3>
+                    <ul>
+                        <li role="navigation"><a ui-sref="listaGrupos">Grupos</a></li>
+                        <li role="navigation"><a ui-sref="carruselCategorias">Categorias</a></li>
+                        <li  role="navigation"><a ui-sref="noticiasList">Noticias editables</a></li>
+                        <li  role="navigation"><a ui-sref="calificacionsList">Calificaciones c</a></li>
+                        <li  role="navigation"><a ui-sref="noticiasExhibicion"> Noticias</a></li>
+                        <li  role="navigation"><a ui-sref="eventosList">eventos</a></li>
+                        <li  role="navigation"><a ui-sref="tarjetasList">Tarjetas</a></li>
+                        <li  role="navigation"><a ui-sref="empresasList">Todas las Empresas</a></li>
+                        <li  role="navigation"><a ui-sref="empresaDetail">Mi empresa</a></li>
+                    </ul>
             <div ui-view="mainView">
-            </div> 
+            </div>
+
         </div>
     </body>
 </html>
