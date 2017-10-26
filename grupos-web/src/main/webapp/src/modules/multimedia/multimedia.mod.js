@@ -50,6 +50,40 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                         templateUrl: basePath + 'multimedia.create.html'
                     }
                 }
+            }).state('blogMultimediaList', {
+                url: '/multimedia/editable',
+                parent: 'blodDetail',
+                views: {
+                    'childrenView': {
+                        controller: 'multimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.list.html'
+                    }
+                }
+            }).state('blogMultimediaCreate', {
+                url: '/multimedia/create',
+                parent:'blogDetail',
+                views: {
+                    'multimediaCreate': {
+                        controller: 'multimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.create.html'
+                    }
+                }
+
+            }).state('blogMultimediaEdit', {
+                url: '/multimedia/:multimediaLink',
+                parent:'blogDetail',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaCreate': {
+                        controller: 'multimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.create.html'
+                    }
+                }
             });
         }]);
 

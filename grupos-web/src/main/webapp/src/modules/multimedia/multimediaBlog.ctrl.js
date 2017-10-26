@@ -2,13 +2,13 @@
 
     var mod = ng.module("multimediaModule");
 
-    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext', function ($scope, $state, $http, context,noticiaContext) {
+    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
 
-            
+            fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+multimediaContext;
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};
             // carga la multimedia
-            $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context).then(function (response) {
+            $http.get(fullContext).then(function (response) {
                 $scope.multimediaRecords = response.data;
             });
 
@@ -19,7 +19,7 @@
                 // toma el id del parámetro
                 link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
-                $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+ link)
+                $http.get(fullContext+"/"+ link)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentMultimedia
@@ -40,8 +40,8 @@
                     currentMultimedia.link="aaabbb";
                     // ejecuta POST en el recurso REST
                     multimediaList=[currentMultimedia];
-                    console.log(noticiaContext+"/"+$state.params.noticiaId+"/"+context+";;;"+multimediaList);
-                    return $http.post(noticiaContext+"/"+$state.params.noticiaId+"/"+context, multimediaList)
+                    console.log(fullContext+";;;"+multimediaList);
+                    return $http.post(fullContext, multimediaList)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
@@ -52,7 +52,7 @@
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/" + currentMultimedia.link, currentMultimedia)
+                    return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -65,7 +65,7 @@
             {
                 if(link!==null)
                 {
-                    return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+link).then (function()
+                    return $http.delete(fullContext+"/"+link).then (function()
                     {
                         $state.reload();
                     })
@@ -80,4 +80,3 @@
 
         }]);
 })(angular);
-
