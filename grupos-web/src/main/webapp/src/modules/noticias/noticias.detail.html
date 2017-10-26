@@ -2,19 +2,17 @@
     <div class="panel-body">
     <div class="row">
         <h1> {{currentRecord.titulo}}</h1>
-        <div class="col-md-3">
-            <dl>     
+        <div class="col-md-12">
+                 
                 
                 <dt>Informacion</dt>
                 <dd>{{currentRecord.informacion}}</dd>
           
-                <hr>
                 <dt>Autor</dt>
                 <dd>{{currentRecord.autor}}</dd>
                 
                 
                <!-- Pestaña para ver multimedia-->
-                <hr>
                 <dt class="nav nav-tabs"> <a ui-sref="noticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                 <div ui-view="noticiaMultimediaView">
      
@@ -24,13 +22,16 @@
                 
                  <!-- Pestaña para ver comentarios-->
                 <dt>Comentarios</dt>
-                <dd>{{currentRecord.comentarios}}</dd>
+                <div ui-view="comentarioView">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary" ui-sref="comentarioNoticiaList">Ver comentarios</button>
+                    </div>
+                </div>
                 
                 </div>
-        <hr><hr>
                 </div>
 
-            </dl>
+            
         </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" >
