@@ -52,10 +52,10 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                 }
             }).state('blogMultimediaList', {
                 url: '/multimedia/editable',
-                parent: 'blodDetail',
+                parent: 'blogDetail',
                 views: {
                     'childrenView': {
-                        controller: 'multimediaCtrl',
+                        controller: 'multimediaBlogCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.list.html'
                     }
@@ -65,7 +65,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                 parent:'blogDetail',
                 views: {
                     'multimediaCreate': {
-                        controller: 'multimediaCtrl',
+                        controller: 'multimediaBlogCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.create.html'
                     }
@@ -79,7 +79,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                 },
                 views: {
                     'multimediaCreate': {
-                        controller: 'multimediaCtrl',
+                        controller: 'multimediaBlogCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.create.html'
                     }

@@ -36,7 +36,7 @@
                 currentMultimedia = $scope.currentMultimedia;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (link === null) {
+                if (link === null || link===undefined) {
                     currentMultimedia.link="aaabbb";
                     // ejecuta POST en el recurso REST
                     multimediaList=[currentMultimedia];
