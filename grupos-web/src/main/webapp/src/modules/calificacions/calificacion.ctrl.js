@@ -2,12 +2,13 @@
 
     var mod = ng.module("calificacionsModule");
 
-    mod.controller('calificacionsCtrl', ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller('calificacionsCtrl', ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext','gruposContext','blogContext', function ($scope, $state, $stateParams, $http, context, grupoContext, blogContext) {
 
+            fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+context;
             // inicialmente el listado de ciudades está vacio
             $scope.records = {};
             // carga las ciudades
-            $http.get(context).then(function (response) {
+            $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             });
 
@@ -18,7 +19,7 @@
                 // toma el id del parámetro
                 id = $stateParams.calificacionId;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
+                $http.get(fullContext + "/" + id)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
@@ -45,7 +46,7 @@
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id == null) {
                     // ejecuta POST en el recurso REST
-                    return $http.post(context, currentRecord)
+                    return $http.post(fullContext, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
@@ -56,7 +57,7 @@
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -69,7 +70,7 @@
             {
                 if(id!=null)
                 {
-                    return $http.delete(context+"/"+id).then (function()
+                    return $http.delete(fullContext+"/"+id).then (function()
                     {
                         $state.go('calificacionsList');
                     })
