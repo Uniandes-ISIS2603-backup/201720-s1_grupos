@@ -21,11 +21,9 @@
                             <label for="informacion" class="col-md-2 control-label">Información</label>
                             <input id="informacion" name="informacion" class="form-control" type="textArea" required ng-model="currentRecord.informacion" ng-init="currentRecord.informacion"/>
                         </div>
-                     
-                       
                     </div>
                     <p>MULTIMEDIA</p>
-                    <!--
+                    
                     <div ng-repeat="item in multimedia">
                         {{item.nombre}} {{item.descripcion}} {{item.link}}
                     </div>
@@ -37,8 +35,7 @@
                     </div>
                     <div>
                         <button ng-click="ctrl.addNew()">Nueva multimedia</button>
-                    </div>-->
-                </div>
+                    </div>
                 </div>
             </div>
             <button type="button" ui-sref='noticiasList({usuarioId:1})'>Cancelar</button>

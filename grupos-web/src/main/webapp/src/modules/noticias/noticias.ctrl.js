@@ -94,7 +94,7 @@
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id == null) {
                     this.addAll();
-                    //currentRecord.multimedia=$scope.multimedia;
+                    currentRecord.multimedia=$scope.multimedia;
                     currentRecord.autor={
     apellido: "Guzmán",
     email: "hola@uniandes.edu.co",
