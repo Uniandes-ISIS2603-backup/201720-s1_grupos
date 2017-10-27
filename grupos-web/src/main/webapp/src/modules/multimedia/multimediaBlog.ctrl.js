@@ -3,6 +3,10 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('multimediaBlogCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
+            
+            //Inicialización d variable para saber si es de blog o no.
+            $scope.esMultimediaBlog=true;
+            $scope.esMultimediaNoticia=false;
 
             fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+multimediaContext;
             // inicialmente el listado de multimdia está vacio
@@ -36,7 +40,7 @@
                 currentMultimedia = $scope.currentMultimedia;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (link === null) {
+                if (link === null || link===undefined) {
                     currentMultimedia.link="aaabbb";
                     // ejecuta POST en el recurso REST
                     multimediaList=[currentMultimedia];
@@ -45,7 +49,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiaMultimediaList');
+                                $state.go('blogMultimediaList');
                             });
                     currentMultimedia.link=null;
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -56,7 +60,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiaMultimediaList');
+                                $state.go('blogMultimediaList');
                             });
                 }
                 ;
@@ -75,6 +79,7 @@
                 console.log("HOLA Q HACE");
             }
 
+            
 // Código continua con las funciones de despliegue de errores
 
 

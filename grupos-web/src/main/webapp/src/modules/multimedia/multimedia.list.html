@@ -6,6 +6,7 @@
                 <th>Descripcion</th>
                 <th>Link</th>
                 <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -13,14 +14,27 @@
                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
                 <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
                 <td id="{{$index}}-link">{{record.link}}</td>
-                <td>
+             <td>  
+            <div ng-show="{{esMultimediaNoticia}}" class="ng-hide">
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.link)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
-                </td>
+             </div>
+            <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.link)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+            </div>
+            </td>
+
+                
             </tr>
         </tbody>
     </table>
+    <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+    </div>
+    <div ng-show="{{esMultimediaNoticia}}" class="ng-hide">
       <button id="add-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+    </div>
       <div ui-view="multimediaCreate">
   
       </div>

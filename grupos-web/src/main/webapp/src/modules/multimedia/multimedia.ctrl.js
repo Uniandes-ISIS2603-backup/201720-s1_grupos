@@ -1,10 +1,12 @@
 (function (ng) {
-
+    
     var mod = ng.module("multimediaModule");
 
     mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext', function ($scope, $state, $http, context,noticiaContext) {
-
-            
+            //Inicialización d variable para saber si es de blog o no.
+            $scope.esMultimediaBlog=false;
+            $scope.esMultimediaNoticia=true;
+                        console.log("ESto es noticia  "+$scope.esMultimediaBlog+" "+$scope.esMultimediaNoticia);
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};
             // carga la multimedia
@@ -74,6 +76,9 @@
             this.prueba = function(){
                 console.log("HOLA Q HACE");
             }
+            
+            
+            
 
 // Código continua con las funciones de despliegue de errores
 
