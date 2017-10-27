@@ -1,37 +1,48 @@
 <div class="col-md-6 well">
-
     <form novalidate name="form" id="noticia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
-
+                <p>{{form.titulo.$valid}} AA</p>
+        <p>{{form.$valid}} AA</p>
+        <p>{{form.$error}}</p>
         <div ng-messages="form.$error">
             <div ng-message="required">Fill the required fields!</div>
         </div>
-
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
-            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-                <label for="titulo" class="col-md-2 control-label">Título</label>
-                <label for="informacion" class="col-md-2 control-label">Información</label>
-                <label for="multimedia" class="col-md-2 control-label">Multimedia</label>
+            <div class="form-group col-md-12">
                 <div class="col-md-10">
-                    <input id="titulo" name="titulo" class="form-control" type="text" ng-model="currentRecord.titulo" ng-init="currentRecord.titulo" required />
-                    <input id="informacion" name="informacion" class="form-control" type="textArea" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion" required />
-                    <div ng-repeat="item in items">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="titulo" class="col-md-2 control-label">Título</label>
+                             <input id="titulo" name="titulo" class="form-control" type="text" required ng-model="currentRecord.titulo" ng-init="currentRecord.titulo"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="informacion" class="col-md-2 control-label">Información</label>
+                            <input id="informacion" name="informacion" class="form-control" type="textArea" required ng-model="currentRecord.informacion" ng-init="currentRecord.informacion"/>
+                        </div>
+                     
+                       
+                    </div>
+                    <p>MULTIMEDIA</p>
+                    <!--
+                    <div ng-repeat="item in multimedia">
                         {{item.nombre}} {{item.descripcion}} {{item.link}}
                     </div>
-                    <div ng-repeat="itemToAdd in itemsToAdd">
-                        <input type="text" ng-model="itemsToAdd.nombre"/>
-                        <input type="text" ng-model="itemsToAdd.descripcion"/>
-                        <input type="hidden" ng-model="itemsToAdd.link" ng-init="{{ctrl.randomString()}}"/>
-                        <button ng-click="add(itemToAdd)">Add</button>
+                    <div id="{{$index}}-multimedia" ng-repeat="itemToAdd in itemsToAdd">
+                        <input type="text" id="{{$index}}-nombre" ng-model="itemToAdd.nombre"/>
+                        <input type="text" id="{{$index}}-descripcion" ng-model="itemToAdd.descripcion"/>
+                        <input type="hidden" id="{{$index}}-link" ng-model="itemToAdd.link"/>
+                        <button ng-click="ctrl.remove(itemToAdd)">Remover multimedia</button>
                     </div>
                     <div>
-                        <button ng-click="addNew()">Add new</button>
-                    </div>
+                        <button ng-click="ctrl.addNew()">Nueva multimedia</button>
+                    </div>-->
                 </div>
                 </div>
             </div>
-            <button type="button" ui-sref='noticiasList'>Cancel</button>
-            <button type="submit">Save</button>
+            <button type="button" ui-sref='noticiasList({usuarioId:1})'>Cancelar</button>
+            <button type="submit">Agregar noticia</button>
         </fieldset>
     </form>
 </div>

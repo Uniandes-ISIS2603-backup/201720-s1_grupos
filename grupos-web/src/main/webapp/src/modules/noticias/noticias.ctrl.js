@@ -2,13 +2,12 @@
 
     var mod = ng.module("noticiasModule");
 
-    mod.controller("noticiasCtrl", ['$scope', '$state', '$http','usuarioContext','grupoContext','globalContext', function ($scope, $state, $http, context, usuarioContext, grupoContext,globalContext) {
+    mod.controller("noticiasCtrl", ['$scope', '$state', '$http','noticiasContext','usuarioContext','grupoContext','globalContext', function ($scope, $state, $http,context, usuarioContext, grupoContext,globalContext) {
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
             $scope.noticiaEditable=true;
             header="¿Qué pasa con tus intereses hoy?";
                         console.log(globalContext+" "+context+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
-
             if($state.params.usuarioId!==null && $state.params.usuarioId!==undefined)
             {
                 header="Tus noticias";
@@ -23,14 +22,39 @@
 
                                     console.log("AFTER:"+globalContext+" "+context+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización de elementos multimedia a agregar a la noticia.
-            $scope.items=[];
-            $scope.itemstoAdd=[{nombre:' ',descripcion:' ',link:' '}];
-            $scope.add=function(itemToAdd){
+            $scope.multimedia=[];
+            $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
+            this.add=function(itemToAdd){
+                console.log(itemToAdd);
+                itemToAdd.link=this.randomString();
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
-                $scope.items.push(angular.copy(itemToAdd))}
-            $scope.addNew=function(){
+                $scope.multimedia.push(angular.copy(itemToAdd))}
+            this.addNew=function(){
+                console.log("NUEVO ITEM");
                 $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
+            }
+            this.addAll=function()
+            {
+                while($scope.itemsToAdd.length!=0)
+                {
+                    console.log($scope.itemsToAdd[0]);
+                    this.add($scope.itemsToAdd[0]);
+                }
+            }
+            this.remove=function(itemToAdd)
+            {
+                var index=$scope.itemsToAdd.indexOf(itemToAdd);
+                $scope.itemsToAdd.splice(index,1);
+            }
+            this.randomString= function()
+            {
+                var text="";
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                   for (var i = 0; i < 10; i++)
+                 text += possible.charAt(Math.floor(Math.random() * possible.length));
+                 console.log("TEXTO "+text);
+                return text;  
             }
             // inicialmente el listado de noticias está vacio
             $scope.records = {};
@@ -69,7 +93,8 @@
 
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id == null) {
-
+                    this.addAll();
+                    //currentRecord.multimedia=$scope.multimedia;
                     currentRecord.autor={
     apellido: "Guzmán",
     email: "hola@uniandes.edu.co",
@@ -110,16 +135,8 @@
             this.getHeader= function()
             {
                 return header;
-            };
-            this.randomString= function()
-            {
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-                   for (var i = 0; i < 10; i++)
-                 text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-                return text;  
-            };
+            }
+            
             
 
 // Código continua con las funciones de despliegue de errores
