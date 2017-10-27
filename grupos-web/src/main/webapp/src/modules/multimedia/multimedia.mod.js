@@ -14,7 +14,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                     'noticiaMultimediaView': {
                         controller: 'multimediaCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'multimediaNoEditable.list.html'
+                        templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
             }).state('noticiaMultimediaList', {

@@ -7,8 +7,9 @@ var mod = ng.module("noticiasModule", ['ui.router']);
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");
 
-            $stateProvider.state('noticiasList', {
+            $stateProvider.state('noticias', {
                 url: '/noticias',
+                abstract:true,
                 params:{
                     usuarioId:null,
                     grupoId:null
@@ -17,17 +18,32 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                     'mainView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticiasEditables.list.html'
+                        templateUrl: basePath + 'noticias.html'
                     }
                 }
-            }).state('noticiaCreate', {
-                url: '/noticias/create',
+            }).state('noticiasList', {
+                url: '/list',
+                parent:'noticias',
                 params:{
                     usuarioId:null,
                     grupoId:null
                 },
                 views: {
-                    'mainView': {
+                    'listView': {
+                        controller: 'noticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticiasEditables.list.html'
+                    }
+                }
+            }).state('noticiaCreate', {
+                url: '/create',
+                parent:'noticias',
+                params:{
+                    usuarioId:null,
+                    grupoId:null
+                },
+                views: {
+                    'detailView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.create.html'
@@ -35,14 +51,15 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                 }
 
             }).state('noticiaEdit', {
-                url: '/noticias/update/:noticiaId',
+                url: '/update/:noticiaId',
+                parent:'noticias',
                 params: {
                     usuarioId:null,
                     grupoId:null,
                     noticiaId: null
                 },
                 views: {
-                    'mainView': {
+                    'detailView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.update.html'
@@ -50,25 +67,27 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                 }
             }).state('noticiaDetail',{
                 url:'/:noticiaId/detail',
-                parama: {
+                parent:'noticias',
+                params: {
                     noticiaId: null
                 },
                 views: {
-                    'mainView': {
+                    'detailView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.detail.html'
                     }
                 }
             }).state('noticiaNoEditableDetail',{
-                url:'/noticias/:noticiaId/exhibicion',
-                param: {
+                url:'/:noticiaId/exhibicion',
+                parent:'noticias',
+                params: {
                     usuarioId:null,
                     grupoId:null,
                     noticiaId: null
                 },
                 views: {
-                    'mainView': {
+                    'detailView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.detail.html'
@@ -76,12 +95,13 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                 }
             }).state('noticiasExhibicion',{
                 url:'/noticias/exhibicion',
+                parent:'noticias',
                 params:{
                     usuarioId:null,
                     grupoId:null
                 },
                 views: {
-                    'mainView': {
+                    'listView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticiasEditables.list.html'

@@ -7,6 +7,8 @@
             //Validación de desde dónde viene la noticia,
             $scope.noticiaEditable=true;
             header="¿Qué pasa con tus intereses hoy?";
+                        console.log(globalContext+" "+context+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
+
             if($state.params.usuarioId!==null && $state.params.usuarioId!==undefined)
             {
                 header="Tus noticias";
@@ -19,7 +21,8 @@
             }
             else  $scope.noticiaEditable=false;
 
-            
+                                    console.log("AFTER:"+globalContext+" "+context+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
+
             // inicialmente el listado de noticias está vacio
             $scope.records = {};
             // carga las noticias
