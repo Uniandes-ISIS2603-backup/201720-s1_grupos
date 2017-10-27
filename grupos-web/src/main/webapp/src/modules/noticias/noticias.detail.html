@@ -13,10 +13,20 @@
                 
                 
                <!-- Pestaña para ver multimedia-->
-                <dt class="nav nav-tabs"> <a ui-sref="noticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
-                <div ui-view="noticiaMultimediaView">
-     
+               <p>{{noticiaEditable}}</p>
+               <div ng-show="{{noticiaEditable}}" class="ng-hide">
+                   <p>TRUE</p>
+                    <dt class="nav nav-tabs"> <a ui-sref="noticiaMultimediaList({noticiaId: currentRecord.id,usuarioId: 1})">Multimedia</a> </dt>
+                    <div ui-view="noticiaMultimediaView">
+                     </div>
+               </div>
+                <div ng-show="{{!noticiaEditable}}" class="ng-hide">
+                                       <p>FALSE</p>
+                    <dt class="nav nav-tabs"> <a ui-sref="noticiaNoEditableMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
+                    <div ui-view="noticiaMultimediaView">
+                    </div>
                 </div>
+        </div>
                 <!-- Pestaña para crear multimedia-->
                 <div ui-view="multimediaCreate"> </div>
                 

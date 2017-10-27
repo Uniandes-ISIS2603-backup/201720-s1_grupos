@@ -2,15 +2,30 @@
     
     var mod = ng.module("multimediaModule");
 
-    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext', function ($scope, $state, $http, context,noticiaContext) {
+    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','usuarioContext','grupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext,grupoContext) {
             //Inicialización d variable para saber si es de blog o no.
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
-                        console.log("ESto es noticia  "+$scope.esMultimediaBlog+" "+$scope.esMultimediaNoticia);
+            console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
+            //Inicialización del multimediaContexto
+            fullContext=globalContext+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            header="¿Qué pasa con tus intereses hoy?";
+            if($state.params.usuarioId!==null && $state.params.usuarioId!==undefined)
+            {
+                header="Tus noticias";
+                fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            }
+            else if($state.params.grupoId!==null && $state.params.grupoId!==undefined)
+            {
+                header="Noticias de grupo";
+                fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            }
+                        console.log("AFTER "+globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
+
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};
             // carga la multimedia
-            $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context).then(function (response) {
+            $http.get(fullContext).then(function (response) {
                 $scope.multimediaRecords = response.data;
             });
 
@@ -21,7 +36,7 @@
                 // toma el id del parámetro
                 link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
-                $http.get(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+ link)
+                $http.get(fullContext+"/"+ link)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentMultimedia
@@ -42,8 +57,7 @@
                     currentMultimedia.link="aaabbb";
                     // ejecuta POST en el recurso REST
                     multimediaList=[currentMultimedia];
-                    console.log(noticiaContext+"/"+$state.params.noticiaId+"/"+context+";;;"+multimediaList);
-                    return $http.post(noticiaContext+"/"+$state.params.noticiaId+"/"+context, multimediaList)
+                    return $http.post(fullContext, multimediaList)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
@@ -54,7 +68,7 @@
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/" + currentMultimedia.link, currentMultimedia)
+                    return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -67,7 +81,7 @@
             {
                 if(link!==null)
                 {
-                    return $http.delete(noticiaContext+"/"+$state.params.noticiaId+"/"+context+"/"+link).then (function()
+                    return $http.delete(fullContext+"/"+link).then (function()
                     {
                         $state.reload();
                     })

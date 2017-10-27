@@ -2,19 +2,23 @@
 
     var mod = ng.module("noticiasModule");
 
-    mod.controller("noticiasCtrl", ['$scope', '$state', '$http', 'noticiasContext','usuarioContext','grupoContext', function ($scope, $state, $http, context, usuarioContext, grupoContext) {
-            fullContext=context;
+    mod.controller("noticiasCtrl", ['$scope', '$state', '$http', 'noticiasContext','usuarioContext','grupoContext','globalContext', function ($scope, $state, $http, context, usuarioContext, grupoContext,globalContext) {
+            fullContext=globalContext+"/"+context;
+            //Validación de desde dónde viene la noticia,
+            $scope.noticiaEditable=true;
             header="¿Qué pasa con tus intereses hoy?";
-            if($state.params.idUsuario!==null && $state.params.idUsuario!==undefined)
+            if($state.params.usuarioId!==null && $state.params.usuarioId!==undefined)
             {
                 header="Tus noticias";
-                fullContext=usuarioContext+"/"+$state.params.idUsuario+"/"+context;
+                fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+context;
             }
-            else if($state.params.idGrupo!==null && $state.params.idGrupo!==undefined)
+            else if($state.params.grupoId!==null && $state.params.grupoId!==undefined)
             {
                 header="Noticias de grupo";
-                fullContext=grupoContext+"/"+$state.params.idGrupo+"/"+context;
+                fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;
             }
+            else  $scope.noticiaEditable=false;
+
             
             // inicialmente el listado de noticias está vacio
             $scope.records = {};

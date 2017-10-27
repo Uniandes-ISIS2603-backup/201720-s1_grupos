@@ -1,6 +1,9 @@
 <div class="container-fluid">
         <h1>{{ctrl.getHeader()}}</h1>
-        <button class="btn btn-default btn-sm" ui-sref="noticiaCreate">Agregar</button>
+        <p>HOLAAAA {{noticiaEditable}}</p>
+        <div ng-show="{{noticiaEditable}}" class="ng-hide">
+            <button class="btn btn-default btn-sm" ui-sref="noticiaCreate">Agregar</button>
+        </div>
         <div ng-repeat="record in records" >
             <div id="{{$index}}-titulo">
             <h2> {{record.titulo}}</h2>

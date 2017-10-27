@@ -1,14 +1,18 @@
 (function (ng) {
 var mod = ng.module("noticiasModule", ['ui.router']);
-    mod.constant("noticiasContext", "Stark/usuarios/1/noticias");
-    mod.constant("usuarioContext","Stark/usuarios");
-    mod.constant("grupoContext","Stark/grupos")
+    mod.constant("globalContext","Stark");
+    mod.constant("noticiasContext", "noticias");
+    mod.constant("usuarioContext","usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");
 
             $stateProvider.state('noticiasList', {
                 url: '/noticias',
+                params:{
+                    usuarioId:null,
+                    grupoId:null
+                },
                 views: {
                     'mainView': {
                         controller: 'noticiasCtrl',
@@ -18,6 +22,10 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                 }
             }).state('noticiaCreate', {
                 url: '/noticias/create',
+                params:{
+                    usuarioId:null,
+                    grupoId:null
+                },
                 views: {
                     'mainView': {
                         controller: 'noticiasCtrl',
@@ -28,7 +36,9 @@ var mod = ng.module("noticiasModule", ['ui.router']);
 
             }).state('noticiaEdit', {
                 url: '/noticias/update/:noticiaId',
-                param: {
+                params: {
+                    usuarioId:null,
+                    grupoId:null,
                     noticiaId: null
                 },
                 views: {
@@ -39,8 +49,8 @@ var mod = ng.module("noticiasModule", ['ui.router']);
                     }
                 }
             }).state('noticiaDetail',{
-                url:'/noticias/:noticiaId/detail',
-                param: {
+                url:'/:noticiaId/detail',
+                parama: {
                     noticiaId: null
                 },
                 views: {
@@ -53,22 +63,28 @@ var mod = ng.module("noticiasModule", ['ui.router']);
             }).state('noticiaNoEditableDetail',{
                 url:'/noticias/:noticiaId/exhibicion',
                 param: {
+                    usuarioId:null,
+                    grupoId:null,
                     noticiaId: null
                 },
                 views: {
                     'mainView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.noEditables.detail.html'
+                        templateUrl: basePath + 'noticias.detail.html'
                     }
                 }
             }).state('noticiasExhibicion',{
                 url:'/noticias/exhibicion',
+                params:{
+                    usuarioId:null,
+                    grupoId:null
+                },
                 views: {
                     'mainView': {
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.list.html'
+                        templateUrl: basePath + 'noticiasEditables.list.html'
                     }
                 }
             });
