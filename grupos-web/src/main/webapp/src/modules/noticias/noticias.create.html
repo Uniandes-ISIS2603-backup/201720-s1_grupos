@@ -15,10 +15,18 @@
                 <div class="col-md-10">
                     <input id="titulo" name="titulo" class="form-control" type="text" ng-model="currentRecord.titulo" ng-init="currentRecord.titulo" required />
                     <input id="informacion" name="informacion" class="form-control" type="textArea" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion" required />
-                    <ul class="nav nav-tabs">
-                    <li > <a ui-sref="noticiaMultimediaList" name="multimedia">Multimedia</a></li>
-                    </ul>
-                    <div ui-view="noticiaMultimediaView">
+                    <div ng-repeat="item in items">
+                        {{item.nombre}} {{item.descripcion}} {{item.link}}
+                    </div>
+                    <div ng-repeat="itemToAdd in itemsToAdd">
+                        <input type="text" ng-model="itemsToAdd.nombre"/>
+                        <input type="text" ng-model="itemsToAdd.descripcion"/>
+                        <input type="hidden" ng-model="itemsToAdd.link" ng-init="{{ctrl.randomString()}}"/>
+                        <button ng-click="add(itemToAdd)">Add</button>
+                    </div>
+                    <div>
+                        <button ng-click="addNew()">Add new</button>
+                    </div>
                 </div>
                 </div>
             </div>

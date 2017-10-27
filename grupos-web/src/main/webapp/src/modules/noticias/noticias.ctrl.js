@@ -2,7 +2,7 @@
 
     var mod = ng.module("noticiasModule");
 
-    mod.controller("noticiasCtrl", ['$scope', '$state', '$http', 'noticiasContext','usuarioContext','grupoContext','globalContext', function ($scope, $state, $http, context, usuarioContext, grupoContext,globalContext) {
+    mod.controller("noticiasCtrl", ['$scope', '$state', '$http','usuarioContext','grupoContext','globalContext', function ($scope, $state, $http, context, usuarioContext, grupoContext,globalContext) {
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
             $scope.noticiaEditable=true;
@@ -22,7 +22,16 @@
             else  $scope.noticiaEditable=false;
 
                                     console.log("AFTER:"+globalContext+" "+context+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
-
+            //Inicialización de elementos multimedia a agregar a la noticia.
+            $scope.items=[];
+            $scope.itemstoAdd=[{nombre:' ',descripcion:' ',link:' '}];
+            $scope.add=function(itemToAdd){
+                var index=$scope.itemsToAdd.indexOf(itemToAdd);
+                $scope.itemsToAdd.splice(index,1);
+                $scope.items.push(angular.copy(itemToAdd))}
+            $scope.addNew=function(){
+                $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
+            }
             // inicialmente el listado de noticias está vacio
             $scope.records = {};
             // carga las noticias
@@ -101,6 +110,15 @@
             this.getHeader= function()
             {
                 return header;
+            };
+            this.randomString= function()
+            {
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+                   for (var i = 0; i < 10; i++)
+                 text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                return text;  
             };
             
 
