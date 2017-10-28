@@ -51,9 +51,12 @@
             }).state('noticiasDeGrupo', {
                 url: '/noticias',
                 parent:'grupoDetail',
+                
                 views: {
                     'childrenView':{
-                        templateUrl: basePathNoticias + 'noticias.list.html'                        
+                        templateUrl: basePathNoticias + 'noticiasEditables.list.html',
+                        controller: 'noticiasCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('eventosDeGrupo', {
