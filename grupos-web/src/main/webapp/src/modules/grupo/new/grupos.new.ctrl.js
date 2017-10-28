@@ -17,8 +17,9 @@
                 }, function (error) {
                     console.log("llega Status: "+ error.status);
                     console.log(error.data)
-                    $scope.errorGrupos=error.data;
-                    $("#modalErrorGrupos").modal('show');
+                    $scope.errorGruposMensaje=error.data;
+                    $scope.errorGruposTitulo='Error creando grupo';
+                    $("#modalCrearGrupos").modal('show');
                 });
             };
             

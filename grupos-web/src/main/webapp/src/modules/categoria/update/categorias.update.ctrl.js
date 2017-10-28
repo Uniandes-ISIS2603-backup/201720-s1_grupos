@@ -25,13 +25,11 @@
                     nombre: $scope.categoriaName,
                     descripcion: $scope.categoriaDescription,
                     rutaIcono: $scope.categoriaRuta
-                }).then(function (response) {
-                    
+                }).then(function (response) {                    
                     //categoria created successfully
                     $state.go('categoriaDetail', {categoriaId: response.data.id}, {reload: true});
                 }, function (error,status) {
-                    $scope.errorcategorias=status;
-                    $("#modalErrorcategorias").modal();
+                    $("#modalModificarcategorias").modal();
                 });
             };
             

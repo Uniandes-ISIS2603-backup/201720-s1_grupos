@@ -28,8 +28,9 @@
                     //grupo created successfully
                     $state.go('grupoDetail', {grupoId: response.data.id}, {reload: true});
                 }, function (error,status) {
-                    $scope.errorGrupos=status;
-                    $("#modalErrorGrupos").modal();
+                    $scope.errorGruposMensaje=error.data;
+                    $scope.errorGruposTitulo='Error creando grupo';
+                    $("#modalModificarGrupos").modal('show');
                 });
             };
             

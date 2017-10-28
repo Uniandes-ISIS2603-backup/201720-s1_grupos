@@ -1,20 +1,40 @@
 <div ui-view="detailView"></div>
 <div ui-view="listView"></div>
 <!-- Modal -->
-  <div class="modal fade" id="modalErrorGrupos" role="dialog">
+  <div class="modal fade" id="modalCrearGrupos" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Error</h4>
+          <h4 class="modal-title">Error creando grupo</h4>
         </div>
         <div class="modal-body">
-          <p>{{errorGrupos}}</p>
+          <p>Ya existe un grupo con ese nombre</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok :c</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<div class="modal fade" id="modalModificarGrupos" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Error modificando grupo</h4>
+        </div>
+        <div class="modal-body">
+          <p>Ya existe un grupo con ese nombre</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok :c</button>
         </div>
       </div>
       

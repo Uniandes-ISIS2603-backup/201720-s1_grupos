@@ -15,11 +15,8 @@
                     //categoria created successfully
                     console.log("la data:" + response.data.id);
                     $state.go('carruselCategorias',{}, {reload: true});
-                }, function (error) {
-                    console.log("llega Status: "+ error.status);
-                    console.log(error.data)
-                    $scope.errorcategorias=error.data;
-                    $("#modalErrorcategorias").modal('show');
+                }, function (error, status) {
+                    $("#modalCrearcategorias").modal('show');
                 });
             };
             
