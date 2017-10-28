@@ -2,16 +2,20 @@
 
     var mod = ng.module("noticiasModule");
 
-    mod.controller("noticiasCtrl", ['$scope', '$state', '$http','noticiasContext','globalContext', function ($scope, $state, $http,context,globalContext) {
-             $scope.noticiaEditable=false;$scope.esNoticiaUsuario=false; $scope.esNoticiaGrupo=false;
-
+    mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
+             $scope.esNoticiaUsuario=false; $scope.esNoticiaGrupo=true; $scope.noticiaEditable=true;
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
-            $scope.noticiaEditable=false;
-            header="¿Qué pasa con tus intereses hoy?";
-                        console.log(globalContext+" "+context+" "+fullContext);
+            $scope.noticiaEditable=true;
+              header="Noticias de grupo";
+            fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
+            console.log(globalContext+" "+context+" "+grupoContext+" "+fullContext+":"+$state.params.grupoId);
             
-
+            // carga las noticias
+            $http.get(fullContext).then(function (response) {
+                $scope.records = response.data;
+            });
+            
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
             $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
@@ -47,12 +51,6 @@
                  console.log("TEXTO "+text);
                 return text;  
             }
-            // inicialmente el listado de noticias está vacio
-            $scope.records = {};
-            // carga las noticias
-            $http.get(fullContext).then(function (response) {
-                $scope.records = response.data;
-            });
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
             if ($state.params.noticiaId !== null && $state.params.noticiaId !== undefined) {
@@ -97,7 +95,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiasList');
+                                $state.go('grupoNoticiasList');
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -108,7 +106,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiasList');
+                                $state.go('grupoNoticiasList');
                             });
                 }
                 ;
@@ -119,7 +117,7 @@
                 {
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
-                          $state.go('noticiasList');
+                          $state.go('grupoNoticiasList');
                     })
                 }
             }

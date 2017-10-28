@@ -2,21 +2,14 @@
     
     var mod = ng.module("multimediaModule");
 
-    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext,grupoContext) {
+    mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
             //Inicialización de variable para saber si es de blog o no.
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
-            console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
+            console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización del multimediaContexto
-            fullContext=globalContext+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
-            if($state.params.usuarioId!==null && $state.params.usuarioId!==undefined)
-            {
-                fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
-            }
-            else if($state.params.grupoId!==null && $state.params.grupoId!==undefined)
-            {
-                fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
-            }
+            fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            
             //Función de creación del link temporalmente
             this.randomString= function()
             {
@@ -66,7 +59,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiaMultimediaList');
+                                $state.go('grupoNoticiaMultimediaList');
                             });
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -76,7 +69,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiaMultimediaList');
+                                $state.go('grupoNoticiaMultimediaList');
                             });
                 }
                 ;

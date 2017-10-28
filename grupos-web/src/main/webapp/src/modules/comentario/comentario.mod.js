@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("comentarioModule", ['blogModule', 'ui.router']);
+    var mod = ng.module("comentarioModule", ['blogModule', 'ui.router','noticiasModule']);
     mod.constant("comentarioContext", "comentarios");
     mod.constant("blogContext", "blogs");
     mod.constant("grupoContext", "Stark/grupos");

@@ -38,7 +38,13 @@
                     </div>
                 </div>
             </div>
-            <button type="button" ui-sref='noticiasList({usuarioId:1})'>Cancelar</button>
+            <div ng-show="{{esNoticiaUsuario}}">
+                    <button type="button" ui-sref='usuarioNoticiasList'>Cancelar</button>
+            </div>
+            <div ng-show="{{esNoticiaGrupo}}">
+                 <button type="button" ui-sref='grupoNoticiasList'>Cancelar</button>
+            </div>
+            
             <button type="submit">Agregar noticia</button>
         </fieldset>
     </form>

@@ -13,15 +13,18 @@
                 
                 
                <!-- Pestaña para ver multimedia-->
-               <p>{{noticiaEditable}}</p>
-               <div ng-show="{{noticiaEditable}}" class="ng-hide">
-                   <p>TRUE</p>
-                    <dt class="nav nav-tabs"> <a ui-sref="noticiaMultimediaList({noticiaId: currentRecord.id,usuarioId: 1})">Multimedia</a> </dt>
+               <p>{{esNoticiaGrupo}} {{esNoticiaUsuario}}</p>
+               <div ng-show="{{esNoticiaGrupo}}" class="ng-hide">
+                    <dt class="nav nav-tabs"> <a ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id,usuarioId: 1})">Multimedia</a> </dt>
+                    <div ui-view="noticiaMultimediaView">
+                     </div>
+               </div>
+               <div ng-show="{{esNoticiaUsuario}}" class="ng-hide">
+                    <dt class="nav nav-tabs"> <a ui-sref="usuarioNoticiaMultimediaList({noticiaId: currentRecord.id,usuarioId: 1})">Multimedia</a> </dt>
                     <div ui-view="noticiaMultimediaView">
                      </div>
                </div>
                 <div ng-show="{{!noticiaEditable}}" class="ng-hide">
-                                       <p>FALSE</p>
                     <dt class="nav nav-tabs"> <a ui-sref="noticiaNoEditableMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                     <div ui-view="noticiaMultimediaView">
                     </div>
@@ -45,8 +48,13 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" >
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord.id)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Actualizar</button>
+            <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(currentRecord.id)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+            <div ng-show="{{esNoticiaUsuario}}">
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Actualizar</button>
+            </div>
+            <div ng-show="{{esNoticiaGrupo}}">
+                 <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Actualizar</button>
+            </div>
 
     </div>  
 </div>

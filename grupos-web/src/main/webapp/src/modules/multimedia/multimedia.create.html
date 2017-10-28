@@ -11,12 +11,16 @@
         <fieldset>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
                 <div class="col-md-10">
+                    <input id="link" name="link" type="hidden" ng-model="currentMultimedia.link">
                     <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"  />
                     <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"  />
                 </div>
             </div>
-            <div ng-show="{{esMultimediaNoticia}}">
-                <button type="button" ui-sref='noticiaMultimediaList'>Volver</button>
+            <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}">
+                <button type="button" ui-sref='grupoNoticiaMultimediaList'>Volver</button>
+            </div>
+            <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
+                <button type="button" ui-sref='usuarioNoticiaMultimediaList'>Volver</button>
             </div>
             <div ng-show="{{esMultimediaBlog}}">
                 <button type="button" ui-sref='blogMultimediaList'>Volver</button>

@@ -48,17 +48,6 @@
                         templateUrl: basePathCategorias + 'categorias.list.html'
                     }
                 }
-            }).state('noticiasDeGrupo', {
-                url: '/noticias',
-                parent:'grupoDetail',
-                
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathNoticias + 'noticiasEditables.list.html',
-                        controller: 'noticiasCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
             }).state('eventosDeGrupo', {
                 url: '/eventos',
                 parent:'grupoDetail',

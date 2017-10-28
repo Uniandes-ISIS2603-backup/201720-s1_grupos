@@ -1,11 +1,14 @@
 <div class="container-fluid">
+    <p> {{esMultimediaNoticia}}     {{esNoticiaGrupo}}     {{esNoticiaUsuario}}</p>
+
+
     <table class="table table-striped" class="col-md-4">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Link</th>
-                <th ng-show="{{(esMultimediaNoticia && noticiaEditable) || (esMultimediaBlog)}}">Acciones</th>
+                <th ng-show="{{(esMultimediaNoticia && (esNoticiaGrupo || esNoticiaUsuario)) || (esMultimediaBlog)}}">Acciones</th>
                 
             </tr>
         </thead>
@@ -15,8 +18,12 @@
                 <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
                 <td id="{{$index}}-link">{{record.link}}</td>
              <td>  
-            <div ng-show="{{esMultimediaNoticia && noticiaEditable}}" class="ng-hide">
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+            <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}" class="ng-hide">
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.link)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+             </div>
+            <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record.link)"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
              </div>
             <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
@@ -33,9 +40,13 @@
       <button id="return-btn" class="btn btn-default btn-sm" ui-sref="blogDetail">Volver a blog</button>
       <button id="add-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
     </div>
-    <div ng-show="{{esMultimediaNoticia && noticiaEditable}}" class="ng-hide">
-      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="noticiaDetail">Volver</button>
-      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+    <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
+      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaDetail">Volver</button>
+      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+    </div>
+    <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}" class="ng-hide">
+      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaDetail">Volver</button>
+      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
     </div>
       <div ui-view="multimediaCreate">
   

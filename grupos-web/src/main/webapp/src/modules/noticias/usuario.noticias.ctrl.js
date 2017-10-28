@@ -2,16 +2,20 @@
 
     var mod = ng.module("noticiasModule");
 
-    mod.controller("noticiasCtrl", ['$scope', '$state', '$http','noticiasContext','globalContext', function ($scope, $state, $http,context,globalContext) {
-             $scope.noticiaEditable=false;$scope.esNoticiaUsuario=false; $scope.esNoticiaGrupo=false;
-
+    mod.controller("usuarioNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaUsuarioContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, usuarioContext,globalContext) {
+            $scope.esNoticiaUsuario=true; $scope.esNoticiaGrupo=false; $scope.noticiaEditable=true;
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
-            $scope.noticiaEditable=false;
-            header="¿Qué pasa con tus intereses hoy?";
-                        console.log(globalContext+" "+context+" "+fullContext);
+            $scope.noticiaEditable=true;
+            header="Tus noticias";
+                fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+context;
+            console.log(globalContext+" "+context+" "+usuarioContext+" "+" "+fullContext+":"+$state.params.usuarioId);
             
-
+            // carga las noticias
+            $http.get(fullContext).then(function (response) {
+                $scope.records = response.data;
+            });
+            
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
             $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
@@ -97,7 +101,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiasList');
+                                $state.go('usuarioNoticiasList');
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -108,7 +112,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('noticiasList');
+                                $state.go('usuarioNoticiasList');
                             });
                 }
                 ;
@@ -119,7 +123,7 @@
                 {
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
-                          $state.go('noticiasList');
+                          $state.go('usuarioNoticiasList');
                     })
                 }
             }

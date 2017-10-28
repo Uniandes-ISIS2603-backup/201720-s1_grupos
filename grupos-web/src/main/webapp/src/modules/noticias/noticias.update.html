@@ -17,8 +17,12 @@
                     <input id="name" name="informacion" class="form-control" type="textArea" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion" required />
                 </div>
             </div>
-            <button type="button" ui-sref='noticiasList'>Cancel</button>
-            <button type="submit">Save</button>
+            <div ng-show="{{esNoticiaUsuario}}">
+                    <button type="button" ui-sref='usuarioNoticiasList'>Cancelar</button>
+            </div>
+            <div ng-show="{{esNoticiaGrupo}}">
+                 <button type="button" ui-sref='grupoNoticiasList'>Cancelar</button>
+            </div>            <button type="submit">Save</button>
         </fieldset>
     </form>
 </div>
