@@ -5,13 +5,19 @@
     mod.controller('grupoCtrl', ['$scope', '$http', 'grupoContext', '$state',
         function ($scope, $http, grupoContext, $state) {
             $scope.opcionesGrupo=false;
-            $scope.listaMiembros = function () {
-                $state.go('usuariosList');
-                $scope.usuariosRecords=miembroRecords;
-            };
-            $scope.listaAdmins = function () {
-                $state.go('usuariosList');
-                $scope.usuariosRecords=adminRecords;
+            $scope.buscarPorNombre = function (nombre) {
+                console.log('llega buscar');
+                console.log(nombre);
+                $http.get(grupoContext + '/nombre?nombre='+ nombre).then(function (response) {
+                    $scope.grupoActual = response.data;
+                    $scope.categoriaRecords=response.data.categorias;
+                    $scope.miembroRecords=response.data.miembros;
+                    $scope.adminRecords=response.data.administradores;
+                    $scope.eventosRecords=response.data.eventos;
+                    $scope.records=response.data.noticias;
+                    var grupoId= $scope.grupoActual.id;
+                    $state.go('grupoDetail',{grupoId},{reload:true});
+                });
             };
             $http.get(grupoContext).then(function (response) {
                 $scope.grupoRecords = response.data;
