@@ -2,14 +2,12 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasComentario",
-		"_postman_id": "cbe53ffc-0ab5-d4c3-d092-5c88bb0e38ac",
-		"description": "",
+		"_postman_id": "5d994b95-0404-2578-fe8a-4b7fd528eec0",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "BlogComentario",
-			"description": "",
 			"item": [
 				{
 					"name": "GET de todos los comentarios de un blog",
@@ -25,20 +23,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios"
 					},
 					"response": []
 				},
@@ -56,20 +52,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/1"
 					},
 					"response": []
 				},
@@ -87,20 +81,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5"
 					},
 					"response": []
 				},
@@ -118,20 +110,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/3",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"contenido\": \"Contenido\",\n        \"id\": 1000,\n        \"titulo\": \"ELBLOG\",\n        \"comentarios\":[],\n        \"calificaciones\":[],\n        \"multimedia\":[]\n}"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/3"
 					},
 					"response": []
 				},
@@ -149,20 +139,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/1",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"autor\": \"nuevo autor\",\n        \"comentario\": \"nuevo comentario\"\n\n}"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/1"
 					},
 					"response": []
 				},
@@ -180,20 +168,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"autor\": \"nuevo autor\",\n        \"comentario\": \"nuevo comentario\"\n\n}"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5"
 					},
 					"response": []
 				},
@@ -211,20 +197,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/2",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/2"
 					},
 					"response": []
 				},
@@ -242,20 +226,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios/5"
 					},
 					"response": []
 				},
@@ -273,20 +255,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"autor\": \"yo\",\n    \"comentario\": \"interesante blog\"\n\n}"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/1/comentarios"
 					},
 					"response": []
 				}
@@ -294,7 +274,6 @@
 		},
 		{
 			"name": "NoticiaComentario",
-			"description": "",
 			"item": [
 				{
 					"name": "Buscar comentarios de una noticia",
@@ -310,20 +289,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "    {\n        \"autor\": \"Sebastian\",\n        \"comentario\" : \"funciona postman\"\n    }"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios"
 					},
 					"response": []
 				},
@@ -341,20 +318,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5"
 					},
 					"response": []
 				},
@@ -372,20 +347,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/3",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/3"
 					},
 					"response": []
 				},
@@ -403,20 +376,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"funciona postman 2\"\n    }"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/1"
 					},
 					"response": []
 				},
@@ -434,20 +405,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/3",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"Nuevo contenido\"\n    }"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/3"
 					},
 					"response": []
 				},
@@ -465,20 +434,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "    {\n        \"autor\": \"Sergio\",\n        \"comentario\" : \"Nuevo contenido\"\n    }"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5"
 					},
 					"response": []
 				},
@@ -496,20 +463,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/4",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/4"
 					},
 					"response": []
 				},
@@ -527,20 +492,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios/5"
 					},
 					"response": []
 				},
@@ -558,20 +521,18 @@
 						}
 					],
 					"request": {
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "    {\n        \"autor\": \"Sebastian\",\n        \"comentario\" : \"funciona postman\"\n    }"
 						},
-						"description": ""
+						"url": "http://localhost:8080/grupos-web/Stark/noticias/1/comentarios"
 					},
 					"response": []
 				}

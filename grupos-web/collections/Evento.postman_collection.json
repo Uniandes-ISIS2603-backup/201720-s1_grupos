@@ -1,9 +1,9 @@
 {
+	"variables": [],
 	"info": {
 		"name": "Evento",
-		"_postman_id": "8068bab3-5382-fed7-89c0-8a57f2d406f9",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "a3011289-8438-5d40-d93f-4ca0af8a84bb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -26,20 +26,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/eventos"
 			},
 			"response": []
 		},
@@ -63,21 +50,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1"
 			},
 			"response": []
 		},
@@ -101,21 +74,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/10",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"10"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/10"
 			},
 			"response": []
 		},
@@ -142,21 +101,9 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"fechaFin\": \"2017-08-07T00:00:00-05:00\",\n        \"fechaInicio\": \"2017-08-08T00:00:00-05:00\",\n        \"nombre\": \"Evento3\"\n}"
+					"raw": "{\n\t\"fechaInicio\": \"2017-08-07T00:00:00-05:00\",\n        \"fechaFin\": \"2017-08-08T00:00:00-05:00\",\n        \"nombre\": \"Evento3\"\n}"
 				},
-				"url": {
-					"raw": "localhost:8080/grupos-web/Stark/eventos",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos"
-					]
-				},
-				"description": ""
+				"url": "localhost:8080/grupos-web/Stark/eventos"
 			},
 			"response": []
 		},
@@ -180,23 +127,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"10",
-						"eventos",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1"
 			},
 			"response": []
 		},
@@ -220,23 +151,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"100",
-						"eventos",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos/1"
 			},
 			"response": []
 		},
@@ -260,23 +175,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"10",
-						"eventos",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1"
 			},
 			"response": []
 		},
@@ -300,23 +199,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"10",
-						"eventos",
-						"10"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10"
 			},
 			"response": []
 		},
@@ -340,22 +223,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"10",
-						"eventos"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos"
 			},
 			"response": []
 		},
@@ -379,22 +247,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"100",
-						"eventos"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos"
 			},
 			"response": []
 		},
@@ -418,23 +271,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"10",
-						"eventos",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1"
 			},
 			"response": []
 		},
@@ -458,23 +295,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/100",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"10",
-						"eventos",
-						"100"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/100"
 			},
 			"response": []
 		},
@@ -503,21 +324,7 @@
 					"mode": "raw",
 					"raw": "{\n    \"type\": \"eventoDetailDTO\",\n    \"fechaFin\": \"2017-08-07T00:00:00-05:00\",\n    \"fechaInicio\": \"2017-08-08T00:00:00-05:00\",\n    \"id\": 1,\n    \"nombre\": \"EventoModificado\",\n    \"grupo\": {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"id\": 10,\n        \"nombre\": \"GrupoPrueba1\"\n    },\n    \"lugar\": {\n        \"direccion\": \"Dirección\",\n        \"id\": 1,\n        \"nombre\": \"Lugar\"\n    },\n    \"patrocinios\": [],\n    \"usuarios\": [\n        {\n            \"apellido\": \"Guzmán\",\n            \"email\": \"hola@uniandes.edu.co\",\n            \"id\": 1,\n            \"nombre\": \"Sergio\",\n            \"password\": \"hola\"\n        },\n        {\n            \"apellido\": \"Rd\",\n            \"email\": \"d@uniandes.edu.co\",\n            \"id\": 2,\n            \"nombre\": \"DE\",\n            \"password\": \"Hola\"\n        }\n    ]\n}"
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1"
 			},
 			"response": []
 		},
@@ -546,21 +353,7 @@
 					"mode": "raw",
 					"raw": "{\n    \"type\": \"eventoDetailDTO\",\n    \"fechaFin\": \"2017-08-07T00:00:00-05:00\",\n    \"fechaInicio\": \"2017-08-08T00:00:00-05:00\",\n    \"id\": 1000,\n    \"nombre\": \"EventoModificado\",\n    \"grupo\": {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"id\": 10,\n        \"nombre\": \"GrupoPrueba1\"\n    },\n    \"lugar\": {\n        \"direccion\": \"Dirección\",\n        \"id\": 1,\n        \"nombre\": \"Lugar\"\n    },\n    \"patrocinios\": [],\n    \"usuarios\": [\n        {\n            \"apellido\": \"Guzmán\",\n            \"email\": \"hola@uniandes.edu.co\",\n            \"id\": 1,\n            \"nombre\": \"Sergio\",\n            \"password\": \"hola\"\n        },\n        {\n            \"apellido\": \"Rd\",\n            \"email\": \"d@uniandes.edu.co\",\n            \"id\": 2,\n            \"nombre\": \"DE\",\n            \"password\": \"Hola\"\n        }\n    ]\n}"
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1000"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1000"
 			},
 			"response": []
 		},
@@ -584,21 +377,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1"
 			},
 			"response": []
 		},
@@ -622,21 +401,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1000"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1000"
 			},
 			"response": []
 		},
@@ -660,23 +425,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"grupos",
-						"10",
-						"eventos",
-						"10000"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10000"
 			},
 			"response": []
 		}

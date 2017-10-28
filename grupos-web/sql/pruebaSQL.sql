@@ -41,6 +41,8 @@ ALTER TABLE BlogEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE CalificacionEntity ALTER COLUMN id RESTART WITH 2;
 ALTER TABLE LugarEntity ALTER COLUMN id RESTART WITH 4;
 ALTER TABLE EventoEntity ALTER COLUMN id RESTART WITH 4;
+ALTER TABLE ComentarioEntity ALTER COLUMN id RESTART WITH 5;
+
 
 
 insert into CategoriaEntity (id, tipo, descripcion, rutaIcono) values (10,'Videojuegos', 'La mejor categoria', 'videojuegos.png');

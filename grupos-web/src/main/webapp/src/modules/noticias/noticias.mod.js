@@ -151,9 +151,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 url:'/:noticiaId/exhibicion',
                 parent:'noticias',
                 params: {
-                    usuarioId:null,
-                    grupoId:null,
-                    noticiaId: null
+                    
                 },
                 views: {
                     'noticiaDetailView': {
