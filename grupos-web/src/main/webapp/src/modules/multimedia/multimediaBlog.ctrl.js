@@ -9,6 +9,16 @@
             $scope.esMultimediaNoticia=false;
 
             fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+multimediaContext;
+            
+            this.randomString= function()
+            {
+                 var text="";
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                   for (var i = 0; i < 10; i++)
+                 text += possible.charAt(Math.floor(Math.random() * possible.length));
+                 console.log("TEXTO "+text);
+                return text;
+            }
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};
             // carga la multimedia
@@ -41,10 +51,9 @@
 
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (link === null || link===undefined) {
-                    currentMultimedia.link="aaabbb";
+                    currentMultimedia.link=this.randomString();
                     // ejecuta POST en el recurso REST
                     multimediaList=[currentMultimedia];
-                    console.log(fullContext+";;;"+multimediaList);
                     return $http.post(fullContext, multimediaList)
                             .then(function () {
                                 // $http.post es una promesa

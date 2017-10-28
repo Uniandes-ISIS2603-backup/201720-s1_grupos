@@ -2,8 +2,8 @@
     
     var mod = ng.module("multimediaModule");
 
-    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','usuarioContext','grupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext,grupoContext) {
-            //Inicialización d variable para saber si es de blog o no.
+    mod.controller('multimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext,grupoContext) {
+            //Inicialización de variable para saber si es de blog o no.
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
             console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
@@ -20,8 +20,16 @@
                 header="Noticias de grupo";
                 fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             }
-                        console.log("AFTER "+globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
-
+            //Función de creación del link temporalmente
+            this.randomString= function()
+            {
+                 var text="";
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                   for (var i = 0; i < 10; i++)
+                 text += possible.charAt(Math.floor(Math.random() * possible.length));
+                 console.log("TEXTO "+text);
+                return text; 
+            }
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};
             // carga la multimedia
@@ -54,7 +62,7 @@
 
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (link === null || link===undefined) {
-                    currentMultimedia.link="aaabbb";
+                    currentMultimedia.link=this.randomString();
                     // ejecuta POST en el recurso REST
                     multimediaList=[currentMultimedia];
                     return $http.post(fullContext, multimediaList)
@@ -63,7 +71,6 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('noticiaMultimediaList');
                             });
-                    currentMultimedia.link=null;
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
 

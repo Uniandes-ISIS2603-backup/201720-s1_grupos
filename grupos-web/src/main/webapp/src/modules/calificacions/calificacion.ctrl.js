@@ -5,6 +5,9 @@
     mod.controller('calificacionsCtrl', ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext','gruposContext','blogContext', function ($scope, $state, $stateParams, $http, context, grupoContext, blogContext) {
 
             fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+context;
+            
+            $scope.calificacionSeleccionada=false;
+            $scope.calificacionEliminada=false;
             // inicialmente el listado de ciudades está vacio
             $scope.records = {};
             // carga las ciudades

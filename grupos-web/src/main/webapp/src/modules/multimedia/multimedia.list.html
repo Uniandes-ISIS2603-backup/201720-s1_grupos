@@ -3,9 +3,9 @@
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <th>Link</th>
-                <th ng-show="{{esMultimediaNoticia && noticiaEditable}}">Actions</th>
+                <th ng-show="{{(esMultimediaNoticia && noticiaEditable) || (esMultimediaBlog)}}">Acciones</th>
                 
             </tr>
         </thead>
@@ -30,9 +30,11 @@
         </tbody>
     </table>
     <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="blogDetail">Volver a blog</button>
       <button id="add-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
     </div>
     <div ng-show="{{esMultimediaNoticia && noticiaEditable}}" class="ng-hide">
+      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="noticiaDetail">Volver</button>
       <button id="add-btn" class="btn btn-default btn-sm" ui-sref="noticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
     </div>
       <div ui-view="multimediaCreate">

@@ -43,6 +43,19 @@ var mod = ng.module("calificacionsModule", []);
                         templateUrl: basePath + 'calificacions.create.html'
                     }
                 }
+            }).state('calificacionDelete', {
+                url: '/calificacions/delete/:calificacionId',
+                parent:'blogDetail',
+                param: {
+                    calificacionId: null
+                },
+                views: {
+                    'childrenView': {
+                        controller: 'calificacionsCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'calificacion.delete.html'
+                    }
+                }
             }).state('calificacionDetail',{
                 url:'/calificacions/:calificacionId/detail',
                parent:'blogDetail',

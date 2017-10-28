@@ -2,8 +2,8 @@
 var mod = ng.module("noticiasModule", ['ui.router']);
     mod.constant("globalContext","Stark");
     mod.constant("noticiasContext", "noticias");
-    mod.constant("usuarioContext","usuarios");
-    mod.constant("grupoContext","grupos");
+    mod.constant("noticiaUsuarioContext","usuarios");
+    mod.constant("noticiaGrupoContext","grupos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");

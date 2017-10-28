@@ -11,7 +11,6 @@
         <fieldset>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
                 <div class="col-md-10">
-                    <input id="link"  type="hidden" ng-model="currentMultimedia.link" ng-init="currentMultimedia.link"/>
                     <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"  />
                     <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"  />
                 </div>
