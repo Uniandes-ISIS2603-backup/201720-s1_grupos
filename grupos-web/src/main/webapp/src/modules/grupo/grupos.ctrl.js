@@ -25,6 +25,7 @@
                     $scope.miembroRecords=response.data.miembros;
                     $scope.adminRecords=response.data.administradores;
                     $scope.eventosRecords=response.data.eventos;
+                    $scope.records=response.data.noticias;
                 });
             }
         }
