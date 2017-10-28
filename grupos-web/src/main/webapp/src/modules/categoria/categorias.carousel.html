@@ -1,18 +1,30 @@
 <div class="container-fluid">
-    <div class="btn-group mr-2" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
-        <a class="btn btn-info" ui-sref="categoriaCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear categoria :O</a>
-    </div>
+    
+    <div class="btn-group mr-2 col-md-12" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
+        <a class="btn btn-info col-md-2" ui-sref="categoriaCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear categoria :O</a>
+    
+    <form ng-controler="buscarCategoria" class="col-md-10">
+        <input type="text" class="input-lg col-md-9" placeholder="Buscar por tipo" ng-model="buscarCategoriaValor"/>
+        <span class="input-group-btn col-md-2">
+            <button class="btn btn-info btn-lg " type="button" ng-click="buscarPorTipo(buscarCategoriaValor)">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </span>
+    </form>
+        </div>
+    <br>
+    <br>
     <carousel interval="carruselCategorias">
         <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
             <a ui-sref="categoriaDetail({categoriaId: categoria.id})">
                 <div  style="position:relative; right:-20">
-                <img src="data/{{categoria.rutaIcono}}" style="margin:auto" onerror="this.src='data/default.png'"  role="button">
-                <div class="carousel-caption" >
-                    <h4>{{categoria.tipo}}</h4>
-                    <p>{{categoria.descripcion}}</p>
-                </div>                
+                    <img src="data/{{categoria.rutaIcono}}" style="margin:auto" onerror="this.src='data/default.png'"  role="button">
+                    <div class="carousel-caption" >
+                        <h4>{{categoria.tipo}}</h4>
+                        <p>{{categoria.descripcion}}</p>
+                    </div>                
             </a>
-            
+                
         </slide>
     </carousel>
         
