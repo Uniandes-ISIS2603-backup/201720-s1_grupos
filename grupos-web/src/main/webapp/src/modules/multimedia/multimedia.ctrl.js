@@ -9,15 +9,12 @@
             console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización del multimediaContexto
             fullContext=globalContext+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
-            header="¿Qué pasa con tus intereses hoy?";
             if($state.params.usuarioId!==null && $state.params.usuarioId!==undefined)
             {
-                header="Tus noticias";
                 fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             }
             else if($state.params.grupoId!==null && $state.params.grupoId!==undefined)
             {
-                header="Noticias de grupo";
                 fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             }
             //Función de creación del link temporalmente
