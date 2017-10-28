@@ -14,11 +14,14 @@
             <div id="{{$index}}-titulo">
             <h2> {{record.informacion}}</h2>
             </div>
+            <div ng-show="{{esNoticiaUsuario}}">
+                <a ui-sref="usuarioNoticiaDetail({noticiaId:record.id})">Ver</a>
+            </div>
             <div ng-show="{{esNoticiaGrupo}}">
                 <a ui-sref="grupoNoticiaDetail({noticiaId:record.id})">Ver</a>
             </div>
-            <div ng-show="{{esNoticiaUsuario}}">
-                <a ui-sref="usuarioNoticiaDetail({noticiaId:record.id})">Ver</a>
+            <div ng-show="{{!noticiaEditable}}">
+                <a ui-sref="noticiaNoEditableDetail({noticiaId:record.id})">Ver</a>
             </div>
             <hr>
             

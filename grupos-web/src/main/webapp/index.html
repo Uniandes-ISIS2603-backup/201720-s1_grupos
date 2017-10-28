@@ -53,10 +53,10 @@
          
          <script src="src/modules/calificacions/calificacion.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/empresa/empresas.ctrl.js" type="text/javascript"></script>
-         <script src="src/modules/multimedia/multimedia.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/multimedia/multimediaBlog.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/multimedia/grupo.noticia.multimedia.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/multimedia/usuario.noticia.multimedia.ctrl.js" type="text/javascript"></script>
+         <script src="src/modules/multimedia/noticia.multimedia.ctrl.js" type="text/javascript"></script>
 
         <script src="src/modules/noticias/usuario.noticias.ctrl.js" type="text/javascript"></script>
          <script src="src/modules/noticias/grupo.noticias.ctrl.js" type="text/javascript"></script>
@@ -97,9 +97,7 @@
                     <ul>
                         <li role="navigation"><a ui-sref="listaGrupos">Grupos</a></li>
                         <li role="navigation"><a ui-sref="carruselCategorias">Categorias</a></li>
-                        <li  role="navigation"><button ui-sref="noticiasList({usuarioId:1, grupoId:null})" > Noticias editables</button></li>
-                        <li  role="navigation"><a ui-sref="calificacionsList">Calificaciones c</a></li>
-                        <li  role="navigation"><button ui-sref="noticiasExhibicion({usuarioId:null, grupoId:null})" > Noticias</button></li>
+                        <li  role="navigation"><button ui-sref="noticiasExhibicion" > Noticias</button></li>
                         <li  role="navigation"><a ui-sref="eventosList">Eventos</a></li>
                         <li role="navigation"><a ui-sref="lugaresList">Lugares</a></li>
                         <li  role="navigation"><a ui-sref="tarjetasList">Tarjetas</a></li>

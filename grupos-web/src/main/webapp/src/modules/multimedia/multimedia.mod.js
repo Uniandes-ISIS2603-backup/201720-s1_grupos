@@ -8,11 +8,10 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
             
             $stateProvider.state('noticiaNoEditableMultimediaList', {
                 url: '/multimedia',
-                parent: 'noticiaDetail',
-                
+                parent: 'noticiaNoEditableDetail',
                 views: {
                     'noticiaMultimediaView': {
-                        controller: 'multimediaCtrl',
+                        controller: 'noticiaMultimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.list.html'
                     }

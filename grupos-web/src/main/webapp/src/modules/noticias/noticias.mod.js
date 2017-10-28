@@ -8,7 +8,20 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");
 
-            $stateProvider.state('usuarioNoticias', {
+            $stateProvider.state('noticias', {
+                url: '/noticias',
+                abstract:true,
+                params:{
+                    usuarioId:null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'noticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticias.html'
+                    }
+                }
+            }).state('usuarioNoticias', {
                 url: '/noticias',
                 abstract:true,
                 parent:'usuarioDetail',
@@ -147,19 +160,6 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         templateUrl: basePath + 'noticias.detail.html'
                     }
                 }
-            }).state('noticiaNoEditableDetail',{
-                url:'/:noticiaId/exhibicion',
-                parent:'noticias',
-                params: {
-                    
-                },
-                views: {
-                    'noticiaDetailView': {
-                        controller: 'noticiasCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.detail.html'
-                    }
-                }
             }).state('noticiasExhibicion',{
                 url:'/noticias/exhibicion',
                 parent:'noticias',
@@ -172,6 +172,19 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         controller: 'noticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticiasEditables.list.html'
+                    }
+                }
+            }).state('noticiaNoEditableDetail',{
+                url:'/:noticiaId/exhibicion',
+                parent:'noticias',
+                params: {
+                    
+                },
+                views: {
+                    'noticiaDetailView': {
+                        controller: 'noticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticias.detail.html'
                     }
                 }
             });
