@@ -63,7 +63,7 @@ public class BlogEntity implements Serializable {
     /**
      * Listado de multimedia
      */
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.PERSIST)
     @PodamExclude
     private List<MultimediaEntity> multimedia;
     /**

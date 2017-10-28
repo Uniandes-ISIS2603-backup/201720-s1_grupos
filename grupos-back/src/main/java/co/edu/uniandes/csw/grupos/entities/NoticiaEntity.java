@@ -43,7 +43,7 @@ public class NoticiaEntity implements Serializable {
     /**
      * Lista de multimedia.
      */
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     @PodamExclude
     private List<MultimediaEntity> multimedia;
     /**

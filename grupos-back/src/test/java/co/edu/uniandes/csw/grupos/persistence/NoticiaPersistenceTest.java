@@ -167,7 +167,11 @@ public class NoticiaPersistenceTest {
         NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
         int indexAutor=(int)(Math.random()*2);
         newEntity.setAutor(dataU.get(indexAutor));
-        newEntity.setMultimedia(dataM);
+        ArrayList<MultimediaEntity> listM= new ArrayList<>();
+        MultimediaEntity m= new MultimediaEntity();
+        m.setLink("1");
+        listM.add(m);
+        newEntity.setMultimedia(listM);
         newEntity.setComentarios(dataC);
         NoticiaEntity result=persistence.createEntity(newEntity);
         Assert.assertNotNull(result);

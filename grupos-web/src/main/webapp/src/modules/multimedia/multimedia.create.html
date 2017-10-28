@@ -16,8 +16,13 @@
                     <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"  />
                 </div>
             </div>
-            <button type="button" ui-sref='noticiaMultimediaList'>Cancel</button>
-            <button type="submit">Save</button>
+            <div ng-show="{{esMultimediaNoticia}}">
+                <button type="button" ui-sref='noticiaMultimediaList'>Volver</button>
+            </div>
+            <div ng-show="{{esMultimediaBlog}}">
+                <button type="button" ui-sref='blogMultimediaList'>Volver</button>
+            </div>
+            <button type="submit">Guardar</button>
         </fieldset>
     </form>
 </div>

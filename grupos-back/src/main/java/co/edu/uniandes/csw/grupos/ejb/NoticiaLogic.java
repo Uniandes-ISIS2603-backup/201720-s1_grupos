@@ -35,10 +35,10 @@ import javax.ws.rs.core.Response;
 @Stateless
 public class NoticiaLogic {
     @Inject
-            NoticiaPersistence persistence;
+    NoticiaPersistence persistence;
     
     @Inject
-            MultimediaLogic multimedia;
+    MultimediaLogic multimedia;
     
     /**
      *
@@ -77,9 +77,7 @@ public class NoticiaLogic {
         if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
         validarNoticia(entity);
         entity.setComentarios(new ArrayList<>());
-        return persistence.createEntity(entity);
-        
-        
+        return persistence.createEntity(entity);        
     }
     
     /**
