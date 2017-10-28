@@ -19,6 +19,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -136,9 +137,16 @@ public class GrupoResource {
     @Path("{id: \\d+}")
     public GrupoDetailDTO updateGrupo(@PathParam("id") Long id, GrupoDetailDTO grupo) throws BusinessException {
         grupo.setId(id);
+        try
+        {
         GrupoEntity grupoBuscado=grupoLogic.getGrupo(grupo.getNombre());
         if (grupoBuscado != null && grupoBuscado.getId()!=id) {
             throw new BusinessException("Ya existe un grupo con el nombre \"" + grupo.getNombre() + "\"");
+        }
+        }
+        catch(NotFoundException e)
+        {
+            
         }
         GrupoEntity entity = grupoLogic.updateGrupo(grupo.toEntity());
         

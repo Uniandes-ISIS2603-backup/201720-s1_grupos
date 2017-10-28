@@ -157,10 +157,15 @@ public class CategoriaResource{
     @Path("{id: \\d+}")
     public CategoriaDetailDTO updateCategoria(@PathParam("id") Long id, CategoriaDetailDTO categoria) throws BusinessException {
         categoria.setId(id);
-        CategoriaEntity categoriaBuscada=categoriaLogic.getCategoria(categoria.getTipo());
-        if (categoriaBuscada != null && categoriaBuscada.getId()!=id) {
-            throw new BusinessException("Ya existe un grupo con el nombre \"" + categoria.getTipo() + "\"");
+        try
+        {
+            CategoriaEntity categoriaBuscada=categoriaLogic.getCategoria(categoria.getTipo());
+            if (categoriaBuscada != null && categoriaBuscada.getId()!=id) {
+                throw new BusinessException("Ya existe un grupo con el nombre \"" + categoria.getTipo() + "\"");
+            }
         }
+        catch(NotFoundException e)
+        { }
         CategoriaEntity entity = categoriaLogic.updateCategoria(categoria.toEntity());
         
         return new CategoriaDetailDTO(entity);
