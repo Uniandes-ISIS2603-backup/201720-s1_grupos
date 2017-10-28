@@ -1,21 +1,32 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label>Lista de grupos</label></div>
-            <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group" ng-hide="{{opcionesGrupo}}">
+            <div class="panel-heading"><label>Lista de grupos</label></div>                
+            <div class="panel-body">                
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-hide="{{opcionesGrupo}}">
+                    <div class="btn-group mr-2 col-md-2" role="group" aria-label="First group" >
                         <a class="btn btn-info" ui-sref="grupoCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear grupo :D</a>
+                    </div>
+                    <div id="custom-search-input">
+                        <form ng-controler="buscarGrupo">
+                            <input type="text" class="input-lg col-md-9" placeholder="Buscar por nombre" ng-model="buscarGrupoValor"/>
+                            <span class="input-group-btn col-md-2">
+                                <button class="btn btn-info btn-lg " type="button" ng-click="buscarPorNombre(buscarGrupoValor)">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </form>
+                            
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="container">                             
-                            
+                    <div class="container">   
+                       
                         <div class="panel panel-default" ng-repeat="grupo in grupoRecords">
                             <div class="panel-body clickable" ui-sref="grupoDetail({grupoId: grupo.id})" role="button">                   
                                 <h3 id="{{$index}}-name">{{grupo.nombre}}</h3>
-                               <p id="{{$index}}-descripcion">{{grupo.descripcion}}</p>
-                                   
+                                <p id="{{$index}}-descripcion">{{grupo.descripcion}}</p>
+                                    
                             </div>
                         </div>
                     </div>
@@ -23,8 +34,8 @@
             </div>
         </div>
     </div>
-
- 
-    
-    
+        
+        
+        
+        
 </div>
