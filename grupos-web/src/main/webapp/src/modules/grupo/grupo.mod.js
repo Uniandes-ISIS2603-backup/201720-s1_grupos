@@ -2,7 +2,10 @@
     var mod = ng.module("grupoModule", []);
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/grupo/';
-             var basePathCategorias = 'src/modules/categoria/';
+            var basePathCategorias = 'src/modules/categoria/';
+            var basePathEventos = 'src/modules/evento/';
+            var basePathUsuarios = 'src/modules/usuario/';
+            var basePathNoticias = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/grupos");
             
     
@@ -35,11 +38,48 @@
                         templateUrl: basePath + 'grupos.detail.html',
                         controller: 'grupoCtrl',
                         controllerAs: 'ctrl'
-                    },
-                    'listView': {
-                        templateUrl: basePathCategorias + 'categorias.list.html',
-                        controller: 'grupoCtrl',
-                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('categoriasDeGrupo', {
+                url: '/categorias',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathCategorias + 'categorias.list.html'
+                    }
+                }
+            }).state('noticiasDeGrupo', {
+                url: '/noticias',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathNoticias + 'noticias.list.html'
+                        
+                    }
+                }
+            }).state('eventosDeGrupo', {
+                url: '/eventos',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathEventos+ 'eventos.list.html'
+                    }
+                }
+            }).state('miembrosDeGrupo', {
+                url: '/miembros',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathUsuarios+ 'usuarios.list.html'
+                    }
+                }
+            }).state('adminsDeGrupo', {
+                url: '/administradores',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathUsuarios+ 'usuarios.list.html'
+                        
                     }
                 }
             }).state('grupoCreate', {
