@@ -1,22 +1,26 @@
-<h1>sniff</h1>
+<h1>Todos los Usuarios</h1>
 <div class="container-fluid">
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="usuariosCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir usuario</a>
-                    </div>
-                </div>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="createUsuario"><span class="glyphicon glyphicon-plus-sign"></span> Añadir usuario</a>
+        </div>
+    </div>
     <div class="row">
             <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>    
-                    <th>Apellido</th>  
+                    <th>Apellido</th>
+                    <th>Nickname</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="usuario in usuariosRecords">
                     <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
-                    <td id="{{$index}}-direccion">{{usuario.apellido}}</td>
+                    <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
+                    <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
+                    <td id="{{$index}}-Email">{{usuario.email}}</td>
                 </tr>
             </tbody>
         </table>

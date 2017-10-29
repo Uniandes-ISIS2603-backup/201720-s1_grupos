@@ -16,14 +16,14 @@
                     }
                 }
             }).state('usuarioDetail',{
-                url: 'usuarios/{:usuarioId}/detail',
+                url: '/{usuarioId}/detail',
                 parent: 'usuarios',
                 param:{
                     usuarioId: null
                 },
                 views: {
-                    'mainview': {
-                        controller: 'usuariosCtrl',
+                    'detailView': {
+                        controller: 'usuarioCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'usuario.detail.html'
                     }
@@ -34,6 +34,27 @@
                 views: {
                     'listView': {
                         templateUrl: basePath + 'usuarios.list.html',
+                    }
+                }
+            }).state('updateUsuario',{
+                url: '/{usuarioId}/update',
+                parent: 'usuarios',
+                param:{
+                    usuarioId: null
+                },
+                views: {
+                    'detailView':{
+                        templateUrl: basePath + 'update/usuario.update.html',
+                        controller: 'usuarioUpdateCtrl'
+                    }
+                }
+            }).state('createUsuario',{
+                url: '/create',
+                parent: 'usuarios',
+                views: {
+                    'detailView':{
+                        templateUrl: basePath + 'new/usuario.new.html',
+                        controller: 'usuarioNewCtrl'
                     }
                 }
             })
