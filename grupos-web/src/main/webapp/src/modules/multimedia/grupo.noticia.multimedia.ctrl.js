@@ -14,8 +14,8 @@
             this.randomString= function()
             {
                  var text="";
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                   for (var i = 0; i < 10; i++)
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                   for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
                  console.log("TEXTO "+text);
                 return text; 
@@ -80,7 +80,7 @@
                 {
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
-                        $state.reload();
+                         $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                     })
                 }
             }

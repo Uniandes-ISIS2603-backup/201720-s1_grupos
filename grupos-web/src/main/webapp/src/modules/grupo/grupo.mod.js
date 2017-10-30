@@ -5,7 +5,6 @@
             var basePathCategorias = 'src/modules/categoria/';
             var basePathEventos = 'src/modules/evento/';
             var basePathUsuarios = 'src/modules/usuario/';
-            var basePathNoticias = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/grupos");
             
     

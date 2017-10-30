@@ -210,7 +210,7 @@ public class NoticiaLogic {
         
         NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
-        if(m==null) throw new NotFoundException("No existe la multimedia a borrar");
+        if(m==null) throw new NotFoundException("No existe la multimedia a borrar con link "+link);
         int index=noticia.getMultimedia().indexOf(m);
         if(noticia.getMultimedia().indexOf(m)<0) throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
         noticia.getMultimedia().remove(m);

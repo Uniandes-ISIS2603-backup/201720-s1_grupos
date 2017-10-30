@@ -38,7 +38,7 @@ public class NoticiaDetailDTO extends NoticiaDTO{
 
     public NoticiaDetailDTO()
     {
-        
+        //Constructor vacío de la clase
     }
 
     /**
@@ -50,7 +50,7 @@ public class NoticiaDetailDTO extends NoticiaDTO{
     {
         super(e);
         comentarios= new ArrayList<>();
-        multimedia=new ArrayList<MultimediaDTO>();
+        multimedia=new ArrayList<>();
         if(e.getMultimedia()!=null)
             for(MultimediaEntity m: e.getMultimedia())
             {
@@ -124,16 +124,20 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         entity.setAutor(autor.toEntity());
         List<MultimediaEntity> list= new ArrayList<>();
         if(multimedia!=null)
-        for(MultimediaDTO m: multimedia)
         {
-            list.add(m.toEntity());
+            for(MultimediaDTO m: multimedia)
+            {
+                list.add(m.toEntity());
+            }
         }
         entity.setMultimedia(list);
         List<ComentarioEntity> com= new ArrayList<>();
         if(comentarios!=null)
-        for(ComentarioDTO c:comentarios)
         {
-            com.add(c.toEntity());
+            for(ComentarioDTO c:comentarios)
+            {
+                com.add(c.toEntity());
+            }
         }
         entity.setComentarios(com);
         return entity;
