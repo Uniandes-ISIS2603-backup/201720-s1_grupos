@@ -1,5 +1,5 @@
 (function (ng) {
-var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
+var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.router"]);
     mod.constant("multimediaContext", "multimedia");
 
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -54,6 +54,19 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                         templateUrl: basePath + 'multimedia.create.html'
                     }
                 }
+            }).state('usuarioNoticiaMultimediaDelete', {
+                url: '/multimedia/:multimediaLink',
+                parent:'usuarioNoticiaMultimediaList',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaCreate': {
+                        controller: 'usuarioNoticiaMultimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.delete.html'
+                    }
+                }
             }).state('grupoNoticiaMultimediaList', {
                 url: '/multimedia/editable',
                 parent: 'grupoNoticiaDetail',
@@ -92,6 +105,19 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                         templateUrl: basePath + 'multimedia.create.html'
                     }
                 }
+            }).state('grupoNoticiaMultimediaDelete', {
+                url: '/multimedia/:multimediaLink',
+                parent:'grupoNoticiaMultimediaList',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaCreate': {
+                        controller: 'grupoNoticiaMultimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.delete.html'
+                    }
+                }
             }).state('blogMultimediaList', {
                 url: '/multimedia/editable',
                 parent: 'blogDetail',
@@ -124,6 +150,19 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                         controller: 'multimediaBlogCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.create.html'
+                    }
+                }
+            }).state('blogMultimediaDelete', {
+                url: '/multimedia/:multimediaLink',
+                parent:'blogMultimediaList',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaCreate': {
+                        controller: 'blogMultimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.delete.html'
                     }
                 }
             });

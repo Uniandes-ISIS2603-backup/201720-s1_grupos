@@ -1,4 +1,4 @@
-<div ng-show="!multimediaSeleccionada && !multimediaElimiada">
+<div ng-show="!multimediaSeleccionada && !multimediaEliminada">
     <div class="center-block well text-center">
         <h1>Duda existencial</h1>
         <h2> ¿Estás seguro de que quieres eliminarme?</h2>
@@ -7,19 +7,36 @@
     </div>
 </div>
 
-<div ng-show="multimediaSeleccionada">
+<p>a{{multimediaSeleccionada}} b{{esNoticiaUsuario}}c {{esNoticiaGrupo}} d{{multimediaEliminada}} </p>
+<div ng-show="multimediaSeleccionada && esNoticiaUsuario">
     <div class="center-block well text-center">
     <h1>Tampoco quiero que acabemos</h1>
     <h2>Gracias por conservarme, yo te llevo con el resto</h2>
-    <a id="ok-button1" ui-sref="calificacionsList" class="btn btn-info">Ok</a>
+    <a id="ok-button1" ui-sref="usuarioNoticiaMultimediaList" class="btn btn-info">Ok</a>
+    </div>
+</div>  
+
+<div ng-show="multimediaSeleccionada && esNoticiaGrupo">
+    <div class="center-block well text-center">
+    <h1>Tampoco quiero que acabemos</h1>
+    <h2>Gracias por conservarme, yo te llevo con el resto</h2>
+    <a id="ok-button2" ui-sref="grupoNoticiaMultimediaList" class="btn btn-info">Ok</a>
+    </div>
+</div>  
+
+<div ng-show="multimediaSeleccionada && esMultimediaBlog">
+    <div class="center-block well text-center">
+    <h1>Tampoco quiero que acabemos</h1>
+    <h2>Gracias por conservarme, yo te llevo con el resto</h2>
+    <a id="ok-button3" ui-sref="blogMultimediaList" class="btn btn-info">Ok</a>
     </div>
 </div>  
     
-<div ng-show="multimediaElimiada">
+<div ng-show="multimediaEliminada">
     <div class="center-block well text-center">
     <h1>Inténtalo si puedes</h1>
     <h2>Puede que intentes eliminarme del blog, pero solo lo sabrás si vamos con las demás.</h2>
-    <a id="ok-button2" ng-click="ctrl.deleteRecord(currentRecord.id)" class="btn btn-info">Ok</a>
+    <a id="ok-button4" ng-click="ctrl.deleteRecord($state.params.multimediaLink)" class="btn btn-info">Ok</a>
     </div>
 </div>
 
