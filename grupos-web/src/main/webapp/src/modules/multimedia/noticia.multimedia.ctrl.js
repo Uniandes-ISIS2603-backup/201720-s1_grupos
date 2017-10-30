@@ -37,49 +37,6 @@
                
                 $scope.alerts = [];
             }
-            this.saveRecord = function (link) {
-                currentMultimedia = $scope.currentMultimedia;
-
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (link === null || link===undefined) {
-                    currentMultimedia.link=this.randomString();
-                    // ejecuta POST en el recurso REST
-                    multimediaList=[currentMultimedia];
-                    return $http.post(fullContext, multimediaList)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('blogMultimediaList');
-                            });
-                    currentMultimedia.link=null;
-                    // si el id no es null, es un registro existente entonces lo actualiza
-                } else {
-
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('blogMultimediaList');
-                            });
-                }
-                ;
-            }
-            this.deleteRecord= function(link)
-            {
-                if(link!==null)
-                {
-                    return $http.delete(fullContext+"/"+link).then (function()
-                    {
-                        $state.reload();
-                    })
-                }
-            }
-            this.prueba = function(){
-                console.log("HOLA Q HACE");
-            }
-
-            
 // Código continua con las funciones de despliegue de errores
 
 

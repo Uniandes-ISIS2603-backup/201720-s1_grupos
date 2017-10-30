@@ -59,7 +59,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiaMultimediaList');
+                                $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                             });
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -69,7 +69,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiaMultimediaList');
+                                $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                             });
                 }
                 ;

@@ -19,9 +19,6 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
             }).state('usuarioNoticiaMultimediaList', {
                 url: '/multimedia/editable',
                 parent: 'usuarioNoticiaDetail',
-                params:{
-                    idUsuario:1
-                },
                 views: {
                     'noticiaMultimediaView': {
                         controller: 'usuarioNoticiaMultimediaCtrl',
@@ -57,9 +54,6 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
             }).state('grupoNoticiaMultimediaList', {
                 url: '/multimedia/editable',
                 parent: 'grupoNoticiaDetail',
-                params:{
-                    idUsuario:1
-                },
                 views: {
                     'noticiaMultimediaView': {
                         controller: 'grupoNoticiaMultimediaCtrl',
