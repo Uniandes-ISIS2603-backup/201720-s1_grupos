@@ -81,7 +81,7 @@
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id === null) {
+                if (id === null || id===undefined) {
                     this.addAll();
                     currentRecord.multimedia=$scope.multimedia;
                     currentRecord.autor={
