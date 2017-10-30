@@ -1,0 +1,51 @@
+<div class="panel-heading"><label ng-if="!edit" id="creategrupo">Crear nuevo usuario</label>
+            <div class="panel-body">
+                <form ng-submit="createUsuario()" name="usuarioCrear">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="usuarioNombre" class="col-sm-3">Nombre:</label>
+                            <input id="usuarioNombre" required ng-model="usuarioNombre" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="usuarioApellido" class="col-sm-3">Apellido:</label>
+                            <input id="usuarioApellido" required ng-model="usuarioApellido" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="usuarioNickname" class="col-sm-3">Apodo:</label>
+                            <input id="usuarioNickname" required ng-model="usuarioNickname" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="usuarioPassword" class="col-sm-3">Contraseña:</label>
+                            <input id="usuarioPassword" required ng-model="usuarioPassword" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="usuarioEmail" class="col-sm-3">Email:</label>
+                            <input id="usuarioEmail" required ng-model="usuarioEmail" class="col-sm-6"/>
+                        </div>
+                    </div>              
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!usuarioCrear.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Cuidado!</strong><p>Debe llenar todos los campos*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <div ng-show="usuarioCrear.$valid" >
+                            <input ng-show="{{crearUsuario}}" type="submit" value="Crear" class="btn btn-success"/>
+                            </div>
+                            <a class="btn btn-info" ui-sref="usuariosList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
