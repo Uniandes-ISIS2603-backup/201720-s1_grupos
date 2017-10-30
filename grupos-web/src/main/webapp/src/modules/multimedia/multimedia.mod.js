@@ -137,7 +137,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                 },
                 views: {
                     'multimediaListView': {
-                        controller: 'blogMultimediaCtrl',
+                        controller: 'multimediaBlogCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.delete.html'
                     }
