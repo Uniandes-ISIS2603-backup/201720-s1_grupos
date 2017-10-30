@@ -176,3 +176,5 @@ insert into BlogEntity_ComentarioEntity (blogentity_id, comentarios_id) values (
 --INFORMACIÓN NOTICIAENTITY_COMENTARIOENTITY
 insert into NoticiaEntity_ComentarioEntity (noticiaentity_id, comentarios_id) values (1, 3);
 insert into NoticiaEntity_ComentarioEntity (noticiaentity_id, comentarios_id) values (1, 4);
+
+select * from NoticiaEntity_MultimediaEntity;

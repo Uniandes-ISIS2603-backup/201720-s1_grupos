@@ -9,7 +9,7 @@
             });
             if ($state.params.usuarioId !== undefined) {
                 $http.get(usuarioContext + '/' + $state.params.usuarioId).then(function (response) {
-                    $scope.currentUsuario = response.data;
+                    $scope.usuarioActual = response.data;
                 });
             }
         }

@@ -14,8 +14,8 @@
             this.randomString= function()
             {
                  var text="";
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                   for (var i = 0; i < 10; i++)
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                   for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
                  console.log("TEXTO "+text);
                 return text; 
@@ -59,7 +59,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiaMultimediaList');
+                                $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                             });
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -69,7 +69,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiaMultimediaList');
+                                $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                             });
                 }
                 ;
@@ -80,7 +80,7 @@
                 {
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
-                        $state.reload();
+                         $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                     })
                 }
             }

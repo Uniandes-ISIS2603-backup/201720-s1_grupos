@@ -2,7 +2,7 @@
 
     var mod = ng.module("noticiasModule");
 
-    mod.controller("usuarioNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaUsuarioContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, usuarioContext,globalContext) {
+    mod.controller("usuarioNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaUsuarioContext','globalContext', function ($scope, $state, $http,context, usuarioContext,globalContext) {
             $scope.esNoticiaUsuario=true; $scope.esNoticiaGrupo=false; $scope.noticiaEditable=true;
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
@@ -46,7 +46,7 @@
             {
                 var text="";
               var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                   for (var i = 0; i < 10; i++)
+                   for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
                  console.log("TEXTO "+text);
                 return text;  
@@ -87,7 +87,7 @@
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                if (id === null || id===undefined) {
                     this.addAll();
                     currentRecord.multimedia=$scope.multimedia;
                     currentRecord.autor={
@@ -119,7 +119,7 @@
             }
             this.deleteRecord= function(id)
             {
-                if(id!=null)
+                if(id!==null)
                 {
                     return $http.delete(fullContext+"/"+id).then (function()
                     {

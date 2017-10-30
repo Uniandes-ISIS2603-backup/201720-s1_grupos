@@ -1,13 +1,11 @@
 <div class="col-md-6 well">
     <form novalidate name="form" id="noticia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
-                <p>{{form.titulo.$valid}} AA</p>
-        <p>{{form.$valid}} AA</p>
         <p>{{form.$error}}</p>
         <div ng-messages="form.$error">
             <div ng-message="required">Fill the required fields!</div>
         </div>
         <fieldset>
-            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" ng-init="currentRecord.id"/>
             <div class="form-group col-md-12">
                 <div class="col-md-10">
                     <div class="form-group row">
@@ -23,7 +21,6 @@
                         </div>
                     </div>
                     <p>MULTIMEDIA</p>
-                    
                     <div ng-repeat="item in multimedia">
                         {{item.nombre}} {{item.descripcion}} {{item.link}}
                     </div>

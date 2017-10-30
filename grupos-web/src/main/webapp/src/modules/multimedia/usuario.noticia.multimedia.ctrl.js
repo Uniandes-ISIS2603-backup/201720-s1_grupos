@@ -9,13 +9,12 @@
             console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización del multimediaContexto
                 fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
-            i
             //Función de creación del link temporalmente
             this.randomString= function()
             {
                  var text="";
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                   for (var i = 0; i < 10; i++)
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                   for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
                  console.log("TEXTO "+text);
                 return text; 
@@ -49,7 +48,6 @@
             }
             this.saveRecord = function (link) {
                 currentMultimedia = $scope.currentMultimedia;
-
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (link === null || link===undefined) {
                     currentMultimedia.link=this.randomString();
@@ -59,7 +57,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('usuarioNoticiaMultimediaList');
+                                $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
                             });
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -69,7 +67,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('usuarioNoticiaMultimediaList');
+                                $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
                             });
                 }
                 ;
@@ -80,7 +78,7 @@
                 {
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
-                        $state.reload();
+                         $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
                     })
                 }
             }

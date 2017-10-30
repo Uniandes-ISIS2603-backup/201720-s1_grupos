@@ -2,10 +2,10 @@
         <h1>{{ctrl.getHeader()}}</h1>
         <p>HOLAAAA {{noticiaEditable}}{{esNoticiaGrupo}} {{esNoticiaUsuario}} HOLAAAA</p>
         <div ng-show="{{noticiaEditable && esNoticiaGrupo}}" class="ng-hide">
-            <button class="btn btn-default btn-sm" ui-sref="grupoNoticiaCreate">Agregar</button>
+            <button class="btn btn-default btn-sm" ui-sref="grupoNoticiaCreate">Agregar1</button>
         </div>
         <div ng-show="{{noticiaEditable && esNoticiaUsuario}}" class="ng-hide">
-            <button class="btn btn-default btn-sm" ui-sref="usuarioNoticiaCreate">Agregar</button>
+            <button class="btn btn-default btn-sm" ui-sref="usuarioNoticiaCreate">Agregar2</button>
         </div>
         <div ng-repeat="record in records" >
             <div id="{{$index}}-titulo">

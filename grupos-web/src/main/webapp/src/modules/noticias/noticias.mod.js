@@ -29,7 +29,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                     usuarioId:null
                 },
                 views: {
-                    'mainView': {
+                    'childrenView': {
                         controller: 'usuarioNoticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.html'
@@ -46,6 +46,20 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         controller: 'usuarioNoticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticiasEditables.list.html'
+                    }
+                }
+            }).state('usuarioNoticiaDetail',{
+                url:'/:noticiaId/detail',
+                parent:'usuarioNoticias',
+                params: {
+                    usuarioId:null,
+                    noticiaId: null
+                },
+                views: {
+                    'noticiaDetailView': {
+                        controller: 'usuarioNoticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticias.detail.html'
                     }
                 }
             }).state('usuarioNoticiaCreate', {
@@ -77,18 +91,17 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         templateUrl: basePath + 'noticias.update.html'
                     }
                 }
-            }).state('usuarioNoticiaDetail',{
-                url:'/:noticiaId/detail',
+            }).state('usuarioNoticiaDelete', {
+                url: '/delete/:noticiaId',
                 parent:'usuarioNoticias',
                 params: {
-                    usuarioId:null,
                     noticiaId: null
                 },
                 views: {
                     'noticiaDetailView': {
                         controller: 'usuarioNoticiasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.detail.html'
+                        templateUrl: basePath + 'noticias.delete.html'
                     }
                 }
             }).state('grupoNoticias', {
@@ -118,9 +131,23 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         templateUrl: basePath + 'noticiasEditables.list.html'
                     }
                 }
+            }).state('grupoNoticiaDetail',{
+                url:'/:noticiaId/detail',
+                parent:'grupoNoticias',
+                params: {
+                    grupoId:null,
+                    noticiaId: null
+                },
+                views: {
+                    'noticiaDetailView': {
+                        controller: 'grupoNoticiasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'noticias.detail.html'
+                    }
+                }
             }).state('grupoNoticiaCreate', {
                 url: '/create',
-                parent:'grupoNoticias',
+                parent:'grupoNoticiasList',
                 params:{
                     grupoId:null
                 },
@@ -134,7 +161,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
 
             }).state('grupoNoticiaEdit', {
                 url: '/update/:noticiaId',
-                parent:'grupoNoticias',
+                parent:'grupoNoticiaDetail',
                 params: {
                     grupoId:null,
                     noticiaId: null
@@ -146,18 +173,17 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         templateUrl: basePath + 'noticias.update.html'
                     }
                 }
-            }).state('grupoNoticiaDetail',{
-                url:'/:noticiaId/detail',
+            }).state('grupoNoticiaDelete', {
+                url: '/delete/:noticiaId',
                 parent:'grupoNoticias',
                 params: {
-                    grupoId:null,
                     noticiaId: null
                 },
                 views: {
                     'noticiaDetailView': {
                         controller: 'grupoNoticiasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.detail.html'
+                        templateUrl: basePath + 'noticias.delete.html'
                     }
                 }
             }).state('noticiasExhibicion',{

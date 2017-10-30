@@ -83,7 +83,7 @@
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                if (id === null) {
                     this.addAll();
                     currentRecord.multimedia=$scope.multimedia;
                     currentRecord.autor={
@@ -115,7 +115,7 @@
             }
             this.deleteRecord= function(id)
             {
-                if(id!=null)
+                if(id!==null)
                 {
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
