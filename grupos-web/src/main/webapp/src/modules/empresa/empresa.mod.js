@@ -26,15 +26,68 @@
                 parent: 'empresas',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'empresas.list.html'
+                        templateUrl: basePath + 'empresas.list.html',
+                        controller: 'empresaListCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('empresaDetail', {
                 url: '/empresa',
                 parent: 'empresas',
+                param: {
+                    nitEmpresa: null
+                },
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'empresas.detail.html',
+                        controller: 'empresaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+
+                }
+
+            }).state('empresasCreate', {
+                url: '/create',
+                parent: 'empresas',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'empresas.new.html',
+                        controller: 'empresaNewCtrl'
+                    }
+                }
+            }).state('empresaUpdate', {
+                url: '/update',
+                parent: 'empresas',
+                param: {
+                    nitEmpresa: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'empresas.update.html',
+                        controller: 'empresaUpdateCtrl'
+                    }
+                }
+            }).state('empresaDelete', {
+                url: '/delete',
+                parent: 'empresas',
+                param: {
+                    nitEmpresa: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'empresas.delete.html',
+                        controller: 'empresaDeleteCtrl'
+                    }
+                }
+            }).state('empresaNotFound', {
+                url: '/empresa404',
+                parent: 'empresas',
+                param: {
+                    nitEmpresa: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'empresas.404.html',
                         controller: 'empresaCtrl',
                         controllerAs: 'ctrl'
                     }

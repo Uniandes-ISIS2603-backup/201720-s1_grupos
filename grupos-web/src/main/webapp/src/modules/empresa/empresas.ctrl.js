@@ -7,11 +7,9 @@ var mod = ng.module("empresaModule");
         function ($scope, $http, empresasContext, empresaUsuarioContext,$state) {
             $http.get(empresaUsuarioContext).then(function (response) {
                 $scope.currentEmpresa = response.data;
-            });
-            
-            
-            $http.get(empresasContext).then(function (response) {
-                $scope.empresasRecords = response.data;
+                $state.params.nitEmpresa = $scope.currentEmpresa.nit;
+            },function(response){
+                $state.go('empresaNotFound', {reload: true});
             });
            
         }
