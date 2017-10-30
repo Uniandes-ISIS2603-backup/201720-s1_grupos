@@ -8,7 +8,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
             
             $stateProvider.state('noticiaNoEditableMultimediaList', {
                 url: '/multimedia',
-                parent: 'noticiaNoEditableDetail',
+                parent: 'usuarioNoticiaNoEditableDetail',
                 views: {
                     'noticiaMultimediaView': {
                         controller: 'noticiaMultimediaCtrl',
@@ -29,9 +29,9 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
-            }).state('noticiaMultimediaCreate', {
+            }).state('usuarioNoticiaMultimediaCreate', {
                 url: '/multimedia/create',
-                parent:'usuarioNoticiaDetail',
+                parent:'usuarioNoticiaMultimediaList',
                 
                 views: {
                     'multimediaCreate': {
@@ -41,9 +41,9 @@ var mod = ng.module("multimediaModule", ["noticiasModule","ui.router"]);
                     }
                 }
 
-            }).state('noticiaMultimediaEdit', {
+            }).state('usuarioNoticiaMultimediaEdit', {
                 url: '/multimedia/:multimediaLink',
-                parent:'usuarioNoticiaDetail',
+                parent:'usuarioNoticiaMultimediaList',
                 param: {
                     multimediaLink:null
                 },

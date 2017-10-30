@@ -29,7 +29,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                     usuarioId:null
                 },
                 views: {
-                    'mainView': {
+                    'childrenView': {
                         controller: 'usuarioNoticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.html'

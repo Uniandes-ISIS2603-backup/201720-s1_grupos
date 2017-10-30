@@ -9,7 +9,6 @@
             console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización del multimediaContexto
                 fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
-            i
             //Función de creación del link temporalmente
             this.randomString= function()
             {
@@ -49,7 +48,6 @@
             }
             this.saveRecord = function (link) {
                 currentMultimedia = $scope.currentMultimedia;
-
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (link === null || link===undefined) {
                     currentMultimedia.link=this.randomString();

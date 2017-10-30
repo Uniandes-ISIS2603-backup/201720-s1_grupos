@@ -15,12 +15,12 @@
                <!-- Pestaña para ver multimedia-->
                <p>{{esNoticiaGrupo}} {{esNoticiaUsuario}}</p>
                <div ng-show="{{esNoticiaGrupo}}" class="ng-hide">
-                    <dt class="nav nav-tabs"> <a ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id,usuarioId: 1})">Multimedia</a> </dt>
+                    <dt class="nav nav-tabs"> <a ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                     <div ui-view="noticiaMultimediaView">
                      </div>
                </div>
                <div ng-show="{{esNoticiaUsuario}}" class="ng-hide">
-                    <dt class="nav nav-tabs"> <a ui-sref="usuarioNoticiaMultimediaList({noticiaId: currentRecord.id,usuarioId: 1})">Multimedia</a> </dt>
+                    <dt class="nav nav-tabs"> <a ui-sref="usuarioNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                     <div ui-view="noticiaMultimediaView">
                      </div>
                </div>
