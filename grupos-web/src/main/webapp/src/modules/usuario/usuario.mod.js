@@ -37,14 +37,14 @@
                     }
                 }
             }).state('updateUsuario',{
-                url: '/{usuarioId}/update',
+                url: '/update/{usuarioId}',
                 parent: 'usuarios',
                 param:{
                     usuarioId: null
                 },
                 views: {
                     'detailView':{
-                        templateUrl: basePath + 'update/usuario.update.html',
+                        templateUrl: basePath + 'new/usuario.new.html',
                         controller: 'usuarioUpdateCtrl'
                     }
                 }
