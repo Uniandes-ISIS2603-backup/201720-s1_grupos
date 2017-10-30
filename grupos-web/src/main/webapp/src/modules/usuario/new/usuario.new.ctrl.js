@@ -4,6 +4,8 @@
     mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioContext', '$state', '$rootScope',
         function ($scope, $http, usuarioContext, $state, $rootScope) {
             $rootScope.edit = false;
+            $scope.usuarioCreacion=true;
+            $scope.usuarioActualizar=false;
             $scope.createUsuario = function () {
                 $http.post(usuarioContext, {
                     nombre: $scope.usuarioNombre,
