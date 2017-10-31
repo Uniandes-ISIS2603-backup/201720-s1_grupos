@@ -2,29 +2,27 @@
     <div class="panel-body">
     <div class="row">
         <div class="col-md-3">
-            <dl>     
-                <dt>{{currentRecord.calificacion}}</dt>
+            <dl> 
+                <hr>
+                <dt>Calificador</dt>
+                <dd>{{currentRecord.calificador.nombre}}- {{currentRecord.calificador.apellido}}</dd>
+                
+                <div style="float:right; border-radius: 50%; behavior: url(PIE.htc); /* remove if you don't care about IE8 */  width: 72px; height: 72px;padding: 8px;background: #fff;border: 2px solid #666;color: #666;text-align: center;font: 32px Arial, sans-serif;"
+                    <p>{{currentRecord.calificacion}}</p>
+                </div>
                 
                 <hr>
-                <dt>Fecha</dt>
                 <dd>{{currentRecord.fecha| date:'yyyy-MM-dd'}}</dd>
           
                 <hr>
-                <dt>Calificador</dt>
-                <dd>{{currentRecord.calificador}}</dd>
-                
-                <hr>
-                <dt>Blog</dt>
-                <dd>{{currentRecord.blog}}</dd>
-                <hr>
                 <dd>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Actualizar</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="calificacionDelete({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="calificacionDelete({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span></button>
                 </dd>
             </dl>
             <div class="col-md-12">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" ui-sref="calificacionsList">Volver</button>
+                        <button id="return-btn" class="btn btn-info" ui-sref="calificacionsList">Volver a calificaciones</button>
                     </div>
             </div>
         </div>

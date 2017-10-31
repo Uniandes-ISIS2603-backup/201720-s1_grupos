@@ -1,31 +1,39 @@
-<div class="col-md-6 well">
-
-    <form novalidate name="form" id="multimedia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentMultimedia.link)">
-
-        <div ng-messages="form.$error">
-            <div ng-message="required">Fill the required fields!</div>
-        </div>
-                <label for="nombre" class="col-md-2 control-label">Nombre de archivo</label>
-                <label for="descripcion" class="col-md-2 control-label">Descripción</label>
-
-        <fieldset>
-            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-                <div class="col-md-10">
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"> Nueva multimedia</div>
+            <div class="panel-body">
+                <form ng-submit="ctrl.saveRecord(currentMultimedia.link)" name="multimedia">
                     <input id="link" name="link" type="hidden" ng-model="currentMultimedia.link" ng-init="$state.params.multimediaLink">
-                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"  />
-                    <input id="descripcion" name="descripcion" class="form-control" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"  />
-                </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                             <label for="nombre" class="col-md-6">Nombre de archivo:</label>
+                             <input id="nombre" name="nombre" class="col-sm-6" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                            <label for="descripcion" class="col-md-6 control-label">Descripción:</label>
+                            <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}">
+                                <button type="button" class="btn btn-info"  ui-sref='grupoNoticiaMultimediaList'>Volver</button>
+                            </div>
+                            <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
+                                <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiaMultimediaList'>Volver</button>
+                            </div>
+                            <div ng-show="{{esMultimediaBlog}}">
+                                <button type="button" class="btn btn-info"  ui-sref='blogMultimediaList'>Volver</button>
+                            </div>
+                            <button type="submit" class="btn btn-info" >Guardar</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
-            <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}">
-                <button type="button" ui-sref='grupoNoticiaMultimediaList'>Volver</button>
-            </div>
-            <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
-                <button type="button" ui-sref='usuarioNoticiaMultimediaList'>Volver</button>
-            </div>
-            <div ng-show="{{esMultimediaBlog}}">
-                <button type="button" ui-sref='blogMultimediaList'>Volver</button>
-            </div>
-            <button type="submit">Guardar</button>
-        </fieldset>
-    </form>
+        </div>
+    </div>
 </div>
