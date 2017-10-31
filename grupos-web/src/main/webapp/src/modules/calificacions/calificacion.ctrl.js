@@ -34,7 +34,7 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
+                    name: '' /*Tipo String*/
                 };
 
                 $scope.alerts = [];
@@ -45,9 +45,9 @@
         email: "xd@uniandes.edu.co",
         id: 11,
         nombre: "DE",
-        password: "Hola"}
+        password: "Hola"};
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                if (id === null) {
                     // ejecuta POST en el recurso REST
                     return $http.post(fullContext, currentRecord)
                             .then(function () {
@@ -68,17 +68,17 @@
                             });
                 }
                 ;
-            }
+            };
             this.deleteRecord=function (id)
             {
-                if(id!=null)
+                if(id!==null)
                 {
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
                         $state.go('calificacionsList');
-                    })
+                    });
                 }
-            }
+            };
             this.getRangeValue=function()
             {
                 return document.getElementById("calificacion").value;

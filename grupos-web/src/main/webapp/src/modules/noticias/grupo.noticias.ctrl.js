@@ -24,33 +24,34 @@
                 itemToAdd.link=this.randomString();
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
-                $scope.multimedia.push(angular.copy(itemToAdd))}
+                $scope.multimedia.push(angular.copy(itemToAdd));
+            };
             this.addNew=function(){
                 console.log("NUEVO ITEM");
                 $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
-            }
+            };
             this.addAll=function()
             {
-                while($scope.itemsToAdd.length!=0)
+                while($scope.itemsToAdd.length!==0)
                 {
                     console.log($scope.itemsToAdd[0]);
                     this.add($scope.itemsToAdd[0]);
                 }
-            }
+            };
             this.remove=function(itemToAdd)
             {
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
-            }
+            };
             this.randomString= function()
             {
                 var text="";
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
                    for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
                  console.log("TEXTO "+text);
                 return text;  
-            }
+            };
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
             if ($state.params.noticiaId !== null && $state.params.noticiaId !== undefined) {
@@ -70,7 +71,7 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
+                    name: '' /*Tipo String*/
                 };
 
                 $scope.alerts = [];
@@ -110,7 +111,7 @@
                             });
                 }
                 ;
-            }
+            };
             this.deleteRecord= function(id)
             {
                 if(id!==null)
@@ -118,18 +119,13 @@
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
                           $state.go('grupoNoticiasList');
-                    })
+                    });
                 }
-            }
+            };
             this.getHeader= function()
             {
                 return header;
-            }
-            
-            
-
-// Código continua con las funciones de despliegue de errores
-
+            };
 
         }]);
 })(window.angular);

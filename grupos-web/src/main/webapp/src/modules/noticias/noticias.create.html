@@ -1,69 +1,52 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createAuthor">Create new Author</label>
-                <label ng-if="edit" id="editAuthor">Edit Author</label></div>
+            <div class="panel-heading"> Crear noticia </div>
             <div class="panel-body">
-                <form ng-submit="createAuthor()" name="author">
+                <form ng-submit="ctrl.saveRecord(currentRecord.id)" name="noticia">
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="authorName" class="col-sm-2">Name:</label>
-                            <input id="authorName" required ng-model="authorName" class="col-sm-6"/>
+                        <div class="form-group col-md-8">
+                            <label for="titulo" class="col-md-6 control-label">Título</label>
+                             <input id="titulo" name="titulo"type="text" required ng-model="currentRecord.titulo" ng-init="currentRecord.titulo"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="authorBirthDate" class="col-sm-2">Birth Date:</label>
-                            <input type="date" id="authorBirthDate" placeholder="DD/MM/YYYY" required ng-model="authorBirthDate" class="col-sm-6"/>
+                            <label for="informacion" class="col-md-6 control-label">Información</label>
+                            <textarea id="informacion" name="informacion"  required class="col-sm-6" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="authorDescription" class="col-sm-2">Biography:</label>
-                            <textarea id="authorDescription" required ng-model="authorDescription" class="col-sm-6"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="authorImage" class="col-sm-2">Image:</label>
-                            <input id="authorImage" required ng-model="authorImage" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div ng-if="edit" class="panel-group" id="theBooks">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">Associated books</div>
-                            <div class="panel-body">
-                                <div id="div2" ondrop="angular.element(document.getElementById('theBooks')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theBooks')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-show="edit" ng-repeat="book in allBooksAuthor">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theBooks')).scope().drag(event)" id="{{book.id}}">{{book.name}}</p>                                 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-heading">All books</div>
-                            <div class="panel-body">
-                                <div id="div1" ondrop="angular.element(document.getElementById('theBooks')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theBooks')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-repeat="book in allBooksShow">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theBooks')).scope().drag(event)" id="{{book.id}}">{{book.name}}</p>                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!author.$valid">
-                            <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
-                            </div> 
-                        </div> 
+                        <button ng-click="ctrl.addNew()" class="btn btn-default" type="button" >Nueva multimedia</button>
                     </div> 
+                    
+                    <div class="form-group row">
+                        <div class="panel-body">
+                            <div ng-repeat="item in multimedia">
+                                {{item.nombre}} {{item.descripcion}} {{item.link}}
+                            </div>
+                            <div id="{{$index}}-multimedia" ng-repeat="itemToAdd in itemsToAdd">
+                                <input id="link" name="link" type="hidden" ng-model="itemToAdd.link">
+                                <div class="form-group row">
+                                    <div class="form-group col-md-8">
+                                         <label for="nombre" class="col-md-6">Nombre de archivo:</label>
+                                         <input id="nombre" name="nombre" class="col-sm-6" type="text" ng-model="itemToAdd.nombre" ng-init="itemToAdd.nombre"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="form-group col-md-8">
+                                        <label for="descripcion" class="col-md-6 l">Descripción:</label>
+                                        <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="itemToAdd.descripcion" ng-init="itemToAdd.descripcion"></textarea>
+                                    </div>
+                                </div>
+                                <button id="{{$index}}--remove-multimedia-btn" class="btn btn-danger btn-sm col-lg-6 col-md-6" ng-click="ctrl.remove(itemToAdd)" type="button"><span class="glyphicon glyphicon-trash"></span>Multimedia</button>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <button type="submit" class="btn btn-info" >Agregar noticia</button>
+                            <button type="submit" id="submit-button" class="btn btn-info" >Agregar noticia</button>
                             <div ng-show="{{esNoticiaUsuario}}">
                                     <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiasList'>Cancelar</button>
                             </div>
@@ -72,56 +55,17 @@
                             </div>                        
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!noticia.$valid">
+                            <div class="alert alert-warning" >
+                                <strong>Alto!</strong><p>Debe llenar todos los campos de la noticia</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    
                 </form>
 
             </div>
         </div>
     </div>
-</div>
-
-
-
-
-<div class="col-md-6 well">
-    <form novalidate name="form" id="noticia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
-        <p>{{form.$error}}</p>
-        <div ng-messages="form.$error">
-            <div ng-message="required">Fill the required fields!</div>
-        </div>
-        <fieldset>
-            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" ng-init="currentRecord.id"/>
-            <div class="form-group col-md-12">
-                <div class="col-md-10">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="titulo" class="col-md-2 control-label">Título</label>
-                             <input id="titulo" name="titulo" class="form-control" type="text" required ng-model="currentRecord.titulo" ng-init="currentRecord.titulo"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="informacion" class="col-md-2 control-label">Información</label>
-                            <input id="informacion" name="informacion" class="form-control" type="textArea" required ng-model="currentRecord.informacion" ng-init="currentRecord.informacion"/>
-                        </div>
-                    </div>
-                    <p>MULTIMEDIA</p>
-                    <div ng-repeat="item in multimedia">
-                        {{item.nombre}} {{item.descripcion}} {{item.link}}
-                    </div>
-                    <div id="{{$index}}-multimedia" ng-repeat="itemToAdd in itemsToAdd">
-                        <input type="text" id="{{$index}}-nombre" ng-model="itemToAdd.nombre"/>
-                        <input type="text" id="{{$index}}-descripcion" ng-model="itemToAdd.descripcion"/>
-                        <input type="hidden" id="{{$index}}-link" ng-model="itemToAdd.link"/>
-                        <button ng-click="ctrl.remove(itemToAdd)" class="btn btn-info" >Remover multimedia</button>
-                    </div>
-                    <div>
-                        <button ng-click="ctrl.addNew()" class="btn btn-info" >Nueva multimedia</button>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <button type="submit" class="btn btn-info" >Agregar noticia</button>
-        </fieldset>
-    </form>
 </div>

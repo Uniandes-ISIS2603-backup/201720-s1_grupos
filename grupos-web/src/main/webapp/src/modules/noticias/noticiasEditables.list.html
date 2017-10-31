@@ -14,9 +14,8 @@
             <div id="{{$index}}-titulo">
             <h2> {{record.titulo}}</h2>
             </div>
-            <hr>
             <div id="{{$index}}-informacion">
-            <h2> {{record.informacion}}</h2>
+            <h3> {{record.informacion}}</h3>
             </div>
             <div ng-show="{{esNoticiaUsuario}}">
                 <button id="return-btn" class="btn btn-info" ui-sref="usuarioNoticiaDetail({noticiaId:record.id})">Ver</button>

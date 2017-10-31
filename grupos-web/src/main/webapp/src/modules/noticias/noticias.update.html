@@ -1,28 +1,43 @@
-<div class="col-md-6 well">
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"> Actualizar noticia </div>
+            <div class="panel-body">
+                <form ng-submit="ctrl.saveRecord(currentRecord.id)" name="noticia">
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                            <label for="titulo" class="col-md-6 control-label">Título</label>
+                             <input id="titulo" name="titulo"type="text" required ng-model="currentRecord.titulo" ng-init="currentRecord.titulo"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                            <label for="informacion" class="col-md-6 control-label">Información</label>
+                            <textarea id="informacion" name="informacion"  required class="col-sm-6" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion"></textarea>
+                        </div>
+                    </div>
 
-    <form novalidate name="form" id="noticia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!noticia.$valid">
+                            <div class="alert alert-warning" >
+                                <strong>Alto!</strong><p>Debe llenar todos los campos de la noticia</p>
+                            </div> 
+                        </div> 
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <button type="submit" id="submit-button" class="btn btn-info" >Actualizar noticia</button>
+                            <div ng-show="{{esNoticiaUsuario}}">
+                                    <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiasList'>Cancelar</button>
+                            </div>
+                            <div ng-show="{{esNoticiaGrupo}}">
+                                 <button type="button" class="btn btn-info"  ui-sref='grupoNoticiasList'>Cancelar</button>
+                            </div>                        
+                        </div>
+                    </div>
+                </form>
 
-        <div ng-messages="form.$error">
-            <div ng-message="required">Fill the required fields!</div>
+            </div>
         </div>
-
-        <fieldset>
-            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
-            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-                <label for="titulo" class="col-md-2 control-label">Título</label>
-                <label for="informacion" class="col-md-2 control-label">Informacion</label>
-
-                <div class="col-md-10">
-                    <input id="name" name="titulo" class="form-control" type="text" ng-model="currentRecord.titulo" ng-init="currentRecord.titulo" required />
-                    <input id="name" name="informacion" class="form-control" type="textArea" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion" required />
-                </div>
-            </div>
-            <div ng-show="{{esNoticiaUsuario}}">
-                    <button type="button" ui-sref='usuarioNoticiasList'>Cancelar</button>
-            </div>
-            <div ng-show="{{esNoticiaGrupo}}">
-                 <button type="button" ui-sref='grupoNoticiasList'>Cancelar</button>
-            </div>            <button type="submit">Save</button>
-        </fieldset>
-    </form>
+    </div>
 </div>

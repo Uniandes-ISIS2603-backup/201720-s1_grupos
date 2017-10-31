@@ -18,7 +18,7 @@
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
                  console.log("TEXTO "+text);
                 return text;
-            }
+            };
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};
             // carga la multimedia
@@ -73,7 +73,7 @@
                             });
                 }
                 ;
-            }
+            };
             this.deleteRecord= function(link)
             {
                 if(link!==null)
@@ -81,12 +81,12 @@
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
                          $state.go('blogMultimediaList',{},{reload:true});
-                    })
+                    });
                 }
-            }
+            };
             this.prueba = function(){
                 console.log("HOLA Q HACE");
-            }
+            };
 
             
 // Código continua con las funciones de despliegue de errores
