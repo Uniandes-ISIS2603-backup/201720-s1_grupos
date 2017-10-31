@@ -21,7 +21,7 @@
                 }
             }).state('comentarioNoticiaList', {
                 url: '/comentarios',
-                parent: 'noticiaDetail',
+                parent: 'noticiaNoEditableDetail',
                 views: {
                     'comentarioView': {
                         templateUrl: basePath + 'comentario.list.html',
@@ -36,9 +36,22 @@
                     comentarioId: null
                 },
                 views: {
-                    'comentarioBlogView': {
+                    'deleteView': {
                         templateUrl: basePath + 'delete/comentario.delete.html',
                         controller: 'comentarioDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioNoticiaDelete', {
+                url: '/{comentarioId:int}/delete',
+                parent: 'comentarioNoticiaList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'deleteView': {
+                        templateUrl: basePath + 'delete/comentario.delete.html',
+                        controller: 'comentarioNoticiaDeleteCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
