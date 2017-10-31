@@ -9,7 +9,7 @@
                 <dt>Informacion</dt>
                 <dd><p style="font-family:'Times New Roman', 'Times', 'serif';">{{currentRecord.informacion}}</p></dd>
                 <hr>
-               <div ng-show="{{esNoticiaGrupo}}" class="ng-hide">
+               <div ng-show="{{deGrupo}}" class="ng-hide">
                     <dt class="nav nav-tabs"> <a ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                     <div ui-view="noticiaMultimediaView">
                      </div>
@@ -30,7 +30,7 @@
                         <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm col-md-6" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>U </button>
                         <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span>U </button>
                     </div>
-                    <div ng-show="{{esNoticiaGrupo}}">
+                    <div ng-show="{{deGrupo}}">
                          <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>G </button>
                         <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> G </button>
                     </div>                
@@ -51,7 +51,7 @@
                     <hr>
                 </dl>
             </div>
-            <div class="col-md-3" ng-show="{{esNoticiaGrupo}}">
+            <div class="col-md-3" ng-show="{{deGrupo}}">
                 <dl>     
                     <dt><button ui-sref="grupoNoticiasList"> Volver a las noticias de grupo</button></dt>
                     <hr>

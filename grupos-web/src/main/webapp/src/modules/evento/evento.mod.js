@@ -39,6 +39,19 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('eventosDeGrupo', {
+                url: '/eventos',
+                parent:'grupoDetail',
+                params:{
+                    grupoId:null
+                },
+                views: {
+                    'childrenView': {
+                        controller: 'grupoCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'eventos.list.html'
+                    }
+                }
             }).state('eventosCreate',{
                 url: '/create',
                 parent: 'eventos',

@@ -25,7 +25,7 @@
                                     <td id="{{$index}}-fecha">{{record.fecha|date:'yyyy-MM-dd'}}</td>
                                 </tr>
                                 <td>  
-                                    <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}" class="ng-hide">
+                                    <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
                                             <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
                                             <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
                                      </div>

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{noticiaEditable && esNoticiaGrupo}}" class="ng-hide">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{noticiaEditable && deGrupo}}" class="ng-hide">
             <button id="add-btn" class="btn btn-info" ui-sref="grupoNoticiaCreate"><span class="glyphicon glyphicon-plus"></span>Agregar noticia</button>
             <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail">Volver</button>
         </div>
@@ -20,7 +20,7 @@
             <div ng-show="{{esNoticiaUsuario}}">
                 <button id="return-btn" class="btn btn-info" ui-sref="usuarioNoticiaDetail({noticiaId:record.id})">Ver</button>
             </div>
-            <div ng-show="{{esNoticiaGrupo}}">
+            <div ng-show="{{deGrupo}}">
                 <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail({noticiaId:record.id})">Ver</button>
             </div>
             <div ng-show="{{!noticiaEditable}}">

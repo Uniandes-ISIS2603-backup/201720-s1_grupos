@@ -1,13 +1,7 @@
-<h1 ng-show="{{deGrupo}}">Todos los Administradores</h1>
-<h1 ng-show="!{{deGrupo}}">Todos los Usuarios</h1>
+<h1>Todos los Miembros</h1>
 <div class="container-fluid">
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group"  ng-show="!{{deGrupo}}">
-        <a class="btn btn-info" ui-sref="createUsuario"><span class="glyphicon glyphicon-plus-sign"></span> Añadir usuario</a>
-        </div>
-        <div class="btn-group mr-2" role="group" aria-label="First group"  ng-show="{{deGrupo}}">
-        <a class="btn btn-info" ui-sref="createUsuario"><span class="glyphicon glyphicon-plus-sign"></span> Añadir administrador</a>
-        </div>
+
     </div>
     <div class="row">
             <table class="table table-striped">
@@ -20,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="usuario in usuariosRecords">
+                <tr ng-repeat="usuario in miembroRecords">
                     <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
                     <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
                     <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>

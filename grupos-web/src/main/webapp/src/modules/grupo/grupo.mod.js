@@ -47,31 +47,6 @@
                         templateUrl: basePathCategorias + 'categorias.list.html'
                     }
                 }
-            }).state('eventosDeGrupo', {
-                url: '/eventos',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathEventos+ 'eventos.list.html'
-                    }
-                }
-            }).state('miembrosDeGrupo', {
-                url: '/miembros',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathUsuarios+ 'usuarios.list.html'
-                    }
-                }
-            }).state('adminsDeGrupo', {
-                url: '/administradores',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathUsuarios+ 'usuarios.list.html'
-                        
-                    }
-                }
             }).state('grupoCreate', {
                 url: '/create',
                 parent: 'grupos',
