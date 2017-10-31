@@ -43,7 +43,7 @@ public class LugarPersistence {
     public List<LugarEntity> findAll()
     {
         LOGGER.info("Consultando todos los lugares");
-        Query q = em.createQuery("select u from LugarEntity u");
+        Query q = em.createQuery("select u from LugarEntity u",LugarEntity.class);
         return q.getResultList();
     }
         public LugarEntity findByName(String nombre) {

@@ -22,7 +22,7 @@ public class LugarDetailDTO extends LugarDTO {
      */
     public LugarDetailDTO()
     {
-        
+        super();
     }
     /**
      * Construye un nuevo ligar a partir de la entidad dada.<br>
@@ -40,11 +40,26 @@ public class LugarDetailDTO extends LugarDTO {
     @Override
     public LugarEntity toEntity()
     {
-        LugarEntity entity = new LugarEntity();
+        LugarEntity entity = super.toEntity();
         entity.setDireccion(getDireccion());
         entity.setId(getId());
         entity.setNombre(getNombre());
-        entity.setCapacidad(this.capacidad);
+        entity.setCapacidad(this.getCapacidad());
         return entity;
     }
+
+    /**
+     * @return the capacidad
+     */
+    public Integer getCapacidad() {
+        return capacidad;
+    }
+
+    /**
+     * @param capacidad the capacidad to set
+     */
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
+    }
+    
 }

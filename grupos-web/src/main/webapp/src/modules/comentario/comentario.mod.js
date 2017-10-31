@@ -29,6 +29,19 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('comentarioDelete', {
+                url: '/{comentarioId:int}/delete',
+                parent: 'comentarioList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'comentarioBlogView': {
+                        templateUrl: basePath + 'delete/comentario.delete.html',
+                        controller: 'comentarioDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
     
