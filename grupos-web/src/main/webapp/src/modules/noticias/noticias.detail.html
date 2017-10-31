@@ -27,12 +27,12 @@
                 </dl>
                 <div class="btn-group mr-2" role="group" aria-label="First group">
                     <div ng-show="{{esNoticiaUsuario}}">
-                        <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm col-md-6" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> </button>
-                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> </button>
+                        <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm col-md-6" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>U </button>
+                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span>U </button>
                     </div>
                     <div ng-show="{{esNoticiaGrupo}}">
-                         <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> </button>
-                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> </button>
+                         <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>G </button>
+                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> G </button>
                     </div>                
                 </div>
                 <dt>Comentarios</dt>
@@ -53,13 +53,13 @@
             </div>
             <div class="col-md-3" ng-show="{{esNoticiaGrupo}}">
                 <dl>     
-                    <dt><button ui-sref="grupoNoticiasList"> Volver a tus noticias</button></dt>
+                    <dt><button ui-sref="grupoNoticiasList"> Volver a las noticias de grupo</button></dt>
                     <hr>
                 </dl>
             </div>
             <div class="col-md-3" ng-show="{{!noticiaEditable}}">
                 <dl>     
-                    <dt><button ui-sref="noticiasNoEditablesList"> Volver a tus noticias</button></dt>
+                    <dt><button ui-sref="noticiasNoEditablesList"> Volver a las noticias</button></dt>
                     <hr>
                 </dl>
             </div>
