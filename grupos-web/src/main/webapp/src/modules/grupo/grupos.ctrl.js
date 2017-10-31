@@ -11,7 +11,7 @@
                     $scope.categoriaRecords=response.data.categorias;
                     $scope.miembroRecords=response.data.miembros;
                     $scope.usuariosRecords=response.data.administradores;
-                    $scope.eventosRecords=response.data.eventos;
+                    $scope.eventosRecords=response.data.eventosGrupo;
                     $scope.records=response.data.noticias;
                     var grupoId= $scope.grupoActual.id;
                     $state.go('grupoDetail',{grupoId},{reload:true});
@@ -28,7 +28,7 @@
                     $scope.categoriaRecords=response.data.categorias;
                     $scope.miembroRecords=response.data.miembros;
                     $scope.usuariosRecords=response.data.administradores;
-                    $scope.eventosRecords=response.data.eventos;
+                    $scope.eventosRecords=response.data.eventosGrupo;
                     $scope.records=response.data.noticias;
                 });
             }
