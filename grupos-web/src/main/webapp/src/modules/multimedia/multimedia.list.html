@@ -1,51 +1,59 @@
 <div class="container-fluid" ui-view="multimediaListView">
-    <p> {{esMultimediaNoticia}} {{esNoticiaGrupo}} {{esNoticiaUsuario}}</p>
-    <table class="table table-striped" class="col-md-4">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Link</th>
-                <th ng-show="{{(esMultimediaNoticia && (esNoticiaGrupo || esNoticiaUsuario)) || (esMultimediaBlog)}}">Acciones</th>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Multimedia</label></div>
+            <div class="panel-body">
                 
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="record in multimediaRecords">
-                <td id="{{$index}}-nombre">{{record.nombre}}</td>
-                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
-                <td id="{{$index}}-link">{{record.link}}</td>
-             <td>  
-            <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}" class="ng-hide">
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
-             </div>
-            <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
-             </div>
-            <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+                <div class="btn-toolbar" ng-show="{{esMultimediaBlog}}" role="toolbar" aria-label="Toolbar with button groups">
+                    <button id="return-btn" class="btn btn-info" ui-sref="blogDetail">Volver a blog</button>
+                    <button id="add-btn" class="btn btn-info" ui-sref="blogMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+                </div>
+                <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" role="toolbar" aria-label="Toolbar with button groups">
+                    <button id="return-btn" class="btn btn-info" ui-sref="usuarioNoticiaDetail">Volver a noticia</button>
+                    <button id="add-btn" class="btn btn-info" ui-sref="usuarioNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia1</button>
+                </div>
+                <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
+                    <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail">Volver a noticia</button>
+                    <button id="add-btn" class="btn btn-info" ui-sref="grupoNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia2</button>
+                </div>
+                
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Link</th>
+                                <th ng-show="{{(esMultimediaNoticia && (esNoticiaGrupo || esNoticiaUsuario)) || (esMultimediaBlog)}}">Acciones</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr ng-repeat="record in multimediaRecords">
+                                <td id="{{$index}}-nombre">{{record.nombre}}</td>
+                                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
+                                <td id="{{$index}}-link">{{record.link}}</td>
+                                <td>  
+                                    <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}" class="ng-hide">
+                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
+                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                                     </div>
+                                    <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
+                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
+                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                                     </div>
+                                    <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
 
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-minus"></span> Borrar</button>
+                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="blogMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                                    </div>   
+                                </td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
             </div>
-            </td>
-
-                
-            </tr>
-        </tbody>
-    </table>
-    <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
-      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="blogDetail">Volver a blog</button>
-      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
+        </div>
     </div>
-    <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
-      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaDetail">Volver</button>
-      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
-    </div>
-    <div ng-show="{{esMultimediaNoticia && esNoticiaGrupo}}" class="ng-hide">
-      <button id="return-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaDetail">Volver</button>
-      <button id="add-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
-    </div>
-      
 </div>

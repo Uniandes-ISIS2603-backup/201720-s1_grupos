@@ -1,3 +1,87 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createAuthor">Create new Author</label>
+                <label ng-if="edit" id="editAuthor">Edit Author</label></div>
+            <div class="panel-body">
+                <form ng-submit="createAuthor()" name="author">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="authorName" class="col-sm-2">Name:</label>
+                            <input id="authorName" required ng-model="authorName" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="authorBirthDate" class="col-sm-2">Birth Date:</label>
+                            <input type="date" id="authorBirthDate" placeholder="DD/MM/YYYY" required ng-model="authorBirthDate" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="authorDescription" class="col-sm-2">Biography:</label>
+                            <textarea id="authorDescription" required ng-model="authorDescription" class="col-sm-6"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="authorImage" class="col-sm-2">Image:</label>
+                            <input id="authorImage" required ng-model="authorImage" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div ng-if="edit" class="panel-group" id="theBooks">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Associated books</div>
+                            <div class="panel-body">
+                                <div id="div2" ondrop="angular.element(document.getElementById('theBooks')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theBooks')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-show="edit" ng-repeat="book in allBooksAuthor">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theBooks')).scope().drag(event)" id="{{book.id}}">{{book.name}}</p>                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">All books</div>
+                            <div class="panel-body">
+                                <div id="div1" ondrop="angular.element(document.getElementById('theBooks')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theBooks')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-repeat="book in allBooksShow">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theBooks')).scope().drag(event)" id="{{book.id}}">{{book.name}}</p>                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!author.$valid">
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <button type="submit" class="btn btn-info" >Agregar noticia</button>
+                            <div ng-show="{{esNoticiaUsuario}}">
+                                    <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiasList'>Cancelar</button>
+                            </div>
+                            <div ng-show="{{esNoticiaGrupo}}">
+                                 <button type="button" class="btn btn-info"  ui-sref='grupoNoticiasList'>Cancelar</button>
+                            </div>                        
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <div class="col-md-6 well">
     <form novalidate name="form" id="noticia-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         <p>{{form.$error}}</p>
@@ -28,21 +112,16 @@
                         <input type="text" id="{{$index}}-nombre" ng-model="itemToAdd.nombre"/>
                         <input type="text" id="{{$index}}-descripcion" ng-model="itemToAdd.descripcion"/>
                         <input type="hidden" id="{{$index}}-link" ng-model="itemToAdd.link"/>
-                        <button ng-click="ctrl.remove(itemToAdd)">Remover multimedia</button>
+                        <button ng-click="ctrl.remove(itemToAdd)" class="btn btn-info" >Remover multimedia</button>
                     </div>
                     <div>
-                        <button ng-click="ctrl.addNew()">Nueva multimedia</button>
+                        <button ng-click="ctrl.addNew()" class="btn btn-info" >Nueva multimedia</button>
                     </div>
                 </div>
             </div>
-            <div ng-show="{{esNoticiaUsuario}}">
-                    <button type="button" ui-sref='usuarioNoticiasList'>Cancelar</button>
-            </div>
-            <div ng-show="{{esNoticiaGrupo}}">
-                 <button type="button" ui-sref='grupoNoticiasList'>Cancelar</button>
-            </div>
             
-            <button type="submit">Agregar noticia</button>
+            
+            <button type="submit" class="btn btn-info" >Agregar noticia</button>
         </fieldset>
     </form>
 </div>
