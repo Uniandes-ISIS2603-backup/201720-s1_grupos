@@ -16,7 +16,6 @@
               var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
                    for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
-                 console.log("TEXTO "+text);
                 return text;
             };
             // inicialmente el listado de multimdia está vacio
@@ -58,7 +57,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('blogMultimediaList');
+                                $state.go('blogMultimediaList',{},{reload:true});
                             });
                     currentMultimedia.link=null;
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -69,7 +68,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('blogMultimediaList');
+                                $state.go('blogMultimediaList',{},{reload:true});
                             });
                 }
                 ;
