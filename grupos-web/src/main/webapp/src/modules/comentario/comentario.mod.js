@@ -29,6 +29,26 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('comentarioCreate', {
+                url: '/create',
+                parent: 'comentarioList',
+                views: {
+                    'createView': {
+                        templateUrl: basePath + 'new/comentario.create.html',
+                        controller: 'comentarioCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioNoticiaCreate', {
+                url: '/create',
+                parent: 'comentarioNoticiaList',
+                views: {
+                    'createView': {
+                        templateUrl: basePath + 'new/comentario.create.html',
+                        controller: 'comentarioNoticiaCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('comentarioDelete', {
                 url: '/{comentarioId:int}/delete',
                 parent: 'comentarioList',

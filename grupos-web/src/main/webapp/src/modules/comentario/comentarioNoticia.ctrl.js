@@ -10,14 +10,6 @@
                 $scope.comentarioRecords = response.data;
             });
             
-            $scope.createComentario = function () {
-                $http.post(noticiaContext+'/'+$state.params.noticiaId+'/'+ comentarioContext, {
-                    autor: 'Sergio',
-                    comentario: $scope.comentario
-                }).then(function (response) {
-                    $state.reload();
-                });
-            };
         } ]);
 
 }
