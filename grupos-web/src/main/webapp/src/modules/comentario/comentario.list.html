@@ -11,11 +11,11 @@
                                 <h4 id="{{$index}}-author">{{comentario.autor}}:</h4>
                                 <p id="{{$index}}-comment">{{comentario.comentario}}</p>
                                 <div class="col-md-12" ng-show="{{comentariosDeBlog}}">
-                                    <a class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="comentarioDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </div>
                                 <div class="col-md-12" ng-show="{{comentariosDeNoticia}}">
-                                    <a class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-default btn-sm" ui-sref="comentarioNoticiaUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="comentarioNoticiaDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </div>
                             </div>

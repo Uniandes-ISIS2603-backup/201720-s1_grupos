@@ -55,6 +55,19 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('comentarioUpdate', {
+                url: '/{comentarioId:int}/update',
+                parent: 'comentarioList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'deleteView': {
+                        templateUrl: basePath + 'update/comentario.update.html',
+                        controller: 'comentarioUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
     
