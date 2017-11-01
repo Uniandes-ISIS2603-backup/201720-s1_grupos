@@ -10,7 +10,7 @@
                 $scope.comentarioRecords = response.data;
             });
             
-            $scope.crearComentario = function () {
+            $scope.createComentario = function () {
                 $http.post(grupoContext+'/'+$state.params.grupoId+'/'+blogContext + '/' +
                         $state.params.blogId + '/' + comentarioContext, {
                     autor: 'Sergio',
