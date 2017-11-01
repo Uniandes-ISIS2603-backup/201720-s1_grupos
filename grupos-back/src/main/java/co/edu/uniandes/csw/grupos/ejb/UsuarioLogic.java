@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
@@ -53,6 +54,12 @@ public class UsuarioLogic {
      */
     @Inject
     PatrocinioLogic patrocinioLogic;
+    
+    /**
+     * Se inyecta la logica de blogs
+     */
+    @Inject
+    BlogLogic blogLogic;
     
     /**
      * Metodo que crea un nuevo usuario
@@ -406,5 +413,64 @@ public class UsuarioLogic {
         PatrocinioEntity cambio = patrocinioLogic.updatePatrocinio(np.getId(), np);
         //u.getPatrocinios().set(pos, cambio);
         return cambio;
+    }
+
+    /**
+     *
+     * @param id, id del grupo al que se le buscarán los eventos
+     * @return la lista de eventos asociadas al grupo
+     */
+    public List<BlogEntity> listBlogs(Long id) {
+        return findById(id).getBlogsFavoritos();
+    }
+    
+    /**
+     *
+     * @param usuarioId, id del usuario del que se obtendrá el blog
+     * @param blogId, id del evento asociado con el grupo a obtener
+     * @return evento asociado con el grupo a buscar
+     */
+    public BlogEntity getBlog(Long usuarioId, Long blogId) {
+        List<BlogEntity> list = findById(usuarioId).getBlogsFavoritos();
+        BlogEntity blogEntity= new BlogEntity();
+        blogEntity.setId(blogId);
+        int index = list.indexOf(blogEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        throw new NotFoundException("No se encuentra el elemento buscado");
+    }
+    
+    /**
+     *
+     * @param usuarioId, id del usuario al que se le vinculará el blog
+     * @param blogId, id del evento a vincularse con el grupo
+     * @return el blog recién vinculado
+     * @throws BusinessException, excepcion si no encuentra el blog
+     * @throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException, excepción si no encuentra el blog
+     */
+    public BlogEntity addBlog(Long usuarioId, Long blogId) throws BusinessException {
+        UsuarioEntity usuarioEntity = findById(usuarioId);
+        BlogEntity blogEntity = blogLogic.getBlog(blogId);
+        usuarioEntity.getBlogsFavoritos().add(blogEntity);
+        updateUser(usuarioId, usuarioEntity);
+        return getBlog(usuarioId, blogId);
+    }
+    
+    /**
+     *
+     * @param usuarioId, id del usuario al que se le desvinculará el blog
+     * @param blogId, id del blog a desvincular del usuario
+     */
+    public void removeBlog(Long usuarioId, Long blogId) {
+        UsuarioEntity entity = findById(usuarioId);
+        BlogEntity blogEntity = new BlogEntity();
+        blogEntity.setId(blogId);
+        int index = entity.getBlogsFavoritos().indexOf(blogEntity);
+        if(index < 0) {
+            throw new NotFoundException("No existe el evento con el id dado en el grupo con id dado");
+        }
+        entity.getBlogsFavoritos().remove(blogEntity);
+        updateUser(usuarioId, entity);
     }
 }

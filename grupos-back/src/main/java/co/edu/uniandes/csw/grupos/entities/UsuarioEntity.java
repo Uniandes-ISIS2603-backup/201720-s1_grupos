@@ -111,11 +111,11 @@ public class UsuarioEntity implements Serializable {
     private List<PatrocinioEntity> patrocinios= new ArrayList<PatrocinioEntity>();
     
     /**
-     * Lista de blogs
+     * Lista de blogsFavoritos
      */
     @PodamExclude
-    @OneToMany
-    private List<BlogEntity> blogs;
+    @ManyToMany
+    private List<BlogEntity> blogsFavoritos;
     
     /**
      * Da id del usuario
@@ -206,11 +206,11 @@ public class UsuarioEntity implements Serializable {
     }
     
     /**
-     * Da la lista de todos los blogs
-     * @return blogs
+     * Da la lista de todos los blogsFavoritos
+     * @return blogsFavoritos
      */
-    public List<BlogEntity> getBlogs(){
-        return blogs;
+    public List<BlogEntity> getBlogsFavoritos(){
+        return blogsFavoritos;
     }
     
     /**
@@ -318,11 +318,11 @@ public class UsuarioEntity implements Serializable {
     }
     
     /**
-     * Cambia los blogs del usuario
-     * @param nb nueva lista de blogs
+     * Cambia los blogsFavoritos del usuario
+     * @param nb nueva lista de blogsFavoritos
      */
-    public void setBlogs(List<BlogEntity> nb){
-        blogs = nb;
+    public void setBlogsFavoritos(List<BlogEntity> nb){
+        blogsFavoritos = nb;
     }
     
     /**

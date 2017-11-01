@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.BlogPersistence;
 import java.util.ArrayList;
@@ -44,6 +45,11 @@ public class BlogLogic {
      */
     @Inject
     CalificacionLogic calificacionLogic;
+     /**
+     * Lógica de calificación
+     */
+    @Inject
+    UsuarioLogic usuarioLogic;
     /**
      * Crea un blog.<br>
      * @param entity Blog.<br>
@@ -348,5 +354,50 @@ public class BlogLogic {
       blog.getCalificaciones().remove(index);
       calificacionLogic.deleteEntity(calificacionId);
       updateBlog(blog,grupoId);
+    }
+
+    public void removeBlogDeUsuario(Long usuarioId, Long blogId) throws BusinessException {
+      BlogEntity blog = getBlog(blogId);
+      UsuarioEntity usuario=usuarioLogic.findById(usuarioId);
+      int index=blog.getUsuarios().indexOf(usuarioId);
+      if(index<0) throw new BusinessException("La calificación a eliminar no existe");
+  
+      blog.getUsuarios().remove(index);
+        updateBlog(blog, blog.getGrupo().getId());
+    }
+
+    public BlogEntity addBlogDeUsuario(Long usuarioId, Long blogId) {
+        BlogEntity blog = getBlog(blogId);
+        if(blog.getUsuarios()==null) blog.setUsuarios(new ArrayList<>());
+        UsuarioEntity usuarioEntity= new UsuarioEntity();
+        usuarioEntity.setId(usuarioId);
+        int index=usuarioEntity.getBlogsFavoritos().indexOf(entity);
+        if(index>=0) 
+        {
+            throw new BusinessException("Ya existe el usuario dado.");
+        }
+        for(CalificacionEntity cal: blog.getCalificaciones())
+       {
+           if(c.getCalificador().getId().equals(cal.getCalificador().getId()))
+           {
+               throw new BusinessException("Ya ese usuario calificó con el id dado.");
+           }
+       }
+        int numero=blog.getCalificaciones().size();
+        if(blog.getPromedio()==null) blog.setPromedio(0.0);
+        blog.setPromedio(((blog.getPromedio()*numero)+c.getCalificacion())/(numero+1));
+        c.setBlog(blog);
+        calificacionLogic.updateEntity(c.getId(), c);
+        blog.getCalificaciones().add(c);
+        updateBlog(blog,grupoId);
+        return blog.getCalificaciones().get(blog.getCalificaciones().size()-1);
+    }
+
+    public BlogEntity getBlogDeUsuario(Long usuarioId, Long blogId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<BlogEntity> listBlogsDeUsuario(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
