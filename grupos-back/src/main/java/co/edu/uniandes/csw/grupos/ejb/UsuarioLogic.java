@@ -445,6 +445,11 @@ public class UsuarioLogic {
      */
     public void addBlog(Long usuarioId, BlogEntity blogEntity) throws BusinessException {
         UsuarioEntity usuarioEntity = findById(usuarioId);
+        int indice= usuarioEntity.getBlogsFavoritos().indexOf(blogEntity);
+        if(indice>0)
+        {
+            throw new BusinessException("El usuario actual ya posee este blog como favorito");
+        }
         usuarioEntity.getBlogsFavoritos().add(blogEntity);
         updateUser(usuarioId, usuarioEntity);
         
