@@ -56,12 +56,6 @@ public class UsuarioLogic {
     PatrocinioLogic patrocinioLogic;
     
     /**
-     * Se inyecta la logica de blogs
-     */
-    @Inject
-    BlogLogic blogLogic;
-    
-    /**
      * Metodo que crea un nuevo usuario
      * @param puser entidad nueva a crear
      * @return entidad creada
@@ -449,12 +443,11 @@ public class UsuarioLogic {
      * @throws BusinessException, excepcion si no encuentra el blog
      * @throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException, excepción si no encuentra el blog
      */
-    public BlogEntity addBlog(Long usuarioId, Long blogId) throws BusinessException {
+    public void addBlog(Long usuarioId, BlogEntity blogEntity) throws BusinessException {
         UsuarioEntity usuarioEntity = findById(usuarioId);
-        BlogEntity blogEntity = blogLogic.getBlog(blogId);
         usuarioEntity.getBlogsFavoritos().add(blogEntity);
         updateUser(usuarioId, usuarioEntity);
-        return getBlog(usuarioId, blogId);
+        
     }
     
     /**

@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.resources;
 import co.edu.uniandes.csw.grupos.dtos.BlogDTO;
 import co.edu.uniandes.csw.grupos.dtos.BlogDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.BlogLogic;
+import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
@@ -26,8 +27,13 @@ import javax.ws.rs.PathParam;
  * Recurso usuarioblog
  * @author jc161
  */
-public class UsuarioBlog {
+public class UsuarioBlogResource {
     /**
+     * Lógica del usuario
+     */
+    @Inject
+    private UsuarioLogic usuarioLogic;
+     /**
      * Lógica del usuario
      */
     @Inject
@@ -76,7 +82,7 @@ public class UsuarioBlog {
     public List<BlogDTO> listBlogs(@PathParam("usuarioId") Long id) throws BusinessException {
         try
         {
-            return blogsListEntity2DTO(blogLogic.listBlogsDeUsuario(id));
+            return blogsListEntity2DTO(usuarioLogic.listBlogs(id));
 
         }
         catch(javax.ejb.EJBTransactionRolledbackException e)
@@ -97,7 +103,7 @@ public class UsuarioBlog {
     @GET
     @Path("{blogId: \\d+}")
     public BlogDetailDTO getBlogs(@PathParam("usuarioId") Long usuarioId, @PathParam("blogId") Long blogId) {
-        return new BlogDetailDTO(blogLogic.getBlogDeUsuario(usuarioId, blogId));
+        return new BlogDetailDTO(usuarioLogic.getBlog(usuarioId, blogId));
     }
     
     /**
@@ -111,7 +117,8 @@ public class UsuarioBlog {
     @POST
     @Path("{blogId: \\d+}")
     public BlogDetailDTO addBlogs(@PathParam("usuarioId") Long usuarioId, @PathParam("blogId") Long blogId) throws BusinessException {
-        return new BlogDetailDTO(blogLogic.addBlogDeUsuario(usuarioId, blogId));
+        usuarioLogic.addBlog(usuarioId, blogLogic.getBlog(blogId));
+        return new BlogDetailDTO(blogLogic.getBlog(blogId));
     }
     
     /**
@@ -124,6 +131,6 @@ public class UsuarioBlog {
     @DELETE
     @Path("{blogId: \\d+}")
     public void removeBlogs(@PathParam("usuarioId") Long usuarioId, @PathParam("blogId") Long blogId) {
-        blogLogic.removeBlogDeUsuario(usuarioId, blogId);
+       usuarioLogic.removeBlog(usuarioId, blogId);
     }
 }
