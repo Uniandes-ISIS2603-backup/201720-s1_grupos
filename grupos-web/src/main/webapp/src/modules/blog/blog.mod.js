@@ -28,7 +28,33 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('blogFavList', {
+                url:'/list',
+                parent:'blog',
+                param: {
+                    usuarioId: null
+                },
+                views: {
+                   'listView': {
+                        templateUrl: basePath + 'blog.list.html',
+                        controller: 'blogFavCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('blogDetail', {
+                url:'/{blogId:int}',
+                parent:'blog',
+                param: {
+                    blogId: null
+                },
+                views: {
+                   'detailView': {
+                        templateUrl: basePath + 'blog.detail.html',
+                        controller: 'blogCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('blogFavDetail', {
                 url:'/{blogId:int}',
                 parent:'blog',
                 param: {
