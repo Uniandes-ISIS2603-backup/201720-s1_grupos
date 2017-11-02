@@ -81,9 +81,6 @@ insert into PatrocinioEntity(Id, Pago, usuario_Id) values (2,800.0,2);
 insert into PatrocinioEntity(Id, Pago, usuario_Id) values (3,800.0,2);
 
 --INFORMACIÓN BLOG
-
-
-
 insert into GrupoEntity (id, nombre, descripcion) values (10,'GrupoPrueba1', 'Este grupo es el numero uno');
 insert into GrupoEntity (id, nombre, descripcion) values (11,'GrupoPrueba2', 'Este grupo es el numero dos');
 insert into GrupoEntity (id, nombre, descripcion) values (12,'GrupoVacio', 'Este grupo está vacío');
@@ -111,10 +108,10 @@ insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values
 
 
 ---INSERCIÓN SEGURA DE USUARIO, GRUPO Y BLOG FICTICIOS QUE NO SE VAN A BORRAR EN LAS PRUEBAS DE SERGIO GUZMÁN M.
-
 insert into UsuarioEntity(id, nombre, apellido, password,email) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co');
 insert into GrupoEntity (id, nombre, descripcion) values (1000000,'GrupoPrueba', 'Este grupo es el numero millón');
-insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000000,'Blog','Contenido',0,1000000);
+insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000000,'BlogMillón','Contenido',0,1000000);
+insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000001,'BlogMillónUno','Contenido',0,1000000);
 
 --INFORMACIÓN CALIFICACIÓN
 insert into CalificacionEntity(id,calificacion,fecha,blog_id,calificador_id) values (1,2.0,'2017-09-20',1000000,1000000);
@@ -177,4 +174,8 @@ insert into BlogEntity_ComentarioEntity (blogentity_id, comentarios_id) values (
 insert into NoticiaEntity_ComentarioEntity (noticiaentity_id, comentarios_id) values (1, 3);
 insert into NoticiaEntity_ComentarioEntity (noticiaentity_id, comentarios_id) values (1, 4);
 
-select * from NoticiaEntity_MultimediaEntity;
+--INFORMACIÓN USUARIOENTITY_BLOGENTITY
+
+insert into UsuarioEntity_BlogEntity(usuarios_id,blogsfavoritos_id) values(1,1000000);
+insert into UsuarioEntity_BlogEntity(usuarios_id,blogsfavoritos_id) values(1,1000001);
+

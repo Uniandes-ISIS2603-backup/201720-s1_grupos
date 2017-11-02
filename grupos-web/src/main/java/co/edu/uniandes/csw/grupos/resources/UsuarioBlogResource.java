@@ -25,7 +25,7 @@ import javax.ws.rs.PathParam;
 
 /**
  * Recurso usuarioblog
- * @author jc161
+ * @author cm.sarmiento10
  */
 public class UsuarioBlogResource {
     /**
@@ -87,7 +87,7 @@ public class UsuarioBlogResource {
         }
         catch(javax.ejb.EJBTransactionRolledbackException e)
         {
-            throw new NotFoundException("La blog que busca no existe en el sistema.");
+            throw new NotFoundException("El usuario no existe.");
         }     
        
     }
