@@ -55,6 +55,12 @@ public class BlogEntity implements Serializable {
     @PodamExclude
     private GrupoEntity grupo;
     /**
+     * Grupo
+     */
+    @ManyToMany(mappedBy="blogsFavoritos") 
+    @PodamExclude
+    private List<UsuarioEntity> usuarios;
+    /**
      * Calificaciones
      */
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -178,6 +184,24 @@ public class BlogEntity implements Serializable {
     public void setMultimedia(List<MultimediaEntity> multimedia) {
         this.multimedia = multimedia;
     }
+
+    /**
+     * Lista de usuarios
+     * @return usuarios
+     */
+    public List<UsuarioEntity> getUsuarios() {
+        return usuarios;
+    }
+
+    /**
+     * Cambia la lista de usuarios
+     * @param usuarios 
+     */
+    public void setUsuarios(List<UsuarioEntity> usuarios) {
+        this.usuarios = usuarios;
+    }
+    
+    
     /**
      * Equals de la clase.<br>
      * @param obj Objeto a comparar.<br>

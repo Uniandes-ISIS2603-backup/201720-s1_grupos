@@ -1,0 +1,297 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebaUsuarioBlog",
+		"_postman_id": "0558a6ac-c9c6-a9b5-db30-2f6b03432ecd",
+		"description": "Prubeas del recurso faltante usuario blogs.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtiene todos los blogs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtiene el blog 1000000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busca un blog que no es el favorito",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000002",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busca un usuario que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/20000/blogs/1000002",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un blog de los favoritos del usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtiene blog eliminado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un blog inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un blog de un usuario inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/20000/blogs/1000000",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agrega un nuevo blog favorito al usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]= responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agrega a un usuario inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000/blogs/1000000",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agrega blog inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]= responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "usuarioId",
+						"value": "67"
+					}
+				],
+				"body": {},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/10000002",
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

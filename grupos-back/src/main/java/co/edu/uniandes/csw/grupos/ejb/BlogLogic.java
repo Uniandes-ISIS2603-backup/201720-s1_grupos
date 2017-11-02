@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.BlogPersistence;
 import java.util.ArrayList;
