@@ -29,6 +29,26 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('comentarioUsuarioNoticiaList', {
+                url: '/comentarios',
+                parent: 'usuarioNoticiaDetail',
+                views: {
+                    'comentarioView': {
+                        templateUrl: basePath + 'comentario.list.html',
+                        controller: 'comentarioUsuarioNoticiaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioGrupoNoticiaList', {
+                url: '/comentarios',
+                parent: 'grupoNoticiaDetail',
+                views: {
+                    'comentarioView': {
+                        templateUrl: basePath + 'comentario.list.html',
+                        controller: 'comentarioGrupoNoticiaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('comentarioCreate', {
                 url: '/create',
                 parent: 'comentarioList',
@@ -42,6 +62,26 @@
             }).state('comentarioNoticiaCreate', {
                 url: '/create',
                 parent: 'comentarioNoticiaList',
+                views: {
+                    'createView': {
+                        templateUrl: basePath + 'new/comentario.create.html',
+                        controller: 'comentarioNoticiaCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioUsuarioNoticiaCreate', {
+                url: '/create',
+                parent: 'comentarioUsuarioNoticiaList',
+                views: {
+                    'createView': {
+                        templateUrl: basePath + 'new/comentario.create.html',
+                        controller: 'comentarioNoticiaCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioGrupoNoticiaCreate', {
+                url: '/create',
+                parent: 'comentarioGrupoNoticiaList',
                 views: {
                     'createView': {
                         templateUrl: basePath + 'new/comentario.create.html',
@@ -75,6 +115,32 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('comentarioUsuarioNoticiaDelete', {
+                url: '/{comentarioId:int}/delete',
+                parent: 'comentarioUsuarioNoticiaList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'deleteView': {
+                        templateUrl: basePath + 'delete/comentario.delete.html',
+                        controller: 'comentarioNoticiaDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioGrupoNoticiaDelete', {
+                url: '/{comentarioId:int}/delete',
+                parent: 'comentarioGrupoNoticiaList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'deleteView': {
+                        templateUrl: basePath + 'delete/comentario.delete.html',
+                        controller: 'comentarioNoticiaDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('comentarioUpdate', {
                 url: '/{comentarioId:int}/update',
                 parent: 'comentarioList',
@@ -91,6 +157,32 @@
             }).state('comentarioNoticiaUpdate', {
                 url: '/{comentarioId:int}/update',
                 parent: 'comentarioNoticiaList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'deleteView': {
+                        templateUrl: basePath + 'update/comentario.update.html',
+                        controller: 'comentarioNoticiaUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioUsuarioNoticiaUpdate', {
+                url: '/{comentarioId:int}/update',
+                parent: 'comentarioUsuarioNoticiaList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'deleteView': {
+                        templateUrl: basePath + 'update/comentario.update.html',
+                        controller: 'comentarioNoticiaUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioGrupoNoticiaUpdate', {
+                url: '/{comentarioId:int}/update',
+                parent: 'comentarioGrupoNoticiaList',
                 param: {
                     comentarioId: null
                 },
