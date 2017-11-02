@@ -9,7 +9,7 @@
                     autor: 'Sergio',
                     comentario: $scope.comentario
                 }).then(function (response) {
-                    $state.reload();
+                    $scope.goComentarioList();
                 });
             };
         } ]);

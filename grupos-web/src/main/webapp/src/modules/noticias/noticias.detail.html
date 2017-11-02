@@ -38,7 +38,9 @@
                 <dt>Comentarios</dt>
                 <div ui-view="comentarioView">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" ui-sref="comentarioNoticiaList">Ver comentarios</button>
+                        <button type="button" class="btn btn-primary" ng-show="{{!noticiaEditable}}" ui-sref="comentarioNoticiaList">Ver comentarios</button>
+                        <button type="button" class="btn btn-primary" ng-show="{{deGrupo}}" ui-sref="comentarioGrupoNoticiaList">Ver comentarios</button>
+                        <button type="button" class="btn btn-primary" ng-show="{{esNoticiaUsuario}}" ui-sref="comentarioUsuarioNoticiaList">Ver comentarios</button>
                     </div>
                 </div>
         </div>

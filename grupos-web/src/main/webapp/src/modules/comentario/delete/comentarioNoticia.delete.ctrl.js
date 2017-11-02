@@ -6,7 +6,7 @@
             $scope.deleteComentario = function() {
                 $http.delete(noticiaContext + '/' + $state.params.noticiaId + '/' + comentarioContext + '/' + 
                         $state.params.comentarioId).then(function (response) {
-                    $state.go('comentarioNoticiaList', {}, {reload:true});
+                    $scope.goComentarioList();
                 });
             };
             

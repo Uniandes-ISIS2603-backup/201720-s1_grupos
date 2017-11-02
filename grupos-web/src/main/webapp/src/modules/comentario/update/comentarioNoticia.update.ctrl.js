@@ -14,7 +14,7 @@
                             autor: $scope.autor,
                             comentario: $scope.comentario
                 }).then(function (response) {
-                    $state.go('comentarioNoticiaList', {}, {reload:true});
+                    $scope.goComentarioList();
                 });
             };
             

@@ -10,7 +10,7 @@
                     autor: 'Sergio',
                     comentario: $scope.comentario
                 }).then(function (response) {
-                    $state.go('comentarioList', {}, {reload: true});
+                    $scope.goComentarioList();
                 });
             };
         } ]);
