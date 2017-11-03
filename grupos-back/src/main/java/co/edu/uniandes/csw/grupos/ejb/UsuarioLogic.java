@@ -471,4 +471,5 @@ public class UsuarioLogic {
         entity.getBlogsFavoritos().remove(blogEntity);
         updateUser(usuarioId, entity);
     }
+    
 }

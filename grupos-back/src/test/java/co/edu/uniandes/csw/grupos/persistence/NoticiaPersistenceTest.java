@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
@@ -19,6 +20,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;
@@ -68,6 +70,11 @@ public class NoticiaPersistenceTest {
      */
     @Inject
     private NoticiaPersistence persistence;
+    /**
+     * Persistencia del grupo
+     */
+    @Inject
+    private GrupoPersistence grupoPersistence;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -242,7 +249,24 @@ public class NoticiaPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-
+     /**
+     * Test of getGrupoDeNoticia of findGrupo method, of class NoticiaPersistence
+     */
+    @Test
+    @Transactional
+    public void testFindGrupo()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        GrupoEntity g= factory.manufacturePojo(GrupoEntity.class);
+        NoticiaEntity entity=data.get(0);
+        List<NoticiaEntity> list = new ArrayList<>();
+        list.add(entity);
+        g.setNoticiasGrupo(list);
+        grupoPersistence.create(g);
+        Long id=persistence.findGrupo(entity.getId());
+        assertEquals("EL id de grupo no es el esperado",g.getId(),id);
+        grupoPersistence.delete(g.getId());
+    }
     /**
      * Test of delete method, of class NoticiaPersistence.
      */
@@ -254,6 +278,7 @@ public class NoticiaPersistenceTest {
        NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
        Assert.assertNull(deleted);
     }
+   
     /**
      * Popula una noticia con datos aleatorios del podam factory.
      * @return 

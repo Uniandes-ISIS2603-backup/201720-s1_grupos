@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -96,6 +97,18 @@ public class NoticiaPersistence {
        em.remove(e);
        
    }
+   /**
+    * Encuentra el grupo al que pertenece la noticia dada por parámetro.<br>
+    * @param noticiaId Id de la noticia.<br>
+    * @return  Id del grupo al que pertenece.
+    */
+    public Long findGrupo(Long noticiaId) {
+
+        Query q=em.createNativeQuery("SELECT GrupoEntity_id FROM GRUPOENTITY_NOTICIAENTITY WHERE noticiasgrupo_id="+noticiaId+"");
+        q.setParameter("noticiaId", noticiaId);
+        Object a = q.getSingleResult();
+        return (Long)a;
+    }
     
 
 }

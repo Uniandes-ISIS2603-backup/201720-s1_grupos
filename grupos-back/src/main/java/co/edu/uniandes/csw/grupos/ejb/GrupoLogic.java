@@ -344,6 +344,19 @@ public class GrupoLogic {
         entity.getBlogsGrupo().remove(blogEntity);
         updateGrupo(entity);
     }
+    /**
+     * Obtiene el id del grupo al que pertenece la noticia dada por parámetro.<br>
+     * @param noticiaId id de la noticia.<br>
+     * @throws NotFoundException Si no hay un grupo vinculado a la noticia.<br>
+     * @return Id del grupo.<br>
+     * 
+     */
+    public Long getNoticiaDeGrupo(Long noticiaId)
+    {
+        Long l=noticiaLogic.getGrupoDeNoticia(noticiaId);
+        if(l==null) throw new NotFoundException("No hay un grupo para esa noticia");
+        return l;
+    }
     
     /**
      *
@@ -353,7 +366,6 @@ public class GrupoLogic {
     public List<NoticiaEntity> listNoticias(Long id) {
         return getGrupo(id).getNoticiasGrupo();
     }
-    
     /**
      *
      * @param grupoId, id del grupo que tiene la noticia asociada
@@ -420,16 +432,31 @@ public class GrupoLogic {
         return getNoticia(grupoId,noticiaEntity.getId());
     }
     /**
-     *
-     * @param grupoId, id del grupo al que se le desvinculará la noticia
-     * @param noticiaId, id de la noticia a desvincular del grupo
+     * Remueve la noticia de la lista del grupo dado por parámetro.<br>
+     * @param noticiaId, Id de la noticia.<br>
+     * @param grupoId, id del grupo.<br>
      */
-    public void removeNoticia(Long grupoId, Long noticiaId) {
+    public void removeNoticia(Long grupoId, Long noticiaId)  {
         GrupoEntity entity = getGrupo(grupoId);
         NoticiaEntity noticiaEntity = new NoticiaEntity();
         noticiaEntity.setId(noticiaId);
         entity.getNoticiasGrupo().remove(noticiaEntity);
         updateGrupo(entity);
+    }
+    /**
+     *
+     * @param grupoId, id del grupo al que se le desvinculará la noticia<br>
+     * @param noticiaId, id de la noticia a desvincular del grupo<br>
+     * @throws BusinessException Si hay un error de negocio al borrar la noticia.
+     */
+    public void deleteNoticia(Long grupoId, Long noticiaId) throws BusinessException {
+        removeNoticia(grupoId,noticiaId);
+        NoticiaEntity noticiaEntity=noticiaLogic.getEntity(noticiaId);
+        //Desvincule el autor de la noticia para borrarla
+        noticiaEntity.setAutor(null);
+        noticiaLogic.updateEntity(noticiaId, noticiaEntity);
+        //Borre la entidad
+        noticiaLogic.deleteEntity(noticiaId);
     }
     
     /**

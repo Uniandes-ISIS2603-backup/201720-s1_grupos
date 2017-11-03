@@ -217,6 +217,15 @@ public class NoticiaLogic {
         
         
     }
+     /**
+     * Obtiene el grupo de la noticia dad por parámetro.<br>
+     * @param noticiaId Id de la noticia.<br>
+     * @return Grupo de la noticia dada por parámetro.
+     */
+    public Long getGrupoDeNoticia(Long noticiaId)
+    {
+        return persistence.findGrupo(noticiaId);
+    }
     
     
 }

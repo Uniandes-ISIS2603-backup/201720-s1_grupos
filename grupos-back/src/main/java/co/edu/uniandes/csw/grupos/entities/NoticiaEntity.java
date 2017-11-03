@@ -52,6 +52,8 @@ public class NoticiaEntity implements Serializable {
     @ManyToOne
     @PodamExclude
     private UsuarioEntity autor;
+    
+    
     /**
      * Lista de comentarios.
      */

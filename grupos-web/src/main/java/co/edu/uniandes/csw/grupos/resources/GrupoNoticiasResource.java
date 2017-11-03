@@ -127,8 +127,8 @@ public class GrupoNoticiasResource {
      */
     @DELETE
     @Path("{NoticiaId: \\d+}")
-    public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) {
-        grupoLogic.removeNoticia(grupoId, NoticiaId);
+    public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
+        grupoLogic.deleteNoticia(grupoId, NoticiaId);
     }
     /**
      * Actualiza la noticia del grupo.<br>

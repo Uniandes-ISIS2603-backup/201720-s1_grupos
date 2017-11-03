@@ -129,6 +129,10 @@ insert into NoticiaEntity (id,titulo,informacion,autor_id) values (4,'New','Irfo
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000000,'Otra','Irfo',1000000);
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000001,'Otra','Irfo',1000000);
 insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000002,'Otra','Irfo',1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000003,'Otra','Irfo',1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000004,'Otra','Irfo',1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000005,'Otra','Irfo',1000000);
+
 
 --INFORMACIÓN COMENTARIO
 insert into ComentarioEntity (id, autor, comentario) values (1, 'yo', 'hola');
@@ -140,8 +144,13 @@ insert into ComentarioEntity (id, autor, comentario) values (4, 'abc', 'qwerty')
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (10,1);
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (11,2);
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (10,3);
+insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (11,4);
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000000);
 insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000001);
+insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000002);
+insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000003);
+insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000004);
+insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000005);
 
 
 --INFORMACION NOTICIAENTITY_MULTIMEDIAENTITY
