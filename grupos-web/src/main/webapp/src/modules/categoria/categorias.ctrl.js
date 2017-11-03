@@ -4,6 +4,7 @@
     mod.controller('categoriaCtrl', ['$scope', '$http', 'categoriaContext', '$state',
         function ($scope, $http, categoriaContext, $state) {
             $scope.opcionesGrupo=false;
+            $scope.deGrupo=false;
             $scope.buscarPorTipo = function (nombre) {
                 console.log('llega buscar');
                 console.log(nombre);

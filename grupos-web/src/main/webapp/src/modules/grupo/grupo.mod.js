@@ -39,6 +39,14 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('asociarCategorias', {
+                url: '/categorias/asociar',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathCategorias + 'deGrupo/categoriasNoMias.list.html'
+                    }
+                }
             }).state('categoriasDeGrupo', {
                 url: '/categorias',
                 parent:'grupoDetail',
