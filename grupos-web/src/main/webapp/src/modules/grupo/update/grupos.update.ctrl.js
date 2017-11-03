@@ -14,8 +14,13 @@
                 var grupoActual = response.data;
                 $scope.grupoName = grupoActual.nombre;
                 $scope.grupoDescription = grupoActual.descripcion;
+                $scope.idGrupo=grupoActual.id;
             });
-            
+            $scope.volver = function(idGrupo)
+            {
+                console.log('llegaGrupo');
+                $state.go('grupoDetail', {grupoId: $scope.idGrupo}, {reload: true});
+            };
             $scope.creategrupo = function () {
                 /*Se llama a la función newBooks() para buscar cada uno de los ids de los books
                          en el array que tiene todos los books y así saber como queda la lista final de los books asociados al autor.

@@ -1,0 +1,26 @@
+<h1>Todos los Miembros</h1>
+<div class="container-fluid">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+    </div>
+    <div class="row">
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>    
+                    <th>Apellido</th>
+                    <th>Nickname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="usuario in miembroRecords">
+                    <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
+                    <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
+                    <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
+                    <td id="{{$index}}-Email">{{usuario.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

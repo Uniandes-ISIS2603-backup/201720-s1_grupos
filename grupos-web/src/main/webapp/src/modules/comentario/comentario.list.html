@@ -2,22 +2,43 @@
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Comentarios</label></div>
-            <div class="panel-body">
+            <div class="panel-body" ui-view="deleteView">
                 <div class="col-md-8">
                     <div class="container col-md-12">
                         <div class="panel panel-default col-md-12" ng-repeat="comentario in comentarioRecords">
                             <div class="panel-body">                   
                                 <h4 id="{{$index}}-author">{{comentario.autor}}:</h4>
-                               <p id="{{$index}}-comment">{{comentario.comentario}}</p>
-                                   
+                                <p id="{{$index}}-comment">{{comentario.comentario}}</p>
+                                <div class="col-md-12" ng-show="{{comentariosBlog}}">
+                                    <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="comentarioDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                </div>
+                                <div class="col-md-12" ng-show="{{comentariosNoticia}}">
+                                    <a class="btn btn-default btn-sm" ui-sref="comentarioNoticiaUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="comentarioNoticiaDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                </div>
+                                <div class="col-md-12" ng-show="{{comentariosUsuarioNoticia}}">
+                                    <a class="btn btn-default btn-sm" ui-sref="comentarioUsuarioNoticiaUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="comentarioUsuarioNoticiaDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                </div>
+                                <div class="col-md-12" ng-show="{{comentariosGrupoNoticia}}">
+                                    <a class="btn btn-default btn-sm" ui-sref="comentarioGrupoNoticiaUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="comentarioGrupoNoticiaDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" ng-show="{{comentariosDeBlog}}" ui-sref="blogDetail">Volver</button>
-                        <button type="button" class="btn btn-primary" ng-show="{{comentariosDeNoticia}}" ui-sref="noticiaDetail">Volver2</button>
+                        <br>
+                        <div ui-view="createView">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary" ng-show="{{comentariosNoticia}}" ui-sref="comentarioNoticiaCreate">Comentar</button>
+                                <button type="button" class="btn btn-primary" ng-show="{{comentariosUsuarioNoticia}}" ui-sref="comentarioUsuarioNoticiaCreate">Comentar</button>
+                                <button type="button" class="btn btn-primary" ng-show="{{comentariosGrupoNoticia}}" ui-sref="comentarioGrupoNoticiaCreate">Comentar</button>
+                                <button type="button" class="btn btn-primary" ng-show="{{comentariosBlog}}" ui-sref="comentarioCreate">Comentar</button>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary" ng-click="goPublicacionDetail()">Volver</button>
+                            </div>  
+                        </div>
                     </div>
                 </div>
             </div>

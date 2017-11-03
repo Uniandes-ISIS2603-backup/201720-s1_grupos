@@ -238,7 +238,7 @@ public class UsuarioPersistenceTest {
         UsuarioEntity entity = data.get(0);
         //Inicialización de datos
         entity.setEmpresa(null);
-        entity.setBlogs(new ArrayList<>());
+        entity.setBlogsFavoritos(new ArrayList<>());
         entity.setEmpresa(empresa);
         entity.setEventos(new ArrayList<>());
         entity.setGrupos(new ArrayList<>());
@@ -247,7 +247,7 @@ public class UsuarioPersistenceTest {
         entity.setTarjetas(new ArrayList<>());
         entity.setPatrocinios(new ArrayList<>());
         
-        entity.getBlogs().add(blog);
+        entity.getBlogsFavoritos().add(blog);
         entity.getTarjetas().add(tarjeta);
         entity.getEventos().add(evento);
         admin.getAdministradores().add(entity);
@@ -273,8 +273,8 @@ public class UsuarioPersistenceTest {
         Assert.assertEquals(1, entity.getNoticias().size());
         Assert.assertEquals(noticia.getTitulo(),entity.getNoticias().get(0).getTitulo());
         
-        Assert.assertEquals(1, entity.getBlogs().size());
-        Assert.assertEquals(blog.getTitulo(),entity.getBlogs().get(0).getTitulo());
+        Assert.assertEquals(1, entity.getBlogsFavoritos().size());
+        Assert.assertEquals(blog.getTitulo(),entity.getBlogsFavoritos().get(0).getTitulo());
         
         Assert.assertEquals(1, entity.getPatrocinios().size());
         Assert.assertEquals(patrocinio.getPago(),entity.getPatrocinios().get(0).getPago(), 0.00001);
@@ -290,7 +290,7 @@ public class UsuarioPersistenceTest {
         
         miembro.getMiembros().remove(entity);
         admin.getAdministradores().remove(entity);
-        entity.getBlogs().remove(entity.getBlogs().get(0));
+        entity.getBlogsFavoritos().remove(entity.getBlogsFavoritos().get(0));
         //Remueve entidades
         entity.getPatrocinios().remove(entity.getPatrocinios().get(0));
         entity.getEventos().remove(entity.getEventos().get(0));
@@ -308,7 +308,7 @@ public class UsuarioPersistenceTest {
 
         //Aserciones
         
-        Assert.assertEquals(0, entity.getBlogs().size());
+        Assert.assertEquals(0, entity.getBlogsFavoritos().size());
         
         Assert.assertEquals(0, entity.getGrupos().size());
         

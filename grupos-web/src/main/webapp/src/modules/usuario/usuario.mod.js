@@ -48,6 +48,32 @@
                         controller: 'usuarioUpdateCtrl'
                     }
                 }
+            }).state('adminsDeGrupo', {
+                url: '/administradores',
+                parent:'grupoDetail',
+                params:{
+                    grupoId:null
+                },
+                views: {
+                    'childrenView': {
+                        controller: 'grupoCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'usuarios.list.html'
+                    }
+                }
+            }).state('miembrosDeGrupo', {
+                url: '/miembros',
+                parent:'grupoDetail',
+                params:{
+                    grupoId:null
+                },
+                views: {
+                    'childrenView': {
+                        controller: 'grupoCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'miembros.list.html'
+                    }
+                }
             }).state('createUsuario',{
                 url: '/create',
                 parent: 'usuarios',

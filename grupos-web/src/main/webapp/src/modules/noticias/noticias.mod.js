@@ -147,7 +147,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 }
             }).state('grupoNoticiaCreate', {
                 url: '/create',
-                parent:'grupoNoticiasList',
+                parent:'grupoNoticias',
                 params:{
                     grupoId:null
                 },
@@ -161,7 +161,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
 
             }).state('grupoNoticiaEdit', {
                 url: '/update/:noticiaId',
-                parent:'grupoNoticiaDetail',
+                parent:'grupoNoticias',
                 params: {
                     grupoId:null,
                     noticiaId: null

@@ -9,7 +9,7 @@
                 <dt>Informacion</dt>
                 <dd><p style="font-family:'Times New Roman', 'Times', 'serif';">{{currentRecord.informacion}}</p></dd>
                 <hr>
-               <div ng-show="{{esNoticiaGrupo}}" class="ng-hide">
+               <div ng-show="{{deGrupo}}" class="ng-hide">
                     <dt class="nav nav-tabs"> <a ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
                     <div ui-view="noticiaMultimediaView">
                      </div>
@@ -27,18 +27,20 @@
                 </dl>
                 <div class="btn-group mr-2" role="group" aria-label="First group">
                     <div ng-show="{{esNoticiaUsuario}}">
-                        <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm col-md-6" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> </button>
-                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> </button>
+                        <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm col-md-6" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>U </button>
+                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span>U </button>
                     </div>
-                    <div ng-show="{{esNoticiaGrupo}}">
-                         <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> </button>
-                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> </button>
+                    <div ng-show="{{deGrupo}}">
+                         <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>G </button>
+                        <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> G </button>
                     </div>                
                 </div>
                 <dt>Comentarios</dt>
                 <div ui-view="comentarioView">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" ui-sref="comentarioNoticiaList">Ver comentarios</button>
+                        <button type="button" class="btn btn-primary" ng-show="{{!noticiaEditable}}" ui-sref="comentarioNoticiaList">Ver comentarios</button>
+                        <button type="button" class="btn btn-primary" ng-show="{{deGrupo}}" ui-sref="comentarioGrupoNoticiaList">Ver comentarios</button>
+                        <button type="button" class="btn btn-primary" ng-show="{{esNoticiaUsuario}}" ui-sref="comentarioUsuarioNoticiaList">Ver comentarios</button>
                     </div>
                 </div>
         </div>
@@ -51,15 +53,15 @@
                     <hr>
                 </dl>
             </div>
-            <div class="col-md-3" ng-show="{{esNoticiaGrupo}}">
+            <div class="col-md-3" ng-show="{{deGrupo}}">
                 <dl>     
-                    <dt><button ui-sref="grupoNoticiasList"> Volver a tus noticias</button></dt>
+                    <dt><button ui-sref="grupoNoticiasList"> Volver a las noticias de grupo</button></dt>
                     <hr>
                 </dl>
             </div>
             <div class="col-md-3" ng-show="{{!noticiaEditable}}">
                 <dl>     
-                    <dt><button ui-sref="noticiasNoEditablesList"> Volver a tus noticias</button></dt>
+                    <dt><button ui-sref="noticiasNoEditablesList"> Volver a las noticias</button></dt>
                     <hr>
                 </dl>
             </div>

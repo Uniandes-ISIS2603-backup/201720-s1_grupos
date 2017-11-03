@@ -3,7 +3,7 @@
     var mod = ng.module("noticiasModule");
 
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
-             $scope.esNoticiaUsuario=false; $scope.esNoticiaGrupo=true; $scope.noticiaEditable=true;
+             $scope.esNoticiaUsuario=false; $scope.deGrupo=true; $scope.noticiaEditable=true;
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
             $scope.noticiaEditable=true;

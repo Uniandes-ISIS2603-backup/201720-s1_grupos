@@ -6,6 +6,10 @@
             $rootScope.edit = false;
             $scope.crearGrupo=true;
             $scope.actualizarGrupo=false;
+            $scope.volver = function()
+            {
+                $state.go('listaGrupos',{}, {reload: true});
+            }
             $scope.creategrupo = function () {
                 $http.post(gruposContext, {
                     nombre: $scope.grupoName,

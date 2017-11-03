@@ -246,8 +246,8 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             
             //Guarda los blog del usuario
             blogs= new ArrayList<BlogDTO>();
-            if(ue.getBlogs() != null) {
-                for(BlogEntity b: ue.getBlogs()){
+            if(ue.getBlogsFavoritos() != null) {
+                for(BlogEntity b: ue.getBlogsFavoritos()){
                     blogs.add(new BlogDTO(b));
                 }
             }
@@ -325,7 +325,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             for(BlogDTO b: blogs){
                 blogsE.add(b.toEntity());
             }
-            ue.setBlogs(blogsE);
+            ue.setBlogsFavoritos(blogsE);
         }
         
         //Adiciona las tarjetas del usuario

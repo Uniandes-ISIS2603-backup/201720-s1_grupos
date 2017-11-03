@@ -42,6 +42,7 @@
                                 <button id="{{$index}}--remove-multimedia-btn" class="btn btn-danger btn-sm col-lg-6 col-md-6" ng-click="ctrl.remove(itemToAdd)" type="button"><span class="glyphicon glyphicon-trash"></span>Multimedia</button>
                                 <hr>
                             </div>
+                            <hr>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -50,7 +51,7 @@
                             <div ng-show="{{esNoticiaUsuario}}">
                                     <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiasList'>Cancelar</button>
                             </div>
-                            <div ng-show="{{esNoticiaGrupo}}">
+                            <div ng-show="{{deGrupo}}">
                                  <button type="button" class="btn btn-info"  ui-sref='grupoNoticiasList'>Cancelar</button>
                             </div>                        
                         </div>

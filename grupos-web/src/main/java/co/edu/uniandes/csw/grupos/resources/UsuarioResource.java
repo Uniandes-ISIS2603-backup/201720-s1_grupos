@@ -162,5 +162,19 @@ public class UsuarioResource {
         }
         return UsuarioNoticiaResource.class;
     }
+     /**
+     * Obtiene los blogs favoritos de un usuario.<br>
+     * @param usuarioId Id de usuario.<br>
+     * @return UsuarioBlogResource.<br>
+     * @throws BusinessException  Excepción de negocio.
+     */
+    @Path("{usuarioId: \\d+}/blogs")
+    public Class<UsuarioBlogResource> getUsuarioBlogResource(@PathParam("usuarioId") Long usuarioId) throws BusinessException {
+        UsuarioEntity entity = userLogic.findById(usuarioId);
+        if (entity == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        return UsuarioBlogResource.class;
+    }
     
 }

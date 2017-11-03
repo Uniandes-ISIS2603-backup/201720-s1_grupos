@@ -39,37 +39,20 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('asociarCategorias', {
+                url: '/categorias/asociar',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathCategorias + 'deGrupo/categoriasNoMias.list.html'
+                    }
+                }
             }).state('categoriasDeGrupo', {
                 url: '/categorias',
                 parent:'grupoDetail',
                 views: {
                     'childrenView':{
                         templateUrl: basePathCategorias + 'categorias.list.html'
-                    }
-                }
-            }).state('eventosDeGrupo', {
-                url: '/eventos',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathEventos+ 'eventos.list.html'
-                    }
-                }
-            }).state('miembrosDeGrupo', {
-                url: '/miembros',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathUsuarios+ 'usuarios.list.html'
-                    }
-                }
-            }).state('adminsDeGrupo', {
-                url: '/administradores',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathUsuarios+ 'usuarios.list.html'
-                        
                     }
                 }
             }).state('grupoCreate', {
