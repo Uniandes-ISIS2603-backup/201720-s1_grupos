@@ -1,11 +1,16 @@
+/**
+ * Modulo con los estados de categorías
+ */
 (function (ng) {
     var mod = ng.module("categoriaModule", ['ui.router']);
     mod.constant("categoriasContext", "Stark/categorias");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            //Paths útiles
             var basePath = 'src/modules/categoria/';
             var basePathGrupos = 'src/modules/grupo/';
             $urlRouterProvider.otherwise("/categoriasList");
-
+            
+            //Estado general del que los demás heredan
             $stateProvider.state('categorias', {
                 url: '/categorias',
                 abstract: true,
@@ -17,6 +22,7 @@
                     }
                 }
             }).state('carruselCategorias', {
+                //Estado para mostrar el carrusel de las categorías
                 url: '/carrusel',
                 parent: 'categorias',
                 views: {
@@ -25,6 +31,7 @@
                     }
                 }
             }).state('listaCategorias', {
+                //Estado que muestra las categorías como una lista
                 url: '/list',
                 parent: 'categorias',
                 views: {
@@ -33,6 +40,7 @@
                     }
                 }
             }).state('categoriaDetail', {
+                //Estado que muestra la información detallada de una categoría
                 url: '/{categoriaId:int}/detail',
                 parent: 'categorias',
                 param: {
@@ -51,6 +59,7 @@
                     }
                 }
             }).state('categoriaCreate', {
+                //Estado al crear una categoría
                 url: '/create',
                 parent: 'categorias',
                 views: {
@@ -60,6 +69,7 @@
                     }
                 }
             }).state('categoriaUpdate', {
+                //Estado al actualizar una categoría
                 url: '/update/{categoriaId:int}',
                 parent: 'categorias',
                 param: {
@@ -72,13 +82,13 @@
                     }
                 }
             }).state('categoriaDelete', {
+                //Estado al borrar una categoría
                 url: '/delete/{categoriaId:int}',
                 parent: 'categorias',
                 param: {
                     categoriaId: null
                 },
                 views: {
-                    //Comentario para el push al master
                     'detailView': {
                         templateUrl: basePath + 'delete/categorias.delete.html',
                         controller: 'categoriaDeleteCtrl'
