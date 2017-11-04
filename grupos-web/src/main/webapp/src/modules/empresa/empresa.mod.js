@@ -6,9 +6,8 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/empresa/';
-            // Mostrar la lista de tarjetas será el estado por defecto del módulo
+            // Mostrar la lista de empresas será el estado por defecto del módulo
             $urlRouterProvider.otherwise("/empresasList");
-            // Definición del estado 'tarjetasList' donde se listan las tarjetas
             $stateProvider.state('empresas', {
                 // Url que aparecerá en el browser
                 url: '/empresas',
@@ -16,7 +15,7 @@
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'empresas.html',
-                        controller: 'empresaCtrl',
+                        controller: 'empresaListCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
@@ -31,12 +30,21 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('empresasUsuario', {
+                // Url que aparecerá en el browser
+                url: '/empresa',
+                abstract: true,
+                parent: 'usuarioDetail',
+                views: {
+                    'childrenView': {
+                        templateUrl: basePath + 'empresas.html',
+                        controller: 'empresaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('empresaDetail', {
                 url: '/empresa',
-                parent: 'empresas',
-                param: {
-                    nitEmpresa: null
-                },
+                parent: 'empresasUsuario',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'empresas.detail.html',
@@ -48,7 +56,7 @@
 
             }).state('empresasCreate', {
                 url: '/create',
-                parent: 'empresas',
+                parent: 'empresasUsuario',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'empresas.new.html',
@@ -57,7 +65,7 @@
                 }
             }).state('empresaUpdate', {
                 url: '/update',
-                parent: 'empresas',
+                parent: 'empresasUsuario',
                 param: {
                     nitEmpresa: null
                 },
@@ -69,7 +77,7 @@
                 }
             }).state('empresaDelete', {
                 url: '/delete',
-                parent: 'empresas',
+                parent: 'empresasUsuario',
                 param: {
                     nitEmpresa: null
                 },
@@ -81,7 +89,7 @@
                 }
             }).state('empresaNotFound', {
                 url: '/empresa404',
-                parent: 'empresas',
+                parent: 'empresasUsuario',
                 param: {
                     nitEmpresa: null
                 },
