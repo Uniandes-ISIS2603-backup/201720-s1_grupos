@@ -13,8 +13,9 @@
                 // Url que aparecerá en el browser
                 url: '/tarjetas',
                 abstract: true,
+                parent: 'usuarioDetail',
                 views: {
-                    'mainView': {
+                    'childrenView': {
                         templateUrl: basePath + 'tarjetas.html',
                         controller: 'tarjetaCtrl',
                         controllerAs: 'ctrl'
