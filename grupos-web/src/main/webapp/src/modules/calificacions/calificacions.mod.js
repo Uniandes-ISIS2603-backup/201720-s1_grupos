@@ -23,11 +23,12 @@
              * -calificacionDelete: Estado para confirmar si se desea borrar la calificación o no.<br>
              * -calificacionDetail: Información detallada de la calificación.<br>
              */
-            $stateProvider.state('404', {
-                url: '/calificacion404',
+            $stateProvider.state('ERROR', {
+                url: '/404',
                 parent:'blogDetail',
                 views: {
                     'childrenView': {
+                        
                         templateUrl: basePath + 'calificacions.404.html'
                     }
                 }

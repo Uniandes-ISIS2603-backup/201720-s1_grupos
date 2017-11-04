@@ -13,12 +13,14 @@
             $scope.calificacionEliminada=false;
             // inicialmente el listado de calificaciones está vacio
             $scope.records = {};
+            $scope.errorCalificacion="NO HAY ERROR";
             // carga las calificaciones
              $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             }, function(response){
-                console.log(response);
-                $state.go('404',{},{reload:true});
+                $scope.errorCalificacion=response.data+"";
+                console.log("B"+ response.data);
+                $state.go('ERROR',{},{reload:true});
             });
 
             // el controlador recibió un id ??
@@ -33,9 +35,11 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
-                        }, function(response){
-                            console.log(response);
-                            $state.go('404',{},{reload:true});
+                        },function(response){
+                            console.log("A"+ response.data+" "+errorCalificacion);
+                            errorCalificacion = response.data;
+                           console.log("A"+ response.data+" "+errorCalificacion);
+                            $state.go('ERROR',{},{reload : true});
                         });
 
                 // el controlador no recibió un id
@@ -108,6 +112,14 @@
             {
                 return document.getElementById("calificacion").value;
             };
+            /**
+             * Obtiene el error
+             * @return Error
+             */
+            this.getError=function()
+            {
+                return errorCalificacion;
+            }
 // Código continua con las funciones de despliegue de errores
 
 

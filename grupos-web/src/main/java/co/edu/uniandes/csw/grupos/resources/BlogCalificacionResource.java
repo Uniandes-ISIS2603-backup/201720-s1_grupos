@@ -89,16 +89,9 @@ public class BlogCalificacionResource {
     @Path("{id: \\d+}")
     public CalificacionDetailDTO getCalificacion(@PathParam("blogId") Long id,@PathParam("id") Long calificacionId) throws BusinessException, NotFoundException
     {
-        try
-        {
+        
             return new CalificacionDetailDTO(blog.getCalificacion(id, calificacionId));
-        }
-        catch(javax.ejb.EJBException e)
-        {
-            Throwable exc =getInitCause(e);
-            System.out.println(exc.getMessage());
-            throw new NotFoundException(exc.getMessage());
-        }
+        
     }
     /**
      * Agrega una calificación al blog.<br>
@@ -111,11 +104,14 @@ public class BlogCalificacionResource {
     @POST
     public CalificacionDetailDTO postCalificacion (@PathParam("grupoId") Long grupoId,@PathParam("blogId")Long id, CalificacionDetailDTO calificacion) throws BusinessException
     {
-        calificacion.setFecha(new Date(System.currentTimeMillis()));
-        if(calificacion.getCalificador()==null) throw new BusinessException("Su calificación debe tener a un usuario asociado");
-        CalificacionEntity c =logic.createEntity(calificacion.toEntity()); 
-        CalificacionEntity cal=blog.addCalificacion(grupoId, id, c);
-        return new CalificacionDetailDTO(cal);
+        
+            calificacion.setFecha(new Date(System.currentTimeMillis()));
+            if(calificacion.getCalificador()==null) throw new BusinessException("Su calificación debe tener a un usuario asociado");
+            CalificacionEntity c =logic.createEntity(calificacion.toEntity()); 
+            CalificacionEntity cal=blog.addCalificacion(grupoId, id, c);
+            return new CalificacionDetailDTO(cal);
+       
+        
     }
     /**
      * Actualiza una calificación.<br>
@@ -130,10 +126,13 @@ public class BlogCalificacionResource {
     @Path("{id: \\d+}")
     public CalificacionDetailDTO updateCalificacion (@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long id, @PathParam("id")Long cId, CalificacionDetailDTO dto) throws BusinessException
     {
-        dto.setBlog(new BlogDetailDTO(blog.getBlog(id)));
-        dto.setFecha(new Date(System.currentTimeMillis()));
-       CalificacionEntity c=blog.updateCalificacion(grupoId, id, cId, dto.toEntity());
-        return new CalificacionDetailDTO(c);
+        
+            dto.setBlog(new BlogDetailDTO(blog.getBlog(id)));
+            dto.setFecha(new Date(System.currentTimeMillis()));
+           CalificacionEntity c=blog.updateCalificacion(grupoId, id, cId, dto.toEntity());
+            return new CalificacionDetailDTO(c);
+        
+        
     }
     /**
      * Borra una calificación.<br>
@@ -146,18 +145,9 @@ public class BlogCalificacionResource {
     @Path("{id: \\d+}")
     public void deleteCalificacion(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId, @PathParam("id")Long id) throws BusinessException
     {
-        blog.removeCalificacino(grupoId, blogId, id);
-    }
-    /**
-     * Obtiene la causa inicial de la excepción.<br>
-     * @param e Throwable o Excepción.<br>
-     * @return Causa inicial de la excepción.
-     */
-    private Throwable getInitCause(Throwable e) {
-        if (e.getCause() != null) {
-            return getInitCause(e.getCause());
-        } else {
-            return e;
-        }
+        
+            blog.removeCalificacino(grupoId, blogId, id);
+
+       
     }
 }
