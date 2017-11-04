@@ -2,14 +2,13 @@
 	"variables": [],
 	"info": {
 		"name": "Calificacion",
-		"_postman_id": "798af9ae-d021-6914-7905-aba2301d61b6",
+		"_postman_id": "dd9393b9-75f6-f499-7098-01c642d31f7c",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "BlogCalificacion",
-			"description": "",
 			"item": [
 				{
 					"name": "Obtener calificaciones de un blog",
@@ -27,7 +26,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
 					},
 					"response": []
@@ -48,7 +50,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
 					},
 					"response": []
@@ -83,7 +88,68 @@
 					"response": []
 				},
 				{
+					"name": "Actualizar sin ser el usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 412\"]= responseCode.code===412"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 1,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener calificacion actualizada de un blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+					},
+					"response": []
+				},
+				{
 					"name": "Borrar calificación conocida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"]= responseCode.code===204"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -155,6 +221,331 @@
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
 						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener calificación creada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar calificación del mismo usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 412\"]= responseCode.code===412"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener calificación que se pudo haber creado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Con grupos y blogs inexistentes",
+			"description": "",
+			"item": [
+				{
+					"name": "Agregar calificación con grupo inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar calificación con grupo inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene calificación con grupo inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar calificación con grupo inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar calificación con blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar calificación con blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene calificación con blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones"
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar calificación con blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones/1"
 					},
 					"response": []
 				}

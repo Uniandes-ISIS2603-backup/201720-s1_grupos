@@ -2,14 +2,13 @@
 	"variables": [],
 	"info": {
 		"name": "Multimedia",
-		"_postman_id": "c633b4a4-bc1c-db3a-6ada-4c3750bf8cf5",
+		"_postman_id": "b7f073a0-f53d-c4a4-6551-434de809d646",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "NoticiaMultimedia",
-			"description": "",
 			"item": [
 				{
 					"name": "Obtener toda la multimedia de una noticia",
@@ -25,7 +24,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"HOLA\",\n\t\"descripcion\":\"HHHH\",\n\t\"multimedia\":[]\n}"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/noticias/1000001/multimedia"
+						"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia"
 					},
 					"response": []
 				},
@@ -54,7 +53,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/abc"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abc"
 					},
 					"response": []
 				},
@@ -83,7 +82,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/abcd"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abcd"
 					},
 					"response": []
 				},
@@ -112,7 +111,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/EEE"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/EEE"
 					},
 					"response": []
 				},
@@ -141,7 +140,36 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene lista agregada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia"
 					},
 					"response": []
 				},
@@ -170,12 +198,52 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/aaa"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene multimedia actualizada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/aaa"
 					},
 					"response": []
 				},
 				{
 					"name": "Borrado de un archivo multimedia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"]= responseCode.code===204"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -188,7 +256,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/dfdf"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/dfdf"
 					},
 					"response": []
 				},
@@ -217,7 +285,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000001/multimedia/dfdf"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/dfdf"
 					},
 					"response": []
 				}
@@ -225,7 +293,6 @@
 		},
 		{
 			"name": "BlogMultimedia",
-			"description": "",
 			"item": [
 				{
 					"name": "Obtener toda la multimedia de un blog",
@@ -373,6 +440,35 @@
 					"response": []
 				},
 				{
+					"name": "Obtiene lista agregada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia"
+					},
+					"response": []
+				},
+				{
 					"name": "Actualizar una multimedia de la noticia",
 					"event": [
 						{
@@ -402,7 +498,47 @@
 					"response": []
 				},
 				{
+					"name": "Obtiene multimedia actualizada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo recurso blog\",\"descripcion\":\"ds\"}\n"
+						},
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
 					"name": "Borrado de un archivo multimedia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"]= responseCode.code===204"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -445,6 +581,244 @@
 							"raw": ""
 						},
 						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blog y noticia inexistente",
+			"description": "",
+			"item": [
+				{
+					"name": "Actualizar una multimedia de noticia inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+						},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene multimedia de noticia inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+						},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Agrega multimedia de noticia inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+						},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia"
+					},
+					"response": []
+				},
+				{
+					"name": "Borra multimedia de noticia inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar una multimedia del blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene multimedia de blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa"
+					},
+					"response": []
+				},
+				{
+					"name": "Agrega multimedia de blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia"
+					},
+					"response": []
+				},
+				{
+					"name": "Borra multimedia de blog inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa"
 					},
 					"response": []
 				}

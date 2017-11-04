@@ -154,7 +154,14 @@ public class GrupoNoticiasResource {
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("grupoId") Long grupoId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
     {
-        if(grupoLogic.getNoticia( grupoId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
+        try
+        {
+            if(grupoLogic.getNoticia( grupoId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
+        }
+        catch (javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
         return NoticiaMultimediaResource.class;
     }
     /**

@@ -84,7 +84,6 @@ public class UsuarioNoticiaResource {
         try
         {
             return NoticiasListEntity2DTO(usuarioLogic.getNoticias(id));
-
         }
         catch(javax.ejb.EJBTransactionRolledbackException e)
         {
@@ -154,8 +153,16 @@ public class UsuarioNoticiaResource {
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("usuarioId") Long usuarioId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
     {
-        if(usuarioLogic.getNoticia( usuarioId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
-        return NoticiaMultimediaResource.class;
+        try
+        {
+            if(usuarioLogic.getNoticia( usuarioId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
+            return NoticiaMultimediaResource.class;
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException("La noticia que busca no existe en el sistema.");
+        }
+        
     }
     /**
      * Retorna los comentarios de una noticia.<br>

@@ -16,7 +16,6 @@
                 },
                 responseError: function (rejection) {
 
-
                     function showError(message, type) {
 
                         var types = ["info", "danger", "warning", "success"];
@@ -26,7 +25,6 @@
                             $rootScope.alerts.push({type: type, msg: message});
                         }
                     }
-
                     showError(rejection.data, "danger");
                     return $q.reject(rejection);
                 }

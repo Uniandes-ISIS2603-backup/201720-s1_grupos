@@ -6,7 +6,6 @@
     mod.controller('grupoCtrl', ['$scope', '$http', 'grupoContext', 'categoriaContext', '$state', '$filter',
         function ($scope, $http, grupoContext,categoriaContext, $state, $filter) {
             $scope.deGrupo=true;
-            
             $scope.categoriasDeMiGrupo= function(idGrupo)
             {
                 $http.get(grupoContext +'/'+ idGrupo+ '/categorias' ).then(function (response) {                    

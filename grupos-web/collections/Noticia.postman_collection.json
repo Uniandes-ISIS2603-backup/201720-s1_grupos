@@ -2,14 +2,13 @@
 	"variables": [],
 	"info": {
 		"name": "Noticia",
-		"_postman_id": "c145cfdc-252a-738d-dade-1eebe42251e1",
+		"_postman_id": "97780852-1117-25f9-15f4-b43bb31ca138",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Noticia",
-			"description": "",
 			"item": [
 				{
 					"name": "Obtener todos",
@@ -65,7 +64,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"Se\",\n\t\"descripcion\":\"HOLA\"\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/noticias/1000000"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000003"
 					},
 					"response": []
 				},
@@ -102,8 +101,130 @@
 		},
 		{
 			"name": "GrupoNoticia",
-			"description": "",
 			"item": [
+				{
+					"name": "Grupo inexistente",
+					"description": "",
+					"item": [
+						{
+							"name": "Agrega una nueva noticia con grupo inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"tests[\"Status code is 404\"]= responseCode.code===404"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
+								},
+								"url": "localhost:8080/grupos-web/Stark/grupos/10000000/noticias"
+							},
+							"response": []
+						},
+						{
+							"name": "Actualiza una nueva noticia con grupo inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"tests[\"Status code is 404\"]= responseCode.code===404"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
+								},
+								"url": "localhost:8080/grupos-web/Stark/grupos/10000000/noticias/1"
+							},
+							"response": []
+						},
+						{
+							"name": "BUsca noticias de un grupo inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"tests[\"Status code is 404\"]= responseCode.code===404"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
+								},
+								"url": "localhost:8080/grupos-web/Stark/grupos/10000000/noticias"
+							},
+							"response": []
+						},
+						{
+							"name": "Borra noticias de un grupo inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"tests[\"Status code is 404\"]= responseCode.code===404"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "localhost:8080/grupos-web/Stark/grupos/10000000/noticias/1"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
 				{
 					"name": "Obtener todos los recursos",
 					"event": [
@@ -158,12 +279,23 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000000"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000003"
 					},
 					"response": []
 				},
 				{
 					"name": "Borra una noticia conocida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"]= responseCode.code===204"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -176,7 +308,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000000"
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000003"
 					},
 					"response": []
 				},
@@ -197,7 +329,99 @@
 						"method": "GET",
 						"header": [],
 						"body": {},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000000"
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000003/"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca la noticia borrada del grupo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000003"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene el autor existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca la noticia borrada del autor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000003"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza una noticia borrada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000003"
 					},
 					"response": []
 				},
@@ -216,6 +440,35 @@
 					],
 					"request": {
 						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000001"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca noticia actualizada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -258,13 +511,193 @@
 						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias"
 					},
 					"response": []
+				},
+				{
+					"name": "Busca la noticia creada en el grupo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca la noticia como recurso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/noticias/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca la noticia creada del autor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n}"
+						},
+						"url": "localhost:8080/grupos-web/Stark/usuarios/11/noticias/5"
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "UsuarioNoticia",
-			"description": "",
 			"item": [
+				{
+					"name": "Usuario inexistente",
+					"description": "",
+					"item": [
+						{
+							"name": "Actualiza una nueva noticia con usuario inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"tests[\"Status code is 404\"]= responseCode.code===404"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
+								},
+								"url": "localhost:8080/grupos-web/Stark/usuarios/10000000/noticias/1"
+							},
+							"response": []
+						},
+						{
+							"name": "BUsca noticias de un grupo inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"tests[\"Status code is 404\"]= responseCode.code===404"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
+								},
+								"url": "localhost:8080/grupos-web/Stark/usuarios/10000000/noticias"
+							},
+							"response": []
+						},
+						{
+							"name": "Borra noticias de un grupo inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"tests[\"Status code is 404\"]= responseCode.code===404"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "localhost:8080/grupos-web/Stark/usuarios/10000000/noticias/1"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
 				{
 					"name": "Obtener todos los recursos",
 					"event": [
@@ -319,12 +752,23 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000000"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000004"
 					},
 					"response": []
 				},
 				{
 					"name": "Borra una noticia conocida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"]= responseCode.code===204"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -337,7 +781,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000000"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000004"
 					},
 					"response": []
 				},
@@ -358,7 +802,49 @@
 						"method": "GET",
 						"header": [],
 						"body": {},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000000"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000004"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca noticia borrada como recurso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/noticias/1000004"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca noticia borrada desde grupo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"]= responseCode.code===404"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias/1000004"
 					},
 					"response": []
 				},
@@ -387,12 +873,12 @@
 							"mode": "raw",
 							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n\t\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000005"
 					},
 					"response": []
 				},
 				{
-					"name": "Agrega una nueva noticia.",
+					"name": "Busca noticia actualziada",
 					"event": [
 						{
 							"listen": "test",
@@ -405,7 +891,7 @@
 						}
 					],
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -414,9 +900,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"informacion\": \"hghjvhj\",\n    \"titulo\": \"jhhjghjghjg\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [],\n    \"comentarios\":[]\n}"
+							"raw": "{\n    \"informacion\": \"BUENA\",\n    \"titulo\": \"Nueva\",\n    \"autor\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    },\n    \"multimedia\": [{\"link\":\"abc\",\"nombre\":\"GATO\",\"descripcion\":\"G\"}],\n    \"comentarios\":[]\n\t\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/noticias"
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000005"
 					},
 					"response": []
 				}
