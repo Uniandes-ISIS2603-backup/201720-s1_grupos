@@ -29,9 +29,15 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @Stateless
 public class NoticiaResource {
+    /**
+     * Lógica de la noticia
+     */
     @Inject
      NoticiaLogic logic;
-    
+    /**
+     * Obtiene la lista de todas las noticias del sistema.<br>
+     * @return  noticias
+     */
     @GET
     public List<NoticiaDetailDTO> getNoticias()
     {
@@ -39,7 +45,12 @@ public class NoticiaResource {
         
         return noticias;
     }
-    
+    /**
+     * Obtiene una noticia del sistema.<br>
+     * @param id Id de la noticia.<br>
+     * @return Representación de la noticia del sistema.<br>
+     * @throws BusinessException Si el id es nulo
+     */
     @GET
     @Path("{id: \\d+}")
     public NoticiaDetailDTO getNoticia(@PathParam("id") Long id) throws BusinessException
@@ -55,13 +66,21 @@ public class NoticiaResource {
         }
         return new NoticiaDetailDTO(entity);
     }
-    
+    /**
+     * Acceso al subrecurso de multimedia de la noticia.<br>
+     * @param id Id de la noticia.<br>
+     * @return Class de subrecurso NoticiaMultimedia
+     */
     @Path("{noticiaid: \\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getNoticiaMultimediaResource(@PathParam("noticiaid") Long id)
     {
         return NoticiaMultimediaResource.class;
     }
-    
+    /**
+     * Convierte en DetailDTO una lista de entidades pasadas por parámetro.<br>
+     * @param entityList
+     * @return Lista de NoticiaDetailDTO
+     */
     private List<NoticiaDetailDTO> listEntity2DetailDTO(List<NoticiaEntity> entityList) {
         List<NoticiaDetailDTO> list = new ArrayList<>();
         for (NoticiaEntity entity : entityList) {
@@ -69,7 +88,12 @@ public class NoticiaResource {
         }
         return list;
     }
-    
+    /**
+     * Conexión con el subrecurso de NoticiaComentario.<br>
+     * @param id Id de la noticia.<br>
+     * @return Clase de subrecurso.<br>
+     * @throws BusinessException Si se paso un id nulo.
+     */
     @Path("{noticiaId: \\d+}/comentarios")
     public Class<NoticiaComentarioResource> getComentarios(@PathParam("noticiaId") Long id) throws BusinessException {
         logic.getEntity( id);

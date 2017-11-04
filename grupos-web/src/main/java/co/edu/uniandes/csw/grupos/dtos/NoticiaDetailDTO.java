@@ -29,7 +29,10 @@ public class NoticiaDetailDTO extends NoticiaDTO{
      * Listado de comentarios
      */
     private List<ComentarioDTO> comentarios;
-    
+    /**
+     * Grupo de la noticia
+     */
+    private GrupoDTO grupo;
 
     /*
     /**
@@ -52,18 +55,27 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         comentarios= new ArrayList<>();
         multimedia=new ArrayList<>();
         if(e.getMultimedia()!=null)
+        {
             for(MultimediaEntity m: e.getMultimedia())
             {
                 multimedia.add(new MultimediaDTO(m));
             }
+        }
         if(e.getAutor()!=null)
+        {
             autor=new UsuarioDTO(e.getAutor());
+        }
+        if(e.getGrupo()!=null)
+        {
+            grupo=new GrupoDTO(e.getGrupo());
+        }
         if(e.getComentarios()!=null)
+        {
             for(ComentarioEntity c:e.getComentarios())
             {
                 comentarios.add(new ComentarioDTO(c));
             }
-        
+        }
     }
     
     /**
@@ -95,6 +107,22 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         this.autor = autor;
     }
     /**
+     * Obtiene el grupo de la noticia.<br>
+     * @return grupo
+     */
+    public GrupoDTO getGrupo()
+    {
+        return grupo;
+    }
+    /**
+     * Modifica el grupo al valor dado por parámetro.<br>
+     * @param grupo
+     */
+    public void setGrupo(GrupoDTO grupo)
+    {
+        this.grupo=grupo;
+    }
+    /**
      * Obtiene los comentarios.<br>
      * @return comentarios
      */
@@ -121,7 +149,14 @@ public class NoticiaDetailDTO extends NoticiaDTO{
         entity.setId(id);
         entity.setInformacion(informacion);
         entity.setTitulo(titulo);
-        entity.setAutor(autor.toEntity());
+        if(autor!=null)
+        {
+            entity.setAutor(autor.toEntity());
+        }
+        if(grupo!=null)
+        {
+            entity.setGrupo(grupo.toEntity());
+        }
         List<MultimediaEntity> list= new ArrayList<>();
         if(multimedia!=null)
         {

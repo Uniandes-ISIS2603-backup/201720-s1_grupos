@@ -326,6 +326,9 @@ public class UsuarioLogic {
         if(usuario.getNoticias()==null) throw new BusinessException("No hay noticias a actualizar");
         int index= usuario.getNoticias().indexOf(nn);
         if(index<0) throw new NotFoundException("La noticia no existe para la ista del usuario");
+        NoticiaEntity before=noticiaLogic.getEntity(nn.getId());
+        nn.setAutor(before.getAutor());
+        nn.setGrupo(before.getGrupo());
         NoticiaEntity change = noticiaLogic.updateEntity(nn.getId(), nn);
         usuario.getNoticias().set(index, change);
         return usuario.getNoticias().get(index);

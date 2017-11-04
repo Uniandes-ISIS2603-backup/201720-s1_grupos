@@ -97,18 +97,7 @@ public class NoticiaPersistence {
        em.remove(e);
        
    }
-   /**
-    * Encuentra el grupo al que pertenece la noticia dada por parámetro.<br>
-    * @param noticiaId Id de la noticia.<br>
-    * @return  Id del grupo al que pertenece.
-    */
-    public Long findGrupo(Long noticiaId) {
-
-        Query q=em.createNativeQuery("SELECT GrupoEntity_id FROM GRUPOENTITY_NOTICIAENTITY WHERE noticiasgrupo_id="+noticiaId+"");
-        q.setParameter("noticiaId", noticiaId);
-        Object a = q.getSingleResult();
-        return (Long)a;
-    }
+  
     
 
 }

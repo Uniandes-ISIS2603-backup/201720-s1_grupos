@@ -1,16 +1,19 @@
+
 (function (ng) {
-
+    //Módulo de la app
     var mod = ng.module("calificacionsModule");
-
+    /**
+     * Definición del controlador. Se incluye el nombre del controlador, el $scope,$state,$stateParams,$http y las constantes para acceder a calificaciones definiidos en archivos de módulo anteriores.
+     */
     mod.controller('calificacionsCtrl', ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext','gruposContext','blogContext', function ($scope, $state, $stateParams, $http, context, grupoContext, blogContext) {
-
+            //Contexto completo del controlador
             fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+context;
-            
+            //Variables para la eliminación de la calificación
             $scope.calificacionSeleccionada=false;
             $scope.calificacionEliminada=false;
-            // inicialmente el listado de ciudades está vacio
+            // inicialmente el listado de calificaciones está vacio
             $scope.records = {};
-            // carga las ciudades
+            // carga las calificaciones
             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             });
@@ -29,7 +32,7 @@
                             $scope.currentRecord = response.data;
                         });
 
-                // el controlador no recibió un cityId
+                // el controlador no recibió un id
             } else {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
@@ -39,8 +42,14 @@
 
                 $scope.alerts = [];
             }
+            /**
+             * Guarda el registro en la base de datos.<br>
+             * @param {type} id Id a guardar.<br>
+             * @returns {unresolved} Función resultado de la promesa
+             */
             this.saveRecord=function(id) {
                 currentRecord = $scope.currentRecord;
+                //Calificador por default (Se define con el login)
                 currentRecord.calificador={apellido: "Rd",
         email: "xd@uniandes.edu.co",
         id: 11,
@@ -69,16 +78,28 @@
                 }
                 ;
             };
+            /**
+             * Borra el registro.<br>
+             * @param {type} id Id del registro.<br>
+             * @returns {unresolved} Respuesta de la promesa
+             */
             this.deleteRecord=function (id)
             {
+                //Si el id existe ejecute la instrucción
                 if(id!==null)
                 {
+                    //Borre el registro
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
+                        //Cambie al listado de calificaciones
                         $state.go('calificacionsList');
                     });
                 }
             };
+            /**
+             * Obtiene el valor de la barra de calificación de la interfaz.<br>
+             * @returns {Element.value} Valor de la calificación en interfaz
+             */
             this.getRangeValue=function()
             {
                 return document.getElementById("calificacion").value;

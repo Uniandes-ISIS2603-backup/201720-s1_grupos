@@ -127,8 +127,7 @@ public class UsuarioNoticiaResource {
     @DELETE
     @Path("{NoticiaId: \\d+}")
     public void removeNoticias(@PathParam("usuarioId") Long usuarioId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
-        Long grupoId=grupoLogic.getNoticiaDeGrupo(NoticiaId);
-        grupoLogic.removeNoticia(grupoId, NoticiaId);
+        NoticiaEntity noticia=usuarioLogic.getNoticia(usuarioId, NoticiaId);
         usuarioLogic.removeNoticia(usuarioId, NoticiaId);
     }
     /**
