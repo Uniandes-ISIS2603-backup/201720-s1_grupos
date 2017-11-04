@@ -14,8 +14,11 @@
             // inicialmente el listado de calificaciones está vacio
             $scope.records = {};
             // carga las calificaciones
-            $http.get(fullContext).then(function (response) {
+             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
+            }, function(response){
+                console.log(response);
+                $state.go('404',{},{reload:true});
             });
 
             // el controlador recibió un id ??
@@ -30,6 +33,9 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
+                        }, function(response){
+                            console.log(response);
+                            $state.go('404',{},{reload:true});
                         });
 
                 // el controlador no recibió un id
@@ -39,8 +45,6 @@
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/
                 };
-
-                $scope.alerts = [];
             }
             /**
              * Guarda el registro en la base de datos.<br>
@@ -104,7 +108,6 @@
             {
                 return document.getElementById("calificacion").value;
             };
-
 // Código continua con las funciones de despliegue de errores
 
 
