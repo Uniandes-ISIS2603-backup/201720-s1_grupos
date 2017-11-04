@@ -87,9 +87,18 @@ public class BlogCalificacionResource {
      */
     @GET 
     @Path("{id: \\d+}")
-    public CalificacionDetailDTO getCalificacion(@PathParam("blogId") Long id,@PathParam("id") Long calificacionId) throws BusinessException
+    public CalificacionDetailDTO getCalificacion(@PathParam("blogId") Long id,@PathParam("id") Long calificacionId) throws BusinessException, NotFoundException
     {
-        return new CalificacionDetailDTO(blog.getCalificacion(id, calificacionId));
+        try
+        {
+            return new CalificacionDetailDTO(blog.getCalificacion(id, calificacionId));
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            Throwable exc =getInitCause(e);
+            System.out.println(exc.getMessage());
+            throw new NotFoundException(exc.getMessage());
+        }
     }
     /**
      * Agrega una calificación al blog.<br>
@@ -138,5 +147,17 @@ public class BlogCalificacionResource {
     public void deleteCalificacion(@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long blogId, @PathParam("id")Long id) throws BusinessException
     {
         blog.removeCalificacino(grupoId, blogId, id);
+    }
+    /**
+     * Obtiene la causa inicial de la excepción.<br>
+     * @param e Throwable o Excepción.<br>
+     * @return Causa inicial de la excepción.
+     */
+    private Throwable getInitCause(Throwable e) {
+        if (e.getCause() != null) {
+            return getInitCause(e.getCause());
+        } else {
+            return e;
+        }
     }
 }
