@@ -2,7 +2,7 @@
     var mod = ng.module("empresaModule");
     mod.constant("empresaUsuarioContext", "empresa");
     mod.constant("usuariosContext", "Stark/usuarios");
-    mod.controller('empresaUpdateCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'empresaUsuariosContext', '$rootScope',
+    mod.controller('empresaUpdateCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'empresaUsuarioContext', '$rootScope',
         function ($scope, $http, usuariosContext, $state, empresaUsuarioContext, $rootScope) {
             $rootScope.edit = false;
             
