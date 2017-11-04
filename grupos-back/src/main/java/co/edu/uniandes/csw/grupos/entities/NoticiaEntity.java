@@ -53,6 +53,13 @@ public class NoticiaEntity implements Serializable {
     @PodamExclude
     private UsuarioEntity autor;
     /**
+     * Grupo de la noticia.
+     */
+    @ManyToOne
+    @PodamExclude
+    private GrupoEntity grupo;
+    
+    /**
      * Lista de comentarios.
      */
     @OneToMany
@@ -146,6 +153,23 @@ public class NoticiaEntity implements Serializable {
      */
     public void setComentarios(List<ComentarioEntity> comentarios) {
         this.comentarios = comentarios;
+    }
+    
+    /**
+     * Obtiene el grupo de la noticia.<br>
+     * @return grupo
+     */
+    public GrupoEntity getGrupo()
+    {
+        return grupo;
+    }
+    /**
+     * Modifica el grupo al valor dado por parámetro.<br>
+     * @param grupo 
+     */
+    public void setGrupo(GrupoEntity grupo)
+    {
+        this.grupo=grupo;
     }
     
     /**

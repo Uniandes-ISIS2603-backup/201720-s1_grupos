@@ -8,9 +8,7 @@
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
             $scope.noticiaEditable=false;
-            header="¿Qué pasa con tus intereses hoy?";
-                        console.log(globalContext+" "+context+" "+fullContext);
-            
+            header="¿Qué pasa con tus intereses hoy?";            
 
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
@@ -128,10 +126,7 @@
             {
                 return header;
             };
-            
-            
-
-// Código continua con las funciones de despliegue de errores
+            // Código continua con las funciones de despliegue de errores
 
 
         }]);

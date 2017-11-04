@@ -1,9 +1,15 @@
 (function (ng) {
+    //Módulo de la aplicación con sus respectivas dependencias
 var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule']);
+    //Constante global
     mod.constant("globalContext","Stark");
+    //Contante de noticias
     mod.constant("noticiasContext", "noticias");
+    //Constante de usuarios
     mod.constant("noticiaUsuarioContext","usuarios");
+    //Constante de grupos
     mod.constant("noticiaGrupoContext","grupos");
+    //Definición de la configuración con un definidor de estados ($stateProvider) y un controlador de estado predefinido ($urlRouterProvider)
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");
@@ -62,21 +68,6 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         templateUrl: basePath + 'noticias.detail.html'
                     }
                 }
-            }).state('usuarioNoticiaCreate', {
-                url: '/create',
-                parent:'usuarioNoticias',
-                params:{
-                    usuarioId:null,
-                    grupoId:null
-                },
-                views: {
-                    'noticiaDetailView': {
-                        controller: 'usuarioNoticiasCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'noticias.create.html'
-                    }
-                }
-
             }).state('usuarioNoticiaEdit', {
                 url: '/update/:noticiaId',
                 parent:'usuarioNoticias',

@@ -81,7 +81,7 @@ public class GrupoEntity implements Serializable{
      * Lista de noticias
      */
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<NoticiaEntity> noticiasGrupo= new ArrayList<NoticiaEntity>();
     
     /**

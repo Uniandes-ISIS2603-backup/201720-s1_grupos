@@ -1,4 +1,3 @@
-delete from GrupoEntity_NoticiaEntity;
 delete from GrupoEntity_CategoriaEntity;
 delete from GrupoEntity_EventoEntity;
 delete from Usuario_Admin;
@@ -17,13 +16,13 @@ delete from CalificacionEntity;
 delete from BlogEntity;
 delete from EventoEntity;
 
-delete from GrupoEntity;
 delete from CategoriaEntity;
 delete from NoticiaEntity_MultimediaEntity;
+delete from NoticiaEntity;
+delete from GrupoEntity;
 
 delete from ComentarioEntity;
 delete from CalificacionEntity;
-delete from NoticiaEntity;
 delete from ComentarioEntity;
 delete from MultimediaEntity;
 delete from TarjetaEntity;
@@ -122,13 +121,17 @@ insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','dfdf
 insert into MultimediaEntity (nombre,descripcion,link) values ('HOLA','G','EEE');
 
 --INFORMACIÓN NOTICIA
-insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1,'Titulo','Info',1);
-insert into NoticiaEntity (id,titulo,informacion,autor_id) values (2,'Tit3lo','Irfo',11);
-insert into NoticiaEntity (id,titulo,informacion,autor_id) values (3,'Nueva','Irfo',11);
-insert into NoticiaEntity (id,titulo,informacion,autor_id) values (4,'New','Irfo',11);
-insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000000,'Otra','Irfo',1000000);
-insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000001,'Otra','Irfo',1000000);
-insert into NoticiaEntity (id,titulo,informacion,autor_id) values (1000002,'Otra','Irfo',1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1,'Titulo','Info',1,10);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (2,'Tit3lo','Irfo',11,11);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (3,'Nueva','Irfo',11,11);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (4,'New','Irfo',11,10);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1000000,'Otra','Irfo',1000000,1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1000001,'Otra','Irfo',1000000,1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1000002,'Otra','Irfo',1000000,1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1000003,'Otra','Irfo',1000000,1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1000004,'Otra','Irfo',1000000,1000000);
+insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1000005,'Otra','Irfo',1000000,1000000);
+
 
 --INFORMACIÓN COMENTARIO
 insert into ComentarioEntity (id, autor, comentario) values (1, 'yo', 'hola');
@@ -136,12 +139,6 @@ insert into ComentarioEntity (id, autor, comentario) values (2, 'Sergio', 'solo 
 insert into ComentarioEntity (id, autor, comentario) values (3, 'yo', 'hola k ase');
 insert into ComentarioEntity (id, autor, comentario) values (4, 'abc', 'qwerty');
 
---GRUPOENTITY_NOTICIAENTITY
-insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (10,1);
-insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (11,2);
-insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (10,3);
-insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000000);
-insert into GrupoEntity_NoticiaEntity(grupoentity_id,noticiasgrupo_id) values (1000000,1000001);
 
 
 --INFORMACION NOTICIAENTITY_MULTIMEDIAENTITY

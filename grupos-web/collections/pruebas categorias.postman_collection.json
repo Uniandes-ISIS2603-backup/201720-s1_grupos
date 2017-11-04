@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "pruebas categorias",
-		"_postman_id": "d98d0fb9-07a3-36a8-5f67-da41a307e606",
+		"_postman_id": "08fe7766-fc76-cc9c-4384-d6fee97ef60d",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -21,20 +21,19 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/categorias",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": " {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/categorias",
+				"description": null
 			},
 			"response": []
 		},
@@ -52,6 +51,17 @@
 				}
 			],
 			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
+				},
 				"url": {
 					"raw": "http://localhost:8080/grupos-web/Stark/categorias/tipo?tipo=CategoriaPruebaPrueba",
 					"protocol": "http",
@@ -69,25 +79,11 @@
 						{
 							"key": "tipo",
 							"value": "CategoriaPruebaPrueba",
-							"equals": true,
-							"description": ""
+							"equals": true
 						}
-					],
-					"variable": []
+					]
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": " {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"nombre\": \"GrupoPruebaPrueba\"\n    }"
-				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -105,20 +101,19 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/categorias",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n \t \"tipo\": \"CategoriaPruebaPrueba\",\n        \"descripcion\": \"Esta categoria es de prueba\",\n        \"rutaIcono\": \"prueba.png\"\n    }"
+					"raw": " {\n    \"tipo\": \"CategoriaPruebaPrueba\",\n        \"descripcion\": \"Esta categoria es de prueba\",\n        \"rutaIcono\": \"prueba.png\"\n    }"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/categorias",
+				"description": null
 			},
 			"response": []
 		},
@@ -136,20 +131,19 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/categorias",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": " {\n        \"type\": \"grupoDetailDTO\",\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"id\": 10,\n        \"nombre\": \"GrupoPrueba1\"\n    }"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/categorias",
+				"description": null
 			},
 			"response": []
 		},
@@ -167,20 +161,19 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/categorias",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n \t \"tipo\": \"CategoriaPruebaPrueba\",\n        \"descripcion\": \"Esta categoria deberia fallar\",\n        \"rutaIcono\": \"fallo.png\"\n    }"
+					"raw": " {\n    \"tipo\": \"CategoriaPruebaPrueba\",\n        \"descripcion\": \"Esta categoria deberia fallar\",\n        \"rutaIcono\": \"fallo.png\"\n    }"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/categorias",
+				"description": null
 			},
 			"response": []
 		},
@@ -198,6 +191,17 @@
 				}
 			],
 			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/grupos-web/Stark/categorias/tipo?tipo=CategoriaPruebaPrueba",
 					"protocol": "http",
@@ -215,25 +219,11 @@
 						{
 							"key": "tipo",
 							"value": "CategoriaPruebaPrueba",
-							"equals": true,
-							"description": ""
+							"equals": true
 						}
-					],
-					"variable": []
+					]
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -251,20 +241,19 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/categorias/12",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n \t \"tipo\": \"CategoriaModificada\",\n        \"descripcion\": \"Esta categoria es de prueba\",\n        \"rutaIcono\": \"prueba.png\"\n    }"
+					"raw": " {\n    \"tipo\": \"CategoriaModificada\",\n        \"descripcion\": \"Esta categoria es de prueba\",\n        \"rutaIcono\": \"prueba.png\"\n    }"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/categorias/13",
+				"description": null
 			},
 			"response": []
 		},
@@ -282,6 +271,12 @@
 				}
 			],
 			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/grupos-web/Stark/categorias/tipo?tipo=CategoriaModificada",
 					"protocol": "http",
@@ -299,19 +294,11 @@
 						{
 							"key": "tipo",
 							"value": "CategoriaModificada",
-							"equals": true,
-							"description": ""
+							"equals": true
 						}
-					],
-					"variable": []
+					]
 				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -329,20 +316,19 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/categorias/12",
 				"method": "DELETE",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/categorias/13",
+				"description": null
 			},
 			"response": []
 		},
@@ -360,6 +346,12 @@
 				}
 			],
 			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/grupos-web/Stark/categorias/tipo?tipo=CategoriaModificada",
 					"protocol": "http",
@@ -377,19 +369,11 @@
 						{
 							"key": "tipo",
 							"value": "CategoriaModificada",
-							"equals": true,
-							"description": ""
+							"equals": true
 						}
-					],
-					"variable": []
+					]
 				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -407,14 +391,14 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias",
+				"description": null
 			},
 			"response": []
 		},
@@ -432,14 +416,14 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias/10",
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias/10",
+				"description": null
 			},
 			"response": []
 		},
@@ -457,14 +441,14 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias/10",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias/10",
+				"description": null
 			},
 			"response": []
 		},
@@ -482,14 +466,14 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias/10",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/categorias/10",
+				"description": null
 			},
 			"response": []
 		}

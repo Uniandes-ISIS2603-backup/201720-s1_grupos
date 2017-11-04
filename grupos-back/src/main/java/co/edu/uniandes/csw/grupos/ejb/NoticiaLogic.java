@@ -109,7 +109,7 @@ public class NoticiaLogic {
     {
         if(id==null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
         NoticiaEntity other=persistence.find(id);
-        if(other==null) throw new NotFoundException("No se encuentra el recurso para eliminar.");
+        if(other==null) throw new NotFoundException("No se encuentra el recurso para eliminar con id "+id);
         persistence.delete(id);
     }
     
@@ -123,8 +123,8 @@ public class NoticiaLogic {
     {
         
         if(entity.getTitulo()==null || entity.getInformacion()==null) throw new BusinessException("La información de la noticia no puede estar vacía");
-        //Es improbable pero necesito hacer un caso en el que se le dé un usuario vacío a persistir, o alguno que no existe en el sistema.
-        
+        if(entity.getAutor()==null) throw new BusinessException("La noticia no tiene un autor asociado");
+        if(entity.getGrupo()==null) throw new BusinessException("La noticia no tiene un grupo asociado");
     }
     /**
      * Obtiene la multimedia de una noticia.<br>
@@ -217,6 +217,7 @@ public class NoticiaLogic {
         
         
     }
+   
     
     
 }

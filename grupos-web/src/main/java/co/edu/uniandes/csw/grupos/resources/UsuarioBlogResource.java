@@ -34,7 +34,7 @@ public class UsuarioBlogResource {
     @Inject
     private UsuarioLogic usuarioLogic;
      /**
-     * Lógica del usuario
+     * Lógica del blog
      */
     @Inject
     private BlogLogic blogLogic;

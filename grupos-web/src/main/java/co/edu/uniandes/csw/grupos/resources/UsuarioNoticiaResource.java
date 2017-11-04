@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.NoticiaDTO;
 import co.edu.uniandes.csw.grupos.dtos.NoticiaDetailDTO;
+import co.edu.uniandes.csw.grupos.ejb.BlogLogic;
+import co.edu.uniandes.csw.grupos.ejb.GrupoLogic;
 import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
@@ -32,6 +34,11 @@ public class UsuarioNoticiaResource {
      */
     @Inject
     private UsuarioLogic usuarioLogic;
+       /**
+     * Lógica del blog
+     */
+    @Inject
+    private GrupoLogic grupoLogic;
     
     /**
      * Convierte una lista de NoticiaEntity a una lista de NoticiaDetailDTO.
@@ -77,7 +84,6 @@ public class UsuarioNoticiaResource {
         try
         {
             return NoticiasListEntity2DTO(usuarioLogic.getNoticias(id));
-
         }
         catch(javax.ejb.EJBTransactionRolledbackException e)
         {
@@ -111,19 +117,6 @@ public class UsuarioNoticiaResource {
        
     }
     /**
-     * Agrega una noticia.<br>
-     * @param usuarioId Id del usuario.<br>
-     * @param noticia
-     * @return
-     * @throws BusinessException 
-     */
-    @POST
-    public NoticiaDetailDTO addNoticia(@PathParam("usuarioId") Long usuarioId, NoticiaDetailDTO noticia) throws BusinessException {
-        return new NoticiaDetailDTO(usuarioLogic.addNoticia(usuarioId, noticia.toEntity()));
-    }
-   
-    
-    /**
      * Desasocia un Noticia existente de un Grupo existente
      *
      * @param GruposId Identificador de la instancia de Grupo
@@ -133,6 +126,7 @@ public class UsuarioNoticiaResource {
     @DELETE
     @Path("{NoticiaId: \\d+}")
     public void removeNoticias(@PathParam("usuarioId") Long usuarioId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
+        NoticiaEntity noticia=usuarioLogic.getNoticia(usuarioId, NoticiaId);
         usuarioLogic.removeNoticia(usuarioId, NoticiaId);
     }
     /**
@@ -159,8 +153,16 @@ public class UsuarioNoticiaResource {
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("usuarioId") Long usuarioId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
     {
-        if(usuarioLogic.getNoticia( usuarioId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
-        return NoticiaMultimediaResource.class;
+        try
+        {
+            if(usuarioLogic.getNoticia( usuarioId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
+            return NoticiaMultimediaResource.class;
+        }
+        catch(javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException("La noticia que busca no existe en el sistema.");
+        }
+        
     }
     /**
      * Retorna los comentarios de una noticia.<br>

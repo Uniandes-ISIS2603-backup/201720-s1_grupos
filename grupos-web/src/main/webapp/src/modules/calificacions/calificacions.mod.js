@@ -1,13 +1,28 @@
 (function (ng) {
-var mod = ng.module("calificacionsModule", []);
+    //Módulo de la aplicación
+    var mod = ng.module("calificacionsModule", []);
+    //Constante de contexto de grupo
     mod.constant("gruposContext", "Stark/grupos");
+    //CONSTANTE DE BLOG
         mod.constant("blogContext", "blogs");
-
+    //Constante de las calificaciones
     mod.constant("calificacionsContext", "calificaciones");
+    /**
+     * Configuración del módulo. Recibe el $stateProvider y el $urlRouterProvider para definir estados y un estado predefinido respectivamente.
+     */
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            //Camino base de los archivos
             var basePath = 'src/modules/calificacions/';
+            //Estado predefinido
             $urlRouterProvider.otherwise("/calificacionsList");
-
+            /**
+             * Definición de estados:
+             * -calificacionsList: Listado de las calificaciones.<br>
+             * -calificacionCreate: Estado para crear una calificación (Un formulario).
+             * -calificacionEdit: Estado paraa editar una calificación.<br>
+             * -calificacionDelete: Estado para confirmar si se desea borrar la calificación o no.<br>
+             * -calificacionDetail: Información detallada de la calificación.<br>
+             */
             $stateProvider.state('calificacionsList', {
                 url: '/calificacions',
                 parent:'blogDetail',

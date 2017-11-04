@@ -127,8 +127,8 @@ public class GrupoNoticiasResource {
      */
     @DELETE
     @Path("{NoticiaId: \\d+}")
-    public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) {
-        grupoLogic.removeNoticia(grupoId, NoticiaId);
+    public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
+        grupoLogic.deleteNoticia(grupoId, NoticiaId);
     }
     /**
      * Actualiza la noticia del grupo.<br>
@@ -154,7 +154,14 @@ public class GrupoNoticiasResource {
     @Path("{noticiaid:\\d+}/multimedia")
     public Class<NoticiaMultimediaResource> getMultimedia(@PathParam("grupoId") Long grupoId, @PathParam("noticiaid")Long idNoticia) throws BusinessException
     {
-        if(grupoLogic.getNoticia( grupoId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
+        try
+        {
+            if(grupoLogic.getNoticia( grupoId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
+        }
+        catch (javax.ejb.EJBTransactionRolledbackException e)
+        {
+            throw new NotFoundException();
+        }
         return NoticiaMultimediaResource.class;
     }
     /**

@@ -345,6 +345,7 @@ public class GrupoLogic {
         updateGrupo(entity);
     }
     
+    
     /**
      *
      * @param id, id del grupo del que se obtendrán las noticias asociadas
@@ -353,7 +354,6 @@ public class GrupoLogic {
     public List<NoticiaEntity> listNoticias(Long id) {
         return getGrupo(id).getNoticiasGrupo();
     }
-    
     /**
      *
      * @param grupoId, id del grupo que tiene la noticia asociada
@@ -394,6 +394,7 @@ public class GrupoLogic {
      */
     public NoticiaEntity createNoticia(Long grupoId, NoticiaEntity entity) throws BusinessException {
         GrupoEntity grupoEntity = getGrupo(grupoId);
+        entity.setGrupo(grupoEntity);
         NoticiaEntity noticiaEntity = noticiaLogic.createEntity(entity);
         grupoEntity.getNoticiasGrupo().add(noticiaEntity);
         updateGrupo(grupoEntity);
@@ -414,17 +415,20 @@ public class GrupoLogic {
         int index=grupoEntity.getNoticiasGrupo().indexOf(noticia);
         if(index<0) throw new NotFoundException("No existe la noticia en el grupo");
         entity.setId(id);
+        entity.setGrupo(noticia.getGrupo());
         NoticiaEntity noticiaEntity = noticiaLogic.updateEntity(id,entity);
         grupoEntity.getNoticiasGrupo().set(index, noticiaEntity);
         updateGrupo(grupoEntity);
         return getNoticia(grupoId,noticiaEntity.getId());
     }
+    
     /**
      *
-     * @param grupoId, id del grupo al que se le desvinculará la noticia
-     * @param noticiaId, id de la noticia a desvincular del grupo
+     * @param grupoId, id del grupo al que se le desvinculará la noticia<br>
+     * @param noticiaId, id de la noticia a desvincular del grupo<br>
+     * @throws BusinessException Si hay un error de negocio al borrar la noticia.
      */
-    public void removeNoticia(Long grupoId, Long noticiaId) {
+    public void deleteNoticia(Long grupoId, Long noticiaId) throws BusinessException {
         GrupoEntity entity = getGrupo(grupoId);
         NoticiaEntity noticiaEntity = new NoticiaEntity();
         noticiaEntity.setId(noticiaId);
