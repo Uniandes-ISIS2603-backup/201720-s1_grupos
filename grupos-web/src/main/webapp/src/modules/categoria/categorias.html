@@ -1,42 +1,43 @@
+<!-- Muestra una categoría detallada y una lista de objetos relacionados a la categoría-->
 <div ui-view="detailView"></div>
 <div ui-view="listView"></div>
 <!-- Modal -->
-  <div class="modal fade" id="modalCrearcategorias" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Error creando categoria</h4>
+<div class="modal fade" id="modalCrearcategorias" role="dialog">
+        <div class="modal-dialog">
+        
+        <!-- Modal en caso de error creando una categoría, ya hay otra categoría con ese nombre-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error creando categoria</h4>
+            </div>
+            <div class="modal-body">
+                <p>Ya existe un categoria con ese nombre</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok :c</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>Ya existe un categoria con ese nombre</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Ok :c</button>
-        </div>
-      </div>
-      
+          
     </div>
-  </div>
-
+</div>
+      
 <div class="modal fade" id="modalModificarcategorias" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Error modificando categoria</h4>
+        <div class="modal-dialog">
+        
+        <!-- Modal en caso de error modificando una categoría, ya hay otra categoría con ese nombre-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error modificando categoria</h4>
+            </div>
+            <div class="modal-body">
+                <p>Ya existe un categoria con ese nombre</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok :c</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>Ya existe un categoria con ese nombre</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Ok :c</button>
-        </div>
-      </div>
-      
+          
     </div>
-  </div>
+</div>

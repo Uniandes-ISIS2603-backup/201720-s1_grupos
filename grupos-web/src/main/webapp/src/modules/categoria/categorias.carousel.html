@@ -1,19 +1,22 @@
-<div class="container-fluid">
-    
-    <div class="btn-group mr-2 col-md-12" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
+<!-- Lista donde se mostrarán las categorias en un carrusel-->
+<div class="container-fluid"
+     <!-- En caso de estar en un controlador de categoría, se muestra la opción para crear-->
+     <div class="btn-group mr-2 col-md-12" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
         <a class="btn btn-info col-md-2" ui-sref="categoriaCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear categoria :O</a>
-    
-    <form ng-controler="buscarCategoria" class="col-md-10">
-        <input type="text" class="input-lg col-md-9" placeholder="Buscar por tipo" ng-model="buscarCategoriaValor"/>
-        <span class="input-group-btn col-md-2">
-            <button class="btn btn-info btn-lg " type="button" ng-click="buscarPorTipo(buscarCategoriaValor)">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </span>
-    </form>
-        </div>
+        
+        <!-- Cuadro de búsqueda por tipo (nombre) exacto-->
+        <form ng-controler="buscarCategoria" class="col-md-10">
+            <input type="text" class="input-lg col-md-9" placeholder="Buscar por tipo" ng-model="buscarCategoriaValor"/>
+            <span class="input-group-btn col-md-2">
+                <button class="btn btn-info btn-lg " type="button" ng-click="buscarPorTipo(buscarCategoriaValor)">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </form>
+    </div>
     <br>
     <br>
+    <!-- Carrusel para mostrarlas, se muestra nombre, descripción e imagen-->
     <carousel interval="carruselCategorias">
         <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
             <a ui-sref="categoriaDetail({categoriaId: categoria.id})">
@@ -22,11 +25,11 @@
                     <div class="carousel-caption" >
                         <h4>{{categoria.tipo}}</h4>
                         <p>{{categoria.descripcion}}</p>
-                    </div>                
+                    </div>
+                </div>
             </a>
                 
         </slide>
     </carousel>
-        
         
 </div>

@@ -1,5 +1,8 @@
+<!-- En caso de querer borrar una categoría, se pregunta por confirmación-->
 <div class="center-block well text-center">
     <h1>¿Está seguro?:c</h1>
+    <!-- Al confirmar se procede con la eliminación-->
     <button id="confirm-delete" ng-click="deleteCategoria()" class="btn btn-danger">Sí</button>
+    <!-- Si cancela vuelve a la categoriaDetail-->
     <a id="cancel-delete" ui-sref="categoriaDetail({categoriaId: {{idCategoria}}})"  class="btn btn-info">Mejor no</a>
 </div>

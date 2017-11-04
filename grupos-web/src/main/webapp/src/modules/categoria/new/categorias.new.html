@@ -1,41 +1,53 @@
+<!-- Permite modificación o creación de una categoría-->
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
+            <!-- Si se está creando se muestra esto-->
             <div class="panel-heading"><label ng-if="!edit" id="createcategoria">Crear nueva categoria</label>
-                <label ng-if="edit" id="editcategoria">Edit categoria</label></div>
+                <!-- Si está editando se muestra este-->
+                <label ng-if="edit" id="editcategoria">Editar categoria</label></div>
             <div class="panel-body">
+                <!-- Formulario para crear o modificar un grupo con su nombre y descripción-->
                 <form ng-submit="createCategoria()" name="categoriaCrear">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="categoriaName" class="col-sm-3">Nombre:</label>
+                            <!-- Campo para poner el nombre-->
                             <input id="categoriaName" required ng-model="categoriaName" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="categoriaDescription" class="col-sm-3">Descripcion:</label>
+                            <!-- Campo para poner la descripción-->
                             <textarea id="categoriaDescription" required ng-model="categoriaDescription" class="col-sm-6"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="categoriaRuta" class="col-sm-2">Ruta de la imagen:</label>
+                            <!-- Campo para poner la ruta de la imagen-->
                             <input id="categoriaRuta" required ng-model="categoriaRuta" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
+                        <!-- En caso que el formulario no esté correctamente llenado...-->
                         <div class="form-group col-sm-4" ng-if="!categoriaCrear.$valid">
-
+                            
                             <div class="alert alert-warning" >
+                                <!-- Mensaje en caso que los campos no estén correctamente llenados-->
                                 <strong>Cuidado!</strong><p>Debe llenar todos los campos*</p>
                             </div> 
                         </div> 
                     </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
+                            <!-- Muestra los botones si el formulario está completamente llenado-->
                             <div ng-show="categoriaCrear.$valid" >
-                            <input ng-show="{{crearcategoria}}" type="submit" value="Crear" class="btn btn-success"/>                    
-                            <input ng-show="{{actualizarcategoria}}" type="submit" value="Actualizar" class="btn btn-success"/>
+                                <!-- En caso de crear una categoría muestra solo el botón crear-->
+                                <input ng-show="{{crearcategoria}}" type="submit" value="Crear" class="btn btn-success"/>     
+                                <!-- En caso de actualizar una categoría muestra solo el botón actualizar-->
+                                <input ng-show="{{actualizarcategoria}}" type="submit" value="Actualizar" class="btn btn-success"/>
                             </div>
                             <a class="btn btn-info" ui-sref="carruselCategorias">Cancelar</a>
                         </div>
@@ -49,7 +61,7 @@
 
 
 
-  
+
 
 
 

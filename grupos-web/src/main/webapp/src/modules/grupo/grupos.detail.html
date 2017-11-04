@@ -1,20 +1,25 @@
+<!-- Muestra información detallada de un grupo-->
 <div class="container-fluid">
     <div class="row">
+        <!-- Muestra el nombre-->
         <div class="col-md-8">
             <h2>{{grupoActual.nombre}}</h2>
         </div>
         <div class="col-md-4">
+            <!-- Botones por si un usuario se quiere inscribir o dejar un grupo, solo se muestra uno dependiendo del caso-->
             <div class=" col-md-12">
                 <button type="button" class="btn btn-success" ui-sref="inscripcionGrupo()">Inscribirse</button>
                 <button type="button" class="btn btn-danger" ui-sref="dejarGrupo()">Salir del grupo</button>
             </div>
         </div>
     </div>
+    <!-- Muestra la descripción de un grupo-->
     <div class="panel panel-default col-md-4" >
         <p>{{grupoActual.descripcion}}</p>
     </div>
     <br>
     <div class="col-md-12">
+        <!-- Muestra los botones para ver los subrecursos del grupo-->
         <div class="btn-group col-md-12">
             <button type="button" class="btn btn-primary" ui-sref="grupoNoticiasList" >Noticias</button>
             <button type="button" class="btn btn-primary" ui-sref="eventosDeGrupo">Eventos</button>
@@ -26,11 +31,13 @@
     </div>
     <br>
     <br>
+    <!-- Botones para modificar y actualizar un grupo-->
     <a class="btn btn-default btn-sm col-md-6" ui-sref="grupoUpdate({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
     <a class="btn btn-danger btn-sm col-md-6" ui-sref="grupoDelete({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
 </div>
 <br>
 <br>
+<!-- Vista para mostrar la lista de los subrecursos-->
 <div ui-view="childrenView"></div>
 <br>
 <br>

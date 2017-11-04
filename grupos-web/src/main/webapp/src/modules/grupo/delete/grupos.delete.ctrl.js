@@ -1,21 +1,20 @@
+/**
+ * Controlador que sirve para borrar un grupo
+ */
 (function (ng) {
     var mod = ng.module("grupoModule");
-    mod.constant("gruposContext", "Stark/grupos");
-    
+    mod.constant("gruposContext", "Stark/grupos");    
     mod.controller('grupoDeleteCtrl', ['$scope', '$http', 'gruposContext', '$state',
         function ($scope, $http, gruposContext, $state) {
+            //Se guarda el id de grupo y se indica que se va a borrar
             var idgrupo = $state.params.grupoId;
             $scope.idGrupo=idgrupo;
-            $scope.crearGrupo=true;
-            $scope.actualizarGrupo=false;
             $scope.deleteGrupo = function () {
-                console.log("voy a borrar");
+                //Se envía el servicio rest DELETE
                 $http.delete(gruposContext + '/' + idgrupo, {}).then(function (response) {
                     $state.go('listaGrupos',{}, {reload: true});
                 }, function (error) {
-                    $scope.errorGrupos=error.status;
-                    console.log(errorGrupos);
-                    $("#modalErrorGrupos").modal();
+                    
                 });
             };
         }
