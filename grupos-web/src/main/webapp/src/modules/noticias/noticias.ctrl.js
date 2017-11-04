@@ -5,11 +5,16 @@
     mod.controller("noticiasCtrl", ['$scope', '$state', '$http','noticiasContext','globalContext', function ($scope, $state, $http,context,globalContext) {
              $scope.noticiaEditable=false;$scope.esNoticiaUsuario=false; $scope.deGrupo=false;
 
+             var error="";
+             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+             {
+                 $scope.variableErrorNoticia=$state.params.mensaje;
+             }
             fullContext=globalContext+"/"+context;
             //Validación de desde dónde viene la noticia,
             $scope.noticiaEditable=false;
             header="¿Qué pasa con tus intereses hoy?";            
-
+            
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
             $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
@@ -51,7 +56,10 @@
             // carga las noticias
             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
-            });
+            },function(response){
+                                error=response.data;
+                                $state.go('ERRORNOTICIA',{mensaje: error});
+                            });
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
             if ($state.params.noticiaId !== null && $state.params.noticiaId !== undefined) {
@@ -64,7 +72,10 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
-                        });
+                        },function(response){
+                                error=response.data;
+                                $state.go('ERRORNOTICIA',{mensaje: error},{reload:true});
+                            });
 
                 // el controlador no recibió un cityId
             } else {
@@ -97,6 +108,9 @@
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('noticiasList');
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORNOTICIA',{mensaje: error});
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -108,6 +122,9 @@
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('noticiasList');
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORNOTICIA',{mensaje: error});
                             });
                 }
                 ;
@@ -119,7 +136,10 @@
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
                           $state.go('noticiasList');
-                    });
+                    },function(response){
+                                error=response.data;
+                                $state.go('ERRORNOTICIA',{mensaje: error});
+                            });
                 }
             };
             this.getHeader= function()

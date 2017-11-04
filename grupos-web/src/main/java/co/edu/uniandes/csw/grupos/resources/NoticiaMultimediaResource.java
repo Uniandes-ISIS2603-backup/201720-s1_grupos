@@ -71,7 +71,13 @@ public class NoticiaMultimediaResource {
     @GET
     public List<MultimediaDetailDTO> getMultimedia(@PathParam("noticiaid")Long id) throws BusinessException
     {
-        return toDTO(noticia.getMultimedia(id));
+        try
+        {
+            return toDTO(noticia.getMultimedia(id));
+        }catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * Multimedia de una noticia.<br>
@@ -84,7 +90,14 @@ public class NoticiaMultimediaResource {
     @Path("{link: [a-zA-Z]+}")
     public MultimediaDetailDTO getMultimediaNoticia(@PathParam("noticiaid") Long id,@PathParam("link") String link) throws BusinessException
     {
-        return new MultimediaDetailDTO(noticia.getMultimedia(id, link));
+        try
+        {
+            return new MultimediaDetailDTO(noticia.getMultimedia(id, link));
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * Crea multimedia.<br>
@@ -96,8 +109,15 @@ public class NoticiaMultimediaResource {
     @POST
     public List<MultimediaDetailDTO> postMultimedia (@PathParam("noticiaid")Long id, List<MultimediaDetailDTO> multimedia) throws BusinessException
     {
-        List<MultimediaEntity> mult = listarDTO(multimedia);
+        try
+        {
+            List<MultimediaEntity> mult = listarDTO(multimedia);
         return toDTO(noticia.addMultimedia(id, mult));
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * Actualiza una multimedia.<br>
@@ -111,8 +131,16 @@ public class NoticiaMultimediaResource {
     @Path("{link: [a-zA-Z]+}")
     public List<MultimediaDetailDTO> updateMultimedia (@PathParam("noticiaid") Long id, @PathParam("link")String link, MultimediaDetailDTO dto) throws BusinessException
     {
-        MultimediaEntity mult = dto.toEntity();
-       return toDTO(noticia.updateMultimedia(id, mult, link));
+       try
+       {
+           MultimediaEntity mult = dto.toEntity();
+        return toDTO(noticia.updateMultimedia(id, mult, link));
+
+       }
+       catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * Borrar multimedia.<br>
@@ -124,6 +152,13 @@ public class NoticiaMultimediaResource {
     @Path("{link: [a-zA-Z]+}")
     public void deleteMultimedia(@PathParam("noticiaid") Long id, @PathParam("link")String link) throws BusinessException
     {
-        noticia.deleteMultimedia(id,link);
+        try
+        {
+            noticia.deleteMultimedia(id,link);
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
 }

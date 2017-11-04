@@ -114,6 +114,10 @@ public class UsuarioNoticiaResource {
         {
             throw new NotFoundException("La noticia que busca no existe en el sistema.");
         }
+        catch (javax.ejb.EJBException e)
+        {
+            throw e;
+        }
        
     }
     /**
@@ -126,8 +130,16 @@ public class UsuarioNoticiaResource {
     @DELETE
     @Path("{NoticiaId: \\d+}")
     public void removeNoticias(@PathParam("usuarioId") Long usuarioId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
-        NoticiaEntity noticia=usuarioLogic.getNoticia(usuarioId, NoticiaId);
-        usuarioLogic.removeNoticia(usuarioId, NoticiaId);
+        try
+        {
+            NoticiaEntity noticia=usuarioLogic.getNoticia(usuarioId, NoticiaId);
+            usuarioLogic.removeNoticia(usuarioId, NoticiaId);
+        }
+        catch (javax.ejb.EJBException e)
+        {
+            throw e;
+        }
+        
     }
     /**
      * Actualizar una noticia.<br>
@@ -140,8 +152,16 @@ public class UsuarioNoticiaResource {
     @PUT
     @Path("{NoticiaId: \\d+}")
     public NoticiaDetailDTO updateNoticia(@PathParam("usuarioId") Long usuarioId, @PathParam("NoticiaId") Long NoticiaId, NoticiaDetailDTO newNoticia) throws BusinessException {
-        NoticiaEntity e = newNoticia.toEntity();
-        return new NoticiaDetailDTO(usuarioLogic.updateNoticia(usuarioId, NoticiaId,e));
+        try
+        {
+            NoticiaEntity e = newNoticia.toEntity();
+            return new NoticiaDetailDTO(usuarioLogic.updateNoticia(usuarioId, NoticiaId,e));
+        }
+        catch (javax.ejb.EJBException e)
+        {
+            throw e;
+        }
+        
     }
     /**
      * Obtiene multimedia de una noticia.<br>
@@ -162,6 +182,11 @@ public class UsuarioNoticiaResource {
         {
             throw new NotFoundException("La noticia que busca no existe en el sistema.");
         }
+        catch (javax.ejb.EJBException e)
+        {
+            throw e;
+        }
+        
         
     }
     /**

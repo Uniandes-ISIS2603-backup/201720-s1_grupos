@@ -27,6 +27,17 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         templateUrl: basePath + 'noticias.html'
                     }
                 }
+            }).state('ERRORNOTICIA', {
+                url: '/error',
+                parent:'noticias',
+                params:{
+                    mensaje:null
+                },
+                views: {
+                    'noticiaDetailView': {
+                        templateUrl: basePath + 'noticias.error.html'
+                    }
+                }
             }).state('usuarioNoticias', {
                 url: '/noticias',
                 abstract:true,
@@ -93,6 +104,17 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         controller: 'usuarioNoticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.delete.html'
+                    }
+                }
+            }).state('ERRORUSUARIONOTICIA', {
+                url: '/error',
+                parent:'usuarioNoticias',
+                params:{
+                    mensaje:null
+                },
+                views: {
+                    'noticiaDetailView': {
+                        templateUrl: basePath + 'noticias.error.html'
                     }
                 }
             }).state('grupoNoticias', {
@@ -175,6 +197,17 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         controller: 'grupoNoticiasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.delete.html'
+                    }
+                }
+            }).state('ERRORGRUPONOTICIA', {
+                url: '/error',
+                parent:'grupoNoticias',
+                params:{
+                    mensaje:null
+                },
+                views: {
+                    'noticiaDetailView': {
+                        templateUrl: basePath + 'noticias.error.html'
                     }
                 }
             }).state('noticiasExhibicion',{
