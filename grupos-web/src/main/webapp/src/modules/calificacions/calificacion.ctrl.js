@@ -13,14 +13,12 @@
             $scope.calificacionEliminada=false;
             // inicialmente el listado de calificaciones está vacio
             $scope.records = {};
-            $scope.errorCalificacion="NO HAY ERROR";
+            var errorCalificacion="Error";
             // carga las calificaciones
              $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
-            }, function(response){
-                $scope.errorCalificacion=response.data+"";
-                console.log("B"+ response.data);
-                $state.go('ERROR',{},{reload:true});
+            },function(response){
+                console.log("ERror "+response.data);
             });
 
             // el controlador recibió un id ??
@@ -30,17 +28,23 @@
                 // toma el id del parámetro
                 id = $stateParams.calificacionId;
                 // obtiene el dato del recurso REST
+   //---------
+   //AQUÍ ESTÁ EL ERROR
+   //------------
                 $http.get(fullContext + "/" + id)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
-                        },function(response){
-                            console.log("A"+ response.data+" "+errorCalificacion);
-                            errorCalificacion = response.data;
-                           console.log("A"+ response.data+" "+errorCalificacion);
-                            $state.go('ERROR',{},{reload : true});
-                        });
+                        },function(response)
+                        {
+                            errorCalificacion=response.data;
+                            $scope.variableErrorCalificacion=response.data;
+                            console.log("ERror "+response.data+ errorCalificacion+  $scope.variableErrorCalificacion);
+                            $state.go('ERROR');
+
+                        })
+                        ;
 
                 // el controlador no recibió un id
             } else {
@@ -119,7 +123,7 @@
             this.getError=function()
             {
                 return errorCalificacion;
-            }
+            };
 // Código continua con las funciones de despliegue de errores
 
 
