@@ -3,12 +3,17 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('usuarioNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext) {
+            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            {
+                $scope.variableErrorMultimedia=$state.params.mensaje;
+            }
             //Inicialización de variable para saber si es de blog o no.
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
             console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización del multimediaContexto
                 fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            
             //Función de creación del link temporalmente
             this.randomString= function()
             {
@@ -24,7 +29,10 @@
             // carga la multimedia
             $http.get(fullContext).then(function (response) {
                 $scope.multimediaRecords = response.data;
-            });
+            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
+                            });
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
@@ -38,7 +46,10 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentMultimedia
                             $scope.currentMultimedia = response.data;
-                        });
+                        },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
+                            });
 
                 // el controlador no recibió un cityId
             } else {
@@ -58,6 +69,9 @@
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -68,6 +82,9 @@
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
@@ -79,16 +96,12 @@
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
                          $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
-                    })
+                    },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
+                            })
                 }
             };
-            
-            
-            
-            
-
-// Código continua con las funciones de despliegue de errores
-
 
         }]);
 })(angular);

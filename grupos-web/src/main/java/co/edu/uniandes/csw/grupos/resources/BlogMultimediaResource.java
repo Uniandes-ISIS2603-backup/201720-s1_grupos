@@ -54,6 +54,7 @@ public class BlogMultimediaResource {
         ArrayList<MultimediaDetailDTO> m = new ArrayList<>();
         for(MultimediaEntity d:list) m.add(new MultimediaDetailDTO(d));
         return m;
+        
     }
     /**
      * Retorna lista de dtos.<br>
@@ -64,7 +65,14 @@ public class BlogMultimediaResource {
     @GET
     public List<MultimediaDetailDTO> getMultimedia(@PathParam("blogId")Long id) throws BusinessException
     {
-        return toDTO(blog.getMultimedia(id));
+        try
+        {
+            return toDTO(blog.getMultimedia(id));
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * Obtiene multimedia con un link.<br>
@@ -77,7 +85,14 @@ public class BlogMultimediaResource {
     @Path("{link: [a-zA-Z]+}")
     public MultimediaDetailDTO getMultimediaNoticia(@PathParam("blogId") Long id,@PathParam("link") String link) throws BusinessException
     {
-        return new MultimediaDetailDTO(blog.getMultimedia(id,link));
+        try
+        {
+            return new MultimediaDetailDTO(blog.getMultimedia(id,link));
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * Agrega una multiemdia de grupo.<br>
@@ -90,8 +105,15 @@ public class BlogMultimediaResource {
     @POST
     public List<MultimediaDetailDTO> postMultimedia (@PathParam("grupoId") Long grupoId,@PathParam("blogId")Long id, List<MultimediaDetailDTO> multimedia) throws BusinessException
     {
-        List<MultimediaEntity> mult = listarDTO(multimedia);
-        return toDTO(blog.addMultipleMultimedia(grupoId, id, mult));
+        try
+        {
+            List<MultimediaEntity> mult = listarDTO(multimedia);
+            return toDTO(blog.addMultipleMultimedia(grupoId, id, mult));
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * Actualiza la multimedia con el dto dado.<br>
@@ -106,8 +128,15 @@ public class BlogMultimediaResource {
     @Path("{link: [a-zA-Z]+}")
     public List<MultimediaDetailDTO> updateMultimedia (@PathParam("grupoId") Long grupoId, @PathParam("blogId") Long id, @PathParam("link")String link, MultimediaDetailDTO dto) throws BusinessException
     {
-        MultimediaEntity mult = dto.toEntity();
-       return toDTO(blog.updateMultimedia(grupoId,id, mult, link));
+        try
+        {
+            MultimediaEntity mult = dto.toEntity();
+            return toDTO(blog.updateMultimedia(grupoId,id, mult, link));
+        }
+       catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
     /**
      * +Borra una multimedia.<br>
@@ -119,6 +148,13 @@ public class BlogMultimediaResource {
     @Path("{link: [a-zA-Z]+}")
     public void deleteMultimedia(@PathParam("blogId") Long id, @PathParam("link")String link) throws BusinessException
     {
-        blog.deleteMultimedia(id,link);
+        try
+        {
+            blog.deleteMultimedia(id,link);
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
+        }
     }
 }

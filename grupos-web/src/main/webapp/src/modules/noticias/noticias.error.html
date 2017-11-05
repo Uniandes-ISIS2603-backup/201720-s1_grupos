@@ -1,0 +1,14 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <h1>{{variableErrorNoticia}}</h1>
+        <div class="col-md-3" ng-show="{{!noticiaEditable}}">
+            <button ui-sref="noticiasExhibicion"> Vover a la lista de noticias </button>
+        </div>
+        <div class="col-md-3" ng-show="{{deGrupo}}">
+            <button ui-sref="listaGrupos"> Volver a grupos </button>
+        </div>
+        <div class="col-md-3" ng-show="{{esNoticiaUsuario}}">
+            <button ui-sref="usuariosList"> Volver a usuarios </button>
+        </div>
+</div>
+

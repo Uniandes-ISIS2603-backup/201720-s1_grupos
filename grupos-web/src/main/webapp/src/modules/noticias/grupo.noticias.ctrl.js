@@ -5,8 +5,13 @@
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
              $scope.esNoticiaUsuario=false; $scope.deGrupo=true; $scope.noticiaEditable=true;
             fullContext=globalContext+"/"+context;
-            //Validación de desde dónde viene la noticia,
-            $scope.noticiaEditable=true;
+            
+            var error="";
+            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            {
+                $scope.variableErrorNoticia=$state.params.mensaje;
+            }
+           
               header="Noticias de grupo";
             fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
             console.log(globalContext+" "+context+" "+grupoContext+" "+fullContext+":"+$state.params.grupoId);
@@ -14,7 +19,10 @@
             // carga las noticias
             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
-            });
+            },function(response){
+                                error=response.data;
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                            });
             
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
@@ -64,7 +72,10 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
-                        });
+                        },function(response){
+                                error=response.data;
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                            });
 
                 // el controlador no recibió un cityId
             } else {
@@ -74,7 +85,6 @@
                     name: '' /*Tipo String*/
                 };
 
-                $scope.alerts = [];
             }
             console.log($scope.currentRecord);
 
@@ -97,6 +107,9 @@
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('grupoNoticiasList');
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -108,6 +121,9 @@
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('grupoNoticiasList');
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
@@ -119,7 +135,10 @@
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
                           $state.go('grupoNoticiasList');
-                    });
+                    },function(response){
+                                error=response.data;
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                            });
                 }
             };
             this.getHeader= function()

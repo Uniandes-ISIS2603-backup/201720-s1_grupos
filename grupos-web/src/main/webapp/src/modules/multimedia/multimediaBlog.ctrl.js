@@ -4,12 +4,20 @@
 
     mod.controller('multimediaBlogCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
             
-            //Inicialización d variable para saber si es de blog o no.
+            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            {
+                $scope.variableErrorMultimedia=$state.params.mensaje;
+            }
+            //Inicialización de variable para saber si es de blog o no.
             $scope.esMultimediaBlog=true;
             $scope.esMultimediaNoticia=false;
 
             fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+multimediaContext;
             
+            /**
+             * Genera un link con un String aleatorio.<br>
+             * @returns String aleatorio como link
+             */
             this.randomString= function()
             {
                  var text="";
@@ -23,7 +31,10 @@
             // carga la multimedia
             $http.get(fullContext).then(function (response) {
                 $scope.multimediaRecords = response.data;
-            });
+            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
+                            });
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
@@ -37,7 +48,10 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentMultimedia
                             $scope.currentMultimedia = response.data;
-                        });
+                        },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
+                            });
 
                 // el controlador no recibió un cityId
             } else {
@@ -58,6 +72,9 @@
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('blogMultimediaList',{},{reload:true});
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
                             });
                     currentMultimedia.link=null;
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -69,6 +86,9 @@
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('blogMultimediaList',{},{reload:true});
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
                             });
                 }
                 ;
@@ -80,16 +100,12 @@
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
                          $state.go('blogMultimediaList',{},{reload:true});
-                    });
+                    },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
+                            });
                 }
             };
-            this.prueba = function(){
-                console.log("HOLA Q HACE");
-            };
-
-            
-// Código continua con las funciones de despliegue de errores
-
 
         }]);
 })(angular);

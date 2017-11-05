@@ -34,12 +34,15 @@
                         templateUrl: basePath + 'calificacions.html'
                     }
                 }
-            }).state('ERROR', {
+            }).state('ERRORCALIFICACION', {
                 url: '/error',
                 parent:'calificacions',
+                params:{
+                    mensaje:null
+                },
                 views: {
                     'childrenView': {
-                        templateUrl: basePath + 'calificacions.404.html'
+                        templateUrl: basePath + 'calificacions.error.html'
                     }
                 }
             }).state('calificacionsList', {

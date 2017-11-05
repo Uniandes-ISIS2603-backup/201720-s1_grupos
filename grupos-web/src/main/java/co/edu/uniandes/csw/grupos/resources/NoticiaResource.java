@@ -60,9 +60,13 @@ public class NoticiaResource {
         {
             entity=logic.getEntity(id);
         }
-        catch(javax.ejb.EJBTransactionRolledbackException e)
+          catch(javax.ejb.EJBTransactionRolledbackException e)
         {
             throw new NotFoundException("No se encontró la noticia con id: "+ id);
+        }
+        catch(javax.ejb.EJBException e)
+        {
+            throw e;
         }
         return new NoticiaDetailDTO(entity);
     }

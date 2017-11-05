@@ -11,6 +11,10 @@
             //Variables para la eliminación de la calificación
             $scope.calificacionSeleccionada=false;
             $scope.calificacionEliminada=false;
+            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            {
+                $scope.variableErrorCalificacion=$state.params.mensaje;
+            }
             // inicialmente el listado de calificaciones está vacio
             $scope.records = {};
             var errorCalificacion="Error";
@@ -18,7 +22,8 @@
              $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             },function(response){
-                console.log("ERror "+response.data);
+                errorCalificacion=response.data;
+                $state.go('ERROR',{mensaje: errorCalificacion});
             });
 
             // el controlador recibió un id ??
@@ -39,9 +44,7 @@
                         },function(response)
                         {
                             errorCalificacion=response.data;
-                            $scope.variableErrorCalificacion=response.data;
-                            console.log("ERror "+response.data+ errorCalificacion+  $scope.variableErrorCalificacion);
-                            $state.go('ERROR');
+                            $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
 
                         })
                         ;
@@ -68,13 +71,16 @@
         nombre: "DE",
         password: "Hola"};
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id === null) {
+                if (id === null || id===undefined) {
                     // ejecuta POST en el recurso REST
                     return $http.post(fullContext, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('calificacionsList');
+                            },function(response){
+                                errorCalificacion=response.data;
+                                $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -86,10 +92,12 @@
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('calificacionsList');
+                            },function(response){
+                                errorCalificacion=response.data;
+                                $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
                             });
-                }
-                ;
             };
+        }
             /**
              * Borra el registro.<br>
              * @param {type} id Id del registro.<br>
@@ -105,7 +113,10 @@
                     {
                         //Cambie al listado de calificaciones
                         $state.go('calificacionsList');
-                    });
+                    },function(response){
+                                errorCalificacion=response.data;
+                                $state.go('ERROR',{mensaje: errorCalificacion});
+                    }  ) ;
                 }
             };
             /**
