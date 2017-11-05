@@ -30,15 +30,16 @@
             $http.get(fullContext).then(function (response) {
                 $scope.multimediaRecords = response.data;
             },function(response){
+                                //Función de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
 
-            // el controlador recibió un id ??
-            // revisa los parámetros (ver el :id en la definición de la ruta)
+            // el controlador recibió un link ??
+            // revisa los parámetros (ver el :link en la definición de la ruta)
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
-                // toma el id del parámetro
+                // toma el link del parámetro
                 link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext+"/"+ link)
@@ -47,33 +48,38 @@
                             // cuando llegue el dato, actualice currentMultimedia
                             $scope.currentMultimedia = response.data;
                         },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
 
-                // el controlador no recibió un cityId
-            } else {
-               
-               
-                $scope.alerts = [];
-            }
+            
+        }
+            /**
+             * Guarda el registro.<br>
+             * @param {type} link Link de a multimedia
+             */
             this.saveRecord = function (link) {
+                //Multimedia actual
                 currentMultimedia = $scope.currentMultimedia;
-                // si el id es null, es un registro nuevo, entonces lo crea
+                // si el link es null, es un registro nuevo, entonces lo crea
                 if (link === null || link===undefined) {
+                    // multimedia actual
                     currentMultimedia.link=this.randomString();
                     // ejecuta POST en el recurso REST
                     multimediaList=[currentMultimedia];
+                    //Promesa de post
                     return $http.post(fullContext, multimediaList)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
                             },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
-                    // si el id no es null, es un registro existente entonces lo actualiza
+                    // si el link no es null, es un registro existente entonces lo actualiza
                 } else {
 
                     // ejecuta PUT en el recurso REST
@@ -83,12 +89,17 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
                             },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
             };
+            /**
+             * Borra elr egistro con el link dado.<br>
+             * @param {type} link
+             */
             this.deleteRecord= function(link)
             {
                 if(link!==null)
@@ -97,6 +108,7 @@
                     {
                          $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
                     },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
                             })

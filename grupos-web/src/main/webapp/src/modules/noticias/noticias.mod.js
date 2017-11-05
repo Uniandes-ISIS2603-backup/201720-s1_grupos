@@ -13,7 +13,22 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
             $urlRouterProvider.otherwise("/noticiasList");
-
+            /**
+             * Diferentes estados
+             * noticiaNoEditableList
+             * -ERRORNOTICIA
+             * -usuarioNoticiaMultimediList
+             * -usuarioNoticiaCreate
+             * -usuarioNoticiaDelete
+             * -usuarioNoticiaEdit
+             * -ERRORUSUARIONOTICIA
+             * -grupoNoticiaList
+             * -grupoNoticiaCreate
+             * -grupoNoticiaDelete
+             * -grupoNoticiaDelete
+             * -ERRORGRUPONOTTICIA
+             * 
+             */
             $stateProvider.state('noticias', {
                 url: '/noticias',
                 abstract:true,

@@ -1,32 +1,41 @@
 (function (ng) {
-
+    //Módulo
     var mod = ng.module("noticiasModule");
-
+    /**
+     * Controlador con $scope, $state, $http, noticiasContext (Ruta de noticia), noticiaGrupoContext (Ruta de grupo), grupoContext(Ruta de grupo)
+     */
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
-             $scope.esNoticiaUsuario=false; $scope.deGrupo=true; $scope.noticiaEditable=true;
-            fullContext=globalContext+"/"+context;
-            
+             //Inicialización de booleanos importantes
+            $scope.esNoticiaUsuario=false;
+            $scope.deGrupo=true; 
+            $scope.noticiaEditable=true;
+            //Inicialización de mensaje de error
             var error="";
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorNoticia=$state.params.mensaje;
             }
-           
+           //Header
               header="Noticias de grupo";
+              //Contexto global
             fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
-            console.log(globalContext+" "+context+" "+grupoContext+" "+fullContext+":"+$state.params.grupoId);
-            
             // carga las noticias
             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
             
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
+            //Items para agregar
             $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
+            /**
+             * Agrega un elemento a la lista por añadir en el post.<br>
+             * @param {type} itemToAdd Item por añadir.<br>
+             */
             this.add=function(itemToAdd){
                 console.log(itemToAdd);
                 itemToAdd.link=this.randomString();
@@ -34,10 +43,16 @@
                 $scope.itemsToAdd.splice(index,1);
                 $scope.multimedia.push(angular.copy(itemToAdd));
             };
+            /**
+             * Agrega un nuevo item pendiente.<br>
+             */
             this.addNew=function(){
                 console.log("NUEVO ITEM");
                 $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
             };
+            /**
+             * Agrega todos los elementos de la lista de POST.
+             */
             this.addAll=function()
             {
                 while($scope.itemsToAdd.length!==0)
@@ -46,11 +61,19 @@
                     this.add($scope.itemsToAdd[0]);
                 }
             };
+            /**
+             * Remueve un item de los pendientes.<br>
+             * @param {type} itemToAdd
+             */
             this.remove=function(itemToAdd)
             {
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
             };
+            /**
+             * Retorna un string aleatorio como link formado.<br>
+             * @return link aleatorio
+             */
             this.randomString= function()
             {
                 var text="";
@@ -73,11 +96,11 @@
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
                         },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
 
-                // el controlador no recibió un cityId
             } else {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
@@ -86,11 +109,12 @@
                 };
 
             }
-            console.log($scope.currentRecord);
-
+            /**
+             * Guarda el registro con id dado por parámetro.<br>
+             * @param {type} id
+             */
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
                     this.addAll();
@@ -108,6 +132,7 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('grupoNoticiasList');
                             },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
@@ -122,12 +147,17 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('grupoNoticiasList');
                             },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
             };
+            /**
+             * Borra el registro con id dado.<br>
+             * @param {type} id 
+             */
             this.deleteRecord= function(id)
             {
                 if(id!==null)
@@ -136,11 +166,16 @@
                     {
                           $state.go('grupoNoticiasList');
                     },function(response){
+                                //Estado de error
                                 error=response.data;
                                 $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
             };
+            /**
+             * Retorna el header actual.<br>
+             * @returns {header|String}
+             */
             this.getHeader= function()
             {
                 return header;

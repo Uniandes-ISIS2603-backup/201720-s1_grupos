@@ -1,20 +1,40 @@
+<style>
+    a:hover{
+        color:white
+    }
+    a:link{
+        color:white
+    }
+    a:visited{
+        color:white
+    }
+    a:unvisited{
+        color:white
+    }
+</style>
 <div class="container-fluid" ui-view="multimediaListView">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label>Multimedia</label></div>
+            <div class="panel-heading" ng-show="{{esMultimediaNoticia && deGrupo}}">
+                <a ui-sref="grupoNoticiaDetail">Multimedia</a>
+            </div>
+            <div class="panel-heading" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
+                <a ui-sref="usuarioNoticiaDetail">Multimedia</a>
+            </div>
+            <div class="panel-heading" ng-show="{{esMultimediaBlog}}">
+                <a ui-sref="blogDetail">Multimedia</a>
+            </div>
+        
             <div class="panel-body">
                 
                 <div class="btn-toolbar" ng-show="{{esMultimediaBlog}}" role="toolbar" aria-label="Toolbar with button groups">
-                    <button id="return-btn" class="btn btn-info" ui-sref="blogDetail">Volver a blog</button>
                     <button id="add-btn" class="btn btn-info" ui-sref="blogMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
                 </div>
                 <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" role="toolbar" aria-label="Toolbar with button groups">
-                    <button id="return-btn" class="btn btn-info" ui-sref="usuarioNoticiaDetail">Volver a noticia</button>
-                    <button id="add-btn" class="btn btn-info" ui-sref="usuarioNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia1</button>
+                    <button id="add-btn" class="btn btn-info" ui-sref="usuarioNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
                 </div>
                 <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && deGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
-                    <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail">Volver a noticia</button>
-                    <button id="add-btn" class="btn btn-info" ui-sref="grupoNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia2</button>
+                    <button id="add-btn" class="btn btn-info" ui-sref="grupoNoticiaMultimediaCreate"><span class="glyphicon glyphicon-plus"></span> Agregar multimedia</button>
                 </div>
                 
                 <div class="col-md-8">
@@ -55,7 +75,4 @@
             </div>
         </div>
     </div>
-</div>
-<div ui-view="errorView">
-    
 </div>

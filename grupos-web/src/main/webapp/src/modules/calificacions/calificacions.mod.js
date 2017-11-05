@@ -17,6 +17,8 @@
             $urlRouterProvider.otherwise("/calificacionsList");
             /**
              * Definición de estados:
+             * -calificacions: Estado abstracto de calificaciones.<br>
+             * -ERRORCALIFICACION: Estado de errores.<br>
              * -calificacionsList: Listado de las calificaciones.<br>
              * -calificacionCreate: Estado para crear una calificación (Un formulario).
              * -calificacionEdit: Estado paraa editar una calificación.<br>

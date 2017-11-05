@@ -11,6 +11,9 @@
             //Variables para la eliminación de la calificación
             $scope.calificacionSeleccionada=false;
             $scope.calificacionEliminada=false;
+            /**
+             * Inicialización dle mensaje de estado de error
+             */
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorCalificacion=$state.params.mensaje;
@@ -22,6 +25,7 @@
              $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             },function(response){
+                 //Estado de error
                 errorCalificacion=response.data;
                 $state.go('ERROR',{mensaje: errorCalificacion});
             });
@@ -33,9 +37,6 @@
                 // toma el id del parámetro
                 id = $stateParams.calificacionId;
                 // obtiene el dato del recurso REST
-   //---------
-   //AQUÍ ESTÁ EL ERROR
-   //------------
                 $http.get(fullContext + "/" + id)
                         .then(function (response) {
                             // $http.get es una promesa
@@ -43,6 +44,7 @@
                             $scope.currentRecord = response.data;
                         },function(response)
                         {
+                             //Estado de error
                             errorCalificacion=response.data;
                             $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
 
@@ -79,6 +81,7 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('calificacionsList');
                             },function(response){
+                                 //Estado de error
                                 errorCalificacion=response.data;
                                 $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
                             });
@@ -93,6 +96,7 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('calificacionsList');
                             },function(response){
+                                 //Estado de error
                                 errorCalificacion=response.data;
                                 $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
                             });
@@ -114,6 +118,7 @@
                         //Cambie al listado de calificaciones
                         $state.go('calificacionsList');
                     },function(response){
+                                //Estado de error
                                 errorCalificacion=response.data;
                                 $state.go('ERROR',{mensaje: errorCalificacion});
                     }  ) ;

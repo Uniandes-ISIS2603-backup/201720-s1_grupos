@@ -1,8 +1,11 @@
 (function (ng) {
-    
+    //Variable del módulo de multimedia
     var mod = ng.module("multimediaModule");
-
+    /**
+     * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz), noticiaGrupoContext (Ruta grupo)
+     */
     mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
+            //Inicialización del mensaje de error
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorMultimedia=$state.params.mensaje;
@@ -89,20 +92,22 @@
                             // cuando llegue el dato, actualice currentMultimedia
                             $scope.currentMultimedia = response.data;
                         },function(response){
+                             //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
 
                 // el controlador no recibió un cityId
-            } else {
-               
-               
-                $scope.alerts = [];
             }
+            /**
+             * Guarda un registro.<br>
+             * @param {type} link Link del registro.<br>
+             */
             this.saveRecord = function (link) {
+                //Multimedia actual
                 currentMultimedia = $scope.currentMultimedia;
 
-                // si el id es null, es un registro nuevo, entonces lo crea
+                // si el link es null, es un registro nuevo, entonces lo crea
                 if (link === null || link===undefined) {
                     currentMultimedia.link=this.randomString();
                     // ejecuta POST en el recurso REST
@@ -113,10 +118,11 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                             },function(response){
+                                 //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
-                    // si el id no es null, es un registro existente entonces lo actualiza
+                    // si el link no es null, es un registro existente entonces lo actualiza
                 } else {
 
                     // ejecuta PUT en el recurso REST
@@ -127,19 +133,26 @@
                                 $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                             },function(response){
                                 error=response.data;
+                                 //Estado de error
                                 $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
             };
+            /**
+             * Borra el registro.<br>
+             * @param {type} link Link para borrar.<br>
+             */
             this.deleteRecord= function(link)
             {
                 if(link!==null)
                 {
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
+                        //Estado para ver la multimedia
                          $state.go('grupoNoticiaMultimediaList',{},{reload:true});
                     },function(response){
+                         //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
                             });

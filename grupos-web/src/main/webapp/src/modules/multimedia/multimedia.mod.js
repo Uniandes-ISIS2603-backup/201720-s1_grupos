@@ -1,11 +1,34 @@
 (function (ng) {
+    //Variable de módulo
 var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.router"]);
+//Constante del contexto de multimedia
     mod.constant("multimediaContext", "multimedia");
-
+    //Configuración con $stateProvider, $urlRouterProvider
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            //Ruta base
             var basePath = 'src/modules/multimedia/';
+            //Ruta por default
             $urlRouterProvider.otherwise("/multimediaList");
-            
+            /**
+             * Diferentes estados
+             * noticiaNoEditableMultimediaList
+             * -ERRORMULTIMEDIANOTICIA
+             * -usuarioNoticiaMultimediList
+             * -usuarioNoticiaMultimediaCreate
+             * -usuarioNoticiaMultimediaDelete
+             * -usuarioNoticiaMultimediaEdit
+             * -ERRORMULTIMEDIAUSUARIONOTICIA
+             * -grupoNoticiaMultimediaList
+             * -grupoNoticiaMultimediaCreate
+             * -grupoNoticiaMultimediaDelete
+             * -grupoNoticiaMultimediaDelete
+             * -ERORMULTIMEDIAGRUPONOTTICIA
+             * -blogMultimediaList
+             * -blogMultimediaCreate
+             * -blogMultimediaDelete
+             * -blogMultimediaEdit
+             * -ERRORMULTIMEDIABLOG
+             */
             $stateProvider.state('noticiaNoEditableMultimediaList', {
                 url: '/multimedia',
                 parent: 'noticiaNoEditableDetail',

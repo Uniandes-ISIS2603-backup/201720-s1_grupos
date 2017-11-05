@@ -1,9 +1,13 @@
 (function (ng) {
+        //Variable del módulo de multimedia
 
     var mod = ng.module("multimediaModule");
-
+    /**
+     * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), blogContext (Ruta de blog), grupoContext(Ruta de grupo)
+     */
     mod.controller('multimediaBlogCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
-            
+                        //Inicialización del mensaje de error
+
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorMultimedia=$state.params.mensaje;
@@ -11,6 +15,7 @@
             //Inicialización de variable para saber si es de blog o no.
             $scope.esMultimediaBlog=true;
             $scope.esMultimediaNoticia=false;
+                        //Inicialización del multimediaContexto
 
             fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+multimediaContext;
             
@@ -53,16 +58,15 @@
                                 $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
                             });
 
-                // el controlador no recibió un cityId
-            } else {
-               
-               
-                $scope.alerts = [];
             }
+              /**
+             * Guarda un registro.<br>
+             * @param {type} link Link del registro.<br>
+             */
             this.saveRecord = function (link) {
                 currentMultimedia = $scope.currentMultimedia;
 
-                // si el id es null, es un registro nuevo, entonces lo crea
+                // si el link es null, es un registro nuevo, entonces lo crea
                 if (link === null || link===undefined) {
                     currentMultimedia.link=this.randomString();
                     // ejecuta POST en el recurso REST
@@ -73,6 +77,7 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('blogMultimediaList',{},{reload:true});
                             },function(response){
+                                 //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
                             });
@@ -87,12 +92,17 @@
                                 // cuando termine bien, cambie de estado
                                 $state.go('blogMultimediaList',{},{reload:true});
                             },function(response){
+                                 //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
                             });
                 }
                 ;
             };
+            /**
+             * Borra el registro.<br>
+             * @param {type} link Link para borrar.<br>
+             */
             this.deleteRecord= function(link)
             {
                 if(link!==null)
@@ -101,6 +111,7 @@
                     {
                          $state.go('blogMultimediaList',{},{reload:true});
                     },function(response){
+                        //Estado de error
                                 error=response.data;
                                 $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
                             });
