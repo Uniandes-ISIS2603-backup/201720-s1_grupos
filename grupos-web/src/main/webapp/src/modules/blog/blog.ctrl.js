@@ -3,6 +3,8 @@
    
     mod.controller('blogCtrl', ['$scope', '$http', 'blogContext', '$state', 'grupoContext',
         function ($scope, $http, blogContext, $state, grupoContext) {
+            $scope.blogsDeUsuario = false;
+            
             $http.get(grupoContext+'/'+$state.params.grupoId+'/'+blogContext).then(function (response) {
                 $scope.listBlog = response.data;
             });

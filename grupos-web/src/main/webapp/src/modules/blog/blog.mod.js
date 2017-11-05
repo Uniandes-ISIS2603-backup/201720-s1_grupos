@@ -2,6 +2,7 @@
     var mod = ng.module("blogModule", ['grupoModule', 'ui.router']);
     mod.constant("blogContext", "blogs");
     mod.constant("grupoContext", "Stark/grupos");
+    mod.constant("usuarioContext", "Stark/usuarios");
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/blog/';
@@ -29,32 +30,16 @@
                     }
                 }
             }).state('blogFavList', {
-                url:'/list',
-                parent:'blog',
-                param: {
-                    usuarioId: null
-                },
+                url:'/blogs/list',
+                parent:'usuarioDetail',
                 views: {
-                   'listView': {
+                   'childrenView': {
                         templateUrl: basePath + 'blog.list.html',
                         controller: 'blogFavCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             }).state('blogDetail', {
-                url:'/{blogId:int}',
-                parent:'blog',
-                param: {
-                    blogId: null
-                },
-                views: {
-                   'detailView': {
-                        templateUrl: basePath + 'blog.detail.html',
-                        controller: 'blogCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            }).state('blogFavDetail', {
                 url:'/{blogId:int}',
                 parent:'blog',
                 param: {
