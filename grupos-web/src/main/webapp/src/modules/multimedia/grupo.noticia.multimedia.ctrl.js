@@ -3,13 +3,59 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
+            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            {
+                $scope.variableErrorMultimedia=$state.params.mensaje;
+            }
             //Inicialización de variable para saber si es de blog o no.
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
-            console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+grupoContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización del multimediaContexto
             fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
-            
+            //Inicialización de elementos multimedia a agregar a la noticia.
+            $scope.multimedia=[];
+            //Items a agregar
+            $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
+            /**
+             * Agrega un nuevo ítem a la lista de por agregar
+             * @param {type} itemToAdd
+             */
+            this.add=function(itemToAdd){
+                console.log(itemToAdd);
+                itemToAdd.link=this.randomString();
+                var index=$scope.itemsToAdd.indexOf(itemToAdd);
+                $scope.itemsToAdd.splice(index,1);
+                $scope.multimedia.push(angular.copy(itemToAdd));
+            };
+            /**
+             * Agrega un nuevo ítem a la lista de multimedia
+             * @param {type} itemToAdd
+             */
+            this.addNew=function(){
+                console.log("NUEVO ITEM");
+                $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
+            };
+            /**
+             * Agrega todos los ítems que se deben agregar
+             * @param {type} itemToAdd
+             */
+            this.addAll=function()
+            {
+                while($scope.itemsToAdd.length!==0)
+                {
+                    console.log($scope.itemsToAdd[0]);
+                    this.add($scope.itemsToAdd[0]);
+                }
+            };
+            /**
+             * Quitan un item por agregar de la lista
+             * @param {type} itemToAdd
+             */
+            this.remove=function(itemToAdd)
+            {
+                var index=$scope.itemsToAdd.indexOf(itemToAdd);
+                $scope.itemsToAdd.splice(index,1);
+            };
             //Función de creación del link temporalmente
             this.randomString= function()
             {
@@ -25,7 +71,10 @@
             // carga la multimedia
             $http.get(fullContext).then(function (response) {
                 $scope.multimediaRecords = response.data;
-            });
+            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
+                            });
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
@@ -39,7 +88,10 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentMultimedia
                             $scope.currentMultimedia = response.data;
-                        });
+                        },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
+                            });
 
                 // el controlador no recibió un cityId
             } else {
@@ -60,6 +112,9 @@
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('grupoNoticiaMultimediaList',{},{reload:true});
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -70,6 +125,9 @@
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('grupoNoticiaMultimediaList',{},{reload:true});
+                            },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
@@ -81,12 +139,13 @@
                     return $http.delete(fullContext+"/"+link).then (function()
                     {
                          $state.go('grupoNoticiaMultimediaList',{},{reload:true});
-                    });
+                    },function(response){
+                                error=response.data;
+                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
+                            });
                 }
             };
-            this.prueba = function(){
-                console.log("HOLA Q HACE");
-            };
+           
 
         }]);
 })(angular);

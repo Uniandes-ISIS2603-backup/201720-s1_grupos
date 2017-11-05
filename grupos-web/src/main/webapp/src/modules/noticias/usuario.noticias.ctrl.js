@@ -21,7 +21,7 @@
                 $scope.records = response.data;
             },function(response){
                                 error=response.data;
-                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error});
+                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
             
             //Inicialización de elementos multimedia a agregar a la noticia.
@@ -78,7 +78,7 @@
                             $scope.currentRecord = response.data;
                         },function(response){
                                 error=response.data;
-                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error});
+                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
 
                 // el controlador no recibió un cityId
@@ -114,7 +114,7 @@
                                 $state.go('usuarioNoticiasList');
                             },function(response){
                                 error=response.data;
-                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error});
+                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -128,7 +128,7 @@
                                 $state.go('usuarioNoticiasList');
                             },function(response){
                                 error=response.data;
-                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error});
+                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
@@ -142,7 +142,7 @@
                           $state.go('usuarioNoticiasList');
                     },function(response){
                                 error=response.data;
-                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error});
+                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
             };

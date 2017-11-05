@@ -11,8 +11,7 @@
             {
                 $scope.variableErrorNoticia=$state.params.mensaje;
             }
-            //Validación de desde dónde viene la noticia,
-            $scope.noticiaEditable=true;
+           
               header="Noticias de grupo";
             fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
             console.log(globalContext+" "+context+" "+grupoContext+" "+fullContext+":"+$state.params.grupoId);
@@ -22,7 +21,7 @@
                 $scope.records = response.data;
             },function(response){
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error});
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
             
             //Inicialización de elementos multimedia a agregar a la noticia.
@@ -75,7 +74,7 @@
                             $scope.currentRecord = response.data;
                         },function(response){
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error});
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
 
                 // el controlador no recibió un cityId
@@ -86,7 +85,6 @@
                     name: '' /*Tipo String*/
                 };
 
-                $scope.alerts = [];
             }
             console.log($scope.currentRecord);
 
@@ -111,7 +109,7 @@
                                 $state.go('grupoNoticiasList');
                             },function(response){
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error});
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -125,7 +123,7 @@
                                 $state.go('grupoNoticiasList');
                             },function(response){
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error});
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
                 ;
@@ -139,7 +137,7 @@
                           $state.go('grupoNoticiasList');
                     },function(response){
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error});
+                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
                 }
             };

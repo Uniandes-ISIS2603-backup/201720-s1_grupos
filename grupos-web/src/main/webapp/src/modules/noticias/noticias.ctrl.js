@@ -11,8 +11,7 @@
                  $scope.variableErrorNoticia=$state.params.mensaje;
              }
             fullContext=globalContext+"/"+context;
-            //Validación de desde dónde viene la noticia,
-            $scope.noticiaEditable=false;
+            
             header="¿Qué pasa con tus intereses hoy?";            
             
             //Inicialización de elementos multimedia a agregar a la noticia.
@@ -58,7 +57,7 @@
                 $scope.records = response.data;
             },function(response){
                                 error=response.data;
-                                $state.go('ERRORNOTICIA',{mensaje: error});
+                                $state.go('ERRORNOTICIA',{mensaje: error},{reload:true});
                             });
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
@@ -85,63 +84,8 @@
                     name: '' /*Tipo String*/,
                 };
 
-                $scope.alerts = [];
             }
             console.log($scope.currentRecord);
-
-            this.saveRecord = function (id) {
-                currentRecord = $scope.currentRecord;
-
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (id === null) {
-                    this.addAll();
-                    currentRecord.multimedia=$scope.multimedia;
-                    currentRecord.autor={
-    apellido: "Guzmán",
-    email: "hola@uniandes.edu.co",
-    id: 1,
-    nombre: "Sergio",
-    password: "hola"};
-                    // ejecuta POST en el recurso REST
-                    return $http.post(fullContext, currentRecord)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('noticiasList');
-                            },function(response){
-                                error=response.data;
-                                $state.go('ERRORNOTICIA',{mensaje: error});
-                            });
-
-                    // si el id no es null, es un registro existente entonces lo actualiza
-                } else {
-
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('noticiasList');
-                            },function(response){
-                                error=response.data;
-                                $state.go('ERRORNOTICIA',{mensaje: error});
-                            });
-                }
-                ;
-            };
-            this.deleteRecord= function(id)
-            {
-                if(id!==null)
-                {
-                    return $http.delete(fullContext+"/"+id).then (function()
-                    {
-                          $state.go('noticiasList');
-                    },function(response){
-                                error=response.data;
-                                $state.go('ERRORNOTICIA',{mensaje: error});
-                            });
-                }
-            };
             this.getHeader= function()
             {
                 return header;
