@@ -14,42 +14,6 @@
             
             header="¿Qué pasa con tus intereses hoy?";            
             
-            //Inicialización de elementos multimedia a agregar a la noticia.
-            $scope.multimedia=[];
-            $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
-            this.add=function(itemToAdd){
-                console.log(itemToAdd);
-                itemToAdd.link=this.randomString();
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                $scope.itemsToAdd.splice(index,1);
-                $scope.multimedia.push(angular.copy(itemToAdd));
-            };
-            this.addNew=function(){
-                console.log("NUEVO ITEM");
-                $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
-            };
-            this.addAll=function()
-            {
-                while($scope.itemsToAdd.length!==0)
-                {
-                    console.log($scope.itemsToAdd[0]);
-                    this.add($scope.itemsToAdd[0]);
-                }
-            };
-            this.remove=function(itemToAdd)
-            {
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                $scope.itemsToAdd.splice(index,1);
-            };
-            this.randomString= function()
-            {
-                var text="";
-              var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-                   for (var i = 0; i < 10; i++)
-                 text += possible.charAt(Math.floor(Math.random() * possible.length));
-                 console.log("TEXTO "+text);
-                return text;  
-            };
             // inicialmente el listado de noticias está vacio
             $scope.records = {};
             // carga las noticias
@@ -85,12 +49,10 @@
                 };
 
             }
-            console.log($scope.currentRecord);
             this.getHeader= function()
             {
                 return header;
             };
-            // Código continua con las funciones de despliegue de errores
 
 
         }]);
