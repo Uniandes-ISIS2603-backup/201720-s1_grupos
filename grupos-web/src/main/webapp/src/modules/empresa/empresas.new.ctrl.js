@@ -1,13 +1,12 @@
 (function (ng) {
     var mod = ng.module("empresaModule");
-    mod.constant("authorsContext", "api/authors");
-    mod.constant("empresaUsuarioContext", "Stark/usuarios/2/empresa");
+    mod.constant("empresaUsuarioContext", "empresa");
     mod.constant("usuariosContext", "Stark/usuarios");
-    mod.controller('empresaNewCtrl', ['$scope', '$http', 'empresaUsuarioContext', '$state', 'usuariosContext', '$rootScope',
-        function ($scope, $http, empresaUsuarioContext, $state, usuariosContext, $rootScope) {
+    mod.controller('empresaNewCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'empresaUsuarioContext', '$rootScope',
+        function ($scope, $http, usuariosContext, $state, empresaUsuarioContext, $rootScope) {
             $rootScope.edit = false;
             $scope.createEmpresa = function () {
-                $http.post(empresaUsuarioContext, {
+                $http.post(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext, {
                     nit: $scope.empresaNit,
                     nombre: $scope.empresaNombre,
                     logo: $scope.empresaLogo

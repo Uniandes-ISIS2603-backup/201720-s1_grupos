@@ -1,12 +1,11 @@
 (function (ng) {
     var mod = ng.module("empresaModule");
-    mod.constant("authorsContext", "api/authors");
-    mod.constant("empresasContext", "Stark/empresas");
-    mod.constant("empresaUsuarioContext", "Stark/usuarios/2/empresa");
-    mod.controller('empresaDeleteCtrl', ['$scope', '$http', 'empresaUsuarioContext', '$state',
-        function ($scope, $http, empresaUsuarioContext, $state) {
+    mod.constant("empresaUsuarioContext", "empresa");
+    mod.constant("usuariosContext", "Stark/usuarios");
+    mod.controller('empresaDeleteCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'empresaUsuarioContext',
+        function ($scope, $http, usuariosContext, $state, empresaUsuarioContext) {
             $scope.deleteEmpresa = function () {
-                $http.delete(empresaUsuarioContext, {}).then(function (response) {
+                $http.delete(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext, {}).then(function (response) {
                     $state.go('empresaNotFound', {reload: true});
                 });
             };

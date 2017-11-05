@@ -1,13 +1,13 @@
 (function (ng) {
     var mod = ng.module("tarjetaModule");
-    mod.constant("authorsContext", "api/authors");
-    mod.constant("tarjetasContext", "Stark/usuarios/3/tarjetas");
+    mod.constant("tarjetasContext", "tarjetas");
     mod.constant("usuariosContext", "Stark/usuarios");
-    mod.controller('tarjetaNewCtrl', ['$scope', '$http', 'tarjetasContext', '$state', 'usuariosContext', '$rootScope',
-        function ($scope, $http, tarjetasContext, $state, usuariosContext, $rootScope) {
+    mod.controller('tarjetaNewCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'tarjetasContext', '$rootScope',
+        function ($scope, $http, usuariosContext, $state, tarjetasContext, $rootScope) {
             $rootScope.edit = false;
             $scope.createTarjeta = function () {
-                $http.post(tarjetasContext, {
+                console.log(usuariosContext + '/' + $state.params.usuarioId + '/' + tarjetasContext);
+                $http.post(usuariosContext + '/' + $state.params.usuarioId + '/' + tarjetasContext, {
                     numero: $scope.tarjetaNumero,
                     banco: $scope.tarjetaBanco,
                     dineroDisponible: $scope.tarjetaDineroDisponible,

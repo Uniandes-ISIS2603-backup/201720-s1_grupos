@@ -1,16 +1,13 @@
 (function (ng) {
     var mod = ng.module("empresaModule");
-    mod.constant("authorsContext", "api/authors");
-    mod.constant("empresaUsuarioContext", "Stark/usuarios/2/empresa");
+    mod.constant("empresaUsuarioContext", "empresa");
     mod.constant("usuariosContext", "Stark/usuarios");
-    mod.controller('empresaUpdateCtrl', ['$scope', '$http', 'empresaUsuarioContext', '$state', 'usuariosContext', '$rootScope',
-        function ($scope, $http, empresaUsuarioContext, $state, $rootScope) {
+    mod.controller('empresaUpdateCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'empresaUsuarioContext', '$rootScope',
+        function ($scope, $http, usuariosContext, $state, empresaUsuarioContext, $rootScope) {
             $rootScope.edit = false;
             
-            
-            
                 var nitActual;
-                $http.get("Stark/usuarios/2/empresa").then(function (response) {
+                $http.get(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext).then(function (response) {
                     var empresaActual = response.data;
                     nitActual = empresaActual.nit;
                     $scope.currentNit = empresaActual.nit;
@@ -19,7 +16,7 @@
            
             $scope.updateEmpresa = function () {
                 //Poner bien path REST!
-                $http.put("Stark/usuarios/2/empresa", {
+                $http.put(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext, {
                     nit: nitActual,
                     nombre: $scope.empresaNombre,
                     logo: $scope.empresaLogo

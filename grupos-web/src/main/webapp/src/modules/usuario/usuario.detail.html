@@ -21,11 +21,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
-                <dl>     
-                    <dt><button ui-sref="usuarioNoticiasList"> Noticias de usuario</button></dt>
-                    <hr>
-                </dl>
+            <div class="col-md-10 col-lg-10">
+                <ul class="nav nav-tabs">
+                        <li><a ui-sref="usuarioNoticiasList">Noticias de usuario</a></li>
+                        <li><a ui-sref="tarjetasList({idUsuario: usuarioActual.id})">Mis tarjetas</a></li>
+                        <li><a ui-sref="empresaDetail({idUsuario: usuarioActual.id})">Mi empresa</a></li>
+                </ul>
             </div>
         </div>
         <div class="row">
