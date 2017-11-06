@@ -1,6 +1,11 @@
 (function (ng) {
     var mod = ng.module("eventoModule", ['ui.router']);
-    mod.constant("eventosContext", "Stark/eventos");
+       //Constante global
+    mod.constant("globalContext","Stark");
+    //Contante de noticias
+    mod.constant("eventosContext", "eventos");
+    
+    mod.constant("eventoGrupoContext","grupos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/evento/';
             $urlRouterProvider.otherwise("/eventosList");
@@ -39,15 +44,29 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('eventosDeGrupo', {
+            }).state('grupoEventos',{
                 url: '/eventos',
-                parent:'grupoDetail',
+                abstract : true,
+                parent : 'grupoDetail',
+                params : {
+                    grupoId : null
+                },
+                views : {
+                        'childrenView': {
+                        controller: 'grupoEventosCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'evento.html'
+                    }
+                }
+            }).state('eventosDeGrupo', {
+                url: '/list',
+                parent:'grupoEventos',
                 params:{
                     grupoId:null
                 },
                 views: {
-                    'childrenView': {
-                        controller: 'grupoCtrl',
+                    'listView': {
+                        controller: 'grupoEventosCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'eventos.list.html'
                     }
