@@ -5,18 +5,26 @@
             <div class="panel-body">
                 <div class="col-md-8">
                     <div class="container">
-                        <div><h2>Blogs del grupo</h2></div>
+                        <div>
+                            <h2 ng-hide="{{blogsDeUsuario}}">Blogs del grupo</h2>
+                            <h2 ng-show="{{blogsDeUsuario}}">Blogs favoritos</h2>
+                        </div>
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="btn-group mr-2" role="group" aria-label="First group" ng-hide="{{blogsDeUsuario}}">
                                 <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear blog :v</a>
                             </div>
                         </div>
                         <br>
-                        <div class="panel panel-default" ng-repeat="blog in listBlog">
+                        <div class="panel panel-default" ng-repeat="blog in listBlog" ng-hide="{{blogsDeUsuario}}">
                             <div class="panel-body clickable" ui-sref="blogDetail({blogId: blog.id})" role="button">                   
                                 <h3 id="{{$index}}-title">{{blog.titulo}}</h3>
-                               <p id="{{$index}}-content">{{blog.contenido}}</p>
-                                   
+                                <p id="{{$index}}-content">{{blog.contenido}}</p>    
+                            </div>
+                        </div>
+                        <div class="panel panel-default" ng-repeat="blog in listBlog" ng-show="{{blogsDeUsuario}}">
+                            <div class="panel-body clickable" ng-click="verBlogDetail(blog)" role="button">                   
+                                <h3 id="{{$index}}-title">{{blog.titulo}}</h3>
+                                <p id="{{$index}}-content">{{blog.contenido}}</p>    
                             </div>
                         </div>
                     </div>
