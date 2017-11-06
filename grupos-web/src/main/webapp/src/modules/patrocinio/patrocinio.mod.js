@@ -50,38 +50,24 @@
                     }
                 }
 
-            }).state('patrocinioDetail', {
-                url: '/{patrocinioId}/detail',
+            }).state('patrocinioUpdate', {
+                url: '/update/{patrocinioId}',
                 parent: 'usuarioPatrocinios',
                 param: {
                     patrocinioId: null
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'patrocinio.detail.html',
-                        controller: 'patrociniosUCtrl',
-                        controllerAs: 'ctrl'
+                        templateUrl: basePath + 'new/patrocinio.new.html',
+                        controller: 'patrocinioUpdateCtrl'
                     }
                 }
-
             }).state('patrocinioCreate', {
                 url: '/create',
                 parent: 'usuarioPatrocinios',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'new/patrocinio.new.html',
-                        controller: 'patrocinioNewCtrl'
-                    }
-                }
-            }).state('patrocinioUpdate', {
-                url: '/update/{patrocinioId}',
-                parent: 'empresasUsuario',
-                param: {
-                    patrocinioId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'update/patrocinio.update.html',
                         controller: 'patrocinioNewCtrl'
                     }
                 }
