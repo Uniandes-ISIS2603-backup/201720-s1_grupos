@@ -16,6 +16,9 @@
                 <tr ng-repeat="patrocinio in patrociniosRecords">
                     <td id="{{$index}}-nombre"><a ui-sref="patrocinioDetail({patrocinioId: patrocinio.id})">{{patrocinio.id}}</a></td>
                     <td id="{{$index}}-direccion">{{patrocinio.pago}}</td>
+                    <td id="{{$index}}-actions">
+                        <a class="btn btn-default btn-sm" ui-sref="patrocinioUpdate({patrocinioId: patrocinio.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                    </td>
                 </tr>
             </tbody>
         </table>
