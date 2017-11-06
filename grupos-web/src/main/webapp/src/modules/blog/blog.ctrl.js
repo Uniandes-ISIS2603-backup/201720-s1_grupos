@@ -5,6 +5,7 @@
         function ($scope, $http, blogContext, $state, grupoContext, usuarioContext) {
             $scope.blogsDeUsuario = false;
             
+            console.log($scope.esFavorito);
             $http.get(grupoContext+'/'+$state.params.grupoId+'/'+blogContext).then(function (response) {
                 $scope.listBlog = response.data;
             });
