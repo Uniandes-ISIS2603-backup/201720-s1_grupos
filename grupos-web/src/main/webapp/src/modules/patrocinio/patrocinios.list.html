@@ -8,13 +8,13 @@
             <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Usuario</th>    
+                    <th>Id</th>    
                     <th>Pago</th>  
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="patrocinio in patrociniosRecords">
-                    <td id="{{$index}}-nombre"><a ui-sref="patrocinioDetail({patrocinioId: patrocinio.id})">{{patrocinio.usuario}}</a></td>
+                    <td id="{{$index}}-nombre"><a ui-sref="patrocinioDetail({patrocinioId: patrocinio.id})">{{patrocinio.id}}</a></td>
                     <td id="{{$index}}-direccion">{{patrocinio.pago}}</td>
                 </tr>
             </tbody>
