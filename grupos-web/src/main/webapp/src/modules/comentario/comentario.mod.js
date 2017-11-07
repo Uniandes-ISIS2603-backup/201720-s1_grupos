@@ -241,7 +241,7 @@
                 views: {
                     'errorView': {
                         templateUrl: basePath + 'comentario.error.html',
-                        controller: 'comentarioGrupoNoticiaErrorCtrl',
+                        controller: 'comentarioNoticiaErrorCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
@@ -254,7 +254,7 @@
                 views: {
                     'errorView': {
                         templateUrl: basePath + 'comentario.error.html',
-                        controller: 'comentarioUsuarioNoticiaErrorCtrl',
+                        controller: 'comentarioNoticiaErrorCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
