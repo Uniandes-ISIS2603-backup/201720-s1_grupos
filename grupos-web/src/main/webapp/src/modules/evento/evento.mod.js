@@ -87,7 +87,7 @@
                 url: '/update/{eventoId:int}',
                 parent: 'eventos',
                 param: {
-                    authorId: null
+                    eventoId: null
                 },
                 views: {
                     'detailView': {
@@ -99,7 +99,7 @@
                 url: '/delete/{eventoId:int}',
                 parent: 'eventos',
                 param: {
-                    authorId: null
+                    eventoId: null
                 },
                 views: {
                     'detailView': {

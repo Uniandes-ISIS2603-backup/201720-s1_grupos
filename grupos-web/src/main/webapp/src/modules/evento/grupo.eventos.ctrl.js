@@ -71,6 +71,7 @@
                             });
                 }
             };
+            
             /**
              * Retorna el header actual.<br>
              * @returns {header|String}
