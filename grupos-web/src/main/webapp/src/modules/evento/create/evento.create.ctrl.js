@@ -1,11 +1,11 @@
 (function(ng){
     var mod = ng.module("eventoModule");
-    mod.constant("eventosContext","Stark/eventos");
-    mod.controller('eventoCreateCtrl',['$scope','$http','eventosContext','$state','$rootScope',
-       function($scope, $http, eventosContext, $state, $rootScope){
+    mod.constant("eventoContext","Stark/eventos");
+    mod.controller('eventoCreateCtrl',['$scope','$http','eventoContext','$state','$rootScope',
+       function($scope, $http, eventoContext, $state, $rootScope){
         $rootScope.edit = false;
         $scope.createEvento = function(){
-            $http.post(eventosContext, {
+            $http.post(eventoContext, {
                 nombre :$scope.eventoNombre,
                 fechaFin :$scope.eventoFechaFin,
                 fechaInicio :$scope.eventoFechaInicio              

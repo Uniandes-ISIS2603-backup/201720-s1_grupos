@@ -38,7 +38,7 @@
                         'listView': {
                         templateUrl: basePath + 'eventos.list.html'
                     },
-                    'mainView': {
+                    'detailView': {
                         templateUrl: basePath + 'evento.detail.html',
                         controller: 'eventoCtrl',
                         controllerAs: 'ctrl'

@@ -10,6 +10,10 @@
                     <hr>
                     <dt>Fecha Fin</dt>
                     <dd>{{currentEvento.fechaFin| date:'yyyy-MM-dd'}}</dd>
+                    <dt>Usuarios</dt>
+                    <tr ng-repeat=" usuario in currentEvento.usuarios">
+                        <td id ="{{$index}}-nombreUsuario">{{usuario.nombre}}</td>
+                    </tr>
                 </dl>
             </div>
         </div>
