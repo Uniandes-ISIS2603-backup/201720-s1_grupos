@@ -82,6 +82,32 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('blogGrupoError', {
+                url:'/error',
+                parent:'blog',
+                params:{
+                    mensaje: null
+                },
+                views: {
+                   'detailView': {
+                        templateUrl: basePath + 'blog.error.html',
+                        controller: 'blogGrupoErrorCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('blogUsuarioError', {
+                url:'/error',
+                parent:'usuarioDetail',
+                params:{
+                    mensaje: null
+                },
+                views: {
+                   'childrenView': {
+                        templateUrl: basePath + 'blog.error.html',
+                        controller: 'blogUsuarioErrorCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             
         }]);

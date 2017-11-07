@@ -10,6 +10,8 @@
                     comentario: $scope.comentario
                 }).then(function (response) {
                     $scope.goComentarioList();
+                }, function (error) {
+                    
                 });
             };
         } ]);

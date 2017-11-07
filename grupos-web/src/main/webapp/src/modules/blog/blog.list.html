@@ -17,14 +17,14 @@
                         <br>
                         <div class="panel panel-default" ng-repeat="blog in listBlog" ng-hide="{{blogsDeUsuario}}">
                             <div class="panel-body clickable" ui-sref="blogDetail({blogId: blog.id})" role="button">                   
-                                <h3 id="{{$index}}-title">{{blog.titulo}}</h3>
-                                <p id="{{$index}}-content">{{blog.contenido}}</p>    
+                                <h3 id="{{$index}}-tituloBlog">{{blog.titulo}}</h3>
+                                <p id="{{$index}}-contenidoBlog">{{blog.contenido}}</p>    
                             </div>
                         </div>
                         <div class="panel panel-default" ng-repeat="blog in listBlog" ng-show="{{blogsDeUsuario}}">
                             <div class="panel-body clickable" ng-click="verBlogDetail(blog)" role="button">                   
-                                <h3 id="{{$index}}-title">{{blog.titulo}}</h3>
-                                <p id="{{$index}}-content">{{blog.contenido}}</p>    
+                                <h3 id="{{$index}}-tittituloBlogUsuario">{{blog.titulo}}</h3>
+                                <p id="{{$index}}-contenidoBlogUsuario">{{blog.contenido}}</p>    
                             </div>
                         </div>
                     </div>

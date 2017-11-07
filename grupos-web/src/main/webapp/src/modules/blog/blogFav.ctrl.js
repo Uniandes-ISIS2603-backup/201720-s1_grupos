@@ -8,18 +8,16 @@
             $scope.verBlogDetail = function(blog){
                 $http.get(usuarioContext+'/'+$state.params.usuarioId+'/'+blogContext + '/' + blog.id).then(function (response) {
                     $state.go('blogDetail', {grupoId: response.data.grupo.id, blogId: blog.id}, {reload: true});
+                }, function (error) {
+                    $state.go('blogUsuarioError', {mensaje: error.data}, {reload: true});
                 });
             };
             
             $http.get(usuarioContext+'/'+$state.params.usuarioId+'/'+blogContext).then(function (response) {
                 $scope.listBlog = response.data;
+            }, function (error) {
+                $state.go('blogUsuarioError', {mensaje: error.data}, {reload: true});
             });
-            
-            //if ($state.params.blogId !== undefined) {
-            //    $http.get(grupoContext + '/' + $state.params.grupoId+'/'+blogContext+'/'+$state.params.blogId).then(function (response) {
-            //        $scope.blogActual = response.data;
-            //    });
-            //}
         }
     ]);
 }
