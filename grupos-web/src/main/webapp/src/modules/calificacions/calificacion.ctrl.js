@@ -67,11 +67,12 @@
             this.saveRecord=function(id) {
                 currentRecord = $scope.currentRecord;
                 //Calificador por default (Se define con el login)
-                currentRecord.calificador={apellido: "Rd",
-        email: "xd@uniandes.edu.co",
-        id: 11,
-        nombre: "DE",
-        password: "Hola"};
+                currentRecord.calificador={
+                                            apellido: "Guzmán",
+                                            email: "hola@uniandes.edu.co",
+                                            id: 1,
+                                            nombre: "Sergio",
+                                            password: "hola"};
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
                     // ejecuta POST en el recurso REST

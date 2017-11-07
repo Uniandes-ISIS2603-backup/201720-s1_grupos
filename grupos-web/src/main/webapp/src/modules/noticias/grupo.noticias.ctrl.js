@@ -119,12 +119,13 @@
                 if (id === null || id===undefined) {
                     this.addAll();
                     currentRecord.multimedia=$scope.multimedia;
+                    //Autor por default (Se define con el login)
                     currentRecord.autor={
-    apellido: "Guzmán",
-    email: "hola@uniandes.edu.co",
-    id: 1,
-    nombre: "Sergio",
-    password: "hola"};
+                                    apellido: "Guzmán",
+                                    email: "hola@uniandes.edu.co",
+                                    id: 1,
+                                    nombre: "Sergio",
+                                    password: "hola"};
                     // ejecuta POST en el recurso REST
                     return $http.post(fullContext, currentRecord)
                             .then(function () {
