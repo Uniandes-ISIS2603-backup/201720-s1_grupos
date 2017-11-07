@@ -10,6 +10,13 @@
             var basePath = 'src/modules/patrocinio/';
             $urlRouterProvider.otherwise("patrociniosList");
 
+            //estados:
+            //patrocinios - estado base
+            //patrociniosList - lista de patrocinios
+            //usuarioPatrocinios - estado conectado con usuarios
+            //patrocinioListDetail - lista de patrocinios para un usuario x
+            //patrocinioUpdate - actualizar un patrocinio
+            //patrocinioCreate - crea un nuevo patrocinio
             $stateProvider.state('patrocinios', {
                 url: '/patrocinios',
                 abstract: true,
