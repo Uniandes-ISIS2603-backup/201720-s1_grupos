@@ -22,16 +22,15 @@
             </thead>
             <tbody>
                 <tr ng-repeat="usuario in usuariosRecords">
-                    <td id="{{$index}}-nombre">{{usuario.nombre}}</td>
+                    <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
                     <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
                     <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
                     <td id="{{$index}}-Email">{{usuario.email}}</td>
+                    <a class="btn btn-success btn-lg" ng-click="asociarAdmin(usuario.id)" ng-show="{{deGrupo}}">Asociar esta :D</a>
                 </tr>
                 <!-- Si se oprime aquí, se agrega esta categoría al grupo-->     
-                <tr >
-            <a class="btn btn-success btn-lg" ng-click="asociarAdmin(usuario.id)" >Asociar este :D</a>
-            </tr>
-            </tbody>
+              
+        </tbody>
         </table>
     </div>
 </div>

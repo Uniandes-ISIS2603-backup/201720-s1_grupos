@@ -55,7 +55,7 @@
                 }
             }).state('asociarAdmins', {
                 //Estado que permite seleccionar categorías para asociar a un grupo
-                url: '/categorias/asociar',
+                url: '/administradores/asociar',
                 parent:'grupoDetail',
                 views: {
                     'childrenView':{

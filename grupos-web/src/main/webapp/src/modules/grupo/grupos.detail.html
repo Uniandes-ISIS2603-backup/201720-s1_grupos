@@ -8,10 +8,10 @@
         <div class="col-md-4">
             <!-- Botones por si un usuario se quiere inscribir o dejar un grupo, solo se muestra uno dependiendo del caso-->
             <div class=" col-md-12">
-                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!{{soyMiembro}}">
+                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!soyMiembro">
                     <button type="button" class="btn btn-success" ng-click="inscripcionGrupo()">Inscribirse</button>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{soyMiembro}}">
+                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="soyMiembro">
                     <button type="button" class="btn btn-danger" ng-click="dejarGrupo()">Salir del grupo</button>
                 </div>
             </div>

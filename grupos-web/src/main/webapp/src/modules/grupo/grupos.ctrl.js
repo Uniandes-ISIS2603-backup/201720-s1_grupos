@@ -15,7 +15,39 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             //Indica el usuario logeado actual
             $scope.idUsuarioActual=1;
             //Booleano que indica que actualmente se está en el controlador de grupo
-            $scope.deGrupo=true;        
+            $scope.deGrupo=true;     
+            /**
+             * Inscribe al usuario actual como miembro del grupo
+             */
+            $scope.inscripcionGrupo = function () {
+                console.log("llegue");
+                console.log("g" +$scope.grupoActual.id);
+                 console.log("u" +$scope.idUsuarioActual);
+                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)
+                {
+                    var idGrupo=$scope.grupoActual.id;
+                    //Se recarga en caso que funcione
+                    $state.go('grupoDetail',{},{reload:true});
+                    
+                },function(error)
+                {
+                    console.log(error.data);
+                });
+            };
+            /**
+             * Inscribe al usuario actual como miembro del grupo
+             */
+            $scope.dejarGrupo = function () {
+                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)               
+                {
+                    var idGrupo=$scope.grupoActual.id;
+                    //Se recarga en caso que funcione
+                    $state.go('grupoDetail',{idGrupo},{reload:true});
+                },function(error)
+                {
+                    console.log(error.data);
+                });
+            };
             /**
              * Devuelve los administradores del grupo actual
              * @param {type} idGrupo, id del grupo del que se van a obtener todos sus administradores
@@ -49,13 +81,13 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              */
             $scope.asociarAdmins= function(){             
                 $scope.adminsQueNoTengo($scope.usuariosRecords);
-                $state.go('asociarAdmins',{},{reload:false});
+                $state.go('asociarAdmins',{},{reload:true});
             };
             /*
              * Esta función recibe como param los usuarios que tiene el grupo como administradores para hacer un filtro visual con todos los usuarios que existen.
              * @param {type} adminsDeGrupo, administradores que el grupo posee
              */
-            $scope.admninsQueNoTengo = function (adminsDeGrupo) {
+            $scope.adminsQueNoTengo = function (adminsDeGrupo) {
                 $http.get(usuarioContext).then(function (response) {
                     $scope.todosLosAdmins = response.data;
                     $scope.adminsDeGrupo=adminsDeGrupo;
@@ -129,7 +161,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     var filteredCategorias = $scope.todasLasCategorias.filter(function (todasLasCategorias) {
                         return $scope.categoriasDeGrupo.filter(function (categoriasDeGrupo) {
                             return categoriasDeGrupo.id === todasLasCategorias.id;
-                        }).length === 0
+                        }).length === 0;
                     });
                     //Las categorías filtradas se mostrarán
                     $scope.categoriaRecords = filteredCategorias;
@@ -193,39 +225,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             };
             $http.get(grupoContext).then(function (response) {
                 $scope.grupoRecords = response.data;
-            });
-            /**
-             * Inscribe al usuario actual como miembro del grupo
-             */
-            $scope.inscripcionGrupo = function () {
-                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)
-                {
-                    var idGrupo=$scope.grupoActual.id;
-                    //Se recarga en caso que funcione
-                    $state.go('grupoDetail',{idGrupo},{reload:true});
-                    
-                },function(error)
-                {
-                    console.log(error.data);
-                });
-            };
-            /**
-             * Inscribe al usuario actual como miembro del grupo
-             */
-            $scope.dejarGrupo = function () {
-                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)               
-                {
-                    var idGrupo=$scope.grupoActual.id;
-                    //Se recarga en caso que funcione
-                    $state.go('grupoDetail',{idGrupo},{reload:true});
-                },function(error)
-                {
-                    console.log(error.data);
-                });
-            };
-            $http.get(grupoContext).then(function (response) {
-                $scope.grupoRecords = response.data;
-            });
+            });          
             //En caso de estar en un grupoDetail, se busca y se guardan sus atributos
             var soyMiembro= false;
             if ($state.params.grupoId !== undefined) {
