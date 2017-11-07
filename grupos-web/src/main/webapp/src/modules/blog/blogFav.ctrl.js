@@ -14,12 +14,6 @@
             $http.get(usuarioContext+'/'+$state.params.usuarioId+'/'+blogContext).then(function (response) {
                 $scope.listBlog = response.data;
             });
-            
-            //if ($state.params.blogId !== undefined) {
-            //    $http.get(grupoContext + '/' + $state.params.grupoId+'/'+blogContext+'/'+$state.params.blogId).then(function (response) {
-            //        $scope.blogActual = response.data;
-            //    });
-            //}
         }
     ]);
 }
