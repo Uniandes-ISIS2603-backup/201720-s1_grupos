@@ -7,6 +7,7 @@
             //Paths útiles
             var basePath = 'src/modules/grupo/';
             var basePathCategorias = 'src/modules/categoria/';
+            var basePathUsuarios = 'src/modules/usuario/';
             $urlRouterProvider.otherwise("/grupos");
             
             //Estado general del que los demás heredan
@@ -50,6 +51,15 @@
                 views: {
                     'childrenView':{
                         templateUrl: basePathCategorias + 'deGrupo/categoriasNoMias.list.html'
+                    }
+                }
+            }).state('asociarAdmins', {
+                //Estado que permite seleccionar categorías para asociar a un grupo
+                url: '/categorias/asociar',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePathUsuarios + 'deGrupo/adminsNoMios.list.html'
                     }
                 }
             }).state('categoriasDeGrupo', {

@@ -8,8 +8,12 @@
         <div class="col-md-4">
             <!-- Botones por si un usuario se quiere inscribir o dejar un grupo, solo se muestra uno dependiendo del caso-->
             <div class=" col-md-12">
-                <button type="button" class="btn btn-success" ui-sref="inscripcionGrupo()">Inscribirse</button>
-                <button type="button" class="btn btn-danger" ui-sref="dejarGrupo()">Salir del grupo</button>
+                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!{{soyMiembro}}">
+                    <button type="button" class="btn btn-success" ng-click="inscripcionGrupo()">Inscribirse</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{soyMiembro}}">
+                    <button type="button" class="btn btn-danger" ng-click="dejarGrupo()">Salir del grupo</button>
+                </div>
             </div>
         </div>
     </div>
@@ -25,8 +29,8 @@
             <button type="button" class="btn btn-primary" ui-sref="eventosDeGrupo">Eventos</button>
             <button type="button" class="btn btn-primary" ui-sref="blogList">Blogs</button>
             <button type="button" class="btn btn-primary" ng-click="categoriasDeMiGrupo(grupoActual.id)">Categorias</button>
-            <button type="button" class="btn btn-primary" ui-sref="adminsDeGrupo">Administradores</button>
-            <button type="button" class="btn btn-primary" ui-sref="miembrosDeGrupo">Miembros</button>
+            <button type="button" class="btn btn-primary" ng-click="adminsDeMiGrupo(grupoActual.id)">Administradores</button>
+            <button type="button" class="btn btn-primary" ui-sref="miembrosDeGrupo({grupoId: grupoActual.id})">Miembros</button>
         </div>
     </div>
     <br>
