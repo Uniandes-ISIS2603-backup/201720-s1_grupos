@@ -206,19 +206,6 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('comentarioError', {
-                url: '/error',
-                parent: 'comentarioList',
-                param: {
-                    mensaje: null
-                },
-                views: {
-                    'errorView': {
-                        templateUrl: basePath + 'comentario.error.html',
-                        controller: 'comentarioErrorCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
             }).state('comentarioNoticiaError', {
                 url: '/error',
                 parent: 'comentarioNoticiaList',
