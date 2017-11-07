@@ -17,7 +17,7 @@
                 $scope.usuarioNombre = usuarioActual.nombre;
                 $scope.usuarioApellido = usuarioActual.apellido;
                 $scope.usuarioNickname = usuarioActual.nickname;
-                $scope.usuarioContrasena = usuarioActual.contrasena;
+                $scope.usuarioPassword = usuarioActual.password;
                 $scope.usuarioEmail = usuarioActual.email;
             });
             //Función que determina la actualización del usuario
@@ -26,7 +26,7 @@
                     nombre: $scope.usuarioNombre,
                     apellido: $scope.usuarioApellido,
                     nickname: $scope.usuarioNickname,
-                    contrasena: $scope.usuarioContrasena,
+                    password: $scope.usuarioPassword,
                     email: $scope.usuarioEmail
                 }).then(function (response) {
                     //Usuario created successfully
