@@ -1,4 +1,4 @@
-(function (ng) {+
+(function (ng) {
     //variable con el modulo actual
     var mod = ng.module("usuarioModule");
     //se determina el contexto del usuario
@@ -8,6 +8,7 @@
             $scope.deGrupo=false;
             //Busca todos los usuarios que tiene la aplicación
             $http.get(usuarioContext).then(function (response) {
+                console.log("*****")
                 $scope.usuariosRecords = response.data;
             });
             //Se busca el usuario con id: $state.params.usuarioId
