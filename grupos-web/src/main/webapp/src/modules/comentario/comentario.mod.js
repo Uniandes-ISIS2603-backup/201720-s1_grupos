@@ -193,6 +193,71 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('comentarioError', {
+                url: '/error',
+                parent: 'comentarioList',
+                param: {
+                    mensaje: null
+                },
+                views: {
+                    'errorView': {
+                        templateUrl: basePath + 'comentario.error.html',
+                        controller: 'comentarioErrorCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioError', {
+                url: '/error',
+                parent: 'comentarioList',
+                param: {
+                    mensaje: null
+                },
+                views: {
+                    'errorView': {
+                        templateUrl: basePath + 'comentario.error.html',
+                        controller: 'comentarioErrorCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioNoticiaError', {
+                url: '/error',
+                parent: 'comentarioNoticiaList',
+                param: {
+                    mensaje: null
+                },
+                views: {
+                    'errorView': {
+                        templateUrl: basePath + 'comentario.error.html',
+                        controller: 'comentarioNoticiaErrorCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioGrupoNoticiaError', {
+                url: '/error',
+                parent: 'comentarioGrupoNoticiaList',
+                param: {
+                    mensaje: null
+                },
+                views: {
+                    'errorView': {
+                        templateUrl: basePath + 'comentario.error.html',
+                        controller: 'comentarioGrupoNoticiaErrorCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('comentarioUsuarioNoticiaError', {
+                url: '/error',
+                parent: 'comentarioUsuarioNoticiaList',
+                param: {
+                    mensaje: null
+                },
+                views: {
+                    'errorView': {
+                        templateUrl: basePath + 'comentario.error.html',
+                        controller: 'comentarioUsuarioNoticiaErrorCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
     
