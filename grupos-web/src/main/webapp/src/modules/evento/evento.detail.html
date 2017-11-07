@@ -10,11 +10,15 @@
                     <hr>
                     <dt>Fecha Fin</dt>
                     <dd>{{currentEvento.fechaFin| date:'yyyy-MM-dd'}}</dd>
-                    <dt>Usuarios</dt>
-                    <tr ng-repeat=" usuario in currentEvento.usuarios">
-                        <td id ="{{$index}}-nombreUsuario">{{usuario.nombre}}</td>
-                    </tr>
                 </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-lg-10">
+                <ul class="nav nav-tabs">
+             
+                        <li><a ui-sref="lugarEvento({lugarId: currentEvento.lugar.id})">Lugar del evento</a></li>
+                </ul>
             </div>
         </div>
         <div class="row">

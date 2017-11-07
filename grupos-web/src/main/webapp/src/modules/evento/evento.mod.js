@@ -74,6 +74,9 @@
             }).state('eventosCreate',{
                 url: '/create',
                 parent: 'eventos',
+                params:{
+                    grupoId:null
+                },
                 views: {
                     'detailView':{
                         templateUrl: basePath + '/create/evento.create.html',
