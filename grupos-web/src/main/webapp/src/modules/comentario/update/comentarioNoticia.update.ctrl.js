@@ -6,6 +6,8 @@
             $http.get(noticiaContext + '/' + $state.params.noticiaId + '/' + comentarioContext + '/' + 
                     $state.params.comentarioId).then(function (response) {
                 $scope.autor = response.data.autor;
+            }, function (error) {
+                
             });
             
             $scope.updateComentario = function() {

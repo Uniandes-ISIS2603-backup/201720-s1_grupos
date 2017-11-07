@@ -7,18 +7,24 @@
             
             $http.get(grupoContext+'/'+$state.params.grupoId+'/'+blogContext).then(function (response) {
                 $scope.listBlog = response.data;
+            }, function (error) {
+                
             });
             
             if ($state.params.blogId !== undefined) {
                 
                 $http.get(grupoContext + '/' + $state.params.grupoId+'/'+blogContext+'/'+$state.params.blogId).then(function (response) {
                     $scope.blogActual = response.data;
+                }, function (error) {
+                    
                 });
                 
                 $scope.agregarFavoritos = function () {
                     $http.post(usuarioContext + '/' + '1' +'/'+ 
                         blogContext+'/'+$state.params.blogId).then(function (response) {
                         $state.go('blogDetail', {}, {reload: true});
+                    }, function(error) {
+                        
                     });
                 };
                 
@@ -26,6 +32,8 @@
                     $http.delete(usuarioContext + '/' + '1' +'/'+ 
                         blogContext+'/'+$state.params.blogId).then(function (response) {
                         $state.reload();
+                    }, function (error) {
+                        
                     });
                 };
                 

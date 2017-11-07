@@ -27,7 +27,6 @@
              * Agrega un nuevo item pendiente.<br>
              */
             this.addNew=function(){
-                console.log("NUEVO ITEM");
                 $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
             };
             /**
@@ -37,7 +36,6 @@
             {
                 while($scope.itemsToAdd.length!==0)
                 {
-                    console.log($scope.itemsToAdd[0]);
                     this.add($scope.itemsToAdd[0]);
                 }
             };
@@ -65,7 +63,6 @@
             };
             $scope.createBlog = function() {
                 controlBlog.addAll();
-                console.log(controlBlog);
                 $http.post(grupoContext+'/'+$state.params.grupoId+'/'+blogContext, {
                     titulo: $scope.tituloBlog,
                     contenido: $scope.contenidoBlog,

@@ -8,11 +8,15 @@
             $scope.verBlogDetail = function(blog){
                 $http.get(usuarioContext+'/'+$state.params.usuarioId+'/'+blogContext + '/' + blog.id).then(function (response) {
                     $state.go('blogDetail', {grupoId: response.data.grupo.id, blogId: blog.id}, {reload: true});
+                }, function (error) {
+                    
                 });
             };
             
             $http.get(usuarioContext+'/'+$state.params.usuarioId+'/'+blogContext).then(function (response) {
                 $scope.listBlog = response.data;
+            }, function (error) {
+                
             });
         }
     ]);

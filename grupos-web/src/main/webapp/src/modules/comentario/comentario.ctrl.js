@@ -20,6 +20,8 @@
             $http.get(grupoContext + '/' + $state.params.grupoId + '/' + blogContext + '/' + 
                     $state.params.blogId + '/' + comentarioContext).then(function (response) {
                 $scope.comentarioRecords = response.data;
+            }, function (error) {
+                
             });
         } ]);
 }
