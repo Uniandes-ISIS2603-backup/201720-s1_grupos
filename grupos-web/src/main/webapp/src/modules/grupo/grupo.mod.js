@@ -44,33 +44,6 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('asociarCategorias', {
-                //Estado que permite seleccionar categorías para asociar a un grupo
-                url: '/categorias/asociar',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathCategorias + 'deGrupo/categoriasNoMias.list.html'
-                    }
-                }
-            }).state('asociarAdmins', {
-                //Estado que permite seleccionar categorías para asociar a un grupo
-                url: '/administradores/asociar',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathUsuarios + 'deGrupo/adminsNoMios.list.html'
-                    }
-                }
-            }).state('categoriasDeGrupo', {
-                //Estado que muestra las categorías actuales de un grupo
-                url: '/categorias',
-                parent:'grupoDetail',
-                views: {
-                    'childrenView':{
-                        templateUrl: basePathCategorias + 'categorias.list.html'
-                    }
-                }
             }).state('grupoCreate', {
                 //Estado que permite crear un grupo
                 url: '/create',

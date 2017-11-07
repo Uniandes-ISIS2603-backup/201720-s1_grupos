@@ -14,8 +14,6 @@
              * @param tipo, tipo de la categoría exacto a buscar
              */
             $scope.buscarPorTipo = function (nombre) {
-                console.log('llega buscar');
-                console.log(nombre);
                 $http.get(categoriaContext + '/tipo?tipo='+ nombre).then(function (response) {
                     $scope.categoriaActual = response.data;
                     $scope.grupoRecords = response.data.grupos;
@@ -32,7 +30,6 @@
             //En caso que haya una categoría seleccionada se busca y se guarda su información
             if ($state.params.categoriaId !== undefined) {
                 $scope.opcionesGrupo=true;
-                console.log("llegue "+ $scope.opcionesGrupo);
                 $http.get(categoriaContext + '/' + $state.params.categoriaId).then(function (response) {
                     $scope.categoriaActual = response.data;
                     $scope.grupoRecords = response.data.grupos;

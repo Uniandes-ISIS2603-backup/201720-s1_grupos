@@ -1,6 +1,10 @@
-<!--Lista de todos los usuarios-->
-<h1 ng-show="{{deGrupo}}">Añadir un administrador</h1>
+<!--Lista de todos los administradores-->
+<h1 ng-show="{{deGrupo}}">Todos los Administradores</h1>
 <div class="container-fluid">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info" ng-click="asociarAdmins()"><span class="glyphicon glyphicon-plus-sign"></span> Añadir administrador</a>
+        </div>
+    </div>
     <div class="row">
         <table class="table table-striped">
             <thead>
@@ -18,11 +22,10 @@
                     <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
                     <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
                     <td id="{{$index}}-Email">{{usuario.email}}</td>
-                    <!-- Si se oprime aquí, se agrega esta categoría al grupo-->     
-                    <td><a class="btn btn-success btn-lg" ng-click="asociarAdmin(usuario.id)">Asociar este :D</a></td>
-                </tr>               
-              
-        </tbody>
+                    <!-- Muestra la opción para desasociar la categoría en caso de estar en un grupoDetail-->     
+                    <td><a class="btn btn-danger btn-sm" ng-click="desasociarAdmin(usuario.id)">Desasociar administrador</a></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>

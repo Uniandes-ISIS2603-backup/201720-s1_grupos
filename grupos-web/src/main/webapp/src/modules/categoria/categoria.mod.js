@@ -39,6 +39,24 @@
                         templateUrl: basePath + 'categorias.list.html'
                     }
                 }
+            }).state('categoriasDeGrupo', {
+                //Estado que muestra las categorías actuales de un grupo
+                url: '/categorias',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePath + 'categorias.list.html'
+                    }
+                }
+            }).state('asociarCategorias', {
+                //Estado que permite seleccionar categorías para asociar a un grupo
+                url: '/categorias/asociar',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePath + 'deGrupo/categoriasNoMias.list.html'
+                    }
+                }
             }).state('categoriaDetail', {
                 //Estado que muestra la información detallada de una categoría
                 url: '/{categoriaId:int}/detail',
