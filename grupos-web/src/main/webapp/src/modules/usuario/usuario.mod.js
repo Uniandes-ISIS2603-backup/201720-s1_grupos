@@ -1,10 +1,19 @@
 (function (ng) {
+    //variable que define el modulo actual
     var mod = ng.module("usuarioModule", []);
+    //se determine el contexto de usuarios
     mod.constant("usuarioContext","Stark/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuario/';
             $urlRouterProvider.otherwise("usuariosList");
-
+            //Estados: 
+            //usuarios - estado base
+            //usuarioDetail - ver un usuario
+            //usuariosList - todos los usuarios en lista
+            //updateUsuario - actualizar un usuario
+            //adminsDeGrupo - ver los administradores de un grupo
+            //miembrosDeGrupo ver todos los miembros de un grupo
+            //createUsuario - crear un usuario nuevo
             $stateProvider.state('usuarios', {
                 url: '/usuarios',
                 abstract: true,
