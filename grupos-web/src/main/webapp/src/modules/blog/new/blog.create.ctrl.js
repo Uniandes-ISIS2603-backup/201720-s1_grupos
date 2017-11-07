@@ -17,7 +17,6 @@
              * @param {type} itemToAdd Item por añadir.<br>
              */
             this.add=function(itemToAdd){
-                console.log(itemToAdd);
                 itemToAdd.link=this.randomString();
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
@@ -69,6 +68,8 @@
                     multimedia: $scope.multimedia
                 }).then(function (response) {
                     $state.go('blogList', {blogId:response.data.id}, {reload:true});
+                }, function (error) {
+                    $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                 });
 
             };

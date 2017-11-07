@@ -19,7 +19,7 @@
                 }).then(function (response) {
                     $state.go('blogDetail', {blogId:response.data.id}, {reload:true});
                 }, function (error) {
-                    
+                    $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                 });
 
             };

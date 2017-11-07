@@ -8,7 +8,7 @@
                 $http.delete(grupoContext+'/'+$state.params.grupoId+'/'+blogContext + '/' + $state.params.blogId).then(function (response) {
                     $state.go('blogList', {blogId:response.data.id}, {reload:true});
                 }, function (error) {
-                    
+                    $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                 });
 
             };

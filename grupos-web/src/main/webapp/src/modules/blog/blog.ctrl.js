@@ -8,7 +8,7 @@
             $http.get(grupoContext+'/'+$state.params.grupoId+'/'+blogContext).then(function (response) {
                 $scope.listBlog = response.data;
             }, function (error) {
-                
+                $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
             });
             
             if ($state.params.blogId !== undefined) {
@@ -16,7 +16,7 @@
                 $http.get(grupoContext + '/' + $state.params.grupoId+'/'+blogContext+'/'+$state.params.blogId).then(function (response) {
                     $scope.blogActual = response.data;
                 }, function (error) {
-                    
+                    $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                 });
                 
                 $scope.agregarFavoritos = function () {
@@ -24,7 +24,7 @@
                         blogContext+'/'+$state.params.blogId).then(function (response) {
                         $state.go('blogDetail', {}, {reload: true});
                     }, function(error) {
-                        
+                        $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                     });
                 };
                 
@@ -33,7 +33,7 @@
                         blogContext+'/'+$state.params.blogId).then(function (response) {
                         $state.reload();
                     }, function (error) {
-                        
+                        $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                     });
                 };
                 
@@ -51,7 +51,7 @@
                             }
                         }
                 }, function(error) {
-                     
+                     $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                 });
             }
         }
