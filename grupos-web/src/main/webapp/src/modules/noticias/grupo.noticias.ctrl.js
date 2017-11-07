@@ -9,6 +9,17 @@
             $scope.esNoticiaUsuario=false;
             $scope.deGrupo=true; 
             $scope.noticiaEditable=true;
+            //Autor
+            var currentAutor={};
+                    //Autor por default (Se define con el login)
+                    $http.get("Stark/usuarios/1").then(function(response){
+                                    currentAutor.apellido= response.data.apellido,
+                                    currentAutor.email= response.data.email,
+                                    currentAutor.id= response.data.id,
+                                    currentAutor.nombre= response.data.nombre,
+                                    currentAutor.password= response.data.password}, function(response){
+                                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario 1 no está loggeado"},{reload:true});
+                                    });
             //Inicialización de mensaje de error
             var error="";
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
@@ -119,13 +130,8 @@
                 if (id === null || id===undefined) {
                     this.addAll();
                     currentRecord.multimedia=$scope.multimedia;
-                    //Autor por default (Se define con el login)
-                    currentRecord.autor={
-                                    apellido: "Guzmán",
-                                    email: "hola@uniandes.edu.co",
-                                    id: 1,
-                                    nombre: "Sergio",
-                                    password: "hola"};
+                    
+                    currentRecord.autor=currentAutor;
                     // ejecuta POST en el recurso REST
                     return $http.post(fullContext, currentRecord)
                             .then(function () {

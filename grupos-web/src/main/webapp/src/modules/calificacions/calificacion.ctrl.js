@@ -11,6 +11,17 @@
             //Variables para la eliminación de la calificación
             $scope.calificacionSeleccionada=false;
             $scope.calificacionEliminada=false;
+            //Calificaor por default 1
+            var currentAutor={};
+            //Calificador por default el 1 (Se define con el login)
+            $http.get("Stark/usuarios/1").then(function(response){
+                            currentAutor.apellido= response.data.apellido,
+                            currentAutor.email= response.data.email,
+                            currentAutor.id= response.data.id,
+                            currentAutor.nombre= response.data.nombre,
+                            currentAutor.password= response.data.password}, function(response){
+                                $state.go('ERROR',{mensaje: "El usuario 1 no está loggeado"},{reload:true});
+                            });
             /**
              * Inicialización dle mensaje de estado de error
              */
@@ -67,12 +78,7 @@
             this.saveRecord=function(id) {
                 currentRecord = $scope.currentRecord;
                 //Calificador por default (Se define con el login)
-                currentRecord.calificador={
-                                            apellido: "Guzmán",
-                                            email: "hola@uniandes.edu.co",
-                                            id: 1,
-                                            nombre: "Sergio",
-                                            password: "hola"};
+                currentRecord.calificador=currentAutor;
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
                     // ejecuta POST en el recurso REST
