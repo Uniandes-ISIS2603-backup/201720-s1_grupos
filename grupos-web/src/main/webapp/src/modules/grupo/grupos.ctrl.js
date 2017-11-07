@@ -20,9 +20,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * Inscribe al usuario actual como miembro del grupo
              */
             $scope.inscripcionGrupo = function () {
-                console.log("llegue");
-                console.log("g" +$scope.grupoActual.id);
-                 console.log("u" +$scope.idUsuarioActual);
                 $http.post(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)
                 {
                     var idGrupo=$scope.grupoActual.id;
@@ -31,7 +28,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     
                 },function(error)
                 {
-                    console.log(error.data);
                 });
             };
             /**
@@ -45,7 +41,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $state.go('grupoDetail',{idGrupo},{reload:true});
                 },function(error)
                 {
-                    console.log(error.data);
                 });
             };
             /**
@@ -102,7 +97,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.adminRecords = filteredAdmins;
                 },function(error)
                 {
-                    console.log(error.data);
                 });
             };
             /**
@@ -112,16 +106,15 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             $scope.asociarAdmin= function(idAdmin){
                 $http.post(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function (response)
                 {
-                    //Quita la categoría recién asociada para que no se muestre
-                    $scope.usuariosRecords= $scope.usuariosRecords.filter(function( obj ) {
+                    //Quita el administrador recién asociado para que no se muestre
+                    $scope.adminRecords= $scope.adminRecords.filter(function( obj ) {
                         return obj.id !== idAdmin;
                     });
-                    //Vuelve a buscar las que no se tienen para mostrarlas
-                    adminsQueNoTengo($scope.usuariosRecords);
+                    //Vuelve a buscar los que no se tienen para mostrarlas
+                    adminsQueNoTengo($scope.adminRecords);
                     
                 },function(error)
                 {
-                    console.log(error.data);
                 });
                 
             };
@@ -136,7 +129,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $state.go('adminsDeGrupo',{},{reload:true});
                 },function(error)
                 {
-                    console.log(error.data);
                 });
             };
             /**
@@ -165,7 +157,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     
                 },function(error)
                 {
-                    console.log(error.data);
                 });
             };
             /**
@@ -173,7 +164,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * @param {type} idCategoria, id de la categoría a asociar
              */
             $scope.asociarCategoria= function(idCategoria){
-                console.log("id"+ idCategoria);
                 $http.post(grupoContext +'/'+$scope.grupoActual.id +'/categorias/' +idCategoria).then(function (response)
                 {
                     //Quita la categoría recién asociada para que no se muestre
@@ -185,7 +175,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     
                 },function(error)
                 {
-                    console.log(error.data);
                 });
                 
             };
@@ -194,14 +183,12 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * @param {type} idCategoria, id de la categoría a desasociar
              */
             $scope.desasociarCategoria= function(idCategoria){
-                console.log("id "+idCategoria);
                 $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/categorias/' +idCategoria).then(function (response)
                 {
                     //Se recarga en caso que funcione
                     $state.go('categoriasDeGrupo',{},{reload:true});
                 },function(error)
                 {
-                    console.log(error.data);
                 });
             };
             /**
@@ -214,6 +201,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.categoriaRecords=response.data.categorias;
                     $scope.miembroRecords=response.data.miembros;
                     $scope.adminRecords=response.data.administradores;
+                    $scope.usuariosRecords=response.data.administradores;
                     $scope.eventosRecords=response.data.eventosGrupo;
                     $scope.records=response.data.noticias;
                     var grupoId= $scope.grupoActual.id;
@@ -231,6 +219,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.categoriaRecords=response.data.categorias;
                     $scope.miembroRecords=response.data.miembros;
                     $scope.adminRecords=response.data.administradores;
+                    $scope.usuariosRecords=response.data.administradores;
                     $scope.eventosRecords=response.data.eventosGrupo;
                     $scope.records=response.data.noticias;
                     for(var i = 0; i < $scope.miembroRecords.length; i++) {
@@ -243,8 +232,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.soyMiembro=soyMiembro;
                 });
             }
-            console.log($scope.soyMiembro)
         }
     ]);
 }
-        )(angular);
+)(angular);

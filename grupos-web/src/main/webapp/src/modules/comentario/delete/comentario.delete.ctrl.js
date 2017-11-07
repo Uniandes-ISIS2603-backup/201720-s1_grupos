@@ -7,6 +7,8 @@
                 $http.delete(grupoContext + '/' + $state.params.grupoId + '/' + blogContext + '/' + 
                     $state.params.blogId + '/' + comentarioContext + '/' + $state.params.comentarioId).then(function (response) {
                     $scope.goComentarioList();
+                }, function (error) {
+                    
                 });
             };
             

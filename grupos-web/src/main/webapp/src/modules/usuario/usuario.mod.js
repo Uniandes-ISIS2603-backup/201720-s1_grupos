@@ -57,17 +57,21 @@
                         controller: 'usuarioUpdateCtrl'
                     }
                 }
+            }).state('asociarAdmins', {
+                //Estado que permite seleccionar categorías para asociar a un grupo
+                url: '/administradores/asociar',
+                parent:'grupoDetail',
+                views: {
+                    'childrenView':{
+                        templateUrl: basePath + 'deGrupo/adminsNoMios.list.html'
+                    }
+                }
             }).state('adminsDeGrupo', {
                 url: '/administradores',
                 parent:'grupoDetail',
-                params:{
-                    grupoId:null
-                },
                 views: {
                     'childrenView': {
-                        controller: 'grupoCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'usuarios.list.html'
+                        templateUrl: basePath + 'admins.list.html'
                     }
                 }
             }).state('miembrosDeGrupo', {

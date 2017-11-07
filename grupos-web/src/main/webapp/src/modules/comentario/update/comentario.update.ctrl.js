@@ -6,6 +6,8 @@
             $http.get(grupoContext + '/' + $state.params.grupoId + '/' + blogContext + '/' + $state.params.blogId + 
                     '/' + comentarioContext + '/' + $state.params.comentarioId).then(function (response) {
                 $scope.autor = response.data.autor;
+            }, function (error) {
+                
             });
             
             $scope.updateComentario = function() {
@@ -15,6 +17,8 @@
                         comentario: $scope.comentario
                 }).then(function (response) {
                     $scope.goComentarioList();
+                }, function (error) {
+                    
                 });
             };
             
