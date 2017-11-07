@@ -2,15 +2,15 @@
 <h1 ng-show="!{{deGrupo}}">Todos los Usuarios</h1>
 <div class="container-fluid">
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group"  ng-show="!{{deGrupo}}">
-        <a class="btn btn-info" ui-sref="createUsuario"><span class="glyphicon glyphicon-plus-sign"></span> Añadir usuario</a>
+        <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!{{deGrupo}}">
+            <a class="btn btn-info" ui-sref="createUsuario"><span class="glyphicon glyphicon-plus-sign"></span> Añadir usuario</a>
         </div>
-        <div class="btn-group mr-2" role="group" aria-label="First group"  ng-show="{{deGrupo}}">
-        <a class="btn btn-info" ui-sref="createUsuario"><span class="glyphicon glyphicon-plus-sign"></span> Añadir administrador</a>
+        <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{deGrupo}}">
+            <a class="btn btn-info" ng-click="asociarAdmins()"><span class="glyphicon glyphicon-plus-sign"></span> Añadir administrador</a>
         </div>
     </div>
     <div class="row">
-            <table class="table table-striped">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>    
@@ -21,11 +21,15 @@
             </thead>
             <tbody>
                 <tr ng-repeat="usuario in usuariosRecords">
-                    <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
+                    <td id="{{$index}}-nombre">{{usuario.nombre}}</td>
                     <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
                     <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
                     <td id="{{$index}}-Email">{{usuario.email}}</td>
                 </tr>
+                <!-- Si se oprime aquí, se agrega esta categoría al grupo-->     
+                <tr >
+            <a class="btn btn-success btn-lg" ng-click="asociarAdmin(usuario.id)" >Asociar este :D</a>
+            </tr>
             </tbody>
         </table>
     </div>
