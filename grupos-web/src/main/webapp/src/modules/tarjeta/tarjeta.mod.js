@@ -8,7 +8,13 @@
             var basePath = 'src/modules/tarjeta/';
             // Mostrar la lista de tarjetas será el estado por defecto del módulo
             $urlRouterProvider.otherwise("/tarjetasList");
-            // Definición del estado 'tarjetasList' donde se listan las tarjetas
+            // Estados:
+            //tarjetas - estado abstracto que funciona como padre para los demás estados
+            //tarjetasList - lista de tarjetas de un usuario
+            //tarjetaDetail - detalle de una de las tarjetas del usuario
+            //tarjetasCreate - crear una tarjeta nueva para el usuario
+            //tarjetaUpdate - actualizar una tarjeta del usuario
+            //tarjetaDelete - eliminar una tarjeta del usuario
             $stateProvider.state('tarjetas', {
                 // Url que aparecerá en el browser
                 url: '/tarjetas',

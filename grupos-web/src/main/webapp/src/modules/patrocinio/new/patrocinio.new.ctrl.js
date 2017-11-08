@@ -8,9 +8,6 @@
     mod.controller('patrocinioNewCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'patrociniosContext', '$rootScope',
         function ($scope, $http, usuariosContext, $state, patrociniosContext, $rootScope) {
             $rootScope.edit = false;
-            //variables que permiten determinar si se esta modificando o creando
-            $scope.patrocinioCreacion=true;
-            $scope.patrocinoActualizar=false;
             //función que permite crear el patrocinio
             $scope.createPatrocinio = function () {
                 $http.post(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosContext, {

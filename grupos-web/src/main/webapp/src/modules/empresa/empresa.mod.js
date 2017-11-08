@@ -8,6 +8,15 @@
             var basePath = 'src/modules/empresa/';
             // Mostrar la lista de empresas será el estado por defecto del módulo
             $urlRouterProvider.otherwise("/empresasList");
+            //Estados:
+            //empresas - estado abstracto que funciona como base para mostrar todas las empresas
+            //empresasList - Lista de las empresas en el sistema
+            //empresasUsuario - Estado abstracto que funciona como base para estados relacionados con empresa de un usuario.
+            //empresaDetail - Detalle de la empresa de un usuario.
+            //empresasCreate - Crear una empresa para un usuario.
+            //empresaUpdate - Modificar la empresa de un usuario.
+            //empresaDelete - Borrar la empresa de un usuario.
+            //empresaNotFound - Estado asociado a cuando un usuario no tiene una empresa asociada.
             $stateProvider.state('empresas', {
                 // Url que aparecerá en el browser
                 url: '/empresas',
