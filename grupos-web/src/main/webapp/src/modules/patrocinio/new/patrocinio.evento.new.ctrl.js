@@ -18,7 +18,6 @@
                 pago :$scope.patrocinioPago,              
             }).then(function (response) {
                 fullContext = "Stark/"+eventosContext + "/" +$state.params.eventoId + "/" + patrociniosContext + "/" + response.data.id;
-                console.log(fullContext);
                 $http.post(fullContext).then(function(response){
                     $state.go('patrocinioEventoListDetail',{patrocinioId: response.data.id},{reload:true});
             });
