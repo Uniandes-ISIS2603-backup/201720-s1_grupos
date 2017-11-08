@@ -1,12 +1,14 @@
 (function (ng) {
     //Módulo
     var mod = ng.module("eventoModule");
+    //constantes del controlador
     mod.constant("eventoContext", "Stark/eventos");
     mod.constant("relacionContext","Stark/grupos");
+    mod.constant("lugaresContext", "Stark/lugares");
     /**
      * Controlador con $scope, $state, $http, eventosContext (Ruta de evento), eventoGrupoContext (Ruta de grupo), grupoContext(Ruta de grupo)
      */
-    mod.controller("grupoEventosCtrl", ['$scope', '$state', '$http','eventosContext','eventoContext','relacionContext','eventoGrupoContext','globalContext', function ($scope, $state, $http,context,eventoContext,relacionContext, grupoContext,globalContext) {
+    mod.controller("grupoEventosCtrl", ['$scope', '$state', '$http','lugaresContext','eventosContext','eventoContext','relacionContext','eventoGrupoContext','globalContext', function ($scope, $state, $http,lugaresContext,context,eventoContext,relacionContext, grupoContext,globalContext) {
              //Inicialización de booleanos importantes
             $scope.esEventoUsuario=false;
             $scope.deGrupo=true; 
@@ -75,15 +77,20 @@
              * 
              */
             $scope.createEvento = function(){
+            $http.get(lugaresContext + '/1' ).then(function (response) {
+            eventoLugar = response.data;
+            console.log(response.data);
             $http.post(eventoContext, {
                 nombre :$scope.eventoNombre,
                 fechaFin :$scope.eventoFechaFin,
-                fechaInicio :$scope.eventoFechaInicio              
+                fechaInicio :$scope.eventoFechaInicio,
+                lugar : response.data
             }).then(function (response) {
             fullContext = relacionContext + "/"+ $state.params.grupoId +"/" + context + "/" + response.data.id;
             $http.post(fullContext).then(function(response){
                 $state.go('eventosList',{eventoId: response.data.id},{reload:true});
             });
+        });
         });
         };
             
