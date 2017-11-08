@@ -78,6 +78,37 @@
                         controller: 'patrocinioNewCtrl'
                     }
                 }
+            }).state('patrociniosEvento',{
+                url: '/patrocinios',
+                abstract: true,
+                parent: 'eventoDetail',
+                views: {
+                    'childrenView': {
+                        controller: 'eventoPatrocinioCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'patrocinio.html'
+                    }
+                }
+            }).state('patrocinioEventoListDetail', {
+                url: '/list',
+                parent: 'patrociniosEvento',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'patrocinios.eventos.list.html',
+                        controller: 'eventoPatrocinioCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+
+            }).state('eventoPatrocinioCreate', {
+                url: '/create',
+                parent: 'patrociniosEvento',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'new/patrocinio.evento.new.html',
+                        controller: 'patrocinioEventoNewCtrl'
+                    }
+                }
             })
         }]);
     

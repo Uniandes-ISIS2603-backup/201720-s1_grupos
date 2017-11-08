@@ -1,0 +1,30 @@
+<!--Formulario para modificar/crear patrocinio-->
+<div class="panel-heading"><label ng-if="!edit" id="createPatrocinio">Crear nuevo patrocinio</label>
+<label ng-if="edit" id="editPatrocinio">Actualizar patrocinio</label></div>
+            <div class="panel-body">
+                <form ng-submit="createPatrocinio()" name="patrocinioCrear">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="patrocinioPago" class="col-sm-3">Pago:</label>
+                            <input id="patrocinioPago" required ng-model="patrocinioPago" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!patrocinioCrear.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Cuidado!</strong><p>Debe llenar todos los campos*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <div ng-show="patrocinioCrear.$valid" >
+                            <input ng-show="{{patrocinioEventoCreacion}}" type="submit" value="Crear" class="btn btn-success"/>
+                            <input ng-show="{{patrocinioEventoActualizar}}" type="submit" value="Actualizar" class="btn btn-success"/>
+                            </div>
+                            <a class="btn btn-info" ui-sref="patrocinioEventoListDetail">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
