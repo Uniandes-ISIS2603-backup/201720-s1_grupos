@@ -61,7 +61,6 @@
              */         
             var idEvento = $state.params.eventoId;
             $scope.deleteEvento = function () {
-                console.log($state)
             fullContext = relacionContext + "/"+$state.params.grupoId +"/"+ context + "/" + idEvento;
             $http.delete(fullContext).then(function(response)
                 { 
@@ -81,7 +80,6 @@
                 fechaFin :$scope.eventoFechaFin,
                 fechaInicio :$scope.eventoFechaInicio              
             }).then(function (response) {
-                console.log($state);
             fullContext = relacionContext + "/"+ $state.params.grupoId +"/" + context + "/" + response.data.id;
             $http.post(fullContext).then(function(response){
                 $state.go('eventosList',{eventoId: response.data.id},{reload:true});

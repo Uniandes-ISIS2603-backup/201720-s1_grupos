@@ -7,9 +7,7 @@
     mod.constant("usuariosContext", "Stark/usuarios");
     mod.controller('patrociniosUCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'patrociniosUsuarioContext', '$rootScope',
         function ($scope, $http, usuariosContext, $state, patrociniosUsuarioContext, $rootScope) {
-            //console.log(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosUsuarioContext);
-            //console.log("**************");
-            //Se buscan todos los patrocinios del usuario actual
+           //Se buscan todos los patrocinios del usuario actual
             $http.get(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosUsuarioContext).then(function (response) {
                 $scope.patrociniosRecords = response.data;
             });

@@ -13,8 +13,6 @@
             $scope.patrocinoActualizar=false;
             //función que permite crear el patrocinio
             $scope.createPatrocinio = function () {
-                //console.log("==============")
-                //console.log(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosContext);
                 $http.post(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosContext, {
                     pago: $scope.patrocinioPago,
                 }).then(function (response) {

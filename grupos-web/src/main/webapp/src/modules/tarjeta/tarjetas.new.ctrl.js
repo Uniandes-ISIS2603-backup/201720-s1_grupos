@@ -6,7 +6,6 @@
         function ($scope, $http, usuariosContext, $state, tarjetasContext, $rootScope) {
             $rootScope.edit = false;
             $scope.createTarjeta = function () {
-                console.log(usuariosContext + '/' + $state.params.usuarioId + '/' + tarjetasContext);
                 $http.post(usuariosContext + '/' + $state.params.usuarioId + '/' + tarjetasContext, {
                     numero: $scope.tarjetaNumero,
                     banco: $scope.tarjetaBanco,
