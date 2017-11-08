@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("lugarModule", ['ui.router']);
+    var mod = ng.module("lugarModule", ['eventoModule','ui.router']);
     mod.constant("lugaresContext", "Stark/lugares");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/lugar/';
@@ -27,7 +27,7 @@
                 url: '/{lugarId:int}/detail',
                 parent: 'lugares',
                 param: {
-                    eventoId: null
+                    lugarId: null
                 },
                 views: {
                         'listView': {
@@ -48,6 +48,29 @@
                         controller: 'lugarCreateCtrl'
                     }
                 }
+            }).state('lugaresEvento', {
+                url: '/lugar',
+                abstract: true,
+                parent: 'eventoDetail',
+                views: {
+                    'childrenView': {
+                        templateUrl: basePath + 'lugar.html',
+                        controller: 'lugarCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('lugarEvento', {
+                url: '/lugar',
+                parent: 'lugaresEvento',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'lugar.detail.html',
+                        controller: 'lugarCtrl',
+                        controllerAs: 'ctrl'
+                    }
+
+                }
+
             });
         }]);
     })(window.angular);
