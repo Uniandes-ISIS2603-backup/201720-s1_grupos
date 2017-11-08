@@ -60,6 +60,10 @@
                  console.log("TEXTO "+text);
                 return text;  
             };
+            
+            /**
+             * Se crea el blog con un post.
+             */
             $scope.createBlog = function() {
                 controlBlog.addAll();
                 $http.post(grupoContext+'/'+$state.params.grupoId+'/'+blogContext, {

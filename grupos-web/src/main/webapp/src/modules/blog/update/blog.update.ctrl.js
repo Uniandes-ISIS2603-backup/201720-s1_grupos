@@ -6,12 +6,13 @@
             $rootScope.edit=true;
             $scope.crearBlog=false;
             $scope.actualizarBlog=true;
-            
+            //se obtienen los datos del blog a modificar
             $http.get(grupoContext+'/'+$state.params.grupoId+'/'+blogContext + '/' + $state.params.blogId).then(function (response) {
                 $scope.tituloBlog = response.data.titulo;
                 $scope.contenidoBlog = response.data.contenido;
             });
             
+            //se modifica el blog con un put
             $scope.createBlog = function() {
                 $http.put(grupoContext+'/'+$state.params.grupoId+'/'+blogContext + '/' + $state.params.blogId, {
                     titulo: $scope.tituloBlog,

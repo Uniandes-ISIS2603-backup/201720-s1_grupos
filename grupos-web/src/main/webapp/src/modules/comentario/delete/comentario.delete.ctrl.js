@@ -3,12 +3,15 @@
    
     mod.controller('comentarioDeleteCtrl', ['$scope', '$http', 'comentarioContext', 'blogContext', 'grupoContext', '$state',
         function ($scope, $http, comentarioContext, blogContext, grupoContext, $state) {
+            /**
+             * Elimina el comentario actual.
+             */
             $scope.deleteComentario = function() {
                 $http.delete(grupoContext + '/' + $state.params.grupoId + '/' + blogContext + '/' + 
                     $state.params.blogId + '/' + comentarioContext + '/' + $state.params.comentarioId).then(function (response) {
                     $scope.goComentarioList();
                 }, function (error) {
-                    
+                    $scope.goError();
                 });
             };
             

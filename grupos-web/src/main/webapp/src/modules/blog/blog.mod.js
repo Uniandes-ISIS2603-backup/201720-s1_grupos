@@ -1,13 +1,20 @@
 (function (ng) {
+    //se crea un nuevo módulo
     var mod = ng.module("blogModule", ['grupoModule', 'ui.router']);
+    //se definen las constantes necesarias para los paths
     mod.constant("blogContext", "blogs");
     mod.constant("grupoContext", "Stark/grupos");
     mod.constant("usuarioContext", "Stark/usuarios");
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            /**
+             * path base de los scripts y templates usados
+             * @type String
+             */
             var basePath = 'src/modules/blog/';
             $urlRouterProvider.otherwise("/blogList");
             
+            //Se definen los estados
             $stateProvider.state('blog', {
                 url:'/blogs',
                 abstract:true,
