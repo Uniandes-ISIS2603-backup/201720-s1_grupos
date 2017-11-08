@@ -70,6 +70,7 @@ public class EventoPersistence {
     {
         LOGGER.info("Creando un evento nuevo");
         em.persist(entity);
+        em.flush();
         LOGGER.info("Evento creado");
         return entity;
     }
