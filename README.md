@@ -1,5 +1,5 @@
 # s1_grupos
-Repositorio del proyecto de vivienda universitaria del grupo 3 de la sección 1
+Repositorio del proyecto de grupos de interés del grupo 3 de la sección 1
 
 UNIT NAME = gruposPU
 
@@ -163,7 +163,9 @@ El objeto Grupo tiene 2 representaciones JSON:
   { /* Usuario n en su representación JSON Minimum*/ },
    ],
  blogs: [
-    { /* Blog 1 en su representación JSON Minimum*/ },
+    { /* 
+    
+    1 en su representación JSON Minimum*/ },
  ...
   { /* Blog n en su representación JSON Minimum*/ },
    ],
@@ -703,26 +705,6 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|No se pudo actualizar el objeto Noticia del Usuario seleccionado|Mensaje de error
 
-#### POST /usuarios/{id}/noticias/{id_noticia}
-
-Es el encargado de poner objetos Noticia en un Usuario.
-
-#### Parámetros
-
-Nombre|Ubicación|Descripción|Requerido|Esquema
-:--|:--|:--|:--|:--
-id|Path|ID del objeto Usuario para asignarle una Noticia|Sí|String
-id_noticia|Path|Id del objeto Noticia a consultar|Sí|Long
-body|body|Objeto Noticia nuevo|Sí|[Representación Detail](#recurso-noticia)
-
-#### Respuesta
-
-Código|Descripción|Cuerpo
-:--|:--|:--
-201|El objeto Noticia se almacenó en el usuario.|[Representación Minimum](#recurso-noticia)
-412|business exception, no se cumple con las reglas de negocio|Mensaje de error
-405|method not allowed, no existe permiso para el recurso|Mensaje de error
-500|No se pudo actualizar crear el objeto Noticia del Usuario seleccionado|Mensaje de error
 
 #### DELETE /usuarios/{id}/noticias/{id_noticia}
 
@@ -1117,6 +1099,40 @@ Código|Descripción|Cuerpo
 :--|:--|:--
 200|OK|Colección de objetos Blog en [representación Detail](#recurso-blog)
 404|not found, no existe un objeto Usuario con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+
+### POST /usuarios/{usuarioid}/blogs/{blogId}
+Es el encargado de marcar como favorito un blog para un usuario
+
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+usuarioid|Path|ID del usuario que marca un blog como favorito|Sí|Integer
+blogId|Path|ID del blog favorito|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|Se ha asociado el blog con el usuario|[Representación Detail](#recurso-blog)
+404|not found, no existe un objeto Usuario o Blog con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+500|Error interno|Mensaje de error
+
+### DELETE /usuarios/{usuarioid}/blogs/{blogid}
+Es el encargado de desmarcar como favorito un blog para un usuario
+
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+usuarioid|Path|ID del objeto Usuario|Sí|Integer
+blogid|Path|ID del objeto Blog a eliminar|Sí|Integer
+
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+404|not found, no existe un objeto Usuario con el ID solicitado o un objeto Blog con el ID solicitado|Mensaje de error
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|Error interno|Mensaje de error
 
