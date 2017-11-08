@@ -49,7 +49,6 @@
                     }
                 }
             }).state('lugaresEvento', {
-                url: '/lugar',
                 abstract: true,
                 parent: 'eventoDetail',
                 views: {
@@ -63,7 +62,7 @@
                 url: '/lugar',
                 parent: 'lugaresEvento',
                 views: {
-                    'childrenView': {
+                    'detailView': {
                         templateUrl: basePath + 'lugar.detail.html',
                         controller: 'lugarCtrl',
                         controllerAs: 'ctrl'
