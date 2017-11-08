@@ -15,7 +15,6 @@
             $scope.deleteEvento = function () 
             {
                 fullContext = "Stark/" + eventosContext + "/"+$state.params.eventoId +"/"+ patrociniosContext + "/" + $state.params.patrocinioId;
-                console.log(fullContext)
                 $http.delete(fullContext).then(function(response)
                 { 
                     $state.go('patrocinioEventoListDetail',{patrocinioId: response.data.id},{reload:true});
