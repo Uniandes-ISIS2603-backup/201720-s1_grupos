@@ -109,6 +109,18 @@
                         controller: 'patrocinioEventoNewCtrl'
                     }
                 }
+            }).state('eventoPatrocinioDelete', {
+                url: '/delete/{patrocinioId}',
+                parent: 'patrociniosEvento',
+                param: {
+                    patrocinioId : null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'delete/patrocinio.eventos.delete.html',
+                        controller: 'patrocinioEventosDeleteCtrl'
+                    }
+                }
             })
         }]);
     
