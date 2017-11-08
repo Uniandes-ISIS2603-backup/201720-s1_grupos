@@ -35,9 +35,6 @@
                     eventoId: null
                 },
                 views: {
-                        'listView': {
-                        templateUrl: basePath + 'eventos.list.html'
-                    },
                     'detailView': {
                         templateUrl: basePath + 'evento.detail.html',
                         controller: 'eventoCtrl',

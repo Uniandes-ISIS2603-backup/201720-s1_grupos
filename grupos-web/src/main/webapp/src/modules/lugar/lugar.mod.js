@@ -63,7 +63,7 @@
                 url: '/lugar',
                 parent: 'lugaresEvento',
                 views: {
-                    'detailView': {
+                    'childrenView': {
                         templateUrl: basePath + 'lugar.detail.html',
                         controller: 'lugarCtrl',
                         controllerAs: 'ctrl'
