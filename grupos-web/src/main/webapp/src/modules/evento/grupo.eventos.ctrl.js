@@ -77,9 +77,7 @@
              * 
              */
             $scope.createEvento = function(){
-            $http.get(lugaresContext + '/1' ).then(function (response) {
-            eventoLugar = response.data;
-            console.log(response.data);
+            $http.get(lugaresContext + '/'+ $scope.lugarIdEvento).then(function (response) {
             $http.post(eventoContext, {
                 nombre :$scope.eventoNombre,
                 fechaFin :$scope.eventoFechaFin,
