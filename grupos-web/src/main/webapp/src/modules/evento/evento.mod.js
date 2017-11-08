@@ -73,14 +73,14 @@
                 }
             }).state('eventosCreate',{
                 url: '/create',
-                parent: 'eventos',
+                parent: 'grupoEventos',
                 params:{
                     grupoId:null
                 },
                 views: {
                     'detailView':{
                         templateUrl: basePath + '/create/evento.create.html',
-                        controller: 'eventoCreateCtrl'
+                        controller: 'grupoEventosCtrl'
                     }
                 }
             }).state('eventoUpdate', {
@@ -91,20 +91,21 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/create/evento.create.html',
+                        templateUrl: basePath + '/update/evento.update.html',
                         controller: 'eventoUpdateCtrl'
                     }
                 }
             }).state('eventoDelete', {
                 url: '/delete/{eventoId:int}',
-                parent: 'eventos',
-                param: {
-                    eventoId: null
+                parent: 'grupoEventos',
+                params: {
+                    eventoId: null,
+                    grupoId:null
                 },
                 views: {
                     'detailView': {
                         templateUrl: basePath + '/delete/evento.delete.html',
-                        controller: 'eventoDeleteCtrl'
+                        controller: 'grupoEventosCtrl'
                     }
                 }
             });

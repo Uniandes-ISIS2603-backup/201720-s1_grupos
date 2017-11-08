@@ -12,7 +12,7 @@
                 fechaInicio :$scope.eventoFechaInicio              
             }).then(function (response) {
                 console.log(response);
-            fullContext = relacionContext + "/10" + eventosContext + "/" + response.data.id;
+            fullContext = relacionContext + "/10/" + eventosContext + "/" + response.data.id;
             $http.post(fullContext).then(function(response){
                 $state.go('eventosList',{eventoId: response.data.id},{reload:true});
             });
