@@ -11,13 +11,6 @@
             $http.get('Stark/'+eventosContext + '/' + $state.params.eventoId + '/' + patrociniosEventoContext).then(function (response) {
                 $scope.patrociniosRecords = response.data;
             });
-
-            //Se busca el patrocinio actual
-            //if ($state.params.patrocinioId !== undefined) {
-            //    $http.get(eventosContext + '/' + $state.params.eventoId + '/' + patrociniosEventoContext + '/' + $state.params.patrocinioId).then(function (response) {
-            //        $scope.currentPatrocinio = response.data;
-            //    });
-            //}
         }
     ]);
 }
