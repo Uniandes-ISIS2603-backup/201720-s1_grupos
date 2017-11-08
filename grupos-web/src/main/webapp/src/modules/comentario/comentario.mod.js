@@ -1,14 +1,20 @@
 (function (ng) {
+    //se define un nuevo módulo
     var mod = ng.module("comentarioModule", ['blogModule', 'ui.router','noticiasModule']);
+    //constantes para los paths
     mod.constant("comentarioContext", "comentarios");
     mod.constant("blogContext", "blogs");
     mod.constant("grupoContext", "Stark/grupos");
     mod.constant("noticiaContext", "Stark/noticias");
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            /**
+             * variable que contiene el path común de los scripts y templates usados
+             */
             var basePath = 'src/modules/comentario/';
             $urlRouterProvider.otherwise("/comentarioList");
             
+            //se definen los estados
             $stateProvider.state('comentarioList', {
                 url: '/comentarios',
                 parent: 'blogDetail',

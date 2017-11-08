@@ -59,6 +59,10 @@
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
                 return text;  
             };
+            
+            /**
+             * Se crea el blog con un post.
+             */
             $scope.createBlog = function() {
                 controlBlog.addAll();
                 $http.post(grupoContext+'/'+$state.params.grupoId+'/'+blogContext, {

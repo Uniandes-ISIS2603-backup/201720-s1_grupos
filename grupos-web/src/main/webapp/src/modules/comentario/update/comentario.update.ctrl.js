@@ -3,13 +3,17 @@
    
     mod.controller('comentarioUpdateCtrl', ['$scope', '$http', 'comentarioContext', 'blogContext', 'grupoContext', '$state',
         function ($scope, $http, comentarioContext, blogContext, grupoContext, $state) {
+            //se obtiene el autor del comentario a modificar
             $http.get(grupoContext + '/' + $state.params.grupoId + '/' + blogContext + '/' + $state.params.blogId + 
                     '/' + comentarioContext + '/' + $state.params.comentarioId).then(function (response) {
                 $scope.autor = response.data.autor;
             }, function (error) {
-                
+                $scope.goError();
             });
             
+            /**
+             * Actualiza el comentario con un nuevo contenido sin cambiar el autor
+             */
             $scope.updateComentario = function() {
                 $http.put(grupoContext + '/' + $state.params.grupoId + '/' + blogContext + '/' + 
                     $state.params.blogId + '/' + comentarioContext + '/' + $state.params.comentarioId, {
@@ -18,7 +22,7 @@
                 }).then(function (response) {
                     $scope.goComentarioList();
                 }, function (error) {
-                    
+                    $scope.goError();
                 });
             };
             
