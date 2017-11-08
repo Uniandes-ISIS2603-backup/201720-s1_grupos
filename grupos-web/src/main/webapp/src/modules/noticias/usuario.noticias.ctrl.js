@@ -39,7 +39,6 @@
              * @param {type} itemToAdd Item por añadir.<br>
              */
             this.add=function(itemToAdd){
-                console.log(itemToAdd);
                 itemToAdd.link=this.randomString();
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
@@ -49,7 +48,6 @@
              * Agrega un nuevo item pendiente.<br>
              */
             this.addNew=function(){
-                console.log("NUEVO ITEM");
                 $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
             };
             /**
@@ -59,7 +57,6 @@
             {
                 while($scope.itemsToAdd.length!==0)
                 {
-                    console.log($scope.itemsToAdd[0]);
                     this.add($scope.itemsToAdd[0]);
                 }
             };
@@ -82,7 +79,6 @@
               var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
                    for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
-                 console.log("TEXTO "+text);
                 return text;  
             };
             // inicialmente el listado de noticias está vacio

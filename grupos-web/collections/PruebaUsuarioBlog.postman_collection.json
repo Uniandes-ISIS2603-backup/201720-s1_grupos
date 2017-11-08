@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebaUsuarioBlog",
-		"_postman_id": "0558a6ac-c9c6-a9b5-db30-2f6b03432ecd",
+		"_postman_id": "4e393c58-dcb2-c801-fd44-f4425c525b33",
 		"description": "Prubeas del recurso faltante usuario blogs.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -21,42 +21,16 @@
 				}
 			],
 			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "usuarioId",
-						"value": "67"
-					}
-				],
-				"body": {},
 				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs",
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Obtiene el blog 1000000",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"]= responseCode.code===200"
-						]
-					}
-				}
-			],
-			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"description": ""
 			},
 			"response": []
@@ -75,15 +49,16 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000002",
 				"method": "GET",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000002",
 				"description": ""
 			},
 			"response": []
@@ -102,15 +77,16 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/20000/blogs/1000002",
 				"method": "GET",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/20000/blogs/1000002",
 				"description": ""
 			},
 			"response": []
@@ -118,15 +94,16 @@
 		{
 			"name": "Borra un blog de los favoritos del usuario",
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"method": "DELETE",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"description": ""
 			},
 			"response": []
@@ -145,15 +122,16 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"method": "GET",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"description": ""
 			},
 			"response": []
@@ -172,15 +150,16 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"method": "DELETE",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"description": ""
 			},
 			"response": []
@@ -199,15 +178,16 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/20000/blogs/1000000",
 				"method": "DELETE",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/20000/blogs/1000000",
 				"description": ""
 			},
 			"response": []
@@ -226,15 +206,16 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"method": "POST",
 				"header": [
 					{
 						"key": "usuarioId",
-						"value": "67"
+						"value": "67",
+						"description": ""
 					}
 				],
 				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"description": ""
 			},
 			"response": []
@@ -253,6 +234,7 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000/blogs/1000000",
 				"method": "POST",
 				"header": [
 					{
@@ -260,8 +242,10 @@
 						"value": "67"
 					}
 				],
-				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000/blogs/1000000",
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -280,6 +264,7 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/10000002",
 				"method": "POST",
 				"header": [
 					{
@@ -287,8 +272,10 @@
 						"value": "67"
 					}
 				],
-				"body": {},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/10000002",
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []

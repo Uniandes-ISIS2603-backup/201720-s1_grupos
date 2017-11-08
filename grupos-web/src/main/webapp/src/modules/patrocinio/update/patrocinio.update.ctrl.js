@@ -13,8 +13,6 @@
             $scope.patrocinioActualizar=true;
             //función que permite actualizar un patrocinio
             $scope.createPatrocinio = function () {
-                //Poner bien path REST!
-                //console.log(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosContext + '/' + $state.params.patrocinioId)
                 $http.put(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosContext + '/' + $state.params.patrocinioId, {
                     pago: $scope.patrocinioPago,
                 }).then(function (response) {

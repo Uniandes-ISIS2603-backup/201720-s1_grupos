@@ -10,7 +10,6 @@
             //Inicialización de variable para saber si es de blog o no.
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
-            console.log(globalContext+" "+noticiaContext+" "+multimediaContext+" "+usuarioContext+" "+fullContext+":"+$state.params.usuarioId);
             //Inicialización del multimediaContexto
                 fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             
@@ -21,7 +20,6 @@
               var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
                    for (var i = 0; i < 5; i++)
                  text += possible.charAt(Math.floor(Math.random() * possible.length));
-                 console.log("TEXTO "+text);
                 return text; 
             };
             // inicialmente el listado de multimdia está vacio

@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.EventoDetailDTO;
+import co.edu.uniandes.csw.grupos.dtos.LugarDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.EventoLogic;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
+import co.edu.uniandes.csw.grupos.entities.LugarEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,26 @@ public class EventoResource {
     {
         List<EventoDetailDTO> list = listEntityToDetailDTO(logic.getAll());
         return list;
+    }
+    /**
+     * Obtiene el lugar del evento.<br>
+     * @param eventoId id del evento.
+     * @return  DTO del lugar.
+     * @throws BusinessException Excepción de negocio.<br>
+     */
+    @GET
+    @Path("{eventoId: \\d+}/lugar")
+    public LugarDetailDTO getLugar(@PathParam("eventoId") Long eventoId) throws BusinessException
+    {
+                EventoEntity evento = logic.getEntity(eventoId);
+        if (evento == null) {
+            throw new WebApplicationException("El evento no existe", 404);
+        }
+        LugarEntity lugar = evento.getLugar();
+        if(lugar == null){
+            throw new WebApplicationException("El evento con id " + eventoId + " no tiene lugar asociado", 404);
+        }
+        return new LugarDetailDTO(lugar);
     }
     /**
      * Obtiene el dto de evento.<br>
