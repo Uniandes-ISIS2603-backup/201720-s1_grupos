@@ -120,6 +120,12 @@ public class UsuarioPersistence {
        
    }
    
+   /**
+    * Busca y devuelve el usuario con el email y la contraseña dada
+    * @param email correo electrónico del usuario
+    * @param password contraseña del usuario
+    * @return usuario con el email y password dadas si existe y null de lo contrario
+    */
    public UsuarioEntity findByEmailPassword(String email, String password) {
        TypedQuery q= em.createQuery("Select u from UsuarioEntity u where u.email =:em and u.password = :pass", UsuarioEntity.class );
        q.setParameter("em", email);

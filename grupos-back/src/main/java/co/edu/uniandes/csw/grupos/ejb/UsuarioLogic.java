@@ -63,7 +63,6 @@ public class UsuarioLogic {
      */
     public UsuarioEntity createUser(UsuarioEntity puser) throws BusinessException
     {
-        //puser.setId(new Long(1));
         UsuarioEntity check= per.findByEmail(puser.getEmail());
         if(check != null){
             throw new BusinessException("Ya existe un usuario con ese email");
@@ -107,7 +106,6 @@ public class UsuarioLogic {
      * @param id identificador del usuario que se quiere actualizar.
      * @param puser nueva información del usuario
      * @return usuario actualizado
-     * @throws BusinessException si no existe un usuario con el id especificado.
      */
     public UsuarioEntity updateUser(Long id, UsuarioEntity puser) 
     {
@@ -121,6 +119,27 @@ public class UsuarioLogic {
             puser.setId(id);
             return per.updateEntity(puser);
         }
+    }
+    
+    /**
+     * Busca y devuelve el usuario con el email y la contraseña dada
+     * @param user usuario que contiene el email y la contraseña a buscar
+     * @return
+     * @throws BusinessException si el email o la contraseña son nulos o vacíos
+     */
+    public UsuarioEntity findUserEmailPassword(UsuarioEntity user) throws BusinessException{
+        if(user.getEmail() == null || user.getEmail().equals("")) {
+            throw new BusinessException("El email no puede ser nulo o vacío");
+        }
+        if(user.getPassword() == null || user.getPassword().equals("")) {
+            throw new BusinessException("La contraseña no puede ser nula o vacía");
+        }
+        UsuarioEntity found = per.findByEmailPassword(user.getEmail(), user.getPassword());
+        if(found == null)
+        {
+            throw new NotFoundException("correo electrónico o contraseña incorrectos. Inténtelo nuevamente.");
+        }
+        return found;
     }
     
     /**
