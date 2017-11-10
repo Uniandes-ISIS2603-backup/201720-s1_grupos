@@ -81,7 +81,7 @@ public class UsuarioPersistence {
    
    /**
     * Busca un usuario por su email
-    * @param email email del usuario que se quiere buscar
+    * @param ema email del usuario que se quiere buscar
     * @return el usuario con email especificado
     */
    public UsuarioEntity findByEmail(String ema){
@@ -118,6 +118,13 @@ public class UsuarioPersistence {
        LOGGER.info("Borrando "+id+" con un objeto que existe");
        em.remove(e);
        
+   }
+   
+   public UsuarioEntity findByEmailPassword(String email, String password) {
+       TypedQuery q= em.createQuery("Select u from UsuarioEntity u where u.email =:em and u.password = :pass", UsuarioEntity.class );
+       q.setParameter("em", email);
+       q.setParameter("pass", password);
+       return (UsuarioEntity) q.getSingleResult();
    }
     
 }

@@ -206,6 +206,10 @@ public class UsuarioPersistenceTest {
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
         
         assertEquals(newEntity.getId(), resp.getId());
+        assertEquals(newEntity.getApellido(), resp.getApellido());
+        assertEquals(newEntity.getEmail(), resp.getEmail());
+        assertEquals(newEntity.getNombre(), resp.getNombre());
+        assertEquals(newEntity.getNickname(), resp.getNickname());
     }
     /**
      * Test para borrar un usuario
@@ -216,6 +220,20 @@ public class UsuarioPersistenceTest {
         persistence.delete(entity.getId());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         assertNull(deleted);
+    }
+    
+    /**
+     * Test para buscar un usuario dado un email y una contraseña
+     */
+    @Test
+    public void buscarUsuarioEmailPasswordTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity resp = persistence.findByEmailPassword(entity.getEmail(), entity.getPassword());
+        assertEquals(resp.getId(), resp.getId());
+        assertEquals(resp.getApellido(), resp.getApellido());
+        assertEquals(resp.getEmail(), resp.getEmail());
+        assertEquals(resp.getNombre(), resp.getNombre());
+        assertEquals(resp.getNickname(), resp.getNickname());
     }
     
     /**
