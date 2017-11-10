@@ -92,6 +92,14 @@ public class UsuarioResource {
         return ret;
     }
     
+    @GET
+    public UsuarioDetailDTO loginUser(@HeaderParam("email") String email, @HeaderParam("password") String password) throws BusinessException {
+        UsuarioEntity entity= new UsuarioEntity();
+        entity.setEmail(email);
+        entity.setPassword(password);
+        return new UsuarioDetailDTO(userLogic.findUserEmailPassword(entity));
+    }
+    
     /**
      * PUT http://localhost:8080/grupos/api/usuarios/id
      * @return Actualiza el usuario con id ingresado segun el JSON especificado
