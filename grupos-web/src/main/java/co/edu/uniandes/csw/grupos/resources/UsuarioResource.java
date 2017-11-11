@@ -98,7 +98,12 @@ public class UsuarioResource {
         UsuarioEntity entity= new UsuarioEntity();
         entity.setEmail(email);
         entity.setPassword(password);
-        return new UsuarioDetailDTO(userLogic.findUserEmailPassword(entity));
+        UsuarioEntity result = userLogic.findUserEmailPassword(entity);
+        if (result == null) {
+            throw new NotFoundException("correo electrónico o contraseña incorrectos. Inténtelo nuevamente.");
+        }
+        return new UsuarioDetailDTO(result);
+        
     }
     
     /**

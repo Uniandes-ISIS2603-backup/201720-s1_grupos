@@ -135,10 +135,6 @@ public class UsuarioLogic {
             throw new BusinessException("La contraseña no puede ser nula o vacía");
         }
         UsuarioEntity found = per.findByEmailPassword(user.getEmail(), user.getPassword());
-        if(found == null)
-        {
-            throw new NotFoundException("correo electrónico o contraseña incorrectos. Inténtelo nuevamente.");
-        }
         return found;
     }
     
