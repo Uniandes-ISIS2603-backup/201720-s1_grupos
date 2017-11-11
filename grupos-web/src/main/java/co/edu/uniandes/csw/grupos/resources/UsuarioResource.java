@@ -93,6 +93,7 @@ public class UsuarioResource {
     }
     
     @GET
+    @Path("login")
     public UsuarioDetailDTO loginUser(@HeaderParam("email") String email, @HeaderParam("password") String password) throws BusinessException {
         UsuarioEntity entity= new UsuarioEntity();
         entity.setEmail(email);
