@@ -135,4 +135,11 @@ public class UsuarioPersistence {
         return list.isEmpty() ? null : list.get(0);
     }
     
+    
+    public UsuarioEntity findByNickname(String nickname) {
+        TypedQuery q= em.createQuery("Select u from UsuarioEntity u where u.nickname =:nickname", UsuarioEntity.class );
+        q.setParameter("nickname", nickname);
+        List<UsuarioEntity> list = q.getResultList();
+        return list.isEmpty() ? null : list.get(0);
+    }
 }
