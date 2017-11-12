@@ -20,6 +20,10 @@
                 url: '/tarjetas',
                 abstract: true,
                 parent: 'usuarioDetail',
+                data: {
+                    requireLogin: false,
+                    roles: []
+                },
                 views: {
                     'childrenView': {
                         templateUrl: basePath + 'tarjetas.html',

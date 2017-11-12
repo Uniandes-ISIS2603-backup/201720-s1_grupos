@@ -20,6 +20,10 @@
                         controller: 'grupoCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('listaGrupos', {
                 //Estado que muestra la lista de grupos
@@ -43,6 +47,10 @@
                         controller: 'grupoCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('grupoCreate', {
                 //Estado que permite crear un grupo

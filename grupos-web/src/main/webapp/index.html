@@ -133,6 +133,7 @@
                 <div class="col-md-5">
                     <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
                         <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+                        <li><a ui-sref="createUsuario"><span class="glyphicon glyphicon-log-in"></span> Registrarse</a></li>
                     </ul>
                     <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
                         <li class="nameUser">Bienvenido a tus grupos, {{currentUser}}</li>

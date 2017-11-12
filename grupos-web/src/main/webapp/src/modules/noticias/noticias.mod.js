@@ -41,6 +41,10 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('ERRORNOTICIA', {
                 url: '/error',
@@ -66,6 +70,10 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('usuarioNoticiasList', {
                 url: '/list',
@@ -145,6 +153,10 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'noticias.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('grupoNoticiasList', {
                 url: '/list',

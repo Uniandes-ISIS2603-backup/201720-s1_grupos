@@ -14,6 +14,10 @@
                         controller: 'lugarCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('lugaresList', {
                 url: '/list',
@@ -57,6 +61,10 @@
                         controller: 'lugarCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('lugarEvento', {
                 url: '/lugar',

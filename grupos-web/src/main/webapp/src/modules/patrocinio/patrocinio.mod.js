@@ -26,6 +26,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'patrocinio.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('patrociniosList',{
                 url: '/list',

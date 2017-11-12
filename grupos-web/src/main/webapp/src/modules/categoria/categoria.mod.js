@@ -20,6 +20,10 @@
                         controller: 'categoriaCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('carruselCategorias', {
                 //Estado para mostrar el carrusel de las categorías

@@ -1,3 +1,4 @@
+<!--Mira haber si el usuario está autenticado-->
 <div ng-if="!isAuthenticated()" class="container">
     <form class="form-signin">
         <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
@@ -9,9 +10,12 @@
            <option value="assistant">Cliente</option>
         </select>
         <br>
+        <!--Le permite acceder a la plataforma-->
         <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="ctrl.autenticar()">
-            Sign In
+            Entrar
         </button>
-        <a class="btn btn-lg btn-primary btn-block" ng-click="ctrl.prueba()">Cancelarr</a>
+        <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="ctrl.loggear()">
+            Entrar con el usuario 1
+        </button>
     </form>
 </div>

@@ -26,14 +26,12 @@
         }]);
     app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
 
-            $transitions.onSuccess({to: '*'}, function (trans) {
-
+            $transitions.onSuccess({to:'**'}, function (trans) {
                 var $state = trans.router.stateService;
                 var requireLogin = $state.current.data.requireLogin
                 var roles = $state.current.data.roles
 
                 $rootScope.isAuthenticated = function () {
-
                     if (sessionStorage.getItem("email") !==null && sessionStorage.getItem("email") !==undefined ) {
                         var x = sessionStorage.getItem("nickname");
                         if(x=== null || x===undefined)
