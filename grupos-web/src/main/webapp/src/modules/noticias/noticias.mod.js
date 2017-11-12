@@ -32,7 +32,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             $stateProvider.state('noticias', {
                 url: '/noticias',
                 abstract:true,
-                params:{
+                param:{
                     usuarioId:null
                 },
                 views: {
@@ -45,7 +45,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('ERRORNOTICIA', {
                 url: '/error',
                 parent:'noticias',
-                params:{
+                param:{
                     mensaje:null
                 },
                 views: {
@@ -57,7 +57,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 url: '/noticias',
                 abstract:true,
                 parent:'usuarioDetail',
-                params:{
+                param:{
                     usuarioId:null
                 },
                 views: {
@@ -70,7 +70,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('usuarioNoticiasList', {
                 url: '/list',
                 parent:'usuarioNoticias',
-                params:{
+                param:{
                     usuarioId:null
                 },
                 views: {
@@ -83,7 +83,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('usuarioNoticiaDetail',{
                 url:'/:noticiaId/detail',
                 parent:'usuarioNoticias',
-                params: {
+                param: {
                     usuarioId:null,
                     noticiaId: null
                 },
@@ -97,7 +97,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('usuarioNoticiaEdit', {
                 url: '/update/:noticiaId',
                 parent:'usuarioNoticias',
-                params: {
+                param: {
                     usuarioId:null,
                     noticiaId: null
                 },
@@ -111,7 +111,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('usuarioNoticiaDelete', {
                 url: '/delete/:noticiaId',
                 parent:'usuarioNoticias',
-                params: {
+                param: {
                     noticiaId: null
                 },
                 views: {
@@ -124,7 +124,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('ERRORUSUARIONOTICIA', {
                 url: '/error',
                 parent:'usuarioNoticias',
-                params:{
+                param:{
                     mensaje:null
                 },
                 views: {
@@ -136,7 +136,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 url: '/noticias',
                 abstract:true,
                 parent:'grupoDetail',
-                params:{
+                param:{
                     grupoId:null
                 },
                 views: {
@@ -149,7 +149,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('grupoNoticiasList', {
                 url: '/list',
                 parent:'grupoNoticias',
-                params:{
+                param:{
                     grupoId:null
                 },
                 views: {
@@ -162,7 +162,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('grupoNoticiaDetail',{
                 url:'/:noticiaId/detail',
                 parent:'grupoNoticias',
-                params: {
+                param: {
                     grupoId:null,
                     noticiaId: null
                 },
@@ -176,7 +176,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('grupoNoticiaCreate', {
                 url: '/create',
                 parent:'grupoNoticias',
-                params:{
+                param:{
                     grupoId:null
                 },
                 views: {
@@ -190,7 +190,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('grupoNoticiaEdit', {
                 url: '/update/:noticiaId',
                 parent:'grupoNoticias',
-                params: {
+                param: {
                     grupoId:null,
                     noticiaId: null
                 },
@@ -204,7 +204,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('grupoNoticiaDelete', {
                 url: '/delete/:noticiaId',
                 parent:'grupoNoticias',
-                params: {
+                param: {
                     noticiaId: null
                 },
                 views: {
@@ -217,7 +217,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('ERRORGRUPONOTICIA', {
                 url: '/error',
                 parent:'grupoNoticias',
-                params:{
+                param:{
                     mensaje:null
                 },
                 views: {
@@ -228,7 +228,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('noticiasExhibicion',{
                 url:'/noticias/exhibicion',
                 parent:'noticias',
-                params:{
+                param:{
                     usuarioId:null,
                     grupoId:null
                 },
@@ -242,7 +242,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('noticiaNoEditableDetail',{
                 url:'/:noticiaId/exhibicion',
                 parent:'noticias',
-                params: {
+                param: {
                     
                 },
                 views: {

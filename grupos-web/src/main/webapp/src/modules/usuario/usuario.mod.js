@@ -1,6 +1,6 @@
 (function (ng) {
     //variable que define el modulo actual
-    var mod = ng.module("usuarioModule", []);
+    var mod = ng.module("usuarioModule", ["loginModule"]);
     //se determine el contexto de usuarios
     mod.constant("usuarioContext","Stark/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -23,6 +23,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'usuario.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('usuarioDetail',{
                 url: '/{usuarioId}/detail',
