@@ -13,7 +13,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             $rootScope.edit = false;
             $scope.soyMiembro = false;
             //Indica el usuario logeado actual
-            $scope.idUsuarioActual=1;
+            $scope.idUsuarioActual=sessionStorage.getItem("id");
             //Booleano que indica que actualmente se está en el controlador de grupo
             $scope.deGrupo=true;     
             /**

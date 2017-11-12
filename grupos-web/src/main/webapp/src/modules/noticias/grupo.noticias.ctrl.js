@@ -18,7 +18,7 @@
                                     currentAutor.id= response.data.id,
                                     currentAutor.nombre= response.data.nombre,
                                     currentAutor.password= response.data.password}, function(response){
-                                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario 1 no está loggeado"},{reload:true});
+                                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario "+sessionStorage.getItem("id")+ " no está loggeado"},{reload:true});
                                     });
             //Inicialización de mensaje de error
             var error="";
