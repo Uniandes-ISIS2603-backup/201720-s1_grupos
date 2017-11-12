@@ -26,7 +26,7 @@
         <!-- Muestra los botones para ver los subrecursos del grupo-->
         <div class="btn-group col-md-12">
             <button type="button" class="btn btn-primary" ui-sref="grupoNoticiasList" >Noticias</button>
-            <button type="button" class="btn btn-primary" ui-sref="eventosDeGrupo">Eventos</button>
+            <button type="button" class="btn btn-primary" ui-sref="eventosDeGrupo({grupoId: grupoActual.id})">Eventos</button>
             <button type="button" class="btn btn-primary" ui-sref="blogList">Blogs</button>
             <button type="button" class="btn btn-primary" ng-click="categoriasDeMiGrupo(grupoActual.id)">Categorias</button>
             <button type="button" class="btn btn-primary" ng-click="adminsDeMiGrupo(grupoActual.id)">Administradores</button>
