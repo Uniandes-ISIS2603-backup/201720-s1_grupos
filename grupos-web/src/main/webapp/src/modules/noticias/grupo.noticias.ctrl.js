@@ -12,7 +12,7 @@
             //Autor
             var currentAutor={};
                     //Autor por default (Se define con el login)
-                    $http.get("Stark/usuarios/1").then(function(response){
+                    $http.get("Stark/usuarios/"+sessionStorage.getItem("id")).then(function(response){
                                     currentAutor.apellido= response.data.apellido,
                                     currentAutor.email= response.data.email,
                                     currentAutor.id= response.data.id,

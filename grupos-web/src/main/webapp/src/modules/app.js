@@ -35,7 +35,6 @@
                 $rootScope.isAuthenticated = function () {
 
                     if (sessionStorage.getItem("email") !==null && sessionStorage.getItem("email") !==undefined ) {
-                        console.log(sessionStorage.getItem("nickname")+" "+sessionStorage.getItem("nombreCompleto"));
                         var x = sessionStorage.getItem("nickname");
                         if(x=== null || x===undefined)
                         {
@@ -47,6 +46,7 @@
                             $rootScope.currentUser = sessionStorage.getItem("nickname"); 
 
                         }
+                        $rootScope.id=sessionStorage.getItem("id");
                         return true;
                     } else {
                         return false;

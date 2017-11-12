@@ -22,7 +22,6 @@
                     if ($scope.users[item].email == $scope.data.email && $scope.users[item].password == $scope.data.password /*&& $scope.users[item].rol == $scope.data.rol*/) {
                         flag = true;
                         $scope.user = $scope.users[item];
-                        console.log("EL USUARIO ES"+$scope.user+"CON ID"+$scope.user.id);
                         sessionStorage.token = $scope.user.token;
                         sessionStorage.setItem("email", $scope.user.email);
                         sessionStorage.setItem("password", $scope.user.password);
@@ -32,6 +31,8 @@
                             sessionStorage.setItem("nickname",$scope.user.nickname);
                         }
                         sessionStorage.setItem("nombreCompleto",$scope.user.nombre+" "+$scope.user.apellido);
+                        sessionStorage.setItem("id",$scope.user.id);
+                        console.log("AAA"+sessionStorage.getItem("id"));
                         if($scope.user.nickname=== null || $scope.user.nickname===undefined)
                         {
                             $rootScope.currentUser = $scope.user.nombre+" "+$scope.user.apellido;
@@ -41,7 +42,6 @@
                             $rootScope.currentUser = $scope.user.nickname; 
 
                         }
-                        console.log(sessionStorage.getItem("email")+" "+$rootScope.currentUser);
                         $state.go('usuarioDetail', {usuarioId:$scope.user.id}, {reload: true});
                         break;
                     }

@@ -143,7 +143,7 @@
                 </div>
 
             </div> 
-        <div class="container-fluid col-md-12">
+        <div class="container-fluid col-md-12" ng-if="isAuthenticated()">
             <h3>Ejemplo </h3>
                     <ul>
                         <li role="navigation"><a ui-sref="listaGrupos">Grupos</a></li>
@@ -154,10 +154,12 @@
                         <li  role="navigation"><a ui-sref="empresasList">Todas las Empresas</a></li>                        
                         <li role="navigation"><a ui-sref="usuariosList">Usuarios</a></li>
                         <li role="navigation"><a ui-sref="patrociniosList">Patrocinios</a></li>
+                        <li role="navigation"><a ui-sref="usuarioDetail({usuarioId:id})">Mi perfil</a></li>
                     </ul>
-            <div ui-view="mainView">
-            </div>
+            
 
+        </div>
+        <div ui-view="mainView">
         </div>
     </body>
 </html>
