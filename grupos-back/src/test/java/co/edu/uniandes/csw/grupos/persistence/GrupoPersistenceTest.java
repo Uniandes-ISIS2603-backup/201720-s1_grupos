@@ -168,6 +168,51 @@ public class GrupoPersistenceTest {
     @Test
     public void testDelete() throws Exception {
         GrupoEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        EventoEntity evento1= factory.manufacturePojo(EventoEntity.class);
+        EventoEntity evento2= factory.manufacturePojo(EventoEntity.class);
+        BlogEntity blog1= factory.manufacturePojo(BlogEntity.class);
+        BlogEntity blog2= factory.manufacturePojo(BlogEntity.class);
+        NoticiaEntity noticia1= factory.manufacturePojo(NoticiaEntity.class);
+        NoticiaEntity noticia2= factory.manufacturePojo(NoticiaEntity.class);
+        CategoriaEntity categoria1= factory.manufacturePojo(CategoriaEntity.class);
+        CategoriaEntity categoria2= factory.manufacturePojo(CategoriaEntity.class);
+        UsuarioEntity admin1= factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity admin2= factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity miembro1= factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity miembro2= factory.manufacturePojo(UsuarioEntity.class);
+        
+        List<EventoEntity> eventos= new ArrayList();
+        eventos.add(evento1);
+        eventos.add(evento2);
+        entity.setEventosGrupo(eventos);
+        
+        List<NoticiaEntity> noticias= new ArrayList();
+        noticias.add(noticia1);
+        noticias.add(noticia2);
+        entity.setNoticiasGrupo(noticias);
+        
+        List<BlogEntity> blogs= new ArrayList();
+        blogs.add(blog1);
+        blogs.add(blog2);
+        entity.setBlogsGrupo(blogs);
+        
+        List<CategoriaEntity> categorias= new ArrayList();
+        categorias.add(categoria1);
+        categorias.add(categoria2);
+        entity.setCategorias(categorias);
+        
+        List<UsuarioEntity> admins= new ArrayList();
+        admins.add(admin1);
+        admins.add(admin2);
+        entity.setAdministradores(admins);
+        
+        List<UsuarioEntity> miembros= new ArrayList();
+        miembros.add(miembro1);
+        miembros.add(miembro2);
+        entity.setMiembros(miembros);
+        
+        persistence.update(entity);
         persistence.delete(entity.getId());
         GrupoEntity deleted = em.find(GrupoEntity.class, entity.getId());
         Assert.assertNull(deleted);

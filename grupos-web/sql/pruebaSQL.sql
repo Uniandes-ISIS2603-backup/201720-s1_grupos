@@ -1,5 +1,4 @@
 delete from GrupoEntity_CategoriaEntity;
-delete from GrupoEntity_EventoEntity;
 delete from Usuario_Admin;
 delete from Usuario_Grupo;
 delete from UsuarioEntity_BlogEntity;
