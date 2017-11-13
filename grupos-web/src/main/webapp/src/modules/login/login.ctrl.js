@@ -51,6 +51,11 @@
                         
                     
                 };
+                
+                this.saveRecord=function()
+                {
+
+                }
                 /**
                 * Función para autenticar
                 */

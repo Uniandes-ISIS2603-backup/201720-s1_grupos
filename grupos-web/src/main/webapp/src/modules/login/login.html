@@ -1,4 +1,12 @@
 <!--Mira haber si el usuario está autenticado-->
+<form ng-submit="ctrl.saveRecord()" name="multimedia">
+                    <div class="form-group row">
+                        <div class="form-group col-md-8">
+                             <label for="nombre" class="col-md-6">Nombre de archivo:</label>
+                             <input id="nombre" name="nombre" class="col-sm-6" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"/>
+                        </div>
+                    </div>
+                </form>
 <div ng-if="!isAuthenticated()" class="container">
     <form class="form-signin">
         <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
