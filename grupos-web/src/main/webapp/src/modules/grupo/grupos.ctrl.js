@@ -223,7 +223,8 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.eventosRecords=response.data.eventosGrupo;
                     $scope.records=response.data.noticias;
                     for(var i = 0; i < $scope.miembroRecords.length; i++) {
-                        if ($scope.miembroRecords[i].id === $scope.idUsuarioActual) {
+                        console.log(sessionStorage.getItem("id"));
+                        if ($scope.miembroRecords[i].id == sessionStorage.getItem("id")) {
                             soyMiembro = true;
                             break;
                         }
