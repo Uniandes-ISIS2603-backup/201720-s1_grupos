@@ -25,8 +25,8 @@
             }).state('logout', {
                 url: '/logout',
                 data: {
-                    requireLogin: false,
-                    roles: []
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']    
                 }
                 ,
                 views: {
