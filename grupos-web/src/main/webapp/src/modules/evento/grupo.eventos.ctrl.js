@@ -12,6 +12,7 @@
              //Inicialización de booleanos importantes
             $scope.esEventoUsuario=false;
             $scope.deGrupo=true; 
+            $scope.idGrupo= $state.params.grupoId;
             //Inicialización de mensaje de error
             var error="";
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)

@@ -1,14 +1,14 @@
 <style>
-    a:hover{
+    a#unico:hover{
         color:white
     }
-    a:link{
+    a#unico:link{
         color:white
     }
-    a:visited{
+    a#unico:visited{
         color:white
     }
-    a:unvisited{
+    a#unico:unvisited{
         color:white
     }
 </style>
@@ -16,15 +16,17 @@
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading" ng-show="{{esMultimediaNoticia && deGrupo}}">
-                <a ui-sref="grupoNoticiaDetail">Multimedia</a>
+                <a id="unico" ui-sref="grupoNoticiaDetail">Multimedia</a>
             </div>
             <div class="panel-heading" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
-                <a ui-sref="usuarioNoticiaDetail">Multimedia</a>
+                <a id="unico" ui-sref="usuarioNoticiaDetail">Multimedia</a>
             </div>
             <div class="panel-heading" ng-show="{{esMultimediaBlog}}">
-                <a ui-sref="blogDetail">Multimedia</a>
+                <a id="unico" ui-sref="blogDetail">Multimedia</a>
             </div>
-        
+            <div class="panel-heading" ng-show="{{esMultimediaNoticia}}">
+                <a id="unico" ui-sref="noticiaNoEditableDetail">Multimedia</a>
+            </div>
             <div class="panel-body">
                 
                 <div class="btn-toolbar" ng-show="{{esMultimediaBlog}}" role="toolbar" aria-label="Toolbar with button groups">

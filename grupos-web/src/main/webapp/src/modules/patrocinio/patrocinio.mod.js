@@ -43,6 +43,9 @@
                 url: '/patrocinios',
                 abstract: true,
                 parent: 'usuarioDetail',
+                param:{
+                    usuarioId:null,
+                },
                 views: {
                     'childrenView': {
                         controller: 'patrociniosUCtrl',
@@ -66,6 +69,7 @@
                 parent: 'usuarioPatrocinios',
                 param: {
                     patrocinioId: null
+
                 },
                 views: {
                     'detailView': {
