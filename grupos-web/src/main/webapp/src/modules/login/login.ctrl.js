@@ -1,11 +1,30 @@
 (function (ng) {
     //Módulo
     var mod = ng.module("loginModule");
+    
     /**
      * Controlador que usa el $scope, servicios rest ($http), estados ($state) y el scope raíz ($rootScope)
      */
-    mod.controller('loginCtrl', ['$scope', '$http', '$state', '$rootScope',
-        function ($scope, $http, $state, $rootScope) {
+    mod.controller('loginCtrl', ['$scope', '$http', '$state', '$rootScope','$q',
+        function ($scope, $http, $state, $rootScope,$q) {
+            $scope.prueba1=function(url,fileList)
+            {
+                console.log(url+" "+fileList);
+            };
+            $scope.prueba2=function()
+            {
+                console.log("HOLA");
+            };
+            $scope.upload = function(url, fileList) {
+                   console.log(url);
+                    var config = { headers: { 'Content-Type': undefined },
+                                   transformResponse: angular.identity
+                                 };
+                    var promises = fileList.map(function(file) {
+                        return $http.post(url, file, config);
+                    });
+                    return $q.all(promises);
+                };
             //Usuario
             $scope.user = {};
             //Datos para pasar entre transiciones
@@ -51,11 +70,9 @@
                         
                     
                 };
-                
-                this.saveRecord=function()
-                {
+              
 
-                }
+                
                 /**
                 * Función para autenticar
                 */
