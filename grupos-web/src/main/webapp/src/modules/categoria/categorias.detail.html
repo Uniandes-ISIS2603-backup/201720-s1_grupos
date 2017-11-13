@@ -1,10 +1,24 @@
 <!-- Muestra información detallada de una categoría-->
 <div class="container-fluid">
     <!-- Muestra tipo, imagen y descripción de la misma-->
-    <h3 id="{{$index}}-name">{{categoriaActual.tipo}}</h3>
-    <img class=" img-responsive clickable" src="data/{{categoriaActual.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
-    <p id="{{$index}}-descripcion">{{categoriaActual.descripcion}}</p>
-    <!-- Botones para modificar y actualizar una categoría-->
-    <a class="btn btn-default btn-sm col-md-6" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
-    <a class="btn btn-danger btn-sm col-md-6" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
+    <h1 id="{{$index}}-name" class="col-md-12 text-center" style="float: none;margin: 0 auto">{{categoriaActual.tipo}}</h1>
+    <hr>
+    <div class="col-md-3 text-center"> 
+        <div class="col-md-12"> 
+            <img src="data/{{categoriaActual.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'"  role="button" style="margin:auto;width:300px;height:300px;border:5px solid red">
+        </div>
+        <div class="col-md-12 text-center"> 
+            <a class="btn btn-circle btn-default btn-sm" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
+            <a class="btn btn-circle btn-danger btn-sm" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
+        </div>
+    </div>
+    <div class="col-md-3">    
+        <br>
+        <h2>Descripción</h2>
+         <br>
+        <p id="{{$index}}-descripcion">{{categoriaActual.descripcion}}</p>
+    </div>
+    <div class="col-md-6">
+        <div ui-view="listGruposView"></div>
+    </div>    
 </div>

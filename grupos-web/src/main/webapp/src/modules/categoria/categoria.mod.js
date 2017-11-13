@@ -63,59 +63,69 @@
                 }
             }).state('categoriaDetail', {
                 //Estado que muestra la información detallada de una categoría
-                url: '/{categoriaId:int}/detail',
+                abstract:true,
                 parent: 'categorias',
                 param: {
                     categoriaId: null
                 },
-                views: {
-                    'listView': {
-                        templateUrl: basePathGrupos + 'grupos.list.html',
-                        controller: 'categoriaCtrl',
-                        controllerAs: 'ctrl'
-                    },
+                views: {                    
                     'detailView': {
                         templateUrl: basePath + 'categorias.detail.html',
                         controller: 'categoriaCtrl',
+                        controllerAs: 'ctrl'                       
+                    }
+                }
+            }).state('categoriaDetail2', {
+                //Estado que muestra la información detallada de una categoría
+                url: '/{categoriaId:int}/detail',
+                parent: 'categoriaDetail',
+                param: {
+                    categoriaId: null
+                },
+                views:{ 
+                    'listGruposView': {
+                        templateUrl: basePathGrupos + 'grupos.list.html',
+                        controller: 'categoriaCtrl',
                         controllerAs: 'ctrl'
                     }
+                }                   
+            
+        }).state('categoriaCreate', {
+            //Estado al crear una categoría
+            url: '/create',
+            parent: 'categorias',
+            views: {
+                'detailView': {
+                    templateUrl: basePath + 'new/categorias.new.html',
+                    controller: 'categoriaNewCtrl'
                 }
-            }).state('categoriaCreate', {
-                //Estado al crear una categoría
-                url: '/create',
-                parent: 'categorias',
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'new/categorias.new.html',
-                        controller: 'categoriaNewCtrl'
-                    }
+            }
+        }).state('categoriaUpdate', {
+            //Estado al actualizar una categoría
+            url: '/update/{categoriaId:int}',
+            parent: 'categorias',
+            param: {
+                categoriaId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + 'new/categorias.new.html',
+                    controller: 'categoriaUpdateCtrl'
                 }
-            }).state('categoriaUpdate', {
-                //Estado al actualizar una categoría
-                url: '/update/{categoriaId:int}',
-                parent: 'categorias',
-                param: {
-                    categoriaId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'new/categorias.new.html',
-                        controller: 'categoriaUpdateCtrl'
-                    }
+            }
+        }).state('categoriaDelete', {
+            //Estado al borrar una categoría
+            url: '/delete/{categoriaId:int}',
+            parent: 'categorias',
+            param: {
+                categoriaId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + 'delete/categorias.delete.html',
+                    controller: 'categoriaDeleteCtrl'
                 }
-            }).state('categoriaDelete', {
-                //Estado al borrar una categoría
-                url: '/delete/{categoriaId:int}',
-                parent: 'categorias',
-                param: {
-                    categoriaId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'delete/categorias.delete.html',
-                        controller: 'categoriaDeleteCtrl'
-                    }
-                }
-            });
-        }]);
+            }
+        });
+    }]);
 })(window.angular);

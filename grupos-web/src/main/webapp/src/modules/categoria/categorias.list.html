@@ -16,7 +16,7 @@
                         <div class="panel panel-default" ng-repeat="categoria in categoriaRecords">
                             <div class="panel-body responsive">                   
                                 <h3 id="{{$index}}-name">{{categoria.tipo}}</h3>
-                                <img class="img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
+                                <img class="img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail2({categoriaId: categoria.id})">
                                 <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
                                 <!-- Muestra la opción para desasociar la categoría en caso de estar en un grupoDetail-->     
                                 <a class="btn btn-danger btn-sm" ng-click="desasociarCategoria(categoria.id)" ng-show="{{deGrupo}}">Desasociar categoría</a>

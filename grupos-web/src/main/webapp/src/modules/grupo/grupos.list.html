@@ -1,49 +1,47 @@
 <!-- Lista donde se mostrarán los grupos-->
-<div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label>Lista de grupos</label></div>                
-            <div class="panel-body">
-                <!-- Muestra las opciones de agregar grupo y buscar por nombre solo si está activado el booleano-->                
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-hide="{{opcionesGrupo}}">
-                    <div class="btn-group mr-2 col-md-2" role="group" aria-label="First group" >
-                        <a ui-sref="grupoCreate"><img src="data/plus.png" style="width:50px;height:50px"></a>
-                    </div>
-                    <div id="custom-search-input" style="position:absolute;margin-left:500px">
-                        <!-- Cuadro de búsqueda para encontrar un grupo por su nombre exacto-->                
-                        <form ng-controler="buscarGrupo">
-                            <div class="col-md-10">
-                                <link rel="stylesheet" href="styles/search.css">
-                                <input type="text" id="search51" placeholder="Buscar por nombre" ng-model="buscarGrupoValor"/>
-                            </div>
-                            <span class="btn col-md-2 ">
-                                <a ng-click="buscarPorNombre(buscarGrupoValor)" style="width:40px;height:30px">
-                                    <img src="data/butSearch.png" style="width:40px;height:40px;margin-top:-10px">
-                                </a>
-                            </span>
-                        </form>
-                        
-                    </div>
+<div class="col-md-6">
+    <div class="container-fluid">
+        <div class="panel-group">              
+            <!-- Muestra las opciones de agregar grupo y buscar por nombre solo si está activado el booleano-->                
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-hide="{{opcionesGrupo}}">
+                <div class="btn-group mr-2 col-md-1" role="group" aria-label="First group" >
+                    <a ui-sref="grupoCreate"><img src="data/plusM.png" style="width:50px;height:50px"></a>
                 </div>
-                <br>
-                <div class="col-md-12">
-                    <div class="container">   
-                        <!-- Muestra nombre y descripción de cada grupo-->
-                        <div class="panel panel-default col-md-12" ng-repeat="grupo in grupoRecords">
-                            <div class="panel-body clickable " ui-sref="grupoDetail({grupoId: grupo.id})" role="button">    
-                                <div class="col-md-1">
-                                    <img src="data/grupoIcono.png" style="margin:auto; position:absolute">
-                                </div>
-                                <div class="col-md-10">                   
-                                    <p id="{{$index}}-name" style="font-size:20px;font-family: Arial, Helvetica, sans-serif">{{grupo.nombre}}</p>
-                                    <p id="{{$index}}-descripcion">{{grupo.descripcion}}</p>
-                                    
-                                </div>
+                <div id="custom-search-input" style="position:absolute;margin-left:200px">
+                    <!-- Cuadro de búsqueda para encontrar un grupo por su nombre exacto-->                
+                    <form ng-controler="buscarGrupo">
+                        <div class="col-md-10">
+                            <link rel="stylesheet" href="styles/search.css">
+                            <input type="text" id="search51" placeholder="Buscar por nombre" ng-model="buscarGrupoValor"/>
+                        </div>
+                        <span class="btn col-md-2 ">
+                            <a ng-click="buscarPorNombre(buscarGrupoValor)" style="width:40px;height:30px">
+                                <img src="data/butSearch.png" style="width:40px;height:40px;margin-top:-10px">
+                            </a>
+                        </span>
+                    </form>
+                    
+                </div>
+            </div>
+            <br>
+            <div class="col-md-6">
+                <div class="container"> 
+                    <h1>Grupos</h1>
+                    <!-- Muestra nombre y descripción de cada grupo-->
+                    <div class="panel panel-default col-md-9 responsive" ng-repeat="grupo in grupoRecords">
+                        <div class="panel-body clickable responsive" ui-sref="grupoDetail({grupoId: grupo.id})" role="button">    
+                            <div class="col-md-2">
+                                <img src="data/grupoIcono.png" style="margin:auto; position:absolute">
+                            </div>
+                            <div class="col-md-8">                   
+                                <p id="{{$index}}-name" style="font-size:20px;font-family: Arial, Helvetica, sans-serif">{{grupo.nombre}}</p>
+                                <p id="{{$index}}-descripcion">{{grupo.descripcion}}</p>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>     
+        </div>     
+    </div>
 </div>
