@@ -75,10 +75,6 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'eventos.list.html'
                     }
-                },
-                data: {
-                    requireLogin: false,
-                    roles: []
                 }
             }).state('eventosCreate',{
                 url: '/create',
