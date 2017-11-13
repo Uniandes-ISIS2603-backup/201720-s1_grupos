@@ -130,7 +130,7 @@ public class UsuarioBlogResource {
      */
     @DELETE
     @Path("{blogId: \\d+}")
-    public void removeBlogs(@PathParam("usuarioId") Long usuarioId, @PathParam("blogId") Long blogId) {
+    public void removeBlogs(@PathParam("usuarioId") Long usuarioId, @PathParam("blogId") Long blogId) throws BusinessException{
        usuarioLogic.removeBlog(usuarioId, blogId);
     }
 }

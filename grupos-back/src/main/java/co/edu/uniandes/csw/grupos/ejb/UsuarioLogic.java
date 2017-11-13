@@ -63,10 +63,7 @@ public class UsuarioLogic {
      */
     public UsuarioEntity createUser(UsuarioEntity puser) throws BusinessException
     {
-        UsuarioEntity check= per.findByEmail(puser.getEmail());
-        if(check != null){
-            throw new BusinessException("Ya existe un usuario con ese email");
-        }
+        verifyUserCreate(puser);
         UsuarioEntity add = per.createEntity(puser);
         return add;
     }
@@ -106,8 +103,9 @@ public class UsuarioLogic {
      * @param id identificador del usuario que se quiere actualizar.
      * @param puser nueva información del usuario
      * @return usuario actualizado
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessException
      */
-    public UsuarioEntity updateUser(Long id, UsuarioEntity puser) 
+    public UsuarioEntity updateUser(Long id, UsuarioEntity puser) throws BusinessException
     {
         UsuarioEntity found = per.find(id);
         if(found == null)
@@ -117,6 +115,8 @@ public class UsuarioLogic {
         else
         {
             puser.setId(id);
+            puser.setRol(found.getRol());
+            verifyUserUpdate(puser);
             return per.updateEntity(puser);
         }
     }
@@ -478,7 +478,7 @@ public class UsuarioLogic {
      * @param usuarioId, id del usuario al que se le desvinculará el blog
      * @param blogId, id del blog a desvincular del usuario
      */
-    public void removeBlog(Long usuarioId, Long blogId) {
+    public void removeBlog(Long usuarioId, Long blogId) throws BusinessException {
         UsuarioEntity entity = findById(usuarioId);
         BlogEntity blogEntity = new BlogEntity();
         blogEntity.setId(blogId);
@@ -490,4 +490,35 @@ public class UsuarioLogic {
         updateUser(usuarioId, entity);
     }
     
+    private void verifyUserCreate(UsuarioEntity user) throws BusinessException {
+        if(user.getEmail() == null || user.getEmail().equals("")) {
+            throw new BusinessException("el email no puede ser nulo o vacío");
+        }
+        if(user.getNickname() == null || user.getNickname().equals("")) {
+            throw new BusinessException("el email no puede ser nulo o vacío");
+        }
+        if(per.findByEmail(user.getEmail()) != null) {
+            throw new BusinessException("Ya existe una cuenta asociada a este email");
+        }
+        if(per.findByNickname(user.getNickname()) != null) {
+            throw new BusinessException("El nickname ya está en uso");
+        }
+        String rol = user.getRol();
+        if(rol == null || !(rol.equals("Administrador") || rol.equals("Ciudadano"))) {
+            throw new BusinessException("Rol de usuario no válido");
+        }
+    }
+    
+    private void verifyUserUpdate(UsuarioEntity user) throws BusinessException{
+        if(user.getEmail() != null) {
+            if(per.findByEmail(user.getEmail()) != null) {
+                throw new BusinessException("Ya existe una cuenta asociada a este email");
+            }
+        }
+        if(user.getNickname() != null) {
+            if(per.findByNickname(user.getNickname()) != null) {
+                throw new BusinessException("El nickname ya está en uso");
+            }
+        }
+    }
 }

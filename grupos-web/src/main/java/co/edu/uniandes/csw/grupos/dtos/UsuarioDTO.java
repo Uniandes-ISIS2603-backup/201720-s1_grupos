@@ -43,6 +43,10 @@ public class UsuarioDTO {
      */
     private String email;
     
+    /**
+     * 
+     */
+    private String rol;
     
     /**
      * Constructor vacio
@@ -61,6 +65,7 @@ public class UsuarioDTO {
         this.nickname = ue.getNickname();
         this.password = ue.getPassword();
         this.email = ue.getEmail();
+        this.rol = ue.getRol();
     }
     
     /**
@@ -112,6 +117,14 @@ public class UsuarioDTO {
     }
     
     /**
+     * Retorna el rol del usuario
+     * @return rol
+     */
+    public String getRol() {
+        return rol;
+    }
+    
+    /**
      * Cambia el nombre de un usuario
      * @param n nombre 
      */
@@ -160,6 +173,14 @@ public class UsuarioDTO {
     }
     
     /**
+     * Cambia el rol del usuario
+     * @param rol 
+     */
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    
+    /**
      * Convierte un UsuarioDTO a un UsuarioEntity
      * @return UsuarioEntity
      */
@@ -171,6 +192,7 @@ public class UsuarioDTO {
         user.setEmail(email);
         user.setNickname(nickname);
         user.setPassword(password);
+        user.setRol(rol);
         return user;
     }
     

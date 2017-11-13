@@ -146,12 +146,13 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\"\n}"
+					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\",\n  \"rol\": \"Ciudadano\"\n}"
 				},
 				"description": ""
 			},
@@ -176,26 +177,27 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\"\n}"
+					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holi@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"ser\"\n}"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Intenta añadir un usuario que ya existe",
+			"name": "Intenta añadir un usuario con un email usado",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"]= responseCode.code===200"
+							"tests[\"Status code is 412\"]= responseCode.code===412"
 						]
 					}
 				}
@@ -206,12 +208,75 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holi@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"sghe\"\n}"
+					"raw": "{\"apellido\": \"asdas\",\n  \"email\": \"holi@uniandes.edu.co\",\n  \"nombre\": \"Serg\",\n  \"password\": \"adasd\",\n  \"nickname\": \"sghe\",\n  \"rol\": \"Ciudadano\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta añadir un usuario con un nickname usado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]= responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"apellido\": \"asdas\",\n  \"email\": \"holi1@uniandes.edu.co\",\n  \"nombre\": \"Serg\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\",\n  \"rol\": \"Ciudadano\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Intenta añadir un usuario con un rol no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]= responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"apellido\": \"apellido\",\n  \"email\": \"elcorreo@uniandes.edu.co\",\n  \"nombre\": \"nombre\",\n  \"password\": \"adasd\",\n  \"nickname\": \"sergrfs123\",\n  \"rol\": \"un rol\"\n}"
 				},
 				"description": ""
 			},
@@ -225,25 +290,24 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"]=responseCode.code===412;"
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/login",
+				"url": "http://localhost:55228/grupos-web/Stark/usuarios/login",
 				"method": "GET",
 				"header": [
 					{
 						"key": "email",
-						"value": "hola@uniandes.edu.co",
+						"value": "xp@uniandes.edu.co",
 						"description": ""
 					},
 					{
-						"key": "",
-						"value": "",
-						"description": "",
-						"disabled": true
+						"key": "password",
+						"value": "Hola",
+						"description": ""
 					}
 				],
 				"body": {},
@@ -259,7 +323,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"]=responseCode.code===404;"
+							"tests[\"Status code is 412\"]=responseCode.code===412;"
 						]
 					}
 				}
@@ -271,11 +335,6 @@
 					{
 						"key": "email",
 						"value": "hola@uniandes.edu.co",
-						"description": ""
-					},
-					{
-						"key": "password",
-						"value": "hola1",
 						"description": ""
 					}
 				],
@@ -292,7 +351,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"]=responseCode.code===404;"
+							"tests[\"Status code is 404\"]=responseCode.code===404;"
 						]
 					}
 				}
@@ -308,7 +367,7 @@
 					},
 					{
 						"key": "password",
-						"value": "hola1",
+						"value": "contraseña",
 						"description": ""
 					}
 				],
