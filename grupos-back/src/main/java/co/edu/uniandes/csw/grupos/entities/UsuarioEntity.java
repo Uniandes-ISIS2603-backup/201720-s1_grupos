@@ -21,6 +21,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -61,6 +62,11 @@ public class UsuarioEntity implements Serializable {
      * Email del usuario
      */
     private String email;
+    
+    /**
+     * Rol del usuario, Rol in ("Ciudadano", "Administrador")
+     */
+    private String rol;
     
     /**
      * Lista de tarjetas asociadas al usuario
@@ -163,6 +169,14 @@ public class UsuarioEntity implements Serializable {
      */
     public String getEmail(){
         return email;
+    }
+    
+    /**
+     * Retorna el rol del usuario
+     * @return rol
+     */
+    public String getRol() {
+        return rol;
     }
     
     /**
@@ -278,6 +292,14 @@ public class UsuarioEntity implements Serializable {
     }
     
     /**
+     * Cambia el rol del usuario
+     * @param rol 
+     */
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    
+    /**
      * Cambia los grupos donde el usuario esta registrado
      * @param ng nueva lista de grupos
      */
@@ -295,7 +317,7 @@ public class UsuarioEntity implements Serializable {
     
     /**
      * Cambia las noticias del usuario
-     * @param ne nuevas noticias
+     * @param nn nuevas noticias
      */
     public void setNoticias(List<NoticiaEntity> nn){
         noticias = nn;

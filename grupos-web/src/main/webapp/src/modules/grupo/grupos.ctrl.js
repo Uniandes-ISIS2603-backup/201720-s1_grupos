@@ -222,14 +222,13 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.usuariosRecords=response.data.administradores;
                     $scope.eventosRecords=response.data.eventosGrupo;
                     $scope.records=response.data.noticias;
+                    
                     for(var i = 0; i < $scope.miembroRecords.length; i++) {
-                        console.log(sessionStorage.getItem("id"));
-                        if ($scope.miembroRecords[i].id == sessionStorage.getItem("id")) {
+                        if ($scope.miembroRecords[i].id == $scope.idUsuarioActual) {
                             soyMiembro = true;
                             break;
                         }
                     }
-                    
                     $scope.soyMiembro=soyMiembro;
                 });
             }

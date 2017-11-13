@@ -1,5 +1,4 @@
 delete from GrupoEntity_CategoriaEntity;
-delete from GrupoEntity_EventoEntity;
 delete from Usuario_Admin;
 delete from Usuario_Grupo;
 delete from UsuarioEntity_BlogEntity;
@@ -59,11 +58,11 @@ insert into EmpresaEntity(nit,logo,nombre) values (1,'hola.png','Hola');
 insert into EmpresaEntity(nit,logo,nombre) values (2,'empresa.png','Empresa');
 
 --INFORMACIÖN USUARIO
-insert into UsuarioEntity(id, nombre, apellido, password,email) values (1,'Sergio','Guzmán','hola','hola@uniandes.edu.co');
-insert into UsuarioEntity(id, nombre, apellido, password,email) values (11,'DE','Rd','Hola','xd@uniandes.edu.co');
-insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit) values (3,'DE','Rd','Hola','x@uniandes.edu.co',1);
-insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit) values (2,'DE','Rd','Hola','d@uniandes.edu.co',2);
-insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit) values (4,'UsuarioParaGrupo','Rd','Hola','xp@uniandes.edu.co',null);
+insert into UsuarioEntity(id, nombre, apellido, password,email, rol, nickname) values (1,'Sergio','Guzmán','hola','hola@uniandes.edu.co', 'Ciudadano', 'sergioStark');
+insert into UsuarioEntity(id, nombre, apellido, password,email, rol, nickname) values (11,'DE','Rd','Hola','xd@uniandes.edu.co', 'Administrador', 'elAdmin');
+insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit, rol, nickname) values (3,'DE','Rd','Hola','x@uniandes.edu.co',1, 'Ciudadano', 'DERd');
+insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit, rol, nickname) values (2,'DE','Rd','Hola','d@uniandes.edu.co',2, 'Ciudadano', 'DERd2');
+insert into UsuarioEntity(id, nombre, apellido, password,email,empresa_nit, rol, nickname) values (4,'UsuarioParaGrupo','Rd','Hola','xp@uniandes.edu.co',null, 'Ciudadano', 'usuarioDeGrupo');
 
 --INFORMACIÓN USUARIO TARJETA
 
@@ -107,7 +106,7 @@ insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values
 
 
 ---INSERCIÓN SEGURA DE USUARIO, GRUPO Y BLOG FICTICIOS QUE NO SE VAN A BORRAR EN LAS PRUEBAS DE SERGIO GUZMÁN M.
-insert into UsuarioEntity(id, nombre, apellido, password,email) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co');
+insert into UsuarioEntity(id, nombre, apellido, password,email, rol) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co', 'Ciudadano', 'guzmanStark');
 insert into GrupoEntity (id, nombre, descripcion) values (1000000,'GrupoPrueba', 'Este grupo es el numero millón');
 insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000000,'BlogMillón','Contenido',0,1000000);
 insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000001,'BlogMillónUno','Contenido',0,1000000);
@@ -134,10 +133,10 @@ insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1000
 
 
 --INFORMACIÓN COMENTARIO
-insert into ComentarioEntity (id, autor, comentario) values (1, 'yo', 'hola');
-insert into ComentarioEntity (id, autor, comentario) values (2, 'Sergio', 'solo milloz loks');
-insert into ComentarioEntity (id, autor, comentario) values (3, 'yo', 'hola k ase');
-insert into ComentarioEntity (id, autor, comentario) values (4, 'abc', 'qwerty');
+insert into ComentarioEntity (id, autor, comentario) values (1, 'sergioStark', 'hola');
+insert into ComentarioEntity (id, autor, comentario) values (2, 'usuarioDeGrupo', 'solo milloz loks');
+insert into ComentarioEntity (id, autor, comentario) values (3, 'usuarioDeGrupo', 'hola k ase');
+insert into ComentarioEntity (id, autor, comentario) values (4, 'DERd', 'qwerty');
 
 
 

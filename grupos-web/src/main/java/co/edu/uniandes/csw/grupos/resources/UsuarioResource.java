@@ -114,7 +114,7 @@ public class UsuarioResource {
      */
     @PUT
     @Path("{usuarioId: \\d+}")
-    public UsuarioDetailDTO updateUser(@PathParam("usuarioId") Long pid, UsuarioDetailDTO user) 
+    public UsuarioDetailDTO updateUser(@PathParam("usuarioId") Long pid, UsuarioDetailDTO user) throws BusinessException
     {
         UsuarioEntity found = userLogic.findById(pid);
         if(found==null)
