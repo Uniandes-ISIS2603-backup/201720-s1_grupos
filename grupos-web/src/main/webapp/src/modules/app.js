@@ -30,7 +30,6 @@
                 var $state = trans.router.stateService;
                 var requireLogin = $state.current.data.requireLogin
                 var roles = $state.current.data.roles
-                console.log(trans.$to.data +" "+trans.$from.data);
                 $rootScope.isAuthenticated = function () {
                     if (sessionStorage.getItem("email") !==null && sessionStorage.getItem("email") !==undefined ) {
                         var x = sessionStorage.getItem("nickname");
