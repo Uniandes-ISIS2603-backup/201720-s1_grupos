@@ -1,44 +1,49 @@
- <!-- Lista donde se mostrarán los grupos-->
+<!-- Lista donde se mostrarán los grupos-->
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Lista de grupos</label></div>                
             <div class="panel-body">
-                    <!-- Muestra las opciones de agregar grupo y buscar por nombre solo si está activado el booleano-->                
+                <!-- Muestra las opciones de agregar grupo y buscar por nombre solo si está activado el booleano-->                
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-hide="{{opcionesGrupo}}">
                     <div class="btn-group mr-2 col-md-2" role="group" aria-label="First group" >
-                        <a class="btn btn-info" ui-sref="grupoCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear grupo :D</a>
+                        <a ui-sref="grupoCreate"><img src="data/plus.png" style="width:50px;height:50px"></a>
                     </div>
-                    <div id="custom-search-input">
+                    <div id="custom-search-input" style="position:absolute;margin-left:500px">
                         <!-- Cuadro de búsqueda para encontrar un grupo por su nombre exacto-->                
                         <form ng-controler="buscarGrupo">
-                            <input type="text" class="input-lg col-md-9" placeholder="Buscar por nombre" ng-model="buscarGrupoValor"/>
-                            <span class="input-group-btn col-md-2">
-                                <button class="btn btn-info btn-lg " type="button" ng-click="buscarPorNombre(buscarGrupoValor)">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
+                            <div class="col-md-10">
+                                <link rel="stylesheet" href="styles/search.css">
+                                <input type="text" id="search51" placeholder="Buscar por nombre" ng-model="buscarGrupoValor"/>
+                            </div>
+                            <span class="btn col-md-2 ">
+                                <a ng-click="buscarPorNombre(buscarGrupoValor)" style="width:40px;height:30px">
+                                    <img src="data/butSearch.png" style="width:40px;height:40px;margin-top:-10px">
+                                </a>
                             </span>
                         </form>
-                            
+                        
                     </div>
                 </div>
-                <div class="col-md-8">
+                <br>
+                <div class="col-md-12">
                     <div class="container">   
                         <!-- Muestra nombre y descripción de cada grupo-->
-                        <div class="panel panel-default" ng-repeat="grupo in grupoRecords">
-                            <div class="panel-body clickable" ui-sref="grupoDetail({grupoId: grupo.id})" role="button">                   
-                                <h3 id="{{$index}}-name">{{grupo.nombre}}</h3>
-                                <p id="{{$index}}-descripcion">{{grupo.descripcion}}</p>
+                        <div class="panel panel-default col-md-12" ng-repeat="grupo in grupoRecords">
+                            <div class="panel-body clickable " ui-sref="grupoDetail({grupoId: grupo.id})" role="button">    
+                                <div class="col-md-1">
+                                    <img src="data/grupoIcono.png" style="margin:auto; position:absolute">
+                                </div>
+                                <div class="col-md-10">                   
+                                    <p id="{{$index}}-name" style="font-size:20px;font-family: Arial, Helvetica, sans-serif">{{grupo.nombre}}</p>
+                                    <p id="{{$index}}-descripcion">{{grupo.descripcion}}</p>
                                     
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-        
-        
-        
-        
+    </div>     
 </div>
