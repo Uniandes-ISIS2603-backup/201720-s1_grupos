@@ -25,6 +25,10 @@
                         controller: 'blogCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('blogList', {
                 url:'/list',

@@ -27,6 +27,10 @@
                         controller: 'empresaListCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: []
                 }
             }).state('empresasList', {
                 // Url que aparecerá en el browser
@@ -50,6 +54,10 @@
                         controller: 'empresaCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: []
                 }
             }).state('empresaDetail', {
                 url: '/empresa',

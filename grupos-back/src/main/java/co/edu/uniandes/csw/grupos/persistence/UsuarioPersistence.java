@@ -40,6 +40,7 @@ public class UsuarioPersistence {
     {
         LOGGER.info("Creando objeto "+e.getId());
         em.persist(e);
+        em.flush();
         LOGGER.info("Éxito en creación");
         return e;
     }

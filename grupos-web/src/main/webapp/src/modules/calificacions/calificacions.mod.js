@@ -35,6 +35,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'calificacions.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('ERRORCALIFICACION', {
                 url: '/error',

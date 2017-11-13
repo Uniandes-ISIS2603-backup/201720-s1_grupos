@@ -25,8 +25,8 @@
                  * @returns {undefined}
                  */
                 $scope.agregarFavoritos = function () {
-                    //el usuario logueado por defecto es el 1
-                    $http.post(usuarioContext + '/' + '1' +'/'+ 
+                    
+                    $http.post(usuarioContext + '/' + sessionStorage.getItem("id") +'/'+ 
                         blogContext+'/'+$state.params.blogId).then(function (response) {
                         $state.go('blogDetail', {}, {reload: true});
                     }, function(error) {
@@ -40,7 +40,7 @@
                  */
                 $scope.eliminarFavoritos = function () {
                     //el usuario logueado por defecto es el 1
-                    $http.delete(usuarioContext + '/' + '1' +'/'+ 
+                    $http.delete(usuarioContext + '/' + sessionStorage.getItem("id") +'/'+ 
                         blogContext+'/'+$state.params.blogId).then(function (response) {
                         $state.reload();
                     }, function (error) {
@@ -53,7 +53,7 @@
                 //En vez de 1 debe ir el id del usuario logueado
                 //Se está verificando si el blog actual pertenece a la lista de favoritos para mostrar los botones correctamente
                 $scope.esFavorito = false;
-                $http.get(usuarioContext + '/' + '1' +'/'+ 
+                $http.get(usuarioContext + '/' + sessionStorage.getItem("id") +'/'+ 
                     blogContext).then(function (response) {
                         var lista = response.data;
                         for(var i = 0; i<lista.length; i++) {

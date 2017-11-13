@@ -1,0 +1,21 @@
+<!--Mira haber si el usuario está autenticado-->
+<div ng-if="!isAuthenticated()" class="container">
+    <form class="form-signin">
+        <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
+        <input type="text" class="form-control" placeholder="Correo" required="" autofocus="" ng-model="data.email">
+        <input type="password" class="form-control" placeholder="Contraseña" required="" ng-model="data.password">
+        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="data.rol" required="true">
+            <option value="">--- Por favor seleccione un rol ---</option> <!-- not selected / blank option -->
+            <option value="admin">Administrador</option>
+           <option value="assistant">Cliente</option>
+        </select>
+        <br>
+        <!--Le permite acceder a la plataforma-->
+        <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="ctrl.autenticar()">
+            Entrar
+        </button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="ctrl.loggear()">
+            Entrar con el usuario 1
+        </button>
+    </form>
+</div>

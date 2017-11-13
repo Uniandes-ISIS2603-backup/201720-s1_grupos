@@ -26,6 +26,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'patrocinio.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('patrociniosList',{
                 url: '/list',
@@ -39,6 +43,9 @@
                 url: '/patrocinios',
                 abstract: true,
                 parent: 'usuarioDetail',
+                param:{
+                    usuarioId:null,
+                },
                 views: {
                     'childrenView': {
                         controller: 'patrociniosUCtrl',
@@ -62,6 +69,7 @@
                 parent: 'usuarioPatrocinios',
                 param: {
                     patrocinioId: null
+
                 },
                 views: {
                     'detailView': {

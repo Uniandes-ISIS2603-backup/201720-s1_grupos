@@ -13,6 +13,7 @@
             if ($state.params.patrocinioId !== undefined) {
                 $http.get(patrocinioContext + '/' + $state.params.patrocinioId).then(function (response) {
                     $scope.currentPatrocinio = response.data;
+                    $scope.patrocinio = response.data;
                 });
             }
         } 

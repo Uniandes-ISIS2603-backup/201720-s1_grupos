@@ -19,6 +19,10 @@
                         controller: 'eventoCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('eventosList', {
                 url: '/list',
@@ -54,6 +58,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'evento.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('eventosDeGrupo', {
                 url: '/list',

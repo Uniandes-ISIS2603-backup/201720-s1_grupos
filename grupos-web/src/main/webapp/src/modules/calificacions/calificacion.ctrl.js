@@ -14,13 +14,13 @@
             //Calificaor por default 1
             var currentAutor={};
             //Calificador por default el 1 (Se define con el login)
-            $http.get("Stark/usuarios/1").then(function(response){
+            $http.get("Stark/usuarios/"+sessionStorage.getItem("id")).then(function(response){
                             currentAutor.apellido= response.data.apellido,
                             currentAutor.email= response.data.email,
                             currentAutor.id= response.data.id,
                             currentAutor.nombre= response.data.nombre,
                             currentAutor.password= response.data.password}, function(response){
-                                $state.go('ERROR',{mensaje: "El usuario 1 no está loggeado"},{reload:true});
+                                $state.go('ERROR',{mensaje: "El usuario "+sessionStorage.getItem("id")+"  no está loggeado"},{reload:true});
                             });
             /**
              * Inicialización dle mensaje de estado de error
