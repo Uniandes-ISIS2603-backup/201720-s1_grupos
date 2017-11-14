@@ -131,19 +131,13 @@ public class UsuarioTarjetasResource {
             throw new WebApplicationException("El usuario con id " + usuarioId + " no tiene ninguna tarjeta con el número " + numTarjeta, 404);
         }
         
-        if(pTarjeta.getBanco() != null)
-            tarjeta.setBanco(pTarjeta.getBanco());
-        if(Math.abs(pTarjeta.getDineroDisponible()- tarjeta.getDineroDisponible())<0.00001)
+        if(pTarjeta.getDineroDisponible() > pTarjeta.getMaxCupo())
         {
-            tarjeta.setDineroDisponible(pTarjeta.getDineroDisponible());
-        }
-        if(Math.abs(pTarjeta.getMaxCupo()- tarjeta.getMaxCupo())<0.00001)
-        {
-            tarjeta.setMaxCupo(pTarjeta.getMaxCupo());
+            throw new WebApplicationException("El dinero disponible no puede superar el cupo máximo", 412);
         }
         
         
-        return new TarjetaDetailDTO(usuarioLogic.updateTarjeta(usuarioId, tarjeta));
+        return new TarjetaDetailDTO(usuarioLogic.updateTarjeta(usuarioId, pTarjeta.toEntity()));
     }
     
     
