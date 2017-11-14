@@ -106,7 +106,7 @@ insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values
 
 
 ---INSERCIÓN SEGURA DE USUARIO, GRUPO Y BLOG FICTICIOS QUE NO SE VAN A BORRAR EN LAS PRUEBAS DE SERGIO GUZMÁN M.
-insert into UsuarioEntity(id, nombre, apellido, password,email, rol) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co', 'Ciudadano', 'guzmanStark');
+insert into UsuarioEntity(id, nombre, apellido, password,email, rol, nickname) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co', 'Ciudadano', 'guzmanStark');
 insert into GrupoEntity (id, nombre, descripcion) values (1000000,'GrupoPrueba', 'Este grupo es el numero millón');
 insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000000,'BlogMillón','Contenido',0,1000000);
 insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000001,'BlogMillónUno','Contenido',0,1000000);

@@ -552,13 +552,14 @@ public class UsuarioLogic {
     }
     
     private void verifyUserUpdate(UsuarioEntity user) throws BusinessException{
+        UsuarioEntity oldUser = per.find(user.getId());
         if(user.getEmail() != null) {
-            if(per.findByEmail(user.getEmail()) != null) {
+            if(!oldUser.getEmail().equals(user.getEmail()) && per.findByEmail(user.getEmail()) != null) {
                 throw new BusinessException("Ya existe una cuenta asociada a este email");
             }
         }
         if(user.getNickname() != null) {
-            if(per.findByNickname(user.getNickname()) != null) {
+            if(!oldUser.getNickname().equals(user.getNickname()) && per.findByNickname(user.getNickname()) != null) {
                 throw new BusinessException("El nickname ya está en uso");
             }
         }
