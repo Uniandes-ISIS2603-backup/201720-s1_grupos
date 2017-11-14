@@ -19,6 +19,11 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
     private UsuarioDTO usuario;
     
     /**
+     * Evento del patrocinio
+     */
+    private EventoDTO evento;
+    
+    /**
      * Constructor vacio
      */
     public PatrocinioDetailDTO(){
@@ -35,6 +40,10 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
             {
                 usuario = new UsuarioDTO(pe.getUsuario());
             }
+            if(pe.getEvento() != null)
+            {
+                evento =  new EventoDTO(pe.getEvento());
+            }
         }
     }
     
@@ -47,11 +56,25 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
     }
     
     /**
+     * Da el evento
+     */
+    public EventoDTO darEvento(){
+        return evento;
+    }
+    
+    /**
      * Cambia el usuario que realiza el patrocinio
      * @param nuser 
      */
     public void setUsuario(UsuarioDTO nuser){
         usuario= nuser;
+    }
+    
+    /**
+     * Cambia el evento que realiza el patrocinio
+     */
+    public void setEvento(EventoDTO nevent){
+        evento = nevent;
     }
     
     /**
@@ -62,6 +85,9 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
         PatrocinioEntity pe = super.toEntity();
         if(usuario!=null){
             pe.setUsuario(usuario.toEntity());
+        }
+        if(evento!=null){
+            pe.setEvento(evento.toEntity());
         }
         return pe;
     }

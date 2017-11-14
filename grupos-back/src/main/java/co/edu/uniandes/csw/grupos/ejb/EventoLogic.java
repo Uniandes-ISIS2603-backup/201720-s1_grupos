@@ -37,6 +37,7 @@ public class EventoLogic {
      */
     @Inject
     PatrocinioLogic patrocinio;
+    
     /**
      * Obtiene una entidad con el id dado.<br>
      * @param id Id de entidad.<br>
@@ -51,6 +52,7 @@ public class EventoLogic {
         if(entity== null) throw new NotFoundException("No existe un evento con la id " + id +" solicitada");
         return entity;
     }
+    
     /**
      * Obtiene todas las entidades.<br>
      * @return Lista de eventos.
@@ -59,6 +61,7 @@ public class EventoLogic {
     {
         return persistence.findAll();
     }
+    
     /**
      * Crea un nuevo evento.<br>
      * @param entity Entidad a persistir.<br>
@@ -71,6 +74,7 @@ public class EventoLogic {
         if(entity.getFechaInicio().after(entity.getFechaFin())) throw new BusinessException("Las fechas no coinciden");
         return persistence.create(entity);        
     }
+    
     /**
      * Actualiza el evento al valor dado.<br>
      * @param entity Entidad a actualizar.<br>
@@ -218,6 +222,32 @@ public class EventoLogic {
     }
 
     /**
+     * Actualiza el patrocinio dados un id del evento, el id del patrocinio, y el nuevo patrocinio
+     * @param id identificador del usuario
+     * @param patrocinioId identificador del patrocinio
+     * @param np nuevo patrocinio
+     * @return
+     * @throws BusinessException 
+     */
+    public PatrocinioEntity updatePatrocinio(Long id, Long patrocinioId, PatrocinioEntity np) throws BusinessException{
+        EventoEntity u = getEntity(id);
+        np.setId(patrocinioId);
+        if(u==null){
+            throw new NotFoundException("El usuario no existe");
+        }
+        if(u.getPatrocinios()==null){
+            throw new BusinessException("No hay patrocinios para actualizar");
+        }
+        int pos = u.getPatrocinios().indexOf(np);
+        if(pos<0) throw new NotFoundException("El patrocinio no existe en la lista del usuario");
+        
+        np.setEvento(u);
+        PatrocinioEntity cambio = patrocinio.updatePatrocinio(np.getId(), np);
+        //u.getPatrocinios().set(pos, cambio);
+        return cambio;
+    }
+    
+    /**
      * Desasocia un Patrocinio existente de un Evento existente
      *
      * @param entityId Identificador de la instancia de Evento
@@ -233,6 +263,7 @@ public class EventoLogic {
         entity.getPatrocinios().remove(index);
         updateEntity(entity);
     }
+    
     /**
      * Obtiene un patrocinio específico de la lógica de patrocinio.<br>
      * @param patrocinioId Id de patrocinio.<br>

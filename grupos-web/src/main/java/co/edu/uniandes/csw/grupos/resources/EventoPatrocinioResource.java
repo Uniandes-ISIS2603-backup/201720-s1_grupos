@@ -16,6 +16,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -46,6 +47,7 @@ public class EventoPatrocinioResource {
         }
         return ret;
     }
+     
     /**
      * Obtiene un patrocinio específico.<br>
      * @param id Id del evento.<br>
@@ -61,6 +63,7 @@ public class EventoPatrocinioResource {
         if(e==null) throw new NotFoundException("No se encuentra el patrocinio buscado");
         return new PatrocinioDetailDTO(e);
     }
+    
     /**
      * Agrega un nuevo patrocinio.<br>
      * @param id Id del evento.<br>
@@ -74,6 +77,22 @@ public class EventoPatrocinioResource {
     public PatrocinioDetailDTO addPatrocinios(@PathParam("id") Long id, @PathParam("patId") Long patId) throws BusinessException {
         return new PatrocinioDetailDTO(eventoLogic.addPatrocinio(id, patId));
     }
+    
+    /**
+     * Actualiza un patrocinio al usuario dado por id
+     * @param eventoId identificador del usuario
+     * @param newp patrocinio a cambiar
+     * @return patrocinio actualizado
+     * @throws BusinessException 
+     */
+    @PUT
+    @Path("{patrocinioId: \\d+}")
+    public PatrocinioDetailDTO updatePatrocinio(@PathParam("usuarioId") Long usuarioId, PatrocinioDetailDTO newp, @PathParam("patrocinioId") Long patrocinioId) throws BusinessException{
+        PatrocinioEntity pe = newp.toEntity();
+        PatrocinioEntity cambio = eventoLogic.updatePatrocinio(usuarioId, patrocinioId, pe);
+        return new PatrocinioDetailDTO(cambio);
+    }
+    
     /**
      * Remueve el patrocinio del evento.<br>
      * @param id Id del evento.<br>
@@ -81,7 +100,7 @@ public class EventoPatrocinioResource {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException Si no se encuentra.
      */
-     @DELETE
+    @DELETE
     @Path("{patId: \\d+}")
     public void removePatrocinio(@PathParam("id") Long id, @PathParam("patId") Long patId) throws BusinessException{
         eventoLogic.removePatrocinio(id, patId);

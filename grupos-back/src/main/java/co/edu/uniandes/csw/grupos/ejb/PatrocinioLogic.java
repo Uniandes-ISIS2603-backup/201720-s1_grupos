@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.grupos.persistence.*;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 /**
  * Lógica de patrocinio
