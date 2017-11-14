@@ -40,6 +40,10 @@ public class PatrocinioEntity implements Serializable{
     @ManyToOne
     private UsuarioEntity usuario;
     
+    @PodamExclude
+    @ManyToOne
+    private EventoEntity evento;
+    
     /**
      * Da el id del patrocinio
      * @return id
@@ -65,6 +69,14 @@ public class PatrocinioEntity implements Serializable{
     }
     
     /**
+     * Da el evento al que patrocinio se hizo
+     * @return evento
+     */
+    public EventoEntity getEvento(){
+        return evento;
+    }
+    
+    /**
      * Cambia el id del patrocinio
      * @param pId 
      */
@@ -87,6 +99,15 @@ public class PatrocinioEntity implements Serializable{
     public void setUsuario(UsuarioEntity nuser){
         usuario= nuser;
     }
+    
+    /**
+     * Cambia el evento al que pertence el patrocinio
+     * @param nEvent
+     */
+    public void setEvento(EventoEntity nEvent){
+        evento= nEvent;
+    }
+    
     /**
      * Override del equals.<br>
      * @param o Objeto a igualar.<br>

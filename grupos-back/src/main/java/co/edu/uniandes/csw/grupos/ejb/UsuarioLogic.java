@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.UsuarioPersistence;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -385,6 +386,25 @@ public class UsuarioLogic {
     }
     
     /**
+     * Obtiene una instancia de PatrocinioEntity asociada a una instancia de Book
+     *
+     * @param entityId Identificador de la instancia de Evento
+     * @param patrociniosId Identificador de la instancia de Patrocinio
+     * 
+     */
+    public PatrocinioEntity getPatrocinio(Long entityId, Long patrociniosId) throws BusinessException{
+        UsuarioEntity u = findById(entityId);
+        List<PatrocinioEntity> list = u.getPatrocinios();
+        PatrocinioEntity patrociniosEntity = new PatrocinioEntity();
+        patrociniosEntity.setId(patrociniosId);
+        int index = list.indexOf(patrociniosEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+    
+    /**
      * Genera un nuevo patrocinio de un usuario con el id dado por parametro
      * @param id identificador del usuario
      * @param pe patrocinio que se quiere crear
@@ -427,6 +447,28 @@ public class UsuarioLogic {
         return cambio;
     }
 
+    /**
+     * Elimina un patrocinio de un usuario
+     * @param id
+     * @param patrocinioId
+     * @param np
+     * @throws BusinessException 
+     */
+    public void deletePatrocinio(Long id, Long patrocinioId) throws BusinessException{
+        UsuarioEntity u = findById(id);
+        PatrocinioEntity np = new PatrocinioEntity();
+        np.setId(patrocinioId);
+        if(u==null){
+            throw new NotFoundException("El usuario no existe");
+        }
+        if(u.getPatrocinios()==null){
+            throw new BusinessException("No hay patrocinios para actualizar");
+        }
+        int pos = u.getPatrocinios().indexOf(np);
+        if(pos<0) throw new NotFoundException("El patrocinio no existe en la lista del usuario");
+        u.getPatrocinios().remove(pos);
+        updateUser(id, u);
+    }
     /**
      *
      * @param id, id del grupo al que se le buscarán los eventos

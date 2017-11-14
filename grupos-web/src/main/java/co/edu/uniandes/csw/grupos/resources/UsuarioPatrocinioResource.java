@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -55,6 +57,22 @@ public class UsuarioPatrocinioResource {
     }
     
     /**
+     * Obtiene un patrocinio específico.<br>
+     * @param id Id del usuario.<br>
+     * @param patId Id del patrocinio.<br>
+     * @return DTO del patrocinio.<br>
+     * @throws BusinessException Excepción de negocio.<br>
+     * @throws NotFoundException SI no se encuentra.
+     */
+    @GET
+    @Path("{patId:\\d+}")
+    public PatrocinioDetailDTO getPatrocinio(@PathParam("usuarioId") Long id, @PathParam("patId") Long patId) throws BusinessException{
+        PatrocinioEntity e= usuarioLogic.getPatrocinio(id, patId);
+        if(e==null) throw new NotFoundException("No se encuentra el patrocinio buscado");
+        return new PatrocinioDetailDTO(e);
+    }
+    
+    /**
      * Agrega un patrocinio al usuario dado por el id
      * @param usuarioId identificador del usuario
      * @param newp nuevo patrocinio
@@ -84,4 +102,16 @@ public class UsuarioPatrocinioResource {
         return new PatrocinioDetailDTO(cambio);
     }
     
+    /**
+     * Elimina un patrocinio al usuario dado por id
+     * @param usuarioId identificador del usuario
+     * @param newp patrocinio a cambiar
+     * @return patrocinio actualizado
+     * @throws BusinessException 
+     */
+    @DELETE
+    @Path("{patrocinioId: \\d+}")
+    public void deletePatrocinio(@PathParam("usuarioId") Long usuarioId, @PathParam("patrocinioId") Long patrocinioId) throws BusinessException{
+        usuarioLogic.deletePatrocinio(usuarioId, patrocinioId);
+    }
 }

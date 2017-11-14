@@ -66,6 +66,7 @@ public class EventoEntity implements Serializable{
     @PodamExclude
     @ManyToMany(mappedBy = "eventos")
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
+    
     /**
      * Relación con patrocinios
      */
