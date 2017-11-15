@@ -116,6 +116,11 @@
              */
             this.deleteRecord=function (id)
             {
+                //Id del autor diferente al de la noticia
+                    if($scope.currentRecord.autor.id!==currentAutor.id)
+                    {
+                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario no puede editar si no es el autor"},{reload:true});
+                    }
                 //Si el id existe ejecute la instrucción
                 if(id!==null)
                 {

@@ -29,7 +29,17 @@
                                 error=response.data;
                                 $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
                             });
-            
+            //Autor
+            var currentAutor={};
+                    //Autor por default (Se define con el login)
+                    $http.get("Stark/usuarios/"+sessionStorage.getItem("id")).then(function(response){
+                                    currentAutor.apellido= response.data.apellido,
+                                    currentAutor.email= response.data.email,
+                                    currentAutor.id= response.data.id,
+                                    currentAutor.nombre= response.data.nombre,
+                                    currentAutor.password= response.data.password}, function(response){
+                                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario "+sessionStorage.getItem("id")+ " no está loggeado"},{reload:true});
+                                    });
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
             //Items para agregar
@@ -99,6 +109,14 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
+                            if(response.data.id!==currentAutor.id)
+                            {
+                                $scope.esAutor=false;
+                            }
+                            else 
+                            {
+                                $scope.esAutor=true;
+                            }
                         },function(response){
                                 //Estado de error
                                 error=response.data;
@@ -119,34 +137,21 @@
              * @param {type} id
              */
             this.saveRecord = function (id) {
+                
                 //Record actual
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
-                    this.addAll();
-                    currentRecord.multimedia=$scope.multimedia;
-                    currentRecord.autor={
-    apellido: "Guzmán",
-    email: "hola@uniandes.edu.co",
-    id: 1,
-    nombre: "Sergio",
-    password: "hola"};
-                    // ejecuta POST en el recurso REST
-                    return $http.post(fullContext, currentRecord)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('usuarioNoticiasList');
-                            },function(response){
-                                //Estado de error
-                                error=response.data;
-                                $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
-                            });
-
-                    // si el id no es null, es un registro existente entonces lo actualiza
+                   
+                   $state.go('ERRORUSUARIONOTICIA',{mensaje: "No se puede crear una noticia desde acá"},{reload:true});
                 } else {
 
+                    //Id del autor diferente al de la noticia
+                    if($scope.currentRecord.autor.id!==currentAutor.id)
+                    {
+                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario no puede editar si no es el autor"},{reload:true});
+                    }
                     // ejecuta PUT en el recurso REST
                     return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
