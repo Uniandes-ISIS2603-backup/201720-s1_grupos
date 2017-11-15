@@ -30,6 +30,23 @@
                 $state.go('comentarioGrupoNoticiaError', {mensaje: error.data}, {reload: true});
             };
             
+            /**
+             * verifica si el nick del usuario del comentario es el nick del usuario logueado.
+             * @param {String} nick del usuario del comentario
+             * @returns {Boolean} true si es el mismo, false si son distintos.
+             */
+            $scope.esMiComentario = function(nick) {
+                return sessionStorage.getItem("nickname") === nick;
+            };
+            
+            /**
+             * indica si se puede comentar o no.
+             * @returns {Boolean}
+             */
+            $scope.puedoComentar = function() {
+                return $scope.puedoEditarGrupo();
+            };
+            
             //se obtiene la lista de comentarios.
             $http.get(noticiaContext + '/' + $state.params.noticiaId + '/' + comentarioContext).then(function (response) {
                 $scope.comentarioRecords = response.data;

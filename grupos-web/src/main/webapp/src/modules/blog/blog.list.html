@@ -10,7 +10,7 @@
                             <h2 ng-show="{{blogsDeUsuario}}">Blogs favoritos</h2>
                         </div>
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group mr-2" role="group" aria-label="First group" ng-hide="{{blogsDeUsuario}}">
+                            <div class="btn-group mr-2" role="group" aria-label="First group" ng-if="puedoEditaGrupo()" ng-hide="{{blogsDeUsuario}}">
                                 <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear blog :v</a>
                             </div>
                         </div>
