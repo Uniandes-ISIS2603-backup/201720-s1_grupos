@@ -5,7 +5,8 @@
      * Controlador con $scope, $state, $http, noticiasContext (Ruta de noticia), noticiaGrupoContext (Ruta de grupo), grupoContext(Ruta de grupo)
      */
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
-             //Inicialización de booleanos importantes
+            var error=""; 
+            //Inicialización de booleanos importantes
             $scope.esNoticiaUsuario=false;
             $scope.deGrupo=true; 
             $scope.noticiaEditable=true;
@@ -21,7 +22,6 @@
             },function(response){
                 $scope.esAdmin=false;
             });
-            //Verifica si autor de la noticia
             
             
             //Autor
@@ -33,14 +33,14 @@
                                     currentAutor.id= response.data.id,
                                     currentAutor.nombre= response.data.nombre,
                                     currentAutor.password= response.data.password}, function(response){
-                                        var error="El usuario "+sessionStorage.getItem("id")+ " no está loggeado";
+                                        error="El usuario "+sessionStorage.getItem("id")+ " no está loggeado";
                                         $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                                     });
             //Inicialización de mensaje de error
-            var error="";
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorNoticia=$state.params.mensaje;
+                error=$scope.variableErrorNoticia;
             }
            //Header
               header="Noticias de grupo";
@@ -147,7 +147,7 @@
             this.saveRecord = function (id) {
                 if(!$scope.esMiembro || !$scope.esAdmin)
                 {
-                    var error="El usuario no pertenece al grupo asociado";
+                    error="El usuario no pertenece al grupo asociado";
                     $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                 }
                 currentRecord = $scope.currentRecord;
@@ -204,7 +204,7 @@
                 //No es miembro
                 if(!$scope.esMiembro|| !$scope.esAdmin)
                 {
-                    var error="El usuario no pertenece al grupo asociado";
+                    error="El usuario no pertenece al grupo asociado";
                     $state.go('ERRORGRUPONOTICIA',{mensaje:error},{reload:true});
                 }
                 if(id!==null)
@@ -212,7 +212,7 @@
                     //Id del autor diferente al de la noticia
                     if(!$scope.esAutor)
                     {
-                        var error="No es el autor de la noticia"
+                        error="No es el autor de la noticia"
                                     $state.go('ERRORGRUPONOTICIA',{mensaje:error},{reload:true});
                     }
                     else
@@ -229,6 +229,14 @@
                         
                 }
                  
+            };
+            /**
+             * Obtiene el error
+             * @return Error
+             */
+            this.getError=function()
+            {
+                return error;
             };
             /**
              * Retorna el header actual.<br>
