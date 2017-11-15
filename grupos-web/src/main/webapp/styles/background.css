@@ -1,39 +1,29 @@
-
-/* SCROLLBAR */
-/* Let's get this party started */
-.scroll {
-    overflow-y: scroll;  
-    width: 800px;
-    height: 300px;
-    margin: 50px;
+body, html {
+    height: 100%;
+    margin: 0;
 }
 
-.scrollL {
-    overflow-y: scroll;  
-    width: 800px;
-    height: 600px;
-    margin: 50px;
-}
-/* Let's get this party started */
-.scroll::-webkit-scrollbar {
-    width: 12px;
-}
- 
-/* Track */
-.scroll::-webkit-scrollbar-track {
-    background: lightgray;
-    border: 4px solid transparent;
-    background-clip: content-box; 
-}
- 
-/* Handle */
-.scroll::-webkit-scrollbar-thumb {
-    width:29px; 
-    height:20px;
-    background:#f7f7f7;
-    border-radius:50%;
-    position:absolute;
-    box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.2);
-    margin-left:-9px;
-    cursor:pointer;
+.bg {
+    /* The image used */
+    background-image: url("background.png");
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
