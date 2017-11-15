@@ -3,6 +3,16 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('usuarioNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext) {
+            $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
+                        .then(function (response) {
+                            // $http.get es una promesa
+                            // cuando llegue el dato, actualice currentRecord
+                            console.log("AUTOR:"+response.data.autor.id+" "+sessionStorage.getItem("id"));
+                            $scope.esAutor= (response.data.autor.id==sessionStorage.getItem("id"));
+                        }, function(error)
+                        {
+                            $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
+                        });
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorMultimedia=$state.params.mensaje;
@@ -58,41 +68,49 @@
              * @param {type} link Link de a multimedia
              */
             this.saveRecord = function (link) {
-                //Multimedia actual
-                currentMultimedia = $scope.currentMultimedia;
-                // si el link es null, es un registro nuevo, entonces lo crea
-                if (link === null || link===undefined) {
-                    // multimedia actual
-                    currentMultimedia.link=this.randomString();
-                    // ejecuta POST en el recurso REST
-                    multimediaList=[currentMultimedia];
-                    //Promesa de post
-                    return $http.post(fullContext, multimediaList)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
-                            },function(response){
-                                //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
-                            });
-                    // si el link no es null, es un registro existente entonces lo actualiza
-                } else {
+                if(this.esAutor())
+                {
+                        //Multimedia actual
+                    currentMultimedia = $scope.currentMultimedia;
+                    // si el link es null, es un registro nuevo, entonces lo crea
+                    if (link === null || link===undefined) {
+                        // multimedia actual
+                        currentMultimedia.link=this.randomString();
+                        // ejecuta POST en el recurso REST
+                        multimediaList=[currentMultimedia];
+                        //Promesa de post
+                        return $http.post(fullContext, multimediaList)
+                                .then(function () {
+                                    // $http.post es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
+                                },function(response){
+                                    //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
+                                });
+                        // si el link no es null, es un registro existente entonces lo actualiza
+                    } else {
 
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
-                            },function(response){
-                                //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
-                            });
+                        // ejecuta PUT en el recurso REST
+                        return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
+                                .then(function () {
+                                    // $http.put es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
+                                },function(response){
+                                    //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
+                                });
+                    }
+                    ;
                 }
-                ;
+                else
+                {
+                    $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
+                }
+                
             };
             /**
              * Borra elr egistro con el link dado.<br>
@@ -100,17 +118,40 @@
              */
             this.deleteRecord= function(link)
             {
-                if(link!==null)
+                if(this.esAutor())
                 {
-                    return $http.delete(fullContext+"/"+link).then (function()
+                    if(link!==null)
                     {
-                         $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
-                    },function(response){
-                                //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
-                            })
+                        return $http.delete(fullContext+"/"+link).then (function()
+                        {
+                             $state.go('usuarioNoticiaMultimediaList',{},{reload:true});
+                        },function(response){
+                                    //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: error},{reload:true});
+                                })
+                    }
                 }
+                else
+                {
+                   $state.go('ERRORMULTIMEDIAUSUARIONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
+                }
+                
+            };
+             /**
+             * Retorna si es autor o no
+             * @returns {Boolean|esAutor}
+             */
+            this.esAutor=function()
+            {
+                return $scope.esAutor;
+            };
+            /**
+             * Se devuelve al perfil del usuario
+             */
+            this.devolverAPerfil=function()
+            {
+                $state.go("usuarioDetail",{usuarioId:sessionStorage.getItem("id")},{reload:true});
             };
 
         }]);
