@@ -9,19 +9,19 @@
                             <div class="panel-body">                   
                                 <h4 id="{{$index}}-author">{{comentario.autor}}:</h4>
                                 <p id="{{$index}}-comment">{{comentario.comentario}}</p>
-                                <div class="col-md-12" ng-show="{{comentariosBlog}}">
+                                <div class="col-md-12" ng-if="esMiComentario(comentario.autor) && puedoComentar()" ng-show="{{comentariosBlog}}">
                                     <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="comentarioDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </div>
-                                <div class="col-md-12" ng-show="{{comentariosNoticia}}">
+                                <div class="col-md-12" ng-if="esMiComentario(comentario.autor) && puedoComentar()" ng-show="{{comentariosNoticia}}">
                                     <a class="btn btn-default btn-sm" ui-sref="comentarioNoticiaUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="comentarioNoticiaDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </div>
-                                <div class="col-md-12" ng-show="{{comentariosUsuarioNoticia}}">
+                                <div class="col-md-12" ng-if="esMiComentario(comentario.autor) && puedoComentar()" ng-show="{{comentariosUsuarioNoticia}}">
                                     <a class="btn btn-default btn-sm" ui-sref="comentarioUsuarioNoticiaUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="comentarioUsuarioNoticiaDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </div>
-                                <div class="col-md-12" ng-show="{{comentariosGrupoNoticia}}">
+                                <div class="col-md-12" ng-if="esMiComentario(comentario.autor) && puedoComentar()" ng-show="{{comentariosGrupoNoticia}}">
                                     <a class="btn btn-default btn-sm" ui-sref="comentarioGrupoNoticiaUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-danger btn-sm" ui-sref="comentarioGrupoNoticiaDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
                                 </div>
@@ -29,7 +29,7 @@
                         </div>
                         <br>
                         <div ui-view="createView">
-                            <div class="col-md-12">
+                            <div class="col-md-12" ng-if="puedoComentar()">
                                 <button type="button" class="btn btn-success" ng-show="{{comentariosNoticia}}" ui-sref="comentarioNoticiaCreate">Comentar</button>
                                 <button type="button" class="btn btn-success" ng-show="{{comentariosUsuarioNoticia}}" ui-sref="comentarioUsuarioNoticiaCreate">Comentar</button>
                                 <button type="button" class="btn btn-success" ng-show="{{comentariosGrupoNoticia}}" ui-sref="comentarioGrupoNoticiaCreate">Comentar</button>
