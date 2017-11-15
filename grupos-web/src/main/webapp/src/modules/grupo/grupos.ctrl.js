@@ -231,7 +231,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     }
                     $scope.soyMiembro=soyMiembro;
                     
-                    $scope.puedoEditarGrupo = function () {
+                    $scope.puedoEditarContenidoGrupo = function () {
                         return $scope.soyMiembro;
                     };
                 });
