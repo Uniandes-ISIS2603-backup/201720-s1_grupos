@@ -1,0 +1,29 @@
+
+
+.margin-top{
+    padding-top: 20px;
+}
+
+.mainHeader {
+    padding: 20px;
+}
+
+.logo{
+    display: block;
+    object-fit: cover;
+}
+
+.mainTitle {
+    font-variant: small-caps;
+    font-style: italic;
+}
+
+.footerTitle {
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.shoppingCart-custom{
+    padding-right: 13px;
+}
+

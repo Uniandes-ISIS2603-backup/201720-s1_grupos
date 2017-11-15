@@ -9,6 +9,7 @@
         <!-- stylesheet Externas-->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
          <link rel="stylesheet" href="styles/background.css" />
+         <link rel="stylesheet" href="styles/app.css" />
         
         <!-- stylesheet Externas-->
         <script src="bower_components/angular/angular.js"></script>
@@ -134,9 +135,6 @@
             <div class="col-md-6"> 
                 <img src="data/TituloPagina.PNG" alt="titulo" width="450" height="175"/>
             </div>
-            <div class="col-md-6">
-                <h2 class="mainTitle">G R U P O S</h2>
-            </div>
             <div class="col-md-5">
                 <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
                     <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
@@ -180,6 +178,15 @@
         </div> 
                       
         <div ui-view="mainView" class="container-fluid col-md-10"></div>
-                
+        <br>
+        <br>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="col-md-3 navbar-text pull-right">
+                    <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="50%" />
+                    <p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>
+                </div>
+            </div>
+        </div>        
     </body>
 </html>
