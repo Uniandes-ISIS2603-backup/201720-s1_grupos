@@ -1,7 +1,10 @@
 <div class="container-fluid">
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{noticiaEditable && deGrupo && (esMiembro||esAdmin)}}" class="ng-hide">
-            <button id="add-btn" class="btn btn-info" ui-sref="grupoNoticiaCreate"><span class="glyphicon glyphicon-plus"></span>Agregar noticia</button>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{noticiaEditable && deGrupo}}" class="ng-hide">
+            <div ng-show="(esMiembro||esAdmin)">
+                <button id="add-btn" class="btn btn-info" ui-sref="grupoNoticiaCreate"><span class="glyphicon glyphicon-plus"></span>Agregar noticia</button>
+            </div>
             <button id="return-btn" class="btn btn-info" ui-sref="grupoDetail">Volver</button>
+
         </div>
     <p> ! {{esAutor}} ! {{esMiembro}} ! {{esAdmin}}</p>
         <h1>{{ctrl.getHeader()}}</h1>

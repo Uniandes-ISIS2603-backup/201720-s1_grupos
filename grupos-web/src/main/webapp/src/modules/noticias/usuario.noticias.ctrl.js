@@ -148,9 +148,9 @@
                 } else {
 
                     //Id del autor diferente al de la noticia
-                    if($scope.currentRecord.autor.id!==currentAutor.id)
+                    if(!$scope.esAutor)
                     {
-                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario no puede editar si no es el autor"},{reload:true});
+                        $state.go('ERRORGRUPONOTICIA',{mensaje: "No es el autor de la noticia"},{reload:true});
                     }
                     // ejecuta PUT en el recurso REST
                     return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
@@ -174,6 +174,10 @@
             {
                 if(id!==null)
                 {
+                    if(!$scope.esAutor)
+                    {
+                        $state.go('ERRORGRUPONOTICIA',{mensaje: "No es el autor de la noticia"},{reload:true});
+                    }
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
                           $state.go('usuarioNoticiasList');
