@@ -6,8 +6,19 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), blogContext (Ruta de blog), grupoContext(Ruta de grupo)
      */
     mod.controller('multimediaBlogCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
-                        //Inicialización del mensaje de error
-
+            //Verifica si es miembro del grupo
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esMiembro=true;
+            },function(response){
+                $scope.esMiembro=false;
+            });
+            //Verifica si es admin del grupo
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esAdmin=true;
+            },function(response){
+                $scope.esAdmin=false;
+            });
+            //Inicialización del mensaje de error
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorMultimedia=$state.params.mensaje;
@@ -65,39 +76,46 @@
              */
             this.saveRecord = function (link) {
                 currentMultimedia = $scope.currentMultimedia;
+                if($scope.esAdmin||$scope.esMiembro)
+                {
+                        // si el link es null, es un registro nuevo, entonces lo crea
+                    if (link === null || link===undefined) {
+                        currentMultimedia.link=this.randomString();
+                        // ejecuta POST en el recurso REST
+                        multimediaList=[currentMultimedia];
+                        return $http.post(fullContext, multimediaList)
+                                .then(function () {
+                                    // $http.post es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('blogMultimediaList',{},{reload:true});
+                                },function(response){
+                                     //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
+                                });
+                        currentMultimedia.link=null;
+                        // si el id no es null, es un registro existente entonces lo actualiza
+                    } else {
 
-                // si el link es null, es un registro nuevo, entonces lo crea
-                if (link === null || link===undefined) {
-                    currentMultimedia.link=this.randomString();
-                    // ejecuta POST en el recurso REST
-                    multimediaList=[currentMultimedia];
-                    return $http.post(fullContext, multimediaList)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('blogMultimediaList',{},{reload:true});
-                            },function(response){
-                                 //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
-                            });
-                    currentMultimedia.link=null;
-                    // si el id no es null, es un registro existente entonces lo actualiza
-                } else {
-
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('blogMultimediaList',{},{reload:true});
-                            },function(response){
-                                 //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
-                            });
+                        // ejecuta PUT en el recurso REST
+                        return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
+                                .then(function () {
+                                    // $http.put es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('blogMultimediaList',{},{reload:true});
+                                },function(response){
+                                     //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
+                                });
+                    }
+                    ;
                 }
-                ;
+                else
+                {
+                        $state.go('ERRORMULTIMEDIABLOG',{mensaje: "Usted no hace parte del grupo"},{reload:true});
+                };
+                
             };
             /**
              * Borra el registro.<br>
@@ -107,14 +125,23 @@
             {
                 if(link!==null)
                 {
-                    return $http.delete(fullContext+"/"+link).then (function()
+                    if($scope.esAdmin || $scope.esMiembro)
                     {
-                         $state.go('blogMultimediaList',{},{reload:true});
-                    },function(response){
-                        //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
-                            });
+                         return $http.delete(fullContext+"/"+link).then (function()
+                        {
+                             $state.go('blogMultimediaList',{},{reload:true});
+                        },function(response){
+                            //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
+                                });
+                    }
+                    else
+                    {
+                        $state.go('ERRORMULTIMEDIABLOG',{mensaje: "Usted no hace parte del grupo"},{reload:true});
+
+                    }
+                   
                 }
             };
 

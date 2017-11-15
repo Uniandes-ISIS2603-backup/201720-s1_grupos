@@ -32,7 +32,7 @@
                     rutaIcono: $scope.categoriaRuta
                 }).then(function (response) {                    
                     //se creó bien, se va a su detail
-                    $state.go('categoriaDetail', {categoriaId: response.data.id}, {reload: true});
+                    $state.go('categoriaDetail2', {categoriaId: response.data.id}, {reload: true});
                 }, function (error,status) {
                     //Se activa el modal correspondiente en caso de error
                     $("#modalModificarcategorias").modal();

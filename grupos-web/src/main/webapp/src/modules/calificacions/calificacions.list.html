@@ -4,7 +4,9 @@
             <div class="panel-heading"><label>Calificaciones</label></div>
             <div class="panel-body">
                     <button id="return-btn" class="btn btn-info" ui-sref="blogDetail">Volver a blog</button>
-                    <button id="add-btn" class="btn btn-info" ui-sref="calificacionCreate"><span class="glyphicon glyphicon-plus"></span> Agregar calificación</button>
+                    <div ng-show="esMiembro || esAdmin">
+                        <a class="btn" id="add-btn" ui-sref="calificacionCreate"><img src="data/plusN.png" style="width:50px;height:50px"></a>
+                    </div>
                 <div class="col-md-8">
                     <table class="table table-striped">
                         <thead>
@@ -17,27 +19,11 @@
                         </thead>
                         
                         <tbody>
-                            <tr ng-repeat="record in multimediaRecords">
-                                <tr ng-repeat="record in records">
-                                    <td id="{{$index}}-calificador">{{record.calificador.nombre}}</td>
-                                    <td id="{{$index}}-calificacion">{{record.calificacion}}</td>
-                                    <td><button id="{{$index}}-detail-btn" class="btn btn-info" ui-sref="calificacionDetail({calificacionId:record.id})"> Ver</button></td>
-                                    <td id="{{$index}}-fecha">{{record.fecha|date:'yyyy-MM-dd'}}</td>
-                                </tr>
-                                <td>  
-                                    <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
-                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
-                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                     </div>
-                                    <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
-                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
-                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                     </div>
-                                    <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
-                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span></button>
-                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="blogMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                    </div>   
-                                </td> 
+                            <tr ng-repeat="record in records">
+                                <td id="{{$index}}-calificador">{{record.calificador.nombre}}</td>
+                                <td id="{{$index}}-calificacion">{{record.calificacion}}</td>
+                                <td><button id="{{$index}}-detail-btn" class="btn btn-info" ui-sref="calificacionDetail({calificacionId:record.id})"> Ver</button></td>
+                                <td id="{{$index}}-fecha">{{record.fecha|date:'yyyy-MM-dd'}}</td>
                             </tr>
                         </tbody>
                     </table>
