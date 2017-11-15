@@ -74,13 +74,5 @@ public class LugarPersistence {
         LOGGER.log(Level.INFO, "Actualizando lugar con id=", entity.getId());
         return em.merge(entity);
     }
-    /**
-     * Borra una entidad con id dado.<br>
-     * @param id Id
-     */
-    public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando lugar con id=", id);
-        LugarEntity entity = em.find(LugarEntity.class, id);
-        em.remove(entity);
-    }
+
 }

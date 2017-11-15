@@ -51,6 +51,7 @@
                 };
                 
                 $rootScope.hasPermissions = function () {
+                    console.log(roles[0]+" "+roles[1]+":"+sessionStorage.getItem("rol"));
                     if (($rootScope.isAuthenticated) && (roles.indexOf(sessionStorage.getItem("rol")) > -1)) {
                         return true;
                     } else {
@@ -59,7 +60,7 @@
                 };
 
 
-                if (requireLogin && (sessionStorage.getItem("correo") === null)) {
+                if (requireLogin && (sessionStorage.getItem("email") === null)) {
                     event.preventDefault();
                     $state.go('login', $state.params);
                 }
