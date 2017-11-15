@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <h2>{{blogActual.titulo}}</h2>
     <div class="col-md-8">
-        <a class="btn btn-default btn-sm" ui-sref="blogUpdate" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-edit"></span></a>
-        <a class="btn btn-danger btn-sm" ui-sref="blogDelete" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-trash"></span></a>
+        <a class="btn btn-default btn-sm" ui-sref="blogUpdate" ng-if="puedoEditarContenidoGrupo()"><span class="glyphicon glyphicon-edit"></span></a>
+        <a class="btn btn-danger btn-sm" ui-sref="blogDelete" ng-if="puedoEditarContenidoGrupo()"><span class="glyphicon glyphicon-trash"></span></a>
     </div>
     <div class="col-md-4" ng-show="!esFavorito">
         <button type="button" class="btn btn-success" ng-click="agregarFavoritos()" >Añadir a favoritos</button>

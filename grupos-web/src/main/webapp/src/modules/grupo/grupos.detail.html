@@ -1,8 +1,8 @@
 <!-- Muestra información detallada de un grupo-->
 <div class="container-fluid">
     <div class="row">        
-    <a class="btn btn-danger btn-sm col-md-1 pull-right" ui-sref="grupoDelete({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
-    <a class="btn btn-default btn-sm col-md-1 pull-right" ui-sref="grupoUpdate({grupoId: grupoActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
+    <a class="btn btn-danger btn-sm col-md-1 pull-right" ui-sref="grupoDelete({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-trash"></span></a>
+    <a class="btn btn-default btn-sm col-md-1 pull-right" ui-sref="grupoUpdate({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-edit"></span></a>
     </div>
     <div class="row">
         <!-- Muestra el nombre-->
