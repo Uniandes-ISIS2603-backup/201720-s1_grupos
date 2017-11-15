@@ -36,6 +36,10 @@ public class LugarEntity implements Serializable{
      * Capacidad
      */
     private Integer capacidad;
+    /**
+     * Disponibilidad del lugar
+     */
+    private boolean disponibilidad;
 
     /**
      * @return the direccion
@@ -137,5 +141,19 @@ public class LugarEntity implements Serializable{
         int hash = 5;
         hash = 61 * hash + Objects.hashCode(this.id);
         return hash;
+    }
+
+    /**
+     * @return the disponibilidad
+     */
+    public boolean isDisponibilidad() {
+        return disponibilidad;
+    }
+
+    /**
+     * @param disponibilidad the disponibilidad to set
+     */
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 }

@@ -76,18 +76,21 @@ public class LugarLogic {
         return newEntity;
     }
     /**
-     * Borra un lugar con el objeto dado.<br>
-     * @param entity Entidad dada.<br>
+     * Cambia la disponibilidad de un un lugar con el objeto dado.<br>
+     * @param id id de la entidad dada.<br>
+     * @return Entidad actualizada.<br>
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException  Si no se encuentra algo.
      */
-    public void deleteEntity(LugarEntity entity) throws NotFoundException
+    public LugarEntity deleteEntity(Long id) throws NotFoundException
     {
-        LugarEntity lugar = persistence.find(entity.getId());
+        LugarEntity lugar = persistence.find(id);
        if(lugar==null)
        {
-           throw new NotFoundException("No se encontró una Lugar con el id: " + entity.getId());
+           throw new NotFoundException("No se encontró una Lugar con el id: " + id);
        }
-       persistence.delete(entity.getId());
+       lugar.setDisponibilidad(!lugar.isDisponibilidad());
+       LugarEntity newEntity = persistence.update(lugar);
+       return newEntity;
     }
 }

@@ -17,6 +17,10 @@ public class LugarDetailDTO extends LugarDTO {
      * Capacidad
      */
     private Integer capacidad;
+        /**
+     * Disponibilidad del lugar
+     */
+    private boolean disponibilidad;
     /**
      * Constructor vacío.
      */
@@ -32,6 +36,7 @@ public class LugarDetailDTO extends LugarDTO {
     {
         super(entity);
         this.capacidad = entity.getCapacidad();
+        this.disponibilidad = entity.isDisponibilidad();
     }
     /**
      * Saca la entidad dada.<br>
@@ -45,6 +50,7 @@ public class LugarDetailDTO extends LugarDTO {
         entity.setId(getId());
         entity.setNombre(getNombre());
         entity.setCapacidad(this.getCapacidad());
+        entity.setDisponibilidad(this.isDisponibilidad());
         return entity;
     }
 
@@ -60,6 +66,20 @@ public class LugarDetailDTO extends LugarDTO {
      */
     public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
+    }
+
+    /**
+     * @return the disponibilidad
+     */
+    public boolean isDisponibilidad() {
+        return disponibilidad;
+    }
+
+    /**
+     * @param disponibilidad the disponibilidad to set
+     */
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
     
 }

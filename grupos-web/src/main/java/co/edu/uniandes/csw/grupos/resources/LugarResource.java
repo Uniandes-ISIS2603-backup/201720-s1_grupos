@@ -99,15 +99,15 @@ public class LugarResource {
     /**
      * Borra un lugar con id dado.<br>
      * @param id Id del lugar.<br>
+     *@return Lugar modificado.<br>
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException Excepción de no encontrado.
      */
-    @DELETE
-    @Path("{id: \\d+}")
-    public void deleteLugar(@PathParam("id")Long id) throws BusinessException
+    @PUT
+    @Path("disponibilidad/{id: \\d+}")
+    public LugarDetailDTO deleteLugar(@PathParam("id")Long id) throws BusinessException
     {
-        LugarEntity entity = logic.getEntity(id);
-        logic.deleteEntity(entity);
+        return new LugarDetailDTO(logic.deleteEntity(id));
     }
     /**
      * Pasa un listado de entidades a dtos.<br>

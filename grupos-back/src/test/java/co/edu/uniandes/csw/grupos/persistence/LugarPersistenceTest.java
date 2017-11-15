@@ -162,19 +162,6 @@ public class LugarPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
-
-    /**
-     * Prueba de borrar un lugar.<br>
-     * @throws Exception 
-     */
-    @Test
-    public void deleteLugarTest() throws Exception{
-        LugarEntity entity = data.get(0);
-        lugarPersistence.delete(entity.getId());
-        LugarEntity deleted = em.find(LugarEntity.class, entity.getId());
-        Assert.assertNull(deleted);
-    }
-
     /**
      * Prueba de actualizar un lugar
      * @throws Exception 
@@ -197,6 +184,7 @@ public class LugarPersistenceTest {
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
         Assert.assertEquals(newEntity.getCapacidad(), entity.getCapacidad());
+        Assert.assertEquals(newEntity.isDisponibilidad(), entity.isDisponibilidad());
 
     }
 }
