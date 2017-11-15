@@ -6,10 +6,10 @@
      */
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
             var error=""; 
-            //Inicialización de mensaje de error
-            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            //Inicialización de mensajeError de error
+            if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
             {
-                $scope.variableErrorNoticia=$state.params.mensaje;
+                $scope.variableErrorNoticia=$state.params.mensajeError;
                 error=$scope.variableErrorNoticia;
             }
             //Inicialización de booleanos importantes
@@ -40,7 +40,7 @@
                                     currentAutor.nombre= response.data.nombre,
                                     currentAutor.password= response.data.password}, function(response){
                                         error="El usuario "+sessionStorage.getItem("id")+ " no está loggeado";
-                                        $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                                        $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                                     });
             
            //Header
@@ -53,7 +53,7 @@
             },function(response){
                                 //Estado de error
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                                $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                             });
             
             //Inicialización de elementos multimedia a agregar a la noticia.
@@ -130,7 +130,7 @@
                         },function(response){
                                 //Estado de error
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                                $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                             });
 
             } else {
@@ -149,7 +149,7 @@
                 if(!$scope.esMiembro || !$scope.esAdmin)
                 {
                     error="El usuario no pertenece al grupo asociado";
-                    $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                    $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                 }
                 currentRecord = $scope.currentRecord;
                 // si el id es null, es un registro nuevo, entonces lo crea
@@ -167,7 +167,7 @@
                             },function(response){
                                 //Estado de error
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                                $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                             });
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -175,7 +175,7 @@
                     
                     if(!$scope.esAutor)
                     {
-                        $state.go('ERRORGRUPONOTICIA',{mensaje: "No es el autor de la noticia"},{reload:true});
+                        $state.go('ERRORGRUPONOTICIA',{mensajeError: "No es el autor de la noticia"},{reload:true});
                     }
                     else
                     {
@@ -188,7 +188,7 @@
                             },function(response){
                                 //Estado de error
                                 error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                                $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                             });
                     }
                         
@@ -206,7 +206,7 @@
                 if(!$scope.esMiembro|| !$scope.esAdmin)
                 {
                     error="El usuario no pertenece al grupo asociado";
-                    $state.go('ERRORGRUPONOTICIA',{mensaje:error},{reload:true});
+                    $state.go('ERRORGRUPONOTICIA',{mensajeError:error},{reload:true});
                 }
                 if(id!==null)
                 {
@@ -214,7 +214,7 @@
                     if(!$scope.esAutor)
                     {
                         error="No es el autor de la noticia"
-                                    $state.go('ERRORGRUPONOTICIA',{mensaje:error},{reload:true});
+                                    $state.go('ERRORGRUPONOTICIA',{mensajeError:error},{reload:true});
                     }
                     else
                     {
@@ -224,7 +224,7 @@
                         },function(response){
                                     //Estado de error
                                     error=response.data;
-                                    $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                                    $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                                 }); 
                     }
                         

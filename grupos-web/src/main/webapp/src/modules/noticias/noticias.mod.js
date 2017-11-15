@@ -50,7 +50,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 url: '/error',
                 parent:'noticias',
                 param:{
-                    mensaje:null
+                    mensajeError:null
                 },
                 views: {
                     'noticiaDetailView': {
@@ -133,7 +133,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 url: '/error',
                 parent:'usuarioNoticias',
                 param:{
-                    mensaje:null
+                    mensajeError:null
                 },
                 views: {
                     'noticiaDetailView': {
@@ -230,7 +230,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 url: '/error',
                 parent:'grupoNoticias',
                 param:{
-                    mensaje:null
+                    mensajeError:null
                 },
                 views: {
                     'noticiaDetailView': {
