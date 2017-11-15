@@ -173,8 +173,15 @@
              * @type(String|error)
              */
             this.getError=function(){
-                return error;
-            }
+                return $scope.variableErrorNoticia;
+            };
+            /**
+             * Se devuelve al perfil del usuario
+             */
+            this.devolverAPerfil=function()
+            {
+                $state.go("usuarioDetail",{usuarioId:sessionStorage.getItem("id")},{reload:true});
+            };
 
         }]);
 })(window.angular);

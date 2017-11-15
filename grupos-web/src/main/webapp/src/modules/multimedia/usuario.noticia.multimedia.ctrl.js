@@ -7,6 +7,7 @@
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
+                            console.log("AUTOR:"+response.data.autor.id+" "+sessionStorage.getItem("id"));
                             $scope.esAutor= (response.data.autor.id==sessionStorage.getItem("id"));
                         }, function(error)
                         {
@@ -144,6 +145,13 @@
             this.esAutor=function()
             {
                 return $scope.esAutor;
+            };
+            /**
+             * Se devuelve al perfil del usuario
+             */
+            this.devolverAPerfil=function()
+            {
+                $state.go("usuarioDetail",{usuarioId:sessionStorage.getItem("id")},{reload:true});
             };
 
         }]);

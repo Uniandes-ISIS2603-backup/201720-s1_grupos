@@ -5,14 +5,24 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz), noticiaGrupoContext (Ruta grupo)
      */
     mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
-           //Verifica si es miembro del grupo
-            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+           $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
+                        .then(function (response) {
+                            // $http.get es una promesa
+                            // cuando llegue el dato, actualice currentRecord
+                            $scope.esAutor= (response.data.id==sessionStorage.getItem("id"));
+                        }, function(error)
+                        {
+                            $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
+                        });
+            //Verifica si es miembro del grupo
+
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
                 $scope.esMiembro=true;
             },function(response){
                 $scope.esMiembro=false;
             });
             //Verifica si es admin del grupo
-            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
                 $scope.esAdmin=true;
             },function(response){
                 $scope.esAdmin=false;
@@ -151,16 +161,7 @@
              */
             this.esAutor=function()
             {
-                $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
-                        .then(function (response) {
-                            // $http.get es una promesa
-                            // cuando llegue el dato, actualice currentRecord
-                            $scope.currentRecord = response.data;
-                            return (response.data.id==sessionStorage.getItem("id"));
-                        }, function(error)
-                        {
-                            $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
-                        });
+                return $scope.esAutor;
             };
 
         }]);
