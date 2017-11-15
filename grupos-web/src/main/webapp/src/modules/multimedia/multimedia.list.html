@@ -38,7 +38,7 @@
                 <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && deGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
                     <a class="btn" id="add-btn"  ui-sref="grupoNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"> </a>
                 </div>
-                
+                <p>{{ctrl.esAutor()}}</p>
                 <div class="col-md-8">
                     <table class="table table-striped">
                         <thead>
@@ -49,7 +49,6 @@
                                 <th ng-show="{{(esMultimediaNoticia && (deGrupo || esNoticiaUsuario)) || (esMultimediaBlog)}}">Acciones</th>
                             </tr>
                         </thead>
-                        
                         <tbody>
                             <tr ng-repeat="record in multimediaRecords">
                                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
@@ -63,7 +62,7 @@
                                             <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
                                             </div>
                                         </div>
-                                       <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario }}" class="ng-hide">
+                                       <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
                                                <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
                                                <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
                                         </div>

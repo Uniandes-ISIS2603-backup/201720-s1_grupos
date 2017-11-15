@@ -5,6 +5,18 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz), noticiaGrupoContext (Ruta grupo)
      */
     mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
+           //Verifica si es miembro del grupo
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esMiembro=true;
+            },function(response){
+                $scope.esMiembro=false;
+            });
+            //Verifica si es admin del grupo
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esAdmin=true;
+            },function(response){
+                $scope.esAdmin=false;
+            });
             //Inicialización del mensaje de error
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
@@ -17,45 +29,6 @@
             fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
-            //Items a agregar
-            $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
-            /**
-             * Agrega un nuevo ítem a la lista de por agregar
-             * @param {type} itemToAdd
-             */
-            this.add=function(itemToAdd){
-                itemToAdd.link=this.randomString();
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                $scope.itemsToAdd.splice(index,1);
-                $scope.multimedia.push(angular.copy(itemToAdd));
-            };
-            /**
-             * Agrega un nuevo ítem a la lista de multimedia
-             * @param {type} itemToAdd
-             */
-            this.addNew=function(){
-                $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
-            };
-            /**
-             * Agrega todos los ítems que se deben agregar
-             * @param {type} itemToAdd
-             */
-            this.addAll=function()
-            {
-                while($scope.itemsToAdd.length!==0)
-                {
-                    this.add($scope.itemsToAdd[0]);
-                }
-            };
-            /**
-             * Quitan un item por agregar de la lista
-             * @param {type} itemToAdd
-             */
-            this.remove=function(itemToAdd)
-            {
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                $scope.itemsToAdd.splice(index,1);
-            };
             //Función de creación del link temporalmente
             this.randomString= function()
             {
@@ -78,7 +51,7 @@
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
-
+                
                 // toma el id del parámetro
                 link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
@@ -100,40 +73,49 @@
              * @param {type} link Link del registro.<br>
              */
             this.saveRecord = function (link) {
-                //Multimedia actual
-                currentMultimedia = $scope.currentMultimedia;
+                if(($scope.esMiembro || $scope.esAdmin) && this.esAutor())
+                {
+                    //Multimedia actual
+                    currentMultimedia = $scope.currentMultimedia;
 
-                // si el link es null, es un registro nuevo, entonces lo crea
-                if (link === null || link===undefined) {
-                    currentMultimedia.link=this.randomString();
-                    // ejecuta POST en el recurso REST
-                    multimediaList=[currentMultimedia];
-                    return $http.post(fullContext, multimediaList)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiaMultimediaList',{},{reload:true});
-                            },function(response){
-                                 //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
-                            });
-                    // si el link no es null, es un registro existente entonces lo actualiza
-                } else {
+                    // si el link es null, es un registro nuevo, entonces lo crea
+                    if (link === null || link===undefined) {
+                        currentMultimedia.link=this.randomString();
+                        // ejecuta POST en el recurso REST
+                        multimediaList=[currentMultimedia];
+                        return $http.post(fullContext, multimediaList)
+                                .then(function () {
+                                    // $http.post es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('grupoNoticiaMultimediaList',{},{reload:true});
+                                },function(response){
+                                     //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
+                                });
+                        // si el link no es null, es un registro existente entonces lo actualiza
+                    } else {
 
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiaMultimediaList',{},{reload:true});
-                            },function(response){
-                                error=response.data;
-                                 //Estado de error
-                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
-                            });
+                        // ejecuta PUT en el recurso REST
+                        return $http.put(fullContext+"/" + currentMultimedia.link, currentMultimedia)
+                                .then(function () {
+                                    // $http.put es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('grupoNoticiaMultimediaList',{},{reload:true});
+                                },function(response){
+                                    error=response.data;
+                                     //Estado de error
+                                    $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
+                                });
+                    }
+                    ;
                 }
-                ;
+                else
+                {
+                     $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: "No tiene los permisos para acceder a este recurso"},{reload:true});
+
+                }
+                
             };
             /**
              * Borra el registro.<br>
@@ -141,20 +123,45 @@
              */
             this.deleteRecord= function(link)
             {
+                
                 if(link!==null)
                 {
-                    return $http.delete(fullContext+"/"+link).then (function()
+                    if(($scope.esMiembro || $scope.esAdmin) && this.esAutor())
                     {
-                        //Estado para ver la multimedia
-                         $state.go('grupoNoticiaMultimediaList',{},{reload:true});
-                    },function(response){
-                         //Estado de error
-                                error=response.data;
-                                $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
-                            });
+                        return $http.delete(fullContext+"/"+link).then (function()
+                        {
+                            //Estado para ver la multimedia
+                             $state.go('grupoNoticiaMultimediaList',{},{reload:true});
+                        },function(response){
+                             //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
+                                });
+                    }
+                    else
+                    {
+                        $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: error},{reload:true});
+                    }
+                    
                 }
             };
-           
+           /**
+             * Retorna si es autor o no
+             * @returns {Boolean|esAutor}
+             */
+            this.esAutor=function()
+            {
+                $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
+                        .then(function (response) {
+                            // $http.get es una promesa
+                            // cuando llegue el dato, actualice currentRecord
+                            $scope.currentRecord = response.data;
+                            return (response.data.id==sessionStorage.getItem("id"));
+                        }, function(error)
+                        {
+                            $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
+                        });
+            };
 
         }]);
 })(angular);
