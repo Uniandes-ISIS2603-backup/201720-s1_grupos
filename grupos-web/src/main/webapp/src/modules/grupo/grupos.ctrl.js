@@ -191,6 +191,30 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                 {
                 });
             };
+            
+            /**
+             * dice si el usuario logueado puede o no editar el contenido del grupo
+             * @returns {Boolean} true si puede editar el grupo, false de lo contrario
+             */
+            $scope.puedoEditarContenidoGrupo = function () {
+                if (sessionStorage.getItem("rol") === 'Administrador') {
+                    return true;
+                }
+                return $scope.soyMiembro;
+            };
+            
+            /**
+            * dice si el usuario logueado puede o no editar el grupo
+            * @returns {Boolean} true si puede editar el grupo, false de lo contrario
+            */
+            $scope.puedoEditarGrupo = function () {
+                //console.log($scope.soyAdmin);
+                if (sessionStorage.getItem("rol") === 'Administrador') {
+                    return true;
+                }
+                return $scope.soyAdmin;
+            };
+            
             /**
              * Buscar un grupo por nombre exacto
              * @param {type} nombre, nombre del grupo exacto a buscar
@@ -224,16 +248,21 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.records=response.data.noticias;
                     
                     for(var i = 0; i < $scope.miembroRecords.length; i++) {
-                        if ($scope.miembroRecords[i].id == $scope.idUsuarioActual) {
+                        if (parseInt($scope.miembroRecords[i].id) === parseInt($scope.idUsuarioActual) ){
                             soyMiembro = true;
                             break;
                         }
                     }
                     $scope.soyMiembro=soyMiembro;
-                    
-                    $scope.puedoEditarContenidoGrupo = function () {
-                        return $scope.soyMiembro;
-                    };
+                     
+                    var soyAdmin = false;
+                    for (var i = 0; i<$scope.adminRecords.length; i++) {
+                        if (parseInt($scope.adminRecords[i].id) === parseInt($scope.idUsuarioActual)) {
+                            soyAdmin = true;
+                            break;
+                        }
+                    }
+                    $scope.soyAdmin = soyAdmin;
                 });
             }
         }
