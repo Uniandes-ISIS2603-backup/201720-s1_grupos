@@ -2,16 +2,16 @@
     <div class="panel-body">
         <div class="row">
             <h1> {{currentRecord.titulo}}</h1>
-                <p> ! {{esAutor}} ! {{esMiembro}} ! {{esAdmin}}</p>
             <div class="btn-group mr-2" role="group" aria-label="First group">
                     <div ng-show="{{esNoticiaUsuario}}">
-                        <div ng-show="esAutor">
+                        <div ng-show="{{ctrl.esAutor}}">
                             <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm col-md-6" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Noticia </button>
                             <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> Noticia </button>
                         </div>
                     </div>
                     <div ng-show="{{deGrupo}}">
-                        <div ng-show="esAutor">
+                        <div ng-show="{{ctrl.esAutor()}}">
+                            <p>ENTRA {{ctrl.esAutor()}} {{ctrl.esAutor}}</p>
                             <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Noticia </button>
                             <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> Noticia  </button>
                         </div>
@@ -32,7 +32,7 @@
                         <ul class="nav nav-tabs">
                             <li> 
                                 <div ng-show="{{deGrupo}}" class="ng-hide" ui-view="noticiaMultimediaView">
-                                <dt class="nav nav-tabs"> <button type="button" class="btn btn-primary" ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</a> </dt>
+                                <dt class="nav nav-tabs"> <button type="button" class="btn btn-primary" ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id,miembro:esMiembro,admin:esAdmin})">Multimedia</a> </dt>
 
                                 </div>
                             </li>

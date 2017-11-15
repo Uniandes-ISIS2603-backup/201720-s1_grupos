@@ -6,10 +6,11 @@
      */
     mod.controller("usuarioNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaUsuarioContext','globalContext', function ($scope, $state, $http,context, usuarioContext,globalContext) {
             //inicialización del mensaje de error
-            var error="";
+            error="";
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorNoticia=$state.params.mensaje;
+                error=$scope.variableErrorNoticia;
             }
             //Inicialización de booleanos importantes
             $scope.esNoticiaUsuario=true; 
@@ -40,45 +41,6 @@
                                     currentAutor.password= response.data.password}, function(response){
                                         $state.go('ERRORUSUARIONOTICIA',{mensaje: "El usuario "+sessionStorage.getItem("id")+ " no está loggeado"},{reload:true});
                                     });
-            //Inicialización de elementos multimedia a agregar a la noticia.
-            $scope.multimedia=[];
-            //Items para agregar
-            $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
-            /**
-             * Agrega un elemento a la lista por añadir en el post.<br>
-             * @param {type} itemToAdd Item por añadir.<br>
-             */
-            this.add=function(itemToAdd){
-                itemToAdd.link=this.randomString();
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                $scope.itemsToAdd.splice(index,1);
-                $scope.multimedia.push(angular.copy(itemToAdd));
-            };
-            /**
-             * Agrega un nuevo item pendiente.<br>
-             */
-            this.addNew=function(){
-                $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
-            };
-            /**
-             * Agrega todos los elementos de la lista de POST.
-             */
-            this.addAll=function()
-            {
-                while($scope.itemsToAdd.length!==0)
-                {
-                    this.add($scope.itemsToAdd[0]);
-                }
-            };
-            /**
-             * Remueve un item de los pendientes.<br>
-             * @param {type} itemToAdd
-             */
-            this.remove=function(itemToAdd)
-            {
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                $scope.itemsToAdd.splice(index,1);
-            };
             /**
              * Retorna un string aleatorio como link formado.<br>
              * @return link aleatorio
@@ -143,14 +105,15 @@
 
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
-                   
-                   $state.go('ERRORUSUARIONOTICIA',{mensaje: "No se puede crear una noticia desde acá"},{reload:true});
+                   error="No se puede crear una noticia desde acá";
+                   $state.go('ERRORUSUARIONOTICIA',{mensaje: error},{reload:true});
                 } else {
 
                     //Id del autor diferente al de la noticia
                     if(!$scope.esAutor)
                     {
-                        $state.go('ERRORGRUPONOTICIA',{mensaje: "No es el autor de la noticia"},{reload:true});
+                        error="No es el autor de la noticia";
+                        $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                     }
                     // ejecuta PUT en el recurso REST
                     return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
@@ -176,7 +139,8 @@
                 {
                     if(!$scope.esAutor)
                     {
-                        $state.go('ERRORGRUPONOTICIA',{mensaje: "No es el autor de la noticia"},{reload:true});
+                        error="No es el autor de la noticia";
+                        $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                     }
                     return $http.delete(fullContext+"/"+id).then (function()
                     {
@@ -196,6 +160,21 @@
             {
                 return header;
             };
+            /**
+             * Retorna si es autor o no
+             * @returns {Boolean|esAutor}
+             */
+            this.esAutor=function()
+            {
+                return $scope.esAutor;
+            };
+            /**
+             * Retorna el error que se tiene por ahora.<br>
+             * @type(String|error)
+             */
+            this.getError=function(){
+                return error;
+            }
 
         }]);
 })(window.angular);

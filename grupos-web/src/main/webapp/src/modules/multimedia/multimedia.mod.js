@@ -112,6 +112,10 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
             }).state('grupoNoticiaMultimediaList', {
                 url: '/multimedia/editable',
                 parent: 'grupoNoticiaDetail',
+                param:{
+                    admin:null,
+                    miembro:null
+                },
                 views: {
                     'noticiaMultimediaView': {
                         controller: 'grupoNoticiaMultimediaCtrl',
@@ -122,7 +126,6 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
             }).state('grupoNoticiaMultimediaCreate', {
                 url: '/create',
                 parent:'grupoNoticiaMultimediaList',
-                
                 views: {
                     'multimediaListView': {
                         controller: 'grupoNoticiaMultimediaCtrl',
@@ -173,6 +176,10 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
             }).state('blogMultimediaList', {
                 url: '/multimedia/editable',
                 parent: 'blogDetail',
+                param:{
+                    admin:null,
+                    miembro:null
+                },
                 views: {
                     'childrenView': {
                         controller: 'multimediaBlogCtrl',

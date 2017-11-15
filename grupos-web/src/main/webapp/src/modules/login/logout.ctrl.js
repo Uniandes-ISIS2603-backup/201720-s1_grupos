@@ -4,7 +4,7 @@
             if (sessionStorage.getItem("email")) {
                 sessionStorage.clear();
             } else {
-                console.log("No sé qué hacer");
+                console.log("Hubo un error en el logout");
             }
         }
     ]);

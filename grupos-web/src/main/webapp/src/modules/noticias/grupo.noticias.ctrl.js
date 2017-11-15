@@ -6,6 +6,12 @@
      */
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
             var error=""; 
+            //Inicialización de mensaje de error
+            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            {
+                $scope.variableErrorNoticia=$state.params.mensaje;
+                error=$scope.variableErrorNoticia;
+            }
             //Inicialización de booleanos importantes
             $scope.esNoticiaUsuario=false;
             $scope.deGrupo=true; 
@@ -36,12 +42,7 @@
                                         error="El usuario "+sessionStorage.getItem("id")+ " no está loggeado";
                                         $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                                     });
-            //Inicialización de mensaje de error
-            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
-            {
-                $scope.variableErrorNoticia=$state.params.mensaje;
-                error=$scope.variableErrorNoticia;
-            }
+            
            //Header
               header="Noticias de grupo";
               //Contexto global
@@ -237,6 +238,14 @@
             this.getError=function()
             {
                 return error;
+            };
+            /**
+             * Retorna si es autor o no
+             * @returns {Boolean|esAutor}
+             */
+            this.esAutor=function()
+            {
+                return $scope.esAutor;
             };
             /**
              * Retorna el header actual.<br>

@@ -6,7 +6,6 @@
             <button id="return-btn" class="btn btn-info" ui-sref="grupoDetail">Volver</button>
 
         </div>
-    <p> ! {{esAutor}} ! {{esMiembro}} ! {{esAdmin}}</p>
         <h1>{{ctrl.getHeader()}}</h1>
         
         <div ng-repeat="record in records" >
@@ -20,7 +19,7 @@
                 <button id="return-btn" class="btn btn-info" ui-sref="usuarioNoticiaDetail({noticiaId:record.id})">Ver</button>
             </div>
             <div ng-show="{{deGrupo}}">
-                <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail({noticiaId:record.id})">Ver</button>
+                <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail({noticiaId:record.id, reload:true})">Ver</button>
             </div>
             <div ng-show="{{!noticiaEditable}}">
                 <button id="return-btn" class="btn btn-info" ui-sref="noticiaNoEditableDetail({noticiaId:record.id})">Ver</button>
