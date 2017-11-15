@@ -9,7 +9,7 @@
              */
             $scope.createComentario = function () {
                 $http.post(noticiaContext+'/'+$state.params.noticiaId+'/'+ comentarioContext, {
-                    autor: sessionStorage.getItem("nombreCompleto"),
+                    autor: sessionStorage.getItem("nickname"),
                     comentario: $scope.comentario
                 }).then(function (response) {
                     $scope.goComentarioList();

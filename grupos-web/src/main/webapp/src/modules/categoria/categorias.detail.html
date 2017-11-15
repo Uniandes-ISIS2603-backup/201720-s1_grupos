@@ -12,13 +12,13 @@
             <a class="btn btn-circle btn-danger btn-sm" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
         </div>
     </div>
-    <div class="col-md-3">    
+    <div class="col-md-2">    
         <br>
         <h2>Descripción</h2>
          <br>
         <p id="{{$index}}-descripcion">{{categoriaActual.descripcion}}</p>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div ui-view="listGruposView"></div>
     </div>    
 </div>

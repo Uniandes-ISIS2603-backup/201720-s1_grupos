@@ -230,6 +230,10 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                         }
                     }
                     $scope.soyMiembro=soyMiembro;
+                    
+                    $scope.puedoEditarGrupo = function () {
+                        return $scope.soyMiembro;
+                    };
                 });
             }
         }
