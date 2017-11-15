@@ -44,7 +44,7 @@
              * @returns {Boolean}
              */
             $scope.puedoComentar = function() {
-                return $scope.puedoEditarGrupo();
+                return $scope.puedoEditarContenidoGrupo();
             };
             
             //se obtiene la lista de comentarios.
