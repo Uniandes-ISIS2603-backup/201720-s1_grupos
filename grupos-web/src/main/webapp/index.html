@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-    
+
 <html ng-app="mainApp">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Grupos de interés</title>
-            
-            
+        
+        
         <!-- stylesheet Externas-->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-            
+        
         <!-- stylesheet Externas-->
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            
+        
         <script src="src/modules/app.js" type="text/javascript"></script>
         <script src="src/modules/http-interceptor.factory.js" type="text/javascript"></script>
-            
+        
         <!-- Eventos -->
         <script src="src/modules/evento/evento.mod.js" type="text/javascript"></script>
         <script src="src/modules/evento/evento.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/evento/grupo.eventos.ctrl.js" type= "text/javascript"></script>
         <script src="src/modules/evento/update/evento.update.ctrl.js" type="text/javascript"></script>
-            
+        
         <!-- Lugares -->        
         <script src="src/modules/lugar/lugar.mod.js" type="text/javascript"></script>
         <script src="src/modules/lugar/lugar.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/lugar/create/lugar.create.ctrl.js" type="text/javascript"></script>
-            
+        
         <script src="src/modules/blog/blog.mod.js" type="text/javascript"></script>
         <script src="src/modules/calificacions/calificacions.mod.js" type="text/javascript"></script>
         <script src="src/modules/categoria/categoria.mod.js" type="text/javascript"></script>
         <script src="src/modules/comentario/comentario.mod.js" type="text/javascript"></script>
-            
+        
         <!--Empresa-->
         <script src="src/modules/empresa/empresa.mod.js" type="text/javascript"></script>
         <script src="src/modules/empresa/empresas.ctrl.js" type="text/javascript"></script>
@@ -42,14 +42,14 @@
         <script src="src/modules/empresa/empresas.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/empresa/empresas.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/empresa/empresas.update.ctrl.js" type="text/javascript"></script>
-            
-            
+        
+        
         <script src="src/modules/grupo/grupo.mod.js" type="text/javascript"></script>
         <script src="src/modules/multimedia/multimedia.mod.js" type="text/javascript"></script>
         <script src="src/modules/noticias/noticias.mod.js" type="text/javascript"></script>
         <script src="src/modules/tarjeta/tarjeta.mod.js" type="text/javascript"></script>
         <script src="src/modules/usuario/usuario.mod.js" type="text/javascript"></script>
-            
+        
         <!--Blog-->
         <script src="src/modules/blog/blog.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/blog/blogFav.ctrl.js" type="text/javascript"></script>
@@ -58,7 +58,7 @@
         <script src="src/modules/blog/new/blog.create.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/blog/update/blog.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/blog/delete/blog.delete.ctrl.js" type="text/javascript"></script>
-            
+        
         <!--Comentario-->
         <script src="src/modules/comentario/comentario.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/comentario/comentarioNoticia.ctrl.js" type="text/javascript"></script>
@@ -72,42 +72,42 @@
         <script src="src/modules/comentario/update/comentarioNoticia.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/comentario/new/comentario.create.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/comentario/new/comentarioNoticia.create.ctrl.js" type="text/javascript"></script>
-            
+        
         <script src="src/modules/calificacions/calificacion.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/empresa/empresas.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/multimedia/multimediaBlog.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/multimedia/grupo.noticia.multimedia.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/multimedia/usuario.noticia.multimedia.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/multimedia/noticia.multimedia.ctrl.js" type="text/javascript"></script>
-        
+            
         <script src="src/modules/noticias/usuario.noticias.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/noticias/grupo.noticias.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/noticias/noticias.ctrl.js" type="text/javascript"></script>
-        
+            
         <!--Tarjetas-->
         <script src="src/modules/tarjeta/tarjetas.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/tarjeta/tarjetas.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/tarjeta/tarjetas.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/tarjeta/tarjetas.update.ctrl.js" type="text/javascript"></script>
-        
+            
         <!-- Grupos-->
         <script src="src/modules/grupo/grupos.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/grupo/update/grupos.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/grupo/delete/grupos.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/grupo/new/grupos.new.ctrl.js" type="text/javascript"></script>
-        
+            
         <!-- Categorias-->
         <script src="src/modules/categoria/categorias.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/categoria/update/categorias.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/categoria/delete/categorias.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/categoria/new/categorias.new.ctrl.js" type="text/javascript"></script>
-        
+            
         <!--Usuarios-->
         <script src="src/modules/usuario/usuario.mod.js" type="text/javascript"></script>
         <script src="src/modules/usuario/usuario.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/usuario/new/usuario.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/usuario/update/usuario.update.ctrl.js" type="text/javascript"></script>
-            
+        
         <!--Patrocinios-->
         <script src="src/modules/patrocinio/patrocinio.mod.js" type="text/javascript"></script>
         <script src="src/modules/patrocinio/patrocinio.ctrl.js" type="text/javascript"></script>
@@ -117,16 +117,22 @@
         <script src= "src/modules/patrocinio/patrociniosEvento.ctrl.js" type="text/javascript"></script>
         <script src= "src/modules/patrocinio/new/patrocinio.evento.new.ctrl.js" type="text/javascript"></script>
         <script src= "src/modules/patrocinio/delete/patrocinio.eventos.delete.ctrl.js" type="text/javascript"></script>
-            
+        
         <!-- Login-->
         <script src="src/modules/login/login.mod.js" type="text/javascript"></script>
         <script src="src/modules/login/login.ctrl.js" type="text/javascript"></script>        
         <script src="src/modules/login/logout.ctrl.js" type="text/javascript"></script>
-            
-    </head>
         
+    </head>
+    
     <body style="padding-top: 20px;">
         <div class="row mainHeader">
+            <div class="col-md-1"> 
+                <img src="data/LogoHeader.png" alt="logo" class="img-responsive logo"/>
+            </div>
+            <div class="col-md-6"> 
+                <img src="data/TituloPagina.PNG" alt="titulo" width="450" height="175"/>
+            </div>
             <div class="col-md-6">
                 <h2 class="mainTitle">G R U P O S</h2>
             </div>
@@ -139,13 +145,13 @@
                     <li class="nameUser">Bienvenido a tus grupos, {{currentUser}}</li>
                     <li><a ui-sref="logout">Salir de sesión</a></li>
                 </ul>
-                
+                    
             </div>
-            
+                
         </div> 
         <br>
         <br>
-            
+        
         <div ng-if="isAuthenticated()">
             <div class="container-fluid col-md-2" >
                 <span class="glyphicon glyphicon-th-list"></span>
@@ -167,12 +173,12 @@
                     <li role="navigation"><a ui-sref="patrociniosList">Patrocinios</a></li>
                     <hr>                    
                     <li role="navigation"><a ui-sref="usuarioDetail({usuarioId:id})">Mi perfil</a></li>
-                     <hr>
+                    <hr>
                 </ul>
             </div> 
-                  </div> 
-                   
-            <div ui-view="mainView" class="container-fluid col-md-10"></div>
-        
+        </div> 
+                      
+        <div ui-view="mainView" class="container-fluid col-md-10"></div>
+                
     </body>
 </html>
