@@ -22,8 +22,8 @@
                     }
                 },
                 data: {
-                    requireLogin: false,
-                    roles: []
+                    requireLogin: true,
+                    roles: ['Administrador','Ciudadano']
                 }
             }).state('carruselCategorias', {
                 //Estado para mostrar el carrusel de las categorías
@@ -74,6 +74,10 @@
                         controller: 'categoriaCtrl',
                         controllerAs: 'ctrl'                       
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Administrador','Ciudadano']
                 }
             }).state('categoriaDetail2', {
                 //Estado que muestra la información detallada de una categoría

@@ -21,6 +21,7 @@
                     rutaIcono: $scope.categoriaRuta
                 }).then(function (response) {
                     //Se creó correctamente
+                    console.log("HOLAAA");
                     $state.go('carruselCategorias',{}, {reload: true});
                 }, function (error, status) {
                     //En caso de eror se muestra el modal correspondiente

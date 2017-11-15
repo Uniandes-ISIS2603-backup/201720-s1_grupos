@@ -11,6 +11,18 @@
             //Variables para la eliminación de la calificación
             $scope.calificacionSeleccionada=false;
             $scope.calificacionEliminada=false;
+            //Verifica si es miembro del grupo
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esMiembro=true;
+            },function(response){
+                $scope.esMiembro=false;
+            });
+            //Verifica si es admin del grupo
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esAdmin=true;
+            },function(response){
+                $scope.esAdmin=false;
+            });
             //Calificaor por default 1
             var currentAutor={};
             //Calificador por default el 1 (Se define con el login)
@@ -76,12 +88,15 @@
              * @returns {unresolved} Función resultado de la promesa
              */
             this.saveRecord=function(id) {
+            if($scope.esMiembro || $scope.esAdmin)
+            {
                 currentRecord = $scope.currentRecord;
                 //Calificador por default (Se define con el login)
                 currentRecord.calificador=currentAutor;
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
-                    // ejecuta POST en el recurso REST
+                    
+                        // ejecuta POST en el recurso REST
                     return $http.post(fullContext, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
@@ -92,12 +107,19 @@
                                 errorCalificacion=response.data;
                                 $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
                             });
+                    
 
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
-
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
+                    if(currentRecord.calificador.id!==currentAutor.id)
+                    {
+                        var errorCalificacion="No puedes calificar si no eres el autor";
+                        $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
+                    }
+                    else
+                    {
+                        // ejecuta PUT en el recurso REST
+                        return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -107,7 +129,16 @@
                                 errorCalificacion=response.data;
                                 $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
                             });
-            };
+                    }
+                    
+                };
+            }
+            else
+            {
+                        errorCalificacion="No puede calificar si no hace parte del grupo";
+                        $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
+
+            }
         }
             /**
              * Borra el registro.<br>
@@ -116,20 +147,38 @@
              */
             this.deleteRecord=function (id)
             {
-                //Si el id existe ejecute la instrucción
+                //Id del autor diferente al de la noticia
+                if($scope.currentRecord.autor.id!==currentAutor.id)
+                {
+                    $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario no puede editar si no es el autor"},{reload:true});
+                }
+                else
+                {
+                    //Si el id existe ejecute la instrucción
                 if(id!==null)
                 {
-                    //Borre el registro
-                    return $http.delete(fullContext+"/"+id).then (function()
+                    if(currentRecord.calificador.id!==currentAutor.id)
                     {
-                        //Cambie al listado de calificaciones
-                        $state.go('calificacionsList');
-                    },function(response){
-                                //Estado de error
-                                errorCalificacion=response.data;
-                                $state.go('ERROR',{mensaje: errorCalificacion});
-                    }  ) ;
+                        var errorCalificacion="No puedes calificar si no eres el autor";
+                        $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
+                    }
+                    else
+                    {
+                        //Borre el registro
+                        return $http.delete(fullContext+"/"+id).then (function()
+                        {
+                            //Cambie al listado de calificaciones
+                            $state.go('calificacionsList');
+                        },function(response){
+                                    //Estado de error
+                                    errorCalificacion=response.data;
+                                    $state.go('ERROR',{mensaje: errorCalificacion});
+                        }  ) ;
+                    }
+                    
+                    }
                 }
+                
             };
             /**
              * Obtiene el valor de la barra de calificación de la interfaz.<br>
@@ -146,6 +195,14 @@
             this.getError=function()
             {
                 return errorCalificacion;
+            };
+            /**
+             * Obtener si el autor concuerda con el usuario loggeado.<br>
+             * @type type
+             */
+            this.esAutor=function()
+            {
+                return currentRecord.calificador.id===currentAutor.id;
             };
 // Código continua con las funciones de despliegue de errores
 

@@ -5,10 +5,31 @@
      * Controlador con $scope, $state, $http, noticiasContext (Ruta de noticia), noticiaGrupoContext (Ruta de grupo), grupoContext(Ruta de grupo)
      */
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
-             //Inicialización de booleanos importantes
+            var error=""; 
+            //Inicialización de mensaje de error
+            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+            {
+                $scope.variableErrorNoticia=$state.params.mensaje;
+                error=$scope.variableErrorNoticia;
+            }
+            //Inicialización de booleanos importantes
             $scope.esNoticiaUsuario=false;
             $scope.deGrupo=true; 
             $scope.noticiaEditable=true;
+            //Verifica si es miembro del grupo
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esMiembro=true;
+            },function(response){
+                $scope.esMiembro=false;
+            });
+            //Verifica si es admin del grupo
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+                $scope.esAdmin=true;
+            },function(response){
+                $scope.esAdmin=false;
+            });
+            
+            
             //Autor
             var currentAutor={};
                     //Autor por default (Se define con el login)
@@ -18,14 +39,10 @@
                                     currentAutor.id= response.data.id,
                                     currentAutor.nombre= response.data.nombre,
                                     currentAutor.password= response.data.password}, function(response){
-                                        $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario "+sessionStorage.getItem("id")+ " no está loggeado"},{reload:true});
+                                        error="El usuario "+sessionStorage.getItem("id")+ " no está loggeado";
+                                        $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                                     });
-            //Inicialización de mensaje de error
-            var error="";
-            if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
-            {
-                $scope.variableErrorNoticia=$state.params.mensaje;
-            }
+            
            //Header
               header="Noticias de grupo";
               //Contexto global
@@ -102,6 +119,14 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
+                            if(response.data.id!==currentAutor.id)
+                            {
+                                $scope.esAutor=false;
+                            }
+                            else 
+                            {
+                                $scope.esAutor=true;
+                            }
                         },function(response){
                                 //Estado de error
                                 error=response.data;
@@ -121,6 +146,11 @@
              * @param {type} id
              */
             this.saveRecord = function (id) {
+                if(!$scope.esMiembro || !$scope.esAdmin)
+                {
+                    error="El usuario no pertenece al grupo asociado";
+                    $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                }
                 currentRecord = $scope.currentRecord;
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
@@ -142,9 +172,15 @@
 
                     // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
-
-                    // ejecuta PUT en el recurso REST
-                    return $http.put(fullContext + "/" + currentRecord.id, currentRecord)
+                    
+                    if(!$scope.esAutor)
+                    {
+                        $state.go('ERRORGRUPONOTICIA',{mensaje: "No es el autor de la noticia"},{reload:true});
+                    }
+                    else
+                    {
+                        // ejecuta PUT en el recurso REST
+                            return $http.put(fullContext + "/" + $scope.currentRecord.id, currentRecord)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -154,6 +190,9 @@
                                 error=response.data;
                                 $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
                             });
+                    }
+                        
+                    
                 }
                 ;
             };
@@ -163,17 +202,50 @@
              */
             this.deleteRecord= function(id)
             {
+                //No es miembro
+                if(!$scope.esMiembro|| !$scope.esAdmin)
+                {
+                    error="El usuario no pertenece al grupo asociado";
+                    $state.go('ERRORGRUPONOTICIA',{mensaje:error},{reload:true});
+                }
                 if(id!==null)
                 {
-                    return $http.delete(fullContext+"/"+id).then (function()
+                    //Id del autor diferente al de la noticia
+                    if(!$scope.esAutor)
                     {
-                          $state.go('grupoNoticiasList');
-                    },function(response){
-                                //Estado de error
-                                error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
-                            });
+                        error="No es el autor de la noticia"
+                                    $state.go('ERRORGRUPONOTICIA',{mensaje:error},{reload:true});
+                    }
+                    else
+                    {
+                       return $http.delete(fullContext+"/"+id).then (function()
+                        {
+                              $state.go('grupoNoticiasList');
+                        },function(response){
+                                    //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORGRUPONOTICIA',{mensaje: error},{reload:true});
+                                }); 
+                    }
+                        
                 }
+                 
+            };
+            /**
+             * Obtiene el error
+             * @return Error
+             */
+            this.getError=function()
+            {
+                return error;
+            };
+            /**
+             * Retorna si es autor o no
+             * @returns {Boolean|esAutor}
+             */
+            this.esAutor=function()
+            {
+                return $scope.esAutor;
             };
             /**
              * Retorna el header actual.<br>

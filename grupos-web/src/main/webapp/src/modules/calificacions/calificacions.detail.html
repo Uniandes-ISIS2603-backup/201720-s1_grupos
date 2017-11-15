@@ -16,8 +16,13 @@
           
                 <hr>
                 <dd>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span></button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="calificacionDelete({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span></button>
+                    <div ng-show="esMiembro || esAdmin">
+                        <div ng-show="{{ctrl.esAutor()}}">
+                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="calificacionDelete({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span></button>
+                        </div>
+                    </div>
+                   
                 </dd>
             </dl>
             <div class="col-md-12">
