@@ -21,6 +21,11 @@
                     $state.go('categoriaDetail',{categoriaId},{reload:true});
                 });
             };
+            
+            $scope.puedoEditarCategoria = function() {
+                return sessionStorage.getItem("rol") === 'Administrador';
+            };
+            
             /**
              * Busca todas las categorías
              */
