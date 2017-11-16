@@ -20,16 +20,16 @@
                 url: '/tarjetas',
                 abstract: true,
                 parent: 'usuarioDetail',
-                data: {
-                    requireLogin: false,
-                    roles: []
-                },
                 views: {
                     'childrenView': {
                         templateUrl: basePath + 'tarjetas.html',
                         controller: 'tarjetaCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('tarjetasList', {
                 // Url que aparecerá en el browser
@@ -39,6 +39,10 @@
                     'listView': {
                         templateUrl: basePath + 'tarjetas.list.html'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Administrador']
                 }
             }).state('tarjetaDetail', {
                 url: '/{numTarjeta:int}',
@@ -55,7 +59,10 @@
                         controller: 'tarjetaCtrl',
                         controllerAs: 'ctrl'
                     }
-
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
 
             }).state('tarjetasCreate', {
@@ -66,6 +73,10 @@
                         templateUrl: basePath + 'tarjetas.new.html',
                         controller: 'tarjetaNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('tarjetaUpdate', {
                 url: '/update/{numTarjeta:int}',
@@ -78,6 +89,10 @@
                         templateUrl: basePath + 'tarjetas.update.html',
                         controller: 'tarjetaUpdateCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('tarjetaDelete', {
                 url: '/delete/{numTarjeta:int}',
@@ -90,6 +105,10 @@
                         templateUrl: basePath + 'tarjetas.delete.html',
                         controller: 'tarjetaDeleteCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
             });
         }

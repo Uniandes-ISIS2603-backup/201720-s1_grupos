@@ -55,7 +55,7 @@
                 },
                 data: {
                     requireLogin: true,
-                    roles: ['Ciudadano','Administrador']              
+                    roles: ['Administrador']              
                 }
             }).state('updateUsuario',{
                 url: '/update/{usuarioId}',
@@ -114,7 +114,7 @@
                 },
                 data: {
                     requireLogin: false,
-                    roles: []              
+                    roles: ['Ciudadano', 'Administrador']              
                 }
             })
         }]);

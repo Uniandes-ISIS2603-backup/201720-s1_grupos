@@ -1,3 +1,14 @@
 <!--Vistas de usuario-->
 <div ui-view="detailView"></div>
 <div ui-view="listView"></div>
+<div class="center-block well text-center" ng-if="isAuthenticated() && !hasPermissions()">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="float-left display-3 mr-4">412 Prohibido</h1>
+                    <h4 >No tienes permisos para entrar a esta página.</h4>
+                    <p >Contacte al administrador para tener permisos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
