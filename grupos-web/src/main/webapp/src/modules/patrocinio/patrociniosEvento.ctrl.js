@@ -11,6 +11,13 @@
             $http.get('Stark/'+eventosContext + '/' + $state.params.eventoId + '/' + patrociniosEventoContext).then(function (response) {
                 $scope.patrociniosRecords = response.data;
             });
+
+            //get de un patrocinio
+            if ($state.params.patrocinioId !== undefined) {
+                $http.get("Stark/" + eventosContext + '/' + $state.params.eventoId + '/' + patrociniosEventoContext + '/' + $state.params.patrocinioId).then(function (response) {
+                    $scope.currentPatrocinio = response.data;
+                });
+            }
         }
     ]);
 }

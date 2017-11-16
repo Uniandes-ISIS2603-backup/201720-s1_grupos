@@ -14,7 +14,7 @@
             $scope.patrocinoEventoActualizar=false;
 
             $scope.createPatrocinio = function(){
-            $http.post(usuariosContext + "/1/" + patrociniosContext, {
+            $http.post(usuariosContext + sessionStorage.getItem("id") + patrociniosContext, {
                 pago :$scope.patrocinioPago,              
             }).then(function (response) {
                 fullContext = "Stark/"+eventosContext + "/" +$state.params.eventoId + "/" + patrociniosContext + "/" + response.data.id;
