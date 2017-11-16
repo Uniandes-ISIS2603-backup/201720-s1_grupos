@@ -212,7 +212,15 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                 if (sessionStorage.getItem("rol") === 'Administrador') {
                     return true;
                 }
-                return $scope.soyAdmin;
+                return $scope.soyAdmin && $scope.soyMiembro;
+            };
+            
+            /**
+             * indica si se pueden editar las categorías.
+             * @returns {Boolean} true si se pueden editar las categorías, false de lo contrario.
+             */
+            $scope.puedoEditarCategorias = function() {
+                return $scope.puedoEditarGrupo();
             };
             
             /**

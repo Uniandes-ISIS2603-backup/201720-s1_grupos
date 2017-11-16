@@ -22,7 +22,11 @@
                 });
             };
             
-            $scope.puedoEditarCategoria = function() {
+            /**
+             * indica si se pueden editar las categorías.
+             * @returns {Boolean} true si se pueden editar las categorías, false de lo contrario.
+             */
+            $scope.puedoEditarCategorias = function() {
                 return sessionStorage.getItem("rol") === 'Administrador';
             };
             

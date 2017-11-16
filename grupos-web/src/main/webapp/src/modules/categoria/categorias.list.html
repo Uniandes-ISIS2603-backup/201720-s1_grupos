@@ -5,7 +5,7 @@
             <div class="panel-heading"><label>Lista de categorias</label></div>
             <div class="panel-body">
                 <!-- Muestra la opción de agregar categorías a un grupo en caso de estar dentro de un grupoDetail-->     
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{deGrupo}}">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{deGrupo}}" ng-if="puedoEditarCategorias()">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <a class="btn"  ng-click="asociarCategorias()"><img src="data/plusR.png" style="width:50px;height:50px"></a>
                     </div>
@@ -19,7 +19,7 @@
                                 <img class="img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail2({categoriaId: categoria.id})">
                                 <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
                                 <!-- Muestra la opción para desasociar la categoría en caso de estar en un grupoDetail-->     
-                                <a class="btn btn-danger btn-sm" ng-click="desasociarCategoria(categoria.id)" ng-show="{{deGrupo}}">Desasociar categoría</a>
+                                <a class="btn btn-danger btn-sm" ng-click="desasociarCategoria(categoria.id)" ng-show="{{deGrupo}}" ng-if="puedoEditarCategorias()">Desasociar categoría</a>
                             </div>
                         </div>
                     </div>
