@@ -38,6 +38,10 @@
                     'listView': {
                         templateUrl: basePath + 'patrocinios.list.html',
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Administrador']              
                 }
             }).state('usuarioPatrocinios',{
                 url: '/patrocinios',
@@ -52,6 +56,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'patrocinio.html'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('patrocinioListDetail', {
                 url: '/list',
@@ -62,8 +70,11 @@
                         controller: 'patrociniosUCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
-
             }).state('patrocinioUpdate', {
                 url: '/update/{patrocinioId}',
                 parent: 'usuarioPatrocinios',
@@ -76,6 +87,10 @@
                         templateUrl: basePath + 'new/patrocinio.new.html',
                         controller: 'patrocinioUpdateCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('patrocinioCreate', {
                 url: '/create',
@@ -85,6 +100,10 @@
                         templateUrl: basePath + 'new/patrocinio.new.html',
                         controller: 'patrocinioNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('patrociniosEvento',{
                 url: '/patrocinios',
@@ -106,8 +125,11 @@
                         controller: 'eventoPatrocinioCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
-
             }).state('eventoPatrocinioCreate', {
                 url: '/create',
                 parent: 'patrociniosEvento',
@@ -116,6 +138,10 @@
                         templateUrl: basePath + 'new/patrocinio.evento.new.html',
                         controller: 'patrocinioEventoNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('eventoPatrocinioDelete', {
                 url: '/delete/{patrocinioId}',
@@ -128,6 +154,10 @@
                         templateUrl: basePath + 'delete/patrocinio.eventos.delete.html',
                         controller: 'patrocinioEventosDeleteCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('patrocinioDetail',{
                 url: '/{patrocinioId}/detail',
@@ -141,6 +171,10 @@
                         controller: 'patrocinioCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('patrocinioEventoDetail',{
                 url: '/{patrocinioId}/detail',
@@ -154,6 +188,10 @@
                         controller: 'eventoPatrocinioCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
               })
         }]);

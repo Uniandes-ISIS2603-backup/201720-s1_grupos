@@ -26,7 +26,7 @@
                 },
                 data: {
                     requireLogin: false,
-                    roles: []
+                    roles: ['Ciudadano', 'Administrador']
                 }
             }).state('usuarioDetail',{
                 url: '/{usuarioId}/detail',
@@ -40,6 +40,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'usuario.detail.html'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('usuariosList',{
                 url: '/list',
@@ -48,6 +52,10 @@
                     'listView': {
                         templateUrl: basePath + 'usuarios.list.html',
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('updateUsuario',{
                 url: '/update/{usuarioId}',
@@ -60,6 +68,10 @@
                         templateUrl: basePath + 'new/usuario.new.html',
                         controller: 'usuarioUpdateCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']              
                 }
             }).state('asociarAdmins', {
                 //Estado que permite seleccionar categorías para asociar a un grupo
@@ -99,6 +111,10 @@
                         templateUrl: basePath + 'new/usuario.new.html',
                         controller: 'usuarioNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []              
                 }
             })
         }]);

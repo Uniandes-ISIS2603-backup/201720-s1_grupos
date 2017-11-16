@@ -545,10 +545,10 @@ public class UsuarioLogic {
         if(per.findByNickname(user.getNickname()) != null) {
             throw new BusinessException("El nickname ya está en uso");
         }
-        String rol = user.getRol();
-        if(rol == null || !(rol.equals("Administrador") || rol.equals("Ciudadano"))) {
-            throw new BusinessException("Rol de usuario no válido");
-        }
+        //String rol = user.getRol();
+        //if(rol == null || !(rol.equals("Administrador") || rol.equals("Ciudadano"))) {
+        //    throw new BusinessException("Rol de usuario no válido");
+        //}
     }
     
     private void verifyUserUpdate(UsuarioEntity user) throws BusinessException{
