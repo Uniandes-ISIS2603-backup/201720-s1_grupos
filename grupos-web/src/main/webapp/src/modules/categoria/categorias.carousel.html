@@ -3,7 +3,7 @@
      <!-- En caso de estar en un controlador de categoría, se muestra la opción para crear-->
      <div class="btn-group mr-2 col-md-12" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
         <div class="btn-group mr-2 col-md-1" role="group" aria-label="First group" >
-            <a ui-sref="categoriaCreate"><img src="data/plusR.png" style="width:50px;height:50px"></a>
+            <a ui-sref="categoriaCreate" ng-if="puedoEditarCategorias()"><img src="data/plusR.png" style="width:50px;height:50px"></a>
         </div>                        
         <!-- Cuadro de búsqueda por tipo (nombre) exacto-->
         <form ng-controler="buscarCategoria" class="col-md-10">

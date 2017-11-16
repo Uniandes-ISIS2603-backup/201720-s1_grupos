@@ -13,6 +13,15 @@
             $scope.esEventoUsuario=false;
             $scope.deGrupo=true; 
             $scope.idGrupo= $state.params.grupoId;
+            
+            /**
+             * indica si se pueden editar los eventos
+             * @returns {Boolean} true si se pueden editar los eventos, false de lo contrario.
+             */
+            $scope.puedoEditarEventos = function() {
+                return $scope.puedoEditarGrupo();
+            };
+            
             //Inicialización de mensaje de error
             var error="";
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
