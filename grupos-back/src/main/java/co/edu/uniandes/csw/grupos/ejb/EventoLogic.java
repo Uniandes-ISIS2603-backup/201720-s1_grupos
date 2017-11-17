@@ -151,6 +151,8 @@ public class EventoLogic {
         UsuarioEntity usuarioEntity = usuario.findById(usuarioId);
         int index=entity.getUsuarios().indexOf(usuarioEntity);
         if(index>=0) throw new BusinessException("Ya existe el usuario");
+        usuarioEntity.getEventos().add(entity);
+        usuario.updateUser(usuarioEntity.getId(), usuarioEntity);
         entity.getUsuarios().add(usuarioEntity);
         updateEntity(entity);
         return getUsuario(entityId, usuarioId);
