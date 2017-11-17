@@ -13,6 +13,7 @@
             $scope.esEventoUsuario=false;
             $scope.deGrupo=true; 
             $scope.idGrupo= $state.params.grupoId;
+
             
             /**
              * indica si se pueden editar los eventos
@@ -20,6 +21,12 @@
              */
             $scope.puedoEditarEventos = function() {
                 return $scope.puedoEditarGrupo();
+            };
+            $scope.inscripcionUsuario = function() {
+                $http.post(eventoContext+'/'+$scope.currentRecord.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
+                    var idEvento = $scope.Record.id;
+                    $state.go('eventoDetail')
+                })
             };
             
             //Inicialización de mensaje de error
@@ -43,6 +50,7 @@
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
+
             if ($state.params.eventoId !== null && $state.params.eventoId !== undefined) {
 
                 // toma el id del parámetro
@@ -53,6 +61,7 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
+
                         },function(response){
                                 //Estado de error
                                 error=response.data;

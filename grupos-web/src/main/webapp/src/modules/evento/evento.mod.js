@@ -44,6 +44,9 @@
                         controller: 'eventoCtrl',
                         controllerAs: 'ctrl'
                     }
+                },data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('grupoEventos',{
                 url: '/eventos',
@@ -58,11 +61,8 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'evento.html'
                     }
-                },
-                data: {
-                    requireLogin: false,
-                    roles: []
                 }
+
             }).state('eventosDeGrupo', {
                 url: '/list',
                 parent:'grupoEventos',
@@ -75,6 +75,10 @@
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'eventos.list.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('eventosCreate',{
                 url: '/create',
