@@ -16,8 +16,8 @@
                     }
                 },
                 data: {
-                    requireLogin: false,
-                    roles: []
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('lugaresList', {
                 url: '/list',
@@ -26,6 +26,10 @@
                     'listView': {
                         templateUrl: basePath + 'lugares.list.html',
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('lugarDetail', {
                 url: '/{lugarId:int}/detail',
@@ -42,6 +46,10 @@
                         controller: 'lugarCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('lugaresCreate',{
                 url: '/create',
@@ -51,6 +59,10 @@
                         templateUrl: basePath + '/create/lugar.create.html',
                         controller: 'lugarCreateCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Administrador']
                 }
             }).state('lugaresEvento', {
                 abstract: true,
@@ -63,8 +75,8 @@
                     }
                 },
                 data: {
-                    requireLogin: false,
-                    roles: []
+                    requireLogin: true,
+                    roles: ['Ciudadano', 'Administrador']
                 }
             }).state('lugarEvento', {
                 url: '/lugar',
@@ -76,8 +88,11 @@
                         controllerAs: 'ctrl'
                     }
 
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['Ciudadano','Administrador']
                 }
-
             });
         }]);
     })(window.angular);

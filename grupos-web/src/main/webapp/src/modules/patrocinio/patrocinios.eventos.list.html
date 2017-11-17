@@ -15,8 +15,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="patrocinio in patrociniosRecords">
-                    <td id="{{$index}}-nombre"><a ui-sref="patrocinioDetail({patrocinioId: patrocinio.id})">{{patrocinio.id}}</a></td>
-                    <td id="{{$index}}-direccion">{{patrocinio.pago}}</td>
+                    <td id="{{$index}}-id"><a ui-sref="patrocinioEventoDetail({patrocinioId: patrocinio.id})">{{patrocinio.id}}</a></td>
+                    <td id="{{$index}}-pago">{{patrocinio.pago}}</td>
                     <td id="{{$index}}-actions">
                         <a class="btn btn-danger btn-sm" ui-sref="eventoPatrocinioDelete({patrocinioId: patrocinio.id})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>

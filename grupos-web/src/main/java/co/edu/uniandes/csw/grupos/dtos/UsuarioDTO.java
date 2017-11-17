@@ -44,7 +44,7 @@ public class UsuarioDTO {
     private String email;
     
     /**
-     * 
+     * Rol del usuario
      */
     private String rol;
     
@@ -192,7 +192,7 @@ public class UsuarioDTO {
         user.setEmail(email);
         user.setNickname(nickname);
         user.setPassword(password);
-        user.setRol(rol);
+        user.setRol("Ciudadano");
         return user;
     }
     

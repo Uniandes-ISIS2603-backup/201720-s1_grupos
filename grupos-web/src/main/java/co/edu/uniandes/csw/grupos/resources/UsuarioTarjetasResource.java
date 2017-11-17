@@ -136,6 +136,11 @@ public class UsuarioTarjetasResource {
             throw new WebApplicationException("El dinero disponible no puede superar el cupo máximo", 412);
         }
         
+        if(pTarjeta.getDineroDisponible() < 0)
+        {
+            throw new WebApplicationException("El dinero disponible no puede ser negativo.", 412);
+        }
+        
         
         return new TarjetaDetailDTO(usuarioLogic.updateTarjeta(usuarioId, pTarjeta.toEntity()));
     }

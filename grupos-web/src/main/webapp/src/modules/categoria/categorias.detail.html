@@ -8,8 +8,8 @@
             <img src="data/{{categoriaActual.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'"  role="button" style="margin:auto;width:300px;height:300px;border:1px solid red">
         </div>
         <div class="col-md-12 text-center"> 
-            <a class="btn btn-circle btn-default btn-sm" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-edit"></span></a>
-            <a class="btn btn-circle btn-danger btn-sm" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})"><span class="glyphicon glyphicon-trash"></span></a>
+            <a class="btn btn-circle btn-default btn-sm" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})" ng-if="puedoEditarCategorias()"><span class="glyphicon glyphicon-edit"></span></a>
+            <a class="btn btn-circle btn-danger btn-sm" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})" ng-if="puedoEditarCategorias()"><span class="glyphicon glyphicon-trash"></span></a>
         </div>
     </div>
     <div class="col-md-2" style="margin-right: -100px">    
