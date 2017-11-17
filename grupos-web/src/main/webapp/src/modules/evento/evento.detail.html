@@ -17,10 +17,10 @@
             <!-- Botones por si un usuario se quiere inscribir o dejar un evento, solo se muestra uno dependiendo del caso-->
             <div class=" col-md-12">
                 <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!inscrito">
-                    <button type="button" class="btn btn-success" ng-click="inscripcionGrupo()">Inscribirse</button>
+                    <button type="button" class="btn btn-success" ng-click="inscripcionUsuario()">Inscribirse</button>
                 </div>
                 <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="inscrito">
-                    <button type="button" class="btn btn-danger" ng-click="dejarGrupo()">Salir del evento</button>
+                    <button type="button" class="btn btn-danger" ng-click="retirarUsuario()">Salir del evento</button>
                 </div>
             </div>
         </div>

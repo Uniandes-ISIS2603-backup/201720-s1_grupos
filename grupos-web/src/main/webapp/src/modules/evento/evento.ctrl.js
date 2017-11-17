@@ -10,6 +10,22 @@
             $http.get(eventoContext).then(function (response) {
                 $scope.eventosRecords = response.data;
             });
+            $scope.inscripcionUsuario = function() {
+                $http.post(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
+                    var idEvento = $scope.currentEvento.id;
+                    $state.go('eventoDetail',{idEvento},{reload:true});
+                },function(error)
+                {
+                });
+            };
+            $scope.retirarUsuario = function() {
+                $http.delete(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
+                    var idEvento = $scope.currentEvento.id;
+                    $state.go('eventoDetail',{idEvento},{reload:true});
+                },function(error)
+                {
+                });
+            };
             
             /**
              * indica si se pueden editar los eventos

@@ -22,12 +22,7 @@
             $scope.puedoEditarEventos = function() {
                 return $scope.puedoEditarGrupo();
             };
-            $scope.inscripcionUsuario = function() {
-                $http.post(eventoContext+'/'+$scope.currentRecord.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
-                    var idEvento = $scope.Record.id;
-                    $state.go('eventoDetail')
-                })
-            };
+
             
             //Inicialización de mensaje de error
             var error="";
