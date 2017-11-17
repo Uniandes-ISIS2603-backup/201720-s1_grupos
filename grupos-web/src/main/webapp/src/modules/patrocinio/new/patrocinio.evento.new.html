@@ -5,9 +5,23 @@
                 <form ng-submit="createPatrocinio()" name="patrocinioCrear">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
+                            <label for="numTarjeta" class="col-sm-2">Numero de la Tarjeta de Crédito:</label>
+                            <input id="numTarjeta" required ng-model="numTarjeta" class="col-sm-6" type="number" min="0"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
                             <label for="patrocinioPago" class="col-sm-3">Pago:</label>
                             <input id="patrocinioPago" required ng-model="patrocinioPago" class="col-sm-6"/>
                         </div>
+                    </div>
+                    <div class="alert alert-warning alert-dismissable" ng-if="errorNoTarjeta">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Cuidado!</strong> No tienes una tarjeta con ese número.
+                    </div>
+                    <div class="alert alert-warning alert-dismissable" ng-if="errorNoDinero">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Cuidado!</strong> Esa tarjeta no tiene suficiente dinero para el patrocinio.
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!patrocinioCrear.$valid">
