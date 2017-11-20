@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.entities;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -234,5 +235,7 @@ public class BlogEntity implements Serializable {
         hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
+    
+    
     
 }

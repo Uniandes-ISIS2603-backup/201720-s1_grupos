@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import java.io.File;
 
 /**
  * Representación minimum de blog.<br>
@@ -124,4 +125,25 @@ public class BlogDTO {
         entity.setPromedio(promedio);
         return entity;
     }
+    
+    
+    public static void main(String[] args){
+        //String sDirectorio = "./grupos-web/src/webapp/data/adidas.png";
+       // File f = new File(sDirectorio);
+        File f = new File("BlogDetailDTO.java");
+        System.out.println("gggg"+f.getAbsolutePath());
+        String s=f.getAbsolutePath().replaceAll(("BlogDetailDTO.java"), "");
+          f = new File(s+"src\\main\\webapp\\data");
+        System.out.println("gggg"+f.getAbsolutePath());
+        if(f.exists()){
+            File[] ficheros = f.listFiles();
+            for (int x=0;x<ficheros.length;x++){
+            System.out.println(ficheros[x].getName());
+            }
+        }
+       
+
+
+    }
+        
 }
