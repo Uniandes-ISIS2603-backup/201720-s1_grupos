@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.ArchivoDTO;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -27,7 +28,7 @@ import javax.ws.rs.Produces;
 public class ArchivoResource {
     
     
-    
+    public final static  String RUTA="src\\main\\webapp\\data";
      /**
      * GET http://localhost:8080/gurpos-web/Stark/archivos
      * @return Devuelve todos los objetos de tipo Empresa de la aplicación en formato JSON
@@ -36,7 +37,17 @@ public class ArchivoResource {
     @GET
     public List<ArchivoDTO> allArchivos() throws BusinessException
     {
-     return null;   
+        List<ArchivoDTO> archivos= new ArrayList<>();
+     File f = new File("BlogDetailDTO.java");
+        String s=f.getAbsolutePath().replaceAll(("BlogDetailDTO.java"), "");
+          f = new File(s+RUTA);
+        if(f.exists()){
+            File[] ficheros = f.listFiles();
+            for (int x=0;x<ficheros.length;x++){
+            archivos.add(new ArchivoDTO(ficheros[x].getName()));
+            }
+        }  
+        return archivos;
     }
     
 }
