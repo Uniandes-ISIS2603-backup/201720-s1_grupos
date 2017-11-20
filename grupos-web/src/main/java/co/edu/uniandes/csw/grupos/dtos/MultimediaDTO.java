@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
-import static co.edu.uniandes.csw.grupos.resources.ArchivoResource.RUTA;
 import java.io.File;
 import java.io.FileWriter;
 
@@ -15,6 +14,9 @@ import java.io.FileWriter;
  * @author jc161
  */
 public class MultimediaDTO {
+    
+    public final static  String RUTA="src"+File.separator+"main"+File.separator+"webapp"+File.separator+"data";
+
     /**
      * Nombre
      */

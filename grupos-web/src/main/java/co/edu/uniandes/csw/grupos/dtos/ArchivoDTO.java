@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
-import static co.edu.uniandes.csw.grupos.resources.ArchivoResource.RUTA;
 import java.io.File;
 
 /**

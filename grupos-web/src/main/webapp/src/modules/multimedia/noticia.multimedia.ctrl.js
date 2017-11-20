@@ -5,6 +5,18 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz)
      */
     mod.controller('noticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext', function ($scope, $state, $http, multimediaContext,noticiasContext, globalContext) {
+            $scope.archivos=[];
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.archivos=response.data;
+                var i=0;
+                console.log("ENTRAAAA");
+                for(i=0;i<$scope.archivos.length;i++)
+                    console.log($scope.archivos[i].ruta);
+            },function(response)
+            {
+                console.log("HOLA");
+            });
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorMultimedia=$state.params.mensaje;
