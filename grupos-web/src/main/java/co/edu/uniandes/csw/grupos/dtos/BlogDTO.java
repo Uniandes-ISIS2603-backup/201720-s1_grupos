@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
+import java.io.File;
 
 /**
  * Representación minimum de blog.<br>
@@ -124,4 +125,5 @@ public class BlogDTO {
         entity.setPromedio(promedio);
         return entity;
     }
+        
 }
