@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
+import co.edu.uniandes.csw.grupos.dtos.ArchivoDTO;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class ArchivoResource {
     @GET
     public List<ArchivoDTO> allArchivos() throws BusinessException
     {
-        
+     return null;   
     }
     
 }
