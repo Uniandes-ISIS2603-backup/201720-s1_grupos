@@ -10,6 +10,7 @@
             $rootScope.edit = false;
             $scope.crearGrupo=true;
             $scope.actualizarGrupo=false;
+            $scope.idUsuarioActual=sessionStorage.getItem("id");
             //En caso que se oprima cancelar, se vuelve a la lista de grupos
             $scope.volver = function()
             {
@@ -24,16 +25,32 @@
                     nombre: $scope.grupoName,
                     descripcion: $scope.grupoDescription
                 }).then(function (response) {
+                    return $scope.asociarAdmin($scope.idUsuarioActual, response.data);
                     //grupo creado exitosamente
-                    $state.go('listaGrupos',{}, {reload: true});
+                   
                 }, function (error) {
                     //En caso de error se muestra el modal correspondiente
                     $scope.errorGruposMensaje=error.data;
                     $scope.errorGruposTitulo='Error creando grupo';
                     $("#modalCrearGrupos").modal('show');
                 });
+            };          
+            /**
+             * Asocia el usuario dada con el grupo actual como administrador
+             * @param {type} idAdmin, id de la categoría a asociar
+             */
+            $scope.asociarAdmin= function(idAdmin, grupo){
+                $http.post(gruposContext +'/'+grupo.id +'/administradores/' +idAdmin).then(function (response)
+                {
+                    $state.go('grupoDetail',{grupoId: grupo.id}, {reload: true});                 
+                },function(error)
+                {
+                    $scope.errorGruposMensaje=error.data;
+                    $scope.errorGruposTitulo='Error creando grupo';
+                });
+                
             };
-            
+           
         }
     ]);
 }
