@@ -70,6 +70,7 @@ public class GrupoLogic {
         }
         // Invoca la persistencia para crear la Grupo
         persistence.create(entity);
+        entity=persistence.findByNombre(entity.getNombre());
         return entity;
     }
     

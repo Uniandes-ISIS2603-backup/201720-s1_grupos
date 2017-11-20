@@ -3,7 +3,7 @@
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading"><label>Lista de categorias</label></div>
-            <div class="panel-body">
+            <div class="panel-body responsive">
                 <!-- Muestra la opción de agregar categorías a un grupo en caso de estar dentro de un grupoDetail-->     
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{deGrupo}}" ng-if="puedoEditarCategorias()">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
@@ -11,10 +11,10 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="container">                             
+                    <div class="container responsive">                             
                         <!-- Muestra el nombre, descripción y foto de la categoría-->     
-                        <div class="panel panel-default" ng-repeat="categoria in categoriaRecords">
-                            <div class="panel-body responsive">                   
+                        <div class="panel panel-default responsive" ng-repeat="categoria in categoriaRecords">
+                            <div class="panel-body clickable responsive">                   
                                 <h3 id="{{$index}}-name">{{categoria.tipo}}</h3>
                                 <img class="img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail2({categoriaId: categoria.id})">
                                 <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>

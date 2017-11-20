@@ -123,13 +123,21 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * @param {type} idAdmin, id del administrador a desasociar
              */
             $scope.desasociarAdmin= function(idAdmin){
-                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function (response)
+                console.log($scope.adminRecords.length);
+                if($scope.adminRecords.length>1)
                 {
-                    //Se recarga en caso que funcione
-                    $state.go('adminsDeGrupo',{},{reload:true});
-                },function(error)
+                    $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function (response)
+                    {
+                        //Se recarga en caso que funcione
+                        $state.go('adminsDeGrupo',{},{reload:true});
+                    },function(error)
+                    {
+                    });
+                }
+                else
                 {
-                });
+                    $("#modalBorrarAdmin").modal('show');
+                }
             };
             /**
              * Busca las categorías que un grupo no tiene y va al estado que los muestra
@@ -204,15 +212,13 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             };
             
             /**
-            * dice si el usuario logueado puede o no editar el grupo
-            * @returns {Boolean} true si puede editar el grupo, false de lo contrario
-            */
+             * dice si el usuario logueado puede o no editar el grupo
+             * @returns {Boolean} true si puede editar el grupo, false de lo contrario
+             */
             $scope.puedoEditarGrupo = function () {
-                //console.log($scope.soyAdmin);
-                if (sessionStorage.getItem("rol") === 'Administrador') {
+                if (sessionStorage.getItem("rol") === 'Administrador' || $scope.soyAdmin) {
                     return true;
                 }
-                return $scope.soyAdmin && $scope.soyMiembro;
             };
             
             /**
@@ -262,7 +268,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                         }
                     }
                     $scope.soyMiembro=soyMiembro;
-                     
+                    
                     var soyAdmin = false;
                     for (var i = 0; i<$scope.adminRecords.length; i++) {
                         if (parseInt($scope.adminRecords[i].id) === parseInt($scope.idUsuarioActual)) {
@@ -276,4 +282,4 @@ Contorlador principal de un grupo y algunos de sus subrecursos
         }
     ]);
 }
-)(angular);
+        )(angular);
