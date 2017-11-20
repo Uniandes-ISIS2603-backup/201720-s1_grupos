@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import static co.edu.uniandes.csw.grupos.resources.ArchivoResource.RUTA;
+import java.io.File;
+
 /**
  * Representación minimum de archivo.<br>
  * @author se.cardenas

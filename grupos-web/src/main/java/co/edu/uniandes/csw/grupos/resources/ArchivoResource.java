@@ -23,12 +23,11 @@ import javax.ws.rs.Produces;
  */
 @Path("archivos")
 @Produces("application/json")
-@Consumes("application/json")
 @Stateless
 public class ArchivoResource {
     
     
-    public final static  String RUTA="src\\main\\webapp\\data";
+    public final static  String RUTA="src"+File.separator+"main"+File.separator+"webapp"+File.separator+"data";
      /**
      * GET http://localhost:8080/gurpos-web/Stark/archivos
      * @return Devuelve todos los objetos de tipo Empresa de la aplicación en formato JSON
@@ -38,9 +37,15 @@ public class ArchivoResource {
     public List<ArchivoDTO> allArchivos() throws BusinessException
     {
         List<ArchivoDTO> archivos= new ArrayList<>();
-     File f = new File("BlogDetailDTO.java");
+        File f = new File("BlogDetailDTO.java");
+        //
+        System.out.println(f.getPath());
+        System.out.println(f.getAbsolutePath());
         String s=f.getAbsolutePath().replaceAll(("BlogDetailDTO.java"), "");
+        System.out.println(s);
           f = new File(s+RUTA);
+        System.out.println(s+RUTA);
+        ArchivoDTO.listar();
         if(f.exists()){
             File[] ficheros = f.listFiles();
             for (int x=0;x<ficheros.length;x++){

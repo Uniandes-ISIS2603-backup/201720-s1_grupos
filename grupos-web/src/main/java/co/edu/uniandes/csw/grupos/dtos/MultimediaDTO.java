@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
+import static co.edu.uniandes.csw.grupos.resources.ArchivoResource.RUTA;
+import java.io.File;
+import java.io.FileWriter;
 
 /**
  * DTO de la multimedia
@@ -95,5 +98,31 @@ public class MultimediaDTO {
         e.setLink(link);
         e.setNombre(nombre);
         return e;
+    }
+    
+    public static void main (String[] args) throws Exception
+    {
+        File f = new File("BlogDetailDTO.java");
+        System.out.println("AAAA"+f.getPath());
+        System.out.println(f.getAbsolutePath());
+        String s=f.getAbsolutePath().replaceAll(("BlogDetailDTO.java"), "");
+        System.out.println(s);
+          f = new File(s+RUTA);
+        System.out.println(s+RUTA);
+        if(f.exists()){
+            FileWriter fw = new FileWriter(new File(s+RUTA+"/archivos.json"));
+            fw.write("[\n");
+            String coma=",";
+            File[] ficheros = f.listFiles();
+            for (int x=0;x<ficheros.length;x++){
+                if(x==ficheros.length-1) coma="";
+                fw.write("{\n");
+                fw.write("'ruta'"+":'"+ficheros[x].getName()+"'"+"\n");
+                fw.write("}"+coma+"\n");
+            System.out.println(ficheros[x].getName());
+            }
+            fw.write("]");
+            fw.close();
+        }
     }
 }
