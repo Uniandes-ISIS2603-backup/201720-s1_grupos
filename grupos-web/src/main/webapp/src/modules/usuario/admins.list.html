@@ -1,8 +1,8 @@
 <!--Lista de todos los administradores-->
-<h1 ng-show="{{deGrupo}}">Todos los Administradores</h1>
+<h1 ng-show="{{deGrupo && soyAdmin}}">Todos los Administradores</h1>
 <div class="container-fluid">
         <div class="btn-group mr-2" role="group" aria-label="First group">
-            <a class="btn" ng-click="asociarAdmins()"><img src="data/plusV.png" style="width:50px;height:50px"></a>
+            <a class="btn" ng-click="asociarAdmins()" ng-if="puedoEditarGrupo()"><img src="data/plusV.png" style="width:50px;height:50px"></a>
         </div>
     </div>
     <div class="row">
@@ -23,7 +23,7 @@
                     <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
                     <td id="{{$index}}-Email">{{usuario.email}}</td>
                     <!-- Muestra la opción para desasociar la categoría en caso de estar en un grupoDetail-->     
-                    <td><a class="btn btn-danger btn-sm" ng-click="desasociarAdmin(usuario.id)">Desasociar administrador</a></td>
+                    <td><a class="btn btn-danger btn-sm" ng-click="desasociarAdmin(usuario.id)" ng-if="puedoEditarGrupo()">Desasociar administrador</a></td>
                 </tr>
             </tbody>
         </table>

@@ -34,6 +34,20 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * Inscribe al usuario actual como miembro del grupo
              */
             $scope.dejarGrupo = function () {
+                if($scope.soyAdmin)
+                {            
+                    if($scope.adminRecords.length>1)
+                    {
+                        $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +$scope.idUsuarioActual).then(function (response)
+                        {
+                        });
+                    }
+                    else
+                    {
+                        $("#modalBorrarAdmin").modal('show');
+                        return;
+                    }
+                }
                 $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)               
                 {
                     var idGrupo=$scope.grupoActual.id;
@@ -83,8 +97,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * @param {type} adminsDeGrupo, administradores que el grupo posee
              */
             $scope.adminsQueNoTengo = function (adminsDeGrupo) {
-                $http.get(usuarioContext).then(function (response) {
-                    $scope.todosLosAdmins = response.data;                  
+                    $scope.todosLosAdmins = $scope.miembroRecords;                  
                     $scope.adminsDeGrupo=adminsDeGrupo;
                     
                     //Se hace el filtro visual dependiendo de todas las que existen
@@ -95,35 +108,48 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     });
                     //Las categorías filtradas se mostrarán
                     $scope.adminRecords = filteredAdmins;
-                },function(error)
-                {
-                });
             };
             /**
              * Asocia el usuario dada con el grupo actual como administrador
              * @param {type} idAdmin, id de la categoría a asociar
              */
-            $scope.asociarAdmin= function(idAdmin){
+            $scope.asociarAdmin= function(idAdmin)
+            {
+                $scope.asociarAdminPropiamente(idAdmin);
+                $scope.eliminarMiembro(idAdmin);
+                
+            };
+            $scope.eliminarMiembro= function(idMiembro)
+            {
+                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +idMiembro).then(function (response)               
+                {
+                    var idGrupo=$scope.grupoActual.id;
+                    //Se recarga en caso que funcione
+                    $state.go('grupoDetail',{idGrupo},{reload:true});
+                },function(error)
+                {
+                });
+            };
+            $scope.asociarAdminPropiamente= function(idAdmin)
+            {
                 $http.post(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function (response)
                 {
                     //Quita el administrador recién asociado para que no se muestre
                     $scope.adminRecords= $scope.adminRecords.filter(function( obj ) {
                         return obj.id !== idAdmin;
-                    });
+                    });                    
                     //Vuelve a buscar los que no se tienen para mostrarlas
                     adminsQueNoTengo($scope.adminRecords);
                     
                 },function(error)
                 {
                 });
-                
             };
             /**
              * Desasocia un administrador, ya no hace parte del grupo
              * @param {type} idAdmin, id del administrador a desasociar
              */
             $scope.desasociarAdmin= function(idAdmin){
-                console.log($scope.adminRecords.length);
                 if($scope.adminRecords.length>1)
                 {
                     $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function (response)
