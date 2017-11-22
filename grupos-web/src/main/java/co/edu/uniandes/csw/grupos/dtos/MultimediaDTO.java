@@ -101,7 +101,11 @@ public class MultimediaDTO {
         e.setNombre(nombre);
         return e;
     }
-    
+    /**
+     * MAIN PARA GENERAR EL JSON DE LOS ARCHIVOS
+     * @param args Argumentos
+     * @throws Exception Si hay alguna excepción en la carga de datos
+     */
     public static void main (String[] args) throws Exception
     {
         File f = new File("BlogDetailDTO.java");
@@ -119,7 +123,7 @@ public class MultimediaDTO {
             for (int x=0;x<ficheros.length;x++){
                 if(x==ficheros.length-1) coma="";
                 fw.write("{\n");
-                fw.write("'ruta'"+":'"+ficheros[x].getName()+"'"+"\n");
+                fw.write("\"ruta\""+":\""+ficheros[x].getName()+"\""+"\n");
                 fw.write("}"+coma+"\n");
             System.out.println(ficheros[x].getName());
             }

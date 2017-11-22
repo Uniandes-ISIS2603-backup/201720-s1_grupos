@@ -15,6 +15,7 @@
 <div class="container-fluid" ui-view="multimediaListView">
     <div class="panel-group">
         <div class="panel panel-primary">
+            
             <div class="panel-heading" ng-show="{{esMultimediaNoticia && deGrupo}}">
                 <a id="unico" ui-sref="grupoNoticiaDetail">Multimedia</a>
             </div>
@@ -38,7 +39,9 @@
                 <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && deGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
                     <a class="btn" id="add-btn"  ui-sref="grupoNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"> </a>
                 </div>
-                <p>{{ctrl.esAutor()}}</p>
+                <div ng-repeat="record in archivos">
+                                <img ng-src="{{record.ruta}}" alt="{{record.ruta}}">
+                </div>
                 <div class="col-md-8">
                     <table class="table table-striped">
                         <thead>
@@ -50,6 +53,8 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            
                             <tr ng-repeat="record in multimediaRecords">
                                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
                                 <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
