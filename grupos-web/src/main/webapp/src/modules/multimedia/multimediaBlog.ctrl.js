@@ -6,6 +6,19 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), blogContext (Ruta de blog), grupoContext(Ruta de grupo)
      */
     mod.controller('multimediaBlogCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
+            currentMultimedia={};
+            //Inicialización de rutas de la multimedia
+            $scope.archivos=[];
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.archivos=response.data;
+                var i=0;
+                for(i=0;i<$scope.archivos.length;i++)
+                {
+                    $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
+                    console.log($scope.archivos[i].ruta);
+                }
+            });
             //Verifica si es miembro del grupo
             $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
                 $scope.esMiembro=true;
@@ -54,6 +67,7 @@
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
+            $scope.currentMultimedia={};
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el id del parámetro
@@ -76,6 +90,7 @@
              */
             this.saveRecord = function (link) {
                 currentMultimedia = $scope.currentMultimedia;
+                currentMultimedia.ruta=$scope.ruta;
                 if($scope.esAdmin||$scope.esMiembro)
                 {
                         // si el link es null, es un registro nuevo, entonces lo crea
@@ -143,6 +158,21 @@
                     }
                    
                 }
+            };
+             //Función para asignar la ruta cuando se le da click en la multimedia
+            this.asignarRuta=function(ruta)
+            {
+                $scope.ruta=ruta;
+                console.log($scope.ruta);
+            };
+            //Función para verificar la multimedia actual
+            this.verificarMultimedia=function(ruta)
+            {
+               if($scope.ruta===null || $scope.ruta===undefined)
+                {
+                    return false;
+                }
+                return true;
             };
 
         }]);

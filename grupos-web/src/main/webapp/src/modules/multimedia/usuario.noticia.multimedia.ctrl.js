@@ -58,6 +58,7 @@
 
             // el controlador recibió un link ??
             // revisa los parámetros (ver el :link en la definición de la ruta)
+            $scope.currentMultimedia={};
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el link del parámetro
@@ -85,6 +86,7 @@
                 {
                         //Multimedia actual
                     currentMultimedia = $scope.currentMultimedia;
+                    currentMultimedia.ruta=$scope.ruta;
                     // si el link es null, es un registro nuevo, entonces lo crea
                     if (link === null || link===undefined) {
                         // multimedia actual
@@ -171,6 +173,15 @@
             {
                 $scope.ruta=ruta;
                 console.log($scope.ruta);
+            };
+            //Función para verificar la multimedia actual
+            this.verificarMultimedia=function(ruta)
+            {
+                if($scope.ruta===null || $scope.ruta===undefined)
+                {
+                    return false;
+                }
+                return true;
             };
 
         }]);

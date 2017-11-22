@@ -5,7 +5,8 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz), noticiaGrupoContext (Ruta grupo)
      */
     mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
-           //Inicialización de rutas de la multimedia
+           
+            //Inicialización de rutas de la multimedia
             $scope.archivos=[];
             $http.get("./data/archivos.json").then(function(response)
             {
@@ -22,7 +23,7 @@
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
-                            $scope.esAutor= (response.data.id==sessionStorage.getItem("id"));
+                            $scope.esAutor= (response.data.autor.id==sessionStorage.getItem("id"));
                         }, function(error)
                         {
                             $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
@@ -73,6 +74,7 @@
 
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
+            $scope.currentMultimedia={};
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
                 
                 // toma el id del parámetro
@@ -180,7 +182,16 @@
             this.asignarRuta=function(ruta)
             {
                 $scope.ruta=ruta;
-                console.log($scope.ruta);
+            };
+            //Función para verificar la multimedia actual
+            this.verificarMultimedia=function(ruta)
+            {
+                if($scope.ruta===null || $scope.ruta===undefined)
+                {
+                    return false;
+                }
+                
+                return true;
             };
 
         }]);

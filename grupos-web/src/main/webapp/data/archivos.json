@@ -12,9 +12,6 @@
 "ruta":"butSearch.png"
 },
 {
-"ruta":"Cell_vid.mp4"
-},
-{
 "ruta":"ciencia.png"
 },
 {
@@ -79,6 +76,9 @@
 },
 {
 "ruta":"sony.png"
+},
+{
+"ruta":"test.ogg"
 },
 {
 "ruta":"title_1.png"

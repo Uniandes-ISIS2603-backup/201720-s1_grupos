@@ -30,66 +30,50 @@
             </div>
             <div class="panel-body">
                 
-                <div class="btn-toolbar" ng-show="{{esMultimediaBlog}}" role="toolbar" aria-label="Toolbar with button groups">
-                    <a class="btn" id="add-btn"  ui-sref="blogMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"></a>
-                </div>
-                <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" role="toolbar" aria-label="Toolbar with button groups">
-                    <a class="btn" id="add-btn"  ui-sref="usuarioNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"></a>
-                </div>
-                <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && deGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
-                    <a class="btn" id="add-btn"  ui-sref="grupoNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"> </a>
-                </div>
-                
-                <div class="col-md-8">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Link</th>
-                                <th ng-show="{{(esMultimediaNoticia && (deGrupo || esNoticiaUsuario)) || (esMultimediaBlog)}}">Acciones</th>
-                                <th>Multimedia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            
-                            <tr ng-repeat="record in multimediaRecords">
-                                <td id="{{$index}}-nombre">{{record.nombre}}</td>
-                                <td id="{{$index}}-descripcion">{{record.descripcion}}</td>
-                                <td id="{{$index}}-link">{{record.link}}</td>
-                                <td>  
-                                    <div ng-show="{{ctrl.esAutor()}}">
-                                        <div ng-show="esMiembro || esAdmin">
-                                            <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
-                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
-                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                            </div>
-                                        </div>
-                                       <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
-                                               <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span> </button>
-                                               <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                        </div>
-                                    </div>
-                                    <div ng-show="esMiembro||esAdmin">
-                                         <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
-                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: record.link})"><span class="glyphicon glyphicon-edit"></span></button>
-                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="blogMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                        </div>  
-                                    </div>
-                                    
-                                </td> 
-                                <td>
-                                    <div>
-                                        <embed width="191" height="207" name="plugin" src="{{record.ruta}}">
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
+            <div class="btn-toolbar" ng-show="{{esMultimediaBlog}}" role="toolbar" aria-label="Toolbar with button groups">
+                <a class="btn" id="add-btn"  ui-sref="blogMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"></a>
             </div>
+            <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" role="toolbar" aria-label="Toolbar with button groups">
+                <a class="btn" id="add-btn"  ui-sref="usuarioNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"></a>
+            </div>
+            <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && deGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
+                <a class="btn" id="add-btn"  ui-sref="grupoNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"> </a>
+            </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12 col-lg-4 col-sm-6" ng-repeat="record in multimediaRecords">
+                        <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+                            <div class="thumbnail">   
+                                    <button ui-sref="blogMultimediaDetail({multimediaLink:record.link})">
+                                        <iframe id="plugin" src="{{record.ruta}}">  </iframe>            
+                                    </button>
+                            </div>                          
+                        </div>  
+                        <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
+                            <div class="thumbnail">   
+                                    <button ui-sref="grupoNoticiaMultimediaDetail({multimediaLink:record.link})">
+                                        <iframe id="plugin" src="{{record.ruta}}">   </iframe>            
+                                    </button>
+                            </div>                         
+                        </div> 
+                        <div ng-show="{{esMultimediaNoticia && (!deGrupo && !esNoticiaUsuario)}}" class="ng-hide">
+                            <div class="thumbnail">   
+                                    <button ui-sref="noticiaNoEditableMultimediaDetail({multimediaLink:record.link})">
+                                        <iframe id="plugin" src="{{record.ruta}}">   </iframe>            
+                                    </button>
+                            </div>
+                                
+                        </div> 
+                            <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
+                                <div class="thumbnail">   
+                                  <button class="btn btn-default btn-transparent" ui-sref="usuarioNoticiaMultimediaDetail({multimediaLink:record.link})">
+                                      <iframe id="plugin" src="{{record.ruta}}">   </iframe>            
+                                  </button>
+                                </div>
+                            </div>                           
+                        </div> 
+                    </div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -71,7 +71,7 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
-                            if(response.data.id!==currentAutor.id)
+                            if(response.data.autor.id!==currentAutor.id)
                             {
                                 $scope.esAutor=false;
                             }
