@@ -13,38 +13,46 @@
             
             //Función que crea el usuario
             $scope.createUsuario = function () {
-                $http.post(usuarioContext, {
-                    nombre: $scope.usuarioNombre,
-                    apellido: $scope.usuarioApellido,
-                    nickname: $scope.usuarioNickname,
-                    password: $scope.usuarioPassword,
-                    email: $scope.usuarioEmail
-                }).then(function (response) {
-                    //Usuario created successfully
-                    $scope.user=response.data;
-                    sessionStorage.token = $scope.user.token;
-                    sessionStorage.setItem("email", $scope.user.email);
-                    sessionStorage.setItem("password", $scope.user.password);
-                    sessionStorage.setItem("rol", $scope.user.rol);
-                    if($scope.user.nickname!==null && $scope.user.nickname!==undefined)
-                    {
-                        sessionStorage.setItem("nickname",$scope.user.nickname);
-                    }
-                    sessionStorage.setItem("nombreCompleto",$scope.user.nombre+" "+$scope.user.apellido);
-                    sessionStorage.setItem("id",$scope.user.id);
-                    if($scope.user.nickname=== null || $scope.user.nickname===undefined)
-                    {
-                        $rootScope.currentUser = $scope.user.nombre+" "+$scope.user.apellido;
-                    }
-                    else
-                    {
-                        $rootScope.currentUser = $scope.user.nickname; 
-
-                    }
-                    $state.go('usuarioDetail', {usuarioId:$scope.user.id}, {reload: true});
-                });
+                if($scope.usuarioPassword === $scope.usuarioPassword2)
+                {
+                    $http.post(usuarioContext, {
+                        nombre: $scope.usuarioNombre,
+                        apellido: $scope.usuarioApellido,
+                        nickname: $scope.usuarioNickname,
+                        password: $scope.usuarioPassword,
+                        email: $scope.usuarioEmail
+                    }).then(function (response) {
+                        //Usuario created successfully
+                        $scope.user=response.data;
+                        sessionStorage.token = $scope.user.token;
+                        sessionStorage.setItem("email", $scope.user.email);
+                        sessionStorage.setItem("password", $scope.user.password);
+                        sessionStorage.setItem("rol", $scope.user.rol);
+                        if($scope.user.nickname!==null && $scope.user.nickname!==undefined)
+                        {
+                            sessionStorage.setItem("nickname",$scope.user.nickname);
+                        }
+                        sessionStorage.setItem("nombreCompleto",$scope.user.nombre+" "+$scope.user.apellido);
+                        sessionStorage.setItem("id",$scope.user.id);
+                        if($scope.user.nickname=== null || $scope.user.nickname===undefined)
+                        {
+                            $rootScope.currentUser = $scope.user.nombre+" "+$scope.user.apellido;
+                        }
+                        else
+                        {
+                            $rootScope.currentUser = $scope.user.nickname; 
+                            
+                        }
+                        $state.go('usuarioDetail', {usuarioId:$scope.user.id}, {reload: true});
+                        
+                    });
+                }
+                else
+                {
+                    $("#modalErrorPassword").modal('show');
+                }
             };
         }
     ]);
 }
-)(angular);
+        )(angular);
