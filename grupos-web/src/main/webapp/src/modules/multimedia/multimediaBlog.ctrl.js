@@ -16,7 +16,6 @@
                 for(i=0;i<$scope.archivos.length;i++)
                 {
                     $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
-                    console.log($scope.archivos[i].ruta);
                 }
             });
             //Verifica si es miembro del grupo
@@ -163,7 +162,6 @@
             this.asignarRuta=function(ruta)
             {
                 $scope.ruta=ruta;
-                console.log($scope.ruta);
             };
             //Función para verificar la multimedia actual
             this.verificarMultimedia=function(ruta)

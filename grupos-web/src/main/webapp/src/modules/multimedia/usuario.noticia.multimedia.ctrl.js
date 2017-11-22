@@ -12,7 +12,6 @@
                 for(i=0;i<$scope.archivos.length;i++)
                 {
                     $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
-                    console.log($scope.archivos[i].ruta);
                 }
             });
             
@@ -20,7 +19,6 @@
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
-                            console.log("AUTOR:"+response.data.autor.id+" "+sessionStorage.getItem("id"));
                             $scope.esAutor= (response.data.autor.id==sessionStorage.getItem("id"));
                         }, function(error)
                         {
@@ -172,7 +170,6 @@
             this.asignarRuta=function(ruta)
             {
                 $scope.ruta=ruta;
-                console.log($scope.ruta);
             };
             //Función para verificar la multimedia actual
             this.verificarMultimedia=function(ruta)

@@ -28,11 +28,10 @@
 
             $transitions.onSuccess({to:'**'}, function (trans) {
                 var $state = trans.router.stateService;
-                var requireLogin = $state.current.data.requireLogin
-                var roles = $state.current.data.roles
+                var requireLogin = $state.current.data.requireLogin;
+                var roles = $state.current.data.roles;
                 $rootScope.isAuthenticated = function () {
                     if (sessionStorage.getItem("email") !==null && sessionStorage.getItem("email") !==undefined ) {
-                        console.log("aiuda");
                         var x = sessionStorage.getItem("nickname");
                         if(x=== null || x===undefined)
                         {
@@ -52,7 +51,6 @@
                 };
                 
                 $rootScope.muestraCarrusel= function () {
-                    console.log($rootScope.esLogin);
                     var retorna=false;
                     if(typeof $rootScope.esLogin === "undefined")
                     {
