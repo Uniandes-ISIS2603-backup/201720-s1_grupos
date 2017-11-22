@@ -1,11 +1,11 @@
 <!--Mira haber si el usuario está autenticado-->
-<div ng-if="!isAuthenticated()" class="container">
+<!--<div ng-if="!isAuthenticated()" class="container">
     <form class="form-signin">
         <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
         <input type="text" class="form-control" placeholder="Correo" required="" autofocus="" ng-model="data.email">
         <input type="password" class="form-control" placeholder="Contraseña" required="" ng-model="data.password">
         <br>
-        <!--Le permite acceder a la plataforma-->
+        <!--Le permite acceder a la plataforma
         <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="ctrl.autenticar()">
             Entrar
         </button>
@@ -15,5 +15,44 @@
         <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="ctrl.loggear2()">
             Entrar con el usuario 11 (Admin)
         </button>
+    </form>
+</div>-->
+<div ng-if="!isAuthenticated()" class="container">
+    <form class="form-signin">
+        <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
+        <br>
+        <br>
+        <div class="col-xs-4">
+            <input type="text" class="form-control " placeholder="Correo" required="" autofocus="" ng-model="data.email">
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="col-xs-4">
+            <input type="password" class="form-control" placeholder="Contraseña" required="" ng-model="data.password">
+        </div>
+        <br>
+        <br>
+        <br>
+        <!--Le permite acceder a la plataforma-->
+        <div class="col-xs-4" align="center">
+            <button type="button" class="btn btn-primary" ng-click="ctrl.autenticar()">
+            Entrar
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="col-xs-4" align="center">
+            <button type="button" class="btn btn-primary" ng-click="ctrl.loggear()">
+            Entrar con el usuario 1 (Ciudadano)
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="col-xs-4" align="center">
+            <button type="button" class="btn btn-primary" ng-click="ctrl.loggear2()">
+            Entrar con el usuario 11 (Admin)
+            </button>
+        </div>
     </form>
 </div>
