@@ -12,7 +12,6 @@
              * @type String
              */
             var basePath = 'src/modules/blog/';
-            $urlRouterProvider.otherwise("/blogList");
             
             //Se definen los estados
             $stateProvider.state('blog', {

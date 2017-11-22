@@ -8,7 +8,6 @@
     mod.constant("eventoGrupoContext","grupos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/evento/';
-            $urlRouterProvider.otherwise("/eventosList");
 
             $stateProvider.state('eventos', {
                 url: '/eventos',

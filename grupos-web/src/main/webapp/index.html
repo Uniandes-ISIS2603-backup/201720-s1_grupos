@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
          <link rel="stylesheet" href="styles/background.css" />
          <link rel="stylesheet" href="styles/app.css" />
+         <link rel="stylesheet" href="styles/index.css">
         
         <!-- stylesheet Externas-->
         <script src="bower_components/angular/angular.js"></script>
@@ -126,14 +127,53 @@
         <script src="src/modules/login/logout.ctrl.js" type="text/javascript"></script>
         
     </head>
-    
+    <!--
     <body style="padding-top: 20px" class='bg container-fluid'>
-        <div class="row mainHeader">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 half-left">
+                    <!--<img class="img-responsive" src="data/background.png"> -->
+                    <!--
+                    <div class="container" >
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="panel1">
+                                    <div ng-if="!isAuthenticated()" class="container">
+                                        <!--Le permite acceder a la plataforma-->
+                                        <!--
+                                        <div class="col-xs-4" align="center">
+                                            <a ui-sref="login" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span>
+                                            Entrar
+                                            </a>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="col-xs-4" align="center">
+                                            <a type="button" class="btn btn-primary" ui-sref="createUsuario"><span class="glyphicon glyphicon-log-in"></span>
+                                            Registrarme
+                                            </a>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 half-right">
+                    <!-- imagencita -->
+                    <!--
+                </div>
+            </div>
+        </div>  
+        -->
+    <body>
+        <div class="row mainHeader" style="margin-right: 0px; margin-left: 0px;">
             <div class="col-md-1"> 
                 <img src="data/LogoHeader.png" alt="logo" class="img-responsive logo"/>
             </div>
             <div class="col-md-6"> 
-                <img src="data/title_1.png" alt="titulo" width="418" height="49"/>
+                <img src="data/title_1.png" alt="titulo" class="img-responsive" width="418" height="49"/>
             </div>
             <div class="col-md-5">
                 <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
@@ -145,12 +185,53 @@
                     <li><a ui-sref="logout">Salir de sesión</a></li>
                 </ul>
                     
-            </div>
-                
+            </div> 
         </div> 
-        <br>
-        <br>
-        
+        <div ng-if="muestraCarrusel()">
+        <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+
+            <!-- Overlay -->
+            <!--<div class="overlay"></div> ->
+
+            <!- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#bs-carousel" data-slide-to="1"></li>
+                <li data-target="#bs-carousel" data-slide-to="2"></li>
+            </ol>
+  
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item slides active">
+                    <div class="slide-1"></div>
+                    <div class="hero">
+                        <hgroup>
+                            <h1>Encuentra nuevos grupos de interés</h1>        
+                            <h3>Ingresa con tu cuenta para descubrirlos</h3>
+                        </hgroup>
+                    </div>
+                </div>
+                <div class="item slides">
+                    <div class="slide-2"></div>
+                    <div class="hero">        
+                        <hgroup>
+                            <h1>Entérate de los últimos eventos</h1>        
+                            <h3>Registrate para conocer sobre ellos</h3>
+                        </hgroup>       
+                    </div>
+                </div>
+                <div class="item slides">
+                    <div class="slide-3"></div>
+                    <div class="hero">        
+                        <hgroup>
+                            <h1>¡Crea tu propio grupo!</h1>        
+                            <h3>La comunidad te espera</h3>
+                        </hgroup>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        </div>
         <div ng-if="isAuthenticated()">
             <div class="container-fluid col-md-2" >
                 <span class="glyphicon glyphicon-th-list"></span>
@@ -176,17 +257,14 @@
                 </ul>
             </div> 
         </div> 
-                      
         <div ui-view="mainView" class="container-fluid col-md-10"></div>
-        <br>
-        <br>
         <div class="footer-bottom">
             <div class="container">
                 <div class="col-md-3 navbar-text pull-right">
                     <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="50%" />
-                    <p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>
+                    <!--<p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>-->
                 </div>
             </div>
-        </div>        
+        </div>  
     </body>
 </html>

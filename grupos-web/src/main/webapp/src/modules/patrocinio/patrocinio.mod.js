@@ -8,7 +8,6 @@
     mod.constant("patrocinioContext","Stark/patrocinios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/patrocinio/';
-            $urlRouterProvider.otherwise("patrociniosList");
 
             //estados:
             //patrocinios - estado base

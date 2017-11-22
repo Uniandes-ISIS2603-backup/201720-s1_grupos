@@ -3,7 +3,6 @@
     mod.constant("lugaresContext", "Stark/lugares");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/lugar/';
-            $urlRouterProvider.otherwise("/lugaresList");
 
             $stateProvider.state('lugares', {
                 url: '/lugares',

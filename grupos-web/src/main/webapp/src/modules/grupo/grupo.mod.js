@@ -8,7 +8,6 @@
             var basePath = 'src/modules/grupo/';
             var basePathCategorias = 'src/modules/categoria/';
             var basePathUsuarios = 'src/modules/usuario/';
-            $urlRouterProvider.otherwise("/grupos");
             
             //Estado general del que los demás heredan
             $stateProvider.state('grupos', {

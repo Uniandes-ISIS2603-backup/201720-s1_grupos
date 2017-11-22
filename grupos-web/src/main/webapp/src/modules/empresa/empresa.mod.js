@@ -7,7 +7,6 @@
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/empresa/';
             // Mostrar la lista de empresas será el estado por defecto del módulo
-            $urlRouterProvider.otherwise("/empresasList");
             //Estados:
             //empresas - estado abstracto que funciona como base para mostrar todas las empresas
             //empresasList - Lista de las empresas en el sistema

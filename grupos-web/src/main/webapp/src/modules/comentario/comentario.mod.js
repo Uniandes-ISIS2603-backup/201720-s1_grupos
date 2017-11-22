@@ -12,7 +12,6 @@
              * variable que contiene el path común de los scripts y templates usados
              */
             var basePath = 'src/modules/comentario/';
-            $urlRouterProvider.otherwise("/comentarioList");
             
             //se definen los estados
             $stateProvider.state('comentarioList', {
