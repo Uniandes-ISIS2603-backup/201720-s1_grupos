@@ -13,8 +13,6 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             //Camino base de los archivos
             var basePath = 'src/modules/calificacions/';
-            //Estado predefinido
-            $urlRouterProvider.otherwise("/calificacionsList");
             /**
              * Definición de estados:
              * -calificacions: Estado abstracto de calificaciones.<br>

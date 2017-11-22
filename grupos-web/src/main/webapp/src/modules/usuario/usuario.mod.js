@@ -5,7 +5,6 @@
     mod.constant("usuarioContext","Stark/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuario/';
-            $urlRouterProvider.otherwise("usuariosList");
             //Estados: 
             //usuarios - estado base
             //usuarioDetail - ver un usuario

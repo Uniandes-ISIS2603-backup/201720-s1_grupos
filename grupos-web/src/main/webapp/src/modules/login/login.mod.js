@@ -6,9 +6,8 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
             var basePath = 'src/modules/login/';
-
-            $urlRouterProvider.otherwise("/login");
-
+            $urlRouterProvider.otherwise('/inicio');
+           
 
             $stateProvider.state('login', {
                 url: '/login',
@@ -36,6 +35,13 @@
                         controllerAs:'ctrl'
                     }
                 }
+            }).state('inicio', {
+                url: '/inicio',
+                data: {
+                    requireLogin: false,
+                    roles: ['Ciudadano','Administrador']    
+                }
+                
             });
         }
     ]);

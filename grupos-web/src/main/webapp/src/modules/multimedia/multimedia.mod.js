@@ -7,8 +7,6 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             //Ruta base
             var basePath = 'src/modules/multimedia/';
-            //Ruta por default
-            $urlRouterProvider.otherwise("/multimediaList");
             /**
              * Diferentes estados
              * noticiaNoEditableMultimediaList

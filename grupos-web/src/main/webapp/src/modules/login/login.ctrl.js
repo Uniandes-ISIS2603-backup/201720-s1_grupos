@@ -6,6 +6,7 @@
      */
     mod.controller('loginCtrl', ['$scope', '$http', '$state', '$rootScope',
         function ($scope, $http, $state, $rootScope) {
+            $rootScope.esLogin=true;
             //Usuario
             $scope.user = {};
             //Datos para pasar entre transiciones

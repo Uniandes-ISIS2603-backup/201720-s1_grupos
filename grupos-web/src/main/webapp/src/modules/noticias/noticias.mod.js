@@ -12,7 +12,6 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
     //Definición de la configuración con un definidor de estados ($stateProvider) y un controlador de estado predefinido ($urlRouterProvider)
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/noticias/';
-            $urlRouterProvider.otherwise("/noticiasList");
             /**
              * Diferentes estados
              * noticiaNoEditableList

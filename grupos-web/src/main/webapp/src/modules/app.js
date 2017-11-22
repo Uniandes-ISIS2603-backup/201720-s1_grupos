@@ -32,6 +32,7 @@
                 var roles = $state.current.data.roles
                 $rootScope.isAuthenticated = function () {
                     if (sessionStorage.getItem("email") !==null && sessionStorage.getItem("email") !==undefined ) {
+                        console.log("aiuda");
                         var x = sessionStorage.getItem("nickname");
                         if(x=== null || x===undefined)
                         {
@@ -50,8 +51,17 @@
                     }
                 };
                 
+                $rootScope.muestraCarrusel= function () {
+                    console.log($rootScope.esLogin);
+                    var retorna=false;
+                    if(typeof $rootScope.esLogin === "undefined")
+                    {
+                        retorna =true;
+                    }
+                    return (retorna || !$rootScope.esLogin) && !$rootScope.isAuthenticated();
+                };
+                
                 $rootScope.hasPermissions = function () {
-                    console.log(roles[0]+" "+roles[1]+":"+sessionStorage.getItem("rol"));
                     if (($rootScope.isAuthenticated) && (roles.indexOf(sessionStorage.getItem("rol")) > -1)) {
                         return true;
                     } else {
