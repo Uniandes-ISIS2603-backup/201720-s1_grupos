@@ -39,9 +39,7 @@
                 <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && deGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
                     <a class="btn" id="add-btn"  ui-sref="grupoNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"> </a>
                 </div>
-                <div ng-repeat="record in archivos">
-                                <img ng-src="{{record.ruta}}" alt="{{record.ruta}}">
-                </div>
+                
                 <div class="col-md-8">
                     <table class="table table-striped">
                         <thead>
@@ -50,6 +48,7 @@
                                 <th>Descripción</th>
                                 <th>Link</th>
                                 <th ng-show="{{(esMultimediaNoticia && (deGrupo || esNoticiaUsuario)) || (esMultimediaBlog)}}">Acciones</th>
+                                <th>Multimedia</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,7 +77,13 @@
                                             <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="blogMultimediaDelete({multimediaLink: record.link})"><span class="glyphicon glyphicon-trash"></span> </button>
                                         </div>  
                                     </div>
+                                    
                                 </td> 
+                                <td>
+                                    <div>
+                                        <embed width="191" height="207" name="plugin" src="{{record.ruta}}">
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

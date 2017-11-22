@@ -3,6 +3,19 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('usuarioNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext) {
+            //Inicialización de rutas de la multimedia
+            $scope.archivos=[];
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.archivos=response.data;
+                var i=0;
+                for(i=0;i<$scope.archivos.length;i++)
+                {
+                    $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
+                    console.log($scope.archivos[i].ruta);
+                }
+            });
+            
             $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
                         .then(function (response) {
                             // $http.get es una promesa
@@ -152,6 +165,12 @@
             this.devolverAPerfil=function()
             {
                 $state.go("usuarioDetail",{usuarioId:sessionStorage.getItem("id")},{reload:true});
+            };
+            //Función para asignar la ruta cuando se le da click en la multimedia
+            this.asignarRuta=function(ruta)
+            {
+                $scope.ruta=ruta;
+                console.log($scope.ruta);
             };
 
         }]);

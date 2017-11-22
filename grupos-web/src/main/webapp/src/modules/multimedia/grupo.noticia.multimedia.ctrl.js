@@ -5,7 +5,20 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz), noticiaGrupoContext (Ruta grupo)
      */
     mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
-           $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
+           //Inicialización de rutas de la multimedia
+            $scope.archivos=[];
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.archivos=response.data;
+                var i=0;
+                for(i=0;i<$scope.archivos.length;i++)
+                {
+                    $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
+                    console.log($scope.archivos[i].ruta);
+                }
+            });
+            
+            $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
@@ -87,7 +100,7 @@
                 {
                     //Multimedia actual
                     currentMultimedia = $scope.currentMultimedia;
-
+                    currentMultimedia.ruta=$scope.ruta;
                     // si el link es null, es un registro nuevo, entonces lo crea
                     if (link === null || link===undefined) {
                         currentMultimedia.link=this.randomString();
@@ -162,6 +175,12 @@
             this.esAutor=function()
             {
                 return $scope.esAutor;
+            };
+            //Función para asignar la ruta cuando se le da click en la multimedia
+            this.asignarRuta=function(ruta)
+            {
+                $scope.ruta=ruta;
+                console.log($scope.ruta);
             };
 
         }]);

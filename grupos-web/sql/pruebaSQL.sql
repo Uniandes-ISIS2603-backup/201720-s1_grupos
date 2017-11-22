@@ -124,9 +124,9 @@ insert into BlogEntity (id,titulo,contenido,promedio,grupo_id) values (1000001,'
 insert into CalificacionEntity(id,calificacion,fecha,blog_id,calificador_id) values (1,2.0,'2017-09-20',1000000,1000000);
 
 --INFORMACIÓN MULTIMEDIA
-insert into MultimediaEntity (nombre,descripcion,link) values ('GATO','G','abc');
-insert into MultimediaEntity (nombre,descripcion,link) values ('PERRO','G','dfdf');
-insert into MultimediaEntity (nombre,descripcion,link) values ('HOLA','G','EEE');
+insert into MultimediaEntity (nombre,descripcion,link,ruta) values ('GATO','G','abc','data/adidas.png');
+insert into MultimediaEntity (nombre,descripcion,link,ruta) values ('PERRO','G','dfdf','data/adidas.png');
+insert into MultimediaEntity (nombre,descripcion,link,ruta) values ('HOLA','G','EEE','data/adidas.png');
 
 --INFORMACIÓN NOTICIA
 insert into NoticiaEntity (id,titulo,informacion,autor_id,grupo_id) values (1,'Titulo','Info',1,10);

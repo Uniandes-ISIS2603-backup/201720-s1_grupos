@@ -30,6 +30,10 @@ public class MultimediaDTO {
      */
     private String link;
     /**
+     * Ruta de la multimedia
+     */
+    private String ruta;
+    /**
      * Constructor vacío
      */
     public MultimediaDTO()
@@ -46,6 +50,7 @@ public class MultimediaDTO {
         nombre=e.getNombre();
         link=e.getLink();
         descripcion=e.getDescripcion();
+        ruta=e.getRuta();
     }
     /**
      * Obtiene el nombre de la multimedia.
@@ -90,6 +95,22 @@ public class MultimediaDTO {
         this.link = link;
     }
     /**
+     * Obtiene la ruta temporal del archivo.<br>
+     * @return ruta
+     */
+    public String getRuta()
+    {
+        return ruta;
+    }
+    /**
+     * Modifica la ruta al valor dado por parámetro.<br>
+     * @param ruta
+     */
+    public void setRuta(String ruta)
+    {
+        this.ruta=ruta;
+    }
+    /**
      * Construye una nueva entidad a partir del DTo.
      * @return Entidad multimedia creada
      */
@@ -99,6 +120,7 @@ public class MultimediaDTO {
         e.setDescripcion(descripcion);
         e.setLink(link);
         e.setNombre(nombre);
+        e.setRuta(ruta);
         return e;
     }
     /**

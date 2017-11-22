@@ -47,7 +47,7 @@ public class MultimediaLogic {
     public MultimediaEntity createEntity(MultimediaEntity entity) throws BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
-        if(entity.getLink()== null || entity.getNombre()==null)
+        if(entity.getLink()== null || entity.getNombre()==null || entity.getRuta()==null)
             throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
         String id= entity.getLink();
         MultimediaEntity other= persistence.find(id);
@@ -64,7 +64,7 @@ public class MultimediaLogic {
     public MultimediaEntity updateEntity(String link, MultimediaEntity entity) throws  BusinessException
     {
         if(entity == null) throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
-        if(entity.getNombre()==null)
+        if(entity.getNombre()==null || entity.getRuta()==null)
             throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
         if(persistence.find(link)==null) throw new NotFoundException("No existe el objeto a actualizar.");
         entity.setLink(link);

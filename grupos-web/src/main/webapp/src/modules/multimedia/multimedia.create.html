@@ -6,16 +6,22 @@
                 <form ng-submit="ctrl.saveRecord(currentMultimedia.link)" name="multimedia">
                     <input id="link" name="link" type="hidden" ng-model="currentMultimedia.link" ng-init="$state.params.multimediaLink">
                     <div class="form-group row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-6">
                              <label for="nombre" class="col-md-6">Nombre de archivo:</label>
                              <input id="nombre" name="nombre" class="col-sm-6" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"/>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-6">
                             <label for="descripcion" class="col-md-6 control-label">Descripción:</label>
                             <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"></textarea>
                         </div>
+                    </div>
+                    <div class="form-group row" ng-repeat="record in archivos">
+                        <div class="form-group col-md-6 col-lg-6 col-xs-6">
+                            <button type="button" ng-click="ctrl.asignarRuta(record.ruta)">
+                                <embed id="plugin" src="{{record.ruta}}">
+                            </button>
+                        </div>   
+                        <!--<img ng-src="{{record.ruta}}" alt="{{record.ruta}}">-->
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
