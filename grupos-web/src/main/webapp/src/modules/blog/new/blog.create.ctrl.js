@@ -8,10 +8,22 @@
             $rootScope.edit=false;
             $scope.crearBlog=true;
             $scope.actualizarBlog=false;
+            //Inicialización de rutas de la multimedia
+            $scope.archivos=[];
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.archivos=response.data;
+                var i=0;
+                for(i=0;i<$scope.archivos.length;i++)
+                {
+                    $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
+                }
+            });
+            
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
             //Items para agregar
-            $scope.itemsToAdd=[{nombre:' ',descripcion:' ',link:' '}];
+            $scope.itemsToAdd=[{nombre:null,descripcion:null,link:null,ruta:null}];
             /**
              * Agrega un elemento a la lista por añadir en el post.<br>
              * @param {type} itemToAdd Item por añadir.<br>
@@ -26,7 +38,7 @@
              * Agrega un nuevo item pendiente.<br>
              */
             this.addNew=function(){
-                $scope.itemsToAdd.push({nombre:' ',descripcion:' ',link:' '});
+                $scope.itemsToAdd.push({nombre:null,descripcion:null,link:null,ruta:null});
             };
             /**
              * Agrega todos los elementos de la lista de POST.
@@ -46,6 +58,38 @@
             {
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
+            };
+            /**
+             * Asigna la ruta al ítem a agregar.<br>
+             * @param itemToAdd
+             * @param ruta
+             */
+            this.asignarRuta=function(itemToAdd,ruta)
+            {
+                var index=$scope.itemsToAdd.indexOf(itemToAdd);
+                $scope.itemsToAdd[index].ruta=ruta;
+            };
+            /**
+             * Verifica que todas la multimedia tiene un mensaje asignado.<br>
+             * @return booleano para ver si todas las tienen o no.
+             */
+            this.verificarMultimedia=function()
+            {
+                var i;
+                console.log("LONG:"+$scope.itemsToAdd.length+";"+$scope.itemsToAdd.ruta);
+                for(i=0;i<$scope.itemsToAdd.length;i++)
+                {
+                    console.log($scope.itemsToAdd[i].ruta);
+                    if($scope.itemsToAdd[i].ruta===null || $scope.itemsToAdd[i].ruta===undefined)
+                    {
+                        return false;
+                    }
+                    if($scope.itemsToAdd[i].nombre===null || $scope.itemsToAdd[i].nombre===undefined)
+                    {
+                        return false;
+                    }
+                }
+                return true;
             };
             /**
              * Retorna un string aleatorio como link formado.<br>

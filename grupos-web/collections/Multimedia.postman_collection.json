@@ -2,8 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Multimedia",
-		"_postman_id": "b7f073a0-f53d-c4a4-6551-434de809d646",
-		"description": "",
+		"_postman_id": "6f538e29-b66b-8ac8-f0b8-81d1e8d2a41a",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -138,7 +137,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}]"
 						},
 						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia"
 					},
@@ -196,7 +195,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
 						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/aaa"
 					},
@@ -433,7 +432,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
+							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}]"
 						},
 						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia"
 					},
@@ -491,7 +490,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"nuevo recurso blog\",\"descripcion\":\"ds\"}\n"
+							"raw": "{\"nombre\":\"nuevo recurso blog\",\"descripcion\":\"ds\",\"ruta\":\"adidas.png\"}\n"
 						},
 						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
 					},
@@ -588,7 +587,6 @@
 		},
 		{
 			"name": "Blog y noticia inexistente",
-			"description": "",
 			"item": [
 				{
 					"name": "Actualizar una multimedia de noticia inexistente",
@@ -613,7 +611,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
 						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa"
 					},
@@ -671,7 +669,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
 						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia"
 					},
@@ -729,7 +727,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
 						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa"
 					},
@@ -787,7 +785,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
+							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
 						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia"
 					},

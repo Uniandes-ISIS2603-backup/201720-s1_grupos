@@ -3,6 +3,19 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('usuarioNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext) {
+            //Inicialización de rutas de la multimedia
+            $scope.archivos=[];
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.archivos=response.data;
+                var i=0;
+                for(i=0;i<$scope.archivos.length;i++)
+                {
+                    $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
+                    console.log($scope.archivos[i].ruta);
+                }
+            });
+            
             $http.get(globalContext + "/" + noticiaContext+"/"+$state.params.noticiaId)
                         .then(function (response) {
                             // $http.get es una promesa
@@ -45,6 +58,7 @@
 
             // el controlador recibió un link ??
             // revisa los parámetros (ver el :link en la definición de la ruta)
+            $scope.currentMultimedia={};
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el link del parámetro
@@ -72,6 +86,7 @@
                 {
                         //Multimedia actual
                     currentMultimedia = $scope.currentMultimedia;
+                    currentMultimedia.ruta=$scope.ruta;
                     // si el link es null, es un registro nuevo, entonces lo crea
                     if (link === null || link===undefined) {
                         // multimedia actual
@@ -152,6 +167,21 @@
             this.devolverAPerfil=function()
             {
                 $state.go("usuarioDetail",{usuarioId:sessionStorage.getItem("id")},{reload:true});
+            };
+            //Función para asignar la ruta cuando se le da click en la multimedia
+            this.asignarRuta=function(ruta)
+            {
+                $scope.ruta=ruta;
+                console.log($scope.ruta);
+            };
+            //Función para verificar la multimedia actual
+            this.verificarMultimedia=function(ruta)
+            {
+                if($scope.ruta===null || $scope.ruta===undefined)
+                {
+                    return false;
+                }
+                return true;
             };
 
         }]);

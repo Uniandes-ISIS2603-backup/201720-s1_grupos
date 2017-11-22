@@ -21,6 +21,9 @@
 "ruta":"empresa.png"
 },
 {
+"ruta":"giphy.gif"
+},
+{
 "ruta":"grupoIcono.png"
 },
 {
@@ -73,6 +76,9 @@
 },
 {
 "ruta":"sony.png"
+},
+{
+"ruta":"test.ogg"
 },
 {
 "ruta":"title_1.png"

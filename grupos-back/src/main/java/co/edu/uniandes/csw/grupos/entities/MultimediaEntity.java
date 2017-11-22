@@ -31,6 +31,10 @@ public class MultimediaEntity implements Serializable {
     @Id
     private String link;
     /**
+     * Ruta temporal del archivo.
+     */
+    private String ruta;
+    /**
      * Obtiene el nombre de la multimedia.
      * @return nombre
      */
@@ -83,6 +87,23 @@ public class MultimediaEntity implements Serializable {
         if(!(o instanceof MultimediaEntity)) return false;
         MultimediaEntity m = (MultimediaEntity)o;
         return link.equals(m.getLink());
+    }
+    
+    /**
+     * Obtiene la ruta temporal del archivo.<br>
+     * @return ruta
+     */
+    public String getRuta()
+    {
+        return ruta;
+    }
+    /**
+     * Modifica la ruta al valor dado por parámetro.<br>
+     * @param ruta
+     */
+    public void setRuta(String ruta)
+    {
+        this.ruta=ruta;
     }
     /**
      * Override del hashcode.<br>

@@ -6,15 +6,25 @@
                 <form ng-submit="ctrl.saveRecord(currentMultimedia.link)" name="multimedia">
                     <input id="link" name="link" type="hidden" ng-model="currentMultimedia.link" ng-init="$state.params.multimediaLink">
                     <div class="form-group row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-6">
                              <label for="nombre" class="col-md-6">Nombre de archivo:</label>
-                             <input id="nombre" name="nombre" class="col-sm-6" type="text" ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"/>
+                             <input id="nombre" name="nombre"  class="col-sm-6" type="text" required ng-model="currentMultimedia.nombre" ng-init="currentMultimedia.nombre"/>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-6">
                             <label for="descripcion" class="col-md-6 control-label">Descripción:</label>
                             <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="currentMultimedia.descripcion" ng-init="currentMultimedia.descripcion"></textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row">
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-lg-4 col-md-6 col-xs-12" ng-repeat="record in archivos">
+                                <div class="thumbnail">
+                                    <button type="button" ng-click="ctrl.asignarRuta(record.ruta)">
+                                        <embed width="100" height="100" id="plugin" src="{{record.ruta}}">
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -26,11 +36,18 @@
                                 <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiaMultimediaList'>Volver</button>
                             </div>
                             <div ng-show="{{esMultimediaBlog}}">
-                                <button type="button" class="btn btn-info"  ui-sref='blogMultimediaList'>Volver</button>
+                                <button type="button"  class="btn btn-info"  ui-sref='blogMultimediaList'>Volver</button>
                             </div>
-                            <button type="submit" class="btn btn-info" >Guardar</button>
+                            <button type="submit" ng-show="multimedia.$valid && ctrl.verificarMultimedia()" class="btn btn-info" >Guardar</button>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!multimedia.$valid ||  !ctrl.verificarMultimedia()">
+                            <div class="alert alert-warning" >
+                                <strong>Alto!</strong><p>Debe llenar todos los campos de la multimedia</p>
+                            </div> 
+                        </div> 
+                    </div> 
                 </form>
 
             </div>

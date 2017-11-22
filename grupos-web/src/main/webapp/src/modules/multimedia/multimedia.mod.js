@@ -37,7 +37,19 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
-            }).state('ERRORMULTIMEDIANOTICIA', {
+            }).state('noticiaNoEditableMultimediaDetail', {
+                url: '/detail/:multimediaLink',
+                parent:'noticiaNoEditableMultimediaList',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaListView': {
+                        controller: 'noticiaMultimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.detail.html'
+                    }
+            }}).state('ERRORMULTIMEDIANOTICIA', {
                 url: '/error',
                 parent:'noticiaNoEditableDetail',
                 params:{
@@ -60,7 +72,19 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
-            }).state('usuarioNoticiaMultimediaCreate', {
+            }).state('usuarioNoticiaMultimediaDetail', {
+                url: '/detail/:multimediaLink',
+                parent:'usuarioNoticiaMultimediaList',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaListView': {
+                        controller: 'usuarioNoticiaMultimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.detail.html'
+                    }
+            }}).state('usuarioNoticiaMultimediaCreate', {
                 url: '/create',
                 parent:'usuarioNoticiaMultimediaList',
                 views: {
@@ -73,7 +97,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
 
             }).state('usuarioNoticiaMultimediaDelete', {
                 url: '/:multimediaLink/delete',
-                parent:'usuarioNoticiaMultimediaList',
+                parent:'usuarioNoticiaMultimediaDetail',
                 views: {
                     'multimediaListView': {
                         controller: 'usuarioNoticiaMultimediaCtrl',
@@ -83,7 +107,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                 }
             }).state('usuarioNoticiaMultimediaEdit', {
                 url: '/:multimediaLink/edit',
-                parent:'usuarioNoticiaMultimediaList',
+                parent:'usuarioNoticiaMultimediaDetail',
                 param: {
                     multimediaLink:null
                 },
@@ -121,7 +145,19 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
-            }).state('grupoNoticiaMultimediaCreate', {
+            }).state('grupoNoticiaMultimediaDetail', {
+                url: '/detail/:multimediaLink',
+                parent:'grupoNoticiaMultimediaList',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaListView': {
+                        controller: 'grupoNoticiaMultimediaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.detail.html'
+                    }
+            }}).state('grupoNoticiaMultimediaCreate', {
                 url: '/create',
                 parent:'grupoNoticiaMultimediaList',
                 views: {
@@ -134,7 +170,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
 
             }).state('grupoNoticiaMultimediaDelete', {
                 url: '/:multimediaLink/delete',
-                parent:'grupoNoticiaMultimediaList',
+                parent:'grupoNoticiaMultimediaDetail',
                 param: {
                     multimediaLink:null
                 },
@@ -147,7 +183,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                 }
             }).state('grupoNoticiaMultimediaEdit', {
                 url: '/:multimediaLink',
-                parent:'grupoNoticiaMultimediaList',
+                parent:'grupoNoticiaMultimediaDetail',
                 param: {
                     multimediaLink:null
                 },
@@ -185,6 +221,19 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                         templateUrl: basePath + 'multimedia.list.html'
                     }
                 }
+            }).state('blogMultimediaDetail', {
+                url: '/detail/:multimediaLink',
+                parent:'blogMultimediaList',
+                param: {
+                    multimediaLink:null
+                },
+                views: {
+                    'multimediaListView': {
+                        controller: 'multimediaBlogCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'multimedia.detail.html'
+                    }
+                }
             }).state('blogMultimediaCreate', {
                 url: '/create',
                 parent:'blogMultimediaList',
@@ -198,7 +247,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
 
             }).state('blogMultimediaDelete', {
                 url: '/:multimediaLink/delete',
-                parent:'blogMultimediaList',
+                parent:'blogMultimediaDetail',
                 param: {
                     multimediaLink:null
                 },
@@ -211,7 +260,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                 }
             }).state('blogMultimediaEdit', {
                 url: '/:multimediaLink',
-                parent:'blogMultimediaList',
+                parent:'blogMultimediaDetail',
                 param: {
                     multimediaLink:null
                 },
@@ -235,7 +284,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                         templateUrl: basePath + 'multimedia.error.html'
                     }
                 }
-            });
+            })
         }]);
 
 })(window.angular);

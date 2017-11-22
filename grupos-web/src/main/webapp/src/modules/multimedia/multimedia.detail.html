@@ -1,0 +1,69 @@
+<style>
+    a#unico:hover{
+        color:white
+    }
+    a#unico:link{
+        color:white
+    }
+    a#unico:visited{
+        color:white
+    }
+    a#unico:unvisited{
+        color:white
+    }
+</style>
+<div class="container-fluid" ui-view="multimediaListView">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading" ng-show="{{esMultimediaNoticia && deGrupo}}">
+                <a id="unico" ui-sref="grupoNoticiaMultimediaList">Multimedia</a>
+            </div>
+            <div class="panel-heading" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
+                <a id="unico" ui-sref="usuarioNoticiaMultimediaList">Multimedia</a>
+            </div>
+            <div class="panel-heading" ng-show="{{esMultimediaBlog}}">
+                <a id="unico" ui-sref="blogMultimediaList">Multimedia</a>
+            </div>
+            <div class="panel-heading" ng-show="{{esMultimediaNoticia}}">
+                <a id="unico" ui-sref="noticiaNoEditableMultimediaList">Multimedia</a>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <table class="table table-striped">
+                        <tbody>
+                                 <tr><td id="{{$index}}-nombre">{{currentMultimedia.nombre}}</td></tr>
+                                 <tr> <td id="{{$index}}-descripcion">{{currentMultimedia.descripcion}}</td></tr>
+                                 <tr> <td id="{{$index}}-link">{{currentMultimedia.link}}</td></tr>
+                                <tr> 
+                                    <div ng-show="{{ctrl.esAutor()}}">
+                                        <div ng-show="esMiembro || esAdmin">
+                                            <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
+                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span> </button>
+                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                                            </div>
+                                        </div>
+                                       <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
+                                               <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span> </button>
+                                               <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                                        </div>
+                                    </div>
+                                    <div ng-show="esMiembro||esAdmin">
+                                         <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span></button>
+                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="blogMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                                        </div>  
+                                    </div>
+                                    
+                                </tr> 
+                        </tbody>
+                    </table>
+                </div>
+                <div col-md-12 col-lg-12 col-sm-12 col-xs-12>
+                    <div class="thumbnail">
+                        <embed name="plugin" src="{{currentMultimedia.ruta}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
