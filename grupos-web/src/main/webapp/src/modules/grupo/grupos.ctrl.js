@@ -245,6 +245,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                 if (sessionStorage.getItem("rol") === 'Administrador' || $scope.soyAdmin) {
                     return true;
                 }
+                return false;
             };
             
             /**
