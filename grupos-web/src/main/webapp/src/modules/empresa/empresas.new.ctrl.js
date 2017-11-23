@@ -7,6 +7,12 @@
     mod.controller('empresaNewCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'empresaUsuarioContext', '$rootScope',
         function ($scope, $http, usuariosContext, $state, empresaUsuarioContext, $rootScope) {
             $rootScope.edit = false;
+            
+            //Búsqueda de las imágenes en la carpeta data
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.rutaImagenes = response.data;
+            });
             //Función utilizada para crear una empresa
             $scope.createEmpresa = function () {
                 $http.post(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext, {
