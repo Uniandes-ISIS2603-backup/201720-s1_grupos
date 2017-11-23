@@ -44,7 +44,11 @@
                                 $state.go('ERRORMULTIMEDIANOTICIA',{mensaje: error},{reload:true});
                             });
 
-            };
+            } 
+            this.prueba=function()
+            {
+                console.log("ESTA ES LA PRIUEBA");
+            }
             
             
 
