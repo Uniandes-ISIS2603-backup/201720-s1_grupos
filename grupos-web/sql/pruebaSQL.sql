@@ -20,9 +20,6 @@ delete from CategoriaEntity;
 delete from NoticiaEntity_MultimediaEntity;
 delete from NoticiaEntity_ComentarioEntity;
 delete from NoticiaEntity;
-delete from GrupoEntity_NoticiaEntity;
-delete from GrupoEntity_UsuarioEntity;
-delete from GrupoEntity_EventoEntity;
 delete from GrupoEntity_CategoriaEntity;
 delete from GrupoEntity;
 
