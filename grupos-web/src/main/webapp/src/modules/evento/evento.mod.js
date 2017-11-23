@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("eventoModule", ['ui.router']);
+    var mod = ng.module("eventoModule", ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'ui.router']);
        //Constante global
     mod.constant("globalContext","Stark");
     //Contante de noticias
@@ -89,6 +89,19 @@
                     'detailView':{
                         templateUrl: basePath + '/create/evento.create.html',
                         controller: 'grupoEventosCtrl'
+                    }
+                }
+            }).state('eventosCalendar',{
+                url: '/calendar',
+                parent: 'eventosDeGrupo',
+                param:{
+                    grupoId:null
+                },
+                views: {
+                    'calendarView':{
+                        templateUrl: basePath + 'eventos.calendar.html',
+                        controller: 'eventosCalendarCtrl',
+                        controllerAs: 'vm'
                     }
                 }
             }).state('eventoUpdate', {
