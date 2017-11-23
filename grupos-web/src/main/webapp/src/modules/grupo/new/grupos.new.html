@@ -24,24 +24,15 @@
                         </div>
                     </div>                 
                     <div class="form-group row">
-                        <!-- En caso que el formulario no esté correctamente llenado...-->
-                        <div class="form-group col-sm-4" ng-if="!grupoCrear.$valid">
-                            
-                            <div class="alert alert-warning" >
-                                <!-- Mensaje en caso que los campos no estén correctamente llenados-->
-                                <strong>Cuidado!</strong><p>Debe llenar todos los campos*</p>
-                            </div> 
-                        </div> 
+                        <!-- En caso que el formulario no esté correctamente llenado...-->                      
                     </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <!-- Muestra los botones si el formulario está completamente llenado-->
-                            <div ng-show="grupoCrear.$valid" >
                                 <!-- En caso de crear un grupo muestra solo el botón crear-->
-                                <input ng-show="{{crearGrupo}}" type="submit" value="Crear" class="btn btn-success"/>                  
+                                <input ng-show="{{crearGrupo}}" type="submit" value="Crear" class="btn btn-success" ng-style="!grupoCrear.$valid?{'opacity': '0.65'}: {'opacity':'1'}"/>                  
                                 <!-- En caso de actualizar un grupo muestra solo el botón actualizar-->
-                                <input ng-show="{{actualizarGrupo}}" type="submit" value="Actualizar" class="btn btn-success"/>
-                            </div>
+                                <input ng-show="{{actualizarGrupo}}" type="submit" value="Actualizar" class="btn btn-success" ng-style="!grupoCrear.$valid?{'opacity': '0.65'}: {'opacity':'1'}"/>       
                             <a class="btn btn-info" ng-click="volver()">Cancelar</a>
                         </div>
                     </div>

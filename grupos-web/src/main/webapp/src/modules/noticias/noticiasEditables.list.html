@@ -10,18 +10,18 @@
         
         <div ng-repeat="record in records" >
             <div id="{{$index}}-titulo">
-            <h2> {{record.titulo}}</h2>
+            <h2 class="text-center"> {{record.titulo}}</h2>
             </div>
-            <div id="{{$index}}-informacion">
+            <div id="{{$index}}-informacion" class="text-center">
             <h3> {{record.informacion}}</h3>
             </div>
-            <div ng-show="{{esNoticiaUsuario}}">
+            <div ng-show="{{esNoticiaUsuario}}" class="text-center">
                 <button id="return-btn" class="btn btn-info" ui-sref="usuarioNoticiaDetail({noticiaId:record.id})">Ver</button>
             </div>
-            <div ng-show="{{deGrupo}}">
+            <div ng-show="{{deGrupo}}" class="text-center">
                 <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail({noticiaId:record.id, reload:true})">Ver</button>
             </div>
-            <div ng-show="{{!noticiaEditable}}">
+            <div ng-show="{{!noticiaEditable}}" class="text-center">
                 <button id="return-btn" class="btn btn-info" ui-sref="noticiaNoEditableDetail({noticiaId:record.id})">Ver</button>
             </div>
             <hr>

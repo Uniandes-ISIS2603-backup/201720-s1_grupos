@@ -43,12 +43,10 @@
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <!-- Muestra los botones si el formulario está completamente llenado-->
-                            <div ng-show="categoriaCrear.$valid" >
                                 <!-- En caso de crear una categoría muestra solo el botón crear-->
-                                <input ng-show="{{crearcategoria}}" type="submit" value="Crear" class="btn btn-success"/>     
+                                <input ng-show="{{crearcategoria}}" type="submit" value="Crear" class="btn btn-success" ng-style="!grupoCrear.$valid?{'opacity': '0.65'}: {'opacity':'1'}"/>     
                                 <!-- En caso de actualizar una categoría muestra solo el botón actualizar-->
-                                <input ng-show="{{actualizarcategoria}}" type="submit" value="Actualizar" class="btn btn-success"/>
-                            </div>
+                                <input ng-show="{{actualizarcategoria}}" type="submit" value="Actualizar" class="btn btn-success ng-style="!grupoCrear.$valid?{'opacity': '0.65'}: {'opacity':'1'}""/>
                             <a class="btn btn-info" ui-sref="carruselCategorias">Cancelar</a>
                         </div>
                     </div>
