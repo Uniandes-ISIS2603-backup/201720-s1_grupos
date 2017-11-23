@@ -1,7 +1,10 @@
 <!-- Lista donde se mostrarán las categorias en un carrusel-->
-<div class="container-fluid"
-     <!-- En caso de estar en un controlador de categoría, se muestra la opción para crear-->
-     <div class="btn-group mr-2 col-md-12" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
+<div class="container-fluid">
+     <h1 class="col-md-12 text-center"><span style="color:red">
+            Categorias                 
+        </span></h1>
+    <!-- En caso de estar en un controlador de categoría, se muestra la opción para crear-->
+    <div class="btn-group mr-2 col-md-12" role="group" aria-label="First group" ng-hide="{{opcionesCategoria}}">
         <div class="btn-group mr-2 col-md-1" role="group" aria-label="First group" >
             <a ui-sref="categoriaCreate" ng-if="puedoEditarCategorias()"><img src="data/plusR.png" style="width:50px;height:50px"></a>
         </div>                        
@@ -13,12 +16,10 @@
                 <img src="data/butSearch.png" style="width:40px;height:40px;margin-top:-10px">
             </a>
         </form>
-    </div>
-    <br>
-    <br>
-    <br>
+    </div>        
+         
     <!-- Carrusel para mostrarlas, se muestra nombre, descripción e imagen-->
-    <carousel interval="carruselCategorias">
+    <carousel interval="carruselCategorias" style="margin-top:150px">
         <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
             <div class="col-md-4" style="position:relative; right:-20">
                 <img src="data/{{categoria.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'"  role="button" style="margin:auto;width:300px;height:300px;border:1px solid red">

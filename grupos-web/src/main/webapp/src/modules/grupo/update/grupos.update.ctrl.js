@@ -7,7 +7,9 @@
     mod.controller('grupoUpdateCtrl', ['$scope', '$http', 'gruposContext', '$state', '$rootScope', '$filter',
         function ($scope, $http, gruposContext, $state, $rootScope, $filter) {
             //Se indica que se va a editar para mostrar los respectivos botones, se guarda el id como variable
-            $rootScope.edit = true;            
+            $rootScope.edit = true;        
+            
+            $scope.errorGrupoNombre=false;
             var idgrupo = $state.params.grupoId;
             $scope.crearGrupo=false;
             $scope.actualizarGrupo=true;
@@ -42,7 +44,7 @@
                     //En caso de error se muestra el modal correspondiente
                     $scope.errorGruposMensaje=error.data;
                     $scope.errorGruposTitulo='Error creando grupo';
-                    $("#modalModificarGrupos").modal('show');
+                    $scope.errorGrupoNombre=true;
                 });
             };
             

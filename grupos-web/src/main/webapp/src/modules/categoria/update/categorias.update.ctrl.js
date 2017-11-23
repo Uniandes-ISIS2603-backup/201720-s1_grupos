@@ -7,6 +7,8 @@
     mod.controller('categoriaUpdateCtrl', ['$scope', '$http', 'categoriasContext', '$state', '$rootScope', '$filter',
         function ($scope, $http, categoriasContext, $state, $rootScope, $filter) {
             //Guarda el id de la categoría
+            
+            $scope.errorCategoriaNombre=false;
             $rootScope.edit = true;            
             var idcategoria = $state.params.categoriaId;
             $scope.crearcategoria=false;
@@ -33,9 +35,8 @@
                 }).then(function (response) {                    
                     //se creó bien, se va a su detail
                     $state.go('categoriaDetail2', {categoriaId: response.data.id}, {reload: true});
-                }, function (error,status) {
-                    //Se activa el modal correspondiente en caso de error
-                    $("#modalModificarcategorias").modal();
+                }, function (error,status) {                    
+                    $scope.errorCategoriaNombre=true;
                 });
             };
             
