@@ -24,16 +24,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!empresa.$valid">
-
-                            <div class="alert alert-warning" >
-                                <strong>Advertencia!</strong><p>Es necesaior diligenciar todos los campos*</p>
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <input ng-show="empresa.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <input ng-style="!empresa.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Save" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="empresaDetail">Cancel</a>
                         </div>
                     </div>

@@ -40,18 +40,10 @@
             </div>
         </div>              
         <div class="form-group row">
-                <div class="form-group col-sm-4" ng-if="!usuarioCrear.$valid">
-                    
-                <div class="alert alert-warning" >
-                    <strong>Cuidado!</strong><p>Debe llenar todos los campos*</p>
-                </div> 
-            </div> 
-        </div> 
-        <div class="form-group row">
             <div class="form-group col-sm-12">
-                <div ng-show="usuarioCrear.$valid" >
-                    <input ng-show="{{usuarioCreacion}}" type="submit" value="Crear" class="btn btn-success"/>
-                    <input ng-show="{{usuarioActualizar}}" type="submit" value="Actualizar" class="btn btn-success"/>
+                <div >
+                    <input ng-show="{{usuarioCreacion}}" ng-style="!usuarioCrear.$valid ?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Crear" class="btn btn-success"/>
+                    <input ng-show="{{usuarioActualizar}}" ng-style="!usuarioCrear.$valid ?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Actualizar" class="btn btn-success"/>
                 </div>
                 <a class="btn btn-info" ui-sref="login">Cancelar</a>
             </div>

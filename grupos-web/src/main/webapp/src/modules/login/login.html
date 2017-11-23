@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-md-12 text-center">       
         <div ng-if="!isAuthenticated()" class="container col-md-12">
-            <form class="form-signin">
+            <form class="form-signin" name="formLogin">
                 <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
                 <br>
                 <br>
@@ -38,7 +38,7 @@
                 <br>
                 <!--Le permite acceder a la plataforma-->
                 <div class="col-xs-4 col-md-12" align="center">
-                    <button type="button" class="btn btn-primary" ng-click="ctrl.autenticar()">
+                    <button type="button" class="btn btn-primary" ng-click="ctrl.autenticar()" ng-style="!formLogin.$valid?{'opacity': '0.65'}:{'opacity':'1'}">
                         Entrar
                     </button>
                 </div>

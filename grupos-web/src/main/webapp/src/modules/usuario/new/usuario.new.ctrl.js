@@ -6,7 +6,7 @@
     mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioContext', '$state', '$rootScope',
         function ($scope, $http, usuarioContext, $state, $rootScope) {
             $rootScope.edit = false;
-            
+            $rootScope.esLogin=true;
             //Se determina que se va a crear un usuario
             $scope.usuarioCreacion=true;
             $scope.usuarioActualizar=false;

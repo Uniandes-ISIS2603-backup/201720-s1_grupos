@@ -10,19 +10,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!patrocinioCrear.$valid">
-
-                            <div class="alert alert-warning" >
-                                <strong>Cuidado!</strong><p>Debe llenar todos los campos*</p>
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <div ng-show="patrocinioCrear.$valid" >
-                            <input ng-show="{{patrocinioCreacion}}" type="submit" value="Crear" class="btn btn-success"/>
-                            <input ng-show="{{patrocinioActualizar}}" type="submit" value="Actualizar" class="btn btn-success"/>
-                            </div>
+                            <input ng-show="{{patrocinioCreacion}}" ng-style="patrocinioCrear.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Crear" class="btn btn-success"/>
+                            <input ng-show="{{patrocinioActualizar}}" ng-style="patrocinioCrear.$valid?{'opacity': '0.65'}:{'opacity':'1'}"type="submit" value="Actualizar" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="patrocinioListDetail">Cancelar</a>
                         </div>
                     </div>

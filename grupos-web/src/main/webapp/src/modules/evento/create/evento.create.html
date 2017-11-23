@@ -30,16 +30,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!evento.$valid">
-
-                            <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>Todos lo campos requeridos*</p>
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <input ng-show="evento.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <input ng-style="!evento.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Save" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="eventosList">Cancelar</a>
                         </div>
                     </div>
