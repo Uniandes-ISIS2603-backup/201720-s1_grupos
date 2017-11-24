@@ -5,12 +5,11 @@
     overflow-y: scroll;  
     width: 500px;
     height: 300px;
-    margin: 50px;
 }
 
 .scrollL {
     overflow-y: scroll;  
-    width: 800px;
+    width: 600px;
     height: 600px;
     margin: 50px;
 }
@@ -29,10 +28,11 @@
 /* Handle */
 .scroll::-webkit-scrollbar-thumb {
     width:29px; 
-    height:20px;
-    background:#f7f7f7;
+    height:1px;
+    background:#9db4b4;
     border-radius:50%;
     position:absolute;
+    border-color:#111111;
     box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.2);
     margin-left:-9px;
     cursor:pointer;
