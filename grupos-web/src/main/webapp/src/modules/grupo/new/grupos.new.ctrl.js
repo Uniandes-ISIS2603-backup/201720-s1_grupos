@@ -8,6 +8,7 @@
         function ($scope, $http, gruposContext, $state, $rootScope) {
             //Se indica que se va a crear el grupo para mostrar los respectivos botones, se guarda el id como variable
             $rootScope.edit = false;
+            $scope.errorGrupoNombre=false;
             $scope.crearGrupo=true;
             $scope.actualizarGrupo=false;
             $scope.idUsuarioActual=sessionStorage.getItem("id");
@@ -19,7 +20,7 @@
             /**
              * Función para crear el grupo
              */
-            $scope.creategrupo = function () {
+            $scope.creategrupo = function () {                
                 //Se envía el servicio POST con la info del grupo nuevo
                 $http.post(gruposContext, {
                     nombre: $scope.grupoName,
@@ -32,7 +33,7 @@
                     //En caso de error se muestra el modal correspondiente
                     $scope.errorGruposMensaje=error.data;
                     $scope.errorGruposTitulo='Error creando grupo';
-                    $("#modalCrearGrupos").modal('show');
+                     $scope.errorGrupoNombre=true;
                 });
             };          
             /**
