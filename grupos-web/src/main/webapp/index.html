@@ -182,12 +182,12 @@
                 <img src="data/LogoHeader.png" alt="logo" class="img-responsive logo"/>
             </div>
             <div class="col-md-6"> 
-                <img src="data/title_1.png" alt="titulo" class="img-responsive" width="418" height="49"/>
+                <h1><span class= "title_Header">Grupos </span></h1>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5" style="margin-top: 20px;padding-right: 25px;">
                 <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
-                    <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
-                    <li><a ui-sref="createUsuario"><span class="glyphicon glyphicon-log-in"></span> Registrarse</a></li>
+                    <li><a ui-sref="login"><span class="header_text"> Iniciar sesión</span></a></li>
+                    <li><a ui-sref="createUsuario"><span class="header_text"> Registrarse</span></a></li>
                 </ul>
                 <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
                     <li class="nameUser">Bienvenido a tus grupos, {{currentUser}}</li>
@@ -266,11 +266,11 @@
                 </ul>
             </div> 
         </div> 
-        <div ui-view="mainView" class="container-fluid col-md-10"></div>
+        <div ui-view="mainView" class="container-fluid"></div>
         <div class="footer-bottom">
-            <div class="container">
-                <div class="col-md-3 navbar-text pull-right">
-                    <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="50%" />
+            <div class="container" style="margin-right: 0px;padding-right: 0px;">
+                <div class="col-md-3 navbar-text pull-right" style= "margin-top: 0px; margin-bottom: 0px; margin-right: 0px; margin-left: 0px; padding-right: 0px;">
+                    <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="35%" style="margin-top: 5px; margin-bottom: 5px;" />
                     <!--<p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>-->
                 </div>
             </div>
