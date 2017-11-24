@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("eventoModule", ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'ui.router']);
+    var mod = ng.module("eventoModule", ['mwl.calendar', 'ui.bootstrap', 'ui.router']);
        //Constante global
     mod.constant("globalContext","Stark");
     //Contante de noticias
