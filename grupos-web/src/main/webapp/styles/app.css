@@ -1,14 +1,9 @@
-html, body{
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
 .margin-top{
     padding-top: 20px;
 }
 
 .mainHeader, .footer-bottom{
-    background: #D8D8D8;
+    background: #f8f8f8;
     color: #fff;
     width: 100%;
 }
@@ -48,4 +43,11 @@ html, body{
     padding-left: 30px;
 }
 
+.title_Header{
+    color: #6E6E6E;
+}
+
+.header_text{
+    color: #6E6E6E;
+}
 
