@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ui-view="calendarView">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" >
                     <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{deGrupo}}">
                         <a class="btn" ui-sref="eventosCreate({grupoId: idGrupo})"><img src="data/plusA.png" style="width:50px;height:50px"></a>
@@ -28,9 +28,5 @@
         </table>
     </div>
     <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendar">click me!</button>
-    <div></div>
-    <div>
-    <div ui-view="calendarView"></div>
-    </div>
 </div>
 

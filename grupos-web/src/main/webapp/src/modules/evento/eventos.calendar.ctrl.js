@@ -30,7 +30,7 @@
             }
             vm.cellIsOpen = true;
 
-            vm.addEvent = function() {
+            vm.addEventCalendar = function() {
               vm.events.push({
                 title: 'New event',
                 startsAt: moment().startOf('day').toDate(),
