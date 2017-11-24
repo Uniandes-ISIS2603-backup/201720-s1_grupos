@@ -7,6 +7,8 @@
     mod.controller('categoriaNewCtrl', ['$scope', '$http', 'categoriasContext', '$state', '$rootScope',
         function ($scope, $http, categoriasContext, $state, $rootScope) {
             //Se indica que se está creando una categoría
+            
+            $scope.errorCategoriaNombre=false;
             $rootScope.edit = false;
             $scope.crearcategoria=true;
             $scope.actualizarcategoria=false;
@@ -24,8 +26,8 @@
                     console.log("HOLAAA");
                     $state.go('carruselCategorias',{}, {reload: true});
                 }, function (error, status) {
-                    //En caso de eror se muestra el modal correspondiente
-                    $("#modalCrearcategorias").modal('show');
+                    
+                    $scope.errorCategoriaNombre=true;
                 });
             };
             

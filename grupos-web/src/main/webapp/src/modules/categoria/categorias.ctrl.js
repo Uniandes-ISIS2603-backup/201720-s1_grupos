@@ -6,7 +6,7 @@
     mod.constant("categoriaContext", "Stark/categorias");
     mod.controller('categoriaCtrl', ['$scope', '$http', 'categoriaContext', '$state',
         function ($scope, $http, categoriaContext, $state) {
-            //Se indica que no se está actualmente en un grupo, para mostrar los botones correspondientes
+            //Se indica que no se está actualmente en un grupo, para mostrar los botones correspondientes            
             $scope.opcionesGrupo=false;
             $scope.deGrupo=false;
             /**

@@ -13,7 +13,8 @@
                         <div class="form-group col-md-6">
                             <label for="categoriaName" class="col-sm-3">Nombre:</label>
                             <!-- Campo para poner el nombre-->
-                            <input id="categoriaName" required ng-model="categoriaName" class="col-sm-6"/>
+                            <input id="categoriaName" required ng-model="categoriaName" class="col-sm-3"/>
+                            <p class="col-md-3" style="color: #D8000C" ng-if="errorCategoriaNombre">Ya existe una categoria con ese nombre</p>
                         </div>
                     </div>
                     <div class="form-group row">

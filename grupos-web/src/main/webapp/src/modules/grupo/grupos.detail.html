@@ -1,52 +1,58 @@
 <!-- Muestra información detallada de un grupo-->
 <div class="container-fluid">
-    <div class="row">        
-    <a class="btn btn-danger btn-sm col-md-1 pull-right" ui-sref="grupoDelete({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-trash"></span></a>
-    <a class="btn btn-default btn-sm col-md-1 pull-right" ui-sref="grupoUpdate({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-edit"></span></a>
-    </div>
-    <div class="row">
-        <!-- Muestra el nombre-->
-        <div class="col-md-12 text-center" style="float: none;margin: 0 auto">
-            <h2>{{grupoActual.nombre}}</h2>
-        </div>
-        <!-- Muestra la descripción de un grupo-->
-        <div class="col-md-12 text-center" style="float: none;margin: 0 auto">
-            <p>{{grupoActual.descripcion}}</p>
-        </div>
-        <div class="col-md-12 text-center">
-            <!-- Botones por si un usuario se quiere inscribir o dejar un grupo, solo se muestra uno dependiendo del caso-->
-            <div class="col-md-12">
-                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!soyMiembro">
-                    <button type="button" class="btn btn-success" ng-click="inscripcionGrupo()" ng-if="!puedoEditarGrupo()">Inscribirse</button>
+    <div class="panel panel-default"> 
+        <div class="panel-body">
+            <div class="row">        
+                <a class="btn btn-danger btn-sm col-md-1 pull-right" ui-sref="grupoDelete({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-trash"></span></a>
+                <a class="btn btn-default btn-sm col-md-1 pull-right" ui-sref="grupoUpdate({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-edit"></span></a>
+            </div>
+            <div class="row">
+                <!-- Muestra el nombre-->
+                <div class="col-md-12 text-center" style="float: none;margin: 0 auto">
+                    <h2>{{grupoActual.nombre}}</h2>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="soyMiembro">
-                    <button type="button" class="btn btn-danger" ng-click="dejarGrupo()">Salir del grupo</button>
+                <!-- Muestra la descripción de un grupo-->
+                <div class="col-md-12 text-center" style="float: none;margin: 0 auto">
+                    <p>{{grupoActual.descripcion}}</p>
+                </div>
+                <div class="col-md-12 text-center">
+                    <!-- Botones por si un usuario se quiere inscribir o dejar un grupo, solo se muestra uno dependiendo del caso-->
+                    <div class="col-md-12">
+                        <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!soyMiembro">
+                            <button type="button" class="btn btn-success" ng-click="inscripcionGrupo()" ng-if="!puedoEditarGrupo()">Inscribirse</button>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="soyMiembro">
+                            <button type="button" class="btn btn-danger" ng-click="dejarGrupo()">Salir del grupo</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <br>
+            <div class="text-center">
+                <!-- Muestra los botones para ver los subrecursos del grupo-->
+                <div class="btn-group" >
+                    <button type="button" class="btn btn-primary" ui-sref="grupoNoticiasList" >Noticias</button>
+                    <button type="button" class="btn btn-primary" ui-sref="eventosDeGrupo({grupoId:grupoActual.id})">Eventos</button>
+                    <button type="button" class="btn btn-primary" ui-sref="blogList">Blogs</button>
+                    <button type="button" class="btn btn-primary" ng-click="categoriasDeMiGrupo(grupoActual.id)">Categorias</button>
+                    <button type="button" class="btn btn-primary" ng-click="adminsDeMiGrupo(grupoActual.id)">Administradores</button>
+                    <button type="button" class="btn btn-primary" ui-sref="miembrosDeGrupo({grupoId:grupoActual.id})">Miembros</button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- Botones para modificar y actualizar un grupo-->
+            
+            
+            
+            <br>
+            <br>
+            <!-- Vista para mostrar la lista de los subrecursos-->
+            <div ui-view="childrenView"></div>
+            <br>
+            <br>
         </div>
     </div>
-    
-    <br>
-    <div class="text-center">
-        <!-- Muestra los botones para ver los subrecursos del grupo-->
-        <div class="btn-group" >
-            <button type="button" class="btn btn-primary" ui-sref="grupoNoticiasList" >Noticias</button>
-            <button type="button" class="btn btn-primary" ui-sref="eventosDeGrupo({grupoId:grupoActual.id})">Eventos</button>
-            <button type="button" class="btn btn-primary" ui-sref="blogList">Blogs</button>
-            <button type="button" class="btn btn-primary" ng-click="categoriasDeMiGrupo(grupoActual.id)">Categorias</button>
-            <button type="button" class="btn btn-primary" ng-click="adminsDeMiGrupo(grupoActual.id)">Administradores</button>
-            <button type="button" class="btn btn-primary" ui-sref="miembrosDeGrupo({grupoId:grupoActual.id})">Miembros</button>
-        </div>
-    </div>
-    <br>
-    <br>
-    <!-- Botones para modificar y actualizar un grupo-->
-    
 </div>
-<br>
-<br>
-<!-- Vista para mostrar la lista de los subrecursos-->
-<div ui-view="childrenView"></div>
-<br>
-<br>
 
