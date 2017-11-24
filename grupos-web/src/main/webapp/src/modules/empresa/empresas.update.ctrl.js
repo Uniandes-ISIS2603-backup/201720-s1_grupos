@@ -7,14 +7,20 @@
     mod.controller('empresaUpdateCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'empresaUsuarioContext', '$rootScope',
         function ($scope, $http, usuariosContext, $state, empresaUsuarioContext, $rootScope) {
             $rootScope.edit = false;
-            //Búsqueda de la empresa que se va a modificar.
-                var nitActual;
-                $http.get(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext).then(function (response) {
-                    var empresaActual = response.data;
-                    nitActual = empresaActual.nit;
-                    $scope.currentNit = empresaActual.nit;
-                });
             
+            //Búsqueda de las imagenes en las carpeta data
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.rutaImagenes = response.data;
+            });
+            //Búsqueda de la empresa que se va a modificar.
+            var nitActual;
+            $http.get(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext).then(function (response) {
+                var empresaActual = response.data;
+                nitActual = empresaActual.nit;
+                $scope.currentNit = empresaActual.nit;
+            });
+                            
             //Función utilizada para modificar una empresa.
             $scope.updateEmpresa = function () {
                 //Poner bien path REST!
