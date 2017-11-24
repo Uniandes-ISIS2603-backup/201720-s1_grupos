@@ -1,11 +1,25 @@
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+}
+
 .margin-top{
     padding-top: 20px;
 }
 
-.mainHeader, .footer-bottom{
+.mainHeader{
     background: #f8f8f8;
     color: #fff;
     width: 100%;
+}
+
+.footer-bottom{
+    background: #f8f8f8;
+    color: #fff;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 .fixed-header{
@@ -49,5 +63,6 @@
 
 .header_text{
     color: #6E6E6E;
+    font-size: 19px;
 }
 
