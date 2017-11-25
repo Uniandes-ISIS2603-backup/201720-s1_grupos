@@ -45,10 +45,6 @@
                             });
 
             } 
-            this.prueba=function()
-            {
-                console.log("ESTA ES LA PRIUEBA");
-            }
             
             
 
