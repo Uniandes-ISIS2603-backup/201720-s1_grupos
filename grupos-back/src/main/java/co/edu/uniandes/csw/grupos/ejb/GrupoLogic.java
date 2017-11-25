@@ -495,7 +495,7 @@ public class GrupoLogic {
             throw new NotFoundException("No existe el evento con el id dado en el grupo con id dado");
         }
         entity.getEventosGrupo().remove(eventoEntity);
-        eventoEntity.setGrupo(null);
         updateGrupo(entity);
+        
     }
 }
