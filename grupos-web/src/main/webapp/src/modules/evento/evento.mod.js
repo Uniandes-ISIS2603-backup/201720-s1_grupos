@@ -91,19 +91,6 @@
                         controller: 'grupoEventosCtrl'
                     }
                 }
-            }).state('eventosCalendar',{
-                url: '/calendar',
-                parent: 'eventosDeGrupo',
-                param:{
-                    grupoId:null
-                },
-                views: {
-                    'calendarView':{
-                        templateUrl: basePath + 'eventos.calendar.html',
-                        controller: 'eventosCalendarCtrl',
-                        controllerAs: 'vm'
-                    }
-                }
             }).state('eventoUpdate', {
                 url: '/update/{eventoId:int}',
                 parent: 'eventos',
@@ -127,6 +114,19 @@
                     'detailView': {
                         templateUrl: basePath + '/delete/evento.delete.html',
                         controller: 'grupoEventosCtrl'
+                    }
+                }
+            }).state('eventosCalendar',{
+                url: '/calendar',
+                parent: 'eventosDeGrupo',
+                param:{
+                    grupoId:null
+                },
+                views: {
+                    'calendarView':{
+                        templateUrl: basePath + 'eventos.calendar.html',
+                        controller: 'eventosCalendarCtrl',
+                        controllerAs: 'vm'
                     }
                 }
             });
