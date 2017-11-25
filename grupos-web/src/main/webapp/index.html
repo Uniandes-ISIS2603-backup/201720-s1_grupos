@@ -12,7 +12,7 @@
          <link rel="stylesheet" href="styles/app.css" />
          <link rel="stylesheet" href="styles/index.css">
          <link rel="stylesheet" href="styles/boton.css">
-        
+         <link rel="stylesheet" href="styles/multimedia.css">
         <!-- stylesheet Externas-->
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -267,6 +267,8 @@
                 </ul>
             </div> 
         </div> 
+  <button ng-click="expression = 'created_at';selectedOption='latest'" ng-class="{latest_icon:true, 'selected':selectedOption=='latest'}" >latest post</button>
+  <button ng-click="expression = 'popularity';selectedOption='popular'" ng-class="{popular_post:true, 'selected':selectedOption=='popular'}" >popular post</button>
         <div ui-view="mainView" class="container-fluid col-md-10"></div>
         <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
         <div class="footer-bottom col-xs-10 col-md-10 col-lg-10 col-sm-10" >

@@ -68,6 +68,7 @@
             {
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
+                $scope.selectedOption=ruta;
             };
             /**
              * Verifica que todas la multimedia tiene un mensaje asignado.<br>

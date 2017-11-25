@@ -181,6 +181,7 @@
             //Función para asignar la ruta cuando se le da click en la multimedia
             this.asignarRuta=function(ruta)
             {
+                $scope.selectedOption=ruta;
                 $scope.ruta=ruta;
             };
             //Función para verificar la multimedia actual
