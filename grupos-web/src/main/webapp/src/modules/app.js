@@ -66,6 +66,14 @@
                         return false;
                     }
                 };
+                
+                $rootScope.soyAdminGeneral = function () {
+                    if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === 'Administrador')) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                };
 
 
                 if (requireLogin && (sessionStorage.getItem("email") === null)) {

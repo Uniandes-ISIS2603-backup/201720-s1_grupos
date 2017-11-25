@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
@@ -26,17 +26,17 @@ public class EventoLogic {
      * Persistencia de un evento.<br>
      */
     @Inject
-    EventoPersistence persistence;
+            EventoPersistence persistence;
     /**
      * Lógica de usuario.
      */
     @Inject
-    UsuarioLogic usuario;
+            UsuarioLogic usuario;
     /**
      * Lógica de patrocinio.
      */
     @Inject
-    PatrocinioLogic patrocinio;
+            PatrocinioLogic patrocinio;
     
     /**
      * Obtiene una entidad con el id dado.<br>
@@ -72,7 +72,7 @@ public class EventoLogic {
     {
         if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
         if(entity.getFechaInicio().after(entity.getFechaFin())) throw new BusinessException("Las fechas no coinciden");
-        return persistence.create(entity);        
+        return persistence.create(entity);
     }
     
     /**
@@ -86,9 +86,9 @@ public class EventoLogic {
     {
         EventoEntity Evento= persistence.find(entity.getId());
         if(Evento==null)
-       {
-           throw new NotFoundException("No se encontró una Evento con el id: " + entity.getId());
-       }
+        {
+            throw new NotFoundException("No se encontró una Evento con el id: " + entity.getId());
+        }
         EventoEntity newEntity = persistence.update(entity);
         return newEntity;
     }
@@ -101,28 +101,28 @@ public class EventoLogic {
     public void deleteEntity(EventoEntity entity) throws BusinessException
     {
         EventoEntity eventoEntity = persistence.find(entity.getId());
-       if(eventoEntity==null)
-       {
-           throw new NotFoundException("No se encontró una Evento con el id: " + entity.getId());
-       }
-       /*
-       if(eventoEntity.getPatrocinios()!=null)
-       {
+        if(eventoEntity==null)
+        {
+            throw new NotFoundException("No se encontró una Evento con el id: " + entity.getId());
+        }
+        /*
+        if(eventoEntity.getPatrocinios()!=null)
+        {
         for(PatrocinioEntity p:eventoEntity.getPatrocinios())
         {
-            removePatrocinio(eventoEntity.getId(),p.getId());
+        removePatrocinio(eventoEntity.getId(),p.getId());
         }
-       }*/
-       persistence.delete(entity.getId());
+        }*/
+        persistence.delete(entity.getId());
     }
     
     /**
-       * instancia de Evento
+     * instancia de Evento
      *
      * @param EntityId Identificador de la instancia de Evento
      * @return Colección de instancias de UsuarioEntity asociadas a la instancia
      * de Evento
-     * 
+     *
      */
     public List<UsuarioEntity> listUsuarios(Long EntityId) throws BusinessException {
         return getEntity(EntityId).getUsuarios();
@@ -133,7 +133,7 @@ public class EventoLogic {
      *
      * @param entityId Identificador de la instancia de Evento
      * @param usuariosId Identificador de la instancia de Usuario
-     * 
+     *
      */
     public UsuarioEntity getUsuario(Long entityId, Long usuariosId) throws BusinessException {
         List<UsuarioEntity> list = getEntity(entityId).getUsuarios();
@@ -145,14 +145,14 @@ public class EventoLogic {
         }
         return null;
     }
-
+    
     /**
      * Asocia un Usuario existente a un Evento
      *
      * @param entityId Identificador de la instancia de Evento
      * @param usuarioId Identificador de la instancia de Usuario
      * @return Instancia de UsuarioEntity que fue asociada a Evento
-     * 
+     *
      */
     public UsuarioEntity addUsuario(Long entityId, Long usuarioId) throws BusinessException {
         EventoEntity entity = getEntity(entityId);
@@ -165,13 +165,13 @@ public class EventoLogic {
         updateEntity(entity);
         return getUsuario(entityId, usuarioId);
     }
-
+    
     /**
      * Desasocia un Usuario existente de un Evento existente
      *
      * @param entityId Identificador de la instancia de Evento
      * @param usuarioId Identificador de la instancia de Usuario
-     * 
+     *
      */
     public void removeUsuario(Long entityId, Long usuarioId) throws BusinessException {
         EventoEntity entity = getEntity(entityId);
@@ -180,7 +180,7 @@ public class EventoLogic {
         if(index<0) throw new BusinessException("No existe el usuario");
         usuarioEntity.getEventos().remove(index);
         usuario.updateUser(usuarioEntity.getId(), usuarioEntity);
-    }    
+    }
     
     /**
      * Obtiene una colección de instancias de PatrocinioEntity asociadas a una
@@ -189,7 +189,7 @@ public class EventoLogic {
      * @param EntityId Identificador de la instancia de Evento
      * @return Colección de instancias de PatrocinioEntity asociadas a la instancia
      * de Evento
-     * 
+     *
      */
     public List<PatrocinioEntity> listPatrocinios(Long EntityId) throws BusinessException {
         return getEntity(EntityId).getPatrocinios();
@@ -200,7 +200,7 @@ public class EventoLogic {
      *
      * @param entityId Identificador de la instancia de Evento
      * @param patrociniosId Identificador de la instancia de Patrocinio
-     * 
+     *
      */
     public PatrocinioEntity getPatrocinio(Long entityId, Long patrociniosId) throws BusinessException{
         List<PatrocinioEntity> list = getEntity(entityId).getPatrocinios();
@@ -212,14 +212,14 @@ public class EventoLogic {
         }
         return null;
     }
-
+    
     /**
      * Asocia un Patrocinio existente a un Evento
      *
      * @param entityId Identificador de la instancia de Evento
      * @param patrocinioId Identificador de la instancia de Patrocinio
      * @return Instancia de PatrocinioEntity que fue asociada a Evento
-     * 
+     *
      */
     public PatrocinioEntity addPatrocinio(Long entityId, Long patrocinioId) throws BusinessException {
         EventoEntity entity = getEntity(entityId);
@@ -228,16 +228,18 @@ public class EventoLogic {
         int index=entity.getPatrocinios().indexOf(patrocinioEntity);
         if(index>=0) throw new BusinessException("Ya existe el patrocinio");
         entity.getPatrocinios().add(patrocinioEntity);
+        patrocinioEntity.setEvento(entity);
+        patrocinio.updatePatrocinio(patrocinioId, patrocinioEntity);
         return getPatrocinio(entityId, patrocinioId);
     }
-
+    
     /**
      * Actualiza el patrocinio dados un id del evento, el id del patrocinio, y el nuevo patrocinio
      * @param id identificador del usuario
      * @param patrocinioId identificador del patrocinio
      * @param np nuevo patrocinio
      * @return
-     * @throws BusinessException 
+     * @throws BusinessException
      */
     public PatrocinioEntity updatePatrocinio(Long id, Long patrocinioId, PatrocinioEntity np) throws BusinessException{
         EventoEntity u = getEntity(id);
@@ -262,7 +264,7 @@ public class EventoLogic {
      *
      * @param entityId Identificador de la instancia de Evento
      * @param patrocinioId Identificador de la instancia de Patrocinio
-     * 
+     *
      */
     public void removePatrocinio(Long entityId, Long patrocinioId) throws BusinessException{
         EventoEntity entity = getEntity(entityId);
