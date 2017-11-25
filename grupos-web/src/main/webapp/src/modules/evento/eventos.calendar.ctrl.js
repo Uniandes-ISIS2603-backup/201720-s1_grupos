@@ -7,17 +7,7 @@
             //These variables MUST be set as a minimum for the calendar to work
             vm.calendarView = 'month';
             vm.viewDate = new Date();
-            var actions = [{
-                label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
-                onClick: function(args) {
-                  alert.show('Edited', args.calendarEvent);
-                }
-              }, {
-                label: '<i class=\'glyphicon glyphicon-remove\'></i>',
-                onClick: function(args) {
-                  alert.show('Deleted', args.calendarEvent);
-                }
-              }];
+            var actions = [];
             vm.events = $scope.records;
             
             for(var i = 0; i<vm.events.length; i++) {
@@ -31,12 +21,11 @@
             vm.cellIsOpen = true;
 
             vm.addEventCalendar = function() {
-              vm.events.push({
-                title: 'New event',
-                startsAt: moment().startOf('day').toDate(),
-                endsAt: moment().endOf('day').toDate(),
-                resizable: true
-              });
+              
+            };
+            
+            vm.eventClicked = function(event) {
+                $state.go('eventoCalendarDetail', {eventoId: event.id}, {});
             };
 
 
