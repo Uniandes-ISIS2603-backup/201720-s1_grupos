@@ -1,4 +1,4 @@
-<div ng-controller="eventosCalendarCtrl as vm">
+<div>
   <h2 class="text-center">{{ vm.calendarTitle }}</h2>
 
   <div class="row">
@@ -47,9 +47,9 @@
     on-event-click="vm.eventClicked(calendarEvent)"
     on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
     cell-is-open="vm.cellIsOpen"
-    day-view-start="06:00"
-    day-view-end="22:59"
     day-view-split="30"
     cell-modifier="vm.modifyCell(calendarCell)">
   </mwl-calendar>
+  
+  <button tympe="button" class ="btm btn-imfo" ui-sref="eventosDeGrupo">click me!</button>
 </div>  
