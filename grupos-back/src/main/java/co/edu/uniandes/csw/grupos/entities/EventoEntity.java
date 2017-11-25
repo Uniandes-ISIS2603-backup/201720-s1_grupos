@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -71,7 +72,7 @@ public class EventoEntity implements Serializable{
      * Relación con patrocinios
      */
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
     
     /**

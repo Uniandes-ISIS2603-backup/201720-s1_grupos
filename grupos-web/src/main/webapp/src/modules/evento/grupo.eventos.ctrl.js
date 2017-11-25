@@ -78,11 +78,14 @@
             var idEvento = $state.params.eventoId;
             $scope.deleteEvento = function () {
             fullContext = relacionContext + "/"+$state.params.grupoId +"/"+ context + "/" + idEvento;
+            
             $http.delete(fullContext).then(function(response)
                 { 
-                    $http.delete(eventoContext +"/" +idEvento).then(function(response){
+                    console.log("ENTRA AL BORRADO");
                     $state.go('eventosList', {eventoId: response.data.id}, {reload: true});
-                    });
+                    //
+                }, function(error){
+                    console.log("HUBO UN ERROR");
                 });
             };
             

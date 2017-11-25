@@ -129,8 +129,7 @@
                 url: '/delete/{eventoId:int}',
                 parent: 'grupoEventos',
                 params: {
-                    eventoId: null,
-                    grupoId:null
+                    eventoId: null
                 },
                 views: {
                     'detailView': {

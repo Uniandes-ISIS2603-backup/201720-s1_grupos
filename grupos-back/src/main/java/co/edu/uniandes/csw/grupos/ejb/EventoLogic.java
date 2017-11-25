@@ -100,11 +100,19 @@ public class EventoLogic {
      */
     public void deleteEntity(EventoEntity entity) throws BusinessException
     {
-        EventoEntity Evento = persistence.find(entity.getId());
-       if(Evento==null)
+        EventoEntity eventoEntity = persistence.find(entity.getId());
+       if(eventoEntity==null)
        {
            throw new NotFoundException("No se encontró una Evento con el id: " + entity.getId());
        }
+       /*
+       if(eventoEntity.getPatrocinios()!=null)
+       {
+        for(PatrocinioEntity p:eventoEntity.getPatrocinios())
+        {
+            removePatrocinio(eventoEntity.getId(),p.getId());
+        }
+       }*/
        persistence.delete(entity.getId());
     }
     
