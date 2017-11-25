@@ -17,26 +17,26 @@
                     <dd>{{usuarioActual.email}}</dd>
                 </dl>
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                <a class="btn btn-info" ui-sref="updateUsuario({usuarioId:usuarioActual.id})"><span class="glyphicon glyphicon-plus-sign"></span> Actualizar información</a>
+                    <img src="data/actualizarInfo.png" class="img clickable" role="button" ui-sref="updateUsuario({usuarioId:usuarioActual.id})" height="50" width="200" >
                 </div>
-        </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-10 col-lg-10">
-                <ul class="nav nav-tabs">
-                        <li><a ui-sref="usuarioNoticiasList">Noticias de usuario</a></li>
-                        <li><a ui-sref="tarjetasList({idUsuario: usuarioActual.id})">Mis tarjetas</a></li>
-                        <li><a ui-sref="empresaDetail({idUsuario: usuarioActual.id})">Mi empresa</a></li>
-                        <li><a ui-sref="patrocinioListDetail">Mis patrocinios</a></li>
-                        <li><a ui-sref="blogFavList">Blogs favoritos</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-11">
-                <div ui-view="childrenView"></div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-10 col-lg-10">
+            <ul class="nav nav-tabs">
+                <li><a ui-sref="usuarioNoticiasList">Noticias de usuario</a></li>
+                <li><a ui-sref="tarjetasList({idUsuario: usuarioActual.id})">Mis tarjetas</a></li>
+                <li><a ui-sref="empresaDetail({idUsuario: usuarioActual.id})">Mi empresa</a></li>
+                <li><a ui-sref="patrocinioListDetail">Mis patrocinios</a></li>
+                <li><a ui-sref="blogFavList">Blogs favoritos</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-11">
+            <div ui-view="childrenView"></div>
+        </div>
+    </div>
+</div>
 </div>

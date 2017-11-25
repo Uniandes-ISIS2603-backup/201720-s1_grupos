@@ -97,17 +97,17 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * @param {type} adminsDeGrupo, administradores que el grupo posee
              */
             $scope.adminsQueNoTengo = function (adminsDeGrupo) {
-                    $scope.todosLosAdmins = $scope.miembroRecords;                  
-                    $scope.adminsDeGrupo=adminsDeGrupo;
-                    
-                    //Se hace el filtro visual dependiendo de todas las que existen
-                    var filteredAdmins= $scope.todosLosAdmins.filter(function (todosLosAdmins) {
-                        return $scope.adminsDeGrupo.filter(function (adminsDeGrupo) {
-                            return adminsDeGrupo.id === todosLosAdmins.id;
-                        }).length === 0;
-                    });
-                    //Las categorías filtradas se mostrarán
-                    $scope.adminRecords = filteredAdmins;
+                $scope.todosLosAdmins = $scope.miembroRecords;                  
+                $scope.adminsDeGrupo=adminsDeGrupo;
+                
+                //Se hace el filtro visual dependiendo de todas las que existen
+                var filteredAdmins= $scope.todosLosAdmins.filter(function (todosLosAdmins) {
+                    return $scope.adminsDeGrupo.filter(function (adminsDeGrupo) {
+                        return adminsDeGrupo.id === todosLosAdmins.id;
+                    }).length === 0;
+                });
+                //Las categorías filtradas se mostrarán
+                $scope.adminRecords = filteredAdmins;
             };
             /**
              * Asocia el usuario dada con el grupo actual como administrador
@@ -254,6 +254,10 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              */
             $scope.puedoEditarCategorias = function() {
                 return $scope.puedoEditarGrupo();
+            };
+            
+             $scope.puedoVerDetallesGrupo = function() {
+                return $scope.soyAdmin || $scope.soyMiembro;
             };
             
             /**
