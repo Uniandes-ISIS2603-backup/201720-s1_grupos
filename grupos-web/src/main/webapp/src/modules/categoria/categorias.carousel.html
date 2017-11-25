@@ -1,6 +1,6 @@
 <!-- Lista donde se mostrarán las categorias en un carrusel-->
 <div class="container-fluid">
-     <h1 class="col-md-12 text-center"><span style="margin-left:200px;font-size:50px;color:red;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">
+     <h1 class="col-md-12 text-center"><span style="font-size:50px;color:red;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">
             Categorias                 
         </span></h1>
     <!-- En caso de estar en un controlador de categoría, se muestra la opción para crear-->
@@ -21,8 +21,8 @@
     <!-- Carrusel para mostrarlas, se muestra nombre, descripción e imagen-->
     <carousel interval="carruselCategorias" style="margin-top:150px">
         <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
-            <div class="col-md-4" style="position:relative; right:-20">
-                <img src="data/{{categoria.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'"  role="button" style="margin:auto;width:300px;height:300px;border:1px solid red">
+            <div class="col-md-4">
+                <img src="data/{{categoria.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'" role="button" style="margin:auto;width:300px;height:300px;border:1px solid red">
             </div>
             <div class="col-md-5" >
                 <br>
@@ -30,9 +30,7 @@
                 <br>
                 <p>{{categoria.descripcion}}</p>
                 <br>
-                <button class="bg-info" ui-sref="categoriaDetail2({categoriaId: categoria.id})"> 
-                    <p>Ver detalles</p>
-                </button>
+                <img src="data/verDetalles.png" class="img clickable" role="button" ui-sref="categoriaDetail2({categoriaId: categoria.id})" height="50" width="170" >
             </div>
                 
             
