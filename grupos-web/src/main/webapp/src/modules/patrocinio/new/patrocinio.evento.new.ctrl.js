@@ -32,7 +32,6 @@
                     maxCupo: tarjetaUsada.maxCupo
                     }).then(function (response) {
                         //Se realiza descuento a la plata de la tarjeta
-                        console.log("Se edito la tarjeta crack");
                         $http.post(usuariosContext + '/' + sessionStorage.getItem("id") + '/' + patrociniosContext, {
                             pago :$scope.patrocinioPago,              
                         }).then(function (response) {

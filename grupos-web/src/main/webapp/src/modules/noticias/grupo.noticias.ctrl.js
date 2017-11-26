@@ -23,7 +23,6 @@
             //Inicialización de mensajeError de error
             if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
             {
-                console.log("ERROR "+$state.params.mensajeError);
                 $scope.variableErrorNoticia=$state.params.mensajeError;
             }
             //Inicialización de booleanos importantes
@@ -120,7 +119,6 @@
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
                 $scope.selectedOption[index]=index+"-"+ruta;
-                console.log($scope.selectedOption[index]);
             };
             /**
              * Retorna el número actual asignado.<br>

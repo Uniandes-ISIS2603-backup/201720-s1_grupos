@@ -16,7 +16,6 @@
                 for(i=0;i<$scope.archivos.length;i++)
                 {
                     $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
-                    console.log($scope.archivos[i].ruta);
                 }
             });
             //Verifica si es miembro del grupo

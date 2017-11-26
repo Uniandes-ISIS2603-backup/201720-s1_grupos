@@ -60,7 +60,6 @@
                                     sessionStorage.setItem("email", $scope.user.email);
                                     sessionStorage.setItem("password", $scope.user.password);
                                     sessionStorage.setItem("rol", $scope.user.rol);
-                                    console.log($scope.user.rol);
                                     //Le asigna un nickname si lo tiene
                                     if($scope.user.nickname!==null && $scope.user.nickname!==undefined)
                                     {
