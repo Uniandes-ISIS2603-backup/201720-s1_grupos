@@ -39,40 +39,52 @@
             <div class="btn-toolbar" ng-show="{{esMultimediaNoticia && deGrupo}}" role="toolbar" aria-label="Toolbar with button groups">
                 <a class="btn" id="add-btn"  ui-sref="grupoNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"> </a>
             </div>
-                <div class="row">
-                    <div class="col-md-4 col-xs-12 col-lg-4 col-sm-6" ng-repeat="record in multimediaRecords">
-                        <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
-                            <div class="thumbnail">   
-                                    <button ui-sref="blogMultimediaDetail({multimediaLink:record.link})">
-                                        <iframe id="plugin" src="{{record.ruta}}">  </iframe>            
-                                    </button>
-                            </div>                          
-                        </div>  
-                        <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
-                            <div class="thumbnail">   
-                                    <button ui-sref="grupoNoticiaMultimediaDetail({multimediaLink:record.link})">
-                                        <iframe id="plugin" src="{{record.ruta}}">   </iframe>            
-                                    </button>
-                            </div>                         
-                        </div> 
-                        <div ng-show="{{esMultimediaNoticia && (!deGrupo && !esNoticiaUsuario)}}" class="ng-hide">
-                            <div class="thumbnail">   
-                                    <button ui-sref="noticiaNoEditableMultimediaDetail({multimediaLink:record.link})">
-                                        <iframe id="plugin" src="{{record.ruta}}">   </iframe>            
-                                    </button>
-                            </div>
-                                
-                        </div> 
-                            <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
-                                <div class="thumbnail">   
-                                  <button class="btn btn-default btn-transparent" ui-sref="usuarioNoticiaMultimediaDetail({multimediaLink:record.link})">
-                                      <iframe id="plugin" src="{{record.ruta}}">   </iframe>            
-                                  </button>
+                <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+                    <div class="col-md-12">
+                        <div class="widget-container" >
+                            <div class="widget row image-tile">
+                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ui-sref="blogMultimediaDetail({multimediaLink: record.link})"ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                    <p>{{record.nombre}}</p>
                                 </div>
-                            </div>                           
-                        </div> 
+                            </div>
+                        </div>
                     </div>
-            </div>
+                </div>  
+                <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
+                    <div class="col-md-12">
+                        <div class="widget-container" >
+                            <div class="widget row image-tile">
+                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4"  ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;"  ui-sref="grupoNoticiaMultimediaDetail({multimediaLink: record.link})" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                    <p>{{record.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                       
+                </div> 
+                <div ng-show="{{esMultimediaNoticia && (!deGrupo && !esNoticiaUsuario)}}" class="ng-hide">
+                    <div class="col-md-12">
+                        <div class="widget-container" >
+                            <div class="widget row image-tile">
+                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ui-sref="noticiaNoEditableMultimediaDetail({multimediaLink:record.link})" ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                    <p>{{record.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> 
+                <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
+                    <div class="col-md-12">
+                        <div class="widget-container" >
+                            <div class="widget row image-tile">
+                                <div class="tile col-xs-12 col-md-12 col-sm-12 col-lg-12" ui-sref="usuarioNoticiaMultimediaDetail({multimediaLink:record.link})" ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                    <p>{{record.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                           
+        </div> 
 
         </div>
     </div>

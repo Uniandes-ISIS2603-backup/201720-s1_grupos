@@ -183,6 +183,8 @@
                 }
                 return true;
             };
+            
+            $scope.style={"background-color" : "coral"};
 
         }]);
 })(angular);
