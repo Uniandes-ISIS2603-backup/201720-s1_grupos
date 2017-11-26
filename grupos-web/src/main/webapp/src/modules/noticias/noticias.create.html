@@ -39,15 +39,15 @@
                                         <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="itemToAdd.descripcion" ng-init="itemToAdd.descripcion"></textarea>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6 col-lg-4 col-md-6 col-xs-12" ng-repeat="record in archivos">
-                                        <div class="thumbnail">
-                                            <button type="button" ng-click="ctrl.asignarRuta(itemToAdd,record.ruta)" ng-class="{latest_icon:true, 'selected':selectedOption==='{{record.ruta}}'}">
-                                                <embed width="100" height="100" id="plugin" src="{{record.ruta}}">
-                                            </button>
+¡                                    <div class="col-md-12">
+                                        <div class="widget-container" >
+                                            <div class="widget row image-tile">
+                                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption[ctrl.numeroActual(itemToAdd)]===ctrl.numeroActual(itemToAdd)+'-'+record.ruta }" ng-click="ctrl.asignarRuta(itemToAdd,record.ruta)">
+                                                    <p>{{record.ruta}}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 <button id="{{$index}}--remove-multimedia-btn" class="btn btn-danger btn-sm col-lg-6 col-md-6" ng-click="ctrl.remove(itemToAdd)" type="button"><span class="glyphicon glyphicon-trash"></span>Multimedia</button>
                                 <hr>
                             </div>

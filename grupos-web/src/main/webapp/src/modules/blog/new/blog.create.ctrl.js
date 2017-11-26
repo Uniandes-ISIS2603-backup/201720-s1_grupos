@@ -10,6 +10,8 @@
             $scope.actualizarBlog=false;
             //Inicialización de rutas de la multimedia
             $scope.archivos=[];
+            //Inicialización de opciones vacías
+            $scope.selectedOption=[];
             $http.get("./data/archivos.json").then(function(response)
             {
                 $scope.archivos=response.data;
@@ -68,7 +70,7 @@
             {
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
-                $scope.selectedOption=ruta;
+                $scope.selectedOption[index]=index+"-"+ruta;
             };
             /**
              * Verifica que todas la multimedia tiene un mensaje asignado.<br>
@@ -120,6 +122,16 @@
                     $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
                 });
 
+            };
+            /**
+             * Retorna el número actual asignado.<br>
+             * @param itemToAdd
+             * @param ruta
+             */
+            this.numeroActual=function(itemToAdd)
+            {
+                var index=$scope.itemsToAdd.indexOf(itemToAdd);
+                return index;
             };
             
         }

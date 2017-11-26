@@ -7,6 +7,9 @@
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
             //Inicialización de archivos multimedia
             $scope.archivos=[];
+            //Inicialización de agregado múltiple
+            $scope.selectedOption=[];
+
             $http.get("./data/archivos.json").then(function(response)
             {
                 $scope.archivos=response.data;
@@ -106,6 +109,7 @@
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index,1);
             };
+            
             /**
              * Asigna la ruta al ítem a agregar.<br>
              * @param itemToAdd
@@ -116,7 +120,18 @@
                 
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
-                $scope.selectedOption=ruta;
+                $scope.selectedOption[index]=index+"-"+ruta;
+                console.log($scope.selectedOption[index]);
+            };
+            /**
+             * Retorna el número actual asignado.<br>
+             * @param itemToAdd
+             * @param ruta
+             */
+            this.numeroActual=function(itemToAdd)
+            {
+                var index=$scope.itemsToAdd.indexOf(itemToAdd);
+                return index;
             };
             
             /**
