@@ -6,9 +6,7 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
-import javax.ejb.Stateless;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,10 +19,6 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class TarjetaPersistence {
-    /**
-     * Logger
-     */
-    private static final Logger LOGGER = Logger.getLogger(TarjetaPersistence.class.getName());
     /**
      * Entity manager
      */

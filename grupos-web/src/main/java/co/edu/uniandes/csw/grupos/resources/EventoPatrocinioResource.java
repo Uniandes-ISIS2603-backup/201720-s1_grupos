@@ -40,7 +40,7 @@ public class EventoPatrocinioResource {
     @GET
      public List<PatrocinioDetailDTO> getPatrocinios(@PathParam("id") Long eventoId) throws BusinessException{
         List<PatrocinioEntity> pat = eventoLogic.listPatrocinios(eventoId);
-        List<PatrocinioDetailDTO> ret = new ArrayList<PatrocinioDetailDTO>();
+        List<PatrocinioDetailDTO> ret = new ArrayList<>();
         for(PatrocinioEntity p : pat)
         {
             ret.add(new PatrocinioDetailDTO(p));
@@ -60,7 +60,10 @@ public class EventoPatrocinioResource {
     @Path("{patId:\\d+}")
     public PatrocinioDetailDTO getPatrocinio(@PathParam("id") Long id, @PathParam("patId") Long patId) throws BusinessException{
         PatrocinioEntity e= eventoLogic.getPatrocinio(id, patId);
-        if(e==null) throw new NotFoundException("No se encuentra el patrocinio buscado");
+        if(e==null) 
+        {
+            throw new NotFoundException("No se encuentra el patrocinio buscado");
+        }
         return new PatrocinioDetailDTO(e);
     }
     

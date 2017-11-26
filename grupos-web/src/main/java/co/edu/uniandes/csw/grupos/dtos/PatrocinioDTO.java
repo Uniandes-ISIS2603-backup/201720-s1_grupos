@@ -26,6 +26,7 @@ public class PatrocinioDTO {
      * Constructor vacio 
      */
     public PatrocinioDTO(){
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     
     

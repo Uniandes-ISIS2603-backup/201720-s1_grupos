@@ -27,10 +27,12 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
      * Constructor vacio
      */
     public PatrocinioDetailDTO(){
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     
     /**
      * Constructor a partir de un entity
+     * @param pe Entidad de patrocinio
      */
     public PatrocinioDetailDTO(PatrocinioEntity pe){
         super(pe);
@@ -72,6 +74,7 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
     
     /**
      * Cambia el evento que realiza el patrocinio
+     * @param nevent Evento a agregar
      */
     public void setEvento(EventoDTO nevent){
         evento = nevent;
@@ -81,6 +84,7 @@ public class PatrocinioDetailDTO extends PatrocinioDTO{
      * Convierte un patrocinioDetailDTO a patrocinioEntity
      * @return 
      */
+    @Override
     public PatrocinioEntity toEntity(){
         PatrocinioEntity pe = super.toEntity();
         if(usuario!=null){

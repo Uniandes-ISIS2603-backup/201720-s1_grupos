@@ -17,6 +17,7 @@ public class EmpresaDetailDTO extends EmpresaDTO {
      * Constructor por defecto
      */
     public EmpresaDetailDTO() {
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     
      /**
@@ -35,8 +36,7 @@ public class EmpresaDetailDTO extends EmpresaDTO {
      */
     @Override
     public EmpresaEntity toEntity() {
-        EmpresaEntity tarjetaE = super.toEntity();
-        return tarjetaE;
+        return super.toEntity();
     }
    
 }

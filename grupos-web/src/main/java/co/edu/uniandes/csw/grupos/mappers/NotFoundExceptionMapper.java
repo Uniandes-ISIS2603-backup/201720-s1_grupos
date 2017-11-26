@@ -25,7 +25,6 @@ SOFTWARE.
  */
 
 
-import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

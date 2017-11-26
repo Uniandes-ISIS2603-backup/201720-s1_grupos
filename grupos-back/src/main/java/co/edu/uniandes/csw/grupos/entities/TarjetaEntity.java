@@ -98,7 +98,9 @@ public class TarjetaEntity implements Serializable{
     public boolean equals(Object o)
     {
         if (!(o instanceof TarjetaEntity))
+        {
             return false;
+        }
         TarjetaEntity u=(TarjetaEntity) o;
         return numero==(u.getNumero());
     }

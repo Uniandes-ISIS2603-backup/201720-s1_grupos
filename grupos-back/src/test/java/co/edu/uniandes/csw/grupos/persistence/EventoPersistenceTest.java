@@ -121,8 +121,8 @@ public class EventoPersistenceTest {
      * Limpia la base de datos.
      */
     private void clearData() {
-        em.createQuery("delete from EventoEntity").executeUpdate();
         em.createQuery("delete from PatrocinioEntity").executeUpdate();
+        em.createQuery("delete from EventoEntity").executeUpdate();
         em.createQuery("delete from UsuarioEntity").executeUpdate();
         em.createQuery("delete from GrupoEntity").executeUpdate();
         em.createQuery("delete from LugarEntity").executeUpdate();
@@ -143,23 +143,27 @@ public class EventoPersistenceTest {
         usuario.setEventos(new ArrayList<>());
         em.persist(usuario);
         dataU.add(usuario);
-        PatrocinioEntity patrocinio = factory.manufacturePojo(PatrocinioEntity.class);
-        patrocinio.setUsuario(usuario);
-        em.persist(patrocinio);
-        dataP.add(patrocinio);
         for (int i = 0; i < 3; i++) {
             EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
             entity.setUsuarios(new ArrayList<>());
             entity.setPatrocinios(new ArrayList<>());
             em.persist(entity);
             data.add(entity);
+            PatrocinioEntity patrocinio = factory.manufacturePojo(PatrocinioEntity.class);
+            patrocinio.setUsuario(usuario);
+            patrocinio.setEvento(entity);
+            entity.getPatrocinios().add(patrocinio);
+            em.persist(patrocinio);
+            dataP.add(patrocinio);
+
         }
         EventoEntity evento = data.get(0);
         usuario.getEventos().add(evento);
         evento.setGrupo(grupo);
         evento.setLugar(lugar);
         evento.setUsuarios(dataU);
-        evento.getPatrocinios().add(patrocinio);
+        data.set(0, evento);
+        
     }
     
     /**

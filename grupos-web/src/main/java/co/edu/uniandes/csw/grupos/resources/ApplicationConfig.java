@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
-import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**

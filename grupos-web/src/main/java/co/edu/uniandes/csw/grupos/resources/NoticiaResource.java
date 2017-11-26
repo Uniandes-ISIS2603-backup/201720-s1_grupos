@@ -41,9 +41,8 @@ public class NoticiaResource {
     @GET
     public List<NoticiaDetailDTO> getNoticias()
     {
-        List<NoticiaDetailDTO> noticias=listEntity2DetailDTO(logic.getAll());
         
-        return noticias;
+        return listEntity2DetailDTO(logic.getAll());
     }
     /**
      * Obtiene una noticia del sistema.<br>

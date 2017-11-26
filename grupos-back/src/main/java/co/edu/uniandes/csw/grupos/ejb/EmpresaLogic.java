@@ -33,7 +33,9 @@ public class EmpresaLogic {
     public EmpresaEntity createEmpresa(EmpresaEntity entity) throws BusinessException{
         
         if (persistence.findByNit(entity.getNit())!= null)
+        {
             throw new BusinessException("Ya existe una Empresa con el nit \"" + entity.getNit()+"\""); 
+        }
         
         persistence.create(entity);
         
@@ -46,9 +48,8 @@ public class EmpresaLogic {
      */
     public List<EmpresaEntity> getEmpresas(){
         
-        List<EmpresaEntity> empresas = persistence.findAll();
         
-        return empresas;
+        return persistence.findAll();
         
     }
     
@@ -59,9 +60,8 @@ public class EmpresaLogic {
      */
     public EmpresaEntity getEmpresaByNit(int nit){
         
-        EmpresaEntity tarjeta = persistence.findByNit(nit);
         
-        return tarjeta;
+        return persistence.findByNit(nit);
     }
     
     /**
@@ -71,9 +71,8 @@ public class EmpresaLogic {
      */
     public EmpresaEntity update(EmpresaEntity entity){
         
-        EmpresaEntity empresa = persistence.update(entity);
         
-        return empresa;
+        return persistence.update(entity);
     }
     
     /**

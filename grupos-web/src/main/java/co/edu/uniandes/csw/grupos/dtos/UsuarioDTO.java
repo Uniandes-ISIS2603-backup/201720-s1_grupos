@@ -52,6 +52,7 @@ public class UsuarioDTO {
      * Constructor vacio
      */
     public UsuarioDTO(){
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     
     /**

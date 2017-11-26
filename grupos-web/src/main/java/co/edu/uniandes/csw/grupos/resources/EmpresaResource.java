@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.EmpresaDetailDTO;
-import co.edu.uniandes.csw.grupos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.EmpresaLogic;
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
-import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +44,7 @@ public class EmpresaResource {
     {
         List<EmpresaEntity> empresas;
         empresas = empresaLogic.getEmpresas();
-        List<EmpresaDetailDTO> ret = new ArrayList<EmpresaDetailDTO>();
+        List<EmpresaDetailDTO> ret = new ArrayList<>();
         for(EmpresaEntity e:empresas)
         {
             ret.add(new EmpresaDetailDTO(e));

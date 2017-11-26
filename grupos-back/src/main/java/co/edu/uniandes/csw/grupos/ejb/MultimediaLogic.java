@@ -30,12 +30,11 @@ public class MultimediaLogic {
     */
     public MultimediaEntity getEntity (String link) 
     {
-        if(link==null || link.equals(""))
+        if(link==null || "".equals(link))
         {
             throw new NotFoundException("No existe un objeto con esa especificación.");
         }
-        MultimediaEntity entity= persistence.find(link);
-        return entity;
+        return persistence.find(link);
 
     }
     /**
@@ -46,12 +45,20 @@ public class MultimediaLogic {
      */
     public MultimediaEntity createEntity(MultimediaEntity entity) throws BusinessException
     {
-        if(entity == null) throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
-        if(entity.getLink()== null || entity.getNombre()==null || entity.getRuta()==null)
+        if(entity == null)
+        {
             throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
+        }
+        if(entity.getLink()== null || entity.getNombre()==null || entity.getRuta()==null)
+        {
+            throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
+        }
         String id= entity.getLink();
         MultimediaEntity other= persistence.find(id);
-        if(other!=null) throw new BusinessException ("La multimedia ya se encuentra en el sistema.");
+        if(other!=null) 
+        {
+            throw new BusinessException ("La multimedia ya se encuentra en el sistema.");
+        }
         return persistence.createEntity(entity);
     }
     /**
@@ -63,10 +70,18 @@ public class MultimediaLogic {
      */
     public MultimediaEntity updateEntity(String link, MultimediaEntity entity) throws  BusinessException
     {
-        if(entity == null) throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
-        if(entity.getNombre()==null || entity.getRuta()==null)
+        if(entity == null)
+        {
             throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
-        if(persistence.find(link)==null) throw new NotFoundException("No existe el objeto a actualizar.");
+        }
+        if(entity.getNombre()==null || entity.getRuta()==null)
+        {
+            throw new BusinessException("No se puede guardar un objeto nulo en los datos del sistema.");
+        }
+        if(persistence.find(link)==null) 
+        {
+            throw new NotFoundException("No existe el objeto a actualizar.");
+        }
         entity.setLink(link);
         return persistence.updateEntity(entity);
     }
@@ -77,7 +92,10 @@ public class MultimediaLogic {
     public void deleteEntity(String link) 
     {
         MultimediaEntity entity=persistence.find(link);
-        if(entity == null) throw new NotFoundException("No existe una entidad a eliminar");
+        if(entity == null) 
+        {
+            throw new NotFoundException("No existe una entidad a eliminar");
+        }
         persistence.delete(link);
     }
     

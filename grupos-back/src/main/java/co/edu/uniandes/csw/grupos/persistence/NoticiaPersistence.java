@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -79,10 +78,13 @@ public class NoticiaPersistence {
        try
        {
            LOGGER.info("Buscando a todos...");
-       TypedQuery q =em.createQuery("Select x from NoticiaEntity x",NoticiaEntity.class);
-       return q.getResultList();
+            TypedQuery q =em.createQuery("Select x from NoticiaEntity x",NoticiaEntity.class);
+            return q.getResultList();
        }
-       catch (Exception e) {return new ArrayList<>();}
+       catch (Exception e) {
+           LOGGER.info(e.getMessage());
+           return new ArrayList<>();
+       }
        
    }
    /**

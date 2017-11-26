@@ -15,7 +15,7 @@ import java.io.FileWriter;
  */
 public class MultimediaDTO {
     
-    public final static  String RUTA="src"+File.separator+"main"+File.separator+"webapp"+File.separator+"data";
+    public static final  String RUTA_DATA="src"+File.separator+"main"+File.separator+"webapp"+File.separator+"data";
 
     /**
      * Nombre
@@ -38,7 +38,7 @@ public class MultimediaDTO {
      */
     public MultimediaDTO()
     {
-        
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     /**
      * Construye un nuevo DTO apartir de una entidad
@@ -131,23 +131,21 @@ public class MultimediaDTO {
     public static void main (String[] args) throws Exception
     {
         File f = new File("BlogDetailDTO.java");
-        System.out.println("AAAA"+f.getPath());
-        System.out.println(f.getAbsolutePath());
         String s=f.getAbsolutePath().replaceAll(("BlogDetailDTO.java"), "");
-        System.out.println(s);
-          f = new File(s+RUTA);
-        System.out.println(s+RUTA);
+          f = new File(s+RUTA_DATA);
         if(f.exists()){
-            FileWriter fw = new FileWriter(new File(s+RUTA+"/archivos.json"));
+            FileWriter fw = new FileWriter(new File(s+RUTA_DATA+"/archivos.json"));
             fw.write("[\n");
             String coma=",";
             File[] ficheros = f.listFiles();
             for (int x=0;x<ficheros.length;x++){
-                if(x==ficheros.length-1) coma="";
+                if(x==ficheros.length-1) 
+                {
+                    coma="";
+                }
                 fw.write("{\n");
                 fw.write("\"ruta\""+":\""+ficheros[x].getName()+"\""+"\n");
                 fw.write("}"+coma+"\n");
-            System.out.println(ficheros[x].getName());
             }
             fw.write("]");
             fw.close();

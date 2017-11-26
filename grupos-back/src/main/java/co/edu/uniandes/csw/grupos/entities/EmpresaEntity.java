@@ -79,7 +79,9 @@ public class EmpresaEntity implements Serializable {
     public boolean equals(Object o)
     {
         if (!(o instanceof EmpresaEntity))
+        {
             return false;
+        }
         EmpresaEntity u=(EmpresaEntity) o;
         return nit==(u.getNit());
     }

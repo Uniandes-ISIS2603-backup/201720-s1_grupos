@@ -29,7 +29,7 @@ public class NoticiaDTO {
      */
     public NoticiaDTO()
     {
-        
+        //Constructor vacío para usos de pruebas y recursos REST
     }
 
     /**

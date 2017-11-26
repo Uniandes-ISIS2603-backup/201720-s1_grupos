@@ -33,8 +33,9 @@ public class TarjetaLogic {
     public TarjetaEntity createTarjeta(TarjetaEntity entity) throws BusinessException{
         
         if (persistence.findByNumero(entity.getNumero())!= null)
+        {
             throw new BusinessException("Ya existe una Tarjeta con el número \"" + entity.getNumero()+"\""); 
-        
+        }
         persistence.create(entity);
         
         return entity;
@@ -46,9 +47,8 @@ public class TarjetaLogic {
      */
     public List<TarjetaEntity> getTarjetas(){
         
-        List<TarjetaEntity> tarjetas = persistence.findAll();
         
-        return tarjetas;
+        return persistence.findAll();
         
     }
     
@@ -59,9 +59,8 @@ public class TarjetaLogic {
      */
     public TarjetaEntity getTarjetaByNumero(int numero){
         
-        TarjetaEntity tarjeta = persistence.findByNumero(numero);
         
-        return tarjeta;
+        return persistence.findByNumero(numero);
     }
     
     /**
@@ -71,9 +70,8 @@ public class TarjetaLogic {
      */
     public TarjetaEntity update(TarjetaEntity entity){
         
-        TarjetaEntity tarjeta = persistence.update(entity);
         
-        return tarjeta;
+        return persistence.update(entity);
     }
     
     /**

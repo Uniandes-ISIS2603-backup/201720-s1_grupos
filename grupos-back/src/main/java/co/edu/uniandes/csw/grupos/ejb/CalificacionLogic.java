@@ -8,8 +8,6 @@ package co.edu.uniandes.csw.grupos.ejb;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.CalificacionPersistence;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -34,9 +32,14 @@ public class CalificacionLogic {
      */
     public CalificacionEntity getEntity(Long id) throws BusinessException
     {
-        if(id==null) throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
+        if(id==null) {
+            throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
+        }
         CalificacionEntity entity= persistence.find(id);
-        if(entity==null) throw new NotFoundException("No se encuentra la calificación buscada.");
+        if(entity==null) 
+        {
+            throw new NotFoundException("No se encuentra la calificación buscada.");
+        }
         return entity;
     }
     /**
@@ -55,7 +58,10 @@ public class CalificacionLogic {
      */
     public CalificacionEntity createEntity(CalificacionEntity entity) throws BusinessException
     {
-        if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        if(entity== null) 
+        {
+            throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        }
        validarCalificacion(entity);
        return persistence.createEntity(entity);
        
@@ -70,12 +76,21 @@ public class CalificacionLogic {
      */
     public CalificacionEntity updateEntity (Long id, CalificacionEntity entity) throws BusinessException
     {
-        if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
+        if(id==null || entity== null) 
+        {
+            throw new BusinessException ("No se puede agregar algo nulo al sistema.");
+        }
         entity.setId(id);
         validarCalificacion(entity);
         CalificacionEntity old=persistence.find(id);
-        if(old==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
-        if(!(old.getCalificador().getId().equals(entity.getCalificador().getId()))) throw new BusinessException("No se puede actualizar una calificación que no pertenece al usuario que la hizo.");
+        if(old==null) 
+        {
+            throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
+        }
+        if(!(old.getCalificador().getId().equals(entity.getCalificador().getId()))) 
+        {
+            throw new BusinessException("No se puede actualizar una calificación que no pertenece al usuario que la hizo.");
+        }
         return persistence.updateEntity(entity);
     }
     /**
@@ -85,9 +100,15 @@ public class CalificacionLogic {
      */
     public void deleteEntity(Long id) throws BusinessException
     {
-        if(id==null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        if(id==null) 
+        {
+            throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        }
         CalificacionEntity other=persistence.find(id);
-        if(other==null) throw new NotFoundException("No se encuentra el recurso para eliminar.");
+        if(other==null) 
+        {
+            throw new NotFoundException("No se encuentra el recurso para eliminar.");
+        }
         persistence.delete(id);
     }
     /**
@@ -96,9 +117,18 @@ public class CalificacionLogic {
      * @throws BusinessException Excepción de negocio.
      */
     private void validarCalificacion(CalificacionEntity entity) throws BusinessException {
-        if(entity.getCalificacion()==null) throw new BusinessException ("No se pueden agregar calificaciones sin un valor dado");
-       if(entity.getFecha()==null) throw new BusinessException("No se pueden agregar calificaciones sin fecha");
-       if(entity.getCalificacion()<0 || entity.getCalificacion()>5) throw new BusinessException ("La calificación está por fuera del rango dado");
+        if(entity.getCalificacion()==null) 
+        {
+            throw new BusinessException ("No se pueden agregar calificaciones sin un valor dado");
+        }
+       if(entity.getFecha()==null) 
+       {
+           throw new BusinessException("No se pueden agregar calificaciones sin fecha");
+       }
+       if(entity.getCalificacion()<0 || entity.getCalificacion()>5) 
+       {
+           throw new BusinessException ("La calificación está por fuera del rango dado");
+       }
     }
     
    

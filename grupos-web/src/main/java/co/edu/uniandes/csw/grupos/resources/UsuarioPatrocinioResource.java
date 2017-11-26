@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.PatrocinioDetailDTO;
-import co.edu.uniandes.csw.grupos.ejb.PatrocinioLogic;
 import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
@@ -48,7 +47,7 @@ public class UsuarioPatrocinioResource {
     @GET
     public List<PatrocinioDetailDTO> getPatrocinios(@PathParam("usuarioId") Long usuarioId) throws BusinessException{
         List<PatrocinioEntity> pat = usuarioLogic.getPatrocinios(usuarioId);
-        List<PatrocinioDetailDTO> ret = new ArrayList<PatrocinioDetailDTO>();
+        List<PatrocinioDetailDTO> ret = new ArrayList<>();
         for(PatrocinioEntity p : pat)
         {
             ret.add(new PatrocinioDetailDTO(p));
@@ -68,7 +67,10 @@ public class UsuarioPatrocinioResource {
     @Path("{patId:\\d+}")
     public PatrocinioDetailDTO getPatrocinio(@PathParam("usuarioId") Long id, @PathParam("patId") Long patId) throws BusinessException{
         PatrocinioEntity e= usuarioLogic.getPatrocinio(id, patId);
-        if(e==null) throw new NotFoundException("No se encuentra el patrocinio buscado");
+        if(e==null) 
+        {
+            throw new NotFoundException("No se encuentra el patrocinio buscado");
+        }
         return new PatrocinioDetailDTO(e);
     }
     
@@ -82,7 +84,6 @@ public class UsuarioPatrocinioResource {
     @POST
     public PatrocinioDetailDTO addPatrocinio(@PathParam("usuarioId") Long usuarioId, PatrocinioDetailDTO newp) throws BusinessException{
         PatrocinioEntity change = newp.toEntity();
-        //PatrocinioEntity nuevecito = PatrocinioLogic.addUsuario(usuarioId, change);
         PatrocinioEntity nuevo = usuarioLogic.addPatrocinio(usuarioId, change);
         return new PatrocinioDetailDTO(nuevo);
     }

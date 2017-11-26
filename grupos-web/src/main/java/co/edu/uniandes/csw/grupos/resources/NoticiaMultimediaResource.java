@@ -6,16 +6,11 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.MultimediaDetailDTO;
-import co.edu.uniandes.csw.grupos.ejb.MultimediaLogic;
 import co.edu.uniandes.csw.grupos.ejb.NoticiaLogic;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -48,7 +43,10 @@ public class NoticiaMultimediaResource {
     private List<MultimediaEntity> listarDTO(List<MultimediaDetailDTO> list)
     {
         ArrayList<MultimediaEntity> m = new ArrayList<>();
-        for(MultimediaDetailDTO d:list) m.add(d.toEntity());
+        for(MultimediaDetailDTO d:list)
+        {
+            m.add(d.toEntity());
+        }
         return m;
     }
     /**
@@ -59,7 +57,10 @@ public class NoticiaMultimediaResource {
     private List<MultimediaDetailDTO> toDTO(List<MultimediaEntity> list)
     {
         ArrayList<MultimediaDetailDTO> m = new ArrayList<>();
-        for(MultimediaEntity d:list) m.add(new MultimediaDetailDTO(d));
+        for(MultimediaEntity d:list) 
+        {
+            m.add(new MultimediaDetailDTO(d));
+        }
         return m;
     }
     /**
@@ -112,7 +113,7 @@ public class NoticiaMultimediaResource {
         try
         {
             List<MultimediaEntity> mult = listarDTO(multimedia);
-        return toDTO(noticia.addMultimedia(id, mult));
+            return toDTO(noticia.addMultimedia(id, mult));
         }
         catch(javax.ejb.EJBException e)
         {
@@ -134,7 +135,7 @@ public class NoticiaMultimediaResource {
        try
        {
            MultimediaEntity mult = dto.toEntity();
-        return toDTO(noticia.updateMultimedia(id, mult, link));
+            return toDTO(noticia.updateMultimedia(id, mult, link));
 
        }
        catch(javax.ejb.EJBException e)

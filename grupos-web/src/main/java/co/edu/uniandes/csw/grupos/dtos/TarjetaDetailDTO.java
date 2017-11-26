@@ -17,6 +17,7 @@ public class TarjetaDetailDTO extends TarjetaDTO {
      * Constructor por defecto
      */
     public TarjetaDetailDTO() {
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     
      /**
@@ -35,8 +36,7 @@ public class TarjetaDetailDTO extends TarjetaDTO {
      */
     @Override
     public TarjetaEntity toEntity() {
-        TarjetaEntity tarjetaE = super.toEntity();
-        return tarjetaE;
+        return super.toEntity();
     }
     
 }

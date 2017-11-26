@@ -9,24 +9,11 @@ import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.persistence.NoticiaPersistence;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import java.lang.annotation.Annotation;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Link;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.NewCookie;
-import javax.ws.rs.core.Response;
 
 /**
  * Lógica de noticia
@@ -48,9 +35,15 @@ public class NoticiaLogic {
      */
     public NoticiaEntity getEntity(Long id) throws BusinessException
     {
-        if(id==null) throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
+        if(id==null) 
+        {
+            throw new BusinessException("No se puede acceder con identificaciones vacías o nulas.");
+        }
         NoticiaEntity entity= persistence.find(id);
-        if(entity==null) throw new NotFoundException("No se encuentra la noticia buscada.");
+        if(entity==null) 
+        {
+            throw new NotFoundException("No se encuentra la noticia buscada.");
+        }
         return entity;
     }
     
@@ -61,7 +54,10 @@ public class NoticiaLogic {
     public List<NoticiaEntity> getAll()
     {
         List<NoticiaEntity> list=persistence.findAll();
-        if(list==null || list.isEmpty()) return new ArrayList<>();
+        if(list==null || list.isEmpty()) 
+        {
+            return new ArrayList<>();
+        }
         return list;
     }
     
@@ -74,7 +70,10 @@ public class NoticiaLogic {
      */
     public NoticiaEntity createEntity(NoticiaEntity entity) throws BusinessException
     {
-        if(entity== null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        if(entity== null) 
+        {
+            throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        }
         validarNoticia(entity);
         entity.setComentarios(new ArrayList<>());
         return persistence.createEntity(entity);        
@@ -90,10 +89,16 @@ public class NoticiaLogic {
      */
     public NoticiaEntity updateEntity (Long id, NoticiaEntity entity) throws BusinessException
     {
-        if(id==null || entity== null) throw new BusinessException ("No se puede agregar algo nulo al sistema.");
+        if(id==null || entity== null)
+        {
+            throw new BusinessException ("No se puede agregar algo nulo al sistema.");
+        }
         validarNoticia(entity);
         NoticiaEntity ent= persistence.find(id);
-        if(ent==null) throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
+        if(ent==null) 
+        {
+            throw new NotFoundException("La entidad que quiere actualizar no existe en el sistema.");
+        }
         entity.setAutor(ent.getAutor());
         entity.setComentarios(ent.getComentarios());
         return persistence.updateEntity(entity);
@@ -107,9 +112,15 @@ public class NoticiaLogic {
      */
     public void deleteEntity(Long id) throws  BusinessException
     {
-        if(id==null) throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        if(id==null) 
+        {
+            throw new BusinessException("No se puede agregar algo nulo al sistema.");
+        }
         NoticiaEntity other=persistence.find(id);
-        if(other==null) throw new NotFoundException("No se encuentra el recurso para eliminar con id "+id);
+        if(other==null) 
+        {
+            throw new NotFoundException("No se encuentra el recurso para eliminar con id "+id);
+        }
         persistence.delete(id);
     }
     
@@ -122,9 +133,18 @@ public class NoticiaLogic {
     private void validarNoticia(NoticiaEntity entity) throws  BusinessException
     {
         
-        if(entity.getTitulo()==null || entity.getInformacion()==null) throw new BusinessException("La información de la noticia no puede estar vacía");
-        if(entity.getAutor()==null) throw new BusinessException("La noticia no tiene un autor asociado");
-        if(entity.getGrupo()==null) throw new BusinessException("La noticia no tiene un grupo asociado");
+        if(entity.getTitulo()==null || entity.getInformacion()==null) 
+        {
+            throw new BusinessException("La información de la noticia no puede estar vacía");
+        }
+        if(entity.getAutor()==null) 
+        {
+            throw new BusinessException("La noticia no tiene un autor asociado");
+        }
+        if(entity.getGrupo()==null) 
+        {
+            throw new BusinessException("La noticia no tiene un grupo asociado");
+        }
     }
     /**
      * Obtiene la multimedia de una noticia.<br>
@@ -147,9 +167,15 @@ public class NoticiaLogic {
     {
         List<MultimediaEntity> list = getMultimedia(idNoticia);
         MultimediaEntity buscada = multimedia.getEntity(link);
-        if(buscada==null) throw new NotFoundException("No se encuentra la multimedia en el sistema.");
+        if(buscada==null) 
+        {
+            throw new NotFoundException("No se encuentra la multimedia en el sistema.");
+        }
         int index = list.indexOf(buscada);
-        if (index<0) throw new NotFoundException("No se encuentra el elemento multimedia de la noticia");
+        if (index<0) 
+        {
+            throw new NotFoundException("No se encuentra el elemento multimedia de la noticia");
+        }
         return buscada;
     }
     /**
@@ -162,7 +188,7 @@ public class NoticiaLogic {
     public List<MultimediaEntity> addMultimedia(Long idNoticia, List<MultimediaEntity> mult) throws BusinessException
     {
         NoticiaEntity noticia = getEntity(idNoticia);
-        MultimediaEntity entity=null;
+        MultimediaEntity entity;
         for(MultimediaEntity m: mult)
         {
             
@@ -191,9 +217,15 @@ public class NoticiaLogic {
     {
         NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
-        if(m==null) throw new NotFoundException("La multimedia no existe");
+        if(m==null)
+        {
+            throw new NotFoundException("La multimedia no existe");
+        }
         int index = noticia.getMultimedia().indexOf(m);
-        if((index<0)) throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia. "+m.getLink()+"-"+link);
+        if((index<0)) 
+        {
+            throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia. "+m.getLink()+"-"+link);
+        }
         MultimediaEntity updated = multimedia.updateEntity(link, mult);
         noticia.getMultimedia().set(index, updated);
         persistence.updateEntity(noticia);
@@ -210,9 +242,14 @@ public class NoticiaLogic {
         
         NoticiaEntity noticia = getEntity(idNoticia);
         MultimediaEntity m = multimedia.getEntity(link);
-        if(m==null) throw new NotFoundException("No existe la multimedia a borrar con link "+link);
-        int index=noticia.getMultimedia().indexOf(m);
-        if(noticia.getMultimedia().indexOf(m)<0) throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
+        if(m==null) 
+        {
+            throw new NotFoundException("No existe la multimedia a borrar con link "+link);
+        }
+        if(noticia.getMultimedia().indexOf(m)<0) 
+        {
+            throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
+        }
         noticia.getMultimedia().remove(m);
         
         
