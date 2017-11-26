@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 
 import java.util.Date;
+import java.util.Objects;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -81,8 +82,34 @@ public class EmpresaEntityTest {
         Assert.assertEquals("A", newEntity.getNombre());
 
     }
-    
-   
+     /**
+     * Test del método equals
+     */
+    @Test
+    public void testEquals()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        EmpresaEntity e=factory.manufacturePojo(EmpresaEntity.class);
+        EmpresaEntity e2=factory.manufacturePojo(EmpresaEntity.class);
+        e2.setNit(e.getNit());
+        Assert.assertFalse(e.equals(new UsuarioEntity()));
+        Assert.assertTrue(e.equals(e2));
+    }
+    /**
+     *
+     * Test of hashcode
+     */
+    @Test
+    public void testHash()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        EmpresaEntity e=factory.manufacturePojo(EmpresaEntity.class);
+        int hash = 3;
+        hash = 53 * hash + e.getNit();
+        Assert.assertEquals(hash,e.hashCode());
+    }
 
     
     

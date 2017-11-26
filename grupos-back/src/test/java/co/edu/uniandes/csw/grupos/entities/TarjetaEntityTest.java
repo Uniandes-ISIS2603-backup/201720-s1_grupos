@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 
 import java.util.Date;
+import java.util.Objects;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,84 +36,98 @@ public class TarjetaEntityTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CalificacionEntity.class.getPackage())
+                .addPackage(TarjetaEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
 
     /**
-     * Test of qualification methods, of class CalificacionEntity.
+     * Test of max capacity methods, of class TarjetaEntity.
      */
     @Test
-    public void testCalificacion()  {
+    public void testMaxCupo()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        newEntity.setCalificacion(4.0);
+        TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
+        newEntity.setMaxCupo(4.0);
 
-        Assert.assertEquals(new Double(4.0), newEntity.getCalificacion());
+        Assert.assertEquals(new Double(4.0), new Double(newEntity.getMaxCupo()));
 
     }
     
     /**
-     * Test of blog methods, of class CalificacionEntity.
+     * Test of available money methods, of class TarjetaEntity.
      */
     @Test
-    public void testBlog()  {
+    public void testDineroDisponible()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        BlogEntity blog=factory.manufacturePojo(BlogEntity.class);
-        newEntity.setBlog(blog);
+        TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
+        newEntity.setDineroDisponible(4.0);
 
-        Assert.assertEquals(blog, newEntity.getBlog());
+        Assert.assertEquals(new Double(4.0), new Double(newEntity.getDineroDisponible()));
 
     }
     
     /**
-     * Test of date  methods, of class CalificacionEntity.
+     * Test of bank  methods, of class TarjetaEntity.
      */
     @Test
-    public void testFecha()  {
+    public void testBanco()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        Date expected=new Date();
-        newEntity.setFecha(expected);
+        TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
+        newEntity.setBanco("A");
 
         
-        Assert.assertEquals(expected, newEntity.getFecha());
+        Assert.assertEquals("A", newEntity.getBanco());
 
     }
     
+  
+    
     /**
-     * Test of createEntity method, of class CalificacionPersistence.
+     * Test of number methods, of class CalificacionPersistence.
      */
     @Test
-    public void testCalificador()  {
+    public void testNumero()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
-        newEntity.setCalificador(usuario);
+        TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
+        newEntity.setNumero(4);
 
-        Assert.assertEquals(usuario, newEntity.getCalificador());
+        Assert.assertEquals(new Integer(4), new Integer(newEntity.getNumero()));
 
     }
     
-    /**
-     * Test of createEntity method, of class CalificacionPersistence.
+     /**
+     * Test del método equals
      */
     @Test
-    public void testId()  {
+    public void testEquals()
+    {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        newEntity.setId(4l);
+        TarjetaEntity e=factory.manufacturePojo(TarjetaEntity.class);
+        TarjetaEntity e2=factory.manufacturePojo(TarjetaEntity.class);
+        e2.setNumero(e.getNumero());
+        Assert.assertFalse(e.equals(new UsuarioEntity()));
+        Assert.assertTrue(e.equals(e2));
+    }
+    /**
+     *
+     * Test of hashcode
+     */
+    @Test
+    public void testHash()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
 
-        Assert.assertEquals(new Long(4l), newEntity.getId());
-
+        TarjetaEntity e=factory.manufacturePojo(TarjetaEntity.class);
+        int hash = 7;
+        hash = 79 * hash + e.getNumero();
+        Assert.assertEquals(hash,e.hashCode());
     }
 
     

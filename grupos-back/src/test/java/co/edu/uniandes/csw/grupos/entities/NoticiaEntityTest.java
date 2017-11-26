@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,84 +37,155 @@ public class NoticiaEntityTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CalificacionEntity.class.getPackage())
+                .addPackage(NoticiaEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
 
     /**
-     * Test of qualification methods, of class CalificacionEntity.
+     * Test of title methods, of class NoticiaEntity.
      */
     @Test
-    public void testCalificacion()  {
+    public void testTitulo()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        newEntity.setCalificacion(4.0);
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
+        newEntity.setTitulo("A");
 
-        Assert.assertEquals(new Double(4.0), newEntity.getCalificacion());
+        Assert.assertEquals("A", newEntity.getTitulo());
 
     }
     
     /**
-     * Test of blog methods, of class CalificacionEntity.
+     * Test of information methods, of class NoticiaEntity.
      */
     @Test
-    public void testBlog()  {
+    public void testInformacion()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        BlogEntity blog=factory.manufacturePojo(BlogEntity.class);
-        newEntity.setBlog(blog);
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
+        newEntity.setInformacion("A");
 
-        Assert.assertEquals(blog, newEntity.getBlog());
+        Assert.assertEquals("A", newEntity.getInformacion());
 
     }
     
     /**
-     * Test of date  methods, of class CalificacionEntity.
+     * Test of author  methods, of class NoticiaEntity.
      */
     @Test
-    public void testFecha()  {
+    public void testAutor()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        Date expected=new Date();
-        newEntity.setFecha(expected);
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
+        UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
+        newEntity.setAutor(usuario);
 
         
-        Assert.assertEquals(expected, newEntity.getFecha());
+        Assert.assertEquals(usuario, newEntity.getAutor());
 
     }
     
     /**
-     * Test of createEntity method, of class CalificacionPersistence.
+     * Test of group methods, of class NoticiaEntity.
      */
     @Test
-    public void testCalificador()  {
+    public void testGrupo()  {
         PodamFactory factory= new PodamFactoryImpl();
+        
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
+        GrupoEntity grupo = factory.manufacturePojo(GrupoEntity.class);
+        newEntity.setGrupo(grupo);
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
-        newEntity.setCalificador(usuario);
-
-        Assert.assertEquals(usuario, newEntity.getCalificador());
+        Assert.assertEquals(grupo, newEntity.getGrupo());
 
     }
     
     /**
-     * Test of createEntity method, of class CalificacionPersistence.
+     * Test of id methods, of class NoticiaEntity.
      */
     @Test
     public void testId()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
         newEntity.setId(4l);
 
         Assert.assertEquals(new Long(4l), newEntity.getId());
 
+    }
+    /**
+     * Test of multimedia methods of class NoticiaEntity
+     */
+    @Test
+    public void testMultimedia()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+        
+        NoticiaEntity entity = factory.manufacturePojo(NoticiaEntity.class);
+        ArrayList<MultimediaEntity> list = new ArrayList<>();
+        for(int i=0;i<4;i++)
+        {
+            list.add(factory.manufacturePojo(MultimediaEntity.class));
+        }
+        entity.setMultimedia(list);
+        for(int i=0;i<4;i++)
+        {
+            Assert.assertEquals(list.get(i), entity.getMultimedia().get(i));
+        }
+        
+    }
+    
+    /**
+     * Test of comments methods of class NoticiaEntity
+     */
+    @Test
+    public void testComentario()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+        
+        NoticiaEntity entity = factory.manufacturePojo(NoticiaEntity.class);
+        
+        ArrayList<ComentarioEntity> list = new ArrayList<>();
+        for(int i=0;i<4;i++)
+        {
+            list.add(factory.manufacturePojo(ComentarioEntity.class));
+        }
+        entity.setComentarios(list);
+        for(int i=0;i<4;i++)
+        {
+            Assert.assertEquals(list.get(i), entity.getComentarios().get(i));
+        }
+        
+    }
+     /**
+     * Test del método equals
+     */
+    @Test
+    public void testEquals()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        NoticiaEntity e=factory.manufacturePojo(NoticiaEntity.class);
+        NoticiaEntity e2=factory.manufacturePojo(NoticiaEntity.class);
+        e2.setId(e.getId());
+        Assert.assertFalse(e.equals(new UsuarioEntity()));
+        Assert.assertTrue(e.equals(e2));
+    }
+    /**
+     *
+     * Test of hashcode
+     */
+    @Test
+    public void testHash()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        NoticiaEntity e=factory.manufacturePojo(NoticiaEntity.class);
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(e.getId());
+        Assert.assertEquals(hash,e.hashCode());
     }
 
     

@@ -108,7 +108,9 @@ public class LugarEntity implements Serializable{
     public boolean equals(Object o)
     {
         if (!(o instanceof LugarEntity))
+        {
             return false;
+        }
         LugarEntity u=(LugarEntity) o;
         return id.equals(u.getId());
     }

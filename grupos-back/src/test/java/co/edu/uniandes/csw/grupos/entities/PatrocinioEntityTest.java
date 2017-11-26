@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 
 import java.util.Date;
+import java.util.Objects;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,84 +36,99 @@ public class PatrocinioEntityTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CalificacionEntity.class.getPackage())
+                .addPackage(PatrocinioEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
 
     /**
-     * Test of qualification methods, of class CalificacionEntity.
+     * Test of payment methods, of class PatrocinioEntity.
      */
     @Test
-    public void testCalificacion()  {
+    public void testPago()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        newEntity.setCalificacion(4.0);
+        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
+        newEntity.setPago(4.0);
 
-        Assert.assertEquals(new Double(4.0), newEntity.getCalificacion());
+        Assert.assertEquals(new Double(4.0), new Double(newEntity.getPago()));
 
     }
     
     /**
-     * Test of blog methods, of class CalificacionEntity.
+     * Test of user methods, of class PatrocinioEntity.
      */
     @Test
-    public void testBlog()  {
+    public void testUsuario()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        BlogEntity blog=factory.manufacturePojo(BlogEntity.class);
-        newEntity.setBlog(blog);
+        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
+        UsuarioEntity usuario=factory.manufacturePojo(UsuarioEntity.class);
+        newEntity.setUsuario(usuario);
 
-        Assert.assertEquals(blog, newEntity.getBlog());
+        Assert.assertEquals(usuario, newEntity.getUsuario());
 
     }
     
     /**
-     * Test of date  methods, of class CalificacionEntity.
+     * Test of event  methods, of class PatrocinioEntity.
      */
     @Test
-    public void testFecha()  {
+    public void testEvento()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        Date expected=new Date();
-        newEntity.setFecha(expected);
+        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
+        EventoEntity evento=factory.manufacturePojo(EventoEntity.class);
+        newEntity.setEvento(evento);
 
         
-        Assert.assertEquals(expected, newEntity.getFecha());
+        Assert.assertEquals(evento, newEntity.getEvento());
 
     }
+   
     
     /**
-     * Test of createEntity method, of class CalificacionPersistence.
-     */
-    @Test
-    public void testCalificador()  {
-        PodamFactory factory= new PodamFactoryImpl();
-
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
-        newEntity.setCalificador(usuario);
-
-        Assert.assertEquals(usuario, newEntity.getCalificador());
-
-    }
-    
-    /**
-     * Test of createEntity method, of class CalificacionPersistence.
+     * Test of id methods, of class PatrocinioEntity.
      */
     @Test
     public void testId()  {
         PodamFactory factory= new PodamFactoryImpl();
 
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
         newEntity.setId(4l);
 
         Assert.assertEquals(new Long(4l), newEntity.getId());
 
+    }
+    
+     /**
+     * Test del método equals
+     */
+    @Test
+    public void testEquals()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        PatrocinioEntity e=factory.manufacturePojo(PatrocinioEntity.class);
+        PatrocinioEntity e2=factory.manufacturePojo(PatrocinioEntity.class);
+        e2.setId(e.getId());
+        Assert.assertFalse(e.equals(new UsuarioEntity()));
+        Assert.assertTrue(e.equals(e2));
+    }
+    /**
+     *
+     * Test of hashcode
+     */
+    @Test
+    public void testHash()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        PatrocinioEntity e=factory.manufacturePojo(PatrocinioEntity.class);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(e.getId());
+        Assert.assertEquals(hash,e.hashCode());
     }
 
     

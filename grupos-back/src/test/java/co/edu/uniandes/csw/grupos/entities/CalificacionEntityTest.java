@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 
 import java.util.Date;
+import java.util.Objects;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -113,6 +114,34 @@ public class CalificacionEntityTest {
 
         Assert.assertEquals(new Long(4l), newEntity.getId());
 
+    }
+    /**
+     * Test del método equals
+     */
+    @Test
+    public void testEquals()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        CalificacionEntity e=factory.manufacturePojo(CalificacionEntity.class);
+        CalificacionEntity e2=factory.manufacturePojo(CalificacionEntity.class);
+        e2.setId(e.getId());
+        Assert.assertFalse(e.equals(new UsuarioEntity()));
+        Assert.assertTrue(e.equals(e2));
+    }
+    /**
+     *
+     * Test of hashcode
+     */
+    @Test
+    public void testHash()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        CalificacionEntity e=factory.manufacturePojo(CalificacionEntity.class);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(e.getId());
+        Assert.assertEquals(hash,e.hashCode());
     }
 
     

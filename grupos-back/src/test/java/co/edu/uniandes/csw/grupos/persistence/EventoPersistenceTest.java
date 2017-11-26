@@ -160,6 +160,8 @@ public class EventoPersistenceTest {
         evento.setLugar(lugar);
         evento.setUsuarios(dataU);
         evento.getPatrocinios().add(patrocinio);
+        data.set(0, evento);
+        
     }
     
     /**

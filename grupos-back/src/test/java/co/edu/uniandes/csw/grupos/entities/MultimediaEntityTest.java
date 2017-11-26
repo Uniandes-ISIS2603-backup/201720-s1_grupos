@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.entities;
 
 
 import java.util.Date;
+import java.util.Objects;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,7 +57,7 @@ public class MultimediaEntityTest {
     }
     
     /**
-     * Test of desription methods, of class MultimediaEntity.
+     * Test of description methods, of class MultimediaEntity.
      */
     @Test
     public void testDescripcion()  {
@@ -70,7 +71,7 @@ public class MultimediaEntityTest {
     }
     
     /**
-     * Test of date  methods, of class MultimediaEntity.
+     * Test of link  methods, of class MultimediaEntity.
      */
     @Test
     public void testLink()  {
@@ -84,10 +85,10 @@ public class MultimediaEntityTest {
     }
     
     /**
-     * Test of createEntity method, of class MultimediaPersistence.
+     * Test of route methods, of class MultimediaPersistence.
      */
     @Test
-    public void testCalificador()  {
+    public void testRuta()  {
         PodamFactory factory= new PodamFactoryImpl();
 
         MultimediaEntity newEntity = factory.manufacturePojo(MultimediaEntity.class);
@@ -95,6 +96,35 @@ public class MultimediaEntityTest {
 
         Assert.assertEquals("HOLA", newEntity.getRuta());
 
+    }
+    
+     /**
+     * Test del método equals
+     */
+    @Test
+    public void testEquals()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        MultimediaEntity e=factory.manufacturePojo(MultimediaEntity.class);
+        MultimediaEntity e2=factory.manufacturePojo(MultimediaEntity.class);
+        e2.setLink(e.getLink());
+        Assert.assertFalse(e.equals(new UsuarioEntity()));
+        Assert.assertTrue(e.equals(e2));
+    }
+    /**
+     *
+     * Test of hashcode
+     */
+    @Test
+    public void testHash()
+    {
+        PodamFactory factory= new PodamFactoryImpl();
+
+        MultimediaEntity e=factory.manufacturePojo(MultimediaEntity.class);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(e.getLink());
+        Assert.assertEquals(hash,e.hashCode());
     }
     
 
