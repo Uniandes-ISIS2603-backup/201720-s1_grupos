@@ -3,11 +3,14 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package co.edu.uniandes.csw.grupos.persistence;
+package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.persistence.*;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,7 +35,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author af.lopezf
  */
 @RunWith(Arquillian.class)
-public class TarjetaPersistenceTest {
+public class TarjetaLogicTest {
     
     
     @Deployment
@@ -40,14 +43,15 @@ public class TarjetaPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(TarjetaEntity.class.getPackage())
                 .addPackage(TarjetaPersistence.class.getPackage())
+                .addPackage(TarjetaLogic.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
     
-    
+    //Inyección de lógica
     @Inject
-    private TarjetaPersistence persistence;
+    private TarjetaLogic logic;
     
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -61,8 +65,13 @@ public class TarjetaPersistenceTest {
      * crean/borran datos para las pruebas.
      */
     @Inject
-            UserTransaction utx;
+    UserTransaction utx;
     
+     /**
+     * Logger de la lógica
+     */
+    private static final Logger LOGGER = Logger.getLogger(TarjetaLogicTest.class.getName());
+
     /**
      * Datos
      */
@@ -71,7 +80,7 @@ public class TarjetaPersistenceTest {
     /**
      * Constructor vacío
      */
-    public TarjetaPersistenceTest() {
+    public TarjetaLogicTest() {
     }
     //BeforeClass
     @BeforeClass
@@ -128,14 +137,41 @@ public class TarjetaPersistenceTest {
      */
     @Test
     public void testCreate() {
-        PodamFactory factory = new PodamFactoryImpl();
-        TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
-        TarjetaEntity result = persistence.create(newEntity);
-        
-        Assert.assertNotNull(result);
-        TarjetaEntity entity = em.find(TarjetaEntity.class, result.getNumero());
-        Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
+        boolean estaBien=true;
+        try
+        {
+            logic.createTarjeta(data.get(0));
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+           Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory = new PodamFactoryImpl();
+            TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
+            TarjetaEntity result = logic.createTarjeta(newEntity);
+
+            Assert.assertNotNull(result);
+            TarjetaEntity entity = em.find(TarjetaEntity.class, result.getNumero());
+            Assert.assertNotNull(entity);
+            Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
         
     }
     
@@ -144,7 +180,7 @@ public class TarjetaPersistenceTest {
      */
     @Test
     public void testFindAll() {
-        List<TarjetaEntity> list = persistence.findAll();
+        List<TarjetaEntity> list = logic.getTarjetas();
         Assert.assertEquals(data.size(), list.size());
         for (TarjetaEntity ent : list) {
             boolean found = false;
@@ -164,7 +200,7 @@ public class TarjetaPersistenceTest {
     @Test
     public void testFindByNumero() {
         TarjetaEntity entity = data.get(0);
-        TarjetaEntity newEntity = persistence.findByNumero(entity.getNumero());
+        TarjetaEntity newEntity = logic.getTarjetaByNumero(entity.getNumero());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
         
@@ -185,15 +221,14 @@ public class TarjetaPersistenceTest {
         newEntity.setDineroDisponible(entity.getDineroDisponible());
         newEntity.setMaxCupo(entity.getMaxCupo());
         
-        persistence.update(newEntity);
+        logic.update(newEntity);
         
         TarjetaEntity resp = em.find(TarjetaEntity.class, entity.getNumero());
         
         Assert.assertEquals(newEntity.getNumero(), resp.getNumero());
         Assert.assertEquals(newEntity.getBanco(), resp.getBanco());
         Assert.assertEquals(newEntity.getDineroDisponible(), resp.getDineroDisponible(), 0.00001);
-        Assert.assertEquals(newEntity.getMaxCupo(), resp.getMaxCupo(), 0.00001);
-    }
+        Assert.assertEquals(newEntity.getMaxCupo(), resp.getMaxCupo(), 0.00001);    }
     
     /**
      * Test of delete method, of class TarjetaPersistence.
@@ -201,7 +236,7 @@ public class TarjetaPersistenceTest {
     @Test
     public void testDelete() {
         TarjetaEntity entity = data.get(0);
-        persistence.delete(entity.getNumero());
+        logic.deleteTarjeta(entity.getNumero());
         TarjetaEntity deleted = em.find(TarjetaEntity.class, entity.getNumero());
         Assert.assertNull(deleted);
         

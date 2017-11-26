@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
-import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -86,7 +85,7 @@ public class MultimediaPersistenceTest {
     /*
      * Lista de los datos de la persistencia de la multimedia.
      */
-    private List<MultimediaEntity> data = new ArrayList<MultimediaEntity>();
+    private List<MultimediaEntity> data = new ArrayList<>();
    /**
      * Acción de preparar la prueba. Este procedimiento inclute iniciar la transacción, unir el manejador de persistencia,
      * borrar la información presente, e insertar datos.
