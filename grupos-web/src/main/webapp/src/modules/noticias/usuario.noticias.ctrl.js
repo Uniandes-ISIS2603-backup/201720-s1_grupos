@@ -5,10 +5,10 @@
      * Controlador con $scope, $state, $http, noticiasContext (Ruta de noticia), noticiaUsuarioContext (Ruta de usuario), grupoContext(Ruta de grupo)
      */
     mod.controller("usuarioNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaUsuarioContext','globalContext', function ($scope, $state, $http,context, usuarioContext,globalContext) {
+            var error="";
             //inicialización del mensajeError de error
             if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
             {
-                console.log("ERROR "+$state.params.mensajeError);
                 $scope.variableErrorNoticia=$state.params.mensajeError;
             }
             //Inicialización de booleanos importantes
@@ -17,16 +17,16 @@
             //Validación de desde dónde viene la noticia,
             $scope.noticiaEditable=true;
             //Header
-            header="Tus noticias";
+            var header="Tus noticias";
             //Contexto
-                fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+context;
+              var fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+context;
             
             // carga las noticias
             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
             },function(response){
                                 //Estado de error
-                                var error=response.data;
+                                error=response.data;
                                 $state.go('ERRORUSUARIONOTICIA',{mensajeError: error},{reload:true});
                             });
             //Autor
@@ -37,7 +37,7 @@
                                     currentAutor.email= response.data.email,
                                     currentAutor.id= response.data.id,
                                     currentAutor.nombre= response.data.nombre,
-                                    currentAutor.password= response.data.password}, function(response){
+                                    currentAutor.password= response.data.password}, function(){
                                         $state.go('ERRORUSUARIONOTICIA',{mensajeError: "El usuario "+sessionStorage.getItem("id")+ " no está loggeado"},{reload:true});
                                     });
             /**
@@ -63,7 +63,7 @@
             if ($state.params.noticiaId !== null && $state.params.noticiaId !== undefined) {
 
                 // toma el id del parámetro
-                id = $state.params.noticiaId;
+                var id = $state.params.noticiaId;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext + "/" + id)
                         .then(function (response) {
@@ -104,14 +104,14 @@
 
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
-                   var error="No se puede crear una noticia desde acá";
+                   error="No se puede crear una noticia desde acá";
                    $state.go('ERRORUSUARIONOTICIA',{mensajeError: error},{reload:true});
                 } else {
 
                     //Id del autor diferente al de la noticia
                     if(!$scope.esAutor)
                     {
-                        var error="No es el autor de la noticia";
+                        error="No es el autor de la noticia";
                         $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                     }
                     // ejecuta PUT en el recurso REST
@@ -122,7 +122,7 @@
                                 $state.go('usuarioNoticiasList');
                             },function(response){
                                 //Estado de error
-                                var error=response.data;
+                                error=response.data;
                                 $state.go('ERRORUSUARIONOTICIA',{mensajeError: error},{reload:true});
                             });
                 }
@@ -138,7 +138,7 @@
                 {
                     if(!$scope.esAutor)
                     {
-                        var error="No es el autor de la noticia";
+                        error="No es el autor de la noticia";
                         $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                     }
                     return $http.delete(fullContext+"/"+id).then (function()
@@ -146,7 +146,7 @@
                           $state.go('usuarioNoticiasList');
                     },function(response){
                                 //Estado de error
-                                var error=response.data;
+                                error=response.data;
                                 $state.go('ERRORUSUARIONOTICIA',{mensajeError: error},{reload:true});
                             });
                 }

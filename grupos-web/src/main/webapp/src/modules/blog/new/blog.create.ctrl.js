@@ -79,10 +79,8 @@
             this.verificarMultimedia=function()
             {
                 var i;
-                console.log("LONG:"+$scope.itemsToAdd.length+";"+$scope.itemsToAdd.ruta);
                 for(i=0;i<$scope.itemsToAdd.length;i++)
                 {
-                    console.log($scope.itemsToAdd[i].ruta);
                     if($scope.itemsToAdd[i].ruta===null || $scope.itemsToAdd[i].ruta===undefined)
                     {
                         return false;
