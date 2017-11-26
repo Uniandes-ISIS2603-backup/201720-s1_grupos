@@ -34,6 +34,7 @@ public class TarjetaDTO {
      * Constructor por defecto
      */
     public TarjetaDTO(){  
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     
     

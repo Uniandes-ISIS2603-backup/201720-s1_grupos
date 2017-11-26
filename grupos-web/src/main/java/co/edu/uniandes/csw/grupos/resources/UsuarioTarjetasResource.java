@@ -9,11 +9,9 @@ package co.edu.uniandes.csw.grupos.resources;
 import co.edu.uniandes.csw.grupos.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
-import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.List;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -52,22 +50,6 @@ public class UsuarioTarjetasResource {
         }
         return list;
     }
-    
-     /**
-     * Convierte una lista de TarjetaDetailDTO a una lista de TarjetaEntity.
-     *
-     * @param dtos Lista de TarjetaDetailDTO a convertir.
-     * @return Lista de TarjetaEntity convertida.
-     * 
-     */
-    private List<TarjetaEntity> tarjetasListDTO2Entity(List<TarjetaDetailDTO> dtos){
-        List<TarjetaEntity> list = new ArrayList<>();
-        for (TarjetaDetailDTO dto : dtos) {
-            list.add(dto.toEntity());
-        }
-        return list;
-    }
-    
     
      /**
      * Obtiene una colección de instancias de TarjetaDetailDTO asociadas a una

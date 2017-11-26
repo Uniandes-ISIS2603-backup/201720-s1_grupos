@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.EmpresaDetailDTO;
-import co.edu.uniandes.csw.grupos.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
-import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
@@ -37,22 +35,6 @@ public class UsuarioEmpresaResource {
     
     @Inject
     private UsuarioLogic usuarioLogic;  // Se inyecta la lógica del usuario
-    
-    
-     /**
-     * Convierte una lista de EmpresaEntity a una lista de EmpresaDetailDTO.
-     *
-     * @param entityList Lista de EmpresaEntity a convertir.
-     * @return Lista de EmpresaDetailDTO convertida.
-     * 
-     */
-    private List<EmpresaDetailDTO> empresasListEntity2DTO(List<EmpresaEntity> entityList){
-        List<EmpresaDetailDTO> list = new ArrayList<>();
-        for (EmpresaEntity entity : entityList) {
-            list.add(new EmpresaDetailDTO(entity));
-        }
-        return list;
-    }
     
      /**
      * Convierte una lista de EmpresaDetailDTO a una lista de EmpresaEntity.

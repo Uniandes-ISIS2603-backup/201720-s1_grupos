@@ -29,6 +29,7 @@ public class EmpresaDTO {
      * Constructor por defecto
      */
     public EmpresaDTO() {
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     
      /**

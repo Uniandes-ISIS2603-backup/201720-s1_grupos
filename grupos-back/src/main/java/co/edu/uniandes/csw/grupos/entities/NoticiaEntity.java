@@ -9,15 +9,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -179,10 +176,12 @@ public class NoticiaEntity implements Serializable {
     @Override
     public boolean equals(Object o)
     {
-        if(!(o instanceof NoticiaEntity)) return false;
+        if(!(o instanceof NoticiaEntity)) 
+        {
+            return false;
+        }
         NoticiaEntity e = (NoticiaEntity)o;
-        if(id.equals(e.getId())) return true;
-        return false;
+        return id.equals(e.getId());
     }
     /**
      * Override de hashcode.<br>

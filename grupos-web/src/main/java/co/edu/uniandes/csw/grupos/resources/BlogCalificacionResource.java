@@ -7,17 +7,13 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.BlogDetailDTO;
 import co.edu.uniandes.csw.grupos.dtos.CalificacionDetailDTO;
-import co.edu.uniandes.csw.grupos.dtos.MultimediaDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.BlogLogic;
 import co.edu.uniandes.csw.grupos.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
-import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,7 +22,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.WebApplicationException;
 
 
 /**
@@ -44,18 +39,6 @@ public class BlogCalificacionResource {
      */
     @Inject
     private CalificacionLogic logic;
-    
-    /**
-     * Listar un dto en entidad.<br>
-     * @param list Lista del dto.<br>
-     * @return Lista de entidades.
-     */
-    private List<CalificacionEntity> listarDTO(List<CalificacionDetailDTO> list)
-    {
-        ArrayList<CalificacionEntity> m = new ArrayList<>();
-        for(CalificacionDetailDTO d:list) m.add(d.toEntity());
-        return m;
-    }
     /**
      * Pasa una lista de entidades a dtos.<br>
      * @param list Lista de entidades.<br>
@@ -64,7 +47,10 @@ public class BlogCalificacionResource {
     private List<CalificacionDetailDTO> toDTO(List<CalificacionEntity> list)
     {
         ArrayList<CalificacionDetailDTO> m = new ArrayList<>();
-        for(CalificacionEntity d:list) m.add(new CalificacionDetailDTO(d));
+        for(CalificacionEntity d:list)
+        {
+            m.add(new CalificacionDetailDTO(d));
+        }
         return m;
     }
     /**
@@ -87,7 +73,7 @@ public class BlogCalificacionResource {
      */
     @GET 
     @Path("{id: \\d+}")
-    public CalificacionDetailDTO getCalificacion(@PathParam("blogId") Long id,@PathParam("id") Long calificacionId) throws BusinessException, NotFoundException
+    public CalificacionDetailDTO getCalificacion(@PathParam("blogId") Long id,@PathParam("id") Long calificacionId) throws BusinessException
     {
         
             return new CalificacionDetailDTO(blog.getCalificacion(id, calificacionId));
@@ -106,7 +92,10 @@ public class BlogCalificacionResource {
     {
         
             calificacion.setFecha(new Date(System.currentTimeMillis()));
-            if(calificacion.getCalificador()==null) throw new BusinessException("Su calificación debe tener a un usuario asociado");
+            if(calificacion.getCalificador()==null) 
+            {
+                throw new BusinessException("Su calificación debe tener a un usuario asociado");
+            }
             CalificacionEntity c =logic.createEntity(calificacion.toEntity()); 
             CalificacionEntity cal=blog.addCalificacion(grupoId, id, c);
             return new CalificacionDetailDTO(cal);

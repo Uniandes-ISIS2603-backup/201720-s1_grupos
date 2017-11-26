@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.ejb;
-import co.edu.uniandes.csw.grupos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.grupos.entities.*;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.*;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.NotFoundException;
+
 
 /**
  * Lógica de patrocinio
@@ -44,8 +43,7 @@ public class PatrocinioLogic {
      */
     public PatrocinioEntity createPatrocinio(PatrocinioEntity ppat) throws BusinessException
     {
-        PatrocinioEntity add = per.createEntity(ppat);
-        return add;
+        return per.createEntity(ppat);
     }
     
     /**

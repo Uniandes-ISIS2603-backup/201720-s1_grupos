@@ -9,11 +9,8 @@ import co.edu.uniandes.csw.grupos.dtos.MultimediaDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.BlogLogic;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import javax.ws.rs.NotFoundException;
-import co.edu.uniandes.csw.grupos.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -41,7 +38,10 @@ public class BlogMultimediaResource {
     private List<MultimediaEntity> listarDTO(List<MultimediaDetailDTO> list)
     {
         ArrayList<MultimediaEntity> m = new ArrayList<>();
-        for(MultimediaDetailDTO d:list) m.add(d.toEntity());
+        for(MultimediaDetailDTO d:list) 
+        {
+            m.add(d.toEntity());
+        }
         return m;
     }
     /**
@@ -52,7 +52,10 @@ public class BlogMultimediaResource {
     private List<MultimediaDetailDTO> toDTO(List<MultimediaEntity> list)
     {
         ArrayList<MultimediaDetailDTO> m = new ArrayList<>();
-        for(MultimediaEntity d:list) m.add(new MultimediaDetailDTO(d));
+        for(MultimediaEntity d:list) 
+        {
+            m.add(new MultimediaDetailDTO(d));
+        }
         return m;
         
     }

@@ -39,7 +39,7 @@ public class GrupoNoticiasResource {
      * @return Lista de NoticiaDetailDTO convertida.
      *
      */
-    private List<NoticiaDTO> NoticiasListEntity2DTO(List<NoticiaEntity> entityList) {
+    private List<NoticiaDTO> noticiasListEntity2DTO(List<NoticiaEntity> entityList) {
         List<NoticiaDTO> list = new ArrayList<>();
         for (NoticiaEntity entity : entityList) {
             list.add(new NoticiaDTO(entity));
@@ -47,20 +47,6 @@ public class GrupoNoticiasResource {
         return list;
     }
     
-    /**
-     * Convierte una lista de NoticiaDetailDTO a una lista de NoticiaEntity.
-     *
-     * @param dtos Lista de NoticiaDetailDTO a convertir.
-     * @return Lista de NoticiaEntity convertida.
-     *
-     */
-    private List<NoticiaEntity> NoticiasListDTO2Entity(List<NoticiaDetailDTO> dtos) {
-        List<NoticiaEntity> list = new ArrayList<>();
-        for (NoticiaDetailDTO dto : dtos) {
-            list.add(dto.toEntity());
-        }
-        return list;
-    }
     
     /**
      * Obtiene una colección de instancias de NoticiaDetailDTO asociadas a una
@@ -75,7 +61,7 @@ public class GrupoNoticiasResource {
     public List<NoticiaDTO> listNoticias(@PathParam("grupoId") Long id) {
         try
         {
-            return NoticiasListEntity2DTO(grupoLogic.listNoticias(id));
+            return noticiasListEntity2DTO(grupoLogic.listNoticias(id));
         }
         catch (javax.ejb.EJBException e)
         {
@@ -93,11 +79,14 @@ public class GrupoNoticiasResource {
      */
     @GET
     @Path("{NoticiaId: \\d+}")
-    public NoticiaDetailDTO getNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
+    public NoticiaDetailDTO getNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long noticiaId) throws BusinessException {
         try
         {
-            NoticiaEntity e =grupoLogic.getNoticia(grupoId, NoticiaId);
-            if(e==null) throw new NotFoundException("No existe lo buscado");
+            NoticiaEntity e =grupoLogic.getNoticia(grupoId, noticiaId);
+            if(e==null) 
+            {
+                throw new NotFoundException("No existe lo buscado");
+            }
             return new NoticiaDetailDTO(e);
         }
         catch (javax.ejb.EJBException e)
@@ -134,10 +123,10 @@ public class GrupoNoticiasResource {
      */
     @POST
     @Path("{NoticiaId: \\d+}")
-    public NoticiaDetailDTO addNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
+    public NoticiaDetailDTO addNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long noticiaId) throws BusinessException {
         try
         {
-            return new NoticiaDetailDTO(grupoLogic.addNoticia(grupoId, NoticiaId));
+            return new NoticiaDetailDTO(grupoLogic.addNoticia(grupoId, noticiaId));
         }
         catch (javax.ejb.EJBException e)
         {
@@ -155,10 +144,10 @@ public class GrupoNoticiasResource {
      */
     @DELETE
     @Path("{NoticiaId: \\d+}")
-    public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId) throws BusinessException {
+    public void removeNoticias(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long noticiaId) throws BusinessException {
         try
         {
-            grupoLogic.deleteNoticia(grupoId, NoticiaId);
+            grupoLogic.deleteNoticia(grupoId, noticiaId);
         }
         catch (javax.ejb.EJBException e)
         {
@@ -168,18 +157,18 @@ public class GrupoNoticiasResource {
     /**
      * Actualiza la noticia del grupo.<br>
      * @param grupoId Id del grupo.<br>
-     * @param NoticiaId Id de la noticia.<br>
+     * @param noticiaId Id de la noticia.<br>
      * @param newNoticia Nueva noticia.<br>
      * @return Noticia actualizada.<br>
      * @throws BusinessException Excepción de negocio.
      */
     @PUT
     @Path("{NoticiaId: \\d+}")
-    public NoticiaDetailDTO updateNoticia(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long NoticiaId, NoticiaDetailDTO newNoticia) throws BusinessException {
+    public NoticiaDetailDTO updateNoticia(@PathParam("grupoId") Long grupoId, @PathParam("NoticiaId") Long noticiaId, NoticiaDetailDTO newNoticia) throws BusinessException {
         try
         {
             NoticiaEntity e = newNoticia.toEntity();
-            return new NoticiaDetailDTO(grupoLogic.updateNoticia(grupoId, NoticiaId,e));
+            return new NoticiaDetailDTO(grupoLogic.updateNoticia(grupoId, noticiaId,e));
         }
         catch (javax.ejb.EJBException e)
         {
@@ -198,7 +187,10 @@ public class GrupoNoticiasResource {
     {
         try
         {
-            if(grupoLogic.getNoticia( grupoId, idNoticia)==null) throw new NotFoundException("No existe el grupo con este id");
+            if(grupoLogic.getNoticia( grupoId, idNoticia)==null) 
+            {
+                throw new NotFoundException("No existe el grupo con este id");
+            }
         }
         catch (javax.ejb.EJBTransactionRolledbackException e)
         {
@@ -219,7 +211,10 @@ public class GrupoNoticiasResource {
      */
     @Path("{noticiaId: \\d+}/comentarios")
     public Class<NoticiaComentarioResource> getComentarios(@PathParam("grupoId") Long grupoId,@PathParam("noticiaId") Long id) throws BusinessException {
-        if(grupoLogic.getNoticia( grupoId, id)==null) throw new NotFoundException("No existe el grupo con este id");
+        if(grupoLogic.getNoticia( grupoId, id)==null) 
+        {
+            throw new NotFoundException("No existe el grupo con este id");
+        }
         return NoticiaComentarioResource.class;
     }
 }

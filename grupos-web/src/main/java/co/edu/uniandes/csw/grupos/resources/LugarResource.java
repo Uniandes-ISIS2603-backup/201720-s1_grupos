@@ -14,7 +14,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -44,8 +43,7 @@ public class LugarResource {
     @GET
     public List<LugarDetailDTO> getLugares()
     {
-        List<LugarDetailDTO> list = listEntityToDetailDTO(logic.getAll());
-        return list;
+        return listEntityToDetailDTO(logic.getAll());
     }
     /**
      * Retorna un lugar con id dado.<br>
@@ -60,10 +58,10 @@ public class LugarResource {
     {
         try
         {
-        LugarEntity entity=logic.getEntity(id);
-        return new LugarDetailDTO(entity);
+            LugarEntity entity=logic.getEntity(id);
+            return new LugarDetailDTO(entity);
         }
-                catch(javax.ejb.EJBTransactionRolledbackException e)
+        catch(javax.ejb.EJBTransactionRolledbackException e)
         {
             throw new NotFoundException();
         }
@@ -81,7 +79,7 @@ public class LugarResource {
     {
        LugarEntity entity =dto.toEntity();
        entity.setId(id);
-       return new LugarDetailDTO(logic.updateEntity(entity, null));
+       return new LugarDetailDTO(logic.updateEntity(entity));
        
     }
     /**

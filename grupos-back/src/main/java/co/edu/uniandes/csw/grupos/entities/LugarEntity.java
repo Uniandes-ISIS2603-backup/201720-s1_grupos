@@ -85,26 +85,6 @@ public class LugarEntity implements Serializable{
         this.capacidad = capacidad;
     }
     
-    /*@Override
-    public boolean equals(Object obj) {
-        if (this.getDireccion()!= null && ((LugarEntity) obj).getDireccion()!= null) {
-            return this.getDireccion().equals(((LugarEntity) obj).getDireccion());
-        }
-        return super.equals(obj);
-    }
-
-    
-    /**
-     * 
-     * @return el hashcode del nombre que define la entidad
-     */
-   /* @Override
-    public int hashCode() {
-        if (this.getDireccion() != null) {
-            return this.getDireccion().hashCode();
-        }
-        return super.hashCode();
-    }*/
 
     /**
      * @return the id

@@ -30,7 +30,7 @@ public class CalificacionDTO {
      */
     public CalificacionDTO()
     {
-        
+        //Constructor vacío para usos de pruebas y recursos REST
     }
 
     /**

@@ -43,7 +43,7 @@ public class PatrocinioResource {
     public List<PatrocinioDetailDTO> allPatrocinios() throws BusinessException
     {
         List<PatrocinioEntity> patro = patrocinioLogic.allPatrocinios();
-        List<PatrocinioDetailDTO> ret = new ArrayList<PatrocinioDetailDTO>();
+        List<PatrocinioDetailDTO> ret = new ArrayList<>();
         for(PatrocinioEntity p:patro)
         {
             ret.add(new PatrocinioDetailDTO(p));
