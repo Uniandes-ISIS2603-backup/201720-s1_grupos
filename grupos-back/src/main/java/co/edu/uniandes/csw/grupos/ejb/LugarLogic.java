@@ -34,9 +34,15 @@ public class LugarLogic {
      */
     public LugarEntity getEntity(Long id) throws BusinessException
     {
-        if(id == null) throw new BusinessException("La id solicitada no puede estar vacia o nula");
+        if(id == null) 
+        {
+            throw new BusinessException("La id solicitada no puede estar vacia o nula");
+        }
         LugarEntity entity = persistence.find(id);
-        if(entity== null) throw new NotFoundException("No existe un evento con la id " + id +" solicitada");
+        if(entity== null) 
+        {
+            throw new NotFoundException("No existe un evento con la id " + id +" solicitada");
+        }
         return entity;
     }
     /**
@@ -55,18 +61,20 @@ public class LugarLogic {
      */
     public LugarEntity createEntity(LugarEntity entity) throws BusinessException
     {
-        if(entity == null) throw new BusinessException("No se puede agregar algo nulo");
+        if(entity == null) 
+        {
+            throw new BusinessException("No se puede agregar algo nulo");
+        }
         return persistence.create(entity);        
     }
     /**
      * Actualiza la entidad al valor dado de un usuario.<br>
      * @param entity Entidad a actualizar.<br>
-     * @param admin Administrador.<br>
      * @return Entidad actualizada.<br>
      * @throws NotFoundException Si no se encuentra nada.<br>
      * @throws BusinessException  Excepción de negocio.
      */
-    public LugarEntity updateEntity(LugarEntity entity, UsuarioEntity admin) throws BusinessException{
+    public LugarEntity updateEntity(LugarEntity entity) throws BusinessException{
         LugarEntity lugar= persistence.find(entity.getId());
         if(lugar==null)
        {

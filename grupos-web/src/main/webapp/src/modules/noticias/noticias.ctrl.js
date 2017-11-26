@@ -8,7 +8,6 @@
              var error="";
              if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
              {
-                console.log("ERROR "+$state.params.mensajeError);
                  $scope.variableErrorNoticia=$state.params.mensajeError;
              }
             fullContext=globalContext+"/"+context;

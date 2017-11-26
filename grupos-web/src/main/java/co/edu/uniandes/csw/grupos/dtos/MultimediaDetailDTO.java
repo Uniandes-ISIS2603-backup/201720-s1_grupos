@@ -17,7 +17,7 @@ public class MultimediaDetailDTO extends MultimediaDTO {
      */
     public MultimediaDetailDTO()
     {
-        
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     /**
      * Crea un nuevo DTo a partir de la entidad pasada por parámetro.<br>
@@ -35,8 +35,7 @@ public class MultimediaDetailDTO extends MultimediaDTO {
     @Override
     public MultimediaEntity toEntity()
     {
-        MultimediaEntity m = super.toEntity();
-        return m;
+        return super.toEntity();
     }
     
 }

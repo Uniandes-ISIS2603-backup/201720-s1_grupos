@@ -22,7 +22,7 @@ public class CalificacionDetailDTO extends CalificacionDTO {
      */
     public CalificacionDetailDTO()
     {
-        
+        //Constructor vacío para usos de pruebas y recursos REST
     }
 
     /**

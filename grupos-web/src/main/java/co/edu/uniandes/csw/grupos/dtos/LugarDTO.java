@@ -30,7 +30,7 @@ public class LugarDTO {
      */
     public LugarDTO()
     {
-        
+        //Constructor vacío para usos de pruebas y recursos REST
     }
     /**
      * Entidad de lugar para construir el dto.<br>
