@@ -48,7 +48,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('ERRORNOTICIA', {
                 url: '/error',
                 parent:'noticias',
-                param:{
+                params:{
                     mensajeError:null
                 },
                 views: {
@@ -131,7 +131,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('ERRORUSUARIONOTICIA', {
                 url: '/error',
                 parent:'usuarioNoticias',
-                param:{
+                params:{
                     mensajeError:null
                 },
                 views: {
@@ -228,7 +228,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
             }).state('ERRORGRUPONOTICIA', {
                 url: '/error',
                 parent:'grupoNoticias',
-                param:{
+                params:{
                     mensajeError:null
                 },
                 views: {

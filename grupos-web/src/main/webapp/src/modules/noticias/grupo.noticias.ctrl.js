@@ -17,15 +17,14 @@
                 for(i=0;i<$scope.archivos.length;i++)
                 {
                     $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
-                    console.log($scope.archivos[i].ruta);
                 }
             });
             var error=""; 
             //Inicialización de mensajeError de error
             if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
             {
+                console.log("ERROR "+$state.params.mensajeError);
                 $scope.variableErrorNoticia=$state.params.mensajeError;
-                error=$scope.variableErrorNoticia;
             }
             //Inicialización de booleanos importantes
             $scope.esNoticiaUsuario=false;
@@ -289,14 +288,6 @@
                         
                 }
                  
-            };
-            /**
-             * Obtiene el error
-             * @return Error
-             */
-            this.getError=function()
-            {
-                return error;
             };
             /**
              * Retorna si es autor o no

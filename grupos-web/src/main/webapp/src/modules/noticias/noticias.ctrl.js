@@ -6,9 +6,10 @@
              $scope.noticiaEditable=false;$scope.esNoticiaUsuario=false; $scope.deGrupo=false;
 
              var error="";
-             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
+             if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
              {
-                 $scope.variableErrorNoticia=$state.params.mensaje;
+                console.log("ERROR "+$state.params.mensajeError);
+                 $scope.variableErrorNoticia=$state.params.mensajeError;
              }
             fullContext=globalContext+"/"+context;
             
@@ -21,7 +22,7 @@
                 $scope.records = response.data;
             },function(response){
                                 error=response.data;
-                                $state.go('ERRORNOTICIA',{mensaje: error},{reload:true});
+                                $state.go('ERRORNOTICIA',{mensajeError: error},{reload:true});
                             });
             // el controlador recibió un id ??
             // revisa los parámetros (ver el :id en la definición de la ruta)
@@ -37,7 +38,7 @@
                             $scope.currentRecord = response.data;
                         },function(response){
                                 error=response.data;
-                                $state.go('ERRORNOTICIA',{mensaje: error},{reload:true});
+                                $state.go('ERRORNOTICIA',{mensajeError: error},{reload:true});
                             });
 
                 // el controlador no recibió un cityId

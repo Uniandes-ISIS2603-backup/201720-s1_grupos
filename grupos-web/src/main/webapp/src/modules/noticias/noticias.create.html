@@ -39,7 +39,7 @@
                                         <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="itemToAdd.descripcion" ng-init="itemToAdd.descripcion"></textarea>
                                     </div>
                                 </div>
-¡                                    <div class="col-md-12">
+¡                                   <div class="col-md-12">
                                         <div class="widget-container" >
                                             <div class="widget row image-tile">
                                                 <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption[ctrl.numeroActual(itemToAdd)]===ctrl.numeroActual(itemToAdd)+'-'+record.ruta }" ng-click="ctrl.asignarRuta(itemToAdd,record.ruta)">
