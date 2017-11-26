@@ -54,7 +54,7 @@ public class LugarPersistenceTest {
     /**
      * Datos
      */
-    private List<LugarEntity> data = new ArrayList<LugarEntity>();
+    private List<LugarEntity> data = new ArrayList<>();
     //Deployment
     @Deployment
     public static JavaArchive createDeployment() {
@@ -118,10 +118,10 @@ public class LugarPersistenceTest {
     
     /**
      * Test de crear lugar.<br>
-     * @throws Exception Lanza excepción si hay algún error
+     * @ Lanza excepción si hay algún error
      */
     @Test
-    public void createLugarTest() throws Exception{
+    public void createLugarTest() {
         PodamFactory factory = new PodamFactoryImpl();
         LugarEntity newEntity = factory.manufacturePojo(LugarEntity.class);
         LugarEntity result = lugarPersistence.create(newEntity);
@@ -134,10 +134,10 @@ public class LugarPersistenceTest {
     }
     /**
      * Prueba de obtener lugares.<br>
-     * @throws Exception 
+     * @ 
      */
     @Test
-    public void getLugarsTest() throws Exception{
+    public void getLugarsTest() {
         List<LugarEntity> list = lugarPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (LugarEntity ent : list) {
@@ -153,10 +153,10 @@ public class LugarPersistenceTest {
 
     /**
      * Prueba de obtener un lugar.<br>
-     * @throws Exception 
+     * @ 
      */
     @Test
-    public void getLugarTest() throws Exception{
+    public void getLugarTest() {
         LugarEntity entity = data.get(0);
         LugarEntity newEntity = lugarPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -164,10 +164,10 @@ public class LugarPersistenceTest {
     }
     /**
      * Prueba de actualizar un lugar
-     * @throws Exception 
+     * @ 
      */
     @Test
-    public void updateLugarTest() throws Exception{
+    public void updateLugarTest() {
         LugarEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         LugarEntity newEntity = factory.manufacturePojo(LugarEntity.class);

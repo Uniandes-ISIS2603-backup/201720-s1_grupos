@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.grupos.persistence;
+package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.persistence.*;
 import co.edu.uniandes.csw.grupos.entities.EmpresaEntity;
-import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,20 +34,25 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author af.lopezf
  */
 @RunWith(Arquillian.class)
-public class EmpresaPersistenceTest {
+public class EmpresaLogicTest {
     
     @Deployment
     public static JavaArchive createDeployment() {
     return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(EmpresaEntity.class.getPackage())
                 .addPackage(EmpresaPersistence.class.getPackage())
+                .addPackage(EmpresaLogic.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    
+     /**
+     * Logger de la lógica
+     */
+    private static final Logger LOGGER = Logger.getLogger(EmpresaLogicTest.class.getName());
+    //inyección de la lógica
     @Inject
-    private EmpresaPersistence persistence;
+    private EmpresaLogic logic;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -67,7 +74,7 @@ public class EmpresaPersistenceTest {
     private List<EmpresaEntity> data = new ArrayList<>();
 
     
-    public EmpresaPersistenceTest() {
+    public EmpresaLogicTest() {
     }
     
     @BeforeClass
@@ -123,14 +130,42 @@ public class EmpresaPersistenceTest {
      */
     @Test
     public void testCreate() {
-        PodamFactory factory = new PodamFactoryImpl();
-        EmpresaEntity newEntity = factory.manufacturePojo(EmpresaEntity.class);
-        EmpresaEntity result = persistence.create(newEntity);
+        boolean estaBien=true;
+        try
+        {
+            logic.createEmpresa(data.get(0));
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory = new PodamFactoryImpl();
+            EmpresaEntity newEntity = factory.manufacturePojo(EmpresaEntity.class);
 
-        Assert.assertNotNull(result);
-        EmpresaEntity entity = em.find(EmpresaEntity.class, result.getNit());
-        Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getNit(), entity.getNit());
+            EmpresaEntity result = logic.createEmpresa(newEntity);
+
+            Assert.assertNotNull(result);
+            EmpresaEntity entity = em.find(EmpresaEntity.class, result.getNit());
+            Assert.assertNotNull(entity);
+            Assert.assertEquals(newEntity.getNit(), entity.getNit());
+        }
+        catch(BusinessException e)
+        {
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
+        
 
     }
 
@@ -139,7 +174,7 @@ public class EmpresaPersistenceTest {
      */
     @Test
     public void testFindAll() {
-        List<EmpresaEntity> list = persistence.findAll();
+        List<EmpresaEntity> list = logic.getEmpresas();
         Assert.assertEquals(data.size(), list.size());
         for (EmpresaEntity ent : list) {
             boolean found = false;
@@ -161,11 +196,9 @@ public class EmpresaPersistenceTest {
     @Test
     public void testFindByNit() {
         EmpresaEntity entity = data.get(0);
-        EmpresaEntity newEntity = persistence.findByNit(entity.getNit());
+        EmpresaEntity newEntity = logic.getEmpresaByNit(entity.getNit());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNit(), newEntity.getNit());
-
-
         
     }
 
@@ -181,7 +214,7 @@ public class EmpresaPersistenceTest {
 
         newEntity.setNit(entity.getNit());
 
-        persistence.update(newEntity);
+        logic.update(newEntity);
 
         EmpresaEntity resp = em.find(EmpresaEntity.class, entity.getNit());
 
@@ -196,11 +229,9 @@ public class EmpresaPersistenceTest {
     @Test
     public void testDelete() {
         EmpresaEntity entity = data.get(0);
-        persistence.delete(entity.getNit());
+        logic.deleteEmpresa(entity.getNit());
         EmpresaEntity deleted = em.find(EmpresaEntity.class, entity.getNit());
         Assert.assertNull(deleted);
-
-
     }
     
 }

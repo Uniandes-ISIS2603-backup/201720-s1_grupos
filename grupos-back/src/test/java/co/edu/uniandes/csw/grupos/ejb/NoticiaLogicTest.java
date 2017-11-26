@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.grupos.persistence;
+package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.persistence.*;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
@@ -47,7 +48,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 
-public class NoticiaPersistenceTest {
+public class NoticiaLogicTest {
     
     /**
      *
@@ -61,21 +62,22 @@ public class NoticiaPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(NoticiaEntity.class.getPackage())
                 .addPackage(NoticiaPersistence.class.getPackage())
+                .addPackage(NoticiaLogic.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
 
     /**
-     * Persistencia de la noticia.
-     */
-    @Inject
-    private NoticiaPersistence persistence;
-    /**
      * Persistencia del grupo
      */
     @Inject
     private GrupoPersistence grupoPersistence;
+    /**
+     * Lógica de la noticia.
+     */
+    @Inject 
+    private NoticiaLogic logic;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -171,7 +173,7 @@ public class NoticiaPersistenceTest {
     }
 
     /**
-     * Test of createEntity method, of class NoticiaPersistence.
+     * Test of createEntity method, of class NoticiaLogic.
      */
     @Test
     public void testCreateEntity() {
@@ -188,7 +190,7 @@ public class NoticiaPersistenceTest {
         listM.add(m);
         newEntity.setMultimedia(listM);
         newEntity.setComentarios(dataC);
-        NoticiaEntity result=persistence.createEntity(newEntity);
+        NoticiaEntity result=logic.createEntity(newEntity);
         Assert.assertNotNull(result);
         NoticiaEntity found=em.find(NoticiaEntity.class, newEntity.getId());
         Assert.assertNotNull(found);
@@ -198,7 +200,7 @@ public class NoticiaPersistenceTest {
     }
 
     /**
-     * Test of updateEntity method, of class NoticiaPersistence.
+     * Test of updateEntity method, of class NoticiaLogic.
      */
     @Test
     public void testUpdateEntity() {
@@ -214,7 +216,7 @@ public class NoticiaPersistenceTest {
        updated.setGrupo(entity.getGrupo());
        updated.setMultimedia(dataM);
        updated.setComentarios(dataC);
-        persistence.updateEntity(updated);
+        logic.updateEntity(id,updated);
         
         NoticiaEntity rta= em.find(NoticiaEntity.class, id);
         Assert.assertEquals(updated.getId(),rta.getId());
@@ -223,25 +225,25 @@ public class NoticiaPersistenceTest {
     }
 
     /**
-     * Test of find method, of class NoticiaPersistence.
+     * Test of find method, of class NoticiaLogic.
      */
     @Test
     public void testFind() {
          NoticiaEntity entity=data.get(0);
          Long id=entity.getId();
-        NoticiaEntity found=persistence.find(id);
+        NoticiaEntity found=logic.getEntity(id);
         Assert.assertNotNull(found);
         Assert.assertEquals(entity.getId(),found.getId());
         verificarRelaciones(entity,found);
     }
 
     /**
-     * Test of findAll method, of class NoticiaPersistence.
+     * Test of findAll method, of class NoticiaLogic.
      */
     @Test
     public void testFindAll() {
         
-        List<NoticiaEntity> list=persistence.findAll();
+        List<NoticiaEntity> list=logic.getAll();
         Assert.assertEquals(data.size(),list.size());
         boolean found=false;
         for(NoticiaEntity e: list)
@@ -260,13 +262,13 @@ public class NoticiaPersistenceTest {
     }
     
     /**
-     * Test of delete method, of class NoticiaPersistence.
+     * Test of delete method, of class NoticiaLogic.
      */
     @Test
     public void testDelete() {
         NoticiaEntity entity= data.get(0);
         Long id=entity.getId();
-       persistence.delete(id);
+       logic.deleteEntity(id);
        NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
        Assert.assertNull(deleted);
     }

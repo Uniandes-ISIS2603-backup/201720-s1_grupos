@@ -28,9 +28,8 @@ public class PatrocinioLogic {
     /**
      * Devuelve todos los patrocinios registrados en la aplicación.
      * @return lista con todos los patrocinios
-     * @throws BusinessException 
      */
-    public List<PatrocinioEntity> allPatrocinios() throws BusinessException
+    public List<PatrocinioEntity> allPatrocinios()
     {
         return per.findAll();
     }
@@ -39,9 +38,8 @@ public class PatrocinioLogic {
      * Crea un patrocinio
      * @param ppat nuevo patrocinio
      * @return patrocinio agregado
-     * @throws BusinessException si ya existe el patrocinio
      */
-    public PatrocinioEntity createPatrocinio(PatrocinioEntity ppat) throws BusinessException
+    public PatrocinioEntity createPatrocinio(PatrocinioEntity ppat)
     {
         return per.createEntity(ppat);
     }
