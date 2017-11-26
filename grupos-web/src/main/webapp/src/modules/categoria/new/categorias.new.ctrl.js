@@ -6,8 +6,12 @@
     mod.constant("categoriasContext", "Stark/categorias");
     mod.controller('categoriaNewCtrl', ['$scope', '$http', 'categoriasContext', '$state', '$rootScope',
         function ($scope, $http, categoriasContext, $state, $rootScope) {
+            //Búsqueda de las imágenes en la carpeta data
+            $http.get("./data/archivos.json").then(function(response)
+            {
+                $scope.rutaImagenes = response.data;
+            });
             //Se indica que se está creando una categoría
-            
             $scope.errorCategoriaNombre=false;
             $rootScope.edit = false;
             $scope.crearcategoria=true;
