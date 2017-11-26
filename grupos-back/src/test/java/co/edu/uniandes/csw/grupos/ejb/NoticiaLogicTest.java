@@ -8,29 +8,24 @@ package co.edu.uniandes.csw.grupos.ejb;
 import co.edu.uniandes.csw.grupos.persistence.*;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
-import org.glassfish.enterprise.iiop.util.S1ASThreadPoolManager;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -67,7 +62,10 @@ public class NoticiaLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-
+    /**
+     * Logger de la lógica
+     */
+    private static final Logger LOGGER = Logger.getLogger(NoticiaLogicTest.class.getName());
     /**
      * Persistencia del grupo
      */
@@ -177,25 +175,53 @@ public class NoticiaLogicTest {
      */
     @Test
     public void testCreateEntity() {
+        boolean estaBien=true;
+        try
+        {
+            logic.createEntity(null);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory = new PodamFactoryImpl();
+            NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
+            int indexAutor=(int)(Math.random()*dataU.size());
+            newEntity.setAutor(dataU.get(indexAutor));
+            int indexGrupo=(int)(Math.random()*dataG.size());
+            newEntity.setGrupo(dataG.get(indexGrupo));
+            ArrayList<MultimediaEntity> listM= new ArrayList<>();
+            MultimediaEntity m= new MultimediaEntity();
+            m.setLink("1");
+            listM.add(m);
+            newEntity.setMultimedia(listM);
+            newEntity.setComentarios(dataC);
+
+            NoticiaEntity result=logic.createEntity(newEntity);
+            Assert.assertNotNull(result);
+            NoticiaEntity found=em.find(NoticiaEntity.class, newEntity.getId());
+            Assert.assertNotNull(found);
+            Assert.assertEquals(newEntity,result);
+            verificarRelaciones(newEntity,found);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
         
-        PodamFactory factory = new PodamFactoryImpl();
-        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
-        int indexAutor=(int)(Math.random()*dataU.size());
-        newEntity.setAutor(dataU.get(indexAutor));
-        int indexGrupo=(int)(Math.random()*dataG.size());
-        newEntity.setGrupo(dataG.get(indexGrupo));
-        ArrayList<MultimediaEntity> listM= new ArrayList<>();
-        MultimediaEntity m= new MultimediaEntity();
-        m.setLink("1");
-        listM.add(m);
-        newEntity.setMultimedia(listM);
-        newEntity.setComentarios(dataC);
-        NoticiaEntity result=logic.createEntity(newEntity);
-        Assert.assertNotNull(result);
-        NoticiaEntity found=em.find(NoticiaEntity.class, newEntity.getId());
-        Assert.assertNotNull(found);
-        Assert.assertEquals(newEntity,result);
-        verificarRelaciones(newEntity,found);
 
     }
 
@@ -204,23 +230,89 @@ public class NoticiaLogicTest {
      */
     @Test
     public void testUpdateEntity() {
-        PodamFactory factory = new PodamFactoryImpl();
         
+        boolean estaBien=true;
+        try
+        {
+            logic.updateEntity(1l,null);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            logic.updateEntity(null,new NoticiaEntity());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity test=new NoticiaEntity();
+            test.setId(1l);
+            while(data.indexOf(test)>=0)
+            {
+                test.setId((long)(Math.random()*100000));
+            }
+            logic.deleteEntity(test.getId());
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory = new PodamFactoryImpl();
+            NoticiaEntity entity=data.get(0);
+            NoticiaEntity updated=factory.manufacturePojo(NoticiaEntity.class);
+            Long id=entity.getId();
+
+           updated.setId(id);
+           updated.setAutor(entity.getAutor());
+           updated.setGrupo(entity.getGrupo());
+           updated.setMultimedia(dataM);
+           updated.setComentarios(dataC);
+            logic.updateEntity(id,updated);
+
+            NoticiaEntity rta= em.find(NoticiaEntity.class, id);
+            Assert.assertEquals(updated.getId(),rta.getId());
+            verificarRelaciones(updated,rta);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
         
-        NoticiaEntity entity=data.get(0);
-        NoticiaEntity updated=factory.manufacturePojo(NoticiaEntity.class);
-        Long id=entity.getId();
-       
-       updated.setId(id);
-       updated.setAutor(entity.getAutor());
-       updated.setGrupo(entity.getGrupo());
-       updated.setMultimedia(dataM);
-       updated.setComentarios(dataC);
-        logic.updateEntity(id,updated);
-        
-        NoticiaEntity rta= em.find(NoticiaEntity.class, id);
-        Assert.assertEquals(updated.getId(),rta.getId());
-        verificarRelaciones(updated,rta);
 
     }
 
@@ -229,12 +321,64 @@ public class NoticiaLogicTest {
      */
     @Test
     public void testFind() {
-         NoticiaEntity entity=data.get(0);
-         Long id=entity.getId();
-        NoticiaEntity found=logic.getEntity(id);
-        Assert.assertNotNull(found);
-        Assert.assertEquals(entity.getId(),found.getId());
-        verificarRelaciones(entity,found);
+        boolean estaBien=true;
+        try
+        {
+            logic.createEntity(null);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity test=new NoticiaEntity();
+            test.setId(1l);
+            while(data.indexOf(test)>=0)
+            {
+                test.setId((long)(Math.random()*100000));
+            }
+            logic.getEntity(test.getId());
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+            NoticiaEntity found=logic.getEntity(id);
+            Assert.assertNotNull(found);
+            Assert.assertEquals(entity.getId(),found.getId());
+            verificarRelaciones(entity,found);        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
+        
     }
 
     /**
@@ -266,11 +410,64 @@ public class NoticiaLogicTest {
      */
     @Test
     public void testDelete() {
-        NoticiaEntity entity= data.get(0);
-        Long id=entity.getId();
-       logic.deleteEntity(id);
-       NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
-       Assert.assertNull(deleted);
+        boolean estaBien=true;
+        try
+        {
+            logic.deleteEntity(null);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity test=new NoticiaEntity();
+            test.setId(1l);
+            while(data.indexOf(test)>=0)
+            {
+                test.setId((long)(Math.random()*100000));
+            }
+            logic.deleteEntity(test.getId());
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity= data.get(0);
+            Long id=entity.getId();
+           logic.deleteEntity(id);
+           NoticiaEntity deleted= em.find(NoticiaEntity.class,id);
+           Assert.assertNull(deleted);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
+        
     }
    
     /**
@@ -355,4 +552,48 @@ public class NoticiaLogicTest {
             if(!aceptado) Assert.fail("No existe el comentario buscado");
         }
     }
+    /**
+     * Test of getMultimedia
+     */
+    @Test
+    public void testMultimediaList()
+    {
+        
+    }
+    /**
+     * Test of getMultimedia
+     */
+    @Test
+    public void testMultimedia()
+    {
+        
+    }
+    /**
+     * Test of addMultimedia
+     */
+    @Test
+    public void testCreateMultimedia()
+    {
+        
+    }
+    /**
+     * Test of updateMultimedia
+     */
+    @Test
+    public void testUpdateMultimedia()
+    {
+        
+    }
+    /**
+     * Test of deleteMultimedia
+     */
+    @Test
+    public void testDeleteMultimedia()
+    {
+        
+    }
+    
+    
+    
+    
 }

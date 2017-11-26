@@ -88,7 +88,7 @@ public class MultimediaLogicTest {
     /**
      * Logger de la lógica
      */
-    private static final Logger LOGGER = Logger.getLogger(CalificacionLogicTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MultimediaLogicTest.class.getName());
     /*
      * Lista de los datos de la persistencia de la multimedia.
      */
