@@ -72,6 +72,10 @@ public class NoticiaLogicTest {
     @Inject
     private GrupoPersistence grupoPersistence;
     /**
+     * Multimedia aparte de la lista
+     */
+    private MultimediaEntity extra;
+    /**
      * Lógica de la noticia.
      */
     @Inject 
@@ -161,6 +165,14 @@ public class NoticiaLogicTest {
             em.persist(entity);
             data.add(entity);
         }
+        PodamFactory factory= new PodamFactoryImpl();
+        extra= factory.manufacturePojo(MultimediaEntity.class);
+        while(dataM.indexOf(extra)>=0)
+        {
+            extra= factory.manufacturePojo(MultimediaEntity.class);
+        }
+        em.persist(extra);
+        
     }
 
     /**
@@ -558,7 +570,65 @@ public class NoticiaLogicTest {
     @Test
     public void testMultimediaList()
     {
-        
+        boolean estaBien=true;
+        try
+        {
+            logic.getMultimedia(null);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity test=new NoticiaEntity();
+            test.setId(1l);
+            while(data.indexOf(test)>=0)
+            {
+                test.setId((long)(Math.random()*100000));
+            }
+            logic.getMultimedia(test.getId());
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+            List<MultimediaEntity> list=logic.getMultimedia(id);
+            for(MultimediaEntity m:list)
+            {
+                Assert.assertTrue(dataM.indexOf(m)>=0);
+            }
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
     }
     /**
      * Test of getMultimedia
@@ -566,7 +636,110 @@ public class NoticiaLogicTest {
     @Test
     public void testMultimedia()
     {
-        
+        boolean estaBien=true;
+        try
+        {
+            logic.getMultimedia(null,"A");
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity test=new NoticiaEntity();
+            test.setId(1l);
+            while(data.indexOf(test)>=0)
+            {
+                test.setId((long)(Math.random()*100000));
+            }
+            logic.getMultimedia(test.getId(),"A");
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory= new PodamFactoryImpl();
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+             MultimediaEntity e= factory.manufacturePojo(MultimediaEntity.class);
+             while(dataM.indexOf(e)>=0)
+             {
+                 e= factory.manufacturePojo(MultimediaEntity.class);
+             }
+            logic.getMultimedia(id,e.getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+             
+            logic.getMultimedia(id,extra.getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+            logic.getMultimedia(id,dataM.get(0).getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
     }
     /**
      * Test of addMultimedia
@@ -574,7 +747,28 @@ public class NoticiaLogicTest {
     @Test
     public void testCreateMultimedia()
     {
-        
+        boolean estaBien=true;
+        try
+        {
+            List<MultimediaEntity> anterior= data.get(1).getMultimedia();
+            ArrayList<MultimediaEntity> list = new ArrayList<>();
+            list.add(extra);
+            List<MultimediaEntity> test=logic.addMultimedia(data.get(1).getId(),list);
+            for(MultimediaEntity m:anterior)
+            {
+                Assert.assertTrue(test.indexOf(m)>=0);
+            }
+            Assert.assertTrue(test.indexOf(extra)>=0);
+        }
+        catch(BusinessException e)
+        {
+            estaBien=false;
+            LOGGER.info(e.getMessage());
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
     }
     /**
      * Test of updateMultimedia
@@ -582,7 +776,113 @@ public class NoticiaLogicTest {
     @Test
     public void testUpdateMultimedia()
     {
-        
+        boolean estaBien=true;
+        try
+        {
+            logic.updateMultimedia(null,null,"A");
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity test=new NoticiaEntity();
+            test.setId(1l);
+            while(data.indexOf(test)>=0)
+            {
+                test.setId((long)(Math.random()*100000));
+            }
+            logic.updateMultimedia(test.getId(),null,"A");
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory= new PodamFactoryImpl();
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+             MultimediaEntity e= factory.manufacturePojo(MultimediaEntity.class);
+             while(dataM.indexOf(e)>=0)
+             {
+                 e= factory.manufacturePojo(MultimediaEntity.class);
+             }
+            logic.updateMultimedia(id,null,e.getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(1);
+             Long id=entity.getId();
+             
+            logic.updateMultimedia(id,null,extra.getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+            PodamFactory factory = new PodamFactoryImpl();
+            MultimediaEntity mult=factory.manufacturePojo(MultimediaEntity.class);
+            mult.setLink(dataM.get(0).getLink());
+            logic.updateMultimedia(id,mult,dataM.get(0).getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
     }
     /**
      * Test of deleteMultimedia
@@ -590,7 +890,110 @@ public class NoticiaLogicTest {
     @Test
     public void testDeleteMultimedia()
     {
-        
+        boolean estaBien=true;
+        try
+        {
+            logic.deleteMultimedia(null,"A");
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity test=new NoticiaEntity();
+            test.setId(1l);
+            while(data.indexOf(test)>=0)
+            {
+                test.setId((long)(Math.random()*100000));
+            }
+            logic.deleteMultimedia(test.getId(),"A");
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory= new PodamFactoryImpl();
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+             MultimediaEntity e= factory.manufacturePojo(MultimediaEntity.class);
+             while(dataM.indexOf(e)>=0)
+             {
+                 e= factory.manufacturePojo(MultimediaEntity.class);
+             }
+            logic.deleteMultimedia(id,e.getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(1);
+             Long id=entity.getId();
+             
+            logic.deleteMultimedia(id,extra.getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            NoticiaEntity entity=data.get(0);
+             Long id=entity.getId();
+            logic.deleteMultimedia(id,dataM.get(0).getLink());
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(!estaBien)
+        {
+            Assert.fail();
+        }
     }
     
     
