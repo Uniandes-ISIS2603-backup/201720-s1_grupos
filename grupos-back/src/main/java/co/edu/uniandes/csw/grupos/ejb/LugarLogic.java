@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.LugarEntity;
-import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.LugarPersistence;
 import java.util.List;
@@ -80,8 +79,7 @@ public class LugarLogic {
        {
            throw new NotFoundException("No se encontró una Lugar con el id: " + entity.getId());
        }
-        LugarEntity newEntity = persistence.update(entity);
-        return newEntity;
+        return persistence.update(entity);
     }
     /**
      * Cambia la disponibilidad de un un lugar con el objeto dado.<br>
@@ -98,7 +96,6 @@ public class LugarLogic {
            throw new NotFoundException("No se encontró una Lugar con el id: " + id);
        }
        lugar.setDisponibilidad(!lugar.isDisponibilidad());
-       LugarEntity newEntity = persistence.update(lugar);
-       return newEntity;
+       return persistence.update(lugar);
     }
 }

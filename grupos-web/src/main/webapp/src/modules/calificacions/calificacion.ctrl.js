@@ -6,21 +6,23 @@
      * Definición del controlador. Se incluye el nombre del controlador, el $scope,$state,$stateParams,$http y las constantes para acceder a calificaciones definiidos en archivos de módulo anteriores.
      */
     mod.controller('calificacionsCtrl', ['$scope', '$state', '$stateParams', '$http', 'calificacionsContext','gruposContext','blogContext', function ($scope, $state, $stateParams, $http, context, grupoContext, blogContext) {
+            var errorCalificacion="Error";
+            var currentRecord={};
             //Contexto completo del controlador
-            fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+context;
+            var fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+context;
             //Variables para la eliminación de la calificación
             $scope.calificacionSeleccionada=false;
             $scope.calificacionEliminada=false;
             //Verifica si es miembro del grupo
-            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esMiembro=true;
-            },function(response){
+            },function(){
                 $scope.esMiembro=false;
             });
             //Verifica si es admin del grupo
-            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esAdmin=true;
-            },function(response){
+            },function(){
                 $scope.esAdmin=false;
             });
             //Calificaor por default 1
@@ -31,7 +33,7 @@
                             currentAutor.email= response.data.email,
                             currentAutor.id= response.data.id,
                             currentAutor.nombre= response.data.nombre,
-                            currentAutor.password= response.data.password}, function(response){
+                            currentAutor.password= response.data.password}, function(){
                                 $state.go('ERROR',{mensaje: "El usuario "+sessionStorage.getItem("id")+"  no está loggeado"},{reload:true});
                             });
             /**
@@ -43,7 +45,6 @@
             }
             // inicialmente el listado de calificaciones está vacio
             $scope.records = {};
-            var errorCalificacion="Error";
             // carga las calificaciones
              $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
@@ -58,7 +59,7 @@
             if ($stateParams.calificacionId !== null && $stateParams.calificacionId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.calificacionId;
+                var id = $stateParams.calificacionId;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext + "/" + id)
                         .then(function (response) {
@@ -159,7 +160,7 @@
                 {
                     if(currentRecord.calificador.id!==currentAutor.id)
                     {
-                        var errorCalificacion="No puedes calificar si no eres el autor";
+                        errorCalificacion="No puedes calificar si no eres el autor";
                         $state.go('ERRORCALIFICACION',{mensaje: errorCalificacion});
                     }
                     else

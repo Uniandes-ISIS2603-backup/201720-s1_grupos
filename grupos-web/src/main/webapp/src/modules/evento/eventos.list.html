@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="evento in eventosRecords">
+                <tr ng-repeat="evento in records">
                     <td id="{{$index}}-nombre"><a ui-sref="eventoDetail({eventoId: evento.id})">{{evento.nombre}}</a></td>
                     <td id="{{$index}}-fechaInicio">{{evento.fechaInicio| date:'yyyy-MM-dd'}}</td>
                     <td id="{{$index}}-fechaFin">{{evento.fechaFin| date:'yyyy-MM-dd'}}</td>
@@ -27,6 +27,8 @@
             </tbody>
         </table>
     </div>
-    <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendar">ver calendario</button>
+    <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendar" ng-if="deGrupo && !eventoUsuario">ver calendario Grupo</button>
+    <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendarAdmin" ng-if="!deGrupo && !eventoUsuario">ver calendario</button>
+    <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendarUsuario" ng-if="!deGrupo && eventoUsuario">ver mi calendario</button>
 </div>
 

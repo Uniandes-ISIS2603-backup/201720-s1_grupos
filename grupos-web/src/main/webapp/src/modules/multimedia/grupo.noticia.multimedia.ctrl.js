@@ -11,11 +11,9 @@
             $http.get("./data/archivos.json").then(function(response)
             {
                 $scope.archivos=response.data;
-                var i=0;
-                for(i=0;i<$scope.archivos.length;i++)
+                for(var i=0;i<$scope.archivos.length;i++)
                 {
                     $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
-                    console.log($scope.archivos[i].ruta);
                 }
             });
             
@@ -23,8 +21,8 @@
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
-                            $scope.esAutor= (response.data.autor.id==sessionStorage.getItem("id"));
-                        }, function(error)
+                            $scope.esAutor= (response.data.autor.id===parseInt(sessionStorage.getItem("id")));
+                        }, function()
                         {
                             $state.go('ERRORMULTIMEDIAGRUPONOTICIA',{mensaje: "Usted no es el autor de la noticia"},{reload:true});
                         });
@@ -98,6 +96,10 @@
              * @param {type} link Link del registro.<br>
              */
             this.saveRecord = function (link) {
+                if(!this.verificarMultimedia())
+                {
+                    return;
+                }
                 if(($scope.esMiembro || $scope.esAdmin) && this.esAutor())
                 {
                     //Multimedia actual
@@ -185,7 +187,7 @@
                 $scope.ruta=ruta;
             };
             //Función para verificar la multimedia actual
-            this.verificarMultimedia=function(ruta)
+            this.verificarMultimedia=function()
             {
                 if($scope.ruta===null || $scope.ruta===undefined)
                 {

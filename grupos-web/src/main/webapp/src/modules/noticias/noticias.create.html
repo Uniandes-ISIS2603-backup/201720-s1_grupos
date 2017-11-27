@@ -39,10 +39,11 @@
                                         <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="itemToAdd.descripcion" ng-init="itemToAdd.descripcion"></textarea>
                                     </div>
                                 </div>
-¡                                   <div class="col-md-12">
+                                <p class="col-md-12" style="color: #D8000C" ng-if="!ctrl.verificarMultimediaIndividual(itemToAdd)">No has seleccionado un archivo y/o nombre para la multimedia {{ctrl.numeroActual(itemToAdd)}}</p>
+                                   <div class="col-md-12">
                                         <div class="widget-container" >
                                             <div class="widget row image-tile">
-                                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption[ctrl.numeroActual(itemToAdd)]===ctrl.numeroActual(itemToAdd)+'-'+record.ruta }" ng-click="ctrl.asignarRuta(itemToAdd,record.ruta)">
+                                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{'tile col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption!==record.ruta, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption[ctrl.numeroActual(itemToAdd)-1]===ctrl.numeroActual(itemToAdd)+'-'+record.ruta }" ng-click="ctrl.asignarRuta(itemToAdd,record.ruta)">
                                                     <p>{{record.ruta}}</p>
                                                 </div>
                                             </div>

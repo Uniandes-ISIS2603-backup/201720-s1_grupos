@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("lugarModule", ['eventoModule','ui.router']);
     mod.constant("lugaresContext", "Stark/lugares");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             var basePath = 'src/modules/lugar/';
 
             $stateProvider.state('lugares', {

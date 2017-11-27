@@ -5,8 +5,6 @@
     mod.constant("usuarioContext", "Stark/usuarios");
     mod.controller('usuarioCtrl', ['$scope', '$http', 'usuarioContext', '$state','$rootScope',
         function ($scope, $http, usuarioContext, $state,$rootScope) {
-            console.log(sessionStorage.getItem("email")+" "+$rootScope.currentUser);
-            var rol = sessionStorage.getItem("rol");
             $scope.deGrupo=false;
             //Busca todos los usuarios que tiene la aplicación
             $http.get(usuarioContext).then(function (response) {

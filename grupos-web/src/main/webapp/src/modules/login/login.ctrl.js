@@ -44,10 +44,6 @@
                                 }
                                 //Va al perfil del usuario loggeado
                                 $state.go('usuarioDetail', {usuarioId:$scope.user.id}, {reload: true});
-                            },function(response)
-                            {
-                                //Hubo un error al loggearse
-                                console.log("Hubo un error de login");
                             });
                         
                     
@@ -64,7 +60,6 @@
                                     sessionStorage.setItem("email", $scope.user.email);
                                     sessionStorage.setItem("password", $scope.user.password);
                                     sessionStorage.setItem("rol", $scope.user.rol);
-                                    console.log($scope.user.rol);
                                     //Le asigna un nickname si lo tiene
                                     if($scope.user.nickname!==null && $scope.user.nickname!==undefined)
                                     {
@@ -84,10 +79,6 @@
                                     }
                                     //Va al perfil del usuario loggeado
                                     $state.go('usuarioDetail', {usuarioId:$scope.user.id}, {reload: true});
-                                },function(response)
-                                {
-                                    //Hubo un error al loggearse
-                                    console.log("Hubo un error de login");
                                 });
 
 
@@ -105,7 +96,6 @@
                                     sessionStorage.setItem("password", $scope.user.password);
                                     sessionStorage.setItem("rol", $scope.user.rol);
                                     
-                                    console.log($scope.user.email+" "+$scope.user.rol);
 
                                     //Le asigna un nickname si lo tiene
                                     if($scope.user.nickname!==null && $scope.user.nickname!==undefined)
@@ -126,10 +116,6 @@
                                     }
                                     //Va al perfil del usuario loggeado
                                     $state.go('usuarioDetail', {usuarioId:$scope.user.id}, {reload: true});
-                                },function(response)
-                                {
-                                    //Hubo un error al loggearse
-                                    console.log("Hubo un error de login");
                                 });
 
 

@@ -16,10 +16,11 @@
                         </div>
                         
                     </div>
+                    <p class="col-md-12" style="color: #D8000C" ng-if="!ctrl.verificarMultimedia()">No has seleccionado un archivo para la multimedia</p>
                     <div class="col-md-12">
                         <div class="widget-container" >
                             <div class="widget row image-tile">
-                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}" ng-click="ctrl.asignarRuta(record.ruta)">
+                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{'tile col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption!==record.ruta, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}" ng-click="ctrl.asignarRuta(record.ruta)">
                                     <p>{{record.ruta}}</p>
                                 </div>
                             </div>

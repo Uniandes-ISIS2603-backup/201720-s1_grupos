@@ -201,6 +201,70 @@ public class NoticiaLogicTest {
         {
             Assert.fail();
         }
+        NoticiaEntity test= new NoticiaEntity();
+        estaBien=true;
+        try
+        {
+            test.setInformacion(null);
+            logic.createEntity(test);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            test.setTitulo(null);
+            test.setInformacion("A");
+            logic.createEntity(test);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            test.setTitulo("A");
+            test.setAutor(null);
+            logic.createEntity(test);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            test.setAutor(new UsuarioEntity());
+            test.setGrupo(null);
+            logic.createEntity(test);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
         estaBien=true;
         try
         {
@@ -280,7 +344,11 @@ public class NoticiaLogicTest {
             {
                 test.setId((long)(Math.random()*100000));
             }
-            logic.deleteEntity(test.getId());
+            test.setAutor(dataU.get(0));
+            test.setGrupo(dataG.get(0));
+            test.setInformacion("A");
+            test.setTitulo("A");
+            logic.updateEntity(test.getId(),test);
         }
         catch(EJBException e)
         {
@@ -416,6 +484,7 @@ public class NoticiaLogicTest {
             Assert.assertTrue(found);
         }
     }
+    
     
     /**
      * Test of delete method, of class NoticiaLogic.
@@ -994,6 +1063,28 @@ public class NoticiaLogicTest {
         {
             Assert.fail();
         }
+    }
+   
+    /**
+     * Test of findAll method, of class NoticiaLogic.
+     */
+    @Test
+    public void testFindAllEmpty() {
+        try {
+            utx.begin();
+            clearData();
+            List<NoticiaEntity> list=logic.getAll();
+            Assert.assertEquals(0,list.size());
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+        
     }
     
     

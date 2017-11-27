@@ -95,6 +95,11 @@ public class EmpresaEntityTest {
         e2.setNit(e.getNit());
         Assert.assertFalse(e.equals(new UsuarioEntity()));
         Assert.assertTrue(e.equals(e2));
+        while(e2.equals(e))
+        {
+            e2.setNit((int)(Math.random()*1000));
+        }
+        Assert.assertFalse(e.equals(e2));
     }
     /**
      *

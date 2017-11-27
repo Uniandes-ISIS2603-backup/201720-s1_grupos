@@ -81,11 +81,8 @@
             
             $http.delete(fullContext).then(function(response)
                 { 
-                    console.log("ENTRA AL BORRADO");
                     $state.go('eventosList', {eventoId: response.data.id}, {reload: true});
                     //
-                }, function(error){
-                    console.log("HUBO UN ERROR");
                 });
             };
             

@@ -160,6 +160,8 @@ public class GrupoPersistenceTest {
         GrupoEntity resp = em.find(GrupoEntity.class, entity.getId());
         
         Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
     }
     
     /**
@@ -259,6 +261,18 @@ public class GrupoPersistenceTest {
         GrupoEntity newEntity = persistence.findByNombre(entity.getNombre());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        
+        //se genera un nombre que no existe
+        String miString = "pipo";
+        String nombre = data.get(0).getNombre();
+        for(GrupoEntity grupo : data) {
+            while(nombre.length()<= grupo.getNombre().length()) {
+                nombre = nombre.concat(miString);
+            }
+        }
+        
+        newEntity = persistence.findByNombre(nombre);
+        Assert.assertNull(newEntity);
     }
     
     /**

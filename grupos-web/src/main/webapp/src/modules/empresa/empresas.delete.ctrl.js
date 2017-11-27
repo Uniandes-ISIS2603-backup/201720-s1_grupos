@@ -8,7 +8,7 @@
         function ($scope, $http, usuariosContext, $state, empresaUsuarioContext) {
             //Función utilizada para borrar una empresa
             $scope.deleteEmpresa = function () {
-                $http.delete(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext, {}).then(function (response) {
+                $http.delete(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext, {}).then(function () {
                     $state.go('empresaNotFound', {reload: true});
                 });
             };

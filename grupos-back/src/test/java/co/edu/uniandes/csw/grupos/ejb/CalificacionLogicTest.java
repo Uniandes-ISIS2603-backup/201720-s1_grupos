@@ -187,10 +187,12 @@ public class CalificacionLogicTest {
             Assert.assertEquals(newEntity.getBlog().getId(),result.getBlog().getId());
             Assert.assertNotNull(result.getCalificador());
             Assert.assertEquals(newEntity.getCalificador().getId(),result.getCalificador().getId());
+            data.add(result);
         }
         catch(BusinessException e)
         {
             estaBien=false;
+            LOGGER.info(e.getMessage());
         }
         if(!estaBien)
         {
@@ -394,7 +396,10 @@ public class CalificacionLogicTest {
             Assert.fail();
         }
     }
-
+    /**
+     * Valida las reglas de negocio del método create.<br>
+     * @param newEntity Nueva entidad a crear.
+     */
     private void validarReglasNegocioCreate(CalificacionEntity newEntity) {
         boolean estaBien=true;
         try
@@ -416,11 +421,41 @@ public class CalificacionLogicTest {
             
             Assert.fail();
         }
-        
+        estaBien=true;
+        try
+        {
+            
+            logic.createEntity(null);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            
+            Assert.fail();
+        }
         estaBien=true;
         try
         {
             newEntity.setCalificacion(-1.0);
+            logic.createEntity(newEntity);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            newEntity.setCalificacion(6.0);
             logic.createEntity(newEntity);
         }
         catch(BusinessException e)
@@ -449,7 +484,11 @@ public class CalificacionLogicTest {
             Assert.fail();
         }    
     }
-    
+    /**
+     * Valida las reglas de negocio del update.<br>
+     * @param id Id de la entidad.<br>
+     * @param newEntity Nueva entidad para actualizar
+     */
     private void validarReglasNegocioUpdate(Long id,CalificacionEntity newEntity) {
         boolean estaBien=true;
         try
@@ -464,6 +503,22 @@ public class CalificacionLogicTest {
         }
         if(estaBien)
         {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            
+            logic.updateEntity(1l,null);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            
             Assert.fail();
         }
         estaBien=true;
@@ -532,6 +587,21 @@ public class CalificacionLogicTest {
         estaBien=true;
         try
         {
+            newEntity.setCalificacion(6.0);
+            logic.updateEntity(id,newEntity);
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
             newEntity.setCalificacion(2.0);
             newEntity.setFecha(null);
             logic.updateEntity(id,newEntity);
@@ -544,7 +614,32 @@ public class CalificacionLogicTest {
         if(estaBien)
         {
             Assert.fail();
-        }   
+        }
+        estaBien=true;
+        try
+        {
+            PodamFactory factory = new PodamFactoryImpl();
+            CalificacionEntity test=factory.manufacturePojo(CalificacionEntity.class);
+            while(data.indexOf(test)>=0)
+            {
+                test=factory.manufacturePojo(CalificacionEntity.class);
+            }
+            logic.updateEntity(test.getId(),test);
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        catch(BusinessException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=true;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
         estaBien=true;
         try
         {

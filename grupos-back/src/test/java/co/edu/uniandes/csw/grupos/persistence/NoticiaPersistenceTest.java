@@ -251,6 +251,7 @@ public class NoticiaPersistenceTest {
         }
     }
     
+    
     /**
      * Test of delete method, of class NoticiaPersistence.
      */
@@ -343,6 +344,27 @@ public class NoticiaPersistenceTest {
                 if(entidadAntigua.getComentarios().get(i).getId().equals(m.getId())) aceptado=true;
             }
             if(!aceptado) Assert.fail("No existe el comentario buscado");
+        }
+    }
+    /**
+     * Test of findAll method, of class NoticiaLogic.
+     */
+    @Test
+    public void testFindAllEmpty() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            List<NoticiaEntity> list=persistence.findAll();
+            Assert.assertEquals(0,list.size());
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         }
     }
 }

@@ -51,7 +51,7 @@ public class GrupoEntity implements Serializable{
     @JoinTable(name = "Usuario_Grupo",
         joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
         inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")}) 
-    private List<UsuarioEntity> miembros= new ArrayList<UsuarioEntity>();
+    private List<UsuarioEntity> miembros= new ArrayList<>();
     
     /**
      * Lista de administradores
@@ -61,35 +61,35 @@ public class GrupoEntity implements Serializable{
     @JoinTable(name = "Usuario_Admin",
         joinColumns = {@JoinColumn(name = "Usuario_ID", referencedColumnName = "id")}, 
         inverseJoinColumns = {@JoinColumn(name = "Grupo_ID", referencedColumnName = "id")})  
-    private List<UsuarioEntity> administradores= new ArrayList<UsuarioEntity>();
+    private List<UsuarioEntity> administradores= new ArrayList<>();
     
     /**
      * Lista de categorias
      */
     @PodamExclude
     @ManyToMany
-    private List<CategoriaEntity> categorias= new ArrayList<CategoriaEntity>();
+    private List<CategoriaEntity> categorias= new ArrayList<>();
     
     /**
      * Lista de blogs
      */
     @PodamExclude
     @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BlogEntity> blogsGrupo= new ArrayList<BlogEntity>();
+    private List<BlogEntity> blogsGrupo= new ArrayList<>();
     
     /**
      * Lista de noticias
      */
     @PodamExclude
     @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<NoticiaEntity> noticiasGrupo= new ArrayList<NoticiaEntity>();
+    private List<NoticiaEntity> noticiasGrupo= new ArrayList<>();
     
     /**
      * Lista de eventos
      */
     @PodamExclude
     @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EventoEntity> eventosGrupo= new ArrayList<EventoEntity>();
+    private List<EventoEntity> eventosGrupo= new ArrayList<>();
     
     /**
      * 
