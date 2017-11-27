@@ -1,5 +1,5 @@
 <div>
-  <h2 class="text-center">{{ vm.calendarTitle }}</h2>
+  <h2 class="text-center">{{calendarTitle}}</h2>
 
   <div class="row">
 
@@ -9,25 +9,25 @@
         <button
           class="btn btn-primary"
           mwl-date-modifier
-          date="vm.viewDate"
-          decrement="vm.calendarView"
-          ng-click="vm.cellIsOpen = false">
+          date="viewDate"
+          decrement="calendarView"
+          ng-click="cellIsOpen = false">
           Previous
         </button>
         <button
           class="btn btn-default"
           mwl-date-modifier
-          date="vm.viewDate"
+          date="viewDate"
           set-to-today
-          ng-click="vm.cellIsOpen = false">
+          ng-click="cellIsOpen = false">
           Today
         </button>
         <button
           class="btn btn-primary"
           mwl-date-modifier
-          date="vm.viewDate"
-          increment="vm.calendarView"
-          ng-click="vm.cellIsOpen = false">
+          date="viewDate"
+          increment="calendarView"
+          ng-click="cellIsOpen = false">
           Next
         </button>
       </div>
@@ -40,15 +40,15 @@
   <br>
 
   <mwl-calendar
-    events="vm.events"
-    view="vm.calendarView"
-    view-title="vm.calendarTitle"
-    view-date="vm.viewDate"
-    on-event-click="vm.eventClicked(calendarEvent)"
-    on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-    cell-is-open="vm.cellIsOpen"
+    events="events"
+    view="calendarView"
+    view-title="calendarTitle"
+    view-date="viewDate"
+    on-event-click="eventClicked(calendarEvent)"
+    on-event-times-changed="eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    cell-is-open="cellIsOpen"
     day-view-split="30"
-    cell-modifier="vm.modifyCell(calendarCell)">
+    cell-modifier="modifyCell(calendarCell)">
   </mwl-calendar>
   <div class="col-md-12" ui-view="detailView"></div>
   <button type="button" class ="btn btn-imfo" ui-sref="eventosDeGrupo">volver</button>
