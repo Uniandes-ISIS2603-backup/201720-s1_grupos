@@ -15,8 +15,7 @@
             $http.get("./data/archivos.json").then(function(response)
             {
                 $scope.archivos=response.data;
-                var i=0;
-                for(i=0;i<$scope.archivos.length;i++)
+                for(var i=0;i<$scope.archivos.length;i++)
                 {
                     $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
                 }
@@ -70,15 +69,14 @@
             {
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
-                $scope.selectedOption[index]=index+"-"+ruta;
+                $scope.selectedOption[index]=(index+1)+"-"+ruta;
             };
             /**
-             * Verifica que todas la multimedia tiene un mensaje asignado.<br>
+             * Verifica que todas los archivos multimedia tienen un ruta y nombre asignados.<br>
              * @return booleano para ver si todas las tienen o no.
              */
             this.verificarMultimedia=function()
             {
-                var i;
                 for(i=0;i<$scope.itemsToAdd.length;i++)
                 {
                     if($scope.itemsToAdd[i].ruta===null || $scope.itemsToAdd[i].ruta===undefined)
@@ -89,6 +87,24 @@
                     {
                         return false;
                     }
+                }
+                return true;
+            };
+            /**
+             * Verifica que la multimedia tiene una ruta y nombre.<br>
+             * @param itemToAdd Multimedia a verificar.<br>
+             * @return booleano para ver si todas las tienen o no.
+             */
+            this.verificarMultimediaIndividual=function(itemToAdd)
+            {
+                var i=$scope.itemsToAdd.indexOf(itemToAdd);
+                if($scope.itemsToAdd[i].ruta===null || $scope.itemsToAdd[i].ruta===undefined)
+                {
+                    return false;
+                }
+                if($scope.itemsToAdd[i].nombre===null || $scope.itemsToAdd[i].nombre===undefined)
+                {
+                    return false;
                 }
                 return true;
             };
@@ -109,6 +125,10 @@
              * Se crea el blog con un post.
              */
             $scope.createBlog = function() {
+                if(!this.verificarMultimedia())
+                {
+                    return;
+                }
                 controlBlog.addAll();
                 $http.post(grupoContext+'/'+$state.params.grupoId+'/'+blogContext, {
                     titulo: $scope.tituloBlog,
@@ -128,8 +148,7 @@
              */
             this.numeroActual=function(itemToAdd)
             {
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                return index;
+                return $scope.itemsToAdd.indexOf(itemToAdd)+1;
             };
             
         }

@@ -118,7 +118,7 @@
                 
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
-                $scope.selectedOption[index]=index+"-"+ruta;
+                $scope.selectedOption[index]=(index+1)+"-"+ruta;
             };
             /**
              * Retorna el número actual asignado.<br>
@@ -127,8 +127,7 @@
              */
             this.numeroActual=function(itemToAdd)
             {
-                var index=$scope.itemsToAdd.indexOf(itemToAdd);
-                return index;
+                return $scope.itemsToAdd.indexOf(itemToAdd)+1;
             };
             
             /**
@@ -137,8 +136,7 @@
              */
             this.verificarMultimedia=function()
             {
-                var i;
-                for(i=0;i<$scope.itemsToAdd.length;i++)
+                for(var i=0;i<$scope.itemsToAdd.length;i++)
                 {
                     if($scope.itemsToAdd[i].ruta===null || $scope.itemsToAdd[i].ruta===undefined)
                     {
@@ -148,6 +146,23 @@
                     {
                         return false;
                     }
+                }
+                return true;
+            };
+            /**
+             * Verifica que todas la multimedia tiene un mensaje asignado.<br>
+             * @return booleano para ver si todas las tienen o no.
+             */
+            this.verificarMultimediaIndividual=function(itemToAdd)
+            {
+                var i=$scope.itemsToAdd.indexOf(itemToAdd);
+                if($scope.itemsToAdd[i].ruta===null || $scope.itemsToAdd[i].ruta===undefined)
+                {
+                    return false;
+                }
+                if($scope.itemsToAdd[i].nombre===null || $scope.itemsToAdd[i].nombre===undefined)
+                {
+                    return false;
                 }
                 return true;
             };
@@ -202,55 +217,63 @@
              * @param {type} id
              */
             this.saveRecord = function (id) {
-                if(!$scope.esMiembro || !$scope.esAdmin)
+                if(!this.verificarMultimedia())
+                {
+                    return;
+                }
+                if(!$scope.esMiembro && !$scope.esAdmin)
                 {
                     error="El usuario no pertenece al grupo asociado";
                     $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                 }
-                currentRecord = $scope.currentRecord;
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (id === null || id===undefined) {
-                    this.addAll();
-                    currentRecord.multimedia=$scope.multimedia;
-                    
-                    currentRecord.autor=currentAutor;
-                    // ejecuta POST en el recurso REST
-                    return $http.post(fullContext, currentRecord)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiasList');
-                            },function(response){
-                                //Estado de error
-                                error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
-                            });
+                else
+                {
+                    currentRecord = $scope.currentRecord;
+                    // si el id es null, es un registro nuevo, entonces lo crea
+                    if (id === null || id===undefined) {
+                        this.addAll();
+                        currentRecord.multimedia=$scope.multimedia;
 
-                    // si el id no es null, es un registro existente entonces lo actualiza
-                } else {
-                    
-                    if(!$scope.esAutor)
-                    {
-                        $state.go('ERRORGRUPONOTICIA',{mensajeError: "No es el autor de la noticia"},{reload:true});
+                        currentRecord.autor=currentAutor;
+                        // ejecuta POST en el recurso REST
+                        return $http.post(fullContext, currentRecord)
+                                .then(function () {
+                                    // $http.post es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('grupoNoticiasList');
+                                },function(response){
+                                    //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
+                                });
+
+                        // si el id no es null, es un registro existente entonces lo actualiza
+                    } else {
+
+                        if(!$scope.esAutor)
+                        {
+                            $state.go('ERRORGRUPONOTICIA',{mensajeError: "No es el autor de la noticia"},{reload:true});
+                        }
+                        else
+                        {
+                            // ejecuta PUT en el recurso REST
+                                return $http.put(fullContext + "/" + $scope.currentRecord.id, currentRecord)
+                                .then(function () {
+                                    // $http.put es una promesa
+                                    // cuando termine bien, cambie de estado
+                                    $state.go('grupoNoticiasList');
+                                },function(response){
+                                    //Estado de error
+                                    error=response.data;
+                                    $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
+                                });
+                        }
+
+
                     }
-                    else
-                    {
-                        // ejecuta PUT en el recurso REST
-                            return $http.put(fullContext + "/" + $scope.currentRecord.id, currentRecord)
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('grupoNoticiasList');
-                            },function(response){
-                                //Estado de error
-                                error=response.data;
-                                $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
-                            });
-                    }
-                        
-                    
+                    ;
                 }
-                ;
+                
             };
             /**
              * Borra el registro con id dado.<br>
