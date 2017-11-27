@@ -22,7 +22,6 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             $scope.inscripcionGrupo = function () {
                 $http.post(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)
                 {
-                    var idGrupo=$scope.grupoActual.id;
                     //Se recarga en caso que funcione
                     $state.go('grupoDetail',{},{reload:true});
                     
@@ -301,8 +300,8 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     $scope.soyMiembro=soyMiembro;
                     
                     var soyAdmin = false;
-                    for (var i = 0; i<$scope.adminRecords.length; i++) {
-                        if (parseInt($scope.adminRecords[i].id) === parseInt($scope.idUsuarioActual)) {
+                    for (var j = 0; j<$scope.adminRecords.length; j++) {
+                        if (parseInt($scope.adminRecords[j].id) === parseInt($scope.idUsuarioActual)) {
                             soyAdmin = true;
                             break;
                         }
