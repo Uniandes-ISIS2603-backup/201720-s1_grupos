@@ -8,7 +8,6 @@
             $scope.viewDate = new Date();
             var actions = [];
             $scope.events = $scope.records;
-            
             for(var i = 0; i<$scope.events.length; i++) {
                 var event = $scope.events[i];
                 event.title = event.nombre;
@@ -22,11 +21,14 @@
             $scope.addEventCalendar = function() {
               
             };
-            
+            if($state.params.grupoId !== undefined){
             $scope.eventClicked = function(event) {
                 $state.go('eventoCalendarDetail', {eventoId: event.id}, {});
             };
-
+       }
+            $scope.eventClicked = function(event) {
+                $state.go('eventoCalendarDetailAdmin', {eventoId: event.id}, {});
+            };
 
 
                 }
