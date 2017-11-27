@@ -93,7 +93,7 @@ insert into LugarEntity(id,capacidad,direccion,nombre) values(1,20,'Dirección',
 insert into LugarEntity (id,capacidad,direccion,nombre) values (2,30,'Dirección1','Lugar');
 insert into LugarEntity (id,capacidad,direccion,nombre) values (3,40,'Dirección2','Lugar');
 --INFORMACiÓN EVENTO
-insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(1,'2017-08-07','2017-08-08','Evento',10,1);
+insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(1,'2017-08-08','2017-08-07','Evento',10,1);
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(2,'2017-08-09','2017-08-08','Evento',10,2);
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(3,'2017-08-10','2017-08-09','Evento',11,3);
 
