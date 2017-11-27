@@ -10,7 +10,7 @@
     /**
      * Configuración del módulo. Recibe el $stateProvider y el $urlRouterProvider para definir estados y un estado predefinido respectivamente.
      */
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             //Camino base de los archivos
             var basePath = 'src/modules/calificacions/';
             /**

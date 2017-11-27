@@ -10,7 +10,7 @@ var mod = ng.module("empresaModule");
             $http.get(usuariosContext + '/' + $state.params.usuarioId + '/' + empresaUsuarioContext).then(function (response) {
                 $scope.currentEmpresa = response.data;
                 $state.params.nitEmpresa = $scope.currentEmpresa.nit;
-            },function(response){
+            },function(){
                 //Si no se encuentra la empresa
                 $rootScope.alerts.pop();
                 $state.go('empresaNotFound', {reload: true});

@@ -3,7 +3,7 @@
     var mod = ng.module("empresaModule", ['usuarioModule', 'ui.router']);
 
     // Configuración de los estados del módulo
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/empresa/';
             // Mostrar la lista de empresas será el estado por defecto del módulo

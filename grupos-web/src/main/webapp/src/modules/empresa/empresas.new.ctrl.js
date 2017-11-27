@@ -19,7 +19,7 @@
                     nit: $scope.empresaNit,
                     nombre: $scope.empresaNombre,
                     logo: $scope.empresaLogo
-                }).then(function (response) {
+                }).then(function () {
                     //Empresa creada exitosamente
                     $state.go('empresaDetail', {reload: true});
                 });
