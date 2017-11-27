@@ -1,6 +1,6 @@
 <!-- Lista donde se mostrarán las categorias en un carrusel-->
 <div class="container-fluid">
-     <h1 class="col-md-12 text-center"><span style="font-size:50px;color:red;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">
+    <h1 class="col-md-12 text-center"><span style="font-size:50px;color:red;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">
             Categorias                 
         </span></h1>
     <!-- En caso de estar en un controlador de categoría, se muestra la opción para crear-->
@@ -9,7 +9,7 @@
             <a ui-sref="categoriaCreate" ng-if="puedoEditarCategorias()"><img src="data/plusR.png" style="width:50px;height:50px"></a>
         </div>                        
         <!-- Cuadro de búsqueda por tipo (nombre) exacto-->
-        <form ng-controler="buscarCategoria" class="col-md-10">
+        <form ng-controler="buscarCategoria" class="col-md-12 text-center" style="float: none;margin: 0 auto">
             <link rel="stylesheet" href="styles/search.css">
             <input type="text" id="search51" placeholder="Buscar por tipo" ng-model="buscarCategoriaValor"/>
             <a class="btn" ng-click="buscarPorTipo(buscarCategoriaValor)">
@@ -17,11 +17,12 @@
             </a>
         </form>
     </div>        
-         
+        
     <!-- Carrusel para mostrarlas, se muestra nombre, descripción e imagen-->
     <carousel interval="carruselCategorias" style="margin-top:150px">
         <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
-            <div class="col-md-4">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
                 <img src="data/{{categoria.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'" role="button" style="margin:auto;width:300px;height:300px;border:1px solid red">
             </div>
             <div class="col-md-5" >
@@ -32,9 +33,9 @@
                 <br>
                 <img src="data/verDetalles.png" class="img clickable" role="button" ui-sref="categoriaDetail2({categoriaId: categoria.id})" height="50" width="200" >
             </div>
-                
-            
+            <div class="col-md-2"></div>
+                    
         </slide>
     </carousel>
-    
+        
 </div>

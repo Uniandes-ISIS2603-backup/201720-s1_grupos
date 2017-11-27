@@ -6,8 +6,6 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             //Paths útiles
             var basePath = 'src/modules/grupo/';
-            var basePathCategorias = 'src/modules/categoria/';
-            var basePathUsuarios = 'src/modules/usuario/';
             
             //Estado general del que los demás heredan
             $stateProvider.state('grupos', {

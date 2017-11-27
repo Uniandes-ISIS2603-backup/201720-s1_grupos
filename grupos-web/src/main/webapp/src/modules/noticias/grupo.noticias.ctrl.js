@@ -13,8 +13,7 @@
             $http.get("./data/archivos.json").then(function(response)
             {
                 $scope.archivos=response.data;
-                var i=0;
-                for(i=0;i<$scope.archivos.length;i++)
+                for(var i=0;i<$scope.archivos.length;i++)
                 {
                     $scope.archivos[i].ruta="data/"+$scope.archivos[i].ruta;
                 }

@@ -14,7 +14,6 @@ import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.GrupoPersistence;
-import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
@@ -56,21 +55,22 @@ public class GrupoLogic {
     @Inject
     private EventoLogic eventoLogic;
     
+    private String errMsg = "No se encontró un grupo con el id: ";
+    
     /**
      *
-     * @param entity, entidad a guardarse en la DB
-     * @param id, id del usuario que creó el grupo
+     * @param newEntity, entidad a guardarse en la DB
      * @return el grupo recién creado
      * @throws BusinessException si ya existe un grupo con el mismo ID
      */
-    public GrupoEntity createGrupo(GrupoEntity entity) throws BusinessException {
+    public GrupoEntity createGrupo(GrupoEntity newEntity) throws BusinessException {
         // Verifica la regla de negocio que dice que no puede haber dos Grupoes con el mismo nombre
-        if (persistence.findByNombre(entity.getNombre()) != null) {
-            throw new BusinessException("Ya existe un grupo con el nombre \"" + entity.getNombre() + "\"");
+        if (persistence.findByNombre(newEntity.getNombre()) != null) {
+            throw new BusinessException("Ya existe un grupo con el nombre \"" + newEntity.getNombre() + "\"");
         }
         // Invoca la persistencia para crear la Grupo
-        persistence.create(entity);
-        entity=persistence.findByNombre(entity.getNombre());
+        persistence.create(newEntity);
+        GrupoEntity entity=persistence.findByNombre(newEntity.getNombre());
         return entity;
     }
     
@@ -79,9 +79,7 @@ public class GrupoLogic {
      * @return todos los grupos guardados
      */
     public List<GrupoEntity> getGrupos() {
-        
-        List<GrupoEntity> cities = persistence.findAll();
-        return cities;
+        return persistence.findAll();
     }
     
     /**
@@ -90,11 +88,10 @@ public class GrupoLogic {
      * @return grupo con el id dado por parámetro
      */
     public GrupoEntity getGrupo(Long id) {
-        System.out.println("la ID " + id);
         GrupoEntity grupo = persistence.find(id);
         if(grupo==null)
         {
-            throw new NotFoundException("No se encontró un grupo con el id: " + id);
+            throw new NotFoundException(errMsg + id);
         }
         return grupo;
     }
@@ -109,10 +106,9 @@ public class GrupoLogic {
         GrupoEntity grupo= persistence.find(entity.getId());
         if(grupo==null)
         {
-            throw new NotFoundException("No se encontró un grupo con el id: " + entity.getId());
+            throw new NotFoundException(errMsg + entity.getId());
         }
-        GrupoEntity newEntity = persistence.update(entity);
-        return newEntity;
+        return persistence.update(entity);
     }
     
     /**
@@ -123,7 +119,7 @@ public class GrupoLogic {
         GrupoEntity grupo= persistence.find(id);
         if(grupo==null)
         {
-            throw new NotFoundException("No se encontró un grupo con el id: " + id);
+            throw new NotFoundException(errMsg + id);
         }
         persistence.delete(id);
         
@@ -288,7 +284,7 @@ public class GrupoLogic {
         GrupoEntity grupoEntity = getGrupo(grupoId);
         UsuarioEntity usuarioEntity = usuarioLogic.findById(adminId);
         grupoEntity.getAdministradores().add(usuarioEntity);
-        GrupoEntity g= updateGrupo(grupoEntity);
+        updateGrupo(grupoEntity);
         return getAdmin(grupoId, adminId);
     }
     
@@ -414,7 +410,9 @@ public class GrupoLogic {
         NoticiaEntity noticia=noticiaLogic.getEntity(id);
         GrupoEntity grupoEntity = getGrupo(grupoId);
         int index=grupoEntity.getNoticiasGrupo().indexOf(noticia);
-        if(index<0) throw new NotFoundException("No existe la noticia en el grupo");
+        if(index<0) {
+            throw new NotFoundException("No existe la noticia en el grupo");
+        }
         entity.setId(id);
         entity.setGrupo(noticia.getGrupo());
         NoticiaEntity noticiaEntity = noticiaLogic.updateEntity(id,entity);
@@ -469,7 +467,7 @@ public class GrupoLogic {
      * @param eventoId, id del evento a vincularse con el grupo
      * @return el evento recién vinculado
      * @throws BusinessException, excepcion si no encuentra el evento
-     * @throws co.edu.uniandes.csw.grupos.exceptions.NotFoundException, excepción si no encuentra el evento
+     * @throws NotFoundException, excepción si no encuentra el evento
      */
     public EventoEntity addEvento(Long grupoId, Long eventoId) throws BusinessException {
         GrupoEntity grupoEntity = getGrupo(grupoId);
@@ -494,14 +492,8 @@ public class GrupoLogic {
         if(index < 0) {
             throw new NotFoundException("No existe el evento con el id dado en el grupo con id dado");
         }
-        try
-        {
-            eventoLogic.deleteEntity(eventoEntity);
-        }
-        catch (BusinessException e)
-        {
-            throw new NotFoundException(e.getMessage());
-        }
+        
+        eventoLogic.deleteEntity(eventoEntity);
         entity.getEventosGrupo().remove(eventoEntity);
         updateGrupo(entity);
         

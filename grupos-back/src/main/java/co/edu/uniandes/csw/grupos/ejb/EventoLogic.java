@@ -98,7 +98,7 @@ public class EventoLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException  Si no se encuentra.
      */
-    public void deleteEntity(EventoEntity entity) throws BusinessException
+    public void deleteEntity(EventoEntity entity)
     {
         EventoEntity eventoEntity = persistence.find(entity.getId());
         if(eventoEntity==null)
