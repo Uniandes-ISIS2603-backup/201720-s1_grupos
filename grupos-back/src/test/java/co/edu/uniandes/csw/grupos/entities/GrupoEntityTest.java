@@ -80,6 +80,7 @@ public class GrupoEntityTest {
         Assert.assertTrue(e.equals(e2));
         e2.setId(e2.getId()+1);
         Assert.assertFalse(e.equals(e2));
+        Assert.assertFalse(e.equals(null));
     }
     
     /**
