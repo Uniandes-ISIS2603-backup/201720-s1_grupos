@@ -278,6 +278,34 @@ public class LugarLogicTest {
         estaBien=true;
         try
         {
+            PodamFactory factory = new PodamFactoryImpl();
+            LugarEntity newEntity = factory.manufacturePojo(LugarEntity.class);
+
+            while(data.indexOf(newEntity)>=0)
+            {
+                newEntity = factory.manufacturePojo(LugarEntity.class);
+            }
+
+            logic.updateEntity(newEntity);
+
+        }
+        catch(EJBException e)
+        {
+            estaBien=false;
+            LOGGER.info(e.getMessage());
+        }
+        catch(BusinessException e)
+        {
+            estaBien=true;
+            LOGGER.info(e.getMessage());
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
             LugarEntity entity = data.get(0);
             PodamFactory factory = new PodamFactoryImpl();
             LugarEntity newEntity = factory.manufacturePojo(LugarEntity.class);
@@ -306,5 +334,36 @@ public class LugarLogicTest {
             Assert.fail();
         }
         
+    }
+    /**
+     * Prueba de borrar un lugar
+     */
+    @Test
+    public void testDelete()
+    {
+        boolean estaBien=true;
+        try
+        {
+            PodamFactory factory = new PodamFactoryImpl();
+            LugarEntity newEntity = factory.manufacturePojo(LugarEntity.class);
+
+            while(data.indexOf(newEntity)>=0)
+            {
+                newEntity = factory.manufacturePojo(LugarEntity.class);
+            }
+            logic.deleteEntity(newEntity.getId());
+
+        }
+        catch(EJBException e)
+        {
+            estaBien=false;
+            LOGGER.info(e.getMessage());
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        LugarEntity anterior=data.get(0);
+        Assert.assertEquals(anterior.isDisponibilidad(), !logic.deleteEntity(anterior.getId()).isDisponibilidad());
     }
 }

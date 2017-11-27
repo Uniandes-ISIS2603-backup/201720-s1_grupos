@@ -352,6 +352,34 @@ public class MultimediaLogicTest {
      */
     @Test
     public void testFind() {
+        boolean estaBien=true;
+        try
+        {
+            logic.getEntity(null);
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
+        estaBien=true;
+        try
+        {
+            logic.getEntity("");
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
         MultimediaEntity entity=data.get(0);
         MultimediaEntity found=logic.getEntity(entity.getLink());
         Assert.assertNotNull(found);
@@ -363,6 +391,26 @@ public class MultimediaLogicTest {
      */
     @Test
     public void testDelete() {
+        boolean estaBien=true;
+        PodamFactory factory= new PodamFactoryImpl();
+        MultimediaEntity test=factory.manufacturePojo(MultimediaEntity.class);
+        while(data.indexOf(test)>=0)
+        {
+            test=factory.manufacturePojo(MultimediaEntity.class);
+        }
+        try
+        {
+            logic.deleteEntity(test.getLink());
+        }
+        catch(EJBException e)
+        {
+            LOGGER.info(e.getMessage());
+            estaBien=false;
+        }
+        if(estaBien)
+        {
+            Assert.fail();
+        }
         MultimediaEntity entity= data.get(0);
         logic.deleteEntity(entity.getLink());
         MultimediaEntity deleted= em.find(MultimediaEntity.class,entity.getLink());

@@ -153,7 +153,6 @@ public class LugarPersistenceTest {
 
     /**
      * Prueba de obtener un lugar.<br>
-     * @ 
      */
     @Test
     public void getLugarTest() {
@@ -163,8 +162,18 @@ public class LugarPersistenceTest {
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
     /**
+     * Prueba de obtener un lugar por nombre
+     */
+    @Test
+    public void testGetLugarNombre()
+    {
+        LugarEntity entity = data.get(0);
+        LugarEntity newEntity = lugarPersistence.findByName(entity.getNombre());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+    }
+    /**
      * Prueba de actualizar un lugar
-     * @ 
      */
     @Test
     public void updateLugarTest() {
