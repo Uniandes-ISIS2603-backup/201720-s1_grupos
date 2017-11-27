@@ -78,6 +78,8 @@ public class GrupoEntityTest {
         e2.setId(e.getId());
         Assert.assertFalse(e.equals(new UsuarioEntity()));
         Assert.assertTrue(e.equals(e2));
+        e2.setId(e2.getId()+1);
+        Assert.assertFalse(e.equals(e2));
     }
     
     /**
