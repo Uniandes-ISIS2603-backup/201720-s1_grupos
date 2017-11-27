@@ -30,7 +30,6 @@
                 ,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'logout.html',
                         controller: 'logoutCtrl',
                         controllerAs:'ctrl'
                     }
