@@ -18,10 +18,6 @@
                 event.actions = actions;
             }
             $scope.cellIsOpen = true;
-
-            $scope.addEventCalendar = function() {
-              
-            };
             
             $scope.eventClicked = function(event) {
                 $state.go('eventoCalendarDetail', {eventoId: event.id}, {});
