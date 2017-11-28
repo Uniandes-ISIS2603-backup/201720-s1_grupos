@@ -1,30 +1,22 @@
 <!-- Lista donde se mostrarán las que no pertecen a un grupo para decidir si se agregan a este o no-->
 <div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label>Lista de categorias para asociar</label></div>
-            <div class="panel-body">
-                <div class="col-md-8">
-                        <div class="container">                             
-                         <!-- Muestra el nombre, descripción y foto de la categoría-->     
-                        <div class="panel panel-default" ng-repeat="categoria in categoriaRecords">
-                            <div class="panel-body"> 
-                                <div class="col-md-9">
-                                    <h3 id="{{$index}}-name">{{categoria.tipo}}</h3>
-                                    <img class=" img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
-                                    <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
-                                </div>
-                                 <!-- Si se oprime aquí, se agrega esta categoría al grupo-->     
-                                <div class="col-md-3">
-                                    <a class="btn btn-success btn-lg" ng-click="asociarCategoria(categoria.id)" >Asociar esta :D</a>
-                                </div>
-                            </div>
-                        </div>
+    <h1>Lista de categorias para asociar</h1>
+                
+    <div class="col-md-8">
+        <div class="container">                             
+            <!-- Muestra el nombre, descripción y foto de la categoría-->     
+            <div class="panel panel-default col-md-8" ng-repeat="categoria in categoriaRecords">
+                <div class="panel-body"> 
+                    <div class="col-md-9">
+                        <h3 id="{{$index}}-name">{{categoria.tipo}}</h3>
+                        <img class=" img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" role="button" ui-sref="categoriaDetail({categoriaId: categoria.id})">
+                        <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
+                                    
+                        <a class="btn btn-success btn-lg" ng-click="asociarCategoria(categoria.id)" >Asociar esta :D</a>
                     </div>
+                    <!-- Si se oprime aquí, se agrega esta categoría al grupo-->     
                 </div>
             </div>
         </div>
     </div>
-        
-        
 </div>

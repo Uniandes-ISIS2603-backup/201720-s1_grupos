@@ -19,7 +19,7 @@
                     </a>
                 </form>
             </div>        
-            
+                
             <!-- Carrusel para mostrarlas, se muestra nombre, descripción e imagen-->
             <carousel interval="carruselCategorias" style="margin-top:150px">
                 <slide ng-repeat="categoria in categoriaRecords" active="slide.active">
@@ -33,10 +33,10 @@
                         <br>
                         <p>{{categoria.descripcion}}</p>
                         <br>
-                        <img src="data/verDetalles.png" class="img clickable" role="button" ui-sref="categoriaDetail2({categoriaId: categoria.id})" height="50" width="200" >
+                        <button role="button" class="btn outlineC" ui-sref="categoriaDetail2({categoriaId: categoria.id})" height="50" width="170" style="font-size:16px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Ver detalles</button>
                     </div>
                     <div class="col-md-2"></div>
-                    
+                        
                 </slide>
             </carousel>
         </div>  

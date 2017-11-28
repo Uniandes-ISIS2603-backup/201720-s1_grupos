@@ -74,3 +74,41 @@ body {
 .subir{
     height: 0px;
 }
+
+.btn.outline {
+    background: none;
+    padding: 12px 22px;
+}
+.btn.outline {
+    border: 2px solid ;
+    color: #63595C;
+}
+.btn.outline:hover, .btn.outline:focus, .btn.outline:active, .btn.outline.active, .open > .dropdown-toggle.btn{
+    color: white;
+    border-color: #636969;
+    background: #63595C;
+}
+.btn.outline:active, .btn.outline.active {
+    border-color: #63595C;
+    color: white;
+    box-shadow: none;
+}
+
+.btn.outlineC {
+    background: none;
+    padding: 12px 22px;
+}
+.btn.outlineC {
+    border: 2px solid ;
+    color: #b25c45;
+}
+.btn.outlineC:hover, .btn.outlineC:focus, .btn.outlineC:active, .btn.outlineC.active, .open > .dropdown-toggle.btn-primary {
+   color: white;
+   border-color: #875f54;
+    background: #b25c45;
+}
+.btn.outlineC:active, .btn.outlineC.active {
+    border-color: #b25c45;
+     color: white;
+    box-shadow: none;
+}
