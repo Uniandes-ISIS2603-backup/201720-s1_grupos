@@ -8,7 +8,6 @@
             $scope.viewDate = new Date();
             var actions = [];
             $scope.events = $scope.records;
-            
             for(var i = 0; i<$scope.events.length; i++) {
                 var event = $scope.events[i];
                 event.title = event.nombre;
@@ -18,15 +17,30 @@
                 event.actions = actions;
             }
             $scope.cellIsOpen = true;
-            
-            $scope.eventClicked = function(event) {
-                $state.go('eventoCalendarDetail', {eventoId: event.id}, {});
+
+
+            $scope.addEventCalendar = function() {
+              
             };
+            if($state.params.grupoId !== undefined){
+                $scope.eventClicked = function(event) {
+                    $state.go('eventoCalendarDetail', {eventoId: event.id}, {});
+                };
+            }
+            else if($state.params.usuarioId !== undefined){
+                $scope.eventClicked = function(event) {
+                    $state.go('eventoCalendarDetailUsuario', {eventoId: event.id}, {});
+                };
+            }
+            else {
+            $scope.eventClicked = function(event) {
+                $state.go('eventoCalendarDetailAdmin', {eventoId: event.id}, {});
+            };
+        }
 
 
-
-                }
-            ]);
+        }
+    ]);
 }
-)(angular);
+        )(angular);
 

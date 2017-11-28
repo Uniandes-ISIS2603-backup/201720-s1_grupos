@@ -17,6 +17,21 @@
   opacity: 1;
 }
 
+.letra
+{
+    font-family: helvefont-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  /*color: #394552;*/
+  color:white;
+}
+
+.miMenu {
+    color: white;
+}
+
+
 /********************************/
 /*          Hero Headers        */
 /********************************/
@@ -58,6 +73,11 @@
          -o-transition: 2s all ease-in-out .1s; 
             transition: 2s all ease-in-out .1s;    
 }
+
+.fondo{
+    background-image: url("../data/background.png");
+}
+
 
 /********************************/
 /*            Overlay           */

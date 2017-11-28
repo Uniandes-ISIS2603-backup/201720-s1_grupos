@@ -1,15 +1,19 @@
 (function (ng) {
     var mod = ng.module("eventoModule");
     mod.constant("eventoContext", "Stark/eventos");
-    mod.controller('eventoCtrl', ['$scope', '$http', 'eventoContext','$state',
-        function ($scope, $http, eventoContext,$state) {
+    mod.constant("usuariosContext", "Stark/usuarios");
+    mod.controller('eventoCtrl', ['$scope', '$http', 'eventoContext','usuariosContext','$state',
+        function ($scope, $http, eventoContext,usuariosContext,$state) {
             $scope.deGrupo=false;
             $scope.inscrito= false;
+            $scope.eventoUsuario = false;
             //Indica el usuario logeado actual
             $scope.idUsuarioActual=sessionStorage.getItem("id");
+            if($state.params.usuarioId === undefined){
             $http.get(eventoContext).then(function (response) {
-                $scope.eventosRecords = response.data;
+                $scope.records = response.data;
             });
+        }
             $scope.inscripcionUsuario = function() {
                 $http.post(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
                     var idEvento = $scope.currentEvento.id;
@@ -26,7 +30,6 @@
                 {
                 });
             };
-            
             /**
              * indica si se pueden editar los eventos
              * @returns {Boolean} true si se pueden editar los eventos, false de lo contrario.
@@ -34,6 +37,14 @@
             $scope.puedoEditarEventos = function() {
                 return sessionStorage.getItem("rol") === 'Administrador';
             };
+            console.log("ENTRA")
+            if ($state.params.usuarioId !== undefined) {
+                $http.get(usuariosContext + '/' + $scope.idUsuarioActual).then(function (response) {
+                    $scope.usuarioActual = response.data;
+                    $scope.records = $scope.usuarioActual.eventos;
+                    $scope.eventoUsuario = true;
+                });
+            }
             var inscrito = false;
             if ($state.params.eventoId !== undefined) {
                 $http.get(eventoContext + '/' + $state.params.eventoId).then(function (response) {
@@ -50,6 +61,7 @@
                             $scope.inscrito = inscrito;
                 });
             }
+            
         }
     ]);
 }

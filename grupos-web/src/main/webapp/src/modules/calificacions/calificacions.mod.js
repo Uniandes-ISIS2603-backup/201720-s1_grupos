@@ -60,10 +60,10 @@
                     }
                 }
             }).state('calificacionCreate', {
-                url: '/calificacions/create',
-                parent:'blogDetail',
+                url: '/create',
+                parent:'calificacionsList',
                 views: {
-                    'childrenView': {
+                    'detailView': {
                         controller: 'calificacionsCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'calificacions.create.html'
@@ -71,46 +71,46 @@
                 }
 
             }).state('calificacionEdit', {
-                url: '/calificacions/:calificacionId',
-                parent:'blogDetail',
+                url: '/edit/:calificacionId',
+                parent:'calificacionsList',
 
                 param: {
                     calificacionId: null
                 },
                 views: {
-                    'childrenView': {
+                    'detailView': {
                         controller: 'calificacionsCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'calificacions.create.html'
                     }
                 }
             }).state('calificacionDelete', {
-                url: '/calificacions/delete/:calificacionId',
-                parent:'blogDetail',
+                url: '/delete/:calificacionId',
+                parent:'calificacionsList',
                 param: {
                     calificacionId: null
                 },
                 views: {
-                    'childrenView': {
+                    'detailView': {
                         controller: 'calificacionsCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'calificacion.delete.html'
                     }
                 }
             }).state('calificacionDetail',{
-                url:'/calificacions/:calificacionId/detail',
-               parent:'blogDetail',
+                url:'/detail/:calificacionId',
+               parent:'calificacionsList',
 
                 param:{
                     calificacionId:null
                 },
                 views:{
-                        'childrenView': {
-                        controller: 'calificacionsCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'calificacions.detail.html'
-                            }
+                    'detailView': {
+                    controller: 'calificacionsCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'calificacions.detail.html'
                         }
+                    }
             });
         }]);
 

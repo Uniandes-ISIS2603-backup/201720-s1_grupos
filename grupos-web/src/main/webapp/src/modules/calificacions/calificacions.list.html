@@ -7,13 +7,12 @@
                     <div ng-show="esMiembro || esAdmin">
                         <a class="btn" id="add-btn" ui-sref="calificacionCreate"><img src="data/plusN.png" style="width:50px;height:50px"></a>
                     </div>
-                <div class="col-md-8">
+                <div class="col-md-4 col-sm-4 col-lg-4">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>Calificación</th>
-                                <th></th>
                                 <th>Fecha</th>
                             </tr>
                         </thead>
@@ -21,13 +20,14 @@
                         <tbody>
                             <tr ng-repeat="record in records">
                                 <td id="{{$index}}-calificador">{{record.calificador.nombre}}</td>
-                                <td id="{{$index}}-calificacion">{{record.calificacion}}</td>
-                                <td><button id="{{$index}}-detail-btn" class="btn btn-info" ui-sref="calificacionDetail({calificacionId:record.id})"> Ver</button></td>
+                                <td id="{{$index}}-calificacion"><a ui-sref="calificacionDetail({calificacionId:record.id})">{{record.calificacion}}</a></td>
                                 <td id="{{$index}}-fecha">{{record.fecha|date:'yyyy-MM-dd'}}</td>
                             </tr>
                         </tbody>
                     </table>
                     
+                </div>
+                <div class="col-md-8 col-sm-8 col-lg-8" ui-view="detailView">
                 </div>
             </div>
         </div>

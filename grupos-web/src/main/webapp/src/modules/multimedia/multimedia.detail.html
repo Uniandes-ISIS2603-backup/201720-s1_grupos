@@ -1,40 +1,15 @@
-<style>
-    a#unico:hover{
-        color:white
-    }
-    a#unico:link{
-        color:white
-    }
-    a#unico:visited{
-        color:white
-    }
-    a#unico:unvisited{
-        color:white
-    }
-</style>
 <div class="container-fluid" ui-view="multimediaListView">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading" ng-show="{{esMultimediaNoticia && deGrupo}}">
-                <a id="unico" ui-sref="grupoNoticiaMultimediaList">Multimedia</a>
-            </div>
-            <div class="panel-heading" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
-                <a id="unico" ui-sref="usuarioNoticiaMultimediaList">Multimedia</a>
-            </div>
-            <div class="panel-heading" ng-show="{{esMultimediaBlog}}">
-                <a id="unico" ui-sref="blogMultimediaList">Multimedia</a>
-            </div>
-            <div class="panel-heading" ng-show="{{esMultimediaNoticia}}">
-                <a id="unico" ui-sref="noticiaNoEditableMultimediaList">Multimedia</a>
-            </div>
             <div class="panel-body">
-                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
                     <table class="table table-striped">
                         <tbody>
                                  <tr><td id="{{$index}}-nombre">{{currentMultimedia.nombre}}</td></tr>
                                  <tr> <td id="{{$index}}-descripcion">{{currentMultimedia.descripcion}}</td></tr>
                                  <tr> <td id="{{$index}}-link">{{currentMultimedia.link}}</td></tr>
                                 <tr> 
+                                    
                                     <div ng-show="{{ctrl.esAutor()}}">
                                         <div ng-show="esMiembro || esAdmin">
                                             <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
@@ -58,12 +33,26 @@
                         </tbody>
                     </table>
                 </div>
-                <div col-md-12 col-lg-12 col-sm-12 col-xs-12>
-                    <div class="thumbnail">
-                        <embed name="plugin" src="{{currentMultimedia.ruta}}">
-                    </div>
+                
+                <!--Ruta de la multimedia-->
+                <iframe name="plugin" class="col-md-8 col-lg-8 col-sm-8 col-xs-8" src="{{currentMultimedia.ruta}}"></iframe>
+                <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaNoticia && deGrupo}}">
+                    <button class="btn btn-default" ui-sref="grupoNoticiaMultimediaList">Volver</button>
+                </div>
+                <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
+                    <button class="btn btn-default" ui-sref="usuarioNoticiaMultimediaList">Volver</button>
+                </div>
+                <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaBlog}}">
+                    <button class="btn btn-default" ui-sref="blogMultimediaList">Volver</button>
+                </div>
+                <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaNoticia && !deGrupo && !esNoticiaUsuario}}">
+                    <button class="btn btn-default" id="unico" ui-sref="noticiaNoEditableMultimediaList">Volver</button>
                 </div>
             </div>
+            
         </div>
+        
+        
     </div>
+    
 </div>

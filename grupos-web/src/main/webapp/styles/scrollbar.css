@@ -9,9 +9,9 @@
 
 .scrollL {
     overflow-y: scroll;  
-    width: 600px;
+    width: 700px;
     height: 600px;
-    margin: 50px;
+    margin-right: 1000px;
 }
 /* Let's get this party started */
 .scroll::-webkit-scrollbar {
