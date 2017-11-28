@@ -52,7 +52,6 @@
                 cell-modifier="modifyCell(calendarCell)">
             </mwl-calendar>
             <div class="col-md-12" ui-view="detailView"></div>
-            <p>A {{eventoUsuario}} B</p>
             <button type="button" class ="btn btn-imfo" ui-sref="eventosDeGrupo" ng-if="deGrupo && !eventoUsuario">volver</button>
             <button type="button" class ="btn btn-imfo" ui-sref="eventosList" ng-if="!deGrupo && !eventoUsuario">volver</button>
             <button type="button" class ="btn btn-imfo" ui-sref="eventosDeUsuario" ng-if="!deGrupo && eventoUsuario">volver</button>
