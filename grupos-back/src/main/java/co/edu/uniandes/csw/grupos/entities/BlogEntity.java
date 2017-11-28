@@ -220,10 +220,7 @@ public class BlogEntity implements Serializable {
             return false;
         }
         final BlogEntity other = (BlogEntity) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
     /**
      * hashcode generado.<br>

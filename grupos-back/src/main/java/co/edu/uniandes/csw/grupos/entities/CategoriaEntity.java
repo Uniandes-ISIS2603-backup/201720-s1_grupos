@@ -52,7 +52,7 @@ public class CategoriaEntity implements Serializable {
      */
     @PodamExclude
     @ManyToMany(mappedBy = "categorias")
-    private List<GrupoEntity> grupos= new ArrayList<GrupoEntity>();
+    private List<GrupoEntity> grupos= new ArrayList<>();
     
     /**
      * 
@@ -146,10 +146,7 @@ public class CategoriaEntity implements Serializable {
             return false;
         }
         final CategoriaEntity other = (CategoriaEntity) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
     
     /**
