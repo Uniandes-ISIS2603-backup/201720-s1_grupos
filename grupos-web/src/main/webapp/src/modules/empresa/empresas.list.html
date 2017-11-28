@@ -1,11 +1,15 @@
 <div class="container-fluid">
-    <h1>Empresas Asociadas</h1>
-    <div class="row">
-        <div class="col-md-2" ng-repeat="empresa in empresasRecords">
-            <div class="thumbnail">     
-                 <img class="img-responsive" ng-src="data/{{empresa.logo}}" alt="{{empresa.logo}}" />                  
-                <div class="caption text-center">
-                    <p>{{empresa.nombre}}</p>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1>Empresas Asociadas</h1>
+            <div class="row">
+                <div class="col-md-2" ng-repeat="empresa in empresasRecords">
+                    <div class="thumbnail">     
+                        <img class="img-responsive" ng-src="data/{{empresa.logo}}" alt="{{empresa.logo}}" />                  
+                        <div class="caption text-center">
+                            <p>{{empresa.nombre}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

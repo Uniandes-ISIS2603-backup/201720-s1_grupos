@@ -17,6 +17,11 @@
   opacity: 1;
 }
 
+.letra
+{
+    font-family: helvefont-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
 /********************************/
 /*          Hero Headers        */
 /********************************/
@@ -58,6 +63,11 @@
          -o-transition: 2s all ease-in-out .1s; 
             transition: 2s all ease-in-out .1s;    
 }
+
+.fondo{
+    background-image: url("../data/background.png");
+}
+
 
 /********************************/
 /*            Overlay           */
