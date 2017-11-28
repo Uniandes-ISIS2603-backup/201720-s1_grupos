@@ -256,12 +256,11 @@
                     
                 <li  class="nav-item"role="navigation"><a class="nav-link active miMenu" ui-sref="lugaresList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Lugares</a></li>
                     
-                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="empresasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Empresas</a></li>  
+                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="empresasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Empresas</a></li>            
                     
-                <div ng-if="puedoVerDetallesGrupo()">
-                    <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="usuariosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Usuarios</a></li>                       
-                </div>
-                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="patrociniosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Patrocinios</a></li>
+                <li class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="usuariosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Usuarios</a></li>                       
+                
+                <li  class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="patrociniosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Patrocinios</a></li>
                     
                 <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="usuarioDetail({usuarioId:id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mi perfil</a></li>
                     
