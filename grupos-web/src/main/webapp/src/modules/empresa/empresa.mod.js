@@ -29,7 +29,7 @@
                 },
                 data: {
                     requireLogin: true,
-                    roles: []
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('empresasList', {
                 // Url que aparecerá en el browser
@@ -56,7 +56,7 @@
                 },
                 data: {
                     requireLogin: true,
-                    roles: []
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('empresaDetail', {
                 url: '/empresa',

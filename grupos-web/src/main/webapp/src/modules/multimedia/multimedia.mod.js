@@ -4,7 +4,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
 //Constante del contexto de multimedia
     mod.constant("multimediaContext", "multimedia");
     //Configuración con $stateProvider, $urlRouterProvider
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             //Ruta base
             var basePath = 'src/modules/multimedia/';
             /**

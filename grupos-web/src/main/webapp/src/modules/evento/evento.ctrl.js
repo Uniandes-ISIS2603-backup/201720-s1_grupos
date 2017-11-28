@@ -37,7 +37,6 @@
             $scope.puedoEditarEventos = function() {
                 return sessionStorage.getItem("rol") === 'Administrador';
             };
-            console.log("ENTRA")
             if ($state.params.usuarioId !== undefined) {
                 $http.get(usuariosContext + '/' + $scope.idUsuarioActual).then(function (response) {
                     $scope.usuarioActual = response.data;

@@ -256,7 +256,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             };
             
              $scope.puedoVerDetallesGrupo = function() {
-                return $scope.soyAdmin || $scope.soyMiembro;
+                return $scope.soyAdmin || $scope.soyMiembro || (sessionStorage.getItem("rol") === 'Administrador');
             };
             
             /**

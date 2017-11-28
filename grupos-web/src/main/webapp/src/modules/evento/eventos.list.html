@@ -1,10 +1,9 @@
 <div class="container-fluid" ui-view="calendarView">
     <div class="panel panel-default">
         <div class="panel-body">
-               <h1 class="text-center">Eventos</h1>
+            <h1 class="text-center">Eventos</h1>
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" >
                 <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{deGrupo}}">
-                    <h1>Eventos</h1>
                     <a class="btn" ui-sref="eventosCreate({grupoId: idGrupo})"><img src="data/plusA.png" style="width:50px;height:50px" ng-if="puedoEditarGrupo()"></a>
                 </div>
             </div>
@@ -12,10 +11,10 @@
                 <table class="table table-striped text-center">
                     <thead>
                         <tr >
-                            <th class="text-center" style="background: #394552;color:white">Nombre</th>    
-                            <th class="text-center" style="background: #394552;color:white">Fecha Inicio</th>  
-                            <th class="text-center" style="background: #394552;color:white">Fecha Fin</th>
-                            <th class="text-center" style="background: #394552;color:white"></th>
+                            <th class="text-center fondoPanel" >Nombre</th>    
+                            <th class="text-center fondoPanel" >Fecha Inicio</th>  
+                            <th class="text-center fondoPanel" >Fecha Fin</th>
+                            <th class="text-center fondoPanel" ></th>
                         </tr>
                     </thead>
                     <tbody>

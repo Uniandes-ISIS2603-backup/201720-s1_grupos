@@ -3,8 +3,8 @@
     var mod = ng.module("usuarioModule");
     //se determina el contexto del usuario
     mod.constant("usuarioContext", "Stark/usuarios");
-    mod.controller('usuarioCtrl', ['$scope', '$http', 'usuarioContext', '$state','$rootScope',
-        function ($scope, $http, usuarioContext, $state,$rootScope) {
+    mod.controller('usuarioCtrl', ['$scope', '$http', 'usuarioContext', '$state',
+        function ($scope, $http, usuarioContext, $state) {
             $scope.deGrupo=false;
             //Busca todos los usuarios que tiene la aplicación
             $http.get(usuarioContext).then(function (response) {
