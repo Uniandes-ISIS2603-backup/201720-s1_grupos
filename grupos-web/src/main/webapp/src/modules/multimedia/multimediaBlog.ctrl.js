@@ -7,7 +7,6 @@
      */
     mod.controller('multimediaBlogCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
             var error="";
-           var link="";
            var currentMultimedia={};
            var multimediaList=[];
             //Inicialización de rutas de la multimedia
@@ -72,7 +71,7 @@
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el id del parámetro
-                link = $state.params.multimediaLink;
+                var link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext+"/"+ link)
                         .then(function (response) {

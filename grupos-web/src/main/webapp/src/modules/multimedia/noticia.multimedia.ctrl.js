@@ -6,7 +6,6 @@
      */
     mod.controller('noticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext', function ($scope, $state, $http, multimediaContext,noticiasContext, globalContext) {
             var error="";
-           var link="";
             
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
@@ -34,7 +33,7 @@
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el link del parámetro
-                link = $state.params.multimediaLink;
+                var link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext+"/"+ link)
                         .then(function (response) {
