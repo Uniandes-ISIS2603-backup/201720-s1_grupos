@@ -17,26 +17,30 @@
                 event.actions = actions;
             }
             $scope.cellIsOpen = true;
-<<<<<<< HEAD
-            
-=======
+
 
             $scope.addEventCalendar = function() {
               
             };
             if($state.params.grupoId !== undefined){
->>>>>>> Sebastian_2.0
-            $scope.eventClicked = function(event) {
-                $state.go('eventoCalendarDetail', {eventoId: event.id}, {});
-            };
-       }
+                $scope.eventClicked = function(event) {
+                    $state.go('eventoCalendarDetail', {eventoId: event.id}, {});
+                };
+            }
+            else if($state.params.usuarioId !== undefined){
+                $scope.eventClicked = function(event) {
+                    $state.go('eventoCalendarDetailUsuario', {eventoId: event.id}, {});
+                };
+            }
+            else {
             $scope.eventClicked = function(event) {
                 $state.go('eventoCalendarDetailAdmin', {eventoId: event.id}, {});
             };
+        }
 
 
-                }
-            ]);
+        }
+    ]);
 }
-)(angular);
+        )(angular);
 
