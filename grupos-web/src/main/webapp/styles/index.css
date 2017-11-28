@@ -22,6 +22,15 @@
     font-family: helvefont-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
+.nav > li > a:hover, .nav > li > a:focus {
+  color: #394552;
+}
+
+.miMenu {
+    color: white;
+}
+
+
 /********************************/
 /*          Hero Headers        */
 /********************************/
