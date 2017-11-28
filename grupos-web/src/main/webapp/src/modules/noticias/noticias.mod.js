@@ -254,7 +254,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
                 }
             }).state('noticiaNoEditableDetail',{
                 url:'/:noticiaId/exhibicion',
-                parent:'noticias',
+                parent:'noticiasExhibicion',
                 param: {
                     
                 },
