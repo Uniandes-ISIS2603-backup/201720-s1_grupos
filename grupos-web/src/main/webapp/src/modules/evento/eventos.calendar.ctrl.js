@@ -1,8 +1,16 @@
 (function (ng) {
     var mod = ng.module("eventoModule");
-    mod.controller('eventosCalendarCtrl', ['$scope', '$http', 'eventoContext','$state',
-        function ($scope, $http, eventoContext,$state, moment, alert, calendarConfig) {
+    mod.controller('eventosCalendarCtrl', ['$scope', '$http', 'usuariosContext','$state',
+        function ($scope, $http, usuariosContext,$state, moment, alert, calendarConfig) {
             
+            //Verifica si es usuario de calendario o no
+            if ($state.params.usuarioId !== undefined) {
+                $http.get(usuariosContext + '/' + $scope.idUsuarioActual).then(function (response) {
+                    $scope.usuarioActual = response.data;
+                    $scope.records = $scope.usuarioActual.eventos;
+                    $scope.eventoUsuario = true;
+                });
+            }
             //These variables MUST be set as a minimum for the calendar to work
             $scope.calendarView = 'month';
             $scope.viewDate = new Date();
