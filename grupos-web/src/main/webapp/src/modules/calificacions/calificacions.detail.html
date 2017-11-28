@@ -1,15 +1,11 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-3 col-lg-3 col-sm-3">
             <dl> 
                 <hr>
                 <dt>Calificador</dt>
-                <dd>{{currentRecord.calificador.nombre}}- {{currentRecord.calificador.apellido}}</dd>
-                
-                <div style="float:right; border-radius: 50%; behavior: url(PIE.htc); /* remove if you don't care about IE8 */  width: 72px; height: 72px;padding: 8px;background: #fff;border: 2px solid #666;color: #666;text-align: center;font: 32px Arial, sans-serif;"
-                    <p>{{currentRecord.calificacion}}</p>
-                </div>
+                <dd>{{currentRecord.calificador.nombre}}-{{currentRecord.calificador.apellido}}</dd>
                 
                 <hr>
                 <dd>{{currentRecord.fecha| date:'yyyy-MM-dd'}}</dd>
@@ -17,14 +13,20 @@
                 <hr>
                 <dd>
                     <div ng-show="esMiembro || esAdmin">
-                        <div ng-show="{{ctrl.esAutor()}}">
+                        <div ng-show="ctrl.esAutor()">
                             <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span></button>
                             <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="calificacionDelete({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span></button>
                         </div>
                     </div>
                    
                 </dd>
-            </dl>
+        </div>
+        <div class="col-md-3 col-xs-3 col-lg-3 col-sm-3">
+            <div style="float:right; border-radius: 50%; behavior: url(PIE.htc); /* remove if you don't care about IE8 */  width: 72px; height: 72px;padding: 8px;background: #fff;border: 2px solid #666;color: #666;text-align: center;font: 32px Arial, sans-serif;"
+                    <p>{{currentRecord.calificacion}}</p>
+            </div>
+        </div>
+                
             <div class="col-md-12">
                     <div class="col-md-12">
                         <button id="return-btn" class="btn btn-info" ui-sref="calificacionsList">Volver a calificaciones</button>

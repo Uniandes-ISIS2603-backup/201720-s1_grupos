@@ -31,7 +31,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                 url: '/multimedia',
                 parent: 'noticiaNoEditableDetail',
                 views: {
-                    'noticiaMultimediaView': {
+                    'comentarioView': {
                         controller: 'noticiaMultimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.list.html'
@@ -56,7 +56,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                     mensaje:null
                 },
                 views: {
-                    'noticiaMultimediaView': {
+                    'comentarioView': {
                         ontroller: 'noticiaMultimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.error.html'
@@ -66,7 +66,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                 url: '/multimedia/editable',
                 parent: 'usuarioNoticiaDetail',
                 views: {
-                    'noticiaMultimediaView': {
+                    'comentarioView': {
                         controller: 'usuarioNoticiaMultimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.list.html'
@@ -125,7 +125,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                     mensaje:null
                 },
                 views: {
-                    'noticiaMultimediaView': {
+                    'comentarioView': {
                         controller: 'usuarioNoticiaMultimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.error.html'
@@ -139,7 +139,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                     miembro:null
                 },
                 views: {
-                    'noticiaMultimediaView': {
+                    'comentarioView': {
                         controller: 'grupoNoticiaMultimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.list.html'
@@ -201,7 +201,7 @@ var mod = ng.module("multimediaModule", ["noticiasModule","blogModule","ui.route
                     mensaje:null
                 },
                 views: {
-                    'noticiaMultimediaView': {
+                    'comentarioView': {
                         controller: 'grupoNoticiaMultimediaCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'multimedia.error.html'
