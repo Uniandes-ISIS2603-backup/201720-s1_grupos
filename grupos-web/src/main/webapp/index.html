@@ -179,12 +179,13 @@
 </div>  
     -->
     <body class="letra">
-        <div class="row mainHeader " style="margin-right: 0px; margin-left: 0px;background: #394552">
+        <div class="row mainHeader " style="margin-right: 0px; margin-left: 0px;background: #071E22">
             <div class="col-md-2"> 
-                <img src="data/logoFondo.png" alt="logo" class="img-responsive logo"/>
+                <img src="data/logoH.png" alt="logo" class="img-responsive logo" width="25%"/>
             </div>
-            <div class="col-md-7 ">  
-                <img src="data/iconoGrupos.png" alt="logo" class="img-responsive logo"/>
+            <div class="col-md-6 ">  
+                <!--<img src="data/iconoGrupos.png" alt="logo" class="img-responsive logo" width="55%"/>-->
+                <h1><span class="title_Header"> Grupos de Interés</span></h1>
             </div>
             <div class="col-md-3" style="margin-top: 20px;padding-right: 25px;">
                 <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
@@ -245,8 +246,8 @@
         </div>
         <div ng-if="isAuthenticated()">
             
-            <ul class="nav nav-tabs nav-justified" style="background: #394552" >
-                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="listaGrupos" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Grupos</a></li>
+            <ul class="nav nav-tabs nav-justified" style="background: #466362" >
+                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="listaGrupos" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif ">Grupos</a></li>
                     
                 <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="carruselCategorias" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Categorias</a></li>
                     
@@ -266,20 +267,19 @@
                     
             </ul> 
         </div> 
-        <div class="container-fluid col-md-12">           
-            
-            <div class="col-md-12 fondo">                   
+        <div class="container-fluid col-md-12" style="padding-right: 0px;padding-left: 0px;">
+            <div class="col-md-12">                   
                 <div class="col-md-1">          
                 </div>
                 <div ui-view="mainView" class="col-md-10"></div>
                 <div class="col-md-1"></div>
             </div>
-            <div class="footer-bottom col-xs-12 col-md-12 col-lg-12 col-sm-12" >
-                <div class="col-md-5 navbar-text pull-right">
-                    <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="35%" />
-                    <!--<p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>-->
-                </div>
+            <div class="footer-bottom col-xs-12 col-md-12 col-lg-12 col-sm-12" style="background: #BAC1B8; padding-bottom: 5px">
+            <div class="col-md-5 navbar-text pull-right" style="margin-top: 0px; margin-bottom: 0px; margin-right: 0px; margin-left: 0px;">
+                <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="20%" style="margin-bottom: 5px;margin-top: 5px;" />
+                <!--<p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>-->
             </div>
+        </div>
             
         </div>
     </body>
