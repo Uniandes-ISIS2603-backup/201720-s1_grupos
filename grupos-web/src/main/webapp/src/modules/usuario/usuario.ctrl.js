@@ -19,7 +19,8 @@
             
             $scope.soyYo= function()
             {
-                return parseInt(sessionStorage.getItem('id'))===parseInt($scope.usuarioActual.id);
+                var miLogin= parseInt($scope.usuarioActual.id);
+                return parseInt(sessionStorage.getItem('id'))===miLogin;
             };
         }
     ]);
