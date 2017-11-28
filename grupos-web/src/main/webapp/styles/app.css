@@ -2,6 +2,7 @@ body {
   min-height: 100vh;
   position: relative;
   margin: 0;
+  margin-bottom: 50px;
 }
 
 .margin-top{
@@ -18,8 +19,10 @@ body {
     background: #f8f8f8;
     color: #fff;
     width: 100%;
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 .fixed-header{
@@ -58,11 +61,12 @@ body {
 }
 
 .title_Header{
-    color: #6E6E6E;
+    color: #E7ECEF;
 }
 
 .header_text{
-    color: #6E6E6E;
+    color: #E7ECEF;
     font-size: 19px;
 }
+
 
