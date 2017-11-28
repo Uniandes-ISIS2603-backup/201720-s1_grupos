@@ -62,6 +62,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              */
             $scope.adminsDeMiGrupo= function(idGrupo)
             {
+                $scope.activeMenu='admins';
                 $http.get(grupoContext +'/'+ idGrupo+ '/administradores' ).then(function (response) {                    
                     $scope.adminRecords = response.data;
                     $state.go('adminsDeGrupo',{},{});
@@ -74,7 +75,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * Devuelve las categorías del grupo actual
              * @param {type} idGrupo, id del grupo del que se van a obtener todas sus categorías
              */
-            $scope.categoriasDeMiGrupo= function(idGrupo)
+            $scope.categoriasDeMiGrupo= function(idGrupo, lasCats)
             {
                 $http.get(grupoContext +'/'+ idGrupo+ '/categorias' ).then(function (response) {                    
                     $scope.categoriaRecords = response.data;
