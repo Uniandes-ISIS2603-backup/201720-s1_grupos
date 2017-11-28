@@ -131,7 +131,7 @@ public class MultimediaDTO {
     public static void main (String[] args) throws Exception
     {
         File f = new File("BlogDetailDTO.java");
-        String s=f.getAbsolutePath().replaceAll(("BlogDetailDTO.java"), "");
+        String s=f.getAbsolutePath().replaceAll("BlogDetailDTO.java", "");
           f = new File(s+RUTA_DATA);
         if(f.exists()){
             FileWriter fw = new FileWriter(new File(s+RUTA_DATA+"/archivos.json"));

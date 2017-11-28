@@ -35,7 +35,7 @@
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
             //Inicialización del multimediaContexto
-                fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            var fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             
             //Función de creación del link temporalmente
             this.randomString= function()

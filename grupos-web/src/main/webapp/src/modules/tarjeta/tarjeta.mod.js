@@ -40,7 +40,7 @@
                 },
                 data: {
                     requireLogin: true,
-                    roles: ['Administrador']
+                    roles: ['Administrador','Ciudadano']
                 }
             }).state('tarjetaDetail', {
                 url: '/{numTarjeta:int}',

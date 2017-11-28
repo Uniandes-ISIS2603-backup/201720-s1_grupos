@@ -7,7 +7,7 @@
     mod.controller("usuarioNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaUsuarioContext','globalContext', function ($scope, $state, $http,context, usuarioContext,globalContext) {
             //Registro actual
             var currentRecord={};
-            
+            //Error
             var error="";
             //inicialización del mensajeError de error
             if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
