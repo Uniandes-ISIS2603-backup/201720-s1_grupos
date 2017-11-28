@@ -16,6 +16,11 @@
                     $scope.usuarioActual = response.data;
                 });
             }
+            
+            $scope.soyYo= function()
+            {
+                return parseInt(sessionStorage.getItem('id'))===parseInt($scope.usuarioActual.id);
+            };
         }
     ]);
 

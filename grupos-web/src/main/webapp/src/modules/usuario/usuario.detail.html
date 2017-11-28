@@ -3,6 +3,8 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3 text-center" style="float: none;margin: 0 auto">
+                <h1> {{usuarioActual.nickname}}</h1>
+                <hr>
                 <dl> 
                     <dt>Nombre</dt>
                     <dd>{{usuarioActual.nombre}}</dd>
@@ -10,14 +12,11 @@
                     <dt>Apellido</dt>
                     <dd>{{usuarioActual.apellido}}</dd>
                     <hr>
-                    <dt>Nickname</dt>
-                    <dd>{{usuarioActual.nickname}}</dd>
-                    <hr>
                     <dt>Email</dt>
                     <dd>{{usuarioActual.email}}</dd>
                 </dl>
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button role="button" class="btn outline" ui-sref="updateUsuario({usuarioId:usuarioActual.id})" height="50" width="170" style="font-size:16px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Actualizar información</button>
+                    <button role="button" class="btn outline" ui-sref="updateUsuario({usuarioId:usuarioActual.id})" height="50" width="170" style="font-size:16px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif" ng-if="soyYo()">Actualizar información</button>
                 </div>
             </div>
         </div>
