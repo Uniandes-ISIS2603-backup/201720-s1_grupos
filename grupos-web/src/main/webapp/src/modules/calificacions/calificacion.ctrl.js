@@ -66,6 +66,7 @@
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
+                            currentRecord=$scope.currentRecord;
                         },function(response)
                         {
                              //Estado de error
@@ -91,18 +92,18 @@
             this.saveRecord=function(id) {
             if($scope.esMiembro || $scope.esAdmin)
             {
-                currentRecord = $scope.currentRecord;
+                currentRecord=$scope.currentRecord;
                 //Calificador por default (Se define con el login)
                 currentRecord.calificador=currentAutor;
                 // si el id es null, es un registro nuevo, entonces lo crea
                 if (id === null || id===undefined) {
                     
-                        // ejecuta POST en el recurso REST
+                    // ejecuta POST en el recurso REST
                     return $http.post(fullContext, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('calificacionsList');
+                                $state.go('calificacionsList',{},{reload:true});
                             },function(response){
                                  //Estado de error
                                 errorCalificacion=response.data;
@@ -124,7 +125,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('calificacionsList');
+                                $state.go('calificacionsList',{},{reload:true});
                             },function(response){
                                  //Estado de error
                                 errorCalificacion=response.data;
@@ -169,7 +170,7 @@
                         return $http.delete(fullContext+"/"+id).then (function()
                         {
                             //Cambie al listado de calificaciones
-                            $state.go('calificacionsList');
+                            $state.go('calificacionsList',{},{reload:true});
                         },function(response){
                                     //Estado de error
                                     errorCalificacion=response.data;
@@ -205,7 +206,7 @@
             {
                 return currentRecord.calificador.id===currentAutor.id;
             };
-// Código continua con las funciones de despliegue de errores
+            
 
 
         }]);
