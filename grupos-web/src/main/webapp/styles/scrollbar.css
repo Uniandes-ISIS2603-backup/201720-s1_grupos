@@ -5,14 +5,13 @@
     overflow-y: scroll;  
     width: 500px;
     height: 300px;
-    margin: 0px;
 }
 
 .scrollL {
     overflow-y: scroll;  
-    width: 800px;
+    width: 700px;
     height: 600px;
-    margin: 0px;
+    margin-right: 1000px;
 }
 /* Let's get this party started */
 .scroll::-webkit-scrollbar {

@@ -2,7 +2,7 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 text-center" style="float: none;margin: 0 auto">
                 <dl> 
                     <dt>Nombre</dt>
                     <dd>{{usuarioActual.nombre}}</dd>
@@ -22,20 +22,19 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-10 col-lg-10">
-            <ul class="nav nav-tabs">
-                <li><a ui-sref="usuarioNoticiasList">Noticias de usuario</a></li>
-                <li><a ui-sref="tarjetasList({idUsuario: usuarioActual.id})">Mis tarjetas</a></li>
-                <li><a ui-sref="empresaDetail({idUsuario: usuarioActual.id})">Mi empresa</a></li>
-                <li><a ui-sref="eventosDeUsuario({idUsuario: usuarioActual.id})">Mis Eventos</a></li>
-                <li><a ui-sref="patrocinioListDetail">Mis patrocinios</a></li>
-                <li><a ui-sref="blogFavList">Blogs favoritos</a></li>
+
+        <div class="col-md-12 col-lg-12">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item"><a ui-sref="usuarioNoticiasList">Noticias de usuario</a></li>
+                <li class="nav-item"><a ui-sref="tarjetasList({idUsuario: usuarioActual.id})">Mis tarjetas</a></li>
+                <li class="nav-item"><a ui-sref="empresaDetail({idUsuario: usuarioActual.id})">Mi empresa</a></li>
+                <li class="nav-item"><a ui-sref="eventosDeUsuario({idUsuario: usuarioActual.id})">Mis Eventos</a></li>
+                <li class="nav-item"><a ui-sref="patrocinioListDetail">Mis patrocinios</a></li>
+                <li class="nav-item"><a ui-sref="blogFavList">Blogs favoritos</a></li>
             </ul>
         </div>
-    </div>
     <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-12">
             <div ui-view="childrenView"></div>
         </div>
     </div>

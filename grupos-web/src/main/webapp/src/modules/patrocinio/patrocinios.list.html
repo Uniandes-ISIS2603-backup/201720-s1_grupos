@@ -1,27 +1,33 @@
 <!--Lista de todos los patrocinios de la aplicación-->
 <div class="container-fluid">
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn" ui-sref="patrocinioCreate"><img src="data/plusG.png" style="width:50px;height:50px"></a>
-                    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1 class="text-center">Patrocinios</h1>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a class="btn" ui-sref="patrocinioCreate"><img src="data/plusG.png" style="width:50px;height:50px"></a>
                 </div>
-    <div class="row">
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>    
-                    <th>Pago</th>  
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="patrocinio in patrociniosRecords">
-                    <td id="{{$index}}-nombre"><a ui-sref="patrocinioDetail({patrocinioId: patrocinio.id})">{{patrocinio.id}}</a></td>
-                    <td id="{{$index}}-direccion">{{patrocinio.pago}}</td>
-                    <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="patrocinioUpdate({patrocinioId: patrocinio.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            </div>
+            <div class="row">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="background: #394552;color:white">Id</th>    
+                            <th class="text-center" style="background: #394552;color:white">Pago</th>  
+                            <th class="text-center" style="background: #394552;color:white"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="patrocinio in patrociniosRecords">
+                            <td id="{{$index}}-nombre"><a ui-sref="patrocinioDetail({patrocinioId: patrocinio.id})">{{patrocinio.id}}</a></td>
+                            <td id="{{$index}}-direccion">{{patrocinio.pago}}</td>
+                            <td id="{{$index}}-actions">
+                                <a class="btn btn-default btn-sm" ui-sref="patrocinioUpdate({patrocinioId: patrocinio.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

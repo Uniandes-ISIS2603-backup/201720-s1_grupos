@@ -1,8 +1,10 @@
- <!-- En caso de querer borrar un grupo, se pregunta por confirmación-->
-<div class="center-block well text-center">
-    <h1>¿Está seguro?:c</h1>
-     <!-- Al confirmar se procede con la eliminación-->
-    <button id="confirm-delete" ng-click="deleteGrupo()" class="btn btn-danger">Sí</button>  
-    <!-- Si cancela vuelve al grupo detail-->
-    <a id="cancel-delete" ui-sref="grupoDetail({grupoId: {{idGrupo}}})" class="btn btn-info">Mejor no</a>
-</div>
+<!-- En caso de querer borrar un grupo, se pregunta por confirmación-->
+    <div class="panel panel-default text-center"> 
+        <div class="panel-body">
+            <h1>¿Está seguro?:c</h1>
+            <!-- Al confirmar se procede con la eliminación-->
+            <button id="confirm-delete" ng-click="deleteGrupo()" class="btn btn-danger">Sí</button>  
+            <!-- Si cancela vuelve al grupo detail-->
+            <a id="cancel-delete" ui-sref="grupoDetail({grupoId: {{idGrupo}}})" class="btn btn-info">Mejor no</a>
+        </div>
+    </div>

@@ -10,10 +10,10 @@
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="styles/background.css" />
         <link rel="stylesheet" href="styles/app.css" />
-        <link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/boton.css">
         <link rel="stylesheet" href="styles/scrollbar.css">
         <link rel="stylesheet" href="styles/multimedia.css">
+        <link rel="stylesheet" href="styles/index.css">
         <!-- stylesheet Externas-->
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -178,18 +178,18 @@
 </div>
 </div>  
     -->
-    <body>
+    <body class="letra">
         <div class="row mainHeader " style="margin-right: 0px; margin-left: 0px;background: #394552">
-            <div class="col-md-3"> 
+            <div class="col-md-2"> 
                 <img src="data/logoFondo.png" alt="logo" class="img-responsive logo"/>
             </div>
-            <div class="col-md-6 ">  
+            <div class="col-md-7 ">  
                 <img src="data/iconoGrupos.png" alt="logo" class="img-responsive logo"/>
             </div>
             <div class="col-md-3" style="margin-top: 20px;padding-right: 25px;">
                 <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
-                    <li><a ui-sref="login"><span class="header_text"> Iniciar sesión</span></a></li>
-                    <li><a ui-sref="createUsuario"><span class="header_text"> Registrarse</span></a></li>
+                    <li><a ui-sref="login" ><span class="header_text" style="color:white"> Iniciar sesión</span></a></li>
+                    <li><a ui-sref="createUsuario"><span class="header_text" style="color:white"> Registrarse</span></a></li>
                 </ul>
                 <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
                     <li class="nameUser" style="color:white">Bienvenido a tus grupos: {{currentUser}} </li>              
@@ -199,8 +199,8 @@
             </div> 
         </div>
         <div ng-if="muestraCarrusel()">
-                <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
-                    
+            <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+                
                 <!-- Overlay -->
                 <!--<div class="overlay"></div> ->
                     
@@ -246,33 +246,41 @@
         <div ng-if="isAuthenticated()">
             
             <ul class="nav nav-tabs nav-justified" style="background: #394552" >
-                <li class="nav-item" role="navigation"><a class="nav-link active" ui-sref="listaGrupos" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Grupos</a></li>
+                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="listaGrupos" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Grupos</a></li>
                     
-                <li class="nav-item" role="navigation"><a class="nav-link active" ui-sref="carruselCategorias" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Categorias</a></li>
+                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="carruselCategorias" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Categorias</a></li>
                     
-                <li class="nav-item" role="navigation"><a class="nav-link active" ui-sref="noticiasExhibicion" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff"> Noticias</a></li>
+                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="noticiasExhibicion" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"> Noticias</a></li>
                     
-                <li  class="nav-item"role="navigation"><a class="nav-link active" ui-sref="eventosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Eventos</a></li>
+                <li  class="nav-item"role="navigation"><a class="nav-link active miMenu" ui-sref="eventosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Eventos</a></li>
                     
-                <li  class="nav-item"role="navigation"><a class="nav-link active" ui-sref="lugaresList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Lugares</a></li>
+                <li  class="nav-item"role="navigation"><a class="nav-link active miMenu" ui-sref="lugaresList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Lugares</a></li>
                     
-                <li  class="nav-item" role="navigation"><a class="nav-link active" ui-sref="empresasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Empresas</a></li>  
+                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="empresasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Empresas</a></li>            
                     
-                <div ng-if="puedoVerDetallesGrupo()">
-                    <li  class="nav-item" role="navigation"><a class="nav-link active" ui-sref="usuariosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Usuarios</a></li>                       
-                </div>
-                <li  class="nav-item" role="navigation"><a class="nav-link active" ui-sref="patrociniosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Patrocinios</a></li>
+                <li class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="usuariosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Usuarios</a></li>                       
+                
+                <li  class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="patrociniosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Patrocinios</a></li>
                     
-                <li  class="nav-item" role="navigation"><a class="nav-link active" ui-sref="usuarioDetail({usuarioId:id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; color: #ffffff">Mi perfil</a></li>
+                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="usuarioDetail({usuarioId:id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mi perfil</a></li>
                     
             </ul> 
         </div> 
-        <div ui-view="mainView" class="container-fluid col-md-12"></div>
-        <div class="footer-bottom col-xs-10 col-md-12 col-lg-10 col-sm-10" >
-            <div class="col-md-5 navbar-text pull-right">
-                <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="35%" />
-                <!--<p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>-->
+        <div class="container-fluid col-md-12">           
+            
+            <div class="col-md-12 fondo">                   
+                <div class="col-md-1">          
+                </div>
+                <div ui-view="mainView" class="col-md-10"></div>
+                <div class="col-md-1"></div>
             </div>
+            <div class="footer-bottom col-xs-12 col-md-12 col-lg-12 col-sm-12" >
+                <div class="col-md-5 navbar-text pull-right">
+                    <img class="navbar-text pull-right" src="data/LogoStarkMejorado.png" alt="logoStark" width="35%" />
+                    <!--<p class="navbar-text pull-right">© Hecho por Desarrollo Stark </p>-->
+                </div>
+            </div>
+            
         </div>
     </body>
 </html>

@@ -6,12 +6,15 @@
                 <!-- Muestra las opciones de agregar grupo y buscar por nombre solo si está activado el booleano-->                
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-hide="{{opcionesGrupo}}">
                     <div class="btn-group mr-2 col-md-1" role="group" aria-label="First group" >
+                        <p class="col-md-12"  style="padding-left:150px;color:#004e7f;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"  ng-style="{ 'font-size' :(deGrupo) ? '50px' : '40px' }" >Grupos</p>
+                        <br><br><br><br>
                         <a ui-sref="grupoCreate"><img src="data/plusM.png" style="width:50px;height:50px"></a>
                     </div>
+                    <br><br><br><br><br>
                     <div id="custom-search-input" style="position:absolute;margin-left:100px">
                         <!-- Cuadro de búsqueda para encontrar un grupo por su nombre exacto-->                
                         <form ng-controler="buscarGrupo">
-                            <div class="col-md-10">
+                            <div class="col-md-11">
                                 <link rel="stylesheet" href="styles/search.css">
                                 <input type="text" id="search51" placeholder="Buscar por nombre" ng-model="buscarGrupoValor"/>
                             </div>
@@ -21,15 +24,15 @@
                                 </a>
                             </span>
                         </form>
-                            
+                        
                     </div>
                 </div>
                 <br>
                     <div class="col-md-12">
-                    
-                    <p class="col-md-12 text-center"  style="margin-right:-100px;color:blue;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"  ng-style="{ 'font-size' :(deGrupo) ? '50px' : '40px' }" >Grupos</p>
+                        
+                        
                     <!-- Muestra nombre y descripción de cada grupo-->
-
+                        
                     <div class="scroll responsive" ng-class="{scrollL: !opcionesGrupo, scroll: opcionesGrupo }">                        
                         <div class="panel panel-default col-md-9 responsive " ng-repeat="grupo in grupoRecords">
                             <div class="panel-body clickable responsive" ui-sref="grupoDetail({grupoId: grupo.id})" role="button">    
@@ -39,7 +42,7 @@
                                 <div class="col-md-8 responsive" style="margin-left: 100px">                   
                                     <p id="{{$index}}-name" style="font-size:30px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{grupo.nombre}}</p>
                                     <p id="{{$index}}-descripcion" style="font-size:20px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{grupo.descripcion}}</p>
-                                            
+                                        
                                 </div>
                             </div>
                         </div>                                
