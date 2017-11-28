@@ -47,8 +47,7 @@ public class EventoResource {
     @GET
     public List<EventoDetailDTO> getEventos()
     {
-        List<EventoDetailDTO> list = listEntityToDetailDTO(logic.getAll());
-        return list;
+        return listEntityToDetailDTO(logic.getAll());
     }
     /**
      * Obtiene el lugar del evento.<br>
@@ -101,7 +100,7 @@ public class EventoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public EventoDetailDTO updateEvento(@PathParam("id") Long id, EventoDetailDTO dto) throws BusinessException, NotFoundException
+    public EventoDetailDTO updateEvento(@PathParam("id") Long id, EventoDetailDTO dto) throws BusinessException
     {
         EventoEntity entity =null;
         try
@@ -113,7 +112,9 @@ public class EventoResource {
             throw new NotFoundException();
         }
         
-        if(entity==null || dto==null) throw new NotFoundException("No existe el vento a actualizar.");
+        if(entity==null || dto==null) {
+            throw new NotFoundException("No existe el vento a actualizar.");
+        }
         EventoEntity newEntity=dto.toEntity();
         newEntity.setId(id);
         newEntity.setGrupo(entity.getGrupo());
@@ -122,14 +123,14 @@ public class EventoResource {
     }
     /**
      * Crea un nuevo evento.<br>
-     * @param Evento Evento a crear.<br>
+     * @param evento Evento a crear.<br>
      * @return Evento creado.<br>
      * @throws BusinessException Excepción de negocio.
      */
     @POST
-    public EventoDetailDTO createEvento(EventoDetailDTO Evento) throws BusinessException
+    public EventoDetailDTO createEvento(EventoDetailDTO evento) throws BusinessException
     {
-        EventoEntity entity = Evento.toEntity();
+        EventoEntity entity = evento.toEntity();
         EventoEntity e=logic.createEntity(entity);
         return new EventoDetailDTO(e);
     }
@@ -157,7 +158,7 @@ public class EventoResource {
     
     /**
      * Inicializa el subrecurso de patrocinios
-     * @param pid identificador del evento
+     * @param id identificador del evento
      * @return clase
      * @throws WebApplicationException
      * @throws BusinessException
@@ -189,7 +190,7 @@ public class EventoResource {
      * @throws NotFoundException Excepción de no encontrado.
      */
     @Path("{id: \\d+}/usuarios")
-    public Class<EventoUsuariosResource> getEventoUsuarioResource(@PathParam("id") Long id) throws BusinessException, NotFoundException {
+    public Class<EventoUsuariosResource> getEventoUsuarioResource(@PathParam("id") Long id) throws BusinessException {
         EventoEntity entity =null;
          try
         {
