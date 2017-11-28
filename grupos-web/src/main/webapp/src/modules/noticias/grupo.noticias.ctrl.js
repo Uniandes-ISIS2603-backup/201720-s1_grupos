@@ -5,6 +5,8 @@
      * Controlador con $scope, $state, $http, noticiasContext (Ruta de noticia), noticiaGrupoContext (Ruta de grupo), grupoContext(Ruta de grupo)
      */
     mod.controller("grupoNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaGrupoContext','globalContext', function ($scope, $state, $http,context, grupoContext,globalContext) {
+            var currentRecord={};
+            
             //Inicialización de archivos multimedia
             $scope.archivos=[];
             //Inicialización de agregado múltiple
@@ -29,15 +31,15 @@
             $scope.deGrupo=true; 
             $scope.noticiaEditable=true;
             //Verifica si es miembro del grupo
-            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esMiembro=true;
-            },function(response){
+            },function(){
                 $scope.esMiembro=false;
             });
             //Verifica si es admin del grupo
-            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esAdmin=true;
-            },function(response){
+            },function(){
                 $scope.esAdmin=false;
             });
             
@@ -49,15 +51,15 @@
                                     currentAutor.email= response.data.email,
                                     currentAutor.id= response.data.id,
                                     currentAutor.nombre= response.data.nombre,
-                                    currentAutor.password= response.data.password}, function(response){
+                                    currentAutor.password= response.data.password}, function(){
                                         error="El usuario "+sessionStorage.getItem("id")+ " no está loggeado";
                                         $state.go('ERRORGRUPONOTICIA',{mensajeError: error},{reload:true});
                                     });
             
            //Header
-              header="Noticias de grupo";
+             var header="Noticias de grupo";
               //Contexto global
-            fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
+            var fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
             // carga las noticias
             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
@@ -182,7 +184,7 @@
             if ($state.params.noticiaId !== null && $state.params.noticiaId !== undefined) {
 
                 // toma el id del parámetro
-                id = $state.params.noticiaId;
+                var id = $state.params.noticiaId;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext + "/" + id)
                         .then(function (response) {

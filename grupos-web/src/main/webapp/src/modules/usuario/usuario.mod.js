@@ -3,7 +3,7 @@
     var mod = ng.module("usuarioModule", ["loginModule"]);
     //se determine el contexto de usuarios
     mod.constant("usuarioContext","Stark/usuarios");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             var basePath = 'src/modules/usuario/';
             //Estados: 
             //usuarios - estado base

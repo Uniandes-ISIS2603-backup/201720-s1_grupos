@@ -3,6 +3,10 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('usuarioNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext) {
+            var error="";
+           var link="";
+           var currentMultimedia={};
+           var multimediaList=[];
             //Inicialización de rutas de la multimedia
             $scope.archivos=[];
             $http.get("./data/archivos.json").then(function(response)

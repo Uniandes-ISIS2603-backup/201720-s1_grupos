@@ -5,6 +5,9 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz)
      */
     mod.controller('noticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext', function ($scope, $state, $http, multimediaContext,noticiasContext, globalContext) {
+            var error="";
+           var link="";
+            
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorMultimedia=$state.params.mensaje;
@@ -13,7 +16,7 @@
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
             //Contexto global
-            fullContext=globalContext+"/"+noticiasContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            var fullContext=globalContext+"/"+noticiasContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
 
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};

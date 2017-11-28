@@ -6,7 +6,7 @@
     mod.constant("noticiaUsuarioContext","usuarios");
     //Constante de Patrocinios
     mod.constant("patrocinioContext","Stark/patrocinios");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             var basePath = 'src/modules/patrocinio/';
 
             //estados:

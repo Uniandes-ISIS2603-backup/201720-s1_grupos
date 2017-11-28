@@ -5,8 +5,8 @@
     mod.constant("patrociniosUsuarioContext", "patrocinios");
     //se define la constante que determina la ruta de usuarios
     mod.constant("usuariosContext", "Stark/usuarios");
-    mod.controller('patrociniosUCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'patrociniosUsuarioContext', '$rootScope',
-        function ($scope, $http, usuariosContext, $state, patrociniosUsuarioContext, $rootScope) {
+    mod.controller('patrociniosUCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'patrociniosUsuarioContext',
+        function ($scope, $http, usuariosContext, $state, patrociniosUsuarioContext) {
            //Se buscan todos los patrocinios del usuario actual
             $http.get(usuariosContext + '/' + $state.params.usuarioId + '/' + patrociniosUsuarioContext).then(function (response) {
                 $scope.patrociniosRecords = response.data;

@@ -6,6 +6,10 @@
      */
     mod.controller('grupoNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaGrupoContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,grupoContext) {
            
+           var error="";
+           var link="";
+           var currentMultimedia={};
+           var multimediaList=[];
             //Inicialización de rutas de la multimedia
             $scope.archivos=[];
             $http.get("./data/archivos.json").then(function(response)
@@ -28,15 +32,15 @@
                         });
             //Verifica si es miembro del grupo
 
-            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esMiembro=true;
-            },function(response){
+            },function(){
                 $scope.esMiembro=false;
             });
             //Verifica si es admin del grupo
-            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esAdmin=true;
-            },function(response){
+            },function(){
                 $scope.esAdmin=false;
             });
             //Inicialización del mensaje de error
@@ -48,7 +52,7 @@
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
             //Inicialización del multimediaContexto
-            fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            var fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             //Inicialización de elementos multimedia a agregar a la noticia.
             $scope.multimedia=[];
             //Función de creación del link temporalmente

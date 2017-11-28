@@ -6,7 +6,10 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), blogContext (Ruta de blog), grupoContext(Ruta de grupo)
      */
     mod.controller('multimediaBlogCtrl', ['$scope', '$state', '$http', 'multimediaContext','blogContext', 'grupoContext', function ($scope, $state, $http, multimediaContext,blogContext, grupoContext) {
-            currentMultimedia={};
+            var error="";
+           var link="";
+           var currentMultimedia={};
+           var multimediaList=[];
             //Inicialización de rutas de la multimedia
             $scope.archivos=[];
             $http.get("./data/archivos.json").then(function(response)
@@ -18,15 +21,15 @@
                 }
             });
             //Verifica si es miembro del grupo
-            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/miembros/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esMiembro=true;
-            },function(response){
+            },function(){
                 $scope.esMiembro=false;
             });
             //Verifica si es admin del grupo
-            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(response){
+            $http.get(grupoContext+"/"+$state.params.grupoId+"/administradores/"+sessionStorage.getItem("id")).then(function(){
                 $scope.esAdmin=true;
-            },function(response){
+            },function(){
                 $scope.esAdmin=false;
             });
             //Inicialización del mensaje de error
@@ -39,7 +42,7 @@
             $scope.esMultimediaNoticia=false;
                         //Inicialización del multimediaContexto
 
-            fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+multimediaContext;
+            var fullContext=grupoContext+"/"+$state.params.grupoId+"/"+blogContext+"/"+$state.params.blogId+"/"+multimediaContext;
             
             /**
              * Genera un link con un String aleatorio.<br>
@@ -110,7 +113,6 @@
                                     error=response.data;
                                     $state.go('ERRORMULTIMEDIABLOG',{mensaje: error},{reload:true});
                                 });
-                        currentMultimedia.link=null;
                         // si el id no es null, es un registro existente entonces lo actualiza
                     } else {
 
@@ -168,7 +170,7 @@
                 $scope.ruta=ruta;
             };
             //Función para verificar la multimedia actual
-            this.verificarMultimedia=function(ruta)
+            this.verificarMultimedia=function()
             {
                if($scope.ruta===null || $scope.ruta===undefined)
                 {

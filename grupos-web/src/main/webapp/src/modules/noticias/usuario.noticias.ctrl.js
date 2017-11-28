@@ -5,6 +5,9 @@
      * Controlador con $scope, $state, $http, noticiasContext (Ruta de noticia), noticiaUsuarioContext (Ruta de usuario), grupoContext(Ruta de grupo)
      */
     mod.controller("usuarioNoticiasCtrl", ['$scope', '$state', '$http','noticiasContext','noticiaUsuarioContext','globalContext', function ($scope, $state, $http,context, usuarioContext,globalContext) {
+            //Registro actual
+            var currentRecord={};
+            
             var error="";
             //inicialización del mensajeError de error
             if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
