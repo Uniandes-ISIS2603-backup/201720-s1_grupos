@@ -33,7 +33,7 @@
                                 <div class="form-group row">
                                     <div class="form-group col-md-8">
                                          <label for="nombre" class="col-md-6">Nombre de archivo:</label>
-                                         <input id="nombre" name="nombre" class="col-sm-6" type="text" ng-model="itemToAdd.nombre" ng-init="itemToAdd.nombre"/>
+                                         <input id="nombre{{$index}}" name="nombre" class="col-sm-6" type="text" ng-model="itemToAdd.nombre" ng-init="itemToAdd.nombre" disabled/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -46,7 +46,7 @@
                                 <div class="col-md-12">
                                     <div class="widget-container" >
                                         <div class="widget row image-tile">
-                                            <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{'tile col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption!==record.ruta, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption[ctrl.numeroActual(itemToAdd)-1]===ctrl.numeroActual(itemToAdd)+'-'+record.ruta }" ng-click="ctrl.asignarRuta(itemToAdd,record.ruta)">
+                                            <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ng-repeat="record in archivos" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{'tile col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption!==record.ruta, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption[ctrl.numeroActual(itemToAdd)-1]===ctrl.numeroActual(itemToAdd)+'-'+record.ruta }" ng-click="ctrl.asignarRuta(itemToAdd,record.ruta,nombre+$parent.$index)">
                                                 <p>{{record.ruta}}</p>
                                             </div>
                                         </div>

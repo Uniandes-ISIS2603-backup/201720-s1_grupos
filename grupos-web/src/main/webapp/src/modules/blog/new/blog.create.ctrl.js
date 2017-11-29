@@ -65,8 +65,9 @@
              * @param itemToAdd
              * @param ruta
              */
-            this.asignarRuta=function(itemToAdd,ruta)
+            this.asignarRuta=function(itemToAdd,ruta, texto)
             {
+                document.getElementById("nombre"+texto).value = ruta;
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
                 $scope.selectedOption[index]=(index+1)+"-"+ruta;
