@@ -1,17 +1,15 @@
 <!-- Lista donde se mostrarán los grupos-->
-<div class="col-md-6">
-    <div class="container-fluid">
-        <div class="panel panel-default" ng-style="{ 'width' :(deGrupo) ? '200%' : '500%' }" style="float: none;margin: 0 auto"> 
-            <div class="panel-body" style="width:500px;float: none;margin: 0 auto">              
+        <div class="panel panel-default" style="float: none;margin: 0 auto"> 
+            <div class="panel-body" style="float: none;margin: 0 auto">              
                 <!-- Muestra las opciones de agregar grupo y buscar por nombre solo si está activado el booleano-->                
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" ng-hide="{{opcionesGrupo}}">
                     <div class="btn-group mr-2 col-md-1" role="group" aria-label="First group" >
-                        <p class="col-md-12"  style="padding-left:150px;color:#426163;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"  ng-style="{ 'font-size' :(deGrupo) ? '50px' : '40px' }" >Grupos</p>
+                        <p class="col-md-12"  style="color:#426163;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"  ng-style="{ 'font-size' :(deGrupo) ? '50px' : '40px' }" >Grupos</p>
                         <br><br><br><br>
                         <a ui-sref="grupoCreate"><img src="data/plusM.png" style="width:50px;height:50px"></a>
                     </div>
                     <br><br><br><br><br>
-                    <div id="custom-search-input" style="position:absolute;margin-left:100px">
+                    <div id="custom-search-input" style="position:absolute">
                         <!-- Cuadro de búsqueda para encontrar un grupo por su nombre exacto-->                
                         <form ng-controler="buscarGrupo">
                             <div class="col-md-11">
@@ -32,23 +30,23 @@
                         
                         
                     <!-- Muestra nombre y descripción de cada grupo-->
-                        
-                    <div class="scroll responsive" ng-class="{scrollL: !opcionesGrupo, scroll: opcionesGrupo }">                        
-                        <div class="panel panel-default col-md-9 responsive " ng-repeat="grupo in grupoRecords">
-                            <div class="panel-body clickable responsive" ui-sref="grupoDetail({grupoId: grupo.id})" role="button">    
-                                <div class="col-md-2">
-                                    <img src="data/grupoIcono.png" style="margin:auto; position:absolute">
+                    <div class="table-responsive">
+                        <div class="scroll responsive" ng-class="{scrollL: !opcionesGrupo, scroll: opcionesGrupo }">                        
+                            <div class="panel panel-default col-md-9 responsive " ng-repeat="grupo in grupoRecords">
+                                <div class="panel-body clickable responsive" ui-sref="grupoDetail({grupoId: grupo.id})" role="button">    
+                                    <div class="col-md-2">
+                                        <img src="data/grupoIcono.png" style="margin:auto; position:absolute">
+                                    </div>
+                                    <div class="col-md-8 responsive" style="margin-left: 100px">                   
+                                        <p id="{{$index}}-name" style="font-size:30px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{grupo.nombre}}</p>
+                                        <p id="{{$index}}-descripcion" style="font-size:20px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{grupo.descripcion}}</p>
+
+                                    </div>
                                 </div>
-                                <div class="col-md-8 responsive" style="margin-left: 100px">                   
-                                    <p id="{{$index}}-name" style="font-size:30px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{grupo.nombre}}</p>
-                                    <p id="{{$index}}-descripcion" style="font-size:20px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{grupo.descripcion}}</p>
-                                        
-                                </div>
-                            </div>
-                        </div>                                
-                    </div>                                
+                            </div>                                
+                        </div>      
+                    </div>
+                                              
                 </div>     
             </div>
         </div>
-    </div>
-</div>
