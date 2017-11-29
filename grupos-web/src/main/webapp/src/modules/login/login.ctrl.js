@@ -49,7 +49,7 @@
                             },
                             function(error)
                             {
-                                console.log(error.data);
+                                $scope.errorLogin=true;
                                 $scope.errorLogging=error.data;
                             });
                         

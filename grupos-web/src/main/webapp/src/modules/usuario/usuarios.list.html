@@ -5,26 +5,28 @@
         <div class="container-fluid">
             <br>
             <div class="row">
-                <table class="table table-striped text-center">
-                    <thead>
-                        <tr>
-                            <th class="text-center fondoPanel" >Nombre</th>    
-                            <th class="text-center fondoPanel">Apellido</th>
-                            <th class="text-center fondoPanel"> Nickname</th>
-                            <th class="text-center fondoPanel" >Email</th>
-                            <th class="text-center fondoPanel" ></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="usuario in usuariosRecords">
-                            <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
-                            <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
-                            <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
-                            <td id="{{$index}}-Email">{{usuario.email}}</td>                    
-                        </tr>
+                <div class="table-responsive text-center">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th class="text-center fondoPanel" >Nombre</th>    
+                                <th class="text-center fondoPanel">Apellido</th>
+                                <th class="text-center fondoPanel"> Nickname</th>
+                                <th class="text-center fondoPanel" >Email</th>
+                                <th class="text-center fondoPanel" ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="usuario in usuariosRecords">
+                                <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
+                                <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
+                                <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
+                                <td id="{{$index}}-Email">{{usuario.email}}</td>                    
+                            </tr>
                             
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

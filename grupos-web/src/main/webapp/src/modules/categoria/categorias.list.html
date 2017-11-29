@@ -7,16 +7,19 @@
         <a class="btn"  ng-click="asociarCategorias()"><img src="data/plusR.png" style="width:50px;height:50px"></a>
     </div>
 </div>
-<div class="col-md-8">
-    <div class="container responsive">                             
+<div class="col-md-8 col-xs-12">
+    <div class="container responsive text-center">                             
         <!-- Muestra el nombre, descripción y foto de la categoría-->     
-        <div class="panel panel-default responsive col-md-8 col-xs-8 col-sm-8" ng-repeat="categoria in categoriaRecords">
-            <div class="panel-body clickable responsive">                   
+        <div class="panel panel-default responsive col-md-8 col-sm-10 col-xs-12 col-sm-8" ng-repeat="categoria in categoriaRecords">
+            <div class="panel-body clickable responsive">   
+                
                 <h3 id="{{$index}}-name">{{categoria.tipo}}</h3>
-                <img class="img-responsive clickable" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" ui-sref="categoriaDetail2({categoriaId: categoria.id})">
+                <div class="col-sm-12 col-md-12 col-xs-12 text-center">
+                    <img class="img-responsive clickable" style="display:block;margin:auto" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" ui-sref="categoriaDetail2({categoriaId: categoria.id})"> 
+                </div>
                 <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
                 <!-- Muestra la opción para desasociar la categoría en caso de estar en un grupoDetail-->     
-                <a class="btn btn-danger btn-sm" ng-click="desasociarCategoria(categoria.id)" ng-show="{{deGrupo}}" ng-if="puedoEditarCategorias()">Desasociar categoría</a>
+                <a class="btn btn-danger responsive" ng-click="desasociarCategoria(categoria.id)" ng-show="{{deGrupo}}" ng-if="puedoEditarCategorias()">Desasociar categoría</a>
             </div>
         </div>
     </div>

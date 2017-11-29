@@ -8,31 +8,35 @@
                 </div>
             </div>
             <div class="row">
-                <table class="table table-striped text-center">
-                    <thead>
-                        <tr >
-                            <th class="text-center fondoPanel" >Nombre</th>    
-                            <th class="text-center fondoPanel" >Fecha Inicio</th>  
-                            <th class="text-center fondoPanel" >Fecha Fin</th>
-                            <th class="text-center fondoPanel" ></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="evento in records">
-                            <td id="{{$index}}-nombre" ><a ui-sref="eventoDetail({eventoId: evento.id})">{{evento.nombre}}</a></td>
-                            <td id="{{$index}}-fechaInicio">{{evento.fechaInicio| date:'yyyy-MM-dd'}}</td>
-                            <td id="{{$index}}-fechaFin">{{evento.fechaFin| date:'yyyy-MM-dd'}}</td>
-                            <td id="{{$index}}-actions">
-                                <a class="btn btn-default btn-sm" ui-sref="eventoUpdate({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a class="btn btn-danger btn-sm" ui-sref="eventoDelete({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-trash"></span></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive text-center">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr >
+                                <th class="text-center fondoPanel" >Nombre</th>    
+                                <th class="text-center fondoPanel" >Fecha Inicio</th>  
+                                <th class="text-center fondoPanel" >Fecha Fin</th>
+                                <th class="text-center fondoPanel" ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="evento in records">
+                                <td id="{{$index}}-nombre" ><a ui-sref="eventoDetail({eventoId: evento.id})">{{evento.nombre}}</a></td>
+                                <td id="{{$index}}-fechaInicio">{{evento.fechaInicio| date:'yyyy-MM-dd'}}</td>
+                                <td id="{{$index}}-fechaFin">{{evento.fechaFin| date:'yyyy-MM-dd'}}</td>
+                                <td id="{{$index}}-actions">
+                                    <a class="btn btn-default btn-sm" ui-sref="eventoUpdate({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="eventoDelete({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn outline text-center" ui-sref="eventosCalendar" ng-if="deGrupo && !eventoUsuario">Ver calendario Grupo</button>
+                    <button type="button" class="btn outline text-center" ui-sref="eventosCalendarAdmin" ng-if="!deGrupo && !eventoUsuario">Ver calendario</button>
+                    <button type="button" class="btn outline text-center" ui-sref="eventosCalendarUsuario" ng-if="!deGrupo && eventoUsuario">Ver mi calendario</button>
+                </div>
             </div>
-            <button type="button" class="btn btn-outline-primary" ui-sref="eventosCalendar" ng-if="deGrupo && !eventoUsuario">ver calendario Grupo</button>
-            <button type="button" class="btn btn-outline-primary" ui-sref="eventosCalendarAdmin" ng-if="!deGrupo && !eventoUsuario">ver calendario</button>
-            <button type="button" class="btn btn-outline-primary" ui-sref="eventosCalendarUsuario" ng-if="!deGrupo && eventoUsuario">ver mi calendario</button>
         </div>
     </div>
 </div>
