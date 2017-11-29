@@ -22,16 +22,24 @@
             });
             //Función que determina la actualización del usuario
             $scope.createUsuario = function () {
-                $http.put(usuarioContext + '/' + idu, {
-                    nombre: $scope.usuarioNombre,
-                    apellido: $scope.usuarioApellido,
-                    nickname: $scope.usuarioNickname,
-                    password: $scope.usuarioPassword,
-                    email: $scope.usuarioEmail
-                }).then(function (response) {
-                    //Usuario created successfully
-                    $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
-                });
+                if($scope.usuarioPassword===$scope.usuarioPassword2)
+                {
+                    $http.put(usuarioContext + '/' + idu, {
+                     nombre: $scope.usuarioNombre,
+                     apellido: $scope.usuarioApellido,
+                     nickname: $scope.usuarioNickname,
+                     password: $scope.usuarioPassword,
+                     email: $scope.usuarioEmail
+                 }).then(function (response) {
+                     //Usuario created successfully
+                     $state.go('usuarioDetail', {usuarioId: response.data.id}, {reload: true});
+                 }); 
+                }
+                else
+                {
+                    $("#modalErrorPassword").modal('show');
+                }
+                
             };
             
             
