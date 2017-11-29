@@ -10,7 +10,7 @@ var mod = ng.module("noticiasModule", ['ui.router','grupoModule','usuarioModule'
     //Constante de grupos
     mod.constant("noticiaGrupoContext","grupos");
     //Definición de la configuración con un definidor de estados ($stateProvider) y un controlador de estado predefinido ($urlRouterProvider)
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             var basePath = 'src/modules/noticias/';
             /**
              * Diferentes estados

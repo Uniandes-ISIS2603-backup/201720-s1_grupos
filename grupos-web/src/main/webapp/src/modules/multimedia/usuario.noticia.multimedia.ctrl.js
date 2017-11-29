@@ -3,6 +3,9 @@
     var mod = ng.module("multimediaModule");
 
     mod.controller('usuarioNoticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext','noticiaUsuarioContext', function ($scope, $state, $http, multimediaContext,noticiaContext, globalContext,usuarioContext) {
+            var error="";
+           var currentMultimedia={};
+           var multimediaList=[];
             //Inicialización de rutas de la multimedia
             $scope.archivos=[];
             $http.get("./data/archivos.json").then(function(response)
@@ -31,7 +34,7 @@
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
             //Inicialización del multimediaContexto
-                fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            var fullContext=globalContext+"/"+usuarioContext+"/"+$state.params.usuarioId+"/"+noticiaContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
             
             //Función de creación del link temporalmente
             this.randomString= function()
@@ -59,7 +62,7 @@
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el link del parámetro
-                link = $state.params.multimediaLink;
+                var link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext+"/"+ link)
                         .then(function (response) {

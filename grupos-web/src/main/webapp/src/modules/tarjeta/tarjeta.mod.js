@@ -3,7 +3,7 @@
     var mod = ng.module("tarjetaModule", ['usuarioModule', 'ui.router']);
 
     // Configuración de los estados del módulo
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/tarjeta/';
             // Estados:
@@ -40,7 +40,7 @@
                 },
                 data: {
                     requireLogin: true,
-                    roles: ['Administrador']
+                    roles: ['Administrador','Ciudadano']
                 }
             }).state('tarjetaDetail', {
                 url: '/{numTarjeta:int}',

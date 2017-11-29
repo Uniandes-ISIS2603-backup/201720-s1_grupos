@@ -2,7 +2,9 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 text-center" style="float: none;margin: 0 auto">
+                <h1> {{usuarioActual.nickname}}</h1>
+                <hr>
                 <dl> 
                     <dt>Nombre</dt>
                     <dd>{{usuarioActual.nombre}}</dd>
@@ -10,34 +12,33 @@
                     <dt>Apellido</dt>
                     <dd>{{usuarioActual.apellido}}</dd>
                     <hr>
-                    <dt>Nickname</dt>
-                    <dd>{{usuarioActual.nickname}}</dd>
-                    <hr>
                     <dt>Email</dt>
                     <dd>{{usuarioActual.email}}</dd>
                 </dl>
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <img src="data/actualizarInfo.png" class="img clickable" role="button" ui-sref="updateUsuario({usuarioId:usuarioActual.id})" height="50" width="200" >
+                    <button role="button" class="btn outline" ui-sref="updateUsuario({usuarioId:usuarioActual.id})" height="50" width="170" style="font-size:16px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif" ng-if="soyYo()">Actualizar información</button>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10 col-lg-10">
-            <ul class="nav nav-tabs">
-                <li><a ui-sref="usuarioNoticiasList">Noticias de usuario</a></li>
-                <li><a ui-sref="tarjetasList({idUsuario: usuarioActual.id})">Mis tarjetas</a></li>
-                <li><a ui-sref="empresaDetail({idUsuario: usuarioActual.id})">Mi empresa</a></li>
-                <li><a ui-sref="eventosDeUsuario({idUsuario: usuarioActual.id})">Mis Eventos</a></li>
-                <li><a ui-sref="patrocinioListDetail">Mis patrocinios</a></li>
-                <li><a ui-sref="blogFavList">Blogs favoritos</a></li>
+        
+        
+        <div class="col-md-2 col-lg-2" style="background: #58A4B0">
+            <ul class="nav nav-tabs nav-stacked">
+                <li class="nav-item btn"><a class="miMenu" ui-sref="usuarioNoticiasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mis noticias</a></li>
+                <hr>
+                <li class="nav-item btn"><a class="miMenu" ui-sref="tarjetasList({idUsuario: usuarioActual.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mis tarjetas</a></li>
+                <hr>
+                <li class="nav-item btn"><a class="miMenu" ui-sref="empresaDetail({idUsuario: usuarioActual.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mi empresa</a></li>
+                <hr>
+                <li class="nav-item btn"><a class="miMenu" ui-sref="eventosDeUsuario({idUsuario: usuarioActual.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mis Eventos</a></li>
+                <hr>
+                <li class="nav-item btn"><a class="miMenu" ui-sref="patrocinioListDetail" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mis patrocinios</a></li>
+                <hr>
+                <li class="nav-item btn"><a class="miMenu" ui-sref="blogFavList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Blogs favoritos</a></li>
             </ul>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-10">
             <div ui-view="childrenView"></div>
         </div>
     </div>
-</div>
 </div>

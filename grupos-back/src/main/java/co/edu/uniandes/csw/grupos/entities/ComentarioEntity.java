@@ -91,10 +91,7 @@ public class ComentarioEntity implements Serializable{
             return false;
         }
         final ComentarioEntity other = (ComentarioEntity) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
     /**
      * Override del hash.<br>

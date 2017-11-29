@@ -21,7 +21,7 @@
                 },
                 data: {
                     requireLogin: false,
-                    roles: []
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('eventosList', {
                 url: '/list',
@@ -109,7 +109,7 @@
                 },
                 data: {
                     requireLogin: false,
-                    roles: []
+                    roles: ['Ciudadano','Administrador']
                 }
             }).state('eventosCreate',{
                 url: '/create',

@@ -1,33 +1,38 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label>Lista de blogs</label></div>
-            <div class="panel-body">
-                <div class="col-md-8">
-                    <div class="container">
-                        <div>
-                            <h2 ng-hide="{{blogsDeUsuario}}">Blogs del grupo</h2>
-                            <h2 ng-show="{{blogsDeUsuario}}">Blogs favoritos</h2>
-                        </div>
-                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="col-md-8">
+            <div class="container">
+                <div>
+                    <h1 ng-hide="{{blogsDeUsuario}}">Entradas del blog</h1>
+                    <h1 ng-show="{{blogsDeUsuario}}">Blogs favoritos</h1>
+                </div>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    
+                    <div class="btn-group mr-2" role="group" aria-label="First group"  ng-hide="{{blogsDeUsuario}}">
+                        <a class="btn" ui-sref="blogCreate"><img src="data/plusC.png" style="width:50px;height:50px"></a>
                             
-                            <div class="btn-group mr-2" role="group" aria-label="First group"  ng-hide="{{blogsDeUsuario}}">
-                                <a class="btn" ui-sref="blogCreate"><img src="data/plusC.png" style="width:50px;height:50px"></a>
-                                
-                            </div>
+                    </div>
+                </div>
+                <br>
+                <div class="panel panel-default responsive col-md-8" ng-repeat="blog in listBlog" ng-hide="{{blogsDeUsuario}}">
+                    <div class="panel-body clickable responsive" ui-sref="blogDetail({blogId: blog.id})" role="button">                          
+                        <div class="col-md-2">
+                            <img src="data/iconoBlog.png" height="50px" width="50px" style="margin:auto; position:absolute">  
                         </div>
-                        <br>
-                        <div class="panel panel-default" ng-repeat="blog in listBlog" ng-hide="{{blogsDeUsuario}}">
-                            <div class="panel-body clickable" ui-sref="blogDetail({blogId: blog.id})" role="button">                   
-                                <h3 id="{{$index}}-tituloBlog">{{blog.titulo}}</h3>
-                                <p id="{{$index}}-contenidoBlog">{{blog.contenido}}</p>    
-                            </div>
+                        <div class="col-md-8 responsive">   
+                            <h3 id="{{$index}}-tituloBlog">{{blog.titulo}}</h3>
+                            <p id="{{$index}}-contenidoBlog">{{blog.contenido}}</p>    
                         </div>
-                        <div class="panel panel-default" ng-repeat="blog in listBlog" ng-show="{{blogsDeUsuario}}">
-                            <div class="panel-body clickable" ng-click="verBlogDetail(blog)" role="button">                   
-                                <h3 id="{{$index}}-tittituloBlogUsuario">{{blog.titulo}}</h3>
-                                <p id="{{$index}}-contenidoBlogUsuario">{{blog.contenido}}</p>    
-                            </div>
+                    </div>
+                </div>
+                <div class="panel panel-default responsive col-md-8" ng-repeat="blog in listBlog" ng-show="{{blogsDeUsuario}}">
+                    <div class="panel-body clickable responsive" ui-sref="blogDetail({blogId: blog.id})" role="button">        
+                        <div class="col-md-2">
+                            <img src="data/iconoBlog.png" height="50px" width="50px" style="margin:auto; position:absolute">  
+                        </div>
+                        <div class="col-md-8 responsive">                   
+                            <h3 id="{{$index}}-tittituloBlogUsuario">{{blog.titulo}}</h3>
+                            <p id="{{$index}}-contenidoBlogUsuario">{{blog.contenido}}</p>    
                         </div>
                     </div>
                 </div>

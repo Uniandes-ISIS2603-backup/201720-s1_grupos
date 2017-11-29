@@ -1,27 +1,31 @@
 <!--Lista de todos los usuarios-->
-<h1>Todos los Usuarios</h1>
-<div class="container-fluid">
-    <br>
-    <div class="row">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre</th>    
-                    <th>Apellido</th>
-                    <th>Nickname</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="usuario in usuariosRecords">
-                    <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
-                    <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
-                    <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
-                    <td id="{{$index}}-Email">{{usuario.email}}</td>                    
-                </tr>
-              
-        </tbody>
-        </table>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h1 class="text-center">Todos los Usuarios</h1>
+        <div class="container-fluid">
+            <br>
+            <div class="row">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center fondoPanel" >Nombre</th>    
+                            <th class="text-center fondoPanel">Apellido</th>
+                            <th class="text-center fondoPanel"> Nickname</th>
+                            <th class="text-center fondoPanel" >Email</th>
+                            <th class="text-center fondoPanel" ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="usuario in usuariosRecords">
+                            <td id="{{$index}}-nombre"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.nombre}}</a></td>
+                            <td id="{{$index}}-Apellido">{{usuario.apellido}}</td>
+                            <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
+                            <td id="{{$index}}-Email">{{usuario.email}}</td>                    
+                        </tr>
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

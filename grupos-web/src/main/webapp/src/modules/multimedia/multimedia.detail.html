@@ -2,40 +2,34 @@
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-body">
-                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-                    <table class="table table-striped">
-                        <tbody>
-                                 <tr><td id="{{$index}}-nombre">{{currentMultimedia.nombre}}</td></tr>
-                                 <tr> <td id="{{$index}}-descripcion">{{currentMultimedia.descripcion}}</td></tr>
-                                 <tr> <td id="{{$index}}-link">{{currentMultimedia.link}}</td></tr>
-                                <tr> 
-                                    
-                                    <div ng-show="{{ctrl.esAutor()}}">
-                                        <div ng-show="esMiembro || esAdmin">
-                                            <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
-                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span> </button>
-                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                            </div>
-                                        </div>
-                                       <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
-                                               <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span> </button>
-                                               <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                        </div>
-                                    </div>
-                                    <div ng-show="esMiembro||esAdmin">
-                                         <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
-                                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span></button>
-                                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="blogMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
-                                        </div>  
-                                    </div>
-                                    
-                                </tr> 
-                        </tbody>
-                    </table>
+                <div>
+                    <p><strong>{{currentMultimedia.nombre}}</strong>:{{currentMultimedia.descripcion}}</p>
+                    <br>
+                    <p><strong>Link:</strong>{{currentMultimedia.link}}</p>
+                    <div ng-show="{{ctrl.esAutor()}}">
+                        <div ng-show="esMiembro || esAdmin">
+                            <div ng-show="{{esMultimediaNoticia && deGrupo}}" class="ng-hide">
+                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span> </button>
+                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                            </div>
+                        </div>
+                       <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}" class="ng-hide">
+                               <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioNoticiaMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span> </button>
+                               <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                        </div>
+                    </div>
+                    <div ng-show="esMiembro||esAdmin">
+                         <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
+                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="blogMultimediaEdit({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="blogMultimediaDelete({multimediaLink: currentMultimedia.link})"><span class="glyphicon glyphicon-trash"></span> </button>
+                        </div>  
+                    </div>
                 </div>
                 
                 <!--Ruta de la multimedia-->
-                <iframe name="plugin" class="col-md-8 col-lg-8 col-sm-8 col-xs-8" src="{{currentMultimedia.ruta}}"></iframe>
+                <div class="multimediaWrapper">
+                     <iframe name="plugin" src="{{currentMultimedia.ruta}}"></iframe>
+                </div>
                 <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaNoticia && deGrupo}}">
                     <button class="btn btn-default" ui-sref="grupoNoticiaMultimediaList">Volver</button>
                 </div>

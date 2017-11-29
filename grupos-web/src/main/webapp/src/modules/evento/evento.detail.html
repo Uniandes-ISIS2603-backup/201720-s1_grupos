@@ -13,7 +13,7 @@
                 </dl>
             </div>
         </div>
-                <div class="col-md-12 text-center">
+        <div class="col-md-12 text-center">
             <!-- Botones por si un usuario se quiere inscribir o dejar un evento, solo se muestra uno dependiendo del caso-->
             <div class=" col-md-12">
                 <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="!inscrito">
@@ -24,20 +24,19 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-10 col-lg-10">
-                <ul class="nav nav-tabs">          
-                        <li><a ui-sref="lugarEvento({lugarId: currentEvento.lugar.id})">Lugar del evento</a></li>
-                        <li><a ui-sref="patrocinioEventoListDetail({eventoId: currentEvento.id})">Patrocinios</a></li>
-                </ul>
-            </div>
+        
+        <div class="col-md-2 text-center" style="background: #58A4B0">
+            <ul class="nav nav-tabs nav-stacked">          
+                <li role="navigation" class="btn"><a class="nav-link active miMenu" ui-sref="lugarEvento({lugarId: currentEvento.lugar.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Lugar del evento</a></li>
+                <hr>
+                <li role="navigation" class="btn"><a class="nav-link active miMenu" ui-sref="patrocinioEventoListDetail({eventoId: currentEvento.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Patrocinios</a></li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
-                <div ui-view="childrenView"></div>
-            </div>
+        
+        <div class="col-md-10">
+            <div ui-view="childrenView"></div>
         </div>
+        
     </div>
 </div>
 

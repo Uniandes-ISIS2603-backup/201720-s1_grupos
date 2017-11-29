@@ -149,13 +149,7 @@
              */
             this.deleteRecord=function (id)
             {
-                //Id del autor diferente al de la noticia
-                if($scope.currentRecord.autor.id!==currentAutor.id)
-                {
-                    $state.go('ERRORGRUPONOTICIA',{mensaje: "El usuario no puede editar si no es el autor"},{reload:true});
-                }
-                else
-                {
+                
                     //Si el id existe ejecute la instrucción
                 if(id!==null)
                 {
@@ -179,7 +173,7 @@
                     }
                     
                     }
-                }
+                
                 
             };
             /**
@@ -204,7 +198,14 @@
              */
             this.esAutor=function()
             {
-                return currentRecord.calificador.id===currentAutor.id;
+                if(currentRecord.calificador!==undefined)
+                {
+                    return currentRecord.calificador.id===currentAutor.id;
+                }
+                else
+                {
+                    return false;
+                }
             };
             
 

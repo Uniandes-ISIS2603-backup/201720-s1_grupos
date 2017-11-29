@@ -12,7 +12,6 @@ import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
-import com.gs.collections.impl.list.fixed.ArrayAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +60,83 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      * Lista de blogs
      */
     private List<BlogDTO> blogs;
+    
+    /**
+     * Constructor vacio
+     */
+    public UsuarioDetailDTO(){
+        //constructor vacío
+    }
+    
+    /**
+     * Constructor a partir de un entity
+     * @param ue Usuario Entity
+     */
+    public UsuarioDetailDTO(UsuarioEntity ue){
+        super(ue);
+        if(ue!=null){
+            //Guarda los grupos a los que pertence el usuario
+            grupos = new ArrayList<>();
+            if(ue.getGrupos() != null) {
+            for(GrupoEntity g: ue.getGrupos()){
+                grupos.add(new GrupoDTO(g));
+            }
+            }
+            
+            //Guarda los grupos que administra el usuario
+            gruposAdmin = new ArrayList<>();
+            if(ue.getGruposAdmin() != null) {
+            for(GrupoEntity g: ue.getGruposAdmin()){
+                gruposAdmin.add(new GrupoDTO(g));
+            }
+            }
+            
+            //Guarda las noticias del usuario
+            noticias= new ArrayList<>();
+            if(ue.getNoticias()!= null) {
+            for(NoticiaEntity n: ue.getNoticias()){
+                noticias.add(new NoticiaDTO(n));
+            }
+            }
+            
+            //Guarda los eventos del usuario
+            eventos = new ArrayList<>();
+            if(ue.getEventos() != null) {
+                for(EventoEntity e: ue.getEventos()){
+                    eventos.add(new EventoDTO(e));
+                }
+            }
+            
+            //Guarda los patrocinios del usuario
+            patrocinios = new ArrayList<>();
+            if(ue.getPatrocinios() != null) {
+                for(PatrocinioEntity p: ue.getPatrocinios()){
+                    patrocinios.add(new PatrocinioDTO(p));
+                }
+            }
+            
+            //Guarda los blog del usuario
+            blogs= new ArrayList<>();
+            if(ue.getBlogsFavoritos() != null) {
+                for(BlogEntity b: ue.getBlogsFavoritos()){
+                    blogs.add(new BlogDTO(b));
+                }
+            }
+            
+            //Guarda las tarjetas del usuario
+            tarjetas = new ArrayList<>();
+            if(ue.getTarjetas()!=null) {
+            for(TarjetaEntity t: ue.getTarjetas()){
+                tarjetas.add(new TarjetaDTO(t));
+            }
+            }
+            
+            //Guarda la empresa del usuario
+            if(ue.getEmpresa()!=null){
+                empresa= new EmpresaDTO(ue.getEmpresa());
+            }
+        }
+    }
     
     /**
      * Da la lista de todos los grupos a los que pertenece el usuario
@@ -144,7 +220,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     
     /**
      * Cambia las noticias del usuario
-     * @param ne nuevas noticias
+     * @param nn nuevas noticias
      */
     public void setNoticias(List<NoticiaDTO> nn){
         noticias = nn;
@@ -191,92 +267,16 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     }
     
     /**
-     * Constructor vacio
-     */
-    public UsuarioDetailDTO(){
-        
-    }
-    
-    /**
-     * Constructor a partir de un entity
-     * @param ue Usuario Entity
-     */
-    public UsuarioDetailDTO(UsuarioEntity ue){
-        super(ue);
-        if(ue!=null){
-            //Guarda los grupos a los que pertence el usuario
-            grupos = new ArrayList<GrupoDTO>();
-            if(ue.getGrupos() != null) {
-            for(GrupoEntity g: ue.getGrupos()){
-                grupos.add(new GrupoDTO(g));
-            }
-            }
-            
-            //Guarda los grupos que administra el usuario
-            gruposAdmin = new ArrayList<GrupoDTO>();
-            if(ue.getGruposAdmin() != null) {
-            for(GrupoEntity g: ue.getGruposAdmin()){
-                gruposAdmin.add(new GrupoDTO(g));
-            }
-            }
-            
-            //Guarda las noticias del usuario
-            noticias= new ArrayList<NoticiaDTO>();
-            if(ue.getNoticias()!= null) {
-            for(NoticiaEntity n: ue.getNoticias()){
-                noticias.add(new NoticiaDTO(n));
-            }
-            }
-            
-            //Guarda los eventos del usuario
-            eventos = new ArrayList<EventoDTO>();
-            if(ue.getEventos() != null) {
-                for(EventoEntity e: ue.getEventos()){
-                    eventos.add(new EventoDTO(e));
-                }
-            }
-            
-            //Guarda los patrocinios del usuario
-            patrocinios = new ArrayList<PatrocinioDTO>();
-            if(ue.getPatrocinios() != null) {
-                for(PatrocinioEntity p: ue.getPatrocinios()){
-                    patrocinios.add(new PatrocinioDTO(p));
-                }
-            }
-            
-            //Guarda los blog del usuario
-            blogs= new ArrayList<BlogDTO>();
-            if(ue.getBlogsFavoritos() != null) {
-                for(BlogEntity b: ue.getBlogsFavoritos()){
-                    blogs.add(new BlogDTO(b));
-                }
-            }
-            
-            //Guarda las tarjetas del usuario
-            tarjetas = new ArrayList<TarjetaDTO>();
-            if(ue.getTarjetas()!=null) {
-            for(TarjetaEntity t: ue.getTarjetas()){
-                tarjetas.add(new TarjetaDTO(t));
-            }
-            }
-            
-            //Guarda la empresa del usuario
-            if(ue.getEmpresa()!=null){
-                empresa= new EmpresaDTO(ue.getEmpresa());
-            }
-        }
-    }
-    
-    /**
      * DTO a Entity
      * @return UsuarioEntity
      */
+    @Override
     public UsuarioEntity toEntity(){
         UsuarioEntity ue = super.toEntity();
         
         //Adiciona los grupos a los que pertence el usuario
         if(grupos!=null){
-            List<GrupoEntity> gruposE= new ArrayList<GrupoEntity>();
+            List<GrupoEntity> gruposE= new ArrayList<>();
             for(GrupoDTO g: grupos){
                 gruposE.add(g.toEntity());
             }
@@ -285,7 +285,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         
         //Adiciona los grupos que administra el usuario
         if(gruposAdmin!=null){
-            List<GrupoEntity> gruposE= new ArrayList<GrupoEntity>();
+            List<GrupoEntity> gruposE= new ArrayList<>();
             for(GrupoDTO g: gruposAdmin){
                 gruposE.add(g.toEntity());
             }
@@ -294,7 +294,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         
         //Adiciona las noticias del usuario
         if(noticias!=null){
-            List<NoticiaEntity> noticiasE= new ArrayList<NoticiaEntity>();
+            List<NoticiaEntity> noticiasE= new ArrayList<>();
             for(NoticiaDTO n: noticias){
                 noticiasE.add(n.toEntity());
             }
@@ -303,7 +303,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         
         //Adiciona los eventos del usuario
         if(eventos!=null){
-            List<EventoEntity> eventosE = new ArrayList<EventoEntity>();
+            List<EventoEntity> eventosE = new ArrayList<>();
             for(EventoDTO e: eventos){
                 eventosE.add(e.toEntity());
             }
@@ -312,7 +312,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         
         //Adiciona los patrocinios del usuario
         if(patrocinios!=null){
-            List<PatrocinioEntity> patrociniosE = new ArrayList<PatrocinioEntity>();
+            List<PatrocinioEntity> patrociniosE = new ArrayList<>();
             for(PatrocinioDTO p: patrocinios){
                 patrociniosE.add(p.toEntity());
             }
@@ -321,7 +321,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         
         //Adiciona los blogs del usuario
         if(blogs!=null){
-            List<BlogEntity> blogsE = new ArrayList<BlogEntity>();
+            List<BlogEntity> blogsE = new ArrayList<>();
             for(BlogDTO b: blogs){
                 blogsE.add(b.toEntity());
             }
@@ -330,7 +330,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         
         //Adiciona las tarjetas del usuario
         if(tarjetas!=null){
-            List<TarjetaEntity> tarjetasE = new ArrayList<TarjetaEntity>();
+            List<TarjetaEntity> tarjetasE = new ArrayList<>();
             for(TarjetaDTO t: tarjetas){
                 tarjetasE.add(t.toEntity());
             }

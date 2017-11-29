@@ -5,6 +5,8 @@
      * Controlador con $scope, $state, $http, multimediaContext (Ruta de multimedia), noticiasContext (Ruta de noticias), globalContext(Ruta raíz)
      */
     mod.controller('noticiaMultimediaCtrl', ['$scope', '$state', '$http', 'multimediaContext','noticiasContext','globalContext', function ($scope, $state, $http, multimediaContext,noticiasContext, globalContext) {
+            var error="";
+            
             if($state.params.mensaje!==null && $state.params.mensaje!==undefined)
             {
                 $scope.variableErrorMultimedia=$state.params.mensaje;
@@ -13,7 +15,7 @@
             $scope.esMultimediaBlog=false;
             $scope.esMultimediaNoticia=true;
             //Contexto global
-            fullContext=globalContext+"/"+noticiasContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
+            var fullContext=globalContext+"/"+noticiasContext+"/"+$state.params.noticiaId+"/"+multimediaContext;
 
             // inicialmente el listado de multimdia está vacio
             $scope.multimediaRecords = {};
@@ -31,7 +33,7 @@
             if ($state.params.multimediaLink !== null && $state.params.multimediaLink !== undefined) {
 
                 // toma el link del parámetro
-                link = $state.params.multimediaLink;
+                var link = $state.params.multimediaLink;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext+"/"+ link)
                         .then(function (response) {

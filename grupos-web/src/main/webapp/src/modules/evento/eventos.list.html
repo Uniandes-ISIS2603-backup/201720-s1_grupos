@@ -1,34 +1,39 @@
 <div class="container-fluid" ui-view="calendarView">
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" >
-                    <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{deGrupo}}">
-                        <a class="btn" ui-sref="eventosCreate({grupoId: idGrupo})"><img src="data/plusA.png" style="width:50px;height:50px" ng-if="puedoEditarGrupo()"></a>
-                        <button type="button" id="return-btn" class="btn btn-info" ui-sref="grupoDetail({grupoId:idGrupo})">Volver</button>
-                    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1 class="text-center">Eventos</h1>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" >
+                <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{deGrupo}}">
+                    <a class="btn" ui-sref="eventosCreate({grupoId: idGrupo})"><img src="data/plusA.png" style="width:50px;height:50px" ng-if="puedoEditarGrupo()"></a>
                 </div>
-    <div class="row">
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre</th>    
-                    <th>Fecha Inicio</th>  
-                    <th>Fecha Fin</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="evento in records">
-                    <td id="{{$index}}-nombre"><a ui-sref="eventoDetail({eventoId: evento.id})">{{evento.nombre}}</a></td>
-                    <td id="{{$index}}-fechaInicio">{{evento.fechaInicio| date:'yyyy-MM-dd'}}</td>
-                    <td id="{{$index}}-fechaFin">{{evento.fechaFin| date:'yyyy-MM-dd'}}</td>
-                    <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="eventoUpdate({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="eventoDelete({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-trash"></span></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            </div>
+            <div class="row">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr >
+                            <th class="text-center fondoPanel" >Nombre</th>    
+                            <th class="text-center fondoPanel" >Fecha Inicio</th>  
+                            <th class="text-center fondoPanel" >Fecha Fin</th>
+                            <th class="text-center fondoPanel" ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="evento in records">
+                            <td id="{{$index}}-nombre" ><a ui-sref="eventoDetail({eventoId: evento.id})">{{evento.nombre}}</a></td>
+                            <td id="{{$index}}-fechaInicio">{{evento.fechaInicio| date:'yyyy-MM-dd'}}</td>
+                            <td id="{{$index}}-fechaFin">{{evento.fechaFin| date:'yyyy-MM-dd'}}</td>
+                            <td id="{{$index}}-actions">
+                                <a class="btn btn-default btn-sm" ui-sref="eventoUpdate({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" ui-sref="eventoDelete({eventoId: evento.id})" ng-if="puedoEditarEventos()"><span class="glyphicon glyphicon-trash"></span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="btn btn-outline-primary" ui-sref="eventosCalendar" ng-if="deGrupo && !eventoUsuario">ver calendario Grupo</button>
+            <button type="button" class="btn btn-outline-primary" ui-sref="eventosCalendarAdmin" ng-if="!deGrupo && !eventoUsuario">ver calendario</button>
+            <button type="button" class="btn btn-outline-primary" ui-sref="eventosCalendarUsuario" ng-if="!deGrupo && eventoUsuario">ver mi calendario</button>
+        </div>
     </div>
-    <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendar" ng-if="deGrupo && !eventoUsuario">ver calendario Grupo</button>
-    <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendarAdmin" ng-if="!deGrupo && !eventoUsuario">ver calendario</button>
-    <button tympe="button" class ="btm btn-imfo" ui-sref="eventosCalendarUsuario" ng-if="!deGrupo && eventoUsuario">ver mi calendario</button>
 </div>
 

@@ -29,27 +29,29 @@
             </div>
             
             <br>
-            <div class="text-center">
+            <div class="col-md-2 text-center" style="background: #58A4B0">
                 <!-- Muestra los botones para ver los subrecursos del grupo-->
-                <div class="btn-group" >
-                    <button type="button" class="btn btn-primary" ui-sref="grupoNoticiasList" >Noticias</button>
-                    <button type="button" class="btn btn-primary" ui-sref="eventosDeGrupo({grupoId:grupoActual.id})" ng-if="puedoVerDetallesGrupo()">Eventos</button>
-                    <button type="button" class="btn btn-primary" ui-sref="blogList" ng-if="puedoVerDetallesGrupo()">Blogs</button>
-                    <button type="button" class="btn btn-primary" ng-click="categoriasDeMiGrupo(grupoActual.id)">Categorias</button>
-                    <button type="button" class="btn btn-primary" ng-click="adminsDeMiGrupo(grupoActual.id)" ng-if="puedoVerDetallesGrupo()">Administradores</button>
-                    <button type="button" class="btn btn-primary" ui-sref="miembrosDeGrupo({grupoId:grupoActual.id})">Miembros</button>
-                </div>
-            </div>
-            <br>
-            <br>
-            <!-- Botones para modificar y actualizar un grupo-->
+                <ul class="nav nav-tabs nav-stacked">
+                    <li role="navigation" class="btn"><a class="nav-link active miMenu" ui-sref="grupoNoticiasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Noticias</a></li>
+                    <hr>
+                    <li role="navigation" class="btn"  ng-if="puedoVerDetallesGrupo()"><a class="nav-link miMenu" ui-sref="eventosDeGrupo({grupoId:grupoActual.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Eventos</a></li>
+                    <hr  ng-if="puedoVerDetallesGrupo()" ng-class="{subir: !puedoVerDetallesGrupo()}">
+                    <li role="navigation" class="btn" ng-if="puedoVerDetallesGrupo()"><a class="nav-link miMenu" ui-sref="blogList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Blogs</a></li>
+                    <hr  ng-if="puedoVerDetallesGrupo()" ng-class="{subir: !puedoVerDetallesGrupo()}">
+                    <li role="navigation" class="btn"><a ng-click="categoriasDeMiGrupo(grupoActual.id)" type='button' class="nav-link miMenu" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif" >Categorias</a></li>
+                    <hr>
+                    <li role="navigation" class="btn" ng-if="puedoVerDetallesGrupo()" ><a id="losAdmins" class="nav-link active miMenu" type='button' ng-click="adminsDeMiGrupo(grupoActual.id)" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Administradores</a></li>
+                    <hr  ng-if="puedoVerDetallesGrupo()">
+                    <li role="navigation" class="btn"><a class="nav-link active miMenu" ui-sref="miembrosDeGrupo({grupoId:grupoActual.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Miembros</a></li>
+                </ul>
+            </div>          
             
             
             
-            <br>
-            <br>
             <!-- Vista para mostrar la lista de los subrecursos-->
-            <div ui-view="childrenView"></div>
+            <div class="col-md-10">                        
+                <div ui-view="childrenView"></div>
+            </div>
             <br>
             <br>
         </div>

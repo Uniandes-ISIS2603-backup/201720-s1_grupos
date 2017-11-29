@@ -3,16 +3,19 @@
     var mod = ng.module("noticiasModule");
 
     mod.controller("noticiasCtrl", ['$scope', '$state', '$http','noticiasContext','globalContext', function ($scope, $state, $http,context,globalContext) {
-             $scope.noticiaEditable=false;$scope.esNoticiaUsuario=false; $scope.deGrupo=false;
-
+            //Aserciones de edición en el html
+            $scope.noticiaEditable=false;
+            $scope.esNoticiaUsuario=false; 
+            $scope.deGrupo=false;
+            //Varuable de error
              var error="";
              if($state.params.mensajeError!==null && $state.params.mensajeError!==undefined)
              {
                  $scope.variableErrorNoticia=$state.params.mensajeError;
              }
-            fullContext=globalContext+"/"+context;
+            var fullContext=globalContext+"/"+context;
             
-            header="¿Qué pasa con tus intereses hoy?";            
+            var header="¿Qué pasa con tus intereses hoy?";            
             
             // inicialmente el listado de noticias está vacio
             $scope.records = {};
@@ -28,7 +31,7 @@
             if ($state.params.noticiaId !== null && $state.params.noticiaId !== undefined) {
 
                 // toma el id del parámetro
-                id = $state.params.noticiaId;
+                var id = $state.params.noticiaId;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext + "/" + id)
                         .then(function (response) {

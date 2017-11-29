@@ -11,17 +11,12 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Pattern;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -73,7 +68,7 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<TarjetaEntity> tarjetas= new ArrayList<TarjetaEntity>();
+    private List<TarjetaEntity> tarjetas= new ArrayList<>();
     
     /**
      * Empresa asociada al usuario
@@ -86,35 +81,35 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @ManyToMany(mappedBy="miembros") 
-    private List<GrupoEntity> grupos= new ArrayList<GrupoEntity>();
+    private List<GrupoEntity> grupos= new ArrayList<>();
     
     /**
      * Lista de grupos que administra
      */
     @PodamExclude
     @ManyToMany(mappedBy="administradores")
-    private List<GrupoEntity> gruposAdmin= new ArrayList<GrupoEntity>();
+    private List<GrupoEntity> gruposAdmin= new ArrayList<>();
     
     /**
      * Lista de noticias
      */
     @PodamExclude
     @OneToMany(mappedBy = "autor")
-    private List<NoticiaEntity> noticias= new ArrayList<NoticiaEntity>();
+    private List<NoticiaEntity> noticias= new ArrayList<>();
     
     /**
      * Lista de eventos
      */
     @PodamExclude
     @ManyToMany
-    private List<EventoEntity> eventos= new ArrayList<EventoEntity>();
+    private List<EventoEntity> eventos= new ArrayList<>();
     
     /**
      * Lista de patrocinios que ha realizado el usuario
      */
     @PodamExclude
     @OneToMany(mappedBy="usuario",cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<PatrocinioEntity> patrocinios= new ArrayList<PatrocinioEntity>();
+    private List<PatrocinioEntity> patrocinios= new ArrayList<>();
     
     /**
      * Lista de blogsFavoritos

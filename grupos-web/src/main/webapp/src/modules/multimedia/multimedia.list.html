@@ -13,10 +13,10 @@
                 <a class="btn" id="add-btn"  ui-sref="grupoNoticiaMultimediaCreate"><img src="data/plusR.png" style="width:50px;height:50px"> </a>
             </div>
                 <div ng-show="{{esMultimediaBlog}}" class="ng-hide">
-                    <div class="col-md-12">
+                 <div class="col-md-12">
                         <div class="widget-container" >
                             <div class="widget row image-tile">
-                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ui-sref="blogMultimediaDetail({multimediaLink: record.link})"ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                <div class="tile col-xs-12 col-md-4 col-sm-12 col-lg-4" ui-sref="blogMultimediaDetail({multimediaLink: record.link})"ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
                                     <p>{{record.nombre}}</p>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                     <div class="col-md-12">
                         <div class="widget-container" >
                             <div class="widget row image-tile">
-                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4"  ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;"  ui-sref="grupoNoticiaMultimediaDetail({multimediaLink: record.link})" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                <div class="tile col-xs-12 col-md-4 col-sm-12 col-lg-4"  ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;"  ui-sref="grupoNoticiaMultimediaDetail({multimediaLink: record.link})" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
                                     <p>{{record.nombre}}</p>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                     <div class="col-md-12">
                         <div class="widget-container" >
                             <div class="widget row image-tile">
-                                <div class="tile col-xs-4 col-md-4 col-sm-4 col-lg-4" ui-sref="noticiaNoEditableMultimediaDetail({multimediaLink:record.link})" ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                <div class="tile col-xs-12 col-md-4 col-sm-12 col-lg-4" ui-sref="noticiaNoEditableMultimediaDetail({multimediaLink:record.link})" ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
                                     <p>{{record.nombre}}</p>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                     <div class="col-md-12">
                         <div class="widget-container" >
                             <div class="widget row image-tile">
-                                <div class="tile col-xs-12 col-md-12 col-sm-12 col-lg-12" ui-sref="usuarioNoticiaMultimediaDetail({multimediaLink:record.link})" ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
+                                <div class="tile col-xs-12 col-md-4 col-sm-12 col-lg-4" ui-sref="usuarioNoticiaMultimediaDetail({multimediaLink:record.link})" ng-repeat="record in multimediaRecords" style="background: url({{record.ruta}})no-repeat center top; background-size: cover;" ng-class="{latest_icon:true, 'selected col-xs-4 col-md-4 col-sm-4 col-lg-4':selectedOption===record.ruta}">
                                     <p>{{record.nombre}}</p>
                                 </div>
                             </div>

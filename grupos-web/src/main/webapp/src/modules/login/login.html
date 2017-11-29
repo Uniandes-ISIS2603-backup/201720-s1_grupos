@@ -18,45 +18,50 @@
 </form>
 </div>-->
 <div class="row">
-    <div class="col-md-12 text-center">       
-        <div ng-if="!isAuthenticated()" class="container col-md-12" style="padding-top: 20px;  padding-bottom: 25px;">
-            <form class="form-signin" name="formLogin">
-                <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
-                <br>
-                <br>
-                <div class="col-md-12" align="center" style="text-align:center">
-                    <input type="text" style="width:250px" placeholder="Correo" align="center" required="" autofocus="" ng-model="data.email">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-12 text-center">       
+                <div ng-if="!isAuthenticated()" class="container col-md-12" style="padding-top: 20px;  padding-bottom: 25px;">
+                    <form class="form-signin" name="formLogin">
+                        <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
+                        <br>
+                        <p class="col-md-12" style="color: #D8000C" ng-if="errorLogging!==null && errorLogging!==undefined">{{errorLogging}}</p>
+                        <br>
+                        <div class="col-md-12" align="center" style="text-align:center">
+                            <input type="text" style="width:250px" placeholder="Correo" align="center" required="" autofocus="" ng-model="data.email">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-md-12" align="center" style="text-align:center">
+                            <input type="password" style="width:250px" placeholder="Contraseña" align="center" required="" ng-model="data.password">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <!--Le permite acceder a la plataforma-->
+                        <div class="col-xs-4 col-md-12" align="center">
+                            <button type="button" class="btn btn-primary" ng-click="ctrl.autenticar()" ng-style="!formLogin.$valid?{'opacity': '0.65'}:{'opacity':'1'}">
+                                Entrar
+                            </button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-xs-4 col-md-12" align="center">
+                            <button type="button" class="btn btn-primary" ng-click="ctrl.loggear()">
+                                Entrar con el usuario 1 (Ciudadano)
+                            </button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-xs-4 col-md-12" align="center">
+                            <button type="button" class="btn btn-primary" ng-click="ctrl.loggear2()">
+                                Entrar con el usuario 11 (Admin)
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <br>
-                <br>
-                <br>
-                <div class="col-md-12" align="center" style="text-align:center">
-                    <input type="password" style="width:250px" placeholder="Contraseña" align="center" required="" ng-model="data.password">
-                </div>
-                <br>
-                <br>
-                <br>
-                <!--Le permite acceder a la plataforma-->
-                <div class="col-xs-4 col-md-12" align="center">
-                    <button type="button" class="btn btn-primary" ng-click="ctrl.autenticar()" ng-style="!formLogin.$valid?{'opacity': '0.65'}:{'opacity':'1'}">
-                        Entrar
-                    </button>
-                </div>
-                <br>
-                <br>
-                <div class="col-xs-4 col-md-12" align="center">
-                    <button type="button" class="btn btn-primary" ng-click="ctrl.loggear()">
-                        Entrar con el usuario 1 (Ciudadano)
-                    </button>
-                </div>
-                <br>
-                <br>
-                <div class="col-xs-4 col-md-12" align="center">
-                    <button type="button" class="btn btn-primary" ng-click="ctrl.loggear2()">
-                        Entrar con el usuario 11 (Admin)
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
