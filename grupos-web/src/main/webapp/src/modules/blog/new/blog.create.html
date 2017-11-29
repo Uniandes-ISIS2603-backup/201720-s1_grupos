@@ -63,8 +63,8 @@
                     
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <input type="submit" value="Crear" ng-show="{{crearBlog}}" ng-style="(!blogCrear.$valid || !ctrl.verificarMultimedia() )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn btn-success"/>
-                            <input type="submit" value="Actualizar" ng-show="{{actualizarBlog}}" ng-style="(!blogCrear.$valid || !ctrl.verificarMultimedia() )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn btn-success"/>
+                            <input type="submit" value="Crear" ng-show="{{crearBlog}}" ng-style="(!blogCrear.$valid || !verificarMultimedia() )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn btn-success"/>
+                            <input type="submit" value="Actualizar" ng-show="{{actualizarBlog}}" ng-style="(!blogCrear.$valid )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn btn-success"/>
                             <br>
                             <a class="btn btn-info" ng-show="{{crearBlog}}" ui-sref="blogList">Cancelar</a>
                             <a class="btn btn-info" ng-show="{{actualizarBlog}}" ui-sref="blogDetail">Cancelar</a>

@@ -72,12 +72,12 @@
                 $scope.selectedOption[index]=(index+1)+"-"+ruta;
             };
             /**
-             * Verifica que todas los archivos multimedia tienen un ruta y nombre asignados.<br>
+             * Verifica que todas los archivos multimedia tienen su ruta y nombre asignados.<br>
              * @return booleano para ver si todas las tienen o no.
              */
-            this.verificarMultimedia=function()
+            $scope.verificarMultimedia=function()
             {
-                for(i=0;i<$scope.itemsToAdd.length;i++)
+                for(var i=0;i<$scope.itemsToAdd.length;i++)
                 {
                     if($scope.itemsToAdd[i].ruta===null || $scope.itemsToAdd[i].ruta===undefined)
                     {
@@ -125,7 +125,8 @@
              * Se crea el blog con un post.
              */
             $scope.createBlog = function() {
-                if(!this.verificarMultimedia())
+                console.log($scope.verificarMultimedia());
+                if(!$scope.verificarMultimedia())
                 {
                     return;
                 }
