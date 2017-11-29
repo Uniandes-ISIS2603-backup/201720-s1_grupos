@@ -25,6 +25,7 @@
                     <form class="form-signin" name="formLogin">
                         <h1 class="form-signin-heading text-muted">Inicia sesión</h1>
                         <br>
+                        <p class="col-md-12" style="color: #D8000C" ng-if="errorLogging!==null && errorLogging!==undefined">{{errorLogging}}</p>
                         <br>
                         <div class="col-md-12" align="center" style="text-align:center">
                             <input type="text" style="width:250px" placeholder="Correo" align="center" required="" autofocus="" ng-model="data.email">

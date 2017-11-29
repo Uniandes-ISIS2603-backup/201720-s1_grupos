@@ -6,6 +6,8 @@
      */
     mod.controller('loginCtrl', ['$scope', '$http', '$state', '$rootScope',
         function ($scope, $http, $state, $rootScope) {
+            $scope.errorLogging=undefined;
+            //Es el login o no
             $rootScope.esLogin=true;
             //Usuario
             $scope.user = {};
@@ -44,6 +46,11 @@
                                 }
                                 //Va al perfil del usuario loggeado
                                 $state.go('usuarioDetail', {usuarioId:$scope.user.id}, {reload: true});
+                            },
+                            function(error)
+                            {
+                                console.log(error.data);
+                                $scope.errorLogging=error.data;
                             });
                         
                     
