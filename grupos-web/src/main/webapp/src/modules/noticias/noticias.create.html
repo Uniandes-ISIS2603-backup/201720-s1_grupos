@@ -1,7 +1,10 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"> Crear noticia </div>
+        <!--<div class="panel panel-primary">-->
+        <div class="col-md-4 text-center" style="float: none;margin: 0 auto">
+            <h2><span style="color: #721817"> Crear noticia </span></h2>
+        </div>
+        <div class="col-md-12 text-center">
             <div class="panel-body">
                 <form ng-submit="ctrl.saveRecord(currentRecord.id)" name="noticia">
                     <div class="form-group row">
@@ -11,13 +14,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-8">
                             <label for="informacion" class="col-md-6 control-label">Información</label>
                             <textarea id="informacion" name="informacion"  required class="col-sm-6" ng-model="currentRecord.informacion" ng-init="currentRecord.informacion"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <button ng-click="ctrl.addNew()" class="btn btn-default" type="button" >Nueva multimedia</button>
+                        <button ng-click="ctrl.addNew()" class="btn outline" type="button" >Nueva multimedia</button>
                     </div> 
                     
                     <div class="form-group row">
@@ -39,8 +42,8 @@
                                         <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="itemToAdd.descripcion" ng-init="itemToAdd.descripcion"></textarea>
                                     </div>
                                 </div>
-                                <label for="rutamultimedia" class="col-md-6">Ruta</label>
-                                <input id="rutamultimedia" name="rutamultimedia" class="col-sm-6" type="text" value="Selecciona un archivo" disabled/>
+                                <label for="rutamultimedia" class="col-md-4">Ruta</label>
+                                <input id="rutamultimedia" name="rutamultimedia" class="col-sm-5" type="text" value="Selecciona un archivo" disabled/>
                                 <p class="col-md-12" style="color: #D8000C" ng-if="!ctrl.verificarMultimediaIndividual(itemToAdd)">No has seleccionado un archivo y/o nombre para la multimedia {{ctrl.numeroActual(itemToAdd)}}</p>
                                    <div class="col-md-12">
                                         <div class="widget-container" >
@@ -51,7 +54,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                <button id="{{$index}}--remove-multimedia-btn" class="btn btn-danger btn-sm col-lg-6 col-md-6" ng-click="ctrl.remove(itemToAdd)" type="button"><span class="glyphicon glyphicon-trash"></span>Multimedia</button>
+                                <button id="{{$index}}--remove-multimedia-btn" class="btn outlineC btn-sm col-lg-3 col-md-3" ng-click="ctrl.remove(itemToAdd)" type="button"><span class="glyphicon glyphicon-trash"></span>Multimedia</button>
                                 <hr>
                             </div>
                             <hr>
@@ -59,9 +62,11 @@
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <button type="submit" id="submit-button" class="btn btn-info"  ng-style="(!noticia.$valid || !ctrl.verificarMultimedia())?{'opacity': '0.65'}:{'opacity':'1'}" >Agregar noticia</button>
+                            <button type="submit" id="submit-button" class="btn outline"  ng-style="(!noticia.$valid || !ctrl.verificarMultimedia())?{'opacity': '0.65'}:{'opacity':'1'}" >Agregar noticia</button>
+                            <br>
+                            <br>
                             <div ng-show="{{deGrupo}}">
-                                <button type="button" class="btn btn-info"  ui-sref='grupoNoticiasList'>Cancelar</button>
+                                <button type="button" class="btn outline"  ui-sref='grupoNoticiasList'>Cancelar</button>
                             </div>                        
                         </div>
                     </div> 
