@@ -34,7 +34,7 @@ public class EventoDTO {
      */
     public EventoDTO()
     {
-        
+        //Constructor vacío
     }
     /**
      * Construye un dto a partir de la entidad dada.<br>

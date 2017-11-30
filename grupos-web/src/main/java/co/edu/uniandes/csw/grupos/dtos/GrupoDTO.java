@@ -33,6 +33,7 @@ public class GrupoDTO {
      */
     public GrupoDTO()
     {
+        //Constructor vacío
     }
     
     /**

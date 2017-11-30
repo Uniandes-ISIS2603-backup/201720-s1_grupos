@@ -7,8 +7,6 @@ delete from UsuarioEntity_TarjetaEntity;
 
 delete from BlogEntity_MultimediaEntity;
 delete from BlogEntity_ComentarioEntity;
-delete from EventoEntity_PatrocinioEntity;
-delete from UsuarioEntity_PatrocinioEntity;
 delete from PatrocinioEntity;
 
 delete from NoticiaEntity_ComentarioEntity;
@@ -29,8 +27,6 @@ delete from ComentarioEntity;
 delete from MultimediaEntity;
 delete from TarjetaEntity;
 delete from PatrocinioEntity;
-delete from UsuarioEntity_NoticiaEntity;
-delete from UsuarioEntity_PatrocinioEntity;
 delete from UsuarioEntity;
 delete from EmpresaEntity;
 delete from LugarEntity;
@@ -102,14 +98,6 @@ insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (1,800.0,3,1);
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (2,800.0,2,1);
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (3,800.0,2,3);
-
-insert into EventoEntity_PatrocinioEntity(EventoEntity_Id, Patrocinios_Id) values(1,1);
-insert into EventoEntity_PatrocinioEntity(EventoEntity_Id, Patrocinios_Id) values(1,2);
-insert into EventoEntity_PatrocinioEntity(EventoEntity_Id, Patrocinios_Id) values(3,3);
-
-insert into UsuarioEntity_PatrocinioEntity(UsuarioEntity_Id, Patrocinios_Id) values(3,1);
-insert into UsuarioEntity_PatrocinioEntity(UsuarioEntity_Id, Patrocinios_Id) values(2,2);
-insert into UsuarioEntity_PatrocinioEntity(UsuarioEntity_Id, Patrocinios_Id) values(2,3);
 
 ---INSERCIÓN SEGURA DE USUARIO, GRUPO Y BLOG FICTICIOS QUE NO SE VAN A BORRAR EN LAS PRUEBAS DE SERGIO GUZMÁN M.
 insert into UsuarioEntity(id, nombre, apellido, password,email, rol, nickname) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co', 'Ciudadano', 'guzmanStark');

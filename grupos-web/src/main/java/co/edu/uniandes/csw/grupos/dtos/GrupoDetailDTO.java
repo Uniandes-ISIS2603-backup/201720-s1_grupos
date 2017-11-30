@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
-import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import java.util.ArrayList;
