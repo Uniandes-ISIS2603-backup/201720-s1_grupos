@@ -12,7 +12,7 @@
                 <img class=" img-responsive clickable" style="display:block;margin:auto" src="data/{{categoria.rutaIcono}}" id="{{$index}}-icono" onerror="this.src='data/default.png'" ui-sref="categoriaDetail({categoriaId: categoria.id})">
                 <p id="{{$index}}-descripcion">{{categoria.descripcion}}</p>
                 
-                <a class="btn btn-success " ng-click="asociarCategoria(categoria.id)" >Asociar esta :D</a>
+                <a class="btn outline " ng-click="asociarCategoria(categoria.id)" >Asociar esta :D</a>
                 <!-- Si se oprime aquí, se agrega esta categoría al grupo-->     
             </div>
         </div>
