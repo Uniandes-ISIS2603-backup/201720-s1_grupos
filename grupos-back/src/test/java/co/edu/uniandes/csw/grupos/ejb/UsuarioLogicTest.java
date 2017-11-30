@@ -11,11 +11,13 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -87,7 +89,8 @@ public class UsuarioLogicTest {
     /**
      * Inserta datos en el sistema para hacer las pruebas.
      */
-    private void insertData() {
-        
+    @Test
+    public void insertData() {
+        Assert.assertTrue(true);
     }
 }
