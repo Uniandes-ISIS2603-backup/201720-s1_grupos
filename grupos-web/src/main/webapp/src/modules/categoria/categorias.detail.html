@@ -5,13 +5,13 @@
             <!-- Muestra tipo, imagen y descripción de la misma-->
             <h1 id="{{$index}}-name" class="col-md-12 text-center" style="float:none;font-size:50px;margin: 0 auto"><span style="color:#426163;">{{categoriaActual.tipo}}</span></h1>
             <hr>
+            <div class="col-md-12 col-sm-12 col-xs-12"> 
+                    <a class="btn btn-circle outline btn-sm" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})" ng-if="puedoEditarCategorias()"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-circle outlineC btn-sm" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})" ng-if="puedoEditarCategorias()"><span class="glyphicon glyphicon-trash" style="color:black"></span></a>
+                </div>
             <div class="col-md-6 col-sm-6 col-xs-7 text-center"> 
                 <div class="col-md-12 col-sm-12 col-xs-12"> 
                     <img src="data/{{categoriaActual.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'"  role="button" style="margin:auto;width:300px;height:300px;border:1px solid #426163;">
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center"> 
-                    <a class="btn btn-circle btn-default btn-sm" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})" ng-if="puedoEditarCategorias()"><span class="glyphicon glyphicon-edit"></span></a>
-                    <a class="btn btn-circle btn-danger btn-sm" ui-sref="categoriaDelete({categoriaId: categoriaActual.id})" ng-if="puedoEditarCategorias()"><span class="glyphicon glyphicon-trash"></span></a>
                 </div>
             </div>
             <div class="col-md-3 col-md-6 col-md-5" style="margin-right: -50px">    

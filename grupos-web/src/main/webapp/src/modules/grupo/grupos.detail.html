@@ -2,10 +2,6 @@
 <div class="container-fluid">
     <div class="panel panel-default"> 
         <div class="panel-body">
-            <div class="row">        
-                <a class="btn btn-danger btn-sm col-md-1 pull-right" ui-sref="grupoDelete({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-trash"></span></a>
-                <a class="btn btn-default btn-sm col-md-1 pull-right" ui-sref="grupoUpdate({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-edit"></span></a>
-            </div>
             <div class="row">
                 <!-- Muestra el nombre-->
                 <div class="col-md-12 text-center" style="float: none;margin: 0 auto">
@@ -27,7 +23,10 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="row" style="padding-right: 5%;">        
+                <a class="btn outlineC btn-sm col-md-1 pull-right" ui-sref="grupoDelete({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-trash" style="color: black"></span></a>
+                <a class="btn outline btn-sm col-md-1 pull-right" ui-sref="grupoUpdate({grupoId: grupoActual.id})" ng-if="puedoEditarGrupo()"><span class="glyphicon glyphicon-edit"></span></a>
+            </div>
             <br>
             <div class="col-md-2 text-center" style="background: #545E75;padding-left: 0px;padding-right: 0px;">
                 <!-- Muestra los botones para ver los subrecursos del grupo-->
