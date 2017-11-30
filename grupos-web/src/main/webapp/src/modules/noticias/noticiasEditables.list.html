@@ -4,7 +4,7 @@
             <h1 class="col-md-12 text-center"><span style="color:#426163;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"> Noticias </span></h1>
             <h2 class="text-center"><span style="font-size:30px;color:#48233C;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{ctrl.getHeader()}} </span></h2>
             <div class="btn-toolbar ng-hide" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{noticiaEditable && deGrupo}}">
-                <div ng-show="(esMiembro||puedoEditarGrupo() )">
+                <div ng-show="(esMiembro||esAdmin )">
                     <a class="btn" id="add-btn" ui-sref="grupoNoticiaCreate"><img src="data/plusN.png" style="width:50px;height:50px"></a>
                 </div>
             
