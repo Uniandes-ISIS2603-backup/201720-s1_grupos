@@ -1,7 +1,9 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"> Actualizar noticia </div>
+        <!--<div class="panel panel-primary">-->
+            <div class="col-md-4 text-center" style="float: none;margin: 0 auto">
+                <h2><span style="color: #721817"> Actualizar noticia </span></h2>
+            </div>
             <div class="panel-body">
                 <form ng-submit="ctrl.saveRecord(currentRecord.id)" name="noticia">
                     <div class="form-group row">
@@ -26,12 +28,14 @@
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <button type="submit" id="submit-button" class="btn btn-info" >Actualizar noticia</button>
+                            <button type="submit" id="submit-button" class="btn outline" >Actualizar noticia</button>
                             <div ng-show="{{esNoticiaUsuario}}">
-                                    <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiasList'>Cancelar</button>
+                                    <button type="button" class="btn outline"  ui-sref='usuarioNoticiasList'>Cancelar</button>
                             </div>
+                            <br>
+                            <br>
                             <div ng-show="{{deGrupo}}">
-                                 <button type="button" class="btn btn-info"  ui-sref='grupoNoticiasList'>Cancelar</button>
+                                 <button type="button" class="btn outline"  ui-sref='grupoNoticiasList'>Cancelar</button>
                             </div>                        
                         </div>
                     </div>
