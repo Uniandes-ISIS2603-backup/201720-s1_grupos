@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"> Nueva calificación</div>
+        <!--<div class="panel panel-primary">-->
+        <h1 id="{{$index}}-name" class="col-md-6 text-center" style="float:none;font-size:25px;margin: 0 auto"><span style="color:#426163;">Nueva calificación</span></h1>
             <div class="panel-body">
                 <form ng-submit="ctrl.saveRecord(currentRecord.id)" name="calificacion">
-                    <div class="form-group row">
-                        <div class="form-group col-md-12">
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12 text-center">
                             <table>
                                 <tr>
                                     <td><input type="hidden" id="id" ng-model="currentRecord.id" ng-init="currentRecord.id">
