@@ -7,13 +7,11 @@ package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
-import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
-import co.edu.uniandes.csw.grupos.persistence.BlogPersistence;
 import co.edu.uniandes.csw.grupos.persistence.GrupoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +61,12 @@ public class GrupoLogicTest {
     private List<NoticiaEntity> dataN = new ArrayList<>();
     
     private List<EventoEntity> dataE = new ArrayList<>();
+    
+    private NoticiaEntity n;
+    
+    private UsuarioEntity u;
+    
+    private EventoEntity e;
     
     /**
      *
@@ -116,6 +120,12 @@ public class GrupoLogicTest {
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        n = factory.manufacturePojo(NoticiaEntity.class);
+        em.persist(n);
+        u = factory.manufacturePojo(UsuarioEntity.class);
+        em.persist(u);
+        e = factory.manufacturePojo(EventoEntity.class);
+        em.persist(e);
         for(int i = 0; i<2; i++) {
             CategoriaEntity cat = factory.manufacturePojo(CategoriaEntity.class);
             em.persist(cat);
@@ -123,11 +133,8 @@ public class GrupoLogicTest {
         }
         for(int i = 0; i<3; i++) {
             UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
-            NoticiaEntity noticia = factory.manufacturePojo(NoticiaEntity.class);
             em.persist(usuario);
-            em.persist(noticia);
             dataU.add(usuario);
-            dataN.add(noticia);
         }
         for(int i = 0; i<3; i++) {
             GrupoEntity grupo = factory.manufacturePojo(GrupoEntity.class);
@@ -137,7 +144,6 @@ public class GrupoLogicTest {
             grupo.setCategorias(list);
             if(i==0) {
                 grupo.setMiembros(dataU);
-                grupo.setNoticiasGrupo(dataN);
                 List<UsuarioEntity> admins = new ArrayList<>();
                 admins.add(dataU.get(0));
                 grupo.setAdministradores(admins);
@@ -148,8 +154,16 @@ public class GrupoLogicTest {
         for(int i = 0; i<3; i++) {
             BlogEntity blog = factory.manufacturePojo(BlogEntity.class);
             EventoEntity evento = factory.manufacturePojo(EventoEntity.class);
+            NoticiaEntity noticia = factory.manufacturePojo(NoticiaEntity.class);
             blog.setGrupo(data.get(0));
             evento.setGrupo(data.get(0));
+            noticia.setGrupo(data.get(0));
+            em.persist(blog);
+            em.persist(evento);
+            em.persist(noticia);
+            dataB.add(blog);
+            dataE.add(evento);
+            dataN.add(noticia);
         }
     }
     
@@ -319,7 +333,128 @@ public class GrupoLogicTest {
         Assert.assertNull(logic.getAdmin(data.get(0).getId(), dataU.get(2).getId()));
     }
     
+    @Test
+    public void testGetBlogs() {
+        compararListas(dataB, logic.listBlogs(data.get(0).getId()));
+        
+        Assert.assertNull(logic.getBlog(data.get(0).getId(), darIdBlogNoUsado()));
+        Assert.assertEquals(dataB.get(0), logic.getBlog(data.get(0).getId(), dataB.get(0).getId()));
+    }
     
+    @Test
+    public void testRemoveBlog() {
+        logic.removeBlog(data.get(0).getId(), dataB.get(2).getId());
+        Assert.assertNull(logic.getBlog(data.get(0).getId(), dataB.get(2).getId()));
+        dataB.remove(2);
+    }
+    
+    @Test
+    public void testGetNoticias() {
+        compararListas(dataN, logic.listNoticias(data.get(0).getId()));
+        
+        Assert.assertNull(logic.getNoticia(data.get(0).getId(), darIdNoticiaNoUsado()));
+        Assert.assertEquals(dataN.get(0), logic.getNoticia(data.get(0).getId(), dataN.get(0).getId()));
+    }
+    
+    @Test
+    public void testAddDelete() {
+        try {
+            logic.addNoticia(data.get(0).getId(), n.getId());
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+        
+        try {
+            logic.deleteNoticia(data.get(0).getId(), n.getId());
+            Assert.assertNull(logic.getNoticia(data.get(0).getId(), n.getId()));
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+    }
+    
+    @Test
+    public void testCreateUpdateDelete() {
+        PodamFactory factory = new PodamFactoryImpl();
+        NoticiaEntity noticia = factory.manufacturePojo(NoticiaEntity.class);
+        noticia.setAutor(u);
+        try {
+            noticia = logic.createNoticia(data.get(0).getId(), noticia);
+            Assert.assertEquals(noticia, logic.getNoticia(data.get(0).getId(), noticia.getId()));
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+        
+        
+        NoticiaEntity newNoticia = factory.manufacturePojo(NoticiaEntity.class);
+        newNoticia.setAutor(u);
+        try {
+            NoticiaEntity not2 = logic.updateNoticia(data.get(0).getId(), noticia.getId(), newNoticia);
+            newNoticia.setId(noticia.getId());
+            Assert.assertEquals(newNoticia, not2);
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+        
+        try {
+            logic.deleteNoticia(data.get(0).getId(), newNoticia.getId());
+            Assert.assertNull(logic.getNoticia(data.get(0).getId(), newNoticia.getId()));
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+    }
+    
+    @Test
+    public void testGetEventos() {
+        compararListas(dataE, logic.listEventos(data.get(0).getId()));
+        
+        try {
+            logic.getEvento(data.get(0).getId(), darIdEventoNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException e) {
+            //no pasa nada
+        }
+        Assert.assertEquals(dataE.get(0), logic.getEvento(data.get(0).getId(), dataE.get(0).getId()));
+    }
+    
+    @Test
+    public void testAddRemoveEvento() {
+        try {
+            logic.addEvento(data.get(0).getId(), e.getId());
+            Assert.assertEquals(e, logic.getEvento(data.get(0).getId(), e.getId()));
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+        
+        
+        try {
+            logic.removeEvento(data.get(0).getId(), darIdEventoNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException e) {
+            //no pasa nada
+        }
+        try {
+            logic.removeEvento(data.get(0).getId(), e.getId());
+            try {
+                logic.getEvento(data.get(0).getId(), e.getId());
+                Assert.fail();
+            }
+            catch(NotFoundException e) {
+                //no pasa nada
+            }
+        }
+        catch(NotFoundException e) {
+            Assert.fail();
+        }
+        
+    }
     
     
     private void compararListas(List list1, List list2) {
@@ -346,6 +481,33 @@ public class GrupoLogicTest {
         UsuarioEntity entity = new UsuarioEntity();
         entity.setId((long)0);
         while(dataU.indexOf(entity)>=0) {
+            entity.setId((long)((Math.random())*100));
+        }
+        return entity.getId();
+    }
+    
+    private Long darIdBlogNoUsado() {
+        BlogEntity entity = new BlogEntity();
+        entity.setId((long)0);
+        while(dataB.indexOf(entity)>=0) {
+            entity.setId((long)((Math.random())*100));
+        }
+        return entity.getId();
+    }
+    
+    private Long darIdNoticiaNoUsado() {
+        NoticiaEntity entity = new NoticiaEntity();
+        entity.setId((long)0);
+        while(dataN.indexOf(entity)>=0 || n.equals(entity)) {
+            entity.setId((long)((Math.random())*100));
+        }
+        return entity.getId();
+    }
+    
+    private Long darIdEventoNoUsado() {
+        EventoEntity entity = new EventoEntity();
+        entity.setId((long)0);
+        while(dataE.indexOf(entity)>=0 || e.equals(entity)) {
             entity.setId((long)((Math.random())*100));
         }
         return entity.getId();
