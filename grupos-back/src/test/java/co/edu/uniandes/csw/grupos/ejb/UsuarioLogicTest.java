@@ -289,7 +289,12 @@ public class UsuarioLogicTest {
     public void testGetTarjetas() {
         compararListas(dataT, logic.listTarjetas(data.get(0).getId()));
         
-        Assert.assertNull(logic.getTarjeta(data.get(0).getId(), darNumTarjetaNoUsado()));
+        try {
+            Assert.assertNull(logic.getTarjeta(data.get(0).getId(), darNumTarjetaNoUsado()));
+        }
+        catch(NotFoundException | EJBException e) {
+            //
+        }
         Assert.assertEquals(dataT.get(0), logic.getTarjeta(data.get(0).getId(), dataT.get(0).getNumero()));
     }
     
@@ -478,8 +483,63 @@ public class UsuarioLogicTest {
     
     @Test
     public void testRemoveNoticia() {
+        try {
+            logic.removeNoticia(darIdNoUsado(), dataN.get(dataN.size()-1).getId());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            Assert.fail();
+        }
+        catch(BusinessException e1) {
+            //no pasa nada
+        }
+        
+        try {
+            logic.removeNoticia(data.get(0).getId(), dataN.get(dataN.size()-1).getId());
+        }
+        catch(NotFoundException | EJBException | BusinessException e1) {
+            Assert.fail();
+        }
+    }
+    
+    @Test
+    public void getPatrocinios() {
+        try {
+            logic.getPatrocinios(darIdNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            //no pasa nada
+        }
+        
+        try {
+            compararListas(dataP, logic.getPatrocinios(data.get(0).getId()));
+            
+        }
+        catch(NotFoundException | EJBException e) {
+            Assert.fail();
+        }
+        
+        Assert.assertNull(logic.getPatrocinio(data.get(0).getId(), darIdPatrocinioNoUsado()));
+        Assert.assertEquals(dataP.get(0), logic.getPatrocinio(data.get(0).getId(), dataP.get(0).getId()));
+    }
+    
+    @Test
+    public void testGetBlogs() {
+        compararListas(dataB, logic.listBlogs(data.get(0).getId()));
+        
+        Assert.assertEquals(dataB.get(0), logic.getBlog(data.get(0).getId(), dataB.get(0).getId()));
+        try {
+            logic.getBlog(data.get(0).getId(), darIdBlogNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            //no pasa nada
+        }
         
     }
+    
+    
     
     
     private void compararListas(List list1, List list2) {
@@ -506,6 +566,24 @@ public class UsuarioLogicTest {
         NoticiaEntity entity = new NoticiaEntity();
         entity.setId((long)0);
         while(dataN.indexOf(entity)>=0) {
+            entity.setId((long)((Math.random())*100));
+        }
+        return entity.getId();
+    }
+    
+    private Long darIdPatrocinioNoUsado() {
+        PatrocinioEntity entity = new PatrocinioEntity();
+        entity.setId((long)0);
+        while(dataP.indexOf(entity)>=0) {
+            entity.setId((long)((Math.random())*100));
+        }
+        return entity.getId();
+    }
+    
+    private Long darIdBlogNoUsado() {
+        BlogEntity entity = new BlogEntity();
+        entity.setId((long)0);
+        while(dataB.indexOf(entity)>=0) {
             entity.setId((long)((Math.random())*100));
         }
         return entity.getId();
