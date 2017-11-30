@@ -2,15 +2,26 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasEventoPatrocinio",
-		"_postman_id": "457dbc78-988d-daec-003d-af5367183541",
+		"_postman_id": "f193fd66-e1b6-68c2-d09a-2c4e98d71e99",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Dar todos los patrocinios de un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios",
+				"url": "localhost:8080/grupos-web/Stark/eventos/1/patrocinios",
 				"method": "GET",
 				"header": [
 					{
@@ -29,8 +40,19 @@
 		},
 		{
 			"name": "Agrega un nuevo patrocinio al evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios/1",
+				"url": "localhost:8080/grupos-web/Stark/eventos/1/patrocinios/4",
 				"method": "POST",
 				"header": [
 					{
@@ -49,8 +71,19 @@
 		},
 		{
 			"name": "Dar todos los patrocinios de un evento usando id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios",
+				"url": "localhost:8080/grupos-web/Stark/eventos/1/patrocinios/4",
 				"method": "GET",
 				"header": [
 					{
@@ -69,8 +102,19 @@
 		},
 		{
 			"name": "Borra un patrocinio dado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"]=responseCode.code===204;"
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios/2",
+				"url": "localhost:8080/grupos-web/Stark/eventos/1/patrocinios/4",
 				"method": "DELETE",
 				"header": [
 					{
@@ -89,8 +133,19 @@
 		},
 		{
 			"name": "Obtiene el patrocinio borrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "localhost:8080/grupos-web/Stark/eventos/2/patrocinios/2",
+				"url": "localhost:8080/grupos-web/Stark/eventos/1/patrocinios/4",
 				"method": "DELETE",
 				"header": [
 					{

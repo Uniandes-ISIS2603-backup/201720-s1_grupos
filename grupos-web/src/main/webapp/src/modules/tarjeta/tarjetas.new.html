@@ -1,42 +1,43 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createTarjeta">Agregar Nueva Tarjeta</label>
-                <label ng-if="edit" id="editTarjeta">Editar Tarjeta</label></div>
+        <!--<div class="panel panel-primary">-->
+            <h1 id="{{$index}}-name" class="col-md-5 text-center" ng-if="!edit" style="float:none;font-size:25px;margin: 0 auto"><span style="color:#426163;">Agregar Nueva Tarjeta</span></h1>
+            <h1 id="{{$index}}-name" class="col-md-5 text-center" ng-if="edit" style="float:none;font-size:25px;margin: 0 auto"><span style="color:#426163;">Editar Tarjeta</span></h1>
             <div class="panel-body">
+            <div class="col-md-12 text-center">
                 <form ng-submit="createTarjeta()" name="tarjeta">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="tarjetaNumero" class="col-sm-2 col-lg-7">Numero:</label>
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12 ">
+                            <label for="tarjetaNumero" class="col-sm-2 col-lg-5">Numero:</label>
                             <input id="tarjetaNumero" required ng-model="tarjetaNumero" class="col-sm-6" type="number" min="0"/>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="tarjetaBanco" class="col-sm-2 col-lg-7">Banco:</label>
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12">
+                            <label for="tarjetaBanco" class="col-sm-2 col-lg-5">Banco:</label>
                             <input type="text" id="tarjetaBanco" required ng-model="tarjetaBanco" class="col-sm-6"/>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="tarjetaDineroDisponible" class="col-sm-2 col-lg-7">Dinero disponible:</label>
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12">
+                            <label for="tarjetaDineroDisponible" class="col-sm-2 col-lg-5">Dinero disponible:</label>
                             <input id="tarjetaDineroDisponible" required ng-model="tarjetaDineroDisponible" class="col-sm-6" type="number" min="0"/>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="tarjetaMaxCupo" class="col-sm-2 col-lg-7">Cupo máximo:</label>
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12">
+                            <label for="tarjetaMaxCupo" class="col-sm-4 col-lg-5">Cupo máximo:</label>
                             <input id="tarjetaMaxCupo" required ng-model="tarjetaMaxCupo" class="col-sm-6" type="number" min="0"/>
                         </div>
                     </div> 
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-sm-12">
-                            <input  ng-style="!tarjeta.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Guardar" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="tarjetasList">Cancelar</a>
+                            <input  ng-style="!tarjeta.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Guardar" class="btn outline"/>
+                            <a class="btn outline" ui-sref="tarjetasList">Cancelar</a>
                         </div>
                     </div>
                 </form>
-
+                </div>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@
                     <div class="btn-group">
           
                         <button
-                            class="btn btn-primary"
+                            class="btn outline"
                             mwl-date-modifier
                             date="viewDate"
                             decrement="calendarView"
@@ -17,7 +17,7 @@
                             Previous
                         </button>
                         <button
-                            class="btn btn-default"
+                            class="btn outline"
                             mwl-date-modifier
                             date="viewDate"
                             set-to-today
@@ -25,7 +25,7 @@
                             Today
                         </button>
                         <button
-                            class="btn btn-primary"
+                            class="btn outline"
                             mwl-date-modifier
                             date="viewDate"
                             increment="calendarView"
@@ -52,9 +52,9 @@
                 cell-modifier="modifyCell(calendarCell)">
             </mwl-calendar>
             <div class="col-md-12" ui-view="detailView"></div>
-            <button type="button" class ="btn btn-imfo" ui-sref="eventosDeGrupo" ng-if="deGrupo && !eventoUsuario">volver</button>
-            <button type="button" class ="btn btn-imfo" ui-sref="eventosList" ng-if="!deGrupo && !eventoUsuario">volver</button>
-            <button type="button" class ="btn btn-imfo" ui-sref="eventosDeUsuario" ng-if="!deGrupo && eventoUsuario">volver</button>
+            <button type="button" class ="btn outline" ui-sref="eventosDeGrupo" ng-if="deGrupo && !eventoUsuario">volver</button>
+            <button type="button" class ="btn outline" ui-sref="eventosList" ng-if="!deGrupo && !eventoUsuario">volver</button>
+            <button type="button" class ="btn outline" ui-sref="eventosDeUsuario" ng-if="!deGrupo && eventoUsuario">volver</button>
         </div>  
     </div>
 </div>

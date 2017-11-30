@@ -1,16 +1,16 @@
 <!--Lista de todos los patrocinios de la aplicación-->
 <div class="container-fluid">
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn" ui-sref="eventoPatrocinioCreate"><img src="data/plusG.png" style="width:50px;height:50px"></a>
-                    </div>
-                </div>
-    <div class="row">
-            <table class="table table-striped">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn" ui-sref="eventoPatrocinioCreate"><img src="data/plusG.png" style="width:50px;height:50px"></a>
+        </div>
+    </div>
+    <div class="table-responsive text-center">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>    
-                    <th>Pago</th>  
+                    <th class="text-center fondoPanel">Id</th>    
+                    <th class="text-center fondoPanel">Pago</th>  
                 </tr>
             </thead>
             <tbody>
@@ -18,7 +18,7 @@
                     <td id="{{$index}}-id"><a ui-sref="patrocinioEventoDetail({patrocinioId: patrocinio.id})">{{patrocinio.id}}</a></td>
                     <td id="{{$index}}-pago">{{patrocinio.pago}}</td>
                     <td id="{{$index}}-actions">
-                        <a class="btn btn-danger btn-sm" ui-sref="eventoPatrocinioDelete({patrocinioId: patrocinio.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="btn outlineC btn-sm" ui-sref="eventoPatrocinioDelete({patrocinioId: patrocinio.id})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
             </tbody>

@@ -1,31 +1,40 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createLugar">Crear Lugar</label>
-                <label ng-if="edit" id="editLugar">Editar Lugar</label></div>
+        <!--<div class="panel panel-primary"> -->
+        <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-12 text-center" ng-if="!edit" id="createLugar" style="float: none;margin: 0 auto">
+                <h2>Crear Lugar</h2>
+            </div>
+            <div class="col-md-12 text-center" ng-if="edit" id="editLugar" style="float: none;margin: 0 auto">
+                <h2>Editar Lugar</h2>
+            </div>
+            <!--<div class="panel-heading"><label ng-if="!edit" id="createLugar">Crear Lugar</label>
+                <label ng-if="edit" id="editLugar">Editar Lugar</label></div>-->
             <div class="panel-body">
                 <form ng-submit="createLugar()" name="lugar">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12">
                             <label for="lugarNombre" class="col-sm-2">Nombre:</label>
                             <input id="lugarNombre" required ng-model="lugarNombre" class="col-sm-6"/>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12">
                             <label for="lugarDireccion" class="col-sm-2">Direccion:</label>
                             <input id="lugarDireccion" required ng-model="lugarDireccion" class="col-sm-6"/>
                         </div>
                     </div> 
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-sm-12">
-                            <input ng-style="!lugar.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Guardar" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="lugaresList">Cancelar</a>
+                            <input ng-style="!lugar.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Guardar" class="btn outline"/>
+                            <a class="btn outline" ui-sref="lugaresList">Cancelar</a>
                         </div>
                     </div>
                 </form>
 
             </div>
+        </div>
         </div>
     </div>
 </div>

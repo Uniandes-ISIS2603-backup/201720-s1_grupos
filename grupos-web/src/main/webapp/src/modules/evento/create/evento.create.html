@@ -1,38 +1,41 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <!--<div class="panel panel-primary">-->
+        <!--<div class="panel panel-primary">
             <div class="panel-heading">
-                <label id="editEvento">Crear Evento</label></div>
+                <label id="editEvento">Crear Evento</label>
+            </div>-->
+        <div class="col-md-12 text-center">
+            <h1 id="{{$index}}-name" class="col-md-4 text-center" style="float:none;font-size:30px;margin: 0 auto"><span style="color:#426163;">Editar Evento</span></h1>
             <div class="panel-body">
                 <form ng-submit="createEvento()" name="evento">
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="eventoNombre" class="col-sm-2">Nombre:</label>
                             <input id="eventoNombre" required ng-model="eventoNombre" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="eventoFechaInicio" class="col-sm-2">Fecha Inicio:</label>
                             <input type="date" id="eventoFechaInicio" placeholder="DD/MM/YYYY" required ng-model="eventoFechaInicio" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="eventoFechaFin" class="col-sm-2">Fecha Fin:</label>
                             <input type="date" id="eventoFechaFin" placeholder="DD/MM/YYYY" required ng-model="eventoFechaFin" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                           <label for="lugarIdEvento" class="col-sm-2">Lugar:</label>
                           <input id="lugarIdEvento" required ng-model="lugarIdEvento" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <input ng-style="!evento.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Guardar" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="eventosList">Cancelar</a>
+                            <input ng-style="!evento.$valid?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Guardar" class="btn outline"/>
+                            <a class="btn outline" ui-sref="eventosList">Cancelar</a>
                         </div>
                     </div>
                 </form>

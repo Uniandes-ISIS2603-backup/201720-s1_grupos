@@ -2,28 +2,43 @@
 	"variables": [],
 	"info": {
 		"name": "Multimedia",
-		"_postman_id": "6f538e29-b66b-8ac8-f0b8-81d1e8d2a41a",
+		"_postman_id": "59de6a7c-2dd5-63c5-8a14-f6af48e80a4b",
+		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "NoticiaMultimedia",
+			"description": "",
 			"item": [
 				{
 					"name": "Obtener toda la multimedia de una noticia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"]= responseCode.code===200"
+								]
+							}
+						}
+					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"HOLA\",\n\t\"descripcion\":\"HHHH\",\n\t\"multimedia\":[]\n}"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -41,6 +56,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abc",
 						"method": "GET",
 						"header": [
 							{
@@ -52,7 +68,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abc"
+						"description": ""
 					},
 					"response": []
 				},
@@ -70,6 +86,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abcd",
 						"method": "GET",
 						"header": [
 							{
@@ -81,7 +98,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abcd"
+						"description": ""
 					},
 					"response": []
 				},
@@ -99,6 +116,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/EEE",
 						"method": "GET",
 						"header": [
 							{
@@ -110,7 +128,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/EEE"
+						"description": ""
 					},
 					"response": []
 				},
@@ -128,6 +146,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia",
 						"method": "POST",
 						"header": [
 							{
@@ -139,7 +158,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -157,6 +176,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia",
 						"method": "GET",
 						"header": [
 							{
@@ -168,7 +188,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -186,6 +206,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/aaa",
 						"method": "PUT",
 						"header": [
 							{
@@ -197,7 +218,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -215,6 +236,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/aaa",
 						"method": "GET",
 						"header": [
 							{
@@ -226,7 +248,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -244,18 +266,20 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abc",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/dfdf"
+						"description": ""
 					},
 					"response": []
 				},
@@ -273,18 +297,20 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/abc",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/1000001/multimedia/dfdf"
+						"description": ""
 					},
 					"response": []
 				}
@@ -292,6 +318,7 @@
 		},
 		{
 			"name": "BlogMultimedia",
+			"description": "",
 			"item": [
 				{
 					"name": "Obtener toda la multimedia de un blog",
@@ -307,6 +334,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia",
 						"method": "GET",
 						"header": [
 							{
@@ -318,7 +346,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"nombre\":\"HOLA\",\n\t\"descripcion\":\"HHHH\",\n\t\"multimedia\":[]\n}"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -336,6 +364,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/abc",
 						"method": "GET",
 						"header": [
 							{
@@ -347,7 +376,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/abc"
+						"description": ""
 					},
 					"response": []
 				},
@@ -365,6 +394,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/ggrgrgr",
 						"method": "GET",
 						"header": [
 							{
@@ -376,7 +406,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/ggrgrgr"
+						"description": ""
 					},
 					"response": []
 				},
@@ -394,6 +424,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/EEE",
 						"method": "GET",
 						"header": [
 							{
@@ -405,7 +436,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/EEE"
+						"description": ""
 					},
 					"response": []
 				},
@@ -423,6 +454,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia",
 						"method": "POST",
 						"header": [
 							{
@@ -434,7 +466,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -452,6 +484,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia",
 						"method": "GET",
 						"header": [
 							{
@@ -463,7 +496,7 @@
 							"mode": "raw",
 							"raw": "[{\"link\":\"aaa\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"bb\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"vvv\",\"nombre\":\"DDD\",\"descripcion\":\"d\"},\n{\"link\":\"ccd\",\"nombre\":\"DDD\",\"descripcion\":\"d\"}]"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -481,6 +514,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa",
 						"method": "PUT",
 						"header": [
 							{
@@ -492,7 +526,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo recurso blog\",\"descripcion\":\"ds\",\"ruta\":\"adidas.png\"}\n"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -510,6 +544,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa",
 						"method": "GET",
 						"header": [
 							{
@@ -521,7 +556,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo recurso blog\",\"descripcion\":\"ds\"}\n"
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -539,6 +574,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa",
 						"method": "DELETE",
 						"header": [
 							{
@@ -550,7 +586,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -568,6 +604,7 @@
 						}
 					],
 					"request": {
+						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa",
 						"method": "GET",
 						"header": [
 							{
@@ -579,7 +616,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "http://localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				}
@@ -587,6 +624,7 @@
 		},
 		{
 			"name": "Blog y noticia inexistente",
+			"description": "",
 			"item": [
 				{
 					"name": "Actualizar una multimedia de noticia inexistente",
@@ -602,6 +640,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa",
 						"method": "PUT",
 						"header": [
 							{
@@ -613,7 +652,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -631,6 +670,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa",
 						"method": "GET",
 						"header": [
 							{
@@ -642,7 +682,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -660,6 +700,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia",
 						"method": "POST",
 						"header": [
 							{
@@ -671,7 +712,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -689,6 +730,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa",
 						"method": "DELETE",
 						"header": [
 							{
@@ -700,7 +742,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/usuarios/1000000/noticias/10000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -718,6 +760,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa",
 						"method": "PUT",
 						"header": [
 							{
@@ -729,7 +772,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -747,6 +790,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa",
 						"method": "GET",
 						"header": [
 							{
@@ -758,7 +802,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				},
@@ -776,6 +820,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia",
 						"method": "POST",
 						"header": [
 							{
@@ -787,7 +832,7 @@
 							"mode": "raw",
 							"raw": "{\"nombre\":\"nuevo rec\",\"descripcion\":\"d\",\"ruta\":\"adidas.png\"}\n"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia"
+						"description": ""
 					},
 					"response": []
 				},
@@ -805,6 +850,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa",
 						"method": "DELETE",
 						"header": [
 							{
@@ -816,7 +862,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000001/multimedia/aaa"
+						"description": ""
 					},
 					"response": []
 				}

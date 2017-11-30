@@ -1,9 +1,10 @@
 {
+	"variables": [],
 	"info": {
 		"name": "Pruebas UsuarioEvento",
-		"_postman_id": "acc1ff58-9931-66bc-ee90-611a6cdfb1c4",
+		"_postman_id": "c21ff0f9-65a2-7308-4eb5-1113e8d39d78",
 		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -20,23 +21,12 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1",
-						"usuarios"
-					]
+				"body": {
+					"mode": "raw",
+					"raw": ""
 				},
 				"description": ""
 			},
@@ -56,24 +46,12 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/2",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1",
-						"usuarios",
-						"2"
-					]
+				"body": {
+					"mode": "raw",
+					"raw": ""
 				},
 				"description": ""
 			},
@@ -93,25 +71,10 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/11",
 				"method": "POST",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/11",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1",
-						"usuarios",
-						"11"
-					]
-				},
 				"description": ""
 			},
 			"response": []
@@ -130,25 +93,10 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/2",
 				"method": "POST",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1",
-						"usuarios",
-						"2"
-					]
-				},
 				"description": ""
 			},
 			"response": []
@@ -167,25 +115,10 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/11",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1",
-						"usuarios",
-						"2"
-					]
-				},
 				"description": ""
 			},
 			"response": []
@@ -204,25 +137,10 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/3",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/eventos/1/usuarios/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"eventos",
-						"1",
-						"usuarios",
-						"1"
-					]
-				},
 				"description": ""
 			},
 			"response": []

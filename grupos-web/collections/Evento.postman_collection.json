@@ -2,7 +2,8 @@
 	"variables": [],
 	"info": {
 		"name": "Evento",
-		"_postman_id": "a3011289-8438-5d40-d93f-4ca0af8a84bb",
+		"_postman_id": "c3838f88-88d4-9c05-c51e-7614cd4d4d5b",
+		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -20,13 +21,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/eventos"
+				"description": ""
 			},
 			"response": []
 		},
@@ -44,13 +46,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/eventos/1"
+				"description": ""
 			},
 			"response": []
 		},
@@ -68,13 +71,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/10",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/eventos/10"
+				"description": ""
 			},
 			"response": []
 		},
@@ -92,18 +96,20 @@
 				}
 			],
 			"request": {
+				"url": "localhost:8080/grupos-web/Stark/eventos",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"fechaInicio\": \"2017-08-07T00:00:00-05:00\",\n        \"fechaFin\": \"2017-08-08T00:00:00-05:00\",\n        \"nombre\": \"Evento3\"\n}"
 				},
-				"url": "localhost:8080/grupos-web/Stark/eventos"
+				"description": ""
 			},
 			"response": []
 		},
@@ -121,13 +127,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/2",
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1"
+				"description": ""
 			},
 			"response": []
 		},
@@ -145,13 +152,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos/1",
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos/1"
+				"description": ""
 			},
 			"response": []
 		},
@@ -169,13 +177,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1"
+				"description": ""
 			},
 			"response": []
 		},
@@ -193,13 +202,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10"
+				"description": ""
 			},
 			"response": []
 		},
@@ -217,13 +227,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos"
+				"description": ""
 			},
 			"response": []
 		},
@@ -241,13 +252,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/100/eventos"
+				"description": ""
 			},
 			"response": []
 		},
@@ -265,13 +277,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/2",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/1"
+				"description": ""
 			},
 			"response": []
 		},
@@ -289,13 +302,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/100",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/100"
+				"description": ""
 			},
 			"response": []
 		},
@@ -313,18 +327,20 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"type\": \"eventoDetailDTO\",\n    \"fechaFin\": \"2017-08-07T00:00:00-05:00\",\n    \"fechaInicio\": \"2017-08-08T00:00:00-05:00\",\n    \"id\": 1,\n    \"nombre\": \"EventoModificado\",\n    \"grupo\": {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"id\": 10,\n        \"nombre\": \"GrupoPrueba1\"\n    },\n    \"lugar\": {\n        \"direccion\": \"Dirección\",\n        \"id\": 1,\n        \"nombre\": \"Lugar\"\n    },\n    \"patrocinios\": [],\n    \"usuarios\": [\n        {\n            \"apellido\": \"Guzmán\",\n            \"email\": \"hola@uniandes.edu.co\",\n            \"id\": 1,\n            \"nombre\": \"Sergio\",\n            \"password\": \"hola\"\n        },\n        {\n            \"apellido\": \"Rd\",\n            \"email\": \"d@uniandes.edu.co\",\n            \"id\": 2,\n            \"nombre\": \"DE\",\n            \"password\": \"Hola\"\n        }\n    ]\n}"
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/eventos/1"
+				"description": ""
 			},
 			"response": []
 		},
@@ -342,18 +358,20 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1000",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"type\": \"eventoDetailDTO\",\n    \"fechaFin\": \"2017-08-07T00:00:00-05:00\",\n    \"fechaInicio\": \"2017-08-08T00:00:00-05:00\",\n    \"id\": 1000,\n    \"nombre\": \"EventoModificado\",\n    \"grupo\": {\n        \"descripcion\": \"Este grupo es el numero uno\",\n        \"id\": 10,\n        \"nombre\": \"GrupoPrueba1\"\n    },\n    \"lugar\": {\n        \"direccion\": \"Dirección\",\n        \"id\": 1,\n        \"nombre\": \"Lugar\"\n    },\n    \"patrocinios\": [],\n    \"usuarios\": [\n        {\n            \"apellido\": \"Guzmán\",\n            \"email\": \"hola@uniandes.edu.co\",\n            \"id\": 1,\n            \"nombre\": \"Sergio\",\n            \"password\": \"hola\"\n        },\n        {\n            \"apellido\": \"Rd\",\n            \"email\": \"d@uniandes.edu.co\",\n            \"id\": 2,\n            \"nombre\": \"DE\",\n            \"password\": \"Hola\"\n        }\n    ]\n}"
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/eventos/1000"
+				"description": ""
 			},
 			"response": []
 		},
@@ -371,13 +389,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/4",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/eventos/1"
+				"description": ""
 			},
 			"response": []
 		},
@@ -395,13 +414,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/eventos/1000",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/eventos/1000"
+				"description": ""
 			},
 			"response": []
 		},
@@ -419,13 +439,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10000",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/grupos/10/eventos/10000"
+				"description": ""
 			},
 			"response": []
 		}

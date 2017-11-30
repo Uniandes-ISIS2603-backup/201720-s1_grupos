@@ -44,12 +44,12 @@
                 <div class="form-group row">
                     <div class="form-group col-sm-12">
                         <div >
-                            <input ng-show="{{usuarioCreacion}}" ng-style="!usuarioCrear.$valid ?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Crear" class="btn btn-success"/>
-                            <input ng-show="{{usuarioActualizar}}" ng-style="!usuarioCrear.$valid ?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Actualizar" class="btn btn-success"/>
+                            <input ng-show="{{usuarioCreacion}}" ng-style="!usuarioCrear.$valid ?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Crear" class="btn outline"/>
+                            <input ng-show="{{usuarioActualizar}}" ng-style="!usuarioCrear.$valid ?{'opacity': '0.65'}:{'opacity':'1'}" type="submit" value="Actualizar" class="btn outline"/>
                         </div>
                     
                         <div ng-if="!edit">
-                            <a class="btn btn-info" ui-sref="login">Cancelar</a>
+                            <a class="btn outline" ui-sref="login">Cancelar</a>
                         </div>
                     </div>
                 </div>

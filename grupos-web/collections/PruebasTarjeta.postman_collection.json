@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasTarjeta",
-		"_postman_id": "6eef1a7f-b3cd-ac9c-6fde-414d953c64f8",
+		"_postman_id": "a8ed3c4a-cd17-cbc5-360c-22c3a8984ff0",
 		"description": "Pruebas a los servicios REST de Tarjeta",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},

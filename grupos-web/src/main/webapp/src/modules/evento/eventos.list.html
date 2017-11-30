@@ -1,7 +1,7 @@
 <div class="container-fluid" ui-view="calendarView">
     <div class="panel panel-default">
         <div class="panel-body">
-            <h1 class="col-md-12 text-center"><span style="font-size:45px;color:#426163;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"> Eventos </span></h1>
+            <h1 class="col-md-12 text-center"><span style="color:#426163;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"> Eventos </span></h1>
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" >
                 <div class="btn-group mr-2" role="group" aria-label="First group" ng-show="{{deGrupo}}">
                     <a class="btn" ui-sref="eventosCreate({grupoId: idGrupo})"><img src="data/plusA.png" style="width:50px;height:50px" ng-if="puedoEditarGrupo()"></a>
