@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasBlog",
-		"_postman_id": "abe266fd-4714-a037-55f0-5538efe691f2",
+		"_postman_id": "2076ff23-a8eb-5215-705a-9a3dd6a4ddf5",
 		"description": "Pruebas servicios REST GruposBlogsResource",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -78,7 +78,10 @@
 						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/5",
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "GET de un blog que no existe"
 					},
 					"response": []
@@ -100,7 +103,10 @@
 						"url": "http://localhost:8080/grupos-web/Stark/grupos/10/blogs/3",
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []

@@ -34,7 +34,7 @@ delete from LugarEntity;
 ALTER TABLE NoticiaEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE CategoriaEntity ALTER COLUMN id RESTART WITH 13;
 ALTER TABLE UsuarioEntity ALTER COLUMN id RESTART WITH 12;
-ALTER TABLE PatrocinioEntity ALTER COLUMN id RESTART WITH 4;
+ALTER TABLE PatrocinioEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE GrupoEntity ALTER COLUMN id RESTART WITH 13;
 ALTER TABLE BlogEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE CalificacionEntity ALTER COLUMN id RESTART WITH 2;
@@ -98,6 +98,7 @@ insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (1,800.0,3,1);
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (2,800.0,2,1);
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (3,800.0,2,3);
+insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (4,800.0,2,3);
 
 ---INSERCIÓN SEGURA DE USUARIO, GRUPO Y BLOG FICTICIOS QUE NO SE VAN A BORRAR EN LAS PRUEBAS DE SERGIO GUZMÁN M.
 insert into UsuarioEntity(id, nombre, apellido, password,email, rol, nickname) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co', 'Ciudadano', 'guzmanStark');

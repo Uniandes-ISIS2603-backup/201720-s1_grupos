@@ -1,9 +1,10 @@
 {
+	"variables": [],
 	"info": {
 		"name": "PruebasLugar",
-		"_postman_id": "ac52bf4f-d6f5-a2b4-d241-10a3ec9a3b7f",
+		"_postman_id": "c68b63ad-8909-efc3-a04a-2611d9fb0798",
 		"description": "Pruebas servicios REST de LugarResource",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -20,24 +21,12 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/lugares",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/lugares",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"lugares"
-					]
 				},
 				"description": ""
 			},
@@ -57,25 +46,12 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/lugares/1",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/lugares/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"lugares",
-						"1"
-					]
 				},
 				"description": ""
 			},
@@ -95,25 +71,12 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/lugares/1",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/lugares/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"lugares",
-						"1"
-					]
 				},
 				"description": ""
 			},
@@ -133,6 +96,7 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/lugares",
 				"method": "POST",
 				"header": [
 					{
@@ -143,19 +107,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"id\": 1000,\n    \"direccion\": \"DirecciónNuevaPrueba\",\n    \"nombre\": \"LugarNuevoPrueba\",\n    \"capacidad\": 1000\n    \n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/lugares",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"lugares"
-					]
 				},
 				"description": ""
 			},
@@ -175,6 +126,7 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/lugares/1",
 				"method": "PUT",
 				"header": [
 					{
@@ -185,20 +137,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"direccion\": \"DirecciónNuevaPrueba\",\n    \"nombre\": \"LugarNuevoPrueba\",\n    \"capacidad\": 1000\n    \n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/lugares/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"lugares",
-						"1"
-					]
 				},
 				"description": ""
 			},

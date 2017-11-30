@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasUsuarios",
-		"_postman_id": "a3cb6200-ca59-60e6-e76e-2972ee4f645b",
+		"_postman_id": "a8fc949c-2c97-d03a-14b4-cef8df4bbf99",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -21,7 +21,6 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
 				"method": "GET",
 				"header": [
 					{
@@ -33,7 +32,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios"
 			},
 			"response": []
 		},
@@ -51,7 +50,6 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1",
 				"method": "GET",
 				"header": [
 					{
@@ -63,7 +61,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1"
 			},
 			"response": []
 		},
@@ -81,7 +79,6 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/100",
 				"method": "GET",
 				"header": [
 					{
@@ -93,7 +90,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/100"
 			},
 			"response": []
 		},
@@ -111,7 +108,6 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000",
 				"method": "PUT",
 				"header": [
 					{
@@ -123,7 +119,7 @@
 					"mode": "raw",
 					"raw": "{\"apellido\": \"Guzmáns\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\"\n}"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1000"
 			},
 			"response": []
 		},
@@ -141,20 +137,18 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holas@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\",\n  \"rol\": \"Ciudadano\"\n}"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios"
 			},
 			"response": []
 		},
@@ -172,20 +166,18 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\"apellido\": \"asdasda\",\n  \"email\": \"holi@uniandes.edu.co\",\n  \"nombre\": \"Sergioz\",\n  \"password\": \"adasd\",\n  \"nickname\": \"ser\"\n}"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1"
 			},
 			"response": []
 		},
@@ -203,20 +195,18 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\"apellido\": \"asdas\",\n  \"email\": \"holi@uniandes.edu.co\",\n  \"nombre\": \"Serg\",\n  \"password\": \"adasd\",\n  \"nickname\": \"sghe\",\n  \"rol\": \"Ciudadano\"\n}"
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios"
 			},
 			"response": []
 		},
@@ -234,51 +224,18 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\"apellido\": \"asdas\",\n  \"email\": \"holi1@uniandes.edu.co\",\n  \"nombre\": \"Serg\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\",\n  \"rol\": \"Ciudadano\"\n}"
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Intenta añadir un usuario con un rol no permitido",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 412\"]= responseCode.code===412"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"apellido\": \"apellido\",\n  \"email\": \"elcorreo@uniandes.edu.co\",\n  \"nombre\": \"nombre\",\n  \"password\": \"adasd\",\n  \"nickname\": \"sergrfs123\",\n  \"rol\": \"un rol\"\n}"
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios"
 			},
 			"response": []
 		},
@@ -296,21 +253,22 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:55228/grupos-web/Stark/usuarios/login",
 				"method": "GET",
 				"header": [
 					{
 						"key": "email",
-						"value": "xp@uniandes.edu.co",
-						"description": ""
+						"value": "xp@uniandes.edu.co"
 					},
 					{
 						"key": "password",
-						"value": "Hola",
-						"description": ""
+						"value": "Hola"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:55228/grupos-web/Stark/usuarios/login",
 				"description": "get de usuario con email y contraseña."
 			},
 			"response": []
@@ -329,16 +287,18 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/login",
 				"method": "GET",
 				"header": [
 					{
 						"key": "email",
-						"value": "hola@uniandes.edu.co",
-						"description": ""
+						"value": "hola@uniandes.edu.co"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/login",
 				"description": "get de usuario para login, pero recibiendo solo el email."
 			},
 			"response": []
@@ -357,21 +317,22 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/login",
 				"method": "GET",
 				"header": [
 					{
 						"key": "email",
-						"value": "hola@uniandes.edu.co",
-						"description": ""
+						"value": "hola@uniandes.edu.co"
 					},
 					{
 						"key": "password",
-						"value": "contraseña",
-						"description": ""
+						"value": "contraseña"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/login",
 				"description": "get de usuario para login, pero recibiendo solo el email."
 			},
 			"response": []

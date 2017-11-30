@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Patrocinio",
-		"_postman_id": "07cc02b6-38bc-1b1f-9e84-968146502078",
+		"_postman_id": "970cb631-d85a-af4d-25fd-bd09ffeae892",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -21,18 +21,51 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/2/patrocinios",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n        \"pago\": 1000\n }"
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios"
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza el patrocinio dado.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/2/patrocinios/3",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"pago\": 1000\n }"
+				},
+				"description": ""
 			},
 			"response": []
 		},
@@ -50,6 +83,7 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios",
 				"method": "POST",
 				"header": [
 					{
@@ -61,7 +95,7 @@
 					"mode": "raw",
 					"raw": "{\n        \"pago\": 1000\n    }"
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios"
+				"description": ""
 			},
 			"response": []
 		},
@@ -79,13 +113,14 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/grupos-web/Stark/patrocinios",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/grupos-web/Stark/patrocinios"
+				"description": ""
 			},
 			"response": []
 		}

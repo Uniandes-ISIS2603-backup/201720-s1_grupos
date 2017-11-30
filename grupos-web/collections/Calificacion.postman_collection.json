@@ -2,13 +2,14 @@
 	"variables": [],
 	"info": {
 		"name": "Calificacion",
-		"_postman_id": "dd9393b9-75f6-f499-7098-01c642d31f7c",
+		"_postman_id": "c8cf9bc3-435f-003d-c7ad-583a34e9b170",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "BlogCalificacion",
+			"description": "",
 			"item": [
 				{
 					"name": "Obtener calificaciones de un blog",
@@ -24,13 +25,14 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones",
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
+						"description": ""
 					},
 					"response": []
 				},
@@ -48,13 +50,14 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1",
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -72,6 +75,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -83,7 +87,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 1000000,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -101,6 +105,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -112,7 +117,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 1,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -130,10 +135,14 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1",
 						"method": "GET",
 						"header": [],
-						"body": {},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
 					},
 					"response": []
 				},
@@ -151,6 +160,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1",
 						"method": "DELETE",
 						"header": [
 							{
@@ -162,7 +172,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -180,6 +190,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1",
 						"method": "GET",
 						"header": [
 							{
@@ -191,7 +202,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -209,6 +220,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones",
 						"method": "POST",
 						"header": [
 							{
@@ -220,7 +232,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
+						"description": ""
 					},
 					"response": []
 				},
@@ -238,6 +250,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/2",
 						"method": "GET",
 						"header": [
 							{
@@ -249,7 +262,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/2"
+						"description": ""
 					},
 					"response": []
 				},
@@ -267,6 +280,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones",
 						"method": "POST",
 						"header": [
 							{
@@ -278,7 +292,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones"
+						"description": ""
 					},
 					"response": []
 				},
@@ -296,6 +310,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/3",
 						"method": "GET",
 						"header": [
 							{
@@ -307,7 +322,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/1000000/calificaciones/3"
+						"description": ""
 					},
 					"response": []
 				}
@@ -331,6 +346,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones",
 						"method": "POST",
 						"header": [
 							{
@@ -342,7 +358,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones"
+						"description": ""
 					},
 					"response": []
 				},
@@ -360,6 +376,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -371,7 +388,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -389,6 +406,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones",
 						"method": "GET",
 						"header": [
 							{
@@ -400,7 +418,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones"
+						"description": ""
 					},
 					"response": []
 				},
@@ -418,6 +436,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones/1",
 						"method": "DELETE",
 						"header": [
 							{
@@ -429,7 +448,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/10000000/blogs/1000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -447,6 +466,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones",
 						"method": "POST",
 						"header": [
 							{
@@ -458,7 +478,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones"
+						"description": ""
 					},
 					"response": []
 				},
@@ -476,6 +496,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -487,7 +508,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				},
@@ -505,6 +526,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones",
 						"method": "GET",
 						"header": [
 							{
@@ -516,7 +538,7 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"calificacion\": 3,\n    \"calificador\": {\n        \"apellido\": \"Rd\",\n        \"email\": \"xd@uniandes.edu.co\",\n        \"id\": 11,\n        \"nombre\": \"DE\",\n        \"password\": \"Hola\"\n    }\n}"
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones"
+						"description": ""
 					},
 					"response": []
 				},
@@ -534,6 +556,7 @@
 						}
 					],
 					"request": {
+						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones/1",
 						"method": "DELETE",
 						"header": [
 							{
@@ -545,7 +568,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "localhost:8080/grupos-web/Stark/grupos/1000000/blogs/10000000/calificaciones/1"
+						"description": ""
 					},
 					"response": []
 				}
