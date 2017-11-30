@@ -1,27 +1,25 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <label id="createblog" ng-show="{{crearBlog}}">Crear un blog</label>
-                <label id="createblog" ng-show="{{actualizarBlog}}">Actualizar blog</label>
-            </div>
+        <!--<div class="panel panel-primary">-->
+            <h1 id="{{$index}}-name" class="col-md-4 text-center" ng-show="{{crearBlog}}" style="float:none;font-size:30px;margin: 0 auto"><span style="color:#426163;">Crear un blog</span></h1>
+            <h1 id="{{$index}}-name" class="col-md-4 text-center" ng-show="{{actualizarBlog}}" style="float:none;font-size:30px;margin: 0 auto"><span style="color:#426163;">Actualizar un blog</span></h1>
             <div class="panel-body">
                 <form ng-submit="createBlog()" name="blogCrear">
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12 text-center">
                             <label for="tituloBlog" class="col-sm-3">Título:</label>
                             <input id="tituloBlog" required ng-model="tituloBlog" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12 text-center">
                             <label for="contenidoBlog" class="col-sm-3">Contenido:</label>
                             <textarea id="contenidoBlog" required ng-model="contenidoBlog" class="col-sm-6"></textarea>
                         </div>
                     </div>                 
                     
-                    <div class="form-group row">
-                        <button ng-click="ctrl.addNew()" class="btn btn-default" type="button" >Nueva multimedia</button>
+                    <div class="form-group row text-center">
+                        <button ng-click="ctrl.addNew()" class="btn outline" type="button" >Nueva multimedia</button>
                     </div> 
                     <div class="form-group row" ng-show="{{crearBlog}}">
                         <div class="panel-body">
@@ -31,12 +29,12 @@
                             <div id="{{$index}}-multimedia" ng-repeat="itemToAdd in itemsToAdd">
                                 <input id="link" name="link" type="hidden" ng-model="itemToAdd.link">
                                 <div class="form-group row">
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group col-md-8 text-center">
                                          <label for="nombre" class="col-md-6">Nombre de archivo:</label>
                                          <input id="nombre{{$index}}" name="nombre" class="col-sm-6" type="text" ng-model="itemToAdd.nombre" ng-init="itemToAdd.nombre"/>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row text-center">
                                     <div class="form-group col-md-8">
                                         <label for="descripcion" class="col-md-6 l">Descripción:</label>
                                         <textarea id="descripcion" name="descripcion" class="col-sm-6" type="textArea" ng-model="itemToAdd.descripcion" ng-init="itemToAdd.descripcion"></textarea>
@@ -55,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button id="{{$index}}--remove-multimedia-btn" class="btn btn-danger btn-sm col-lg-6 col-md-6" ng-click="ctrl.remove(itemToAdd)" type="button"><span class="glyphicon glyphicon-trash"></span>Multimedia</button>
+                                <button id="{{$index}}--remove-multimedia-btn" class="btn outlineC btn-sm col-lg-2 col-md-2" ng-click="ctrl.remove(itemToAdd)" type="button"><span class="glyphicon glyphicon-trash"></span>Multimedia</button>
                                 <hr>
                             </div>
                             <hr>
@@ -66,11 +64,12 @@
                     
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <input type="submit" value="Crear" ng-show="{{crearBlog}}" ng-style="(!blogCrear.$valid || !verificarMultimedia() )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn btn-success"/>
-                            <input type="submit" value="Actualizar" ng-show="{{actualizarBlog}}" ng-style="(!blogCrear.$valid )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn btn-success"/>
+                            <input type="submit" value="Crear" ng-show="{{crearBlog}}" ng-style="(!blogCrear.$valid || !verificarMultimedia() )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn outline"/>
+                            <input type="submit" value="Actualizar" ng-show="{{actualizarBlog}}" ng-style="(!blogCrear.$valid )?{'opacity': '0.65'}: {'opacity':'1'}" class="btn outline"/>
                             <br>
-                            <a class="btn btn-info" ng-show="{{crearBlog}}" ui-sref="blogList">Cancelar</a>
-                            <a class="btn btn-info" ng-show="{{actualizarBlog}}" ui-sref="blogDetail">Cancelar</a>
+                            <br>
+                            <a class="btn outline" ng-show="{{crearBlog}}" ui-sref="blogList">Cancelar</a>
+                            <a class="btn outline" ng-show="{{actualizarBlog}}" ui-sref="blogDetail">Cancelar</a>
                         </div>
                     </div>
                 </form>
