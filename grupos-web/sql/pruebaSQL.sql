@@ -43,7 +43,7 @@ ALTER TABLE GrupoEntity ALTER COLUMN id RESTART WITH 13;
 ALTER TABLE BlogEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE CalificacionEntity ALTER COLUMN id RESTART WITH 2;
 ALTER TABLE LugarEntity ALTER COLUMN id RESTART WITH 4;
-ALTER TABLE EventoEntity ALTER COLUMN id RESTART WITH 4;
+ALTER TABLE EventoEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE ComentarioEntity ALTER COLUMN id RESTART WITH 5;
 
 
@@ -96,6 +96,7 @@ insert into LugarEntity (id,capacidad,direccion,nombre) values (3,40,'Dirección
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(1,'2017-08-08','2017-08-07','Evento',10,1);
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(2,'2017-08-09','2017-08-08','Evento',10,2);
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(3,'2017-08-10','2017-08-09','Evento',11,3);
+insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(3,'2017-08-11','2017-08-10','EventoPrueba',11,3);
 
 
 --INFORMACIÓN PATROCINIO
