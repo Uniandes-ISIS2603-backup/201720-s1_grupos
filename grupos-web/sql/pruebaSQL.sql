@@ -7,8 +7,6 @@ delete from UsuarioEntity_TarjetaEntity;
 
 delete from BlogEntity_MultimediaEntity;
 delete from BlogEntity_ComentarioEntity;
-delete from EventoEntity_PatrocinioEntity;
-delete from UsuarioEntity_PatrocinioEntity;
 delete from PatrocinioEntity;
 
 delete from NoticiaEntity_ComentarioEntity;
@@ -29,8 +27,6 @@ delete from ComentarioEntity;
 delete from MultimediaEntity;
 delete from TarjetaEntity;
 delete from PatrocinioEntity;
-delete from UsuarioEntity_NoticiaEntity;
-delete from UsuarioEntity_PatrocinioEntity;
 delete from UsuarioEntity;
 delete from EmpresaEntity;
 delete from LugarEntity;
@@ -38,12 +34,12 @@ delete from LugarEntity;
 ALTER TABLE NoticiaEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE CategoriaEntity ALTER COLUMN id RESTART WITH 13;
 ALTER TABLE UsuarioEntity ALTER COLUMN id RESTART WITH 12;
-ALTER TABLE PatrocinioEntity ALTER COLUMN id RESTART WITH 4;
+ALTER TABLE PatrocinioEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE GrupoEntity ALTER COLUMN id RESTART WITH 13;
 ALTER TABLE BlogEntity ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE CalificacionEntity ALTER COLUMN id RESTART WITH 2;
 ALTER TABLE LugarEntity ALTER COLUMN id RESTART WITH 4;
-ALTER TABLE EventoEntity ALTER COLUMN id RESTART WITH 5;
+ALTER TABLE EventoEntity ALTER COLUMN id RESTART WITH 4;
 ALTER TABLE ComentarioEntity ALTER COLUMN id RESTART WITH 5;
 
 
@@ -96,21 +92,13 @@ insert into LugarEntity (id,capacidad,direccion,nombre) values (3,40,'Dirección
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(1,'2017-08-08','2017-08-07','Evento',10,1);
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(2,'2017-08-09','2017-08-08','Evento',10,2);
 insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(3,'2017-08-10','2017-08-09','Evento',11,3);
-insert into EventoEntity(id,fechafin,fechainicio,nombre,grupo_id,lugar_id)values(3,'2017-08-11','2017-08-10','EventoPrueba',11,3);
 
 
 --INFORMACIÓN PATROCINIO
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (1,800.0,3,1);
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (2,800.0,2,1);
 insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (3,800.0,2,3);
-
-insert into EventoEntity_PatrocinioEntity(EventoEntity_Id, Patrocinios_Id) values(1,1);
-insert into EventoEntity_PatrocinioEntity(EventoEntity_Id, Patrocinios_Id) values(1,2);
-insert into EventoEntity_PatrocinioEntity(EventoEntity_Id, Patrocinios_Id) values(3,3);
-
-insert into UsuarioEntity_PatrocinioEntity(UsuarioEntity_Id, Patrocinios_Id) values(3,1);
-insert into UsuarioEntity_PatrocinioEntity(UsuarioEntity_Id, Patrocinios_Id) values(2,2);
-insert into UsuarioEntity_PatrocinioEntity(UsuarioEntity_Id, Patrocinios_Id) values(2,3);
+insert into PatrocinioEntity(Id, Pago, usuario_Id, evento_Id) values (4,800.0,2,3);
 
 ---INSERCIÓN SEGURA DE USUARIO, GRUPO Y BLOG FICTICIOS QUE NO SE VAN A BORRAR EN LAS PRUEBAS DE SERGIO GUZMÁN M.
 insert into UsuarioEntity(id, nombre, apellido, password,email, rol, nickname) values (1000000,'Sergio','Guzmán','hola','sergio@uniandes.edu.co', 'Ciudadano', 'guzmanStark');

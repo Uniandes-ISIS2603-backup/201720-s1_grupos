@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasEmpresa",
-		"_postman_id": "25a2e2ab-8d6f-31ae-3247-1a8fd48c6bb3",
+		"_postman_id": "e88eb209-68de-13fe-3eec-ff1dc8909f53",
 		"description": "Pruebas de los servicios REST de Empresa",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},

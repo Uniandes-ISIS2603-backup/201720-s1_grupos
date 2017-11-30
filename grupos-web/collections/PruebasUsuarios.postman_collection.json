@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasUsuarios",
-		"_postman_id": "a3cb6200-ca59-60e6-e76e-2972ee4f645b",
+		"_postman_id": "6781dbac-238a-1d81-a7e2-46db758cbf46",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -252,37 +252,6 @@
 			"response": []
 		},
 		{
-			"name": "Intenta añadir un usuario con un rol no permitido",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 412\"]= responseCode.code===412"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"apellido\": \"apellido\",\n  \"email\": \"elcorreo@uniandes.edu.co\",\n  \"nombre\": \"nombre\",\n  \"password\": \"adasd\",\n  \"nickname\": \"sergrfs123\",\n  \"rol\": \"un rol\"\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "get user con login",
 			"event": [
 				{
@@ -296,7 +265,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:55228/grupos-web/Stark/usuarios/login",
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/login",
 				"method": "GET",
 				"header": [
 					{
@@ -338,7 +307,10 @@
 						"description": ""
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": "get de usuario para login, pero recibiendo solo el email."
 			},
 			"response": []
@@ -371,7 +343,10 @@
 						"description": ""
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": "get de usuario para login, pero recibiendo solo el email."
 			},
 			"response": []
