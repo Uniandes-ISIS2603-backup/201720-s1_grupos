@@ -23,7 +23,9 @@ public class CategoriaLogic {
      */
      @Inject
     private CategoriaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+     
+     private String err = "No se encontró una Categoria con el id: ";
+     
      /**
       * 
       * @param entity, categoría a guardarse
@@ -46,8 +48,7 @@ public class CategoriaLogic {
      */
     public List<CategoriaEntity> getCategorias() {
        
-        List<CategoriaEntity> cities = persistence.findAll();
-        return cities;
+        return persistence.findAll();
     }
 
     /**
@@ -60,7 +61,7 @@ public class CategoriaLogic {
         CategoriaEntity categoria = persistence.find(id);
         if(categoria==null)
         {
-            throw new NotFoundException("No se encontró una Categoria con el id: " + id);
+            throw new NotFoundException(err + id);
         }
         return categoria;
     }
@@ -72,10 +73,10 @@ public class CategoriaLogic {
      * @throws NotFoundException, excepción si no encuentra la categoría
      */
     public CategoriaEntity updateCategoria(CategoriaEntity entity) {
-        CategoriaEntity Categoria= persistence.find(entity.getId());
-        if(Categoria==null)
+        CategoriaEntity categoria= persistence.find(entity.getId());
+        if(categoria==null)
        {
-           throw new NotFoundException("No se encontró una Categoria con el id: " + entity.getId());
+           throw new NotFoundException(err + entity.getId());
        }
         CategoriaEntity newEntity = persistence.update(entity);
         return newEntity;
@@ -86,10 +87,10 @@ public class CategoriaLogic {
      * @param id, id de la categoría a borrar
      */
     public void deleteCategoria(Long id) {
-        CategoriaEntity Categoria= persistence.find(id);
-        if(Categoria==null)
+        CategoriaEntity categoria= persistence.find(id);
+        if(categoria==null)
        {
-           throw new NotFoundException("No se encontró una Categoria con el id: " + id);
+           throw new NotFoundException(err + id);
        }
         persistence.delete(id);
         
