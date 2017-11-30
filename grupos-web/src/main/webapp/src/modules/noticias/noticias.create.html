@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <label for="rutamultimedia" class="col-md-4">Ruta</label>
-                                <input id="rutamultimedia" name="rutamultimedia" class="col-sm-5" type="text" value="Selecciona un archivo" disabled/>
+                                <input id="rutamultimedia{{ctrl.numeroActual(itemToAdd)}}" name="rutamultimedia" class="col-sm-5" type="text" value="Selecciona un archivo" disabled/>
                                 <p class="col-md-12" style="color: #D8000C" ng-if="!ctrl.verificarMultimediaIndividual(itemToAdd)">No has seleccionado un archivo y/o nombre para la multimedia {{ctrl.numeroActual(itemToAdd)}}</p>
                                    <div class="col-md-12">
                                         <div class="widget-container" >

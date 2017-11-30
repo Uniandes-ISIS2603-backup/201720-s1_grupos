@@ -67,7 +67,7 @@
              */
             this.asignarRuta=function(itemToAdd,ruta)
             {
-                document.getElementById("rutamultimedia").value = ruta;
+                document.getElementById("rutamultimedia"+this.numeroActual(itemToAdd)).value = ruta;
                 var index=$scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd[index].ruta=ruta;
                 $scope.selectedOption[index]=(index+1)+"-"+ruta;
