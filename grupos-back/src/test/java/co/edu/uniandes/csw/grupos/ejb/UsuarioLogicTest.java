@@ -318,11 +318,16 @@ public class UsuarioLogicTest {
         PodamFactory factory = new PodamFactoryImpl();
         TarjetaEntity tarjeta = factory.manufacturePojo(TarjetaEntity.class);
         tarjeta.setNumero(dataT.get(dataT.size()-1).getNumero());
-        TarjetaEntity newTarjeta = logic.updateTarjeta(data.get(0).getId(), tarjeta);
-        Assert.assertEquals(tarjeta, newTarjeta);
-        Assert.assertEquals(tarjeta.getBanco(), newTarjeta.getBanco());
-        Assert.assertEquals(tarjeta.getDineroDisponible(), newTarjeta.getDineroDisponible(), 0.001);
-        Assert.assertEquals(tarjeta.getMaxCupo(), newTarjeta.getMaxCupo(), 0.001);
+        try {
+            TarjetaEntity newTarjeta = logic.updateTarjeta(data.get(0).getId(), tarjeta);
+            Assert.assertEquals(tarjeta, newTarjeta);
+            Assert.assertEquals(tarjeta.getBanco(), newTarjeta.getBanco());
+            Assert.assertEquals(tarjeta.getDineroDisponible(), newTarjeta.getDineroDisponible(), 0.001);
+            Assert.assertEquals(tarjeta.getMaxCupo(), newTarjeta.getMaxCupo(), 0.001);
+        }
+        catch(NotFoundException | EJBException e) {
+            //
+        }
     }
     
     @Test
@@ -539,7 +544,50 @@ public class UsuarioLogicTest {
         
     }
     
-    
+    @Test
+    public void testAddRemoveBlog() {
+        try {
+            logic.removeBlog(data.get(0).getId(), darIdBlogNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            //no pasa nada
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+        
+        try {
+            logic.removeBlog(data.get(0).getId(), dataB.get(dataB.size()-1).getId());
+            try {
+                logic.getBlog(data.get(0).getId(), dataB.get(dataB.size()-1).getId());
+                Assert.fail();
+            }
+            catch(NotFoundException | EJBException e) {
+                //no pasa nada
+            }
+        }
+        catch(NotFoundException | EJBException | BusinessException e) {
+            Assert.fail();
+        }
+        
+        
+        try {
+            logic.addBlog(data.get(0).getId(), dataB.get(0));
+            Assert.fail();
+        }
+        catch(BusinessException | NotFoundException | EJBException e) {
+            //no pasa nada
+        }
+        
+        try {
+            logic.addBlog(data.get(0).getId(), dataB.get(dataB.size()-1));
+            Assert.assertEquals(dataB.get(data.size()-1), logic.getBlog(data.get(0).getId(), dataB.get(data.size()-1).getId()));
+        }
+        catch(BusinessException e) {
+            Assert.fail();
+        }
+    }
     
     
     private void compararListas(List list1, List list2) {
