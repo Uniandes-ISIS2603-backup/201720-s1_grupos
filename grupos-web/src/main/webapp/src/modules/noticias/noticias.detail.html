@@ -1,44 +1,50 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <h1> {{currentRecord.titulo}}</h1>
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <div ng-show="{{esNoticiaUsuario}}">
-                        <div ng-show="{{ctrl.esAutor()}}">
-                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm col-md-6" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Noticia </button>
-                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> Noticia </button>
-                        </div>
-                    </div>
-                    <div ng-show="{{ctrl.esAutor()}}" ng-hide>
-                        <div ng-show="{{deGrupo}}">
-                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Noticia </button>
-                            <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm col-md-6" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> Noticia  </button>
-                        </div>
-                    </div>
-                    </div>                
+            <div class="col-md-3 text-center" style="float: none;margin: 0 auto">
+                <h2> {{currentRecord.titulo}}</h2>
             </div>
             <div ng-show="{{!deGrupo}}">
                 <h2> Soy del grupo {{currentRecord.grupo.nombre}}</h2>
             </div>
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <div ng-show="{{esNoticiaUsuario}}">
+                        <div ng-show="{{ctrl.esAutor()}}">
+                            <button id="{{$index}}-edit-btn" class="btn outline btn-sm col-md-6 pull-right" ui-sref="usuarioNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Editar </button>
+                            <button id="{{$index}}-delete-btn" class="btn outlineC btn-sm col-md-6 pull-right" ui-sref="usuarioNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> Eliminar </button>
+                        </div>
+                    </div>
+                    <div ng-show="{{ctrl.esAutor()}}" ng-hide>
+                        <div ng-show="{{deGrupo}}">
+                            <button id="{{$index}}-edit-btn" class="btn outline btn-sm pull-right" ui-sref="grupoNoticiaEdit({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span> Editar </button>
+                            <button id="{{$index}}-delete-btn" class="btn outlineC btn-sm col-md-6 pull-right" ui-sref="grupoNoticiaDelete({noticiaId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                        </div>
+                    </div>
+                    </div>                
+            </div>
+            <hr>
             <div class="col-md-12">
                 <dl>
-                 <dt>Autor</dt>
+                <div class="col-md-3 text-center" style="float: none;margin: 0 auto">
+                <dt>Autor</dt>
                 <dd>{{currentRecord.autor.nombre}} {{currentRecord.autor.apellido}}</dd>
+                <hr>
                 <dt>Informacion</dt>
-                <dd><p style="font-family:'Times New Roman', 'Times', 'serif';">{{currentRecord.informacion}}</p></dd>
+                <dd><p>{{currentRecord.informacion}}</p></dd>
                 </dl>
+                </div>
                 <div class="row">
                                 <div ui-view="comentarioView">
                                     <div class="col-md-2 col-xs-6 col-sm-6 col-lg-2">
-                                        <button type="button" class="btn btn-primary" ng-show="{{!noticiaEditable}}" ui-sref="comentarioNoticiaList">Comentarios</button>
-                                        <button type="button" class="btn btn-primary" ng-show="{{deGrupo}}" ui-sref="comentarioGrupoNoticiaList">Comentarios</button>
-                                        <button type="button" class="btn btn-primary" ng-show="{{esNoticiaUsuario}}" ui-sref="comentarioUsuarioNoticiaList">Comentarios</button>
+                                        <button type="button" class="btn outline" ng-show="{{!noticiaEditable}}" ui-sref="comentarioNoticiaList">Comentarios</button>
+                                        <button type="button" class="btn outline" ng-show="{{deGrupo}}" ui-sref="comentarioGrupoNoticiaList">Comentarios</button>
+                                        <button type="button" class="btn outline" ng-show="{{esNoticiaUsuario}}" ui-sref="comentarioUsuarioNoticiaList">Comentarios</button>
                                         
                                     </div>
                                     <div class="col-md-2 col-xs-6 col-sm-6 col-lg-2">
-                                        <button type="button" ng-show="{{deGrupo}}" class="btn btn-primary" ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</button>
-                                        <button type="button" ng-show="{{esNoticiaUsuario}}" class="btn btn-primary" ui-sref="usuarioNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</button>
-                                        <button type="button" ng-show="{{!noticiaEditable}}" class="btn btn-primary" ui-sref="noticiaNoEditableMultimediaList({noticiaId: currentRecord.id})">Multimedia</button>
+                                        <button type="button" ng-show="{{deGrupo}}" class="btn outline" ui-sref="grupoNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</button>
+                                        <button type="button" ng-show="{{esNoticiaUsuario}}" class="btn outline" ui-sref="usuarioNoticiaMultimediaList({noticiaId: currentRecord.id})">Multimedia</button>
+                                        <button type="button" ng-show="{{!noticiaEditable}}" class="btn outlines" ui-sref="noticiaNoEditableMultimediaList({noticiaId: currentRecord.id})">Multimedia</button>
                                     </div>
                                 </div>
                     </div>
@@ -49,25 +55,23 @@
         <div class="row">
             <div class="col-md-3" ng-show="{{esNoticiaUsuario}}">
                 <dl>     
-                    <dt><button ui-sref="usuarioNoticiasList"> Volver a tus noticias</button></dt>
+                    <dt><button class="btn outline" ui-sref="usuarioNoticiasList"> Volver a tus noticias</button></dt>
                     <hr>
                 </dl>
             </div>
             
             <div class="col-md-3" ng-show="{{deGrupo}}">
                 <dl>     
-                    <dt><button ui-sref="grupoNoticiasList"> Volver a las noticias de grupo</button></dt>
+                    <dt><button class="btn outline" ui-sref="grupoNoticiasList"> Volver a las noticias de grupo</button></dt>
                     <hr>
                 </dl>
             </div>
             <div class="col-md-3" ng-show="{{!noticiaEditable}}">
                 <dl>     
-                    <dt><button ui-sref="noticiasExhibicion"> Volver a las noticias</button></dt>
+                    <dt><button class="btn outline" ui-sref="noticiasExhibicion"> Volver a las noticias</button></dt>
                     <hr>
                 </dl>
             </div>
-        
-        
     </div>
 </div>
 
