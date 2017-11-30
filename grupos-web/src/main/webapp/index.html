@@ -181,7 +181,7 @@
     <body class="letra">
         <div class="row mainHeader " style="margin-right: 0px; margin-left: 0px;background: #071E22">
             <div class="col-md-2"> 
-                <img src="data/logoH.png" alt="logo" class="img-responsive logo" width="25%"/>
+                <img src="data/logoH.png" alt="logo" class="img-responsive logo" width="35%"/>
             </div>
             <div class="col-md-6 ">  
                 <!--<img src="data/iconoGrupos.png" alt="logo" class="img-responsive logo" width="55%"/>-->
@@ -194,7 +194,7 @@
                 </ul>
                 <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
                     <li class="nameUser" style="color:white">Bienvenido a tus grupos: {{currentUser}} </li>              
-                    <li style="color:white"><a ui-sref="logout" style="color:#2ae2ea">Salir de sesión</a></li>
+                    <li style="color:white"><a ui-sref="logout" style="color:#2ae2ea;padding-bottom: 0px;padding-top: 5px;padding-left: 0px;padding-right: 0px;">Salir de sesión</a></li>
                 </ul>
                 
             </div> 
@@ -247,23 +247,23 @@
         <div ng-if="isAuthenticated()">
             
             <ul class="nav nav-tabs nav-justified" style="background: #466362" >
-                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="listaGrupos" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif ">Grupos</a></li>
+                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="listaGrupos" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif ">Grupos</a></li>
                     
-                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="carruselCategorias" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Categorias</a></li>
+                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="carruselCategorias" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Categorias</a></li>
                     
-                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="noticiasExhibicion" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"> Noticias</a></li>
+                <li class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="noticiasExhibicion" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"> Noticias</a></li>
                     
-                <li  class="nav-item"role="navigation"><a class="nav-link active miMenu" ui-sref="eventosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Eventos</a></li>
+                <li  class="nav-item"role="navigation"><a class="nav-link active miMenu" ui-sref="eventosList" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Eventos</a></li>
                     
-                <li  class="nav-item"role="navigation"><a class="nav-link active miMenu" ui-sref="lugaresList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Lugares</a></li>
+                <li  class="nav-item"role="navigation"><a class="nav-link active miMenu" ui-sref="lugaresList" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Lugares</a></li>
                     
-                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="empresasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Empresas</a></li>            
+                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="empresasList" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Empresas</a></li>            
                     
-                <li class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="usuariosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Usuarios</a></li>                       
+                <li class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="usuariosList" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Usuarios</a></li>                       
                 
-                <li  class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="patrociniosList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Patrocinios</a></li>
+                <li  class="nav-item" role="navigation" ng-if="soyAdminGeneral()"><a class="nav-link active miMenu" ui-sref="patrociniosList" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Patrocinios</a></li>
                     
-                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="usuarioDetail({usuarioId:id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mi perfil</a></li>
+                <li  class="nav-item" role="navigation"><a class="nav-link active miMenu" ui-sref="usuarioDetail({usuarioId:id})" style="font-size:17px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Mi perfil</a></li>
                     
             </ul> 
         </div> 
