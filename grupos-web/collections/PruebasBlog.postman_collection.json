@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasBlog",
-		"_postman_id": "2076ff23-a8eb-5215-705a-9a3dd6a4ddf5",
+		"_postman_id": "a357eefc-a387-0267-fcf2-dccfed08ab77",
 		"description": "Pruebas servicios REST GruposBlogsResource",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},

@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebaUsuarioBlog",
-		"_postman_id": "18569354-bea6-f236-b2b6-4b3506a61033",
+		"_postman_id": "c3067448-89c1-62b4-a6bf-df74b961ee48",
 		"description": "Prubeas del recurso faltante usuario blogs.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -102,6 +102,17 @@
 		},
 		{
 			"name": "Borra un blog de los favoritos del usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"]= responseCode.code===204"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/grupos-web/Stark/usuarios/1/blogs/1000000",
 				"method": "DELETE",

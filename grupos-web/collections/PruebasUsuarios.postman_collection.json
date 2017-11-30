@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasUsuarios",
-		"_postman_id": "6781dbac-238a-1d81-a7e2-46db758cbf46",
+		"_postman_id": "16524965-6b63-a920-d9c0-7e79c00ddb6f",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -146,8 +146,7 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -177,8 +176,7 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -208,8 +206,7 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -239,8 +236,7 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -248,39 +244,6 @@
 					"raw": "{\"apellido\": \"asdas\",\n  \"email\": \"holi1@uniandes.edu.co\",\n  \"nombre\": \"Serg\",\n  \"password\": \"adasd\",\n  \"nickname\": \"se\",\n  \"rol\": \"Ciudadano\"\n}"
 				},
 				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "get user con login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"]=responseCode.code===200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/grupos-web/Stark/usuarios/login",
-				"method": "GET",
-				"header": [
-					{
-						"key": "email",
-						"value": "xp@uniandes.edu.co",
-						"description": ""
-					},
-					{
-						"key": "password",
-						"value": "Hola",
-						"description": ""
-					}
-				],
-				"body": {},
-				"description": "get de usuario con email y contraseña."
 			},
 			"response": []
 		},
@@ -303,8 +266,7 @@
 				"header": [
 					{
 						"key": "email",
-						"value": "hola@uniandes.edu.co",
-						"description": ""
+						"value": "hola@uniandes.edu.co"
 					}
 				],
 				"body": {
@@ -334,13 +296,11 @@
 				"header": [
 					{
 						"key": "email",
-						"value": "hola@uniandes.edu.co",
-						"description": ""
+						"value": "hola@uniandes.edu.co"
 					},
 					{
 						"key": "password",
-						"value": "contraseña",
-						"description": ""
+						"value": "contraseña"
 					}
 				],
 				"body": {
