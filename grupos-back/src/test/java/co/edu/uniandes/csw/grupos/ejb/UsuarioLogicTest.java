@@ -148,6 +148,10 @@ public class UsuarioLogicTest {
             PatrocinioEntity patrocinio = factory.manufacturePojo(PatrocinioEntity.class);
             noticia.setAutor(data.get(0));
             patrocinio.setUsuario(data.get(0));
+            em.persist(noticia);
+            em.persist(patrocinio);
+            dataN.add(noticia);
+            dataP.add(patrocinio);
         }
         e = factory.manufacturePojo(EmpresaEntity.class);
     }
@@ -346,7 +350,136 @@ public class UsuarioLogicTest {
         Assert.assertEquals(empresa.getNombre(), newEmpresa.getNombre());
     }
     
+    @Test
+    public void testGetNoticias() {
+        try {
+            logic.getNoticias(darIdNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            //no pasa nada
+        }
+        try {
+            compararListas(dataN, logic.getNoticias(data.get(0).getId()));
+        }
+        catch(NotFoundException | EJBException e) {
+            Assert.fail();
+        }
+        
+        
+        try {
+            logic.getNoticia(darIdNoUsado(), dataN.get(0).getId());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            Assert.fail();
+        }
+        catch(BusinessException e1) {
+            //no pasa nada
+        }
+        try {
+            logic.getNoticia(data.get(0).getId(), darIdNoticiaNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            //no pasa nada
+        }
+        catch(BusinessException e1) {
+            Assert.fail();
+        }
+        try {
+            logic.getNoticia(data.get(0).getId(), darIdNoticiaNoUsado());
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            //no pasa nada
+        }
+        catch(BusinessException e1) {
+            Assert.fail();
+        }
+        try {
+            NoticiaEntity noticia = logic.getNoticia(data.get(0).getId(), dataN.get(0).getId());
+            Assert.assertEquals(dataN.get(0), noticia);
+            
+        }
+        catch(NotFoundException | EJBException | BusinessException e) {
+            Assert.fail();
+        }
+    }
     
+    @Test
+    public void testAddNoticia() {
+        PodamFactory factory = new PodamFactoryImpl();
+        NoticiaEntity noticia = factory.manufacturePojo(NoticiaEntity.class);
+        try {
+            logic.addNoticia(darIdNoUsado(), noticia);
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            Assert.fail();
+        }
+        catch(BusinessException e1) {
+            //no pasa nada
+        }
+        try {
+            noticia.setAutor(data.get(1));
+            noticia = logic.addNoticia(data.get(1).getId(), noticia);
+            dataN.add(noticia);
+            
+        }
+        catch(NotFoundException | EJBException | BusinessException e) {
+            //
+        }
+    }
+    
+    @Test
+    public void testUpdateNoticia() {
+        PodamFactory factory = new PodamFactoryImpl();
+        NoticiaEntity noticia = factory.manufacturePojo(NoticiaEntity.class);
+        noticia.setAutor(data.get(0));
+        try {
+            logic.updateNoticia(darIdNoUsado(), dataN.get(dataN.size()-1).getId(), noticia);
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            Assert.fail();
+        }
+        catch(BusinessException e1) {
+            //no pasa nada
+        }
+        
+        try {
+            logic.updateNoticia(data.get(1).getId(), dataN.get(dataN.size()-1).getId(), noticia);
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException | BusinessException e) {
+            //no pasa nada
+        }
+        
+        try {
+            logic.updateNoticia(data.get(0).getId(), darIdNoticiaNoUsado(), noticia);
+            Assert.fail();
+        }
+        catch(NotFoundException | EJBException e) {
+            //no pasa nada
+        }
+        catch(BusinessException e1) {
+            Assert.fail();
+        }
+        
+        try {
+            
+            logic.updateNoticia(data.get(0).getId(), dataN.get(dataN.size()-1).getId(), noticia);
+        }
+        catch(NotFoundException | EJBException | BusinessException e) {
+            //
+        }
+    }
+    
+    @Test
+    public void testRemoveNoticia() {
+        
+    }
     
     
     private void compararListas(List list1, List list2) {
@@ -364,6 +497,15 @@ public class UsuarioLogicTest {
         UsuarioEntity entity = new UsuarioEntity();
         entity.setId((long)0);
         while(data.indexOf(entity)>=0) {
+            entity.setId((long)((Math.random())*100));
+        }
+        return entity.getId();
+    }
+    
+    private Long darIdNoticiaNoUsado() {
+        NoticiaEntity entity = new NoticiaEntity();
+        entity.setId((long)0);
+        while(dataN.indexOf(entity)>=0) {
             entity.setId((long)((Math.random())*100));
         }
         return entity.getId();
