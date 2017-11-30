@@ -50,8 +50,13 @@ public class BlogDetailDTO extends BlogDTO{
         super(entity);
         if(entity != null) {
             if(entity.getGrupo()!=null)
-            grupo = new GrupoDTO(entity.getGrupo());
-            else grupo=new GrupoDetailDTO();
+            {
+                grupo = new GrupoDTO(entity.getGrupo());
+            }
+            else 
+            {
+                grupo=new GrupoDetailDTO();
+            }
             comentarios = new ArrayList<>();
             calificaciones = new ArrayList<>();
             multimedia = new ArrayList<>();

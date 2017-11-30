@@ -29,14 +29,5 @@ public class EmpresaDetailDTO extends EmpresaDTO {
         super(entity);
     }
     
-     /**
-     * Transformar un DTO a un Entity
-     *
-     * @return 
-     */
-    @Override
-    public EmpresaEntity toEntity() {
-        return super.toEntity();
-    }
    
 }
