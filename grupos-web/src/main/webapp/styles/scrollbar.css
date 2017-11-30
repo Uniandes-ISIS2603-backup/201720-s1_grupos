@@ -4,14 +4,14 @@
 .scroll {
     overflow-y: scroll;  
     overflow-x: scroll;  
-    width: 500px;
+    width: 15% /*500px;*/
     height: 300px;
 }
 
 .scrollL {
     overflow-y: scroll; 
     overflow-x: scroll;  
-    width: 700px;
+    width: 15% /*700px;*/
     height: 600px;
 }
 /* Let's get this party started */

@@ -3,11 +3,11 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <!-- Muestra tipo, imagen y descripción de la misma-->
-            <h1 id="{{$index}}-name" class="col-md-12 text-center" style="float:none;font-size:50px;margin: 0 auto"><span style="color:red">{{categoriaActual.tipo}}</span></h1>
+            <h1 id="{{$index}}-name" class="col-md-12 text-center" style="float:none;font-size:50px;margin: 0 auto"><span style="color:#426163;">{{categoriaActual.tipo}}</span></h1>
             <hr>
             <div class="col-md-6 col-sm-6 col-xs-7 text-center"> 
                 <div class="col-md-12 col-sm-12 col-xs-12"> 
-                    <img src="data/{{categoriaActual.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'"  role="button" style="margin:auto;width:300px;height:300px;border:1px solid red">
+                    <img src="data/{{categoriaActual.rutaIcono}}" class="img-circle" onerror="this.src='data/default.png'"  role="button" style="margin:auto;width:300px;height:300px;border:1px solid #426163;">
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center"> 
                     <a class="btn btn-circle btn-default btn-sm" ui-sref="categoriaUpdate({categoriaId: categoriaActual.id})" ng-if="puedoEditarCategorias()"><span class="glyphicon glyphicon-edit"></span></a>
@@ -20,7 +20,25 @@
                 <br>
                 <p id="{{$index}}-descripcion">{{categoriaActual.descripcion}}</p>
             </div>
-            <div class="col-md-6">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <h3><span style="color: #721817">Blogs de {{categoriaActual.tipo}}</span></h3>
+            </div>
+            <div class="col-md-12">
                 <div ui-view="listGruposView"></div>
             </div>    
         </div>
