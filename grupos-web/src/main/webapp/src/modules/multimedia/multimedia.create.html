@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"> Nueva multimedia</div>
+        <!--<div class="panel panel-primary">-->
+            <div class="panel-heading" style="color: #721817"> Agregar multimedia</div>
             <div class="panel-body">
                 <form ng-submit="ctrl.saveRecord(currentMultimedia.link)" name="multimedia">
                     <input id="link" name="link" type="hidden" ng-model="currentMultimedia.link" ng-init="$state.params.multimediaLink">
@@ -31,15 +31,15 @@
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <div ng-show="{{esMultimediaNoticia && deGrupo}}">
-                                <button type="button" class="btn btn-info"  ui-sref='grupoNoticiaMultimediaList'>Volver</button>
+                                <button type="button" class="btn outline"  ui-sref='grupoNoticiaMultimediaList'>Volver</button>
                             </div>
                             <div ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
-                                <button type="button" class="btn btn-info"  ui-sref='usuarioNoticiaMultimediaList'>Volver</button>
+                                <button type="button" class="btn outline"  ui-sref='usuarioNoticiaMultimediaList'>Volver</button>
                             </div>
                             <div ng-show="{{esMultimediaBlog}}">
-                                <button type="button"  class="btn btn-info"  ui-sref='blogMultimediaList'>Volver</button>
+                                <button type="button"  class="btn outline"  ui-sref='blogMultimediaList'>Volver</button>
                             </div>
-                            <button type="submit" ng-style="(!multimedia.$valid || !ctrl.verificarMultimedia())?{'opacity': '0.65'}:{'opacity':'1'}" class="btn btn-info" >Guardar</button>
+                            <button type="submit" ng-style="(!multimedia.$valid || !ctrl.verificarMultimedia())?{'opacity': '0.65'}:{'opacity':'1'}" class="btn outline" >Guardar</button>
                         </div>
                     </div>
                 </form>

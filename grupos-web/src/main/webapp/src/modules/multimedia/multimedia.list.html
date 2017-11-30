@@ -1,6 +1,6 @@
 <div class="container-fluid" ui-view="multimediaListView">
     <div class="panel-group">
-        <div class="panel panel-primary">
+        <!--<div class="panel panel-primary">-->
             <div class="panel-body">
                 
             <div class="btn-toolbar" ng-show="{{esMultimediaBlog}}" role="toolbar" aria-label="Toolbar with button groups">
@@ -59,16 +59,16 @@
                 </div>
                 
                 <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaNoticia && deGrupo}}">
-                    <button class="btn btn-default" ui-sref="grupoNoticiaDetail">Volver</button>
+                    <button class="btn outline" ui-sref="grupoNoticiaDetail">Volver</button>
                 </div>
                 <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaNoticia && esNoticiaUsuario}}">
-                    <button class="btn btn-default" ui-sref="usuarioNoticiaDetail">Volver</button>
+                    <button class="btn outline" ui-sref="usuarioNoticiaDetail">Volver</button>
                 </div>
                 <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaBlog}}">
-                    <button class="btn btn-default" ui-sref="blogDetail">Volver</button>
+                    <button class="btn outline" ui-sref="blogDetail">Volver</button>
                 </div>
                 <div class="col-md-4 col-lg-4" ng-show="{{esMultimediaNoticia && !deGrupo && !esNoticiaUsuario}}">
-                    <button class="btn btn-default" id="unico" ui-sref="noticiaNoEditableDetail">Volver</button>
+                    <button class="btn outline" id="unico" ui-sref="noticiaNoEditableDetail">Volver</button>
                 </div>
         </div> 
 
