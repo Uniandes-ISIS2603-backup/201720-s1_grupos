@@ -41,7 +41,7 @@
              * @param {type} idAdmin, id de la categoría a asociar
              */
             $scope.asociarAdmin= function(idAdmin, grupo){
-                $http.post(gruposContext +'/'+grupo.id +'/administradores/' +idAdmin).then(function (response)
+                $http.post(gruposContext +'/'+grupo.id +'/administradores/' +idAdmin).then(function ()
                 {
                     $state.go('grupoDetail',{grupoId: grupo.id}, {reload: true});                 
                 },function(error)

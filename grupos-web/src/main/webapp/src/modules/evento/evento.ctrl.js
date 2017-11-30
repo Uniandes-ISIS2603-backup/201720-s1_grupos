@@ -15,18 +15,18 @@
             });
         }
             $scope.inscripcionUsuario = function() {
-                $http.post(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
+                $http.post(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(){
                     var idEvento = $scope.currentEvento.id;
                     $state.go('eventoDetail',{idEvento},{reload:true});
-                },function(error)
+                },function()
                 {
                 });
             };
             $scope.retirarUsuario = function() {
-                $http.delete(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
+                $http.delete(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(){
                     var idEvento = $scope.currentEvento.id;
                     $state.go('eventoDetail',{idEvento},{reload:true});
-                },function(error)
+                },function()
                 {
                 });
             };

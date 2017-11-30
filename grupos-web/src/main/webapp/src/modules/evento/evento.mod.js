@@ -6,7 +6,7 @@
     mod.constant("eventosContext", "eventos");
     
     mod.constant("eventoGrupoContext","grupos");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             var basePath = 'src/modules/evento/';
 
             $stateProvider.state('eventos', {

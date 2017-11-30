@@ -126,7 +126,6 @@
              * Se crea el blog con un post.
              */
             $scope.createBlog = function() {
-                console.log($scope.verificarMultimedia());
                 if(!$scope.verificarMultimedia())
                 {
                     return;

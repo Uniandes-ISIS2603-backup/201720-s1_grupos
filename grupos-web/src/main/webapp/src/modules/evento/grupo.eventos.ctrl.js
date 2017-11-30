@@ -31,9 +31,9 @@
                 $scope.variableErrorEvento=$state.params.mensaje;
             }
            //Header
-              header="Eventos de grupo";
+             var  header="Eventos de grupo";
               //Contexto global
-            fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
+            var fullContext=globalContext+"/"+grupoContext+"/"+$state.params.grupoId+"/"+context;                       
             // carga las eventos
             $http.get(fullContext).then(function (response) {
                 $scope.records = response.data;
@@ -49,7 +49,7 @@
             if ($state.params.eventoId !== null && $state.params.eventoId !== undefined) {
 
                 // toma el id del parámetro
-                id = $state.params.eventoId;
+                var id = $state.params.eventoId;
                 // obtiene el dato del recurso REST
                 $http.get(fullContext + "/" + id)
                         .then(function (response) {

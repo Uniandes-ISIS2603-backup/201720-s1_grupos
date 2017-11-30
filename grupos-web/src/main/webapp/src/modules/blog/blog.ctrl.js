@@ -27,7 +27,7 @@
                 $scope.agregarFavoritos = function () {
                     
                     $http.post(usuarioContext + '/' + sessionStorage.getItem("id") +'/'+ 
-                        blogContext+'/'+$state.params.blogId).then(function (response) {
+                        blogContext+'/'+$state.params.blogId).then(function () {
                         $state.go('blogDetail', {}, {reload: true});
                     }, function(error) {
                         $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});
@@ -41,7 +41,7 @@
                 $scope.eliminarFavoritos = function () {
                     //el usuario logueado por defecto es el 1
                     $http.delete(usuarioContext + '/' + sessionStorage.getItem("id") +'/'+ 
-                        blogContext+'/'+$state.params.blogId).then(function (response) {
+                        blogContext+'/'+$state.params.blogId).then(function () {
                         $state.reload();
                     }, function (error) {
                         $state.go('blogGrupoError', {mensaje: error.data}, {reload: true});

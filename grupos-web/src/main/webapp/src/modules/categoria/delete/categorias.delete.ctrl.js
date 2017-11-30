@@ -16,9 +16,9 @@
              */
             $scope.deleteCategoria = function () {
                 //Se invoca el servicio DELETE correspondiente
-                $http.delete(categoriasContext + '/' + idcategoria, {}).then(function (response) {
+                $http.delete(categoriasContext + '/' + idcategoria, {}).then(function () {
                     $state.go('carruselCategorias',{}, {reload: true});
-                }, function (error) {
+                }, function () {
                 });
             };
         }

@@ -4,7 +4,7 @@
 (function (ng) {
     var mod = ng.module("categoriaModule", ['ui.router']);
     mod.constant("categoriasContext", "Stark/categorias");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             //Paths útiles
             var basePath = 'src/modules/categoria/';
             var basePathGrupos = 'src/modules/grupo/';

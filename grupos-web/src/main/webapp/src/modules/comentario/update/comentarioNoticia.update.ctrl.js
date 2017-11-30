@@ -7,7 +7,7 @@
             $http.get(noticiaContext + '/' + $state.params.noticiaId + '/' + comentarioContext + '/' + 
                     $state.params.comentarioId).then(function (response) {
                 $scope.autor = response.data.autor;
-            }, function (error) {
+            }, function () {
                 $scope.goError();
             });
             
@@ -19,9 +19,9 @@
                         $state.params.comentarioId, {
                             autor: $scope.autor,
                             comentario: $scope.comentario
-                }).then(function (response) {
+                }).then(function () {
                     $scope.goComentarioList();
-                }, function (error) {
+                }, function () {
                     $scope.goError();
                 });
             };
