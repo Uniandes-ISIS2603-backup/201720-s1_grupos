@@ -15,14 +15,14 @@
                 <br>
                 <div style="width:100%;text-align:center;" ng-show="esMiembro || esAdmin">
                     <div style="display:inline-block;" class="row" ng-show="ctrl.esAutor()">
-                        <a id="{{$index}}-edit-btn" class="btn btn-default btn-sm center-block pull-right" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a id="{{$index}}-delete-btn" class="btn btn-danger btn-sm center-block pull-right" ui-sref="calificacionDelete({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a id="{{$index}}-edit-btn" class="btn outline btn-sm center-block pull-right" ui-sref="calificacionEdit({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a id="{{$index}}-delete-btn" class="btn outlineC btn-sm center-block pull-right" ui-sref="calificacionDelete({calificacionId: currentRecord.id})"><span class="glyphicon glyphicon-trash"></span></a>
                     </div>
                 </div>
             </div>
 
                 <div style="width:100%;text-align:center;">
-                    <button style="display:inline-block; white-space: normal" id="return-btn" class="btn btn-info" ui-sref="calificacionsList">Volver a calificaciones</button>
+                    <button style="display:inline-block; white-space: normal" id="return-btn" class="btn outline" ui-sref="calificacionsList">Volver a calificaciones</button>
                 </div>
 </div>
 
