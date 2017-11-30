@@ -28,14 +28,14 @@
             </div>
         </div>
         <br>
-        <div class="col-md-3 col-sm-1 col-xs-2"></div>
-        <div class="col-md-9">          
+        <!--<div class="col-md-1 col-sm-1 col-xs-1"></div>
+        <div class="col-md-11">-->          
             
             <!-- Muestra nombre y descripción de cada grupo-->
-            <div class="table-responsive">
+            <div class="table-responsive" style ="padding-left: 10%;padding-right: 10%;">
                 <div class="scroll responsive" ng-class="{scrollL: !opcionesGrupo, scroll: opcionesGrupo }"> 
                     
-                    <div class="panel panel-default col-md-9 responsive " ng-repeat="grupo in grupoRecords">
+                    <div class="panel panel-default col-md-11 responsive " ng-repeat="grupo in grupoRecords">
                         <div class="panel-body clickable responsive" ui-sref="grupoDetail({grupoId: grupo.id})" role="button">    
                             <div class="col-md-2">
                                 <img src="data/grupoIcono.png" style="margin:auto; position:absolute">
@@ -49,7 +49,7 @@
                 </div>      
             </div>
             
-        </div>  
+        <!--</div>-->  
         <div class="col-sm-3 col-xs-3"></div>
     </div>
 </div>
