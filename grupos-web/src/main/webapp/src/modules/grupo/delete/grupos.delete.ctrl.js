@@ -11,9 +11,9 @@
             $scope.idGrupo=idgrupo;
             $scope.deleteGrupo = function () {
                 //Se envía el servicio rest DELETE
-                $http.delete(gruposContext + '/' + idgrupo, {}).then(function (response) {
+                $http.delete(gruposContext + '/' + idgrupo, {}).then(function () {
                     $state.go('listaGrupos',{}, {reload: true});
-                }, function (error) {
+                }, function () {
                     
                 });
             };

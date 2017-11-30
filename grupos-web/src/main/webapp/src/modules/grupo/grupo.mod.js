@@ -3,7 +3,7 @@
  */
 (function (ng) {
     var mod = ng.module("grupoModule", []);
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             //Paths útiles
             var basePath = 'src/modules/grupo/';
             

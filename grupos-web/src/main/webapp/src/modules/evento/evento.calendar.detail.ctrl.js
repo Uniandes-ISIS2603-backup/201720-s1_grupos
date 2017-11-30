@@ -24,9 +24,9 @@
              * @returns {undefined}
              */
             $scope.inscripcionUsuario = function() {
-                $http.post(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
+                $http.post(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(){
                     $scope.inscrito = true;
-                },function(error)
+                },function()
                 {
                 });
             };
@@ -36,9 +36,9 @@
              * @returns {undefined}
              */
             $scope.retirarUsuario = function() {
-                $http.delete(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(resonse){
+                $http.delete(eventoContext+'/'+$scope.currentEvento.id + '/usuarios/'+ $scope.idUsuarioActual).then(function(){
                     $scope.inscrito = false;
-                },function(error)
+                },function()
                 {
                 });
             };

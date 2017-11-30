@@ -8,9 +8,9 @@
              */
             $scope.deleteComentario = function() {
                 $http.delete(grupoContext + '/' + $state.params.grupoId + '/' + blogContext + '/' + 
-                    $state.params.blogId + '/' + comentarioContext + '/' + $state.params.comentarioId).then(function (response) {
+                    $state.params.blogId + '/' + comentarioContext + '/' + $state.params.comentarioId).then(function () {
                     $scope.goComentarioList();
-                }, function (error) {
+                }, function () {
                     $scope.goError();
                 });
             };

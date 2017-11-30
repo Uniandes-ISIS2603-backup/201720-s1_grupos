@@ -21,7 +21,7 @@ public class ComentarioDTO {
      * Construye un ComentarioDTO vacío
      */
     public ComentarioDTO() {
-        
+        //Constructor vacío
     }
     
     /**

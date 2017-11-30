@@ -25,10 +25,10 @@
                     tipo: $scope.categoriaName,
                     descripcion: $scope.categoriaDescription,
                     rutaIcono: $scope.categoriaRuta
-                }).then(function (response) {
+                }).then(function () {
                     //Se creó correctamente
                     $state.go('carruselCategorias',{}, {reload: true});
-                }, function (error, status) {
+                }, function () {
                     
                     $scope.errorCategoriaNombre=true;
                 });

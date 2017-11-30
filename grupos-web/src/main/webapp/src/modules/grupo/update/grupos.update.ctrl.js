@@ -4,8 +4,8 @@
 (function (ng) {
     var mod = ng.module("grupoModule");
     mod.constant("gruposContext", "Stark/grupos");    
-    mod.controller('grupoUpdateCtrl', ['$scope', '$http', 'gruposContext', '$state', '$rootScope', '$filter',
-        function ($scope, $http, gruposContext, $state, $rootScope, $filter) {
+    mod.controller('grupoUpdateCtrl', ['$scope', '$http', 'gruposContext', '$state', '$rootScope',
+        function ($scope, $http, gruposContext, $state, $rootScope) {
             //Se indica que se va a editar para mostrar los respectivos botones, se guarda el id como variable
             $rootScope.edit = true;        
             
@@ -25,7 +25,7 @@
              * Función para volver a un grupo detail en caso que se oprima cancelar
              * @param {type} idGrupo, id del grupo al que se quiere regresar
              */
-            $scope.volver = function(idGrupo)
+            $scope.volver = function()
             {
                 $state.go('grupoDetail', {grupoId: $scope.idGrupo}, {reload: true});
             };

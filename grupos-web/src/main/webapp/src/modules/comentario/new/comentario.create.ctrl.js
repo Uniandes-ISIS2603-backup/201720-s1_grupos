@@ -12,9 +12,9 @@
                         $state.params.blogId + '/' + comentarioContext, {
                     autor: sessionStorage.getItem("nickname"),
                     comentario: $scope.comentario
-                }).then(function (response) {
+                }).then(function () {
                     $scope.goComentarioList();
-                }, function (error) {
+                }, function () {
                     $scope.goError();
                 });
             };

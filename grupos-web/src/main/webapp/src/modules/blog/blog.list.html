@@ -14,25 +14,30 @@
                     </div>
                 </div>
                 <br>
-                <div class="panel panel-default responsive col-md-8" ng-repeat="blog in listBlog" ng-hide="{{blogsDeUsuario}}">
-                    <div class="panel-body clickable responsive" ui-sref="blogDetail({blogId: blog.id})" role="button">                          
-                        <div class="col-md-2">
-                            <img src="data/iconoBlog.png" height="50px" width="50px" style="margin:auto; position:absolute">  
+                <div class="table-responsive ">
+                    <div class="scroll responsive scrollL">
+                        <div class="panel panel-default responsive col-md-8" ng-repeat="blog in listBlog" ng-hide="{{blogsDeUsuario}}">
+                            <div class="panel-body clickable responsive" ui-sref="blogDetail({blogId: blog.id})" role="button">                                              
+                                <div class="col-md-2">
+                                    <img src="data/iconoBlog.png" height="50px" width="50px" style="margin:auto; position:absolute">  
+                                </div>
+                                <div class="col-md-8 responsive" style="margin-left: 100px">   
+                                    <h3 id="{{$index}}-tituloBlog">{{blog.titulo}}</h3>
+                                    <p id="{{$index}}-contenidoBlog">{{blog.contenido}}</p>    
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8 responsive">   
-                            <h3 id="{{$index}}-tituloBlog">{{blog.titulo}}</h3>
-                            <p id="{{$index}}-contenidoBlog">{{blog.contenido}}</p>    
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default responsive col-md-8" ng-repeat="blog in listBlog" ng-show="{{blogsDeUsuario}}">
-                    <div class="panel-body clickable responsive" ui-sref="blogDetail({blogId: blog.id})" role="button">        
-                        <div class="col-md-2">
-                            <img src="data/iconoBlog.png" height="50px" width="50px" style="margin:auto; position:absolute">  
-                        </div>
-                        <div class="col-md-8 responsive">                   
-                            <h3 id="{{$index}}-tittituloBlogUsuario">{{blog.titulo}}</h3>
-                            <p id="{{$index}}-contenidoBlogUsuario">{{blog.contenido}}</p>    
+                        
+                        <div class="panel panel-default responsive col-md-8" ng-repeat="blog in listBlog" ng-show="{{blogsDeUsuario}}">
+                            <div class="panel-body clickable responsive" ng-click="verBlogDetail(blog)" role="button">                                              
+                                <div class="col-md-2">
+                                    <img src="data/iconoBlog.png" height="50px" width="50px" style="margin:auto; position:absolute">  
+                                </div>
+                                <div class="col-md-8 responsive" style="margin-left: 100px">   
+                                    <h3 id="{{$index}}-tituloBlog">{{blog.titulo}}</h3>
+                                    <p id="{{$index}}-contenidoBlog">{{blog.contenido}}</p>    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

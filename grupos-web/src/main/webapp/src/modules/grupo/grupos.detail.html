@@ -29,27 +29,27 @@
             </div>
             
             <br>
-            <div class="col-md-2 text-center" style="background: #58A4B0">
+            <div class="col-md-2 text-center" style="background: #545E75;padding-left: 0px;padding-right: 0px;">
                 <!-- Muestra los botones para ver los subrecursos del grupo-->
                 <ul class="nav nav-tabs nav-stacked">
-                    <li role="navigation" class="btn"><a class="nav-link active miMenu" ui-sref="grupoNoticiasList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Noticias</a></li>
+                    <li role="navigation" class="btn" style="padding-top: 3px; padding-bottom: 3px;padding-left: 0px; padding-right: 0px;"><a class="nav-link active miMenu" ui-sref="grupoNoticiasList" style="font-size:17px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;padding-left: 0px;padding-right: 0px; padding-top: 3px; padding-bottom: 0px">Noticias</a></li>
                     <hr>
-                    <li role="navigation" class="btn"  ng-if="puedoVerDetallesGrupo()"><a class="nav-link miMenu" ui-sref="eventosDeGrupo({grupoId:grupoActual.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Eventos</a></li>
+                    <li role="navigation" class="btn"  ng-if="puedoVerDetallesGrupo()" style="padding-top: 3px; padding-bottom: 3px;padding-left: 0px; padding-right: 0px;"><a class="nav-link miMenu" ui-sref="eventosDeGrupo({grupoId:grupoActual.id})" style="font-size:17px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;padding-left: 0px;padding-right: 0px; padding-top: 0px; padding-bottom: 0px">Eventos</a></li>
                     <hr  ng-if="puedoVerDetallesGrupo()" ng-class="{subir: !puedoVerDetallesGrupo()}">
-                    <li role="navigation" class="btn" ng-if="puedoVerDetallesGrupo()"><a class="nav-link miMenu" ui-sref="blogList" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Blogs</a></li>
+                    <li role="navigation" class="btn" ng-if="puedoVerDetallesGrupo()" style="padding-top: 3px; padding-bottom: 3px;padding-left: 0px; padding-right: 0px;"><a class="nav-link miMenu" ui-sref="blogList" style="font-size:17px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;padding-left: 0px;padding-right: 0px; padding-top: 0px; padding-bottom: 0px">Blogs</a></li>
                     <hr  ng-if="puedoVerDetallesGrupo()" ng-class="{subir: !puedoVerDetallesGrupo()}">
-                    <li role="navigation" class="btn"><a ng-click="categoriasDeMiGrupo(grupoActual.id)" type='button' class="nav-link miMenu" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif" >Categorias</a></li>
+                    <li role="navigation" class="btn" style="padding-top: 3px; padding-bottom: 3px;padding-left: 0px; padding-right: 0px;"><a ng-click="categoriasDeMiGrupo(grupoActual.id)" type='button' class="nav-link miMenu" style="font-size:17px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;padding-left: 0px;padding-right: 0px; padding-top: 0px; padding-bottom: 0px" >Categorías</a></li>
                     <hr>
-                    <li role="navigation" class="btn" ng-if="puedoVerDetallesGrupo()" ><a id="losAdmins" class="nav-link active miMenu" type='button' ng-click="adminsDeMiGrupo(grupoActual.id)" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Administradores</a></li>
+                    <li role="navigation" class="btn" ng-if="puedoVerDetallesGrupo()" style="padding-top: 3px; padding-bottom: 3px;padding-left: 0px; padding-right: 0px;"><a id="losAdmins" class="nav-link active miMenu" type='button' ng-click="adminsDeMiGrupo(grupoActual.id)" style="font-size:17px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;padding-left: 0px;padding-right: 0px; padding-top: 0px; padding-bottom: 0px">Administradores</a></li>
                     <hr  ng-if="puedoVerDetallesGrupo()">
-                    <li role="navigation" class="btn"><a class="nav-link active miMenu" ui-sref="miembrosDeGrupo({grupoId:grupoActual.id})" style="font-size:20px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Miembros</a></li>
+                    <li role="navigation" class="btn" style="padding-top: 3px; padding-bottom: 3px;padding-left: 0px; padding-right: 0px;"><a class="nav-link active miMenu" ui-sref="miembrosDeGrupo({grupoId:grupoActual.id})" style="font-size:17px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;padding-left: 0px;padding-right: 0px; padding-top: 0px; padding-bottom: 3px">Miembros</a></li>
                 </ul>
             </div>          
             
             
             
             <!-- Vista para mostrar la lista de los subrecursos-->
-            <div class="col-md-10">                        
+            <div class="col-md-10 responsive">                        
                 <div ui-view="childrenView"></div>
             </div>
             <br>

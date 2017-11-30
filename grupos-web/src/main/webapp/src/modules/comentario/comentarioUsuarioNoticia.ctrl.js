@@ -50,7 +50,7 @@
             //se obtiene la lista de comentarios.
             $http.get(noticiaContext + '/' + $state.params.noticiaId + '/' + comentarioContext).then(function (response) {
                 $scope.comentarioRecords = response.data;
-            }, function (error) {
+            }, function () {
                 $scope.goError;
             });
             

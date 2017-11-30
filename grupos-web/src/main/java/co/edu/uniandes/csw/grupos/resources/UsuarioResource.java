@@ -100,7 +100,7 @@ public class UsuarioResource {
         entity.setPassword(password);
         UsuarioEntity result = userLogic.findUserEmailPassword(entity);
         if (result == null) {
-            throw new NotFoundException("correo electrónico o contraseña incorrectos. Inténtelo nuevamente.");
+            throw new NotFoundException("Correo electrónico o contraseña incorrectos. Inténtelo nuevamente.");
         }
         return new UsuarioDetailDTO(result);
         

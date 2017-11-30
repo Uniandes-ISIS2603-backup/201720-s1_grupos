@@ -98,7 +98,7 @@ public class EventoDetailDTO extends EventoDTO {
     }
     if (getPatrocinios() != null) 
     {
-            List<PatrocinioEntity> patrociniosEntity = new ArrayList<PatrocinioEntity>();
+            List<PatrocinioEntity> patrociniosEntity = new ArrayList<>();
             for (PatrocinioDTO dtoPatrocinio : getPatrocinios()) {
                 patrociniosEntity.add(dtoPatrocinio.toEntity());
             }
@@ -106,7 +106,7 @@ public class EventoDetailDTO extends EventoDTO {
         }
     if (getUsuarios() != null)
     {
-        List<UsuarioEntity> usuariosEntity = new ArrayList<UsuarioEntity>();
+        List<UsuarioEntity> usuariosEntity = new ArrayList<>();
             for (UsuarioDTO dtoUsuario : getUsuarios()) {
                 usuariosEntity.add(dtoUsuario.toEntity());
             }

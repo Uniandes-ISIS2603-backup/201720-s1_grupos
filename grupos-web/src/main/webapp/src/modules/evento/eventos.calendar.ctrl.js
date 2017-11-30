@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("eventoModule");
     mod.controller('eventosCalendarCtrl', ['$scope', '$http', 'usuariosContext','$state',
-        function ($scope, $http, usuariosContext,$state, moment, alert, calendarConfig) {
+        function ($scope, $http, usuariosContext,$state) {
             
             //Verifica si es usuario de calendario o no
             if ($state.params.usuarioId !== undefined) {

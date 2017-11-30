@@ -19,7 +19,7 @@ public class ComentarioDetailDTO extends ComentarioDTO {
      * crea un ComentarioDetailDTO vacío
      */
     public ComentarioDetailDTO() {
-        
+        //Constructor vacío
     }
     
     /**
@@ -37,8 +37,7 @@ public class ComentarioDetailDTO extends ComentarioDTO {
      */
     @Override
     public ComentarioEntity toEntity() {
-        ComentarioEntity entity = super.toEntity();
         //Aquí se pasan los DTOs de las relaciones a Entities
-        return entity;
+        return super.toEntity();
     }
 }

@@ -8,9 +8,9 @@
              */
             $scope.deleteComentario = function() {
                 $http.delete(noticiaContext + '/' + $state.params.noticiaId + '/' + comentarioContext + '/' + 
-                        $state.params.comentarioId).then(function (response) {
+                        $state.params.comentarioId).then(function () {
                     $scope.goComentarioList();
-                }, function (error) {
+                }, function () {
                     $scope.goError();
                 });
             };

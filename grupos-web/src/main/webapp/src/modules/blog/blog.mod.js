@@ -6,7 +6,7 @@
     mod.constant("grupoContext", "Stark/grupos");
     mod.constant("usuarioContext", "Stark/usuarios");
     
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             /**
              * path base de los scripts y templates usados
              * @type String

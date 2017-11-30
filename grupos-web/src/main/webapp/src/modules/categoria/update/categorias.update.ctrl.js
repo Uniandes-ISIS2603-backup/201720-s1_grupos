@@ -4,8 +4,8 @@
 (function (ng) {
     var mod = ng.module("categoriaModule");
     mod.constant("categoriasContext", "Stark/categorias");    
-    mod.controller('categoriaUpdateCtrl', ['$scope', '$http', 'categoriasContext', '$state', '$rootScope', '$filter',
-        function ($scope, $http, categoriasContext, $state, $rootScope, $filter) {
+    mod.controller('categoriaUpdateCtrl', ['$scope', '$http', 'categoriasContext', '$state', '$rootScope',
+        function ($scope, $http, categoriasContext, $state, $rootScope) {
             //Guarda el id de la categoría
             
             $scope.errorCategoriaNombre=false;
@@ -35,7 +35,7 @@
                 }).then(function (response) {                    
                     //se creó bien, se va a su detail
                     $state.go('categoriaDetail2', {categoriaId: response.data.id}, {reload: true});
-                }, function (error,status) {                    
+                }, function () {                    
                     $scope.errorCategoriaNombre=true;
                 });
             };

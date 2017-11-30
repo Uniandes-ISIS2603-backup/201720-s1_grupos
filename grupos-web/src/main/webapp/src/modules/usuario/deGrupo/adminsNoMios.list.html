@@ -1,15 +1,15 @@
 <!--Lista de todos los usuarios-->
 <h1 ng-show="{{deGrupo}}">Añadir un administrador</h1>
 <div class="container-fluid">
-    <div class="row">
+    <div class="table-responsive text-center">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nombre</th>    
-                    <th>Apellido</th>
-                    <th>Nickname</th>
-                    <th>Email</th>
-                    <th></th>
+                    <th class="text-center fondoPanel">Nombre</th>    
+                    <th class="text-center fondoPanel">Apellido</th>
+                    <th class="text-center fondoPanel">Nickname</th>
+                    <th class="text-center fondoPanel">Email</th>
+                    <th class="text-center fondoPanel"></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,10 +19,10 @@
                     <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
                     <td id="{{$index}}-Email">{{usuario.email}}</td>
                     <!-- Si se oprime aquí, se agrega esta categoría al grupo-->     
-                    <td><a class="btn btn-success btn-lg" ng-click="asociarAdmin(usuario.id)">Asociar este :D</a></td>
+                    <td><a class="btn btn-success" ng-click="asociarAdmin(usuario.id)">Asociar este :D</a></td>
                 </tr>               
-              
-        </tbody>
+                    
+            </tbody>
         </table>
     </div>
 </div>

@@ -6,12 +6,6 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * Representación minimum de categoría.<br>
  * @author cm.sarmiento10
@@ -43,6 +37,7 @@ public class CategoriaDTO {
      */
     public CategoriaDTO()
     {
+        //Constructor vacío
     }
     
     /**

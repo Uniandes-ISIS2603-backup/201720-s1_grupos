@@ -20,12 +20,12 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * Inscribe al usuario actual como miembro del grupo
              */
             $scope.inscripcionGrupo = function () {
-                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)
+                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function ()
                 {
                     //Se recarga en caso que funcione
                     $state.go('grupoDetail',{},{reload:true});
                     
-                },function(error)
+                },function()
                 {
                 });
             };
@@ -37,7 +37,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                 {            
                     if($scope.adminRecords.length>1)
                     {
-                        $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +$scope.idUsuarioActual).then(function (response)
+                        $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +$scope.idUsuarioActual).then(function ()
                         {
                         });
                     }
@@ -47,12 +47,12 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                         return;
                     }
                 }
-                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function (response)               
+                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +$scope.idUsuarioActual).then(function ()               
                 {
                     var idGrupo=$scope.grupoActual.id;
                     //Se recarga en caso que funcione
                     $state.go('grupoDetail',{idGrupo},{reload:true});
-                },function(error)
+                },function()
                 {
                 });
             };
@@ -75,7 +75,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * Devuelve las categorías del grupo actual
              * @param {type} idGrupo, id del grupo del que se van a obtener todas sus categorías
              */
-            $scope.categoriasDeMiGrupo= function(idGrupo, lasCats)
+            $scope.categoriasDeMiGrupo= function(idGrupo)
             {
                 $http.get(grupoContext +'/'+ idGrupo+ '/categorias' ).then(function (response) {                    
                     $scope.categoriaRecords = response.data;
@@ -121,18 +121,18 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             };
             $scope.eliminarMiembro= function(idMiembro)
             {
-                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +idMiembro).then(function (response)               
+                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/miembros/' +idMiembro).then(function ()               
                 {
                     var idGrupo=$scope.grupoActual.id;
                     //Se recarga en caso que funcione
                     $state.go('grupoDetail',{idGrupo},{reload:true});
-                },function(error)
+                },function()
                 {
                 });
             };
             $scope.asociarAdminPropiamente= function(idAdmin)
             {
-                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function (response)
+                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function ()
                 {
                     //Quita el administrador recién asociado para que no se muestre
                     $scope.adminRecords= $scope.adminRecords.filter(function( obj ) {
@@ -141,7 +141,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     //Vuelve a buscar los que no se tienen para mostrarlas
                     adminsQueNoTengo($scope.adminRecords);
                     
-                },function(error)
+                },function()
                 {
                 });
             };
@@ -152,11 +152,11 @@ Contorlador principal de un grupo y algunos de sus subrecursos
             $scope.desasociarAdmin= function(idAdmin){
                 if($scope.adminRecords.length>1)
                 {
-                    $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function (response)
+                    $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/administradores/' +idAdmin).then(function ()
                     {
                         //Se recarga en caso que funcione
                         $state.go('adminsDeGrupo',{},{reload:true});
-                    },function(error)
+                    },function()
                     {
                     });
                 }
@@ -198,7 +198,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * @param {type} idCategoria, id de la categoría a asociar
              */
             $scope.asociarCategoria= function(idCategoria){
-                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/categorias/' +idCategoria).then(function (response)
+                $http.post(grupoContext +'/'+$scope.grupoActual.id +'/categorias/' +idCategoria).then(function ()
                 {
                     //Quita la categoría recién asociada para que no se muestre
                     $scope.categoriaRecords= $scope.categoriaRecords.filter(function( obj ) {
@@ -207,7 +207,7 @@ Contorlador principal de un grupo y algunos de sus subrecursos
                     //Vuelve a buscar las que no se tienen para mostrarlas
                     categoriasQueNoTengo($scope.categoriaRecords);
                     
-                },function(error)
+                },function()
                 {
                 });
                 
@@ -217,11 +217,11 @@ Contorlador principal de un grupo y algunos de sus subrecursos
              * @param {type} idCategoria, id de la categoría a desasociar
              */
             $scope.desasociarCategoria= function(idCategoria){
-                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/categorias/' +idCategoria).then(function (response)
+                $http.delete(grupoContext +'/'+$scope.grupoActual.id +'/categorias/' +idCategoria).then(function ()
                 {
                     //Se recarga en caso que funcione
                     $state.go('categoriasDeGrupo',{},{reload:true});
-                },function(error)
+                },function()
                 {
                 });
             };
