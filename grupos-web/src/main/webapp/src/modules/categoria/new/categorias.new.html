@@ -2,36 +2,38 @@
 <div class="container-fluid">
     <div class="panel-group">
         <!--<div class="panel panel-primary">-->
+        <div class= "panel panel-default">
             <!-- Si se está creando se muestra esto-->
             <h1 id="{{$index}}-name" class="col-md-5 text-center" ng-if="!edit" style="float:none;font-size:25px;margin: 0 auto"><span style="color:#426163;">Crear Categoria</span></h1>
             <h1 id="{{$index}}-name" class="col-md-5 text-center" ng-if="edit" style="float:none;font-size:25px;margin: 0 auto"><span style="color:#426163;">Editar Categoria</span></h1>
+            <div class="panel-body">
                 <!-- Formulario para crear o modificar un grupo con su nombre y descripción-->
                 <form ng-submit="createCategoria()" name="categoriaCrear">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12">
                             <label for="categoriaName" class="col-sm-3">Nombre:</label>
                             <!-- Campo para poner el nombre-->
                             <input id="categoriaName" required ng-model="categoriaName" class="col-sm-3"/>
                             <p class="col-md-3" style="color: #D8000C" ng-if="errorCategoriaNombre">Ya existe una categoria con ese nombre</p>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
+                    <div class="form-group row text-center">
+                        <div class="form-group col-md-12">
                             <label for="categoriaDescription" class="col-sm-3">Descripcion:</label>
                             <!-- Campo para poner la descripción-->
                             <textarea id="categoriaDescription" required ng-model="categoriaDescription" class="col-sm-6"></textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
-                         <div class="form-group col-md-6">
-                            <label for="categoriaRuta" class="col-sm-2">Ruta de la imagen:</label>
+                    <div class="form-group row text-center">
+                         <div class="form-group col-md-12">
+                            <label for="categoriaRuta" class="col-sm-3">Ruta de la imagen:</label>
                             <!-- Campo para poner la ruta de la imagen-->
                             <select id="categoriaRuta" class="col-sm-6" required ng-model="categoriaRuta">
                                 <option ng-repeat="ruta in rutaImagenes" type="text">{{ruta.ruta}} </option>
                             </select>                            
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-sm-12">
                             <!-- Muestra los botones si el formulario está completamente llenado-->
                                 <!-- En caso de crear una categoría muestra solo el botón crear-->
