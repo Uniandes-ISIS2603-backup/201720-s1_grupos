@@ -9,8 +9,6 @@ import co.edu.uniandes.csw.grupos.entities.BlogEntity;
 import co.edu.uniandes.csw.grupos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoEntity;
 import co.edu.uniandes.csw.grupos.entities.MultimediaEntity;
-import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
-import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.BlogPersistence;
 import java.util.ArrayList;
@@ -45,6 +43,9 @@ public class BlogLogic {
      */
     @Inject
     CalificacionLogic calificacionLogic;
+    
+    private String err = "No existe ningún blog con el id ";
+    
     /**
      * Crea un blog.<br>
      * @param entity Blog.<br>
@@ -90,7 +91,7 @@ public class BlogLogic {
     public BlogEntity getBlog(Long id)  {
         BlogEntity blog = persistence.find(id);
         if(blog == null) {
-            throw new NotFoundException("No existe ningún blog con el id "+id);
+            throw new NotFoundException(err+id);
         }
         return blog;
     }
@@ -104,7 +105,7 @@ public class BlogLogic {
         grupoLogic.getGrupo(grupoId);
         BlogEntity blog = persistence.findBlogGrupo(grupoId, blogId);
         if(blog == null) {
-            throw new NotFoundException("No existe ningún blog con el id "+blogId+" en el grupo con id "+grupoId);
+            throw new NotFoundException(err+blogId+" en el grupo con id "+grupoId);
         }
         return blog;
     }
@@ -117,7 +118,7 @@ public class BlogLogic {
     public BlogEntity updateBlog(BlogEntity blog, Long grupoId)  {
         BlogEntity blog2 = persistence.find(blog.getId());
         if(blog2 == null) {
-            throw new NotFoundException("No existe ningún blog con el id "+blog.getId());
+            throw new NotFoundException(err+blog.getId());
         }
         blog.setGrupo(grupoLogic.getGrupo(grupoId));
         return persistence.update(blog);
@@ -131,10 +132,12 @@ public class BlogLogic {
         GrupoEntity g=grupoLogic.getGrupo(grupoId);
         BlogEntity blog = persistence.find(blogId);
         if(blog == null) {
-            throw new NotFoundException("No existe ningún blog con el id "+blogId);
+            throw new NotFoundException(err+blogId);
         }
         int index=g.getBlogsGrupo().indexOf(blog);
-        if(index<0) throw new NotFoundException("No existe ningún blog con el id "+blogId+"en el grupo con id"+grupoId);
+        if(index<0) {
+            throw new NotFoundException(err+blogId+"en el grupo con id"+grupoId);
+        }
         persistence.delete(blogId);
     }
     /**
@@ -173,7 +176,7 @@ public class BlogLogic {
       * @throws BusinessException Excepción de negioci.<br>
       * @throws NotFoundException Excepción de no encontrado si no encuentra nada.
       */
-    public List<MultimediaEntity> getMultimedia(Long id) throws BusinessException, NotFoundException
+    public List<MultimediaEntity> getMultimedia(Long id) throws BusinessException
     {
         return getBlog(id).getMultimedia();
     }
@@ -187,14 +190,13 @@ public class BlogLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException Si no se encuentra algo.
      */
-    public List<MultimediaEntity> addMultipleMultimedia(Long grupoId, Long id, List<MultimediaEntity> mult) throws BusinessException, NotFoundException
+    public List<MultimediaEntity> addMultipleMultimedia(Long grupoId, Long id, List<MultimediaEntity> mult) throws BusinessException
     {
         BlogEntity blog = getBlog(id);
-        MultimediaEntity entity=null;
         for(MultimediaEntity m: mult)
         {
             
-            entity=multimediaLogic.getEntity(m.getLink());
+            MultimediaEntity entity=multimediaLogic.getEntity(m.getLink());
             if(entity==null)
                 entity=multimediaLogic.createEntity(m);
             
@@ -214,13 +216,17 @@ public class BlogLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException  Excepción de no encontrado.
      */
-    public List<MultimediaEntity> updateMultimedia(Long grupoId, Long id, MultimediaEntity mult, String link) throws BusinessException, NotFoundException
+    public List<MultimediaEntity> updateMultimedia(Long grupoId, Long id, MultimediaEntity mult, String link) throws BusinessException
     {
         BlogEntity blog = getBlog(id);
         MultimediaEntity m = multimediaLogic.getEntity(link);
-        if(m==null) throw new NotFoundException("La multimedia no existe");
+        if(m==null) {
+            throw new NotFoundException("La multimedia no existe");
+        }
         int index = blog.getMultimedia().indexOf(m);
-        if((index<0)) throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia.");
+        if(index<0) {
+            throw new NotFoundException ("No se encuentra la multimedia a actualizar en la noticia.");
+        }
         MultimediaEntity updated = multimediaLogic.updateEntity(link, mult);
         blog.getMultimedia().set(index, updated);
         updateBlog(blog,grupoId);
@@ -233,14 +239,17 @@ public class BlogLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException Excepción de no encontrado.
      */
-    public void deleteMultimedia (Long id,String link) throws BusinessException, NotFoundException
+    public void deleteMultimedia (Long id,String link) throws BusinessException
     {
         
         BlogEntity blog = getBlog(id);
         MultimediaEntity m = multimediaLogic.getEntity(link);
-        if(m==null) throw new NotFoundException("La multimedia no existe");
-        int index=blog.getMultimedia().indexOf(m);
-        if(blog.getMultimedia().indexOf(m)<0) throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
+        if(m==null) {
+            throw new NotFoundException("La multimedia no existe");
+        }
+        if(blog.getMultimedia().indexOf(m)<0) {
+            throw new NotFoundException ("No se encuentra la multimedia a borrar de la noticia.");
+        }
         blog.getMultimedia().remove(m);
         
         
@@ -258,7 +267,9 @@ public class BlogLogic {
         CalificacionEntity c = new CalificacionEntity();
         c.setId(id);
         int index = calificaciones.indexOf(c);
-        if(index<0) throw new NotFoundException("No se encuentra la calificación");
+        if(index<0) {
+            throw new NotFoundException("No se encuentra la calificación");
+        }
         return calificaciones.get(index);
     }
     /**
@@ -280,10 +291,12 @@ public class BlogLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException  Excepción de no encontrado.
      */
-    public CalificacionEntity addCalificacion(Long grupoId, Long blogId, CalificacionEntity c) throws BusinessException, NotFoundException
+    public CalificacionEntity addCalificacion(Long grupoId, Long blogId, CalificacionEntity c) throws BusinessException
     {
         BlogEntity blog = getBlog(blogId);
-        if(blog.getCalificaciones()==null) blog.setCalificaciones(new ArrayList<>());
+        if(blog.getCalificaciones()==null) {
+            blog.setCalificaciones(new ArrayList<>());
+        }
         int index=blog.getCalificaciones().indexOf(c);
         if(index>=0) 
         {
@@ -297,7 +310,9 @@ public class BlogLogic {
            }
        }
         int numero=blog.getCalificaciones().size();
-        if(blog.getPromedio()==null) blog.setPromedio(0.0);
+        if(blog.getPromedio()==null) {
+            blog.setPromedio(0.0);
+        }
         blog.setPromedio(((blog.getPromedio()*numero)+c.getCalificacion())/(numero+1));
         c.setBlog(blog);
         calificacionLogic.updateEntity(c.getId(), c);
@@ -315,12 +330,14 @@ public class BlogLogic {
      * @throws BusinessException Excepción de negocio.<br>
      * @throws NotFoundException  Excepción de no encontrado.
      */
-    public CalificacionEntity updateCalificacion(Long grupoId, Long blogId, Long calificacionId,CalificacionEntity nueva) throws BusinessException, NotFoundException
+    public CalificacionEntity updateCalificacion(Long grupoId, Long blogId, Long calificacionId,CalificacionEntity nueva) throws BusinessException
     {
         BlogEntity blog = getBlog(blogId);
         nueva.setId(calificacionId);
         int index=blog.getCalificaciones().indexOf(nueva);
-        if(index<0) throw new NotFoundException("La calificación buscada no existe");
+        if(index<0) {
+            throw new NotFoundException("La calificación buscada no existe");
+        }
         CalificacionEntity updated=calificacionLogic.updateEntity(calificacionId, nueva);
         blog.getCalificaciones().set(index, updated);
         updateBlog(blog,grupoId);
@@ -338,10 +355,16 @@ public class BlogLogic {
       BlogEntity blog = getBlog(blogId);
       CalificacionEntity calificacion=calificacionLogic.getEntity(calificacionId);
       int index=blog.getCalificaciones().indexOf(calificacion);
-      if(index<0) throw new BusinessException("La calificación a eliminar no existe");
+      if(index<0) {
+          throw new BusinessException("La calificación a eliminar no existe");
+      }
       int tam=blog.getCalificaciones().size();
-      if(blog.getPromedio()==null) blog.setPromedio(0.0);
-      if(tam==1) blog.setPromedio(0.0);
+      if(blog.getPromedio()==null) {
+          blog.setPromedio(0.0);
+      }
+      if(tam==1) {
+          blog.setPromedio(0.0);
+      }
       else
       {
           blog.setPromedio(((blog.getPromedio()*tam)-calificacion.getCalificacion())/(tam-1));

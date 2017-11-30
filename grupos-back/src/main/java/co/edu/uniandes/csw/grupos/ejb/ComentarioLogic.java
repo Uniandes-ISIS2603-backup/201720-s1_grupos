@@ -40,6 +40,9 @@ public class ComentarioLogic {
      */
     @Inject
     private GrupoLogic grupoLogic;
+    
+    private String err = "No existe ningún comentario con el id ";
+    
     /**
      * Crea un nuevo comentario.<br>
      * @param entity Entidad a persistir.<br>
@@ -125,7 +128,7 @@ public class ComentarioLogic {
         comentario.setId(comentarioId);
         int index = comentarios.indexOf(comentario);
         if(index<0) {
-            throw new NotFoundException("No existe ningún comentario con el id "+comentarioId+" en el blog con id "+blogId);
+            throw new NotFoundException(err+comentarioId+" en el blog con id "+blogId);
         }
         return comentarios.get(index);
     }
@@ -142,7 +145,7 @@ public class ComentarioLogic {
         comentario.setId(comentarioId);
         int index = comentarios.indexOf(comentario);
         if(index<0) {
-            throw new NotFoundException("No existe ningún comentario con el id "+comentarioId+" en la noticia con id "+noticiaId);
+            throw new NotFoundException(err+comentarioId+" en la noticia con id "+noticiaId);
         }
         return comentarios.get(index);
     }
@@ -154,7 +157,7 @@ public class ComentarioLogic {
     public ComentarioEntity updateComentario(ComentarioEntity comentario) {
         ComentarioEntity comentario2 = persistence.find(comentario.getId());
         if(comentario2 == null) {
-            throw new NotFoundException("No existe ningún comentario con el id "+comentario.getId());
+            throw new NotFoundException(err+comentario.getId());
         }
         return persistence.update(comentario);
     }
@@ -187,7 +190,7 @@ public class ComentarioLogic {
     public void deleteComentario(Long id) {
         ComentarioEntity comentario = persistence.find(id);
         if(comentario == null) {
-            throw new NotFoundException("No existe ningún comentario con el id "+id);
+            throw new NotFoundException(err+id);
         }
         persistence.delete(id);
     }
@@ -203,7 +206,7 @@ public class ComentarioLogic {
         comentario.setId(comentarioId);
         int index = comentarios.indexOf(comentario);
         if(index<0) {
-            throw new NotFoundException("No existe ningún comentario con el id "+comentarioId+" en el blog con id "+blogId);
+            throw new NotFoundException(err+comentarioId+" en el blog con id "+blogId);
         }
         comentarios.remove(index);
         deleteComentario(comentarioId);
@@ -220,7 +223,7 @@ public class ComentarioLogic {
         comentario.setId(comentarioId);
         int index = comentarios.indexOf(comentario);
         if(index<0) {
-            throw new NotFoundException("No existe ningún comentario con el id "+comentarioId+" en la noticia con id "+noticiaId);
+            throw new NotFoundException(err+comentarioId+" en la noticia con id "+noticiaId);
         }
         comentarios.remove(index);
         deleteComentario(comentarioId);
