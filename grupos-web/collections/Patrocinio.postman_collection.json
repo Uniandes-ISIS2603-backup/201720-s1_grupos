@@ -1,9 +1,10 @@
 {
+	"variables": [],
 	"info": {
 		"name": "Patrocinio",
-		"_postman_id": "c5081893-8602-a6c9-ad88-3159ade10a5c",
+		"_postman_id": "07cc02b6-38bc-1b1f-9e84-968146502078",
 		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -31,67 +32,7 @@
 					"mode": "raw",
 					"raw": "{\n        \"pago\": 1000\n }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"usuarios",
-						"3",
-						"patrocinios"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Actualiza el patrocinio dado.",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"]=responseCode.code===200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"pago\": 1000\n }"
-				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"usuarios",
-						"3",
-						"patrocinios",
-						"1"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios"
 			},
 			"response": []
 		},
@@ -120,22 +61,7 @@
 					"mode": "raw",
 					"raw": "{\n        \"pago\": 1000\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"usuarios",
-						"3",
-						"patrocinios"
-					]
-				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/usuarios/3/patrocinios"
 			},
 			"response": []
 		},
@@ -155,21 +81,11 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/grupos-web/Stark/patrocinios",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"grupos-web",
-						"Stark",
-						"patrocinios"
-					]
+				"body": {
+					"mode": "raw",
+					"raw": ""
 				},
-				"description": ""
+				"url": "http://localhost:8080/grupos-web/Stark/patrocinios"
 			},
 			"response": []
 		}
