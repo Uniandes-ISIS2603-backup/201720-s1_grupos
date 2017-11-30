@@ -1,14 +1,15 @@
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-body">
-            <h2 class="text-center">{{ctrl.getHeader()}}</h2>
+            <h1 class="col-md-12 text-center"><span style="font-size:45px;color:#426163;font-family: Helvetica Neue,Helvetica,Arial,sans-serif"> Noticias </span></h1>
+            <h2 class="text-center"><span style="font-size:30px;color:#48233C;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">{{ctrl.getHeader()}} </span></h2>
             <div class="btn-toolbar ng-hide" role="toolbar" aria-label="Toolbar with button groups" ng-show="{{noticiaEditable && deGrupo}}">
                 <div ng-show="(esMiembro||puedoEditarGrupo() )">
                     <a class="btn" id="add-btn" ui-sref="grupoNoticiaCreate"><img src="data/plusN.png" style="width:50px;height:50px"></a>
                 </div>
             
             </div>
-        
+            <hr>
             <div ng-repeat="record in records" >
                 <div id="{{$index}}-titulo">
                     <h2 class="text-center"> {{record.titulo}}</h2>
@@ -17,13 +18,13 @@
                     <h3> {{record.informacion}}</h3>
                 </div>
                 <div ng-show="{{esNoticiaUsuario}}" class="text-center">
-                    <button id="return-btn" class="btn btn-info" ui-sref="usuarioNoticiaDetail({noticiaId:record.id})">Ver</button>
+                    <button role="button" class="btn outline" ui-sref="usuarioNoticiaDetail({noticiaId:record.id})" height="20" width="100" style="font-size:16px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Ver </button>
                 </div>
                 <div ng-show="{{deGrupo}}" class="text-center">
-                    <button id="return-btn" class="btn btn-info" ui-sref="grupoNoticiaDetail({noticiaId:record.id, reload:true})">Ver</button>
+                    <button role="button" class="btn outline" ui-sref="grupoNoticiaDetail({noticiaId:record.id, reload:true})" height="20" width="100" style="font-size:16px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Ver </button>
                 </div>
                 <div ng-show="{{!noticiaEditable}}" class="text-center">
-                    <button id="return-btn" class="btn btn-info" ui-sref="noticiaNoEditableDetail({noticiaId:record.id})">Ver</button>
+                    <button role="button" class="btn outline" ui-sref="noticiaNoEditableDetail({noticiaId:record.id})" height="20" width="100" style="font-size:16px ;font-family: Helvetica Neue,Helvetica,Arial,sans-serif">Ver </button>
                 </div>
                 <hr>
             </div>   
