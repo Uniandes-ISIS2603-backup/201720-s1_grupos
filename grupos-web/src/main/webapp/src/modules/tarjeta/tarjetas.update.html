@@ -1,35 +1,35 @@
 <div class="container-fluid">
     <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <label id="editTarjeta">Editar Tarjeta</label></div>
+        <!--<div class="panel panel-primary">-->
+        <div class="panel panel-body">
+            <h1 id="{{$index}}-name" class="col-md-5 text-center" style="float:none;font-size:25px;margin: 0 auto"><span style="color:#426163;">Editar Tarjeta</span></h1>
             <div class="panel-body">
                 <form ng-submit="updateTarjeta()" name="tarjeta">
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-md-6">
-                            <label for="tarjetaNumero" class="col-sm-2 col-lg-2">Numero:</label>
+                            <label for="tarjetaNumero" class="col-sm-2 col-lg-5">Numero:</label>
                             <p class="col-sm-6">{{currentTarjeta.numero}}</p>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-md-6">
-                            <label for="tarjetaBanco" class="col-sm-2 col-lg-7">Banco:</label>
+                            <label for="tarjetaBanco" class="col-sm-2 col-lg-5">Banco:</label>
                             <input type="text" id="tarjetaBanco" required ng-model="tarjetaBanco" class="col-sm-6"/>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-md-6">
-                            <label for="tarjetaDineroDisponible" class="col-sm-2 col-lg-7">Dinero disponible:</label>
+                            <label for="tarjetaDineroDisponible" class="col-sm-2 col-lg-5">Dinero disponible:</label>
                             <input id="tarjetaDineroDisponible" required ng-model="tarjetaDineroDisponible" class="col-sm-6" type="number" min="0"/>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-md-6">
-                            <label for="tarjetaMaxCupo" class="col-sm-2 col-lg-7">Cupo máximo:</label>
+                            <label for="tarjetaMaxCupo" class="col-sm-2 col-lg-5">Cupo máximo:</label>
                             <input id="tarjetaMaxCupo" required ng-model="tarjetaMaxCupo" class="col-sm-6" type="number" min="0"/>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-sm-4" ng-if="!tarjeta.$valid">
 
                             <div class="alert alert-warning" >
@@ -37,10 +37,10 @@
                             </div> 
                         </div> 
                     </div> 
-                    <div class="form-group row">
+                    <div class="form-group row text-center">
                         <div class="form-group col-sm-12">
-                            <input ng-show="tarjeta.$valid" type="submit" value="Guardar" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="tarjetasList">Cancelar</a>
+                            <input ng-show="tarjeta.$valid" type="submit" value="Guardar" class="btn outline"/>
+                            <a class="btn outline" ui-sref="tarjetasList">Cancelar</a>
                         </div>
                     </div>
                 </form>

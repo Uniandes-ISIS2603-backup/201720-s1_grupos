@@ -23,7 +23,7 @@
                 <td id="{{$index}}-Nickname">{{usuario.nickname}}</td>
                 <td id="{{$index}}-Email">{{usuario.email}}</td>
                 <!-- Muestra la opción para desasociar la categoría en caso de estar en un grupoDetail-->     
-                <td><a class="btn btn-danger btn-sm" ng-click="desasociarAdmin(usuario.id)" ng-if="puedoEditarGrupo()">Desasociar administrador</a></td>
+                <td><a class="btn outlineC btn-sm" ng-click="desasociarAdmin(usuario.id)" ng-if="puedoEditarGrupo()">Desasociar administrador</a></td>
             </tr>
         </tbody>
     </table>
