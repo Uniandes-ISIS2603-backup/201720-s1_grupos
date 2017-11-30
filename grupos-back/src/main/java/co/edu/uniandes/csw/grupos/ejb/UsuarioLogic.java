@@ -13,7 +13,6 @@ import co.edu.uniandes.csw.grupos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.grupos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessException;
 import co.edu.uniandes.csw.grupos.persistence.UsuarioPersistence;
-import java.time.Clock;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -56,6 +55,8 @@ public class UsuarioLogic {
     @Inject
     PatrocinioLogic patrocinioLogic;
     
+    private final String err = "No existe el usuario con id especificado";
+    
     /**
      * Metodo que crea un nuevo usuario
      * @param puser entidad nueva a crear
@@ -65,8 +66,7 @@ public class UsuarioLogic {
     public UsuarioEntity createUser(UsuarioEntity puser) throws BusinessException
     {
         verifyUserCreate(puser);
-        UsuarioEntity add = per.createEntity(puser);
-        return add;
+        return per.createEntity(puser);
     }
     
     /**
@@ -74,7 +74,7 @@ public class UsuarioLogic {
      * @return lista con todos los usuarios de la aplicación
      * @throws BusinessException 
      */
-    public List<UsuarioEntity> allUsers() throws BusinessException
+    public List<UsuarioEntity> allUsers() 
     {
         return per.findAll();
     }
@@ -129,14 +129,13 @@ public class UsuarioLogic {
      * @throws BusinessException si el email o la contraseña son nulos o vacíos
      */
     public UsuarioEntity findUserEmailPassword(UsuarioEntity user) throws BusinessException{
-        if(user.getEmail() == null || user.getEmail().equals("")) {
+        if(user.getEmail() == null || ("").equals(user.getEmail())) {
             throw new BusinessException("El email no puede ser nulo o vacío");
         }
-        if(user.getPassword() == null || user.getPassword().equals("")) {
+        if(user.getPassword() == null || ("").equals(user.getPassword())) {
             throw new BusinessException("La contraseña no puede ser nula o vacía");
         }
-        UsuarioEntity found = per.findByEmailPassword(user.getEmail(), user.getPassword());
-        return found;
+        return per.findByEmailPassword(user.getEmail(), user.getPassword());
     }
     
     /**
@@ -144,7 +143,7 @@ public class UsuarioLogic {
      * @param id identificador del usuario que posee las tarjetas
      * @return lista de tarjetas del usuario
      */
-    public List<TarjetaEntity> listTarjetas(Long id) throws BusinessException{
+    public List<TarjetaEntity> listTarjetas(Long id) {
         return findById(id).getTarjetas();
     }
     
@@ -154,7 +153,7 @@ public class UsuarioLogic {
      * @param pNumTarjeta Numero que identifica la tarjeta que se desea buscar.
      * @return 
      */
-    public TarjetaEntity getTarjeta(Long id, int pNumTarjeta) throws BusinessException{
+    public TarjetaEntity getTarjeta(Long id, int pNumTarjeta) {
         List<TarjetaEntity> tarjetasUsuario = findById(id).getTarjetas();
         TarjetaEntity tarjetaBuscada = null;
         
@@ -189,11 +188,10 @@ public class UsuarioLogic {
      * @param id Identificador del usuario dueno de la tarjeta
      * @param entity Entidad que representa la tarjeta con la nueva informacion
      * @return Tarjeta modificada
-     * @throws BusinessException En caso de que se trate de modificar una tarjeta que no exista.
      */
-    public TarjetaEntity updateTarjeta(Long id, TarjetaEntity entity) throws BusinessException{
-        TarjetaEntity tarjetaNueva = tarjetaLogic.update(entity);
+    public TarjetaEntity updateTarjeta(Long id, TarjetaEntity entity) {
         UsuarioEntity usuario = findById(id);
+        TarjetaEntity tarjetaNueva = tarjetaLogic.update(entity);
         
         List<TarjetaEntity> tarjetas = usuario.getTarjetas();
         
@@ -212,9 +210,8 @@ public class UsuarioLogic {
      * Método que elimina una tarjeta asociada a un usuario
      * @param id Identificador del usuario dueno de la tarjeta
      * @param pNumTarjeta Número que identifica a la tarjeta 
-     * @throws BusinessException En caso de que se trate de borrar una tarjeta que no existe.
      */
-    public void removeTarjeta(Long id, int pNumTarjeta) throws BusinessException{
+    public void removeTarjeta(Long id, int pNumTarjeta) {
         UsuarioEntity usuario = findById(id);
         TarjetaEntity tarjetaBorrar = getTarjeta(id, pNumTarjeta);
         
@@ -229,9 +226,8 @@ public class UsuarioLogic {
      * @param id Identificador del usuario
      * @return Empresa del usuario
      */
-    public EmpresaEntity getEmpresa(Long id) throws BusinessException{
-        EmpresaEntity empresa = findById(id).getEmpresa();        
-        return empresa;
+    public EmpresaEntity getEmpresa(Long id) {
+        return findById(id).getEmpresa();
     }
     
      /**
@@ -258,11 +254,10 @@ public class UsuarioLogic {
      * @param id Identificador del usuario dueno de la tarjeta
      * @param entity Entidad que representa la empresa con la nueva informacion
      * @return Empresa modificada
-     * @throws BusinessException En caso de que se trate de modificar una empresa que no existe.
      */
-    public EmpresaEntity updateEmpresa(Long id, EmpresaEntity entity) throws BusinessException{
-        EmpresaEntity empresaNueva = empresaLogic.update(entity);
+    public EmpresaEntity updateEmpresa(Long id, EmpresaEntity entity) {
         UsuarioEntity usuario = findById(id);
+        EmpresaEntity empresaNueva = empresaLogic.update(entity);
         
         usuario.setEmpresa(empresaNueva);   
         
@@ -273,9 +268,8 @@ public class UsuarioLogic {
      /**
      * Método que elimina una empresa asociada a un usuario
      * @param id Identificador del usuario dueno de la tarjeta
-     * @throws BusinessException En caso de que se trate de borrar una empresa que no existe.
      */
-    public void removeEmpresa(Long id) throws BusinessException{
+    public void removeEmpresa(Long id) {
         UsuarioEntity usuario = findById(id);
         EmpresaEntity empresa = usuario.getEmpresa();
         usuario.setEmpresa(null);
@@ -285,19 +279,23 @@ public class UsuarioLogic {
     
     /**
      * Retorna la noticia buscada por el id dado por parametro
-     * @param id identificador unico de la noticia
+     * @param idNoticia identificador unico de la noticia
      * @return devuelve la noticia con el id dado, null en caso de no encontrar nada
      * @throws BusinessException 
      */
     public NoticiaEntity getNoticia(Long idUsuario, Long idNoticia) throws BusinessException{
         UsuarioEntity usuario = findById(idUsuario);
         if(usuario == null){
-            throw new BusinessException("No existe el usuario con id especificado");
+            throw new BusinessException(err);
         }
         NoticiaEntity res = noticiaLogic.getEntity(idNoticia);
-        if(usuario.getNoticias()==null) usuario.setNoticias(new ArrayList<>());
+        if(usuario.getNoticias()==null) {
+            usuario.setNoticias(new ArrayList<>());
+        }
         int index=usuario.getNoticias().indexOf(res);
-        if(index<0) throw new NotFoundException("No existe la noticia del usuario dado");
+        if(index<0) {
+            throw new NotFoundException("No existe la noticia del usuario dado");
+        }
         return usuario.getNoticias().get(index);
     }
     
@@ -311,7 +309,7 @@ public class UsuarioLogic {
     public NoticiaEntity addNoticia(Long id, NoticiaEntity nn) throws BusinessException{
         UsuarioEntity usuario = findById(id);
         if(usuario == null){
-            throw new BusinessException("No existe el usuario con id especificado");
+            throw new BusinessException(err);
         }
         NoticiaEntity newn = noticiaLogic.createEntity(nn);
         List<NoticiaEntity> news= usuario.getNoticias();
@@ -337,11 +335,15 @@ public class UsuarioLogic {
         UsuarioEntity usuario = findById(id);
         nn.setId(noticiaId);
         if(usuario == null){
-            throw new BusinessException("No existe el usuario con id especificado");
+            throw new BusinessException(err);
         }
-        if(usuario.getNoticias()==null) throw new BusinessException("No hay noticias a actualizar");
+        if(usuario.getNoticias()==null) {
+            throw new BusinessException("No hay noticias a actualizar");
+        }
         int index= usuario.getNoticias().indexOf(nn);
-        if(index<0) throw new NotFoundException("La noticia no existe para la ista del usuario");
+        if(index<0) {
+            throw new NotFoundException("La noticia no existe para la ista del usuario");
+        }
         NoticiaEntity before=noticiaLogic.getEntity(nn.getId());
         nn.setAutor(before.getAutor());
         nn.setGrupo(before.getGrupo());
@@ -359,15 +361,17 @@ public class UsuarioLogic {
     public void removeNoticia(Long idUsuario, Long idNoticia) throws BusinessException{
         UsuarioEntity usuario = findById(idUsuario);
         if(usuario == null){
-            throw new BusinessException("No existe el usuario con id especificado");
+            throw new BusinessException(err);
         }
         noticiaLogic.deleteEntity(idNoticia);
         usuario.deleteNoticia(idNoticia);
     }
 
-    public List<NoticiaEntity> getNoticias(Long id) throws BusinessException {
+    public List<NoticiaEntity> getNoticias(Long id) {
         UsuarioEntity u = findById(id);
-        if(u==null) throw new NotFoundException("El usuario no existe");
+        if(u==null) {
+            throw new NotFoundException("El usuario no existe");
+        }
         return u.getNoticias();
     }
 
@@ -377,7 +381,7 @@ public class UsuarioLogic {
      * @return lista de patrocinios
      * @throws BusinessException 
      */
-    public List<PatrocinioEntity> getPatrocinios(Long id) throws BusinessException{
+    public List<PatrocinioEntity> getPatrocinios(Long id) {
         UsuarioEntity u = findById(id);
         if(u==null){
             throw new NotFoundException("El usuario no existe");
@@ -392,7 +396,7 @@ public class UsuarioLogic {
      * @param patrociniosId Identificador de la instancia de Patrocinio
      * 
      */
-    public PatrocinioEntity getPatrocinio(Long entityId, Long patrociniosId) throws BusinessException{
+    public PatrocinioEntity getPatrocinio(Long entityId, Long patrociniosId) {
         UsuarioEntity u = findById(entityId);
         List<PatrocinioEntity> list = u.getPatrocinios();
         PatrocinioEntity patrociniosEntity = new PatrocinioEntity();
@@ -411,14 +415,13 @@ public class UsuarioLogic {
      * @return patrocinio creado
      * @throws BusinessException 
      */
-    public PatrocinioEntity addPatrocinio(Long id, PatrocinioEntity pe) throws BusinessException{
+    public PatrocinioEntity addPatrocinio(Long id, PatrocinioEntity pe) {
         UsuarioEntity u = findById(id);
         if(u==null){
             throw new NotFoundException("El usuario no existe");
         }
         pe.setUsuario(u);
-        PatrocinioEntity nuevo = patrocinioLogic.createPatrocinio(pe);
-        return nuevo;
+        return patrocinioLogic.createPatrocinio(pe);
     }
 
     /**
@@ -439,19 +442,18 @@ public class UsuarioLogic {
             throw new BusinessException("No hay patrocinios para actualizar");
         }
         int pos = u.getPatrocinios().indexOf(np);
-        if(pos<0) throw new NotFoundException("El patrocinio no existe en la lista del usuario");
+        if(pos<0) {
+            throw new NotFoundException("El patrocinio no existe en la lista del usuario");
+        }
         
         np.setUsuario(u);
-        PatrocinioEntity cambio = patrocinioLogic.updatePatrocinio(np.getId(), np);
-        //u.getPatrocinios().set(pos, cambio);
-        return cambio;
+        return patrocinioLogic.updatePatrocinio(np.getId(), np);
     }
 
     /**
      * Elimina un patrocinio de un usuario
      * @param id
      * @param patrocinioId
-     * @param np
      * @throws BusinessException 
      */
     public void deletePatrocinio(Long id, Long patrocinioId) throws BusinessException{
@@ -465,7 +467,9 @@ public class UsuarioLogic {
             throw new BusinessException("No hay patrocinios para actualizar");
         }
         int pos = u.getPatrocinios().indexOf(np);
-        if(pos<0) throw new NotFoundException("El patrocinio no existe en la lista del usuario");
+        if(pos<0) {
+            throw new NotFoundException("El patrocinio no existe en la lista del usuario");
+        }
         u.getPatrocinios().remove(pos);
         updateUser(id, u);
     }
@@ -533,10 +537,10 @@ public class UsuarioLogic {
     }
     
     private void verifyUserCreate(UsuarioEntity user) throws BusinessException {
-        if(user.getEmail() == null || user.getEmail().equals("")) {
+        if(user.getEmail() == null || ("").equals(user.getEmail())) {
             throw new BusinessException("el email no puede ser nulo o vacío");
         }
-        if(user.getNickname() == null || user.getNickname().equals("")) {
+        if(user.getNickname() == null || ("").equals(user.getNickname())) {
             throw new BusinessException("el email no puede ser nulo o vacío");
         }
         if(per.findByEmail(user.getEmail()) != null) {
@@ -545,23 +549,17 @@ public class UsuarioLogic {
         if(per.findByNickname(user.getNickname()) != null) {
             throw new BusinessException("El nickname ya está en uso");
         }
-        //String rol = user.getRol();
-        //if(rol == null || !(rol.equals("Administrador") || rol.equals("Ciudadano"))) {
-        //    throw new BusinessException("Rol de usuario no válido");
-        //}
     }
     
     private void verifyUserUpdate(UsuarioEntity user) throws BusinessException{
         UsuarioEntity oldUser = per.find(user.getId());
-        if(user.getEmail() != null) {
-            if(!oldUser.getEmail().equals(user.getEmail()) && per.findByEmail(user.getEmail()) != null) {
-                throw new BusinessException("Ya existe una cuenta asociada a este email");
-            }
+        if(user.getEmail() != null && !oldUser.getEmail().equals(user.getEmail()) && per.findByEmail(user.getEmail()) != null) {
+            throw new BusinessException("Ya existe una cuenta asociada a este email");
+            
         }
-        if(user.getNickname() != null) {
-            if(!oldUser.getNickname().equals(user.getNickname()) && per.findByNickname(user.getNickname()) != null) {
-                throw new BusinessException("El nickname ya está en uso");
-            }
+        if(user.getNickname() != null && !oldUser.getNickname().equals(user.getNickname()) && per.findByNickname(user.getNickname()) != null) {
+            throw new BusinessException("El nickname ya está en uso");
+            
         }
     }
 }
